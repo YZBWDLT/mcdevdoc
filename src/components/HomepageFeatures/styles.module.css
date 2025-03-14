@@ -1,0 +1,52 @@
+.featuresRow {
+  display: flex; /* 启用 Flexbox 布局 */
+  flex-wrap: wrap; /* 允许换行 */
+  gap: 1rem; /* Feature 之间的间距 */
+  margin-top: 2rem; /* 距离顶部的间距 */
+}
+
+.featureWrapper {
+  background-color: #f5f5f5; /* 圆角矩形的背景颜色 */
+  border-radius: 12px; /* 圆角半径 */
+  padding: 1rem; /* 内边距 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 可选：添加阴影 */
+  flex: 0 0 calc(33.33% - 1rem); /* 固定宽度，不伸缩 */
+  margin-bottom: 1rem; /* 每个 Feature 之间的间距 */
+  box-sizing: border-box; /* 确保 padding 和 border 不增加元素的总宽度 */
+}
+
+.featureContainer {
+  display: flex; /* 启用 Flexbox 布局 */
+  align-items: flex-start; /* 顶部对齐 */
+  gap: 1rem; /* 图片和文字之间的间距 */
+}
+
+.imageContainer {
+  flex: 0 0 auto; /* 图片容器不伸缩，保持固定宽度 */
+}
+
+.featureImage {
+  width: 100px; /* 图片宽度 */
+  height: 100px; /* 图片高度 */
+}
+
+.textContainer {
+  flex: 1 1 auto; /* 文字容器占据剩余空间 */
+}
+
+.textContainer h2 {
+  color: inherit; /* 继承父元素颜色 */
+}
+
+.textContainer a {
+  color: var(--ifm-link-color); /* 使用 Docusaurus 默认的链接颜色 */
+  text-decoration: none; /* 去掉下划线 */
+}
+
+.textContainer a:hover {
+  text-decoration: underline; /* 鼠标悬停时显示下划线 */
+}
+
+.noLink {
+  color: black; /* 不带链接的标题设置为黑色 */
+}
