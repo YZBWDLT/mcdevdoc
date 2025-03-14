@@ -4,53 +4,48 @@ import Link from '@docusaurus/Link';
 
 const FeatureList = [
     {
-        title: '命令1',
+        title: '模块1：命令',
         image: require('@site/static/site/command_block.gif').default,
         description: (
             <>
-                Docusaurus was designed from the ground up to be easily installed and
-                used to get your website up and running quickly.
+                命令是 Minecraft 中的一种高级功能。灵活运用命令，可以简单地实现很多复杂功能。
             </>
         ),
-        link: "docs/commands/a"
+        link: "docs/commands/introduction"
     },
     {
-        title: '命令2',
+        title: '模块2：附加包基础',
         image: require('@site/static/site/command_block.gif').default,
         description: (
             <>
-                Docusaurus was designed from the ground up to be easily installed and
-                used to get your website up and running quickly.
-            </>
-        ),
-    },
-    {
-        title: '命令3',
-        image: require('@site/static/site/command_block.gif').default,
-        description: (
-            <>
-                Docusaurus was designed from the ground up to be easily installed and
-                used to get your website up and running quickly.
+                附加包是 Mojang 官方支持的一种能够修改游戏运行方式的功能。它可以显著地改变你的世界。
             </>
         ),
     },
     {
-        title: '命令4',
+        title: '模块3：附加包进阶',
         image: require('@site/static/site/command_block.gif').default,
         description: (
             <>
-                Docusaurus was designed from the ground up to be easily installed and
-                used to get your website up and running quickly.
+                了解附加包所能够实现的强大功能，在你的世界中新增 Minecraft 所不曾存在的东西。
             </>
         ),
     },
     {
-        title: '命令5',
+        title: '模块4：ScriptAPI',
         image: require('@site/static/site/command_block.gif').default,
         description: (
             <>
-                Docusaurus was designed from the ground up to be easily installed and
-                used to get your website up and running quickly.
+                ScriptAPI（又称SAPI）是一种国际版的脚本系统，是强大的实现高度复杂功能的工具。
+            </>
+        ),
+    },
+    {
+        title: '模块5：ModAPI',
+        image: require('@site/static/site/command_block.gif').default,
+        description: (
+            <>
+                ModAPI是一种适用于中国版的脚本系统，也是一种强大的实现高度复杂功能的工具。
             </>
         ),
     },
