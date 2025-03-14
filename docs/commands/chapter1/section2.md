@@ -66,7 +66,7 @@ Minecraft 的坐标以东为 x 轴正方向，以南为 z 轴正方向，而**�
 
 ![启用复制坐标UI](/commands/chapter1/section2/enable_ui.png)
 
-## 绝对坐标
+## 绝对坐标 `/tp`
 
 由三个**确定的数字组成的坐标**，称为**绝对坐标（Absolute World Coordinates）**。在前文中，你所获取的你所处的坐标就是一个绝对坐标。
 
