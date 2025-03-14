@@ -76,8 +76,11 @@ const config = {
                 logo: { alt: 'Logo', src: 'site/YZBWDLT.jpg', },
                 items: [
                     { label: '命令', type: 'docSidebar', sidebarId: 'commands', position: 'left', },
-                    { label: '数据驱动', type: 'docSidebar', sidebarId: 'dataDriven', position: 'left', },
+                    { label: '附加包基础', type: 'docSidebar', sidebarId: 'addonsSimple', position: 'left', },
+                    { label: '附加包进阶', type: 'docSidebar', sidebarId: 'addonsComplex', position: 'left', },
+                    { label: '中国版', type: 'docSidebar', sidebarId: 'chinaVersion', position: 'left', },
                     { label: 'SAPI', type: 'docSidebar', sidebarId: 'sapi', position: 'left', },
+                    { label: 'ModAPI', type: 'docSidebar', sidebarId: 'modapi', position: 'left', },
                     { label: '个人开发博客', to: '/blog', position: 'right' },
                     { label: 'GitHub', href: 'https://github.com/YZBWDLT/mcdevdoc', position: 'right', },
                 ],

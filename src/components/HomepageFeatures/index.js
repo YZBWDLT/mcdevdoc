@@ -21,6 +21,7 @@ const FeatureList = [
                 附加包是 Mojang 官方支持的一种能够修改游戏运行方式的功能。它可以显著地改变你的世界。
             </>
         ),
+        link: "docs/addons_simple/introduction",
     },
     {
         title: '模块3：附加包进阶',
@@ -30,24 +31,37 @@ const FeatureList = [
                 了解附加包所能够实现的强大功能，在你的世界中新增 Minecraft 所不曾存在的东西。
             </>
         ),
+        link: "docs/addons_complex/introduction",
     },
     {
-        title: '模块4：ScriptAPI',
+        title: '模块4：中国版',
+        image: require('@site/static/site/command_block.gif').default,
+        description: (
+            <>
+                了解中国版所具有的一些独特命令和附加包功能。
+            </>
+        ),
+        link: "docs/china_version/introduction",
+    },
+    {
+        title: '模块5：ScriptAPI',
         image: require('@site/static/site/command_block.gif').default,
         description: (
             <>
                 ScriptAPI（又称SAPI）是一种国际版的脚本系统，是强大的实现高度复杂功能的工具。
             </>
         ),
+        link: "docs/sapi/introduction",
     },
     {
-        title: '模块5：ModAPI',
+        title: '模块6：ModAPI',
         image: require('@site/static/site/command_block.gif').default,
         description: (
             <>
                 ModAPI是一种适用于中国版的脚本系统，也是一种强大的实现高度复杂功能的工具。
             </>
         ),
+        link: "docs/modapi/introduction",
     },
 ];
 
