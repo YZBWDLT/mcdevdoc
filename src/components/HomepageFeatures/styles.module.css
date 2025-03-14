@@ -50,3 +50,9 @@
 .noLink {
   color: black; /* 不带链接的标题设置为黑色 */
 }
+
+@media (max-width: 768px) {
+  .featureWrapper {
+    flex: 0 0 100%; /* 在小屏幕上，每个 Feature 占据 100% 宽度 */
+  }
+}
