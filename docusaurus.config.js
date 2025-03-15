@@ -70,6 +70,11 @@ const config = {
         ({
             // Replace with your project's social card
             image: 'site/YZBWDLT.jpg',
+            docs: {
+                sidebar: {
+                    hideable: true,
+                }
+            },
             // 顶部栏
             navbar: {
                 title: '量筒的 Minecraft 基岩版开发文档',
