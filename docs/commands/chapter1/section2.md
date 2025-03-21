@@ -130,13 +130,11 @@ Minecraft 的坐标以东为 x 轴正方向，以南为 z 轴正方向，而**�
 
 ![相对坐标与绝对坐标的混用](/commands/chapter1/section2/relative_world_coordinates_and_absolute_world_coordinates.png)
 
-<details>
+:::info[思考 1.2-1]
 
-<summary>为什么这次必须要有空格了呢？</summary>
+为什么这次必须要有空格了呢？
 
-这是因为如果不输入为空格，例如`~256~`，那么 Minecraft 会将`~256`看作为是`x`的值，而不是将`~`看作`x`，`256`看作`y`。这样，`x y z`就少了一个坐标`z`，而这又是一个必选参数，所以这种情况下 Minecraft 就会报错。
-
-</details>
+:::
 
 :::
 
