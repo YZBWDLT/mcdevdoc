@@ -16,7 +16,9 @@
             "TabItem",
             "details",
             "summary",
-            "kbd"
+            "kbd",
+            "code",
+            "strong"
         ]
     },
     "MD036": {
