@@ -52,7 +52,7 @@ sidebar_position: 100
 
 需要注意的是，这条命令经常容易和`/tp <目标: target> <位置: target> [检查卡墙: Boolean]`搞混，尤其是在使用游戏给的 UI 时，即使不指定“何处”玩家，也能够成功执行，并且一般执行效果都是背离执行者的预期的（即误将待传送人指定为执行者，而传送位置误指定为待传送人的位置）。
 
-![/tp的UI](/commands/chapter2/section2/tp_ui.png)
+![/tp的UI](./section2/tp_ui.png)
 
 :::
 
