@@ -52,7 +52,7 @@ sidebar_position: 100
 
 需要注意的是，这条命令经常容易和`/tp <目标: target> <位置: target> [检查卡墙: Boolean]`搞混，尤其是在使用游戏给的 UI 时，即使不指定“何处”玩家，也能够成功执行，并且一般执行效果都是背离执行者的预期的（即误将待传送人指定为执行者，而传送位置误指定为待传送人的位置）。
 
-![/tp的UI](./section2/tp_ui.png)
+![/tp的UI](./img/section2/tp_ui.png)
 
 :::
 
@@ -70,5 +70,26 @@ sidebar_position: 100
 命令 B：`/say §c你不能开启创造模式！`  
 7. `/gamemode creative @a[m=spectator,rx=-85]`。注意抬头的 x 旋转值范围为 -90~-85，最小值为 -90 不可能达到，所以无需指定`rxm`；而最大值 -85 则用`rx=-85`指定。
 8. `/kill @e[type=item]`
+
+:::
+
+:::info[练习 2.3-1]
+
+1. `/execute as @a at @s run tp @s ~~~ -135 0`
+2. `/execute as @e[type=enderman] at @s anchored eyes as @a[r=5] run tp @s ~~~`  
+  或`/execute as @e[type=enderman] at @s anchored eyes run tp @a[r=5] ~~~`也是正确的，答案不唯一。
+3. `/execute as @e[type=villager] at @s run kill @e[type=zombie,r=5]`
+4. `/execute as @e[type=zombie] at @s rotated as @e[type=villager,name=Alex,c=1] run tp @s ~~~ ~~`（注意千万不要忘记后面的`~~`，更改执行朝向不等同于更改执行者的朝向！）
+5. `/execute as @e[type=villager] at @s align xz positioned ~0.5~~0.5 run summon zombie`
+6. `/execute as @e[type=sheep] at @s positioned as @e[type=cow,c=1] facing entity @e[x=0,y=0,z=0,c=1,type=pig] run tp @s ~~~~~`  
+  或`/execute as @e[type=sheep] at @s positioned as @e[type=cow,c=1] run tp @s ~~~ facing @e[x=0,y=0,z=0,c=1,type=pig]`，答案不唯一。
+7. 从左向右分析。  
+第一条命令先更改执行者为所有实体，后更改执行环境参数为执行者的环境参数，执行将所有执行者向前传送 1 格的命令，因此该命令的含义为*将所有实体向其前方传送 1 格*。  
+第二条命令的`at @s`没什么意义，可忽略（因为执行环境参数本身就已经是执行者的环境参数了），然后设置执行者为所有实体，执行将所有执行者向前传送 1 格的命令，因此该命令的含义为*将所有实体传送到原执行者前方 1 格*。
+8. 进入下界：`/execute in nether run tp @s ~~~`  
+  检测下界生物：`/execute in nether as @e[rm=0] run say 你们好，主世界的生物们！`
+9. 命令 1：`/execute as @a[x=0,y=-60,z=0,r=1,m=creative] run gamemode survival`  
+  命令 2：`/execute as @a[x=0,y=-60,z=0,r=1,m=creative] run tp 0 -60 3`  
+  倒转后，因为先执行了`tp`命令导致玩家位置发生变化，一定会致使目标选择器检测失败，从而使得`gamemode`无法执行。因此，如果两条命令的顺序倒转，就无法再实现预定效果。
 
 :::

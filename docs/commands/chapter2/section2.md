@@ -19,7 +19,7 @@ sidebar_position: 2
 
 例如，我们在 1.1 曾经布置了一道练习，要求你利用`/help`自学`/difficulty`。是否有印象呢？这里我们就是利用了第二条命令。
 
-![/help difficulty](./section2/help_difficulty.png)
+![/help difficulty](./img/section2/help_difficulty.png)
 
 这条命令还需要再介绍吗？我们认为应该无需多言了。
 
@@ -56,7 +56,7 @@ sidebar_position: 2
 /give <玩家: target> <物品: Item> [数量: int] [数据值: int] [组件: json]
 ```
 
-![/give](./section2/give.png)
+![/give](./img/section2/give.png)
 
 感觉除了`数量`都看不懂？没事，我们先来看`数量`，剩下两个我们一会儿解释。你可以看到，它接受一个`int`类型的参数，也就是整数。这很好理解，毕竟你不能给予 1.5 个苹果，对吧？`数量`是一个可选参数，这就是我们不指定也能成功运行的原因。**对于每一个可选参数，都存在一个默认值**。在这里，默认值就是`1`。也就是说，如果你不填写，它就只给予 1 个苹果。很简单吧？我们来实战一下。
 
@@ -90,7 +90,7 @@ sidebar_position: 2
 
 :::
 
-![/give @s diamond_sword 1 1000](./section2/give_diamond_sword.png)
+![/give @s diamond_sword 1 1000](./img/section2/give_diamond_sword.png)
 
 至于`组件`，我们认为现在聊这些还太早，我们希望等到你有更多的基础之后再来聊这些，不过你很快就会再次见到它的身影！
 
@@ -120,7 +120,7 @@ sidebar_position: 2
 /clear <玩家: target> <物品: Item> [数据值: int] [最大数量: int]
 ```
 
-![/clear](./section2/clear.png)
+![/clear](./img/section2/clear.png)
 
 **这条命令将清除`玩家`至多`最大数量`个数据值为`数据值`的`物品`**。
 
@@ -154,7 +154,7 @@ sidebar_position: 2
 
 特别地，`最大数量`可以被填写为`0`。你可能会问：清除`0`个物品有什么意义？事实上，如果你拥有这个物品，这条命令不会清除你的物品，但是成功执行；而如果你没有这个物品，这条命令就将执行失败。换言之，`最大数量`为`0`时，这条命令将起到检测物品作用。这在 1.18.30 之前，没有`hasitem`的时候是很常用的检测物品的手段。
 
-![/clear @s apple -1 0](./section2/clear_apple_0.png)
+![/clear @s apple -1 0](./img/section2/clear_apple_0.png)
 
 ---
 
@@ -166,7 +166,7 @@ sidebar_position: 2
 /gamemode <游戏模式: int|GameMode> [玩家: target]
 ```
 
-![/gamemode](./section2/gamemode.png)
+![/gamemode](./img/section2/gamemode.png)
 
 **这条命令将把`玩家`调整为`游戏模式`**。特别简单易懂的命令！
 
@@ -204,7 +204,7 @@ sidebar_position: 2
 
 默认模式的概念其实特别简单。每个世界都存在一个默认游戏模式，每个玩家都可能是特定的游戏模式，也可能是默认游戏模式。只要你是默认游戏模式，就跟随这个世界的默认游戏模式来确定你的游戏模式。然而，这个概念确实是很少提及，也不太常用的。
 
-![默认游戏模式](./section2/default_gamemode.png)
+![默认游戏模式](./img/section2/default_gamemode.png)
 
 ### 冒险模式
 
@@ -212,7 +212,7 @@ sidebar_position: 2
 
 其中，`组件`这个东西已经被我们按下不表，我们打算在后续章节再和你谈这些。不过你可以先看到这些物品大体的特征如下：
 
-![冒险模式可用的物品](./section2/usable_block_in_adventure.png)
+![冒险模式可用的物品](./img/section2/usable_block_in_adventure.png)
 
 而允许方块，则是我们在第 3 章要着重介绍的东西。
 
@@ -220,7 +220,7 @@ sidebar_position: 2
 
 旁观模式是一种允许玩家进行世界旁观的模式。在该模式下，玩家将能够飞行、允许穿墙、不能对世界进行任何操作等诸多重要特性。如果你正在做一张多人地图、或者希望玩家能够参观此地图、或者就是单纯地想找找地下的一些结构，等等需求，那么你很可能会用到这个模式！
 
-![旁观模式](./section2/spectator_mode.png)
+![旁观模式](./img/section2/spectator_mode.png)
 
 :::note[扩展：Java 版的旁观模式]
 
@@ -270,7 +270,7 @@ m=<游戏模式: int|GameMode>
 /kill [目标: target]
 ```
 
-![/kill](./section2/kill.png)
+![/kill](./img/section2/kill.png)
 
 **这条命令将杀死`目标`**。
 
@@ -287,7 +287,7 @@ m=<游戏模式: int|GameMode>
 
 `/time`是用于调整时间的命令。这条命令之所以“人尽皆知”，主要是因为基岩版有一个快速的自动命令输入功能：
 
-![/time命令的UI](./section2/time_ui.png)
+![/time命令的UI](./img/section2/time_ui.png)
 
 这个界面可以让一名完全不懂命令的玩家也能轻易地更改时间。但是，我们现在并不能说自己完全不懂命令，我们的目标不应当局限于此。我们来看一下这条命令的语法：
 
@@ -298,7 +298,7 @@ m=<游戏模式: int|GameMode>
 /time set <时间: TimeSpec>
 ```
 
-![/time](./section2/time.png)
+![/time](./img/section2/time.png)
 
 上面我们给出的语法中，和游戏内并不完全一致，这是因为`TimeQuery`类型是一个穷举参数，仅支持 3 种穷举条目：`day`、`daytime`和`gametime`，所以我们直接展开写。
 
@@ -358,7 +358,7 @@ m=<游戏模式: int|GameMode>
 
 最终，游戏将返回给你下面这个类似的消息：
 
-![/time query](./section2/time_query.png)
+![/time query](./img/section2/time_query.png)
 
 天数和当前时间都是好理解的。而对于游戏时间，依据时间换算原理（1 秒 = 20 游戏刻），你可以将这个值除以 20，就是你这个世界所启动了的秒数。
 
@@ -393,7 +393,7 @@ m=<游戏模式: int|GameMode>
 - `/tp @s 0 -62 0 true`：因为超平坦模式下一般而言，(0,-62,0)为泥土层，所以该命令会执行失败。
 - `/tp @s 0 -62 0`：游戏不会检查该位置是否有方块，并将玩家直接传送到土里。
 
-![/tp @s 0 -62 0 true](./section2/tp_true.png)
+![/tp @s 0 -62 0 true](./img/section2/tp_true.png)
 
 ### 传送到特定实体的位置
 
@@ -403,7 +403,7 @@ m=<游戏模式: int|GameMode>
 
 执行命令`/tp @s @e[type=sheep,c=1]`，观察自己的位置变化。这里指代`c=1`，是为了让命令能够更可控，按照预期执行。如果没有绵羊，可以手动生成一只。
 
-![/tp @s @e[type=sheep,c=1]](./section2/tp_sheep.png)
+![/tp @s @e[type=sheep,c=1]](./img/section2/tp_sheep.png)
 
 :::
 
@@ -448,13 +448,13 @@ m=<游戏模式: int|GameMode>
 
 我们如何用 2 个值就确定玩家的朝向？现在我们不妨先只考虑平视的情况。在 Minecraft 中，玩家的视角可以用一个单位向量（也就是一个长度为 1 的有方向的量）去表示，我们看到*在平视的状态*下，无论玩家如何旋转自己的视角，**这个朝向的向量永远是绕着 y 轴旋转的**。选定向南为 0°，顺时针方向记为正，这个向量与 0° 所成的夹角就是`y旋转`（`yRot`，y Rotation）：
 
-![yRot](./section2/yrot.png)
+![yRot](./img/section2/yrot.png)
 
 这样，向西就是 90°，向北就是 180°，向东就是 270°。因为角绕始边转一圈后，终边位置不变，所以加减 360° 的结果是一样的，比如向东还可以表示为 -90°。
 
 同样地，如果玩家向上或向下看，这时就认为玩家的朝向向量绕着 x 轴旋转，也就是`x旋转`（`xRot`，x Rotation）。选定水平为 0°，顺时针方向记为正，则望向天空为 -90°，望向地面为 90°。
 
-![xRot](./section2/xrot.png)
+![xRot](./img/section2/xrot.png)
 
 这样，平视和俯视的角度一结合，我们就可以用 2 个值确定玩家的朝向。至此，你已经完全了解了这两个值的含义。此外，这两个值同样支持波浪线写法，即`~+(value)`的写法。
 
@@ -503,7 +503,7 @@ rym=<x旋转最小值: float>
 - `/say Hello,world!`：在全服说`[(你的名字)] Hello,world！`
 - `/say @e`：在全服说`[(你的名字)] (所有实体的名字)`，下图为示例。
 
-![/say @e](./section2/say_entity.png)
+![/say @e](./img/section2/say_entity.png)
 
 ---
 
