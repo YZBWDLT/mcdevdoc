@@ -76,8 +76,7 @@ sidebar_position: 100
 :::info[练习 2.3-1]
 
 1. `/execute as @a at @s run tp @s ~~~ -135 0`
-2. `/execute as @e[type=enderman] at @s anchored eyes as @a[r=5] run tp @s ~~~`  
-  或`/execute as @e[type=enderman] at @s anchored eyes run tp @a[r=5] ~~~`也是正确的，答案不唯一。
+2. `/execute as @e[type=enderman] at @s as @a[r=5] anchored eyes run tp @s ~~~`，注意末影人周围 5 格是针对其脚部位置而言的。
 3. `/execute as @e[type=villager] at @s run kill @e[type=zombie,r=5]`
 4. `/execute as @e[type=zombie] at @s rotated as @e[type=villager,name=Alex,c=1] run tp @s ~~~ ~~`（注意千万不要忘记后面的`~~`，更改执行朝向不等同于更改执行者的朝向！）
 5. `/execute as @e[type=villager] at @s align xz positioned ~0.5~~0.5 run summon zombie`
