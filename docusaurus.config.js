@@ -86,6 +86,7 @@ const config = {
                     { label: '中国版', type: 'docSidebar', sidebarId: 'chinaVersion', position: 'left', },
                     { label: 'SAPI', type: 'docSidebar', sidebarId: 'sapi', position: 'left', },
                     { label: 'ModAPI', type: 'docSidebar', sidebarId: 'modapi', position: 'left', },
+                    { label: '开发模板', type: 'docSidebar', sidebarId: 'devTemplate', position: 'right', },
                     { label: '个人开发博客', to: '/blog', position: 'right' },
                     { label: 'GitHub', href: 'https://github.com/YZBWDLT/mcdevdoc', position: 'right', },
                 ],
