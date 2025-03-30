@@ -103,7 +103,19 @@ sidebar_position: 100
 5. 命令 1：`/execute positioned 0 -60 0 if entity @a[r=2,hasitem={item=tripwire_hook}] run setblock 0 -61 0 redstone_block`  
   命令 2：`/execute positioned 0 -60 0 as @a[r=2,hasitem={item=tripwire_hook}] run clear @s tripwire_hook`  
   答案不唯一，合理即可。
-6. `execute if blocks -50 19 92 -50 19 92 -54 10 87 if block 19 22 7 cyan_terracotta run say [C3]通过本关后将获得纪念品[金锭]`
-7. `execute positioned -244 32 23 if entity @e[r=2,type=snowball] run tp @a ~~-2~ 180 0`
+6. `/execute if blocks -50 19 92 -50 19 92 -54 10 87 if block 19 22 7 cyan_terracotta run say [C3]通过本关后将获得纪念品[金锭]`
+7. `/execute positioned -244 32 23 if entity @e[r=2,type=snowball] run tp @a ~~-2~ 180 0`
+
+:::
+
+:::info[练习 2.4-1]
+
+1. 命令 1：`/execute as @e[type=snowball] at @s run tag @p[r=2] add menu`  
+   命令 2：`/kill @e[type=snowball]`  
+2. 命令 1：`/tag @a remove isAlive`  
+   命令 2：`/tag @e[type=player] add isAlive`  
+   命令 3：`/execute if entity @e[tag=!isAlive] run setblock 56 43 -79 redstone_block`
+3. 命令 1：`give @a[tag=hasPickaxeUpgrade] diamond_pickaxe`  
+   命令 2：`give @a[tag=!hasPickaxeUpgrade] iron_pickaxe`
 
 :::
