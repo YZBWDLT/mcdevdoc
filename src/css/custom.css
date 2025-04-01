@@ -7,20 +7,8 @@
 /* You can override the default Infima variables here. */
 
 @font-face {
-  font-family: 'mojangles';
-  src: url('/fonts/mojangles.ttf') format('ttf');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
   font-family: 'misans';
-  src: url('/fonts/misans.ttf') format('ttf');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'minecraft';
-  src: url('/fonts/minecraft.ttf') format('ttf');
+  src: url('/static/fonts/misans.TTF') format('ttf');
   font-weight: normal;
   font-style: normal;
 }
