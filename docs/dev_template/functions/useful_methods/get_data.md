@@ -12,8 +12,8 @@ sidebar_position: 1
 
 - **路径表示**：如无特殊说明，本文的路径`./`均指代`BP/functions/lib/get_data/`。
   - 例如，`./entity_amount.mcfunction`指代`BP/functions/lib/get_data/entity_amount.mcfunction`。
-- **变量表示**：本文，我们把 a 记分板上名为 b 的追踪目标记为`a.b`。
-  - 例如，检测`a.b`的分数是否为1，为`/execute if score b a matches 1`。
+- **变量表示**：本文，我们把`objective`记分板上名为`name`的追踪目标的分数`score`记为`objective.name`=`score`。
+  - 例如，检测`objective.name`的分数是否为`1`，为`/execute if score name objective matches 1`。
 
 :::
 
