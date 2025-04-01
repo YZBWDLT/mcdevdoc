@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # 音效控制器（延时播放音效）
@@ -12,7 +12,7 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/8nVC1)
+## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/pMKTj)
 
 本包**搭建了一个延时播放音效的系统**，在**传送玩家并且需要播放音效的场景**非常有用。
 
@@ -26,17 +26,20 @@ export const Highlight = ({children, color}) => (
 
 :::
 
+:::note[注意：本文的通用语言]
+
+- **路径表示**：如无特殊说明，本文的路径`./`均指代`BP/functions/lib/modify_data/states/sounds/`。
+  - 例如，`./reset.mcfunction`指代`BP/functions/lib/modify_data/states/sounds/reset.mcfunction`。
+- **变量表示**：本文，我们把`objective`记分板上名为`name`的追踪目标的分数`score`记为`objective.name`=`score`。
+  - 例如，检测`objective.name`的分数是否为`1`，为`/execute if score name objective matches 1`。
+
+:::
+
 ## 使用方法
 
 **安装「[主包 v3](main_v3)」并与本包合并，进行初始化变量后，即可使用以下功能**。
 
 ### 实现原理
-
-:::note[注意：本文的通用语言]
-
-在下文，我们把 a 记分板上名为 b 的追踪目标记为`a.b`。例如，检测`a.b`的分数是否为1，为`/execute if score b a matches 1`。
-
-:::
 
 在您正式使用本包之前，我们必须向您介绍我们实现延时播放音效的原理。否则，您可能会在使用本包时感到吃力。
 
@@ -52,25 +55,25 @@ export const Highlight = ({children, color}) => (
 
 ### 启用或禁用音效控制器
 
-您可以调用`lib/modify_states/sound/`文件夹中的文件来控制状态（`active.sound`）和计时器（`time.sound`）。我们提供了一个控制文件`./random_orb.mcfunction`，您可以使用
+您可以调用`./`文件夹中的文件来控制状态（`active.sound`）和计时器（`time.sound`）。我们提供了一个控制文件`./random_orb.mcfunction`，您可以使用
 
 ```mcfunction showLineNumbers
-/function lib/modify_states/sound/random_orb
+/function lib/modify_data/states/sound/random_orb
 ```
 
 以延时 3 游戏刻播放`random.orb`（经验球）音效。您还可以使用
 
 ```mcfunction showLineNumbers
-/function lib/modify_states/sound/reset
+/function lib/modify_data/states/sound/reset
 ```
 
-立刻禁用音效控制器。**注意：请不要修改`lib/modify_states/sound/reset`文件**！
+立刻禁用音效控制器。**注意：请不要修改`./reset.mcfunction`文件**！
 
 ### 新增音效事件
 
-您可按照下面的代码来新增一个可用于调用的音效控制器控制文件`lib/modify_states/sound/xxx.mcfunction`（`xxx`为自定名称，**高亮部分可更改**）：
+您可按照下面的代码来新增一个可用于调用的音效控制器控制文件`./xxx.mcfunction`（`xxx`为自定名称，**高亮部分可更改**）：
 
-```mcfunction showLineNumbers title="lib/modify_states/sound/xxx.mcfunction" {1-2,8,13,15}
+```mcfunction showLineNumbers title="./xxx.mcfunction" {1-2,8,13,15}
 # ===== 播放音效(音效ID) =====
 # 用于延时播放音效(音效ID)。
 
@@ -91,7 +94,7 @@ scoreboard players set sound time (倒计时，默认为3)
 
 然后，在音效控制器注册文件（`system/controller/sound.mcfunction`）中，在高亮代码处仿照着注册一个新的音效事件：
 
-```mcfunction showLineNumbers title="lib/modify_states/sound/xxx.mcfunction" {10}
+```mcfunction showLineNumbers title="./xxx.mcfunction" {10}
 # ===== 音效播放器 =====
 # 仅当音效播放器启用后执行
 
@@ -105,14 +108,14 @@ execute if score sound time matches 0 if score sound active matches (状态) as 
 
 # --- 重置音效播放器 ---
 # 当音效倒计时为0后执行
-execute if score sound time matches 0 run function lib/modify_states/sound_player/reset
+execute if score sound time matches 0 run function lib/modify_data/states/sound_player/reset
 
 ```
 
 最后，执行
 
 ```mcfunction showLineNumbers
-/function lib/modify_states/sound/xxx
+/function lib/modify_data/states/sound/xxx
 ```
 
 即可播放您新增的音效事件。
@@ -124,8 +127,8 @@ execute if score sound time matches 0 run function lib/modify_states/sound_playe
 | 文件名（`.mcfunction`） | 用途 | 输出数据（变量、标签） |
 | --- | --- | --- |
 | `system/controller/sound` | 倒计时，以及控制何状态播放何种音效 | — |
-| `lib/modify_states/sound/random_orb` | 3 游戏刻后播放经验球音效 | `active.sound`=`1`,`time.sound`=`3` |
-| `lib/modify_states/sound/reset` | 禁用音效控制器（**不要改动**） | `active.sound`=`1`,`time.sound`=`3` |
+| `./random_orb` | 3 游戏刻后播放经验球音效 | `active.sound`=`1`,`time.sound`=`3` |
+| `./reset` | 禁用音效控制器（**不要改动**） | `active.sound`=`1`,`time.sound`=`3` |
 
 ## 实例
 
@@ -177,7 +180,7 @@ execute if score sound time matches 0 if score sound active matches 13 as @a at 
 
 # --- 重置音效播放器 ---
 # 当音效倒计时为0后执行
-execute if score sound time matches 0 run function lib/modify_states/sound/reset
+execute if score sound time matches 0 run function lib/modify_data/states/sound/reset
 ```
 
 其中一个音效控制器控制文件：
@@ -209,8 +212,8 @@ scoreboard players set sound time 3
 
 该列表中不列出`manifest.json`（附加包清单文件）和`pack_icon.png`（附加包图标）。
 
-- `BP_developer_mode/functions/lib/modify_data/init/data.mcfunction`（行为包 - 函数 - 库函数 - 初始化数据）
-- `BP_developer_mode/functions/system/main.mcfunction`（行为包 - 函数 - 主文件）
+- `BP/functions/lib/modify_data/init/data.mcfunction`（行为包 - 函数 - 库函数 - 初始化数据）
+- `BP/functions/system/main.mcfunction`（行为包 - 函数 - 主文件）
 
 ## 更新日志
 
