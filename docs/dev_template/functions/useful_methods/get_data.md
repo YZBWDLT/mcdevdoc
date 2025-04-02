@@ -75,7 +75,7 @@ execute as @e run scoreboard players add entityAmount data 1
 
 ### 原理
 
-利用中国版的屏蔽词会屏蔽整条命令的特性，特意加一个中国版会屏蔽但国际版不会屏蔽的标签，判断该命令是否成功执行。
+**利用中国版的屏蔽词会屏蔽整条命令的特性**，特意加一个中国版会屏蔽但国际版不会屏蔽的标签，判断该命令是否成功执行。
 
 我们需要设置一个记分板变量`data.client`来表示玩家使用的客户端。记`0`=国际版，`1`=中国版。
 
@@ -112,12 +112,12 @@ scoreboard players set client data 0
 
 ## 假定当前正在使用网易版
 scoreboard players set client data 1
-## 给玩家添加标签cao（这是屏蔽词，如果为网易版，该命令无法执行）
-tag @a add cao
-## 若检测到有cao的玩家，即上一条命令未被屏蔽，证明是国际版，更改data.client
-execute if entity @a[tag=cao] run scoreboard players set client data 0
+## 给玩家添加标签sb（这是屏蔽词，如果为网易版，该命令无法执行）
+tag @a add sb
+## 若检测到有sb的玩家，即上一条命令未被屏蔽，证明是国际版，更改data.client
+execute if entity @a[tag=sb] run scoreboard players set client data 0
 ## 移除辅助标签
-tag @a remove cao
+tag @a remove sb
 ```
 
 之后，您便可以使用下面的命令获取玩家使用的客户端版本（`data.client`，`0`=国际版，`1`=中国版）。

@@ -171,6 +171,8 @@ sidebar_position: 3
 
 ![if_blocks5](../img/section3/if_blocks5.png)
 
+接下来我们再简单聊聊`扫描模式`的问题。扫描模式分为 2 种：`all`和`masked`。`all`将检测包括空气方块在内的所有方块，而`masked`则排除由`起点`和`终点`组成的检测区域中的空气的检测。例如，如果`起点`和`终点`组成的检测区域全部都是空气，此时采用`masked`进行检测，无论如何都将检测通过。在实际工程中，常用`all`进行检测。
+
 :::note[扩展：命令`/testforblocks`]
 
 和`/testfor`、`/testforblock`类似，在`/execute`更新前，我们也往往使用一条命令检测区域——`/testforblocks`。这条命令的语法和`/execute if blocks`也完全一致（除了这里的`扫描模式`是可选的）：
@@ -180,6 +182,8 @@ sidebar_position: 3
 ```
 
 和另外两条命令类似，`/testforblocks`也在 Java 版 1.13 被完全移除，并且也已在基岩版变得没那么常用。
+
+之所以`/execute if blocks`中，`扫描模式`常用`all`来处理，主要是因为在这条命令的可选参数`[masked|all]`中，其默认参数就是`all`。
 
 :::
 
