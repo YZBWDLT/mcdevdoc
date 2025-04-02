@@ -119,3 +119,11 @@ sidebar_position: 100
    命令 2：`give @a[tag=!hasPickaxeUpgrade] iron_pickaxe`
 
 :::
+
+:::info[练习 2.4-2]
+
+1. `/scoreboard objectives add time dummy "时间数据"`或`/scoreboard objectives add timeData dummy "时间数据"`
+2. `/scoreboard objectives setdisplay sidebar time`或`/scoreboard objectives setdisplay sidebar timeData`
+3. `/scoreboard objectives remove time`或`/scoreboard objectives remove timeData`
+
+:::
