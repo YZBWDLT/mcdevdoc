@@ -54,7 +54,7 @@ sidebar_position: 4
 
 执行`/give "(你的昵称)" apple`。如果上面有自动补全，那就没问题了！
 
-![give](/commands/chapter1/section4/give.png)
+![give](./img/section4/give.png)
 
 :::
 
@@ -66,13 +66,13 @@ sidebar_position: 4
 
 但哪怕被藏起来，你也是可以使用`/give`获取到它们的。例如命令方块的 ID 为`command_block`。你可以尝试获取命令方块然后简单摆弄摆弄，不过我们也会在第 3 章详细地介绍如何使用命令方块、结构方块、屏障等开发用方块。
 
-![给予cb](/commands/chapter1/section4/give_command_block.png)
+![给予cb](./img/section4/give_command_block.png)
 
 ### 部分物品不能`/give`
 
 `/give`并不是万能的！虽然它可以给予创造模式物品栏中的所有物品，甚至可以给予物品栏中没有的物品，但不代表所有物品都能给予。例如，很少有人知道火是具有物品形式的，然而你使用`/give @s fire`，迎接你的只有报错。
 
-![无法给予fire](/commands/chapter1/section4/give_fire.png)
+![无法给予fire](./img/section4/give_fire.png)
 
 再比如，有一些藏得更深的方块，例如下界反应核、隐形基岩等，目前事实上仍然存在于底层代码之中，但是我们无法通过`/give`获取它们。
 

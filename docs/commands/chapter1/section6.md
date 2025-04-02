@@ -16,7 +16,7 @@ sidebar_position: 6
 
 让我们试想这样一个需求：我们现在要传送一只绵羊到(0,256,0)的位置上。听起来很不可思议！因为我们曾经学过，`/tp`是用于传送执行者到特定位置的，在目前，我们所学习的聊天栏执行的命令中，我们才是执行者，绵羊是不能成为执行者的。但细心的你一定已经发现：我们所学的只是`/tp`的冰山一角！为什么呢？因为当我们输入`/tp`后：
 
-![完整的tp语法](/commands/chapter1/section6/full_tp.png)
+![完整的tp语法](./img/section6/full_tp.png)
 
 它拥有整整 10 条语法！而且我们曾学过的`/tp <位置>`也只是图中第 2~4 种语法的简写形式而已。
 
@@ -48,7 +48,7 @@ sidebar_position: 6
 
 不难发现，这种情况会造成歧义。因此，游戏认为，输入一个普通的字符串是传送名字为`sheep`的玩家，而不是绵羊。如果没有名字为`sheep`的玩家，游戏将会报错：
 
-![传送sheep玩家](/commands/chapter1/section6/tp_player_sheep.png)
+![传送sheep玩家](./img/section6/tp_player_sheep.png)
 
 这种报错：`没有与选择器匹配的目标`代表命令的语法是正确的，但是找不到这样的实体。那我们怎么指代绵羊呢？
 
@@ -100,7 +100,7 @@ sidebar_position: 6
 
 执行命令`/give @a apple`。你现在应该能够看懂这条命令：它将给予所有玩家一个苹果。
 
-![给予所有玩家苹果](/commands/chapter1/section6/give_@a.png)
+![给予所有玩家苹果](./img/section6/give_@a.png)
 
 :::
 
@@ -114,7 +114,7 @@ sidebar_position: 6
 
 执行命令`/tp @e ~~~`。在执行之前，你可以试着分析一下这条命令的含义，在游戏内执行后，看看符不符合你的预期。
 
-![传送所有玩家](/commands/chapter1/section6/tp_@e.png)
+![传送所有玩家](./img/section6/tp_@e.png)
 
 :::
 
@@ -138,7 +138,7 @@ sidebar_position: 6
 
 执行上面的命令，将会报错。这是因为有相当多的实体是不存在物品栏这个概念的，所以一些类型为`target`的命令是不允许更广泛的实体概念参与的，而只允许玩家。后面你会看到更多类似的命令，例如`/gamemode`。
 
-![给予所有实体苹果](/commands/chapter1/section6/give_@e.png)
+![给予所有实体苹果](./img/section6/give_@e.png)
 
 对于这类仅限玩家的命令，你可以注意到命令参数一般为`player: target`，限定玩家，而不是`victim: target`、`entity: target`等更广泛的描述。在`/give`中，对应的参数就是`<player: target>`。
 
@@ -180,7 +180,7 @@ sidebar_position: 6
 
 在介绍接下来的概念之前，我们首先要介绍一下实体的**碰撞箱（Collision Box）**。在 Minecraft 中，碰撞箱经常用于各种判定。每个实体都拥有一个长宽相等的碰撞箱，例如玩家在站立时的碰撞箱的高度就是 1.8 格，宽度为 0.6 格，因此玩家在站立时，就无法穿过 1.5 格高的洞口。
 
-![碰撞箱](/commands/chapter1/section6/collision_box.png)
+![碰撞箱](./img/section6/collision_box.png)
 
 下文中的`r`、`rm`、`dx`、`dy`、`dz`都是进行区域检测的参数，它们的判定标准是：**只要碰撞箱有和检测区域重叠的部分，就视为检测通过**。
 
@@ -199,7 +199,7 @@ sidebar_position: 6
 
 在这一小节的一开始，我们说过可以使用多个参数，并采用“和”的逻辑。同样地，`r`和`rm`可以并用，并选中特定区域的实体（图片来自 Minecraft Wiki）：
 
-![r与rm并用](/commands/chapter1/section6/r_rm.png)
+![r与rm并用](./img/section6/r_rm.png)
 
 在这张图中，绿色球壳的部分就是检测区域，而蓝色的长方体指代实体的碰撞箱。只要实体的碰撞箱与绿色部分的检测区域有重叠，就认为检测通过。我们同样举几个例子：
 
@@ -207,7 +207,7 @@ sidebar_position: 6
 - `@a[rm=1.5,r=5]`：指代距执行者 1.5~5 格的玩家。
 - `@a[rm=5,r=4]`：指代距执行者 5~4 格的玩家。很显然，不可能存在这样的实体，因此这条命令将会报错。所以，这里必须满足`r`>`rm`。
 
-![r>rm将会报错](/commands/chapter1/section6/rm_greater_than_r.png)
+![r>rm将会报错](./img/section6/rm_greater_than_r.png)
 
 ### `dx,dy,dz`：指定一个长方体区域内的实体
 
@@ -228,7 +228,7 @@ sidebar_position: 6
 
 在下面的图，你可以清楚地看到这一点。注意红线代表 x 轴的正方向，绿线代表 z 轴的正方向。
 
-![动物分布](/commands/chapter1/section6/diffirent_animals.png)
+![动物分布](./img/section6/diffirent_animals.png)
 
 然后，我们来执行下面这条命令：
 
@@ -238,13 +238,13 @@ sidebar_position: 6
 
 你会发现，一些绵羊，也就是第一象限的实体都被检测到并发在聊天栏上。
 
-![检测到绵羊](/commands/chapter1/section6/testfor_dx_dz.png)
+![检测到绵羊](./img/section6/testfor_dx_dz.png)
 
 我们来解析一下这个结果，或者更准确一些来说，我们要回答上面提出的 3 个问题。
 
 要回答第一个问题，就需要我们理解一个原理：**两个坐标能够确定一个长方体区域**，并且这个长方体的各个边都与 x,y,z 轴是平行的。举个例子：假设(0,-60,0)（红）和(5,-55,5)（蓝）有两个方块，那么它们所成的长方体区域就将如下图所示：
 
-![两点确定一个长方体区域](/commands/chapter1/section6/volume_by_two_pos.png)
+![两点确定一个长方体区域](./img/section6/volume_by_two_pos.png)
 
 注意，这个原理是至关重要的，在命令中我们总是用这种方法确定一个长方体区域。这样，由你的位置(x,y,z)，和经过计算得到的新位置(x+dx,y+dy,z+dz)就能够围成一个长方体区域。
 
@@ -267,7 +267,7 @@ sidebar_position: 6
 
 你会发现，这时执行这条命令将不再返回我们和多个绵羊，而是只返回我们自己：
 
-![检测到绵羊](/commands/chapter1/section6/testfor_dx_dz_10_-50_10.png)
+![检测到绵羊](./img/section6/testfor_dx_dz_10_-50_10.png)
 
 显然，每一次使用`r`、`rm`、`dx`、`dy`、`dz`时，所选取的基准坐标都是相对于我们的。如何选定一个确定位置的检测区域，而不是让检测区域的位置和我们的位置相关呢？这时我们就需要用`x`、`y`、`z`来额外确定一个基准坐标。`x`、`y`、`z`的默认值均为执行者当前的位置。在上面的例子中，我们就可以用
 
@@ -297,13 +297,13 @@ sidebar_position: 6
 
 执行命令`/testfor @e[type=sheep]`。在输入命令的过程中，你能够看到自动补全：
 
-![type的自动补全](/commands/chapter1/section6/type_sheep.png)
+![type的自动补全](./img/section6/type_sheep.png)
 
 :::
 
 它将返回这个世界所有的绵羊。
 
-![type的效果](/commands/chapter1/section6/type_sheep_executed.png)
+![type的效果](./img/section6/type_sheep_executed.png)
 
 需要注意的一个问题：还记得`@r`吗？它将选择随机的玩家。但是，这个变量有一个特殊之处：**它可以指代`type`参数**，进而，它就可以指代非玩家类型的实体了。例如：`@r[type=zombie]`将指定一个随机的僵尸。不过`@a`、`@p`这些只能指代玩家的变量，就不允许再添加`type`进行修饰了。如果你想问如何指代最近的任意一种实体而非仅指代玩家，马上你就会知道。
 
@@ -331,7 +331,7 @@ sidebar_position: 6
 
 你将会看到，只有 1 只绵羊被返回，哪怕在图里我们就看到至少有 4 只绵羊：
 
-![c=1](/commands/chapter1/section6/c_1.png)
+![c=1](./img/section6/c_1.png)
 
 显然，`c`可以限制执行命令的实体数量。这样，我们一开始的问题就可以解决了！
 
@@ -353,7 +353,7 @@ sidebar_position: 6
 
 我们不妨来执行一下这条命令看看：
 
-![c=100](/commands/chapter1/section6/c_100.png)
+![c=100](./img/section6/c_100.png)
 
 这意味着：
 
@@ -372,7 +372,7 @@ sidebar_position: 6
 
 放 3 个盔甲架，从近到远分别用命名牌命名为 a, b, c：
 
-![盔甲架](/commands/chapter1/section6/armor_stands.png)
+![盔甲架](./img/section6/armor_stands.png)
 
 我们分别执行下面的命令：
 
@@ -385,7 +385,7 @@ sidebar_position: 6
 
 你最后会得到一个神奇的结果，四条命令都没有报错，而且都给出了不同的结果：
 
-![盔甲架执行效果](/commands/chapter1/section6/armor_stands_executed.png)
+![盔甲架执行效果](./img/section6/armor_stands_executed.png)
 
 看到这个结论，你能总结`c`的含义吗？看看下面 Wiki 的定义（节选），看看和你的预期是否一样：
 

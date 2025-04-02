@@ -14,15 +14,15 @@ sidebar_position: 1
 
 - 创造模式，否则你要用生存模式开发一个资源吗？
 
-![开启创造模式](/commands/chapter1/section1/creative_mode.png)
+![开启创造模式](./img/section1/creative_mode.png)
 
 - 超平坦世界，这有助于你进行调试；
 
-![开启超平坦](/commands/chapter1/section1/flat_world.png)
+![开启超平坦](./img/section1/flat_world.png)
 
 - **开启作弊，请注意，使用命令必须开启作弊**。不要认为作弊是什么坏事，Minecraft 的作弊仅仅意味着你不能玩纯原版生存，不能获取成就，仅此而已。这也是我们让你开一张新地图测试的理由，请不要在你重要的生存存档开启作弊！
 
-![开启作弊](/commands/chapter1/section1/cheat.png)
+![开启作弊](./img/section1/cheat.png)
 
 ---
 
@@ -34,7 +34,7 @@ sidebar_position: 1
 
 请打开聊天栏，然后输入一个斜杠`/`，你将看到下图所示的界面：
 
-![输入斜杠后的效果](/commands/chapter1/section1/type_slash.png)
+![输入斜杠后的效果](./img/section1/type_slash.png)
 
 :::
 
@@ -44,13 +44,13 @@ sidebar_position: 1
 
 执行命令`/help`。请注意，我们现在说**执行命令**的过程，就是**在聊天栏输入这条命令并发送**的过程。
 
-![执行命令/help](/commands/chapter1/section1/help_command.png)
+![执行命令/help](./img/section1/help_command.png)
 
 :::
 
 当你执行这条命令后，游戏会返回给你几条命令的语法。恭喜你！这就是你执行的第一条命令！
 
-![执行命令/help的效果](/commands/chapter1/section1/help_command_executed.png)
+![执行命令/help的效果](./img/section1/help_command_executed.png)
 
 **注**：如果你是 Windows，你可以按键盘上的`↑`或`↓`键来查看过往输入过的文本或命令。在手机上，部分输入法也可以做到这一点。
 
@@ -63,7 +63,7 @@ sidebar_position: 1
 1. `/help`：对，这事实上就是个游戏内内置的文档。这条命令包含了所有命令的用法，如果在不方便访问其他网站的情况下，或者只是想单纯看看命令参数顺序的情况下，`/help`是非常有用的。
 2. [命令 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/命令)：这是 Wiki 记载命令的地方，内容非常详细。**本模块主要参考这篇 Wiki 文章及其链接的子文章**。如果你有任何需求，请在这里参考一些命令的基本用法。
 
-![Wiki界面](/commands/chapter1/section1/wiki.png)
+![Wiki界面](./img/section1/wiki.png)
 
 建议你可以通过这两个途径或者更多的其他途径来自学命令。事实上**自学是很重要的**，只是看本模块所讲述的内容或者其他人的视频等，难免会遗漏一些细节问题，我们也不打算在这篇文章里面写下这几十条命令的细节，毕竟 Wiki 上都有了，我们要做的就只是帮你入门，帮你了解命令都能做到什么。
 

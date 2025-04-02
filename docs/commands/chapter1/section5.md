@@ -52,13 +52,13 @@ sidebar_position: 5
 
 执行命令`/setblock ~~~ stone`。
 
-![放置石头](/commands/chapter1/section5/setblock_stone.png)
+![放置石头](./img/section5/setblock_stone.png)
 
 :::
 
 可以看到执行这条命令后，就在你的位置放置了一块石头。同样是一条很简单的命令，不是吗？
 
-![放置石头的效果](/commands/chapter1/section5/setblock_stone_executed.png)
+![放置石头的效果](./img/section5/setblock_stone_executed.png)
 
 Minecraft 中含有各种各样五花八门的 ID，它们一般都以穷举参数的形式出现，即`类型`的首字母是大写的参数。你可以在这个网站：[MCBEID 查询表](https://ca.projectxero.top/idlist/)中查询到你所需要的各种 ID，本教程中将只详细介绍这三种最常用的 ID。
 
