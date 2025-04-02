@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: 'misans';
-  src: url('/static/fonts/misans.TTF') format('ttf');
+  src: url('/static/fonts/misans.TTF') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
