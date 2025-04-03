@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 2.4.3 记分板的记分项操作命令
+# 2.4.3 记分板的记分项命令
 
 在上一节，我们已经认识到记分板由 3 个要素组成：记分项、追踪对象和分值。我们还知道，要描述一个追踪对象的分数，必须以一个记分项为前提。那么如何添加或修改一个记分项呢？我们这一节就来学习一下记分项相关的操作命令。
 
@@ -20,7 +20,7 @@ sidebar_position: 3
 /scoreboard objectives setdisplay belowname [记分项: string]
 /scoreboard players <set|add|remove> <玩家: target> <记分项: string> <数值: int>
 /scoreboard players list [玩家名称: target]
-/scoreboard players operation <目标名称: target> <目标记分板: string> <操作: operator> <选择器: target> <记分项: string>
+/scoreboard players operation <目标名称: target> <目标记分项: string> <操作: operator> <选择器: target> <记分项: string>
 /scoreboard players random <玩家: target> <记分项: string> <最小值: int> <最大值: int>
 /scoreboard players reset <玩家: target> [记分项: string]
 /scoreboard players test <玩家: target> <记分项: string> <最小值: wildcard int> [最大值: wildcard int]
@@ -28,9 +28,9 @@ sidebar_position: 3
 
 呃啊啊……这个看起来可比`/tag`复杂多了！但你并不用感到“头大”，我们还是像分析`/execute`命令时分析一下这些命令，抓住它们的共同点。
 
-我们看到，上面的语法中，高亮的部分的第一个参数是`objectives`，这些就是**记分项操作命令**；而第一个参数为`players`的命令，就是**玩家操作命令**。在本节，我们重点分析高亮的这 5 条命令，而剩下的 6 条命令则留到下一节去介绍。
+我们看到，上面的语法中，高亮的部分的第一个参数是`objectives`，这些就是**记分项命令**；而第一个参数为`players`的命令，就是**追踪对象命令**（也称分数持有者命令）。在本节，我们重点分析高亮的这 5 条命令，而剩下的 6 条命令则留到下一节去介绍。
 
-接下来关注这 5 条记分项操作命令的第二个参数，让我们来看看这 5 条命令都能做什么。分类一下就不难发现下面的 4 个用途：
+接下来关注这 5 条记分项命令的第二个参数，让我们来看看这 5 条命令都能做什么。分类一下就不难发现下面的 4 个用途：
 
 - `add`：**添加记分项**。
 - `remove`：**移除记分项**。
@@ -202,7 +202,7 @@ sidebar_position: 3
 
 ---
 
-## 列举记分项
+## *列举记分项
 
 使用下面的命令，就直接列举出所有记分项的信息：
 
@@ -221,9 +221,9 @@ sidebar_position: 3
 本节，我们学习了操作记分项的 5 条命令。现在让我们一起来回顾一下：
 
 - 记分板命令`/scoreboard`一共有 11 条语法。
-  - 第一个参数为`objectives`的为记分项操作命令。
-  - 第一个参数为`players`的为玩家操作命令。
-- 记分项操作命令如下表所示：
+  - 第一个参数为`objectives`的为记分项命令。
+  - 第一个参数为`players`的为追踪对象命令。
+- 记分项命令如下表所示：
 
 | 命令 | 含义 | 备注 |
 | --- | --- | --- |
