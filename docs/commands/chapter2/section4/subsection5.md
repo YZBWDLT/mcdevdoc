@@ -198,7 +198,7 @@ tag @a remove isStanding
 execute as @a at @s if entity @s[y=~1.6,dy=0.1] run tag @s add isStanding
 ```
 
-但是，这么做只能检测
+但是，这么做只能检测是否站立，但是我们在标题中要求多个状态的检测。显然，这时候用标签来标记玩家的状态就不太合适了，毕竟我们假设玩家从站立状态改为潜行状态的话，需要先移除`isStanding`标签再新增`isSneaking`标签，但是用记分板的话，就只需要切换数值即可。
 
 ### 记分板商店
 

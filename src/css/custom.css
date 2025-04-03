@@ -8,14 +8,14 @@
 
 @font-face {
   font-family: 'misans';
-  src: url('/static/fonts/misans_normal.ttf') format('truetype');
+  src: url('/static/fonts/misans_normal.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'misans';
-  src: url('/static/fonts/misans_bold.ttf') format('truetype');
+  src: url('/static/fonts/misans_bold.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
 }

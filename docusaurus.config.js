@@ -95,7 +95,7 @@ const config = {
                 style: 'dark',
                 links: [
                 ],
-                copyright: `版权归 © 2019 - ${new Date().getFullYear()} 一只卑微的量筒所有。本站使用 Docusaurus 构建。`,
+                copyright: `版权归 © 2019 - ${new Date().getFullYear()} 一只卑微的量筒所有。本站使用 Docusaurus 构建，使用 MiSans 字体。`,
             },
             prism: {
                 theme: prismThemes.github,
