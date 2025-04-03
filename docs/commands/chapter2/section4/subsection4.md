@@ -415,7 +415,7 @@ sidebar_position: 4
 3. 你一定听说过在 Minecraft 中，有一种很出名的模组称为幸运方块。我们假设现在有一个幸运方块执行的事件受到`data.luckyBlockEvent`调控，当其被破坏时，可以执行一条命令将此值取随机值。假设这个幸运方块一共有 47 个事件，并且每个事件发生的概率为等概率，写一条命令以取得合适的随机值。
 4. 假设现在有一个记分项`isOnline`，用于检测退出重进游戏的玩家。回答下列问题：  
    1. 写一条命令，使所有玩家均处于被`isOnline`记分项追踪的状态，而不影响所有玩家原有的分值。  
-   2. 写一条命令，移除所有玩家在`isOnline`的分值。  
+   2. 写一条命令，移除所有追踪对象在`isOnline`的分值。  
    3. 写一条命令，使所有玩家在`isOnline`的分值为`1`。  
    4. 若将上面 3 条命令循环执行，你能否分析出那个退出重进玩家在`isOnline`上的分值是多少？如果能够使得这个分值的玩家执行特定命令，这条命令应当在上面 3 条命令中的哪条命令执行后执行？
 5. 写一条命令，把`data.x`的值改为它原本的平方。
@@ -429,7 +429,8 @@ sidebar_position: 4
    你看出这三条命令是做什么用的了吗？上面 3 条命令都是为了同一个功能服务，但是使用了 3 个不同的原理。你认为哪种原理更好？
 9. 写一条命令，若检测到拥有`teamRed`标签的玩家拥有绿宝石时，则调换任意一名拥有`teamRed`标签的玩家在`data`上的分数和任意一名拥有`teamBlue`标签的玩家在`data`上的分数。
 10. 写一条命令，将`teamScore.teamRed`的分数减去`bedAmount.teamBlue`。
-11. （难度较高，选做）实现函数f(x)=3x³-5x+100/x的功能。换言之，假设输入变量为`data.x`，输出变量`data.y`应为 3 倍的`data.x`的立方减去 5 倍的`data.x`再加上`data.x`分之 100。你可以使用多条命令解决，允许额外定义变量，但不得更改`data.x`原有的值。
+11. （难度较高，选做）实现函数f(x)=3x³-5x+100/x的功能。换言之，假设输入变量为`data.x`，输出变量`data.y`应为 3 倍的`data.x`的立方减去 5 倍的`data.x`再加上`data.x`分之 100。你可以使用多条命令解决，允许额外定义变量，但不得更改`data.x`原有的值。  
+    备注：100/x项可以向下取整。
 12. （难度较高，选做）给定一个 3 位或更多位的数字`data.gameId`，输出其个位数`data.singleDigit`，十位数`data.decimalDigit`和百位以上的数`data.hundredthDigit`。你可以使用多条命令解决，允许额外定义变量，但不得更改`data.gameId`原有的值。例：
     1. 对于`data.gameId`=456，输出`data.singleDigit`=6，`data.decimalDigit`=5，`data.hundredthDigit`=4
     2. 对于`data.gameId`=3456，输出`data.singleDigit`=6，`data.decimalDigit`=5，`data.hundredthDigit`=34

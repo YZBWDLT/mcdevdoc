@@ -56,6 +56,33 @@ sidebar_position: 100
 
 :::
 
+:::info[思考 2.4-1]
+
+> 这时执行`/execute if entity @s[scores={data=!10..}]`是执行成功还是失败？试分析之并在游戏内验证。
+
+答案：执行失败。因为此时`data.@s`=`15`，但该参数将找到**不**大于等于 10 的分数，也就是小于等于 9 分的分数，所以会执行失败。
+
+:::
+
+:::info[思考 2.4-1]
+
+> 你可以只用`/scoreboard players operation`命令，完成两个变量的大小比较吗？比如，当`data.x`>`data.y`时，执行命令`/say 1`，但是不能用`/execute if score x data > y data`去检测！
+
+答案：数学上存在一个公理：当 a-b>0 时，则 a>b。所以，在新版`/execute`更新之前，开发者们都是利用减法操作来判断变量的大小关系的。
+
+所以，对于这里给出的问题，我们可以引入一个临时变量`data.temp`，让它等于`data.x`-`data.y`，如果这个临时变量等于 0，则证明它们相等；大于 0，则证明`data.x`>`data.y`；大于等于 0 则证明`data.x`≥`data.y`。
+
+```mcfunction showLineNumbers
+/scoreboard players operation temp data = x data
+/scoreboard players operation temp data -= y data
+/execute if score temp data matches 1.. run say 1
+/scoreboard players reset temp data
+```
+
+当然，实际情况会比上面列出的还要复杂——如果考虑旧版`/execute`的环境的话，用假名这件事本身都会造成不便，所以通常`data.temp`是依附在一些实体上的分数，例如使用盔甲架。
+
+:::
+
 ## 练习问题答案
 
 :::info[练习 2.2]
