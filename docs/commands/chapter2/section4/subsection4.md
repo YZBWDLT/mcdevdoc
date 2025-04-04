@@ -125,7 +125,7 @@ sidebar_position: 4
 
 :::tip[实验 2.4-12]
 
-执行命令`/scoreboard players set @s data -5`。无论你的分数当前为多少，哪怕处于未追踪状态，它也会将你在`data`上的分数设置为 5 分。
+执行命令`/scoreboard players set @s data -5`。无论你的分数当前为多少，哪怕处于未追踪状态，它也会将你在`data`上的分数设置为 -5 分。
 
 :::
 
