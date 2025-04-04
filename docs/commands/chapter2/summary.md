@@ -165,7 +165,7 @@ scoreboard players set @a isOnline 1
 
 :::info[练习 2.3-2]
 
-1. `/execute if blocks -1 22 85 -1 22 85 10 5 7 all unless entity @e[type=item] if entity @e[type=skeleton] run say 恭喜你获取进度！`  
+1. `/execute if blocks -1 22 85 -1 22 85 10 5 7 all unless entity @e[type=item] if entity @e[type=skeleton] unless entity @a[hasitem={item=skeleton_spawn_egg}] run say 恭喜你获取进度！`  
   其中，`if blocks`写为`10 5 7 10 5 7 -1 22 85`也是正确的。
 2. `/execute if block 73 0 -64 green_wool run say 恭喜你们获取了绿色羊毛，你离通关更近了一步！`
 3. `/execute as @a at @s if block ~~-1~ red_concrete run kill @s`
@@ -279,7 +279,7 @@ scoreboard players set @a isOnline 1
 
 :::info[练习 2.4-4]
 
-1. `/execute if score adv1 advancement matches 0 if score adv0 advancement matches 1 if blocks -1 22 85 -1 22 85 10 5 7 unless entity @e[type=item] if entity @e[type=skeleton] run say 恭喜你获取进度！`
+1. `/execute if score adv1 advancement matches 0 if score adv0 advancement matches 1 if blocks -1 22 85 -1 22 85 10 5 7 all unless entity @e[type=item] if entity @e[type=skeleton] unless entity @a[hasitem={item=skeleton_spawn_egg}] run say 恭喜你获取进度！`
 2. `/execute if score timeline time < parkour data run scoreboard players operation parkour data = timeline time`
 3. 1. `/scoreboard players set playerAmount data 0`
    2. `/execute as @a run scoreboard players add playerAmount data 1`
