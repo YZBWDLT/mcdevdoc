@@ -391,3 +391,26 @@ scoreboard players set @a isOnline 1
 ```
 
 :::
+
+:::info[练习 2.5]
+
+1. 下面的命令，游戏规则写为全小写也是正确的，因为基岩版并不区分大小写。
+   1. `/gamerule keepInventory true`
+   2. `/gamerule doDayLightCycle false`和`/gamerule doWeatherCycle false`
+   3. `/gamerule doMobSpawning false`和`/gamerule mobGriefing false`
+   4. `/gamerule tntExplodes false`
+   5. `/gamerule doMobLoot false`和`/gamerule doEntityDrops true`
+   6. `/gamerule doImmediateRespawn true`
+   7. `/gamerule showCoordinates true`和`/gamerule showDaysPlayed true`
+   8. `/gamerule fallDamage false`、`/gamerule drowningDamage false`、`/gamerule fireDamage false`和`/gamerule freezeDamage true`
+   9. `/gamerule sendCommandFeedBack false`
+   10. `/mobevent minecraft:wandering_trader_event false`
+2. `/tickingarea add 50 0 50 90 0 90 example`
+3. `/execute if score level data matches 24 run difficulty easy`
+4. 1. `/scoreboard players random weather data 1 3`
+   2. `/execute if score weather data matches 1 run weather clear`
+   3. `/execute if score weather data matches 2 run weather rain`
+   4. `/execute if score weather data matches 3 run weather thunder`
+5. `/time add 120`，因为一天为 24000 游戏刻，10 秒为 200 游戏刻，所以每一个游戏刻都要让世界时间加快 24000/200=120 游戏刻。
+
+:::
