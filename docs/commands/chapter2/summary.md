@@ -4,9 +4,11 @@ sidebar_position: 100
 
 # 第二章小结
 
+---
+
 ## 思考问题答案
 
-:::info[思考 2.2-1：为什么`数据值`必须代表损坏值而不能代表耐久值？]
+### 思考 2.2-1
 
 > 为什么这里必须代表损坏值而非耐久值呢？
 
@@ -14,25 +16,19 @@ sidebar_position: 100
 
 顺带一提，在 Java 版中，物品并没有数据值一说（详见上文关于物品数据值的历史问题），损坏值是用物品组件来指代的。可能在基岩版未来的某一天，数据值也会被移除，其中的特殊数据可能就会用`组件`来代替。不过可以肯定的是，现在离那一天应该还早。
 
-:::
-
-:::info[思考 2.2-2]
+### 思考 2.2-2
 
 > `/give`能否给予一个负数值数据值的物品，例如`/give @a apple 1 -1`？试分析之并在游戏中验证你的想法。
 
 答案是：不能。否则，`/give @a apple 1 -1`的含义就将变为给予所有玩家一个*任意数据值*的物品。反正换作让你干这活，你也得懵，所以游戏只能报错。给予一个物品必须给定一个特定的数据值，而不能是任意的数据值，这道理是很简单的。
 
-:::
-
-:::info[思考 2.2-3]
+### 思考 2.2-3
 
 > 如果`m`能够指定多次，`@a[m=creative,m=survival,m=spectator]`能否实现`@a[m=!adventure]`相同的效果？
 
 答案是：不能。这个目标选择器无论如何也找不到这样的玩家：既是创造模式、又是生存模式、又是旁观模式。不要忘记：**目标选择器参数之间的关系是“和”的关系，而不是“或”**。
 
-:::
-
-:::info[思考 2.2-4]
+### 思考 2.2-4
 
 > 按照前文的逻辑，你能否分析`/tp Alex`的含义？提示：该命令中，`Alex`并不是`目标`。
 
@@ -54,17 +50,13 @@ sidebar_position: 100
 
 ![/tp的UI](./img/section2/tp_ui.png)
 
-:::
-
-:::info[思考 2.4-1]
+### 思考 2.4-1
 
 > 这时执行`/execute if entity @s[scores={data=!10..}]`是执行成功还是失败？试分析之并在游戏内验证。
 
 答案：执行失败。因为此时`data.@s`=`15`，但该参数将找到**不**大于等于 10 的分数，也就是小于等于 9 分的分数，所以会执行失败。
 
-:::
-
-:::info[思考 2.4-2]
+### 思考 2.4-2
 
 > 你可以只用`/scoreboard players operation`命令，完成两个变量的大小比较吗？比如，当`data.x`>`data.y`时，执行命令`/say 1`，但是不能用`/execute if score x data > y data`去检测！
 
@@ -81,9 +73,7 @@ sidebar_position: 100
 
 当然，实际情况会比上面列出的还要复杂——如果考虑旧版`/execute`的环境的话，用假名这件事本身都会造成不便，所以通常`data.temp`是依附在一些实体上的分数，例如使用盔甲架。
 
-:::
-
-:::info[思考 2.4-3]
+### 思考 2.4-3
 
 > 根据上面的思路，补齐检测爬行和睡觉的玩家的命令。
 
@@ -96,9 +86,7 @@ execute as @a at @s if entity @s[y=~0.5,dy=0.1] unless entity @s[y=~1.3,dy=0.1] 
 execute as @a at @s if entity @s[y=~0.1,dy=0.1] unless entity @s[y=~0.5,dy=0.1] run scoreboard players set @s state 1
 ```
 
-:::
-
-:::info[思考 2.4-4]
+### 思考 2.4-4
 
 > 根据上面的思路，补齐小时的计时器的检测。使用分数`time.hour`。
 
@@ -109,9 +97,7 @@ execute if score minute time matches 60.. run scoreboard players add hour time 1
 execute if score minute time matches 60.. run scoreboard players remove minute time 60
 ```
 
-:::
-
-:::info[思考 2.4-5]
+### 思考 2.4-5
 
 > 这里，我们同样也使用了`reset *`的方法。按照前文所述的逻辑，在出现大量追踪对象的情况下，会造成很严重的卡顿。你能否按照前文所述的逻辑，对防退出重进逻辑的命令进行优化呢？
 
@@ -124,11 +110,9 @@ scoreboard objectives add isOnline dummy "在线数据"
 scoreboard players set @a isOnline 1
 ```
 
-:::
-
 ## 练习问题答案
 
-:::info[练习 2.2]
+### 练习 2.2
 
 1. `/give @a[m=survival,rxm=85] dandelion 10`。注意低头的 x 旋转值范围为 85~90，所以我们需要指定`rxm`最小值为 85，而最大值 90 是永远不可能达到的，所以无需指定。
 2. `/clear (玩家) dandelion -1 10`，数据值写为`0`亦可，因为一般而言，默认状态下的物品的数据值都是`0`。
@@ -141,9 +125,7 @@ scoreboard players set @a isOnline 1
 7. `/gamemode creative @a[m=spectator,rx=-85]`。注意抬头的 x 旋转值范围为 -90~-85，最小值为 -90 不可能达到，所以无需指定`rxm`；而最大值 -85 则用`rx=-85`指定。
 8. `/kill @e[type=item]`
 
-:::
-
-:::info[练习 2.3-1]
+### 练习 2.3-1
 
 1. `/execute as @a at @s run tp @s ~~~ -135 0`
 2. `/execute as @e[type=enderman] at @s as @a[r=5] anchored eyes run tp @s ~~~`，注意末影人周围 5 格是针对其脚部位置而言的。
@@ -161,9 +143,7 @@ scoreboard players set @a isOnline 1
   命令 2：`/execute as @a[x=0,y=-60,z=0,r=1] run tp 0 -60 3`  
   倒转后，因为先执行了`tp`命令导致玩家位置发生变化，一定会致使目标选择器检测失败，从而使得`gamemode`无法执行。因此，如果两条命令的顺序倒转，就无法再实现预定效果。
 
-:::
-
-:::info[练习 2.3-2]
+### 练习 2.3-2
 
 1. `/execute if blocks -1 22 85 -1 22 85 10 5 7 all unless entity @e[type=item] if entity @e[type=skeleton] unless entity @a[hasitem={item=skeleton_spawn_egg}] run say 恭喜你获取进度！`  
   其中，`if blocks`写为`10 5 7 10 5 7 -1 22 85`也是正确的。
@@ -176,9 +156,7 @@ scoreboard players set @a isOnline 1
 6. `/execute if blocks -50 19 92 -50 19 92 -54 10 87 if block 19 22 7 cyan_terracotta run say [C3]通过本关后将获得纪念品[金锭]`
 7. `/execute positioned -244 32 23 if entity @e[r=2,type=snowball] run tp @a ~~-2~ 180 0`
 
-:::
-
-:::info[练习 2.4-1]
+### 练习 2.4-1
 
 1. 命令 1：`/execute as @e[type=snowball] at @s run tag @p[r=2] add menu`  
    命令 2：`/kill @e[type=snowball]`  
@@ -188,17 +166,13 @@ scoreboard players set @a isOnline 1
 3. 命令 1：`give @a[tag=hasPickaxeUpgrade] diamond_pickaxe`  
    命令 2：`give @a[tag=!hasPickaxeUpgrade] iron_pickaxe`
 
-:::
-
-:::info[练习 2.4-2]
+### 练习 2.4-2
 
 1. `/scoreboard objectives add time dummy "时间数据"`或`/scoreboard objectives add timeData dummy "时间数据"`
 2. `/scoreboard objectives setdisplay sidebar time`或`/scoreboard objectives setdisplay sidebar timeData`
 3. `/scoreboard objectives remove time`或`/scoreboard objectives remove timeData`
 
-:::
-
-:::info[练习 2.4-3]
+### 练习 2.4-3
 
 1. `/execute if entity @a[tag=isAlive] if entity @a[tag=isInNether] run scoreboard players set advTemp data 0`
 2. `/scoreboard players add tick time 1`
@@ -275,9 +249,7 @@ scoreboard players set @a isOnline 1
 
    事实上，这就是《冒险小世界：剑之试炼》使用的数值分解方法。
 
-:::
-
-:::info[练习 2.4-4]
+### 练习 2.4-4
 
 1. `/execute if score adv1 advancement matches 0 if score adv0 advancement matches 1 if blocks -1 22 85 -1 22 85 10 5 7 all unless entity @e[type=item] if entity @e[type=skeleton] unless entity @a[hasitem={item=skeleton_spawn_egg}] run say 恭喜你获取进度！`
 2. `/execute if score timeline time < parkour data run scoreboard players operation parkour data = timeline time`
@@ -390,9 +362,7 @@ scoreboard players reset * isOnline
 scoreboard players set @a isOnline 1
 ```
 
-:::
-
-:::info[练习 2.5]
+### 练习 2.5
 
 1. 下面的命令，游戏规则写为全小写也是正确的，因为基岩版并不区分大小写。
    1. `/gamerule keepInventory true`
@@ -412,5 +382,3 @@ scoreboard players set @a isOnline 1
    3. `/execute if score weather data matches 2 run weather rain`
    4. `/execute if score weather data matches 3 run weather thunder`
 5. `/time add 120`，因为一天为 24000 游戏刻，10 秒为 200 游戏刻，所以每一个游戏刻都要让世界时间加快 24000/200=120 游戏刻。
-
-:::

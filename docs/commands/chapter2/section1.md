@@ -23,7 +23,7 @@ sidebar_position: 1
 | 中频命令 | `/give`\*[^5]、`/kill`\*[^1]、`/replaceitem`\*[^5]、`/inputpermission`、`/fill`\*[^4]、`/spawnpoint`、<br/>`/dialogue`\*、`/gamemode`、`/say`、`/playanimation`\*[^1]、`/setworldspawn`、`/tell`、<br/>`/time` | 6~50 |
 | 低频命令 | `/difficulty`、`/music`\*[^2]、`/schedule`\*、`/stopsound`\*[^2]、`/tickingarea`、`/ride`\*[^1]、<br/>`/weather`、`/enchant`、`/mobevent`、`/xp`、`/camerashake`、`/damage`、`/loot`\*[^1]、<br/>`/title` | 1~5 |
 | 零频命令 | `/alwaysday`、`/clearspawnpoint`、`/daylock`、`/fog`\*[^8]、`/gametest`\*、`/hud`、<br/>`/kick`、`/list`、`/locate`、`/me`、`/msg`、`/recipe`\*[^9]、`/script`\*、`/spreadplayers`、<br/>`/teleport`、`/testfor`、`/testforblock`、`/testforblocks`、`/toggledownfall`、`/w` | 几乎用不到 |
-| 服务器命令| `/op`、`/deop`、`/kick`、`/connect`、`/reload`\*、`/stop`、`/setmaxplayers`、<br/>`/whitelist` | — |
+| 服务器命令| `/op`、`/deop`、`/kick`、`/connect`、`/reload`\*、`/stop`、`/setmaxplayers`、<br/>`/allowlist` | — |
 
 也许看到这些命令，你会非常迷茫：这都啥？啥？啥？没关系，这只是一个简单了解而已。在本章后续，你就会逐渐了解这些命令。
 
@@ -37,9 +37,9 @@ sidebar_position: 1
 | 标记与计算命令 | `/scoreboard`、`/tag` | 用于进行数值计算、标记实体等 |
 | 世界操作 | `/gamerule`、`/time`、`/difficulty`、`/tickingarea`、`/weather`、<br/>`/mobevent`、`/alwaysday`(`/daylock`)、`/toggledownfall` | 对全世界总体进行一定程度的更改，例如更新天气、更新游戏规则等 |
 | 实体操作·生成与移除 | `/summon`、`/kill` | 生成或移除实体，或控制玩家的生成 |
-| 实体操作·位置与朝向 | `tp`(`/teleport`)、`/inputpermission`、`/spreadplayers` | 控制实体的位置和朝向，或控制玩家能否改变位置朝向等 |
+| 实体操作·位置与朝向 | `tp`(`/teleport`)、`/spreadplayers` | 控制实体的位置和朝向，或控制玩家能否改变位置朝向等 |
 | 实体操作·实体属性 | `/event`、`/effect`、`/playanimation`、`/ride`、`/damage`、 | 控制实体属性 |
-| 实体操作·玩家操作 | `/gamemode`、`/xp`、`/spawnpoint`、`/setworldspawn`、<br/>`/clearspawnpoint`、`/testfor` | 控制玩家属性 |
+| 实体操作·玩家操作 | `/inputpermission`、`/gamemode`、`/xp`、`/spawnpoint`、`/setworldspawn`、<br/>`/clearspawnpoint`、`/testfor` | 控制玩家属性 |
 | 物品操作·给予物品 | `/give`、`/loot` | 给予玩家或实体物品 |
 | 物品操作·清除物品 | `/clear` | 清除玩家物品 |
 | 物品操作·修改物品 | `/replaceitem`、`/enchant`、`/recipe` | 修改玩家或实体物品 |
@@ -48,8 +48,8 @@ sidebar_position: 1
 | 特效·文本命令 | `/tellraw`、`/titleraw`、`/say`、`/tell`(`/msg`、`/w`)、<br/>`/title`、`/me` | 将文本消息输出到聊天栏或屏幕上 |
 | 特效·屏幕控制 | `/camera`、`/dialogue`、`/camerashake`、`/fog`、`/hud` | 对玩家的相机、屏幕进行控制 |
 | 特效·音效与粒子 | `/playsound`、`/particle`、`/music`、`/stopsound` | 播放音效、释放粒子 |
-| 服务器命令 | `/help`(`/?`)、`/kick`、`/list`、`/locate`、`/op`、<br/>`/deop`、`/connect`、`/reload`、`/stop`、`/setmaxplayers`、<br/>`/whitelist` | 常用于服务器控制台或聊天栏的命令 |
-| 其他命令 | `/scriptevent`、`/gametest`、`script` | 控制脚本的命令 |
+| 服务器命令 | `/help`(`/?`)、`/kick`、`/list`、`/locate`、`/op`、<br/>`/deop`、`/connect`、`/reload`、`/stop`、`/setmaxplayers`、<br/>`/allowlist` | 常用于服务器控制台或聊天栏的命令 |
+| 其他命令 | `/scriptevent`、`/gametest`、`/script` | 控制脚本的命令 |
 
 可以看到，这些命令在各个领域都有非常广泛的应用和用途。接下来，我们将以“按用途分类”的顺序依次讲解这些命令，对于重要性高的命令，我们会详细讲解，而对于重要性比较低的命令，讲解的就不会特别细致了。
 
