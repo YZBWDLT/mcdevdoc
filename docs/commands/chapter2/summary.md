@@ -14,7 +14,7 @@ sidebar_position: 100
 
 我们反过来想，如果是耐久值会出现什么后果？例如`/give @s diamond_sword`，这样的话，因为数据值默认为`0`，所以它会给你一把已经几乎没有耐久的剑，这并非我们预期的结果。不同的工具，耐久值都大不相同，如果要给一把满耐久的工具，就必须记住它的满耐久值；而且，实际应用中也是给予满耐久工具的情况居多。因此，数据值就必须代表损坏值。
 
-顺带一提，在 Java 版中，物品并没有数据值一说（详见上文关于物品数据值的历史问题），损坏值是用物品组件来指代的。可能在基岩版未来的某一天，数据值也会被移除，其中的特殊数据可能就会用`组件`来代替。不过可以肯定的是，现在离那一天应该还早。
+顺带一提，在 Java 版中，物品并没有数据值一说（详见 2.2 关于物品数据值的历史问题），损坏值是用物品组件来指代的。可能在基岩版未来的某一天，数据值也会被移除，其中的特殊数据可能就会用`组件`来代替。不过可以肯定的是，现在离那一天应该还早。
 
 ### 思考 2.2-2
 
@@ -109,6 +109,14 @@ scoreboard objectives remove isOnline
 scoreboard objectives add isOnline dummy "在线数据"
 scoreboard players set @a isOnline 1
 ```
+
+### 思考 2.6-1
+
+> 执行`/summon armor_stand "a"`。你能看出这是使用了哪个语法吗？试分析这条命令的含义。
+
+显然，这是使用了第一个语法`/summon <实体: EntityType> <名称: string> [生成位置: x y z]`，因为其他命令的第二个参数类型都是`x y z`，而`"a"`是一个`string`。
+
+所以，这条命令是，在执行者的位置生成一个名为“a”的盔甲架。
 
 ## 练习问题答案
 
@@ -382,3 +390,24 @@ scoreboard players set @a isOnline 1
    3. `/execute if score weather data matches 2 run weather rain`
    4. `/execute if score weather data matches 3 run weather thunder`
 5. `/time add 120`，因为一天为 24000 游戏刻，10 秒为 200 游戏刻，所以每一个游戏刻都要让世界时间加快 24000/200=120 游戏刻。
+
+### 练习 2.6-1
+
+1. 命令如下。高亮部分为假名的写法。和假名对比，还是假名更加便捷一些，然而如果要调用分数的时候，则将数据存储在实体上可能会具有独特的优势。
+
+```mcfunction showLineNumbers {4-5}
+/summon armor_stand playerAmount 0 0 0
+/scoreboard players set @e[name=playerAmount,type=armor_stand] data 0
+/execute as @a run scoreboard players add @e[name=playerAmount,type=armor_stand] data 1
+/scoreboard players set playerAmount data 0
+/execute as @a run scoreboard players add playerAmount data 1
+```
+
+2. `/summon villager ~~~~~ minecraft:spawn_librarian`
+3. `/summon tnt ~~~~~ from_explosion`
+4. 命令如下。
+
+```mcfunction showLineNumbers
+/execute as @e[name=spawner] at @s run summon creeper ~~~
+/kill @e[name=spawner]
+```
