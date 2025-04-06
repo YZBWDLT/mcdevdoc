@@ -200,7 +200,8 @@ scoreboard players set @a isOnline 1
    2. `/scoreboard players operation c data += b data`
 8. 1. `/execute as @a at @s if block 0 -64 0 bedrock if block 0 128 0 air run scoreboard players set @s dimension 0`
    2. `/execute as @a at @s if block ~~-1~ netherrack run scoreboard players set @s dimension 1`
-   3. `/execute as @a in the_end if entity @s[rm=0] run scoreboard players set @s dimension 2`  
+   3. `/execute as @a in the_end if entity @s[rm=0] run scoreboard players set @s dimension 2`
+
    显然，第 3 种原理更好，因为它不需要依靠任何外部条件（即世界中的方块），它们随时可能会被更改导致检测出现偏差。
 9. `/execute if entity @a[tag=teamRed,hasitem={item=emerald}] run scoreboard players operation @r[tag=teamRed] data >< @r[tag=teamBlue] data`
 10. `/scoreboard players operation teamRed teamScore -= teamBlue bedAmount`
@@ -423,3 +424,23 @@ scoreboard players set @a isOnline 1
 3. `/effect @a instant_health 5 100 true`和`/damage @a 15`
 4. `/effect @a clear poison`和`/effect @a poison 0 100 true`
 5. `/damage @e[type=drowned] 1 drowning`和`/damage @e[type=chicken] 1 fall`，其中对鸡的伤害是无效的。失败原因在模块 3 会详细说明——这是由`minecraft:damage_sensor`组件决定的。
+
+### 练习 2.6-3
+
+1. 1. `/execute as @a[x=0,y=-60,z=0,r=2] run inputpermission set @s movement disabled`
+   2. `/execute as @a[x=0,y=-60,z=0,r=2] run inputpermission set @s camera disabled`
+   3. `/execute as @a[x=0,y=-60,z=0,r=2] at @s run tp @s ~~~ facing @e[type=villager,c=1]`
+2. `/scoreboard players set @a[haspermission={sneak=disabled}] state 0`
+3. `/execute as @a[x=0,y=26,z=0,r=2] if score allowCheat data matches 0 run gamemode adventure @s`
+4. 1. `/xp 1L @a[hasitem={item=iron_ingot}]`、`/clear @a[hasitem={item=iron_ingot}] iron_ingot -1 1`
+   2. `/execute as @p run give @s[lm=400] diamond_sword`、`/execute as @p run xp -400L @s[lm=400]`，套一个`/execute as @p`的主要理由是，`@p[lm=400]`会直接找到最近的经验等级为 400 的玩家，而不是检查最近的玩家是否拥有 400 经验。
+5. 1. `/gamerule doImmediateRespawn true`、`/spawnpoint @a 0 100 0`
+   2. `/tag @a remove isAlive`、`/tag @e[type=player] add isAlive`、`/scoreboard players set @a[tag=!isAlive,scores={team=1},m=adventure] respawn 100`（注意这里一定要加上`m=adventure`，否则将会一直设为 100 导致倒计时不减）、`/gamemode spectator @a[tag=!isAlive,scores={team=1},m=adventure]`
+   3. `/scoreboard players remove @a[scores={team=1,respawn=1..}] respawn 1`（注意写为`respawn=1..`，因为题干要求是大于而非大于等于）
+   4. `/tp @a[scores={team=1,respawn=0},m=spectator] 30 60 30`、`/gamemode adventure @a[scores={team=1,respawn=0},m=spectator]`（注意`gamemode`写在后面，否则条件的变更会导致`tp`执行失败）
+6. `/setworldspawn 0 -60 0`
+7. 1. `/summon armor_stand "spawnpoint"`
+   2. `/spreadplayers 0 0 0 10000 @e[type=armor_stand,name=spawnpoint]`
+   3. `/execute as @e[type=armor_stand,name=spawnpoint] at @s run spawnpoint @a ~~~`
+
+   但是，这个原理实际上无法奏效，因为区块未加载时也同样检测不到符合要求的实体。这个思路仍需优化才能实际应用。
