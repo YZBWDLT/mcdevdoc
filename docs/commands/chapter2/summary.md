@@ -4,6 +4,8 @@ sidebar_position: 100
 
 # 第二章小结
 
+## ID 查询工具
+
 ---
 
 ## 思考问题答案
@@ -411,3 +413,13 @@ scoreboard players set @a isOnline 1
 /execute as @e[name=spawner] at @s run summon creeper ~~~
 /kill @e[name=spawner]
 ```
+
+### 练习 2.6-2
+
+1. `/event entity @e[type=creeper] minecraft:start_exploding`或`/event entity @e[type=creeper] minecraft:start_exploding_force`  
+   嗯……我是不会告诉你我其实是个熊孩子的！（资源包为 Actions&Stuff）  
+   ![event_3](./img/section6/event_3.png)
+2. `/execute as @a at @s if entity @a[rm=0.01,r=1] run effect @s invisibility 1 0 true`
+3. `/effect @a instant_health 5 100 true`和`/damage @a 15`
+4. `/effect @a clear poison`和`/effect @a poison 0 100 true`
+5. `/damage @e[type=drowned] 1 drowning`和`/damage @e[type=chicken] 1 fall`，其中对鸡的伤害是无效的。失败原因在模块 3 会详细说明——这是由`minecraft:damage_sensor`组件决定的。

@@ -18,12 +18,12 @@ sidebar_position: 1
 
 | 等级 | 命令 | 在一个较大型地图项目中的出现频次 |
 | --- | --- | :---: |
-| 超高频命令 | `/execute`、`/function`\*、`/scoreboard`、`/summon`\*[^1]、`/tag`、`/tellraw` | 500~ |
-| 高频命令 | `/scriptevent`\*、`/tp`、`/titleraw`、`/playsound`\*[^2]、`/particle`\*[^3]、`/setblock`\*[^4]、<br/>`/clear`\*[^5]、`/gamerule`、`/structure`\*[^6]、`/clone`、`/event`\*[^1]、`/camera`\*[^7]、`/effect` | 51~500 |
-| 中频命令 | `/give`\*[^5]、`/kill`\*[^1]、`/replaceitem`\*[^5]、`/inputpermission`、`/fill`\*[^4]、`/spawnpoint`、<br/>`/dialogue`\*、`/gamemode`、`/say`、`/playanimation`\*[^1]、`/setworldspawn`、`/tell`、<br/>`/time` | 6~50 |
-| 低频命令 | `/difficulty`、`/music`\*[^2]、`/schedule`\*、`/stopsound`\*[^2]、`/tickingarea`、`/ride`\*[^1]、<br/>`/weather`、`/enchant`、`/mobevent`、`/xp`、`/camerashake`、`/damage`、`/loot`\*[^1]、<br/>`/title` | 1~5 |
-| 零频命令 | `/alwaysday`、`/clearspawnpoint`、`/daylock`、`/fog`\*[^8]、`/gametest`\*、`/hud`、<br/>`/kick`、`/list`、`/locate`、`/me`、`/msg`、`/recipe`\*[^9]、`/script`\*、`/spreadplayers`、<br/>`/teleport`、`/testfor`、`/testforblock`、`/testforblocks`、`/toggledownfall`、`/w` | 几乎用不到 |
-| 服务器命令| `/op`、`/deop`、`/kick`、`/connect`、`/reload`\*、`/stop`、`/setmaxplayers`、<br/>`/allowlist` | — |
+| 超高频命令 | `/execute`<br/>`/function`\*<br/>`/scoreboard`<br/>`/summon`\*[^1]<br/>`/tag`<br/>`/tellraw` | 500~ |
+| 高频命令 | `/scriptevent`\*<br/>`/tp`<br/>`/titleraw`<br/>`/playsound`\*[^2]<br/>`/particle`\*[^3]<br/>`/setblock`\*[^4]<br/>`/clear`\*[^5]<br/>`/gamerule`<br/>`/structure`\*[^6]<br/>`/clone`<br/>`/event`\*[^1]<br/>`/camera`\*[^7]<br/>`/effect` | 51~500 |
+| 中频命令 | `/give`\*[^5]<br/>`/kill`\*[^1]<br/>`/replaceitem`\*[^5]<br/>`/inputpermission`<br/>`/fill`\*[^4]<br/>`/spawnpoint`<br/>`/dialogue`\*<br/>`/gamemode`<br/>`/say`<br/>`/playanimation`\*[^1]<br/>`/setworldspawn`<br/>`/tell`<br/>`/time` | 6~50 |
+| 低频命令 | `/difficulty`<br/>`/music`\*[^2]<br/>`/schedule`\*<br/>`/stopsound`\*[^2]<br/>`/tickingarea`<br/>`/ride`\*[^1]<br/>`/weather`<br/>`/enchant`<br/>`/mobevent`<br/>`/xp`<br/>`/camerashake`<br/>`/damage`<br/>`/loot`\*[^1]<br/>`/title` | 1~5 |
+| 零频命令 | `/alwaysday`<br/>`/clearspawnpoint`<br/>`/daylock`<br/>`/fog`\*[^8]<br/>`/gametest`\*<br/>`/hud`<br/>`/kick`<br/>`/list`<br/>`/locate`<br/>`/me`<br/>`/msg`<br/>`/recipe`\*[^9]<br/>`/script`\*<br/>`/spreadplayers`<br/>`/teleport`<br/>`/testfor`<br/>`/testforblock`<br/>`/testforblocks`<br/>`/toggledownfall`<br/>`/w` | 几乎用不到 |
+| 服务器命令| `/op`<br/>`/deop`<br/>`/kick`<br/>`/connect`<br/>`/reload`\*<br/>`/stop`<br/>`/setmaxplayers`<br/>`/allowlist` | — |
 
 也许看到这些命令，你会非常迷茫：这都啥？啥？啥？没关系，这只是一个简单了解而已。在本章后续，你就会逐渐了解这些命令。
 
@@ -33,23 +33,23 @@ sidebar_position: 1
 
 | 用途 | 命令 | 用途简介 |
 | --- | --- | --- |
-| 执行其他命令 | `/execute`、`/function`、`/reload`、`schedule` | 当符合特定条件后，执行其他命令 |
-| 标记与计算命令 | `/scoreboard`、`/tag` | 用于进行数值计算、标记实体等 |
-| 世界操作 | `/gamerule`、`/time`、`/difficulty`、`/tickingarea`、`/weather`、<br/>`/mobevent`、`/alwaysday`(`/daylock`)、`/toggledownfall` | 对全世界总体进行一定程度的更改，例如更新天气、更新游戏规则等 |
-| 实体操作·生成与移除 | `/summon`、`/kill` | 生成或移除实体，或控制玩家的生成 |
-| 实体操作·位置与朝向 | `tp`(`/teleport`)、`/spreadplayers` | 控制实体的位置和朝向，或控制玩家能否改变位置朝向等 |
-| 实体操作·实体属性 | `/event`、`/effect`、`/playanimation`、`/ride`、`/damage`、 | 控制实体属性 |
-| 实体操作·玩家操作 | `/inputpermission`、`/gamemode`、`/xp`、`/spawnpoint`、`/setworldspawn`、<br/>`/clearspawnpoint`、`/testfor` | 控制玩家属性 |
-| 物品操作·给予物品 | `/give`、`/loot` | 给予玩家或实体物品 |
+| 执行其他命令 | `/execute`<br/>`/function`<br/>`/reload`<br/>`/schedule` | 当符合特定条件后，执行其他命令 |
+| 标记与计算命令 | `/scoreboard`<br/>`/tag` | 用于进行数值计算、标记实体等 |
+| 世界操作 | `/gamerule`<br/>`/time`<br/>`/difficulty`<br/>`/tickingarea`<br/>`/weather`<br/>`/mobevent`<br/>`/alwaysday`(`/daylock`)<br/>`/toggledownfall` | 对全世界总体进行一定程度的更改，例如更新天气<br/>更新游戏规则等 |
+| 实体操作·生成与移除 | `/summon`<br/>`/kill` | 生成或移除实体，或控制玩家的生成 |
+| 实体操作·位置与朝向 | `/tp`(`/teleport`)<br/>`/spreadplayers` | 控制实体的位置和朝向，或控制玩家能否改变位置朝向等 |
+| 实体操作·实体属性 | `/event`<br/>`/effect`<br/>`/playanimation`<br/>`/ride`<br/>`/damage`<br/>`/testfor` | 控制实体属性 |
+| 实体操作·玩家操作 | `/inputpermission`<br/>`/gamemode`<br/>`/xp`<br/>`/spawnpoint`<br/>`/setworldspawn`<br/>`/clearspawnpoint` | 控制玩家属性 |
+| 物品操作·给予物品 | `/give`<br/>`/loot` | 给予玩家或实体物品 |
 | 物品操作·清除物品 | `/clear` | 清除玩家物品 |
-| 物品操作·修改物品 | `/replaceitem`、`/enchant`、`/recipe` | 修改玩家或实体物品 |
-| 方块操作·单方块操作 | `/setblock`、`/testforblock` | 对一个方块进行更改或检测 |
-| 方块操作·多方块操作 | `/structure`、`/clone`、`/fill`、`/testforblocks` | 对一片区域进行多方块批量操作 |
-| 特效·文本命令 | `/tellraw`、`/titleraw`、`/say`、`/tell`(`/msg`、`/w`)、<br/>`/title`、`/me` | 将文本消息输出到聊天栏或屏幕上 |
-| 特效·屏幕控制 | `/camera`、`/dialogue`、`/camerashake`、`/fog`、`/hud` | 对玩家的相机、屏幕进行控制 |
-| 特效·音效与粒子 | `/playsound`、`/particle`、`/music`、`/stopsound` | 播放音效、释放粒子 |
-| 服务器命令 | `/help`(`/?`)、`/kick`、`/list`、`/locate`、`/op`、<br/>`/deop`、`/connect`、`/reload`、`/stop`、`/setmaxplayers`、<br/>`/allowlist` | 常用于服务器控制台或聊天栏的命令 |
-| 其他命令 | `/scriptevent`、`/gametest`、`/script` | 控制脚本的命令 |
+| 物品操作·修改物品 | `/replaceitem`<br/>`/enchant`<br/>`/recipe` | 修改玩家或实体物品 |
+| 方块操作·单方块操作 | `/setblock`<br/>`/testforblock` | 对一个方块进行更改或检测 |
+| 方块操作·多方块操作 | `/structure`<br/>`/clone`<br/>`/fill`<br/>`/testforblocks` | 对一片区域进行多方块批量操作 |
+| 特效·文本命令 | `/tellraw`<br/>`/titleraw`<br/>`/say`<br/>`/tell`(`/msg`、`/w`)<br/>`/title`<br/>`/me` | 将文本消息输出到聊天栏或屏幕上 |
+| 特效·屏幕控制 | `/camera`<br/>`/dialogue`<br/>`/camerashake`<br/>`/fog`<br/>`/hud` | 对玩家的相机、屏幕进行控制 |
+| 特效·音效与粒子 | `/playsound`<br/>`/particle`<br/>`/music`<br/>`/stopsound` | 播放音效、释放粒子 |
+| 服务器、联机与生存常用命令 | `/help`(`/?`)<br/>`/kick`<br/>`/list`<br/>`/locate`<br/>`/op`<br/>`/deop`<br/>`/connect`<br/>`/reload`<br/>`/stop`<br/>`/setmaxplayers`<br/>`/allowlist` | 常用于服务器控制台或聊天栏的命令 |
+| 其他命令 | `/scriptevent`<br/>`/gametest`<br/>`/script` | 控制脚本的命令 |
 
 可以看到，这些命令在各个领域都有非常广泛的应用和用途。接下来，我们将以“按用途分类”的顺序依次讲解这些命令，对于重要性高的命令，我们会详细讲解，而对于重要性比较低的命令，讲解的就不会特别细致了。
 
