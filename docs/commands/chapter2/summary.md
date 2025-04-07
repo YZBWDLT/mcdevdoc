@@ -444,3 +444,38 @@ scoreboard players set @a isOnline 1
    3. `/execute as @e[type=armor_stand,name=spawnpoint] at @s run spawnpoint @a ~~~`
 
    但是，这个原理实际上无法奏效，因为区块未加载时也同样检测不到符合要求的实体。这个思路仍需优化才能实际应用。
+
+### 练习 2.7
+
+1. 命令如下：
+
+   ```mcfunction showLineNumbers
+   tag @a[hasitem={item=crafting_table}] add hasCraftingTable
+   clear @a[tag=hasCraftingTable] crafting_table
+   give @a[tag=hasCraftingTable] crafting_table 1 0 {"can_place_on":{"blocks":["emerald_block"]}}
+   ```
+
+   需要注意`/clear`必须写在`/give`的前面，否则后执行`/clear`的话存在将刚给予的工作台清除的风险。因此，不能直接写为`give @a[hasitem={item=crafting_table}] ...`，因为此时工作台已被清除。
+2. `/give @a[hasitem=[{item=wooden_sword,quantity=0},{item=stone_sword,quantity=0}]] wooden_sword 1 0 {"item_lock":{"mode":"lock_in_inventory"}}`
+3. `/replaceitem entity @a slot.hotbar 8 snowball 2 0 {"item_lock":{"mode":"lock_in_slot"}}`  
+   为了防止`/replaceitem`始终执行，可以加一个限定条件，仅限最后一位非 2 个雪球的玩家执行，而有 2 个雪球的玩家则阻止其执行：  
+   `/replaceitem entity @a[hasitem={item=snowball,quantity=!2,location=slot.hotbar,slot=8}] slot.hotbar 8 snowball 2 0 {"item_lock":{"mode":"lock_in_slot"}}`
+4. 命令如下，这是检测玩家是否没有物品的一个思路。注意：考虑到循环执行时，`replaceitem`命令会不断执行，而且一直给予基岩会让玩家看出检测痕迹，所以这三条命令不能循环执行，只能视情况一次执行。
+
+   ```mcfunction showLineNumbers
+   replaceitem entity @a slot.weapon.mainhand 0 keep bedrock
+   tag @a[hasitem={item=bedrock}] add mainhandWithNoItem
+   clear @a[hasitem={item=bedrock}] bedrock
+   ```
+
+5. `/replaceitem block 0 -60 0 slot.container 22 beacon`，将 22 改为 31 亦可，将`0 -60 0`改为`1 -60 0`亦可。
+6. `/enchant @a lure 3`
+7. `/give @a[hasitem={item=iron_pickaxe,quantity=0}] iron_pickaxe 1 0 {"can_destroy":{"blocks":["stone","decorated_pot"]}}`
+8. 命令如下：
+
+   ```mcfunction showLineNumbers
+   tag @a[hasitem=[{item=diamond_helmet},{item=diamond_helmet,quantity=0,location=slot.armor.head}]] add notWearingHelmet
+   clear @a[tag=notWearingHelmet] diamond_helmet
+   replaceitem entity @a[tag=notWearingHelmet] slot.armor.head 0 diamond_helmet
+   tag @a remove notWearingHelmet
+   ```
