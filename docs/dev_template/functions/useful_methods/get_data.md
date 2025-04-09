@@ -112,12 +112,12 @@ scoreboard players set client data 0
 
 ## 假定当前正在使用网易版
 scoreboard players set client data 1
-## 给玩家添加标签sb（这是屏蔽词，如果为网易版，该命令无法执行）
-tag @a add sb
-## 若检测到有sb的玩家，即上一条命令未被屏蔽，证明是国际版，更改data.client
-execute if entity @a[tag=sb] run scoreboard players set client data 0
-## 移除辅助标签
-tag @a remove sb
+## 试图在记分板添加data.sb（这是屏蔽词，如果为网易版，该命令无法执行）
+scoreboard players set sb data 0
+## 若检测到data.sb的分数，即上一条命令未被屏蔽，证明是国际版，更改data.client
+execute if score sb matches 0 run scoreboard players set client data 0
+## 移除data.sb
+scoreboard players reset sb data
 ```
 
 之后，您便可以使用下面的命令获取玩家使用的客户端版本（`data.client`，`0`=国际版，`1`=中国版）。
