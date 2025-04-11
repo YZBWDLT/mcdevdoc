@@ -24,6 +24,32 @@ export const Highlight = ({children, color}) => (
 
 :::
 
+## 合并到您的包中
+
+您可以直接将我们所给出的文件通过复制粘贴的方法粘贴到您的包中。但是，如果在粘贴过程中遇到冲突，**请务必选择跳过这些文件而非覆盖您原有的文件**，并按照下面可能需要修改的文件列表进行选择性粘贴。
+
+:::danger[温馨提醒]
+
+再次强调！如果在粘贴过程中遇到冲突，**请务必选择跳过这些文件而非覆盖您原有的文件**！
+
+:::
+
+### 合并时可能需要修改的文件
+
+以下文件中的自定义内容使用了命名空间`template:`，然而**我们不推荐您在您的作品中使用该命名空间**。在正式使用本包之前，请将这些命名空间按您的需求进行改动。
+
+- `BP_developer_mode/items/template/`文件夹中的所有文件
+- `RP_developer_mode/texts/`文件夹中的所有文件
+
+以下文件可能和您已有的包产生冲突。在复制这些文件时，请注意**以下文件不能直接复制，需要视情况手动粘贴其中的内容**。
+
+该列表中不列出`manifest.json`（附加包清单文件）和`pack_icon.png`（附加包图标）。
+
+- `BP_developer_mode/functions/lib/modify_data/init/data.mcfunction`（行为包 - 函数 - 库函数 - 初始化数据）
+- `BP_developer_mode/functions/system/main.mcfunction`（行为包 - 函数 - 主文件）
+- `RP_developer_mode/texts/`文件夹中的所有文件（资源包 - 文本文件）
+- `RP_developer_mode/textures/item_texture.json`（资源包 - 物品贴图清单）
+
 ## 使用方法
 
 **安装「[主包 v3](main_v3)」并与本包合并，进行初始化变量后，即可使用以下功能**。
@@ -290,22 +316,6 @@ execute @s[scores={temp=1}] ~~~ function levels/open/before_opening/start
 ```
 
 </details>
-
-## 合并时可能需要修改的文件
-
-以下文件中的自定义内容使用了命名空间`template:`，然而**我们不推荐您在您的作品中使用该命名空间**。在正式使用本包之前，请将这些命名空间按您的需求进行改动。
-
-- `BP_developer_mode/items/template/`文件夹中的所有文件
-- `RP_developer_mode/texts/`文件夹中的所有文件
-
-以下文件可能和您已有的包产生冲突。在复制这些文件时，请注意**以下文件不能直接复制，需要视情况手动粘贴其中的内容**。
-
-该列表中不列出`manifest.json`（附加包清单文件）和`pack_icon.png`（附加包图标）。
-
-- `BP_developer_mode/functions/lib/modify_data/init/data.mcfunction`（行为包 - 函数 - 库函数 - 初始化数据）
-- `BP_developer_mode/functions/system/main.mcfunction`（行为包 - 函数 - 主文件）
-- `RP_developer_mode/texts/`文件夹中的所有文件（资源包 - 文本文件）
-- `RP_developer_mode/textures/item_texture.json`（资源包 - 物品贴图清单）
 
 ## 更新日志
 
