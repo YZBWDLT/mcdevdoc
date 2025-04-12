@@ -120,6 +120,12 @@ scoreboard players set @a isOnline 1
 
 所以，这条命令是，在执行者的位置生成一个名为“a”的盔甲架。
 
+### 思考 2.8-1
+
+> 如果(0,-60,0)的方块是玻璃，执行`/setblock 0 -60 0 air destroy`会掉落什么出来？如果是黑曜石呢？基岩呢？做个实验来验证你的想法！
+
+答案：玻璃和基岩不会掉落任何物品，黑曜石将原样掉落。玻璃和黑曜石无需多解释，因为基岩是无法被镐子破坏的，所以也不会掉落。
+
 ## 练习问题答案
 
 ### 练习 2.2
@@ -479,3 +485,13 @@ scoreboard players set @a isOnline 1
    replaceitem entity @a[tag=notWearingHelmet] slot.armor.head 0 diamond_helmet
    tag @a remove notWearingHelmet
    ```
+
+### 练习 2.8
+
+1. `/execute positioned -13 2 86 if block ~~~ stone_button ["facing_direction"=2,"button_pressed_bit"=true] run setblock ~~~ stone_button ["facing_direction"=2]`
+2. 1. `/execute if score timeline time matches 120 run fill -40 12 28 -9 9 26 air destroy`
+   2. `/execute if score timeline time matches 120 run kill @e[type=item]`
+3. `/execute if block -46 21 55 lit_redstone_lamp positioned -49 25 60 if block ~~~ magma run setblock ~~~ flowing_lava`
+4. `/execute if score getDiamondPickaxe data matches 1 if entity @a[hasitem={item=diamond_pickaxe,quantity=0}] positioned -257 -32 106 run clone ~~~~~~~~3~`
+5. `/execute positioned -145 -43 -33 if block ~~~ stone_button ["facing_direction"=1,"button_pressed_bit"=true] run summon minecart ~1~-1~`
+6. `/execute unless block -2 26 3 redstone_wire ["redstone_signal"=0] if block 20 22 7 quartz_pillar ["pillar_axis"="y"] run say 已解锁新关卡`
