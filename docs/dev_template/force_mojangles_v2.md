@@ -12,7 +12,7 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/r45uO)
+## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/0PnSG)
 
 本包将**常用的英文和数字字体强制更改为了 Mojangles 字体**，以保证在有其他 GNU Unifont 字体（例如中文）出现时能够和纯英文字段保持一致。
 

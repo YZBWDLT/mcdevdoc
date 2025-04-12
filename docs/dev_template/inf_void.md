@@ -12,7 +12,7 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/lbnhl)
+## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/3XVI2)
 
 本包用于**生成一个无限虚空的世界**。
 

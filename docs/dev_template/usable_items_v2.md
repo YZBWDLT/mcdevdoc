@@ -2,13 +2,7 @@
 sidebar_position: 2
 ---
 
-# 可使用物品
-
-:::danger[温馨提示]
-
-本文档正在更新，但本文档所指向的资源已经可供下载。文档将在更新完毕后删除旧内容并删除此标记状态，然而目前该文档暂时无法支持您的阅读。
-
-:::
+# 可使用物品 v2
 
 export const Highlight = ({children, color}) => (
   <span
@@ -18,16 +12,26 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/nWkCK)
+## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/K0Qu0)
 
 本包用于**创建一个可右键使用的物品**。
 
 在实际工程中，难免会遇到一些需要右键使用物品的情况。这时候我们希望物品右键使用之后能够有一些反应，例如运行函数。本包基于两种不同的原理，实现了右键物品执行函数的功能。正常情况下，我们强烈推荐使用第 1 种包。
 
-1. 国际版和中国版各自的脚本系统。这种原理的包更易于维护和自定义，而且使用方法简单，但是需要分别对两个版本做适配。
-2. 玩家动画控制器。这种原理的包天生支持两个版本，但是因为修改了`player.json`，侵入性强，高版本兼容性会比较差，也不易于维护和自定义。
+1. 国际版和中国版各自的脚本系统。
+   - **优点**：易于维护和自定义；限制少，可适用于原版物品；使用方法简单
+   - **缺点**：需要分别对两个版本做适配。
+2. 玩家动画控制器。
+   - **优点**：天生支持两个版本，理解门槛相对较低。
+   - **缺点**：因为修改了`player.json`，侵入性强，高版本兼容性会比较差；只能适用于真正的可使用物品，无法应用到原版的一切物品上；不易于维护和自定义。
 
 本包为**行为包**和**资源包**组合的包。
+
+:::warning[温馨提示]
+
+本文假定您已经能够独立编写属于自己的自定义物品。如果您还不能编写自定义物品，请阅读模块 3 的教程：[1.1 数据驱动物品](../addons_complex/chapter1/section1)。
+
+:::
 
 ---
 
@@ -75,9 +79,9 @@ export const Highlight = ({children, color}) => (
 
 ### 合并到您的包中
 
-如果您选择使用基于脚本原理的包，请合并`BP_usable_item_script`和`RP_usable_item`到您的包中。
+如果您选择使用**基于脚本原理的包，请合并`BP_usable_item_script`和`RP_usable_item`到您的包**中。
 
-如果您选择使用基于动画控制器原理的包，请合并`BP_usable_item_ac`和`RP_usable_item`到您的包中。
+如果您选择使用**基于动画控制器原理的包，请合并`BP_usable_item_ac`和`RP_usable_item`到您的包**中。
 
 其中可能会出现多个文件冲突。如果在粘贴过程中遇到冲突，**请务必选择跳过这些文件而非覆盖您原有的文件**，并按照下面可能需要修改的文件列表进行选择性粘贴。
 
@@ -211,139 +215,162 @@ class adventureWorldServerSystem(ServerSystem):
 
 ## 使用方法（基于脚本原理）
 
+合并完成之后，按照下面的方法实现可使用的自定义物品。
+
+### 基本原理
+
+<details>
+
+<summary>本包的基本原理</summary>
+
+使用国际版的`world`类的后事件`itemUse`订阅玩家使用物品，以及中国版的`ItemUseAfterServerEvent`事件监听玩家使用物品，使其执行一个相同的函数，该函数路径由物品的 ID 决定。
+
+</details>
+
+### 基本注册步骤
+
+1. 在国际版脚本注册您要指定的可使用物品的 ID（带命名空间，可以指定原版物品），位于该文件第 6 行：
+
+```javascript title="BP/scripts/main.js" showLineNumbers
+/** 可执行命令的物品 */
+const usableItems = [ "template:usable_item" ];
+```
+
+2. 在中国版服务端脚本注册您要指定的可使用物品的 ID（带命名空间，可以指定原版物品），位于该文件第 7 行：
+
+```Python title="BP/scripts/(???)Server.js" showLineNumbers
+usableItems = [ "template:usable_item" ]
+```
+
+3. 然后，更改`BP/functions/items/(物品ID，不带命名空间).mcfunction`即可实现使用该物品调用该函数。
+   - 例如，指定了可使用物品为`minecraft:stick`后，使用物品会执行`items/stick`函数。
+
+### 其他自定义物品的适用性
+
+其他自定义物品也可以使用类似的方法注册。使用本原理的自定义物品无需指定食物、投掷物等可用属性，只要定义其最基本的属性即可。
+
 ## 使用方法（基于玩家动画控制器原理）
 
-## 可用函数
+合并完成之后，按照下面的方法实现可使用的自定义物品。
+
+### 基本原理
+
+<details>
+
+<summary>本包的基本原理</summary>
+
+修改玩家的实体定义`player.json`，使其执行到一个玩家行为包动画控制器上，通过 Molang 检测玩家手持物品是否为该物品，并且玩家是否正在使用物品，即可实现可使用物品的检测。
+
+</details>
+
+### 基本注册步骤
+
+1. 打开玩家动画控制器，将您要注册的可使用的物品（必须为食物、投掷物等可使用的物品类型）按照下面的方式注册：
+
+```json title="BP/animation_controllers/player.animation_controllers.json" showLineNumbers {8,11-16}
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.player.item_using_test": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        { "is_using_usable_item": "query.is_item_name_any('slot.weapon.mainhand', 0, 'template:usable_item') && query.is_using_item" }
+                    ]
+                },
+                "is_using_usable_item": {
+                    "on_entry": [ "/function items/usable_item" ],
+                    "transitions": [
+                        { "default": "!query.is_item_name_any('slot.weapon.mainhand', 0, 'template:usable_item') || !query.is_using_item" }
+                    ]
+                }
+            }
+        }
+    }
+}
+
+```
+
+<details>
+
+<summary>举例：注册一个 ID 为`mcdevdoc:settings`的物品</summary>
+
+```json title="BP/animation_controllers/player.animation_controllers.json" showLineNumbers {9,18-23}
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.player.item_using_test": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        { "is_using_usable_item": "query.is_item_name_any('slot.weapon.mainhand', 0, 'template:usable_item') && query.is_using_item" },
+                        { "is_using_settings": "query.is_item_name_any('slot.weapon.mainhand', 0, 'mcdevdoc:settings') && query.is_using_item" }
+                    ]
+                },
+                "is_using_usable_item": {
+                    "on_entry": [ "/function items/usable_item" ],
+                    "transitions": [
+                        { "default": "!query.is_item_name_any('slot.weapon.mainhand', 0, 'template:usable_item') || !query.is_using_item" }
+                    ]
+                },
+                "is_using_settings": {
+                    "on_entry": [ "/function items/settings" ],
+                    "transitions": [
+                        { "default": "!query.is_item_name_any('slot.weapon.mainhand', 0, 'mcdevdoc:settings') || !query.is_using_item" }
+                    ]
+                }
+            }
+        }
+    }
+}
+
+```
+
+</details>
+
+2. 然后，更改`BP/functions/items/(物品ID，不带命名空间).mcfunction`即可实现使用该物品调用该函数。
+   - 函数路径由`on_entry`定义的路径决定。
+
+### 其他自定义物品的适用性
+
+其他自定义物品也可以使用类似的方法注册。使用本原理的自定义物品**必须指定食物、投掷物等可用属性**，因此不能指定原版物品中非食物、投掷物等不可使用物品。此外，它也导致该物品是可能会被消耗掉的，所以请使用`minecraft:use_modifiers`将该物品的使用时间设置得尽可能长。示例可以参见我们给出的例子。
 
 ## 实例
 
+<details>
+
+<summary>当玩家使用木棍时，如果玩家手里有 4 个以上木棍则给予其 2 个木板</summary>
+
+该功能只能适用基于脚本原理的包实现。首先按照[合并指南](#合并到您的包中)完成包合并。然后按照[基本注册步骤](#基本注册步骤)完成物品注册，如下所示。
+
+```javascript title="BP/scripts/main.js" showLineNumbers
+/** 可执行命令的物品 */
+const usableItems = [ "template:usable_item", "minecraft:stick" ];
+```
+
+```Python title="BP/scripts/(???)Server.js" showLineNumbers
+usableItems = [ "template:usable_item", "minecraft:stick" ]
+```
+
+最后，定义一个函数`items/stick`，写入下面的内容即可。
+
+```mcfunction title="BP/functions/items/stick.mcfunction" showLineNumbers
+execute if entity @s[hasitem={item=stick,quantity=4..}] run give @s oak_planks 2
+execute if entity @s[hasitem={item=stick,quantity=4..}] run clear @s stick -1 4
+```
+
+</details>
+
 ## 更新日志
+
+相比于 v1 版本，v2 版本主要进行了如下更改：
+
+- 提升了最低版本需求为 1.20.50。
+- 示例的自定义物品的格式版本升级到 1.20.50，以同时适用于国际版和中国版。
+- 加入了对双端脚本的支持。
 
 ## 过往版本下载
 
----
+您可以在这里下载到过往版本。然而，我们已不再推荐使用这些旧版本。
 
-:::info[本包性质]
-
-本包为**行为包**和**资源包**结合的包。
-
-:::
-
-装载本包之后，将在您的世界添加一种可使用的新物品，并在使用时执行特定函数。
-
-## 原理
-
-本包实现的原理如下：
-
-1. 创建了一个新的物品（`BP_usable_items/items/template/usable_item.item.json`），其为一个使用时长为 9999999 刻的食物，并且带有 20 刻的`usable_item`类型的冷却。
-2. 更改了玩家的服务端实体文件（`BP_usable_items/entities/vanilla/player.json`），使其链接到一个行为包动画控制器（`BP_usable_items/animation_controllers/player.animation_controllers.json`）。
-3. 此行为包动画控制器会检测玩家物品的使用状态，并执行一条函数命令（`BP_usable_items/functions/entities/player/using_usable_items.mcfunction`）。
-
-## 创建自己的可使用物品
-
-您可以基于此包，快速创建一个属于您自己的可使用物品。只需要按照下面的清单做好这些工作即可：
-
-1. 创建一个新的物品（`BP/items/<命名空间或自定义字段>/<物品ID>.item.json`）：
-
-   ```json title="BP/items/<命名空间或自定义字段>/<物品ID>.item.json"
-   {
-       "format_version": "1.16.0",
-       "minecraft:item": {
-           "description": {
-               "identifier": "<命名空间>:<物品ID>"
-           },
-           "components": {
-               "minecraft:max_stack_size": <整数，自定义>,
-               "minecraft:food": { "can_always_eat": true, "nutrition": 0, "cooldown_time": <整数，冷却时长，单位：游戏刻>, "cooldown_type": "<物品ID>" },
-               "minecraft:use_duration": 9999999
-           }
-       }
-   }
-   ```
-
-   其中，如果您不需要物品冷却，可以将`"cooldown_time"`和`"cooldown_type"`的键值对移除。不要更改其它的字段，除非您知道您在做什么。
-
-2. 将本模板包所给出的玩家服务端实体文件、以及行为包动画控制器复制到您的包里。
-3. 打开行为包动画控制器，其格式如下：
-
-   ```json title="BP/animation_controllers/player.animation_controllers.json"
-   {
-       "format_version": "1.10.0",
-       "animation_controllers": {
-           "controller.animation.player.item_using_test": {
-               "states": {
-                   "default": {
-                       "transitions": [
-                           { "is_using_<物品ID>": "query.is_item_name_any('slot.weapon.mainhand', 0, '<命名空间>:<物品ID>') && query.is_using_item" },
-                           ...
-                       ]
-                   },
-                   "is_using_<物品ID>": {
-                       "on_entry": [ "/function entities/player/using_<物品ID>" ],
-                       "transitions": [
-                           { "default": "!query.is_item_name_any('slot.weapon.mainhand', 0, '<命名空间>:<物品ID>') || !query.is_using_item" }
-                       ]
-                   },
-                   ...
-               }
-           }
-       }
-   }
-   ```
-
-   如果您不知道这个文件该如何编写，请见参考文献 1，但您要更改的具体字段已悉数标出。
-
-4. 新建一个新的函数（`BP/functions/entities/player/using_<物品ID>.mcfunction`），在此处写下您要通过此物品执行的命令。
-5. 将资源包的物品客户端定义（`RP/items/<命名空间或自定义字段>/<物品ID>.item.json`）补充完整：
-
-   ```json title="RP/items/<命名空间或自定义字段>/<物品ID>.item.json"
-   {
-       "format_version": "1.16.0",
-       "minecraft:item": {
-           "description": {
-               "identifier": "<命名空间>:<物品ID>",
-               "category": "Items"
-           },
-           "components": {
-               "minecraft:icon": "<物品贴图短ID>"
-           }
-       }
-   }
-   ```
-
-6. 将物品的贴图放到`RP/textures/items/`文件夹下，命名为 \<物品ID\>.png ，然后更改物品贴图定义文件（`RP/textures/item_texture.json`）：
-
-   ```json title="RP/textures/item_texture.json"
-   {
-       "resource_pack_name": "vanilla",
-       "texture_name": "atlas.items",
-       "texture_data": {
-           "<物品贴图短ID>": { "textures": "textures/items/<物品ID>" }
-       }
-   }
-   ```
-
-7. 添加物品键名，更改语言文件（`RP/texts/zh_CN.lang`和`RP/texts/en_US.lang`）：
-
-   ```plaintext title="RP/texts/zh_CN.lang 或 RP/texts/en_US.lang"
-   item.<命名空间>:<物品ID>.name=<物品名称>
-   ```
-
-其中第 5~7 步都是标准的创建物品的步骤，您可以查阅参考文献 2 来了解更多。
-
-:::warning[注意事项]
-
-将此包与您已有的包进行整合时，请注意以下事项：
-
-- 两实体的`ID`的命名空间均为`template:`，请按照您的需求自行更改，不要直接使用此命名空间。
-- 资源包的`texts`文件夹的内容可能会与您原有的包冲突。
-- 资源包的`textures/item_texture.json`的内容可能会与您原有的包冲突。
-- 行为包的`animation_controllers/player.animation_controllers.json`的内容可能会与您原有的包冲突。
-- 如果您要使用中国版，在上文的第 5 步请参考我们给出的`RP_usable_items_netease`包，您只需要在描述中将格式版本改为`1.10`，并添加`"register_to_create_menu"`字段，然后把资源包的`items`文件夹重命名为`netease_items_res`即可。否则，您的物品可能无法显示其贴图。
-
-:::
-
-## 参考文献
-
-- [Tutorial:自定义实体 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/Tutorial:自定义实体#实现可使用物品)
-- [Tutorial:自定义物品 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/Tutorial:自定义物品)
+[<Highlight color="#25c2a0">下载 v1 版本</Highlight>](https://app.nekodrive.net/s/y0Bsg)
