@@ -660,7 +660,7 @@ scoreboard players set client data 1
 ## 试图在记分板添加data.sb（这是屏蔽词，如果为网易版，该命令无法执行）
 scoreboard players set sb data 0
 ## 若检测到data.sb的分数，即上一条命令未被屏蔽，证明是国际版，更改data.client
-execute if score sb matches 0 run scoreboard players set client data 0
+execute if score sb data matches 0 run scoreboard players set client data 0
 ## 移除data.sb
 scoreboard players reset sb data
 ```
@@ -881,7 +881,7 @@ execute as @a[scores={dimension=1}] as @s run say 1
 
 - **返回**：——
 - **函数**：`/function lib/modify_data/title`
-- **原理**：[2.9.1 文本操作命令](../../commands/chapter2/section9/subsection1#标题命令title)
+- **原理**：[2.9.1 文本操作命令](../../commands/chapter2/section9/subsection1#格式化代码)
 - **代码**:
 
 <details>
