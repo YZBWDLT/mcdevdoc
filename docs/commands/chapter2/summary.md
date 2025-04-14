@@ -592,3 +592,24 @@ scoreboard players set @a isOnline 1
    execute if score timeline time matches 1460 run inputpermission set @a camera enabled
    execute if score timeline time matches 1460 run inputpermission set @a movement enabled
    ```
+
+### 练习 2.9-3
+
+1. ```text showLineNumbers
+   scoreboard players add sound time 1
+   execute if score sound time matches 3 as @a at @s run playsound random.orb @s ~~~
+   ```
+
+   必须加`as @a at @s`，如果只写为`... matches 3 run playsound ... @a ~~~`视为错误。读者可自行分析其中缘由。
+
+2. `playsound beacon.activate`
+3. `playsound random.glass`
+
+4. ```text showLineNumbers
+   playsound random.explode @a 10 10 10
+   particle minecraft:huge_explosion_emitter 10 10 10
+   ```
+
+   使用的粒子合理即可，但必须经过游戏内验证。
+
+5. `/execute as @e[type=snowball] at @s run particle minecraft:endrod`
