@@ -574,3 +574,21 @@ scoreboard players set @a isOnline 1
    execute if score redTeam coin > blueTeam coin as @a run titleraw @s actionbar {"rawtext":[{"translate":"你的名字 %%s | 金币 %%s | 击杀 %%s | 死亡 %%s | 优势队伍 红队","with":{"rawtext":[{"selector":"@s"},{"score":{"objective":"coin","name":"@s"}},{"score":{"objective":"killCount","name":"@s"}},{"score":{"objective":"deathCount","name":"@s"}}]}}]}
    execute if score redTeam coin < blueTeam coin as @a run titleraw @s actionbar {"rawtext":[{"translate":"你的名字 %%s | 金币 %%s | 击杀 %%s | 死亡 %%s | 优势队伍 蓝队","with":{"rawtext":[{"selector":"@s"},{"score":{"objective":"coin","name":"@s"}},{"score":{"objective":"killCount","name":"@s"}},{"score":{"objective":"deathCount","name":"@s"}}]}}]}
    ```
+
+### 练习 2.9-2
+
+1. `/camera @s fade time 1 9 1 color 11 45 14`，注意`time`必须写在`color`前面，别被这条命令臭懵了。>:)
+2. `/camera @s set minecraft:third_person`
+3. `/camera @s set minecraft:free ease 3 in_out_sine pos 17 -24 89 facing 17 -24 95`
+4. `/camera @s set minecraft:free ease 3 in_quad pos 17 -24 89 rot 90 0`
+5. `/camera @s set minecraft:free ease 3 linear pos 17 -24 89 facing 17 -60 89`
+6. `/camerashake @s 1 6 rotational`
+7. `/hud @s hide health`
+
+8. ```text title="每游戏刻执行，命令条数要求固定" showLineNumbers
+   execute if score timeline time matches 1060 run camera @a set minecraft:free ease 3 in_out_quad pos -237 33 130 facing -247 35 130
+   execute if score timeline time matches 1420 as @a at @s run camera @a set minecraft:free ease 3 in_out_quad pos ^^^0.5 facing ^^^1
+   execute if score timeline time matches 1460 run camera @a clear
+   execute if score timeline time matches 1460 run inputpermission set @a camera enabled
+   execute if score timeline time matches 1460 run inputpermission set @a movement enabled
+   ```
