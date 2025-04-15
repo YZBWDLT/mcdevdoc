@@ -19,11 +19,11 @@ sidebar_position: 1
 | 等级 | 命令 | 在一个较大型地图项目中的出现频次 |
 | --- | --- | :---: |
 | 超高频命令 | `/execute`<br/>`/function`\*<br/>`/scoreboard`<br/>`/summon`\*[^1]<br/>`/tag`<br/>`/tellraw` | 500~ |
-| 高频命令 | `/scriptevent`\*<br/>`/tp`<br/>`/titleraw`<br/>`/playsound`\*[^2]<br/>`/particle`\*[^3]<br/>`/setblock`\*[^4]<br/>`/clear`\*[^5]<br/>`/gamerule`<br/>`/structure`\*[^6]<br/>`/clone`<br/>`/event`\*[^1]<br/>`/camera`\*[^7]<br/>`/effect` | 51~500 |
-| 中频命令 | `/give`\*[^5]<br/>`/kill`\*[^1]<br/>`/replaceitem`\*[^5]<br/>`/inputpermission`<br/>`/fill`\*[^4]<br/>`/spawnpoint`<br/>`/dialogue`\*<br/>`/gamemode`<br/>`/say`<br/>`/playanimation`\*[^1]<br/>`/setworldspawn`<br/>`/tell`<br/>`/time` | 6~50 |
+| 高频命令 | `/scriptevent`\*<br/>`/tp`（或`/teleport`）<br/>`/titleraw`<br/>`/playsound`\*[^2]<br/>`/particle`\*[^3]<br/>`/setblock`\*[^4]<br/>`/clear`\*[^5]<br/>`/gamerule`<br/>`/structure`\*[^6]<br/>`/clone`<br/>`/event`\*[^1]<br/>`/camera`\*[^7]<br/>`/effect` | 51~500 |
+| 中频命令 | `/give`\*[^5]<br/>`/kill`\*[^1]<br/>`/replaceitem`\*[^5]<br/>`/inputpermission`<br/>`/fill`\*[^4]<br/>`/spawnpoint`<br/>`/dialogue`\*<br/>`/gamemode`<br/>`/say`<br/>`/playanimation`\*[^1]<br/>`/setworldspawn`<br/>`/tell`（或`/msg`、`/w`）<br/>`/time` | 6~50 |
 | 低频命令 | `/difficulty`<br/>`/music`\*[^2]<br/>`/schedule`\*<br/>`/stopsound`\*[^2]<br/>`/tickingarea`<br/>`/ride`\*[^1]<br/>`/weather`<br/>`/enchant`<br/>`/mobevent`<br/>`/xp`<br/>`/camerashake`<br/>`/damage`<br/>`/loot`\*[^1]<br/>`/title` | 1~5 |
-| 零频命令 | `/alwaysday`<br/>`/clearspawnpoint`<br/>`/daylock`<br/>`/fog`\*[^8]<br/>`/gametest`\*<br/>`/hud`<br/>`/kick`<br/>`/list`<br/>`/locate`<br/>`/me`<br/>`/msg`<br/>`/recipe`\*[^9]<br/>`/script`\*<br/>`/spreadplayers`<br/>`/teleport`<br/>`/testfor`<br/>`/testforblock`<br/>`/testforblocks`<br/>`/toggledownfall`<br/>`/w` | 几乎用不到 |
-| 服务器命令| `/op`<br/>`/deop`<br/>`/kick`<br/>`/connect`<br/>`/reload`\*<br/>`/stop`<br/>`/setmaxplayers`<br/>`/allowlist` | — |
+| 零频命令 | `/alwaysday`（或`/daylock`）<br/>`/clearspawnpoint`<br/>`/fog`\*[^8]<br/>`/gametest`\*<br/>`/hud`<br/>`/me`<br/>`/recipe`\*[^9]<br/>`/script`\*<br/>`/spreadplayers`<br/>`/testfor`<br/>`/testforblock`<br/>`/testforblocks`<br/>`/toggledownfall` | 几乎用不到 |
+| 服务器常用命令 | `/op`<br/>`/deop`<br/>`/kick`<br/>`/list`<br/>`/locate`<br/>`/connect`<br/>`/reload`\*<br/>`/stop`<br/>`/setmaxplayers`<br/>`/allowlist` | — |
 
 也许看到这些命令，你会非常迷茫：这都啥？啥？啥？没关系，这只是一个简单了解而已。在本章后续，你就会逐渐了解这些命令。
 

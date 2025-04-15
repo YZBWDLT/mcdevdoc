@@ -163,7 +163,7 @@ sidebar_position: 3
 | `/stopsound <玩家: target> [音效: string]` | 停止对`玩家`播放`音效` | |
 | `/music play <音轨名: string> [音量: float] [淡入淡出秒数: float] [play_once\|loop]` | 对全体玩家立刻播放音乐`音轨名`，音量为`音量`，在刚开始或即将结束时以`淡入淡出秒数`秒淡入淡出，且可指定是循环播放还是只播放一次 | |
 | `/music queue <音轨名: string> [音量: float] [淡入淡出秒数: float] [play_once\|loop]` | 对全体玩家将音乐`音轨名`排到播放队列中，音量为`音量`，在刚开始或即将结束时以`淡入淡出秒数`秒淡入淡出，且可指定是循环播放还是只播放一次 | 不能将队列指定到循环播放的音乐后面去，这样做没有意义 |
-| `/music stop [淡出秒数: float]` | 以`淡入淡出秒数`秒淡出停止音乐 | |
+| `/music stop [淡出秒数: float]` | 以`淡出秒数`秒淡出停止音乐 | |
 | `/music volume <音量: float>` | 调整音乐的音量为`音量` | |
 | `/particle <粒子效果: string> [位置: x y z]` | 在`位置`释放`粒子` | |
 

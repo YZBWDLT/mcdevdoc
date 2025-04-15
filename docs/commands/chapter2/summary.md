@@ -587,7 +587,7 @@ scoreboard players set @a isOnline 1
 
 8. ```text title="每游戏刻执行，命令条数要求固定" showLineNumbers
    execute if score timeline time matches 1060 run camera @a set minecraft:free ease 3 in_out_quad pos -237 33 130 facing -247 35 130
-   execute if score timeline time matches 1420 as @a at @s run camera @a set minecraft:free ease 3 in_out_quad pos ^^^0.5 facing ^^^1
+   execute if score timeline time matches 1420 as @a at @s anchored eyes run camera @a set minecraft:free ease 3 in_out_quad pos ^^^0.5 facing ^^^1
    execute if score timeline time matches 1460 run camera @a clear
    execute if score timeline time matches 1460 run inputpermission set @a camera enabled
    execute if score timeline time matches 1460 run inputpermission set @a movement enabled
