@@ -10,7 +10,7 @@ sidebar_position: 2
 
 :::warning[注意]
 
-本部分所介绍的内容可能有一小部分是中国版尚未加入的内容，请注意甄别，以自己的实际体验为准。详情可见[2.11](../section11)。
+本部分所介绍的内容可能有一小部分是中国版尚未加入的内容，请注意甄别，以自己的实际体验为准。详情可见[附录：全部命令汇总](../../appendix/all_commands#camera)。
 
 :::
 
@@ -172,8 +172,8 @@ camera <玩家: target> set <预设: string> view_offset <x视角偏移: float> 
 - `minecraft:first_person`：第一人称
 - `minecraft:third_person`：第三人称背面
 - `minecraft:third_person_front`：第三人称正面
-- `minecraft:follow_orbit`：（1.21.40+）第三人称，轨道相机
-- `minecraft:fixed_boom`：（1.21.60+）第三人称，锁定视角相机
+- `minecraft:follow_orbit`：第三人称，轨道相机
+- `minecraft:fixed_boom`：第三人称，锁定视角相机
 - `minecraft:free`：自由视角
 
 以上的预设均不能通过 F5 调整视角。相信你现在可能除了三个熟悉的第一和第三人称视角之外，剩下三个都看不懂。这很正常，因为另外三个都需要额外搭配参数才能真正发挥其威力。接下来我们像`fade`那样来看看这里面都支持哪些参数吧。

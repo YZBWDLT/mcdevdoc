@@ -505,9 +505,9 @@ hasitem=[{item=...,...},{item=...,...},...]
 
 | 命令 | 含义 | 备注 |
 | --- | --- | --- |
-| `/replaceitem block <位置: x y z> slot.container <槽位ID: int> <物品: Item> [数量: int] [数据值: int] [组件: json]` | 将`位置`处的容器的第(`槽位ID`-1)个槽位设置为特定物品 | `槽位ID`从 0 记起 |
+| `/replaceitem block <位置: x y z> slot.container <槽位ID: int> <物品: Item> [数量: int] [数据值: int] [组件: json]` | 将`位置`处的容器的第(`槽位ID`+1)个槽位设置为特定物品 | `槽位ID`从 0 记起 |
 | `/replaceitem block <位置: x y z> slot.container <槽位ID: int> <旧物品处理: destroy\|keep> <物品: Item> [数量: int] [数据值: int] [组件: json]` | 意义同上，可选择旧物品处理方式 | |
-| `/replaceitem entity <目标: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> <物品: Item> [数量: int] [数据值: int] [组件: json]` | 将`实体`的`槽位类型`的第(`槽位ID`-1)个槽位设置为特定物品 | |
+| `/replaceitem entity <目标: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> <物品: Item> [数量: int] [数据值: int] [组件: json]` | 将`实体`的`槽位类型`的第(`槽位ID`+1)个槽位设置为特定物品 | |
 | `/replaceitem entity <目标: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> <旧物品处理: destroy\|keep> <物品: Item> [数量: int] [数据值: int] [组件: json]` | 意义同上，可选择旧物品处理方式 | |
 | `/enchant <玩家: target> <附魔: Enchant\|int> [等级: int]` | 将`玩家`手持的物品设置为`等级`的`附魔` | 附魔有严格限制 |
 
