@@ -489,7 +489,7 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="summon_2" label="生成事件（旋转角度）">
+<TabItem value="summon_2" label="常规（旋转角度）">
 
 ```text
 /summon <实体: EntityType> [生成位置: x y z] [y旋转: value] [x旋转: value] [生成事件: string] [名称: string]
@@ -501,7 +501,7 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="summon_3" label="生成事件（面向实体）">
+<TabItem value="summon_3" label="常规（面向实体）">
 
 ```text
 /summon <实体: EntityType> [生成位置: x y z] facing <面向实体: target> [生成事件: string] [名称: string]
@@ -513,7 +513,7 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="summon_4" label="生成事件（面向坐标）">
+<TabItem value="summon_4" label="常规（面向坐标）">
 
 ```text
 /summon <实体: EntityType> [生成位置: x y z] facing <面向位置: x y z> [生成事件: string] [名称: string]
@@ -637,7 +637,7 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="tp_1_2" label="传送到坐标">
+<TabItem value="tp_1_2" label="常规">
 
 ```text
 /tp <位置: x y z> [检查卡墙: Boolean]
@@ -649,7 +649,7 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="tp_1_3" label="传送到坐标（旋转角度）">
+<TabItem value="tp_1_3" label="常规（旋转角度）">
 
 ```text
 /tp <位置: x y z> [y旋转: value] [x旋转: value] [检查卡墙: Boolean]
@@ -661,7 +661,7 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="tp_1_4" label="传送到坐标（面向实体）">
+<TabItem value="tp_1_4" label="常规（面向实体）">
 
 ```text
 /tp <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean]
@@ -673,7 +673,7 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="tp_1_5" label="传送到坐标（面向坐标）">
+<TabItem value="tp_1_5" label="常规（面向坐标）">
 
 ```text
 /tp <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean]
@@ -705,7 +705,7 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="tp_2_2" label="传送到坐标">
+<TabItem value="tp_2_2" label="常规">
 
 ```text
 /tp <目标: target> <位置: x y z> [检查卡墙: Boolean]
@@ -717,7 +717,7 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="tp_2_3" label="传送到坐标（旋转角度）">
+<TabItem value="tp_2_3" label="常规（旋转角度）">
 
 ```text
 /tp <目标: target> <位置: x y z> [y旋转: value] [x旋转: value] [检查卡墙: Boolean]
@@ -729,7 +729,7 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="tp_2_4" label="传送到坐标（面向实体）">
+<TabItem value="tp_2_4" label="常规（面向实体）">
 
 ```text
 /tp <目标: target> <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean]
@@ -741,7 +741,7 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="tp_2_5" label="传送到坐标（面向坐标）">
+<TabItem value="tp_2_5" label="常规（面向坐标）">
 
 ```text
 /tp <目标: target> <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean]
@@ -955,27 +955,14 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="gamerule_2" label="布尔值型">
+<TabItem value="gamerule_2" label="设置">
 
 ```text
 /gamerule <规则: BoolGameRule> [值: Boolean]
-```
-
-将布尔值型`规则`设置为`值`。
-
-`值`为空时，改为查询`规则`。
-
-会受到游戏规则`sendCommandFeedBack`的影响。
-
-</TabItem>
-
-<TabItem value="gamerule_3" label="整数型">
-
-```text
 /gamerule <规则: IntGameRule> [值: int]
 ```
 
-将整数型`规则`设置为`值`。
+将`规则`设置为`值`。
 
 `值`为空时，改为查询`规则`。
 
@@ -1206,7 +1193,7 @@ in <维度: Dimension> -> execute
 <TabItem value="camera_clear" label="clear">
 
 ```text
-camera <玩家: target> clear
+/camera <玩家: target> clear
 ```
 
 清除`玩家`的自定义相机。
@@ -1216,7 +1203,7 @@ camera <玩家: target> clear
 <TabItem value="camera_fade" label="fade">
 
 ```text
-camera <玩家: target> fade [渐变时间] [颜色]
+/camera <玩家: target> fade [渐变时间] [颜色]
 ```
 
 使`玩家`的自定义相机按照`渐变时间`的要求渐变到`颜色`上。
@@ -1228,9 +1215,9 @@ camera <玩家: target> fade [渐变时间] [颜色]
 | `color <红: int> <绿: int> <蓝: int>` | `[颜色]` | 将相机颜色设置为 RGB 三原色按照不同强度（`红`、`绿`、`蓝`）组合后的颜色 |
 | `time <淡入秒数: float> <持续秒数: float> <淡出秒数: float>` | `[渐变时间]` | 将相机设置为淡入`淡入秒数`秒、持续`持续秒数`秒、淡出`淡出秒数`秒 |
 
-`[渐变时间]`的默认值为`time 1.5 0 1.5`[^4]。`[颜色]`的默认值为`color 0 0 0`（黑色）。
+`[渐变时间]`的默认值为`time 1.5 0 1.5`[^3]。`[颜色]`的默认值为`color 0 0 0`（黑色）。
 
-[^4]: 缺少资料。
+[^3]: 缺少资料。
 
 </TabItem>
 
@@ -1241,7 +1228,7 @@ camera <玩家: target> fade [渐变时间] [颜色]
 <TabItem value="1" label="通用" default>
 
 ```text
-camera <玩家: target> set <预设: string>
+/camera <玩家: target> set <预设: string>
 ```
 
 :::warning[版本适用性警告]
@@ -1264,7 +1251,7 @@ camera <玩家: target> set <预设: string>
 <TabItem value="2" label="自由视角相机">
 
 ```text
-camera <玩家: target> set minecraft:free [缓动] [位置] [朝向]
+/camera <玩家: target> set minecraft:free [缓动] [位置] [朝向]
 ```
 
 **仅限`minecraft:free`预设**。设置`玩家`的自由相机按照特定的`缓动`动画移动到`位置`和`朝向`。
@@ -1277,7 +1264,7 @@ camera <玩家: target> set minecraft:free [缓动] [位置] [朝向]
 | `pos <位置: x y z>` | `[位置]` | 玩家的相机移动到的`位置` |
 | `facing <面向实体: target>`或`facing <面向坐标: x y z>`或`rot <x旋转: value> <y旋转: value>` | `[朝向]` | 玩家的相机的朝向 |
 
-`[缓变]`为空时，直接切换视角。`[位置]`的默认值为`pos 0 0 0`[^4]。`[朝向]`的默认值为`rot 0 0`[^4]。
+`[缓变]`为空时，直接切换视角。`[位置]`的默认值为`pos 0 0 0`[^3]。`[朝向]`的默认值为`rot 0 0`[^3]。
 
 `Easing`类型的可选值详见 Wiki。
 
@@ -1286,7 +1273,7 @@ camera <玩家: target> set minecraft:free [缓动] [位置] [朝向]
 <TabItem value="3" label="轨道相机">
 
 ```text
-camera <玩家: target> set <预设: string> [朝向] [视角偏移] [实体偏移]
+/camera <玩家: target> set <预设: string> [朝向] [视角偏移] [实体偏移]
 ```
 
 :::warning[版本适用性警告]
@@ -1318,7 +1305,7 @@ camera <玩家: target> set <预设: string> [朝向] [视角偏移] [实体偏�
 <TabItem value="target_entity" label="target_entity">
 
 ```text
-camera <玩家: target> target_entity <实体: target> [实体中心偏移]
+/camera <玩家: target> target_entity <实体: target> [实体中心偏移]
 ```
 
 :::warning[版本适用性警告]
@@ -1344,7 +1331,7 @@ camera <玩家: target> target_entity <实体: target> [实体中心偏移]
 <TabItem value="remove_target" label="remove_target">
 
 ```text
-camera <玩家: target> remove_target
+/camera <玩家: target> remove_target
 ```
 
 :::warning[版本适用性警告]
@@ -1418,7 +1405,7 @@ camera <玩家: target> remove_target
 <TabItem value="clear" label="clear">
 
 ```text
-effect <实体: target> clear [状态效果: Effect]
+/effect <实体: target> clear [状态效果: Effect]
 ```
 
 :::warning[版本适用性警告]
@@ -1490,7 +1477,7 @@ effect <实体: target> clear [状态效果: Effect]
 <TabItem value="1" label="不检查旧物品">
 
 ```text
-replaceitem block <位置: x y z> slot.container <槽位ID: int> <物品: Item> [数量: int] [数据值: int] [组件: json]
+/replaceitem block <位置: x y z> slot.container <槽位ID: int> <物品: Item> [数量: int] [数据值: int] [组件: json]
 ```
 
 将位于`位置`的容器的第(`槽位ID`+1)个槽位设置为`数量`个含有特定`组件`、特定`数据值`的`物品`。
@@ -1502,7 +1489,7 @@ replaceitem block <位置: x y z> slot.container <槽位ID: int> <物品: Item> 
 <TabItem value="2" label="检查旧物品">
 
 ```text
-replaceitem block <位置: x y z> slot.container <槽位ID: int> <旧物品处理: ReplaceMode> <物品: Item> [数量: int] [数据值: int] [组件: json]
+/replaceitem block <位置: x y z> slot.container <槽位ID: int> <旧物品处理: ReplaceMode> <物品: Item> [数量: int] [数据值: int] [组件: json]
 ```
 
 将位于`位置`的容器的第(`槽位ID`+1)个槽位设置为`数量`个含有特定`组件`、特定`数据值`的`物品`。可选择旧物品处理方法（`旧物品处理`）。
@@ -1527,7 +1514,7 @@ replaceitem block <位置: x y z> slot.container <槽位ID: int> <旧物品处�
 <TabItem value="1" label="不检查旧物品">
 
 ```text
-replaceitem entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> <物品: Item> [数量: int] [数据值: int] [组件: json]
+/replaceitem entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> <物品: Item> [数量: int] [数据值: int] [组件: json]
 ```
 
 将`实体`的槽位类型为`槽位类型`的第(`槽位ID`+1)个槽位设置为`数量`个含有特定`组件`、特定`数据值`的`物品`。
@@ -1541,7 +1528,7 @@ replaceitem entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位I
 <TabItem value="2" label="检查旧物品">
 
 ```text
-replaceitem entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> <旧物品处理: ReplaceMode> <物品: Item> [数量: int] [数据值: int] [组件: json]
+/replaceitem entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> <旧物品处理: ReplaceMode> <物品: Item> [数量: int] [数据值: int] [组件: json]
 ```
 
 将`实体`的槽位类型为`槽位类型`的第(`槽位ID`+1)个槽位设置为`数量`个含有特定`组件`、特定`数据值`的`物品`。可选择旧物品处理方法（`旧物品处理`）。
@@ -1578,7 +1565,7 @@ replaceitem entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位I
 <TabItem value="query" label="query">
 
 ```text
-inputpermission query <玩家: target> <权限: permission> [状态: state]
+/inputpermission query <玩家: target> <权限: permission> [状态: state]
 ```
 
 :::warning[版本适用性警告]
@@ -1596,7 +1583,7 @@ inputpermission query <玩家: target> <权限: permission> [状态: state]
 <TabItem value="set" label="set">
 
 ```text
-inputpermission set <玩家: target> <权限: permission> <状态: state>
+/inputpermission set <玩家: target> <权限: permission> <状态: state>
 ```
 
 :::warning[版本适用性警告]
@@ -1630,7 +1617,7 @@ inputpermission set <玩家: target> <权限: permission> <状态: state>
 <TabItem value="1" label="有方块状态">
 
 ```text
-fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states> [旧方块处理: FillMode]
+/fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states> [旧方块处理: FillMode]
 ```
 
 将从`起点`到`终点`组成的区域按照`旧方块处理`方式填充`方块状态`的`方块`。
@@ -1648,7 +1635,7 @@ fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states
 <TabItem value="2" label="无方块状态">
 
 ```text
-fill <起点: x y z> <终点: x y z> <方块: Block> [旧方块处理: FillMode]
+/fill <起点: x y z> <终点: x y z> <方块: Block> [旧方块处理: FillMode]
 ```
 
 将从`起点`到`终点`组成的区域按照`旧方块处理`方式填充`方块`。
@@ -1674,7 +1661,7 @@ fill <起点: x y z> <终点: x y z> <方块: Block> [旧方块处理: FillMode]
 <TabItem value="1" label="有方块状态">
 
 ```text
-fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states> replace [替换方块: Block] [替换方块状态: block states]
+/fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states> replace [替换方块: Block] [替换方块状态: block states]
 ```
 
 将从`起点`到`终点`组成的区域将`替换方块状态`的`替换方块`替换为`方块状态`的`方块`。
@@ -1686,7 +1673,7 @@ fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states
 <TabItem value="2" label="无方块状态">
 
 ```text
-fill <起点: x y z> <终点: x y z> <方块: Block> replace [替换方块: Block] [替换方块状态: block states]
+/fill <起点: x y z> <终点: x y z> <方块: Block> replace [替换方块: Block] [替换方块状态: block states]
 ```
 
 将从`起点`到`终点`组成的区域将`替换方块状态`的`替换方块`替换为`方块`。
@@ -1712,7 +1699,7 @@ fill <起点: x y z> <终点: x y z> <方块: Block> replace [替换方块: Bloc
 | ★★★☆☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/spawnpoint) |
 
 ```text
-spawnpoint [玩家: target] [重生点: x y z]
+/spawnpoint [玩家: target] [重生点: x y z]
 ```
 
 将`玩家`的重生点设置在`重生点`。
@@ -1740,7 +1727,7 @@ spawnpoint [玩家: target] [重生点: x y z]
 <TabItem value="open" label="open">
 
 ```text
-dialogue open <NPC: target> <玩家: target> [场景: string]
+/dialogue open <NPC: target> <玩家: target> [场景: string]
 ```
 
 为`玩家`以`NPC`的身份调用一个`场景`对话框。
@@ -1754,7 +1741,7 @@ dialogue open <NPC: target> <玩家: target> [场景: string]
 <TabItem value="change" label="change">
 
 ```text
-dialogue change <NPC: target> <场景: string> [玩家: target]
+/dialogue change <NPC: target> <场景: string> [玩家: target]
 ```
 
 令`NPC`为`玩家`调用一个新的`场景`对话框。
@@ -1814,6 +1801,8 @@ dialogue change <NPC: target> <场景: string> [玩家: target]
 
 对全体玩家发送`消息`。
 
+格式为`[执行者] 消息`。
+
 ---
 
 ### `/playanimation`
@@ -1825,7 +1814,7 @@ dialogue change <NPC: target> <场景: string> [玩家: target]
 | ★★★☆☆ | 1 | （模块 3）[3 实体](/docs/addons_complex/chapter3/section1)（具体章节待定） | [点我进入 Wiki](https://zh.minecraft.wiki/命令/playanimation) |
 
 ```text
-playanimation <实体: target> <动画: string> [下个状态: string] [淡出时间: float] [终止表达式: string] [控制器: string]
+/playanimation <实体: target> <动画: string> [下个状态: string] [淡出时间: float] [终止表达式: string] [控制器: string]
 ```
 
 令`实体`播放`动画`。动画受对应的动画控制器的控制。
@@ -1841,7 +1830,7 @@ playanimation <实体: target> <动画: string> [下个状态: string] [淡出�
 | ★★★☆☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/setworldspawn) |
 
 ```text
-setworldspawn [出生点: x y z]
+/setworldspawn [出生点: x y z]
 ```
 
 将世界出生点设置在`重生点`。
@@ -1859,9 +1848,9 @@ setworldspawn [出生点: x y z]
 | ★★★☆☆ | 0（无需作弊） | [2.9 特效命令](/docs/commands/chapter2/section9/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tell) |
 
 ```text
-tell <玩家: target> <消息: message>
-msg <玩家: target> <消息: message>
-w <玩家: target> <消息: message>
+/tell <玩家: target> <消息: message>
+/msg <玩家: target> <消息: message>
+/w <玩家: target> <消息: message>
 ```
 
 对`玩家`私聊发送`消息`。
@@ -2054,8 +2043,8 @@ w <玩家: target> <消息: message>
 <TabItem value="1" label="add (游戏刻)" default>
 
 ```text
-schedule delay add <函数: filepath> <时间: int> [replace|append]
-schedule delay add <函数: filepath> <时间: int>T [replace|append]
+/schedule delay add <函数: filepath> <时间: int> [replace|append]
+/schedule delay add <函数: filepath> <时间: int>T [replace|append]
 ```
 
 令`函数`在`时间`游戏刻后执行。可选择*队列执行方法*（`replace|append`）。
@@ -2070,7 +2059,7 @@ schedule delay add <函数: filepath> <时间: int>T [replace|append]
 <TabItem value="2" label="add (秒)">
 
 ```text
-schedule delay add <函数: filepath> <时间: int>S [replace|append]
+/schedule delay add <函数: filepath> <时间: int>S [replace|append]
 ```
 
 令`函数`在`时间`秒后执行。可选择*队列执行方法*（`replace|append`）。
@@ -2085,7 +2074,7 @@ schedule delay add <函数: filepath> <时间: int>S [replace|append]
 <TabItem value="3" label="add (游戏天数)">
 
 ```text
-schedule delay add <函数: filepath> <时间: int>D [replace|append]
+/schedule delay add <函数: filepath> <时间: int>D [replace|append]
 ```
 
 令`函数`在`时间`游戏日（24000 游戏刻）后执行。可选择*队列执行方法*（`replace|append`）。
@@ -2100,7 +2089,7 @@ schedule delay add <函数: filepath> <时间: int>D [replace|append]
 <TabItem value="4" label="clear">
 
 ```text
-schedule delay clear <函数: filepath>
+/schedule delay clear <函数: filepath>
 ```
 
 移除延时队列的`函数`。
@@ -2118,7 +2107,7 @@ schedule delay clear <函数: filepath>
 <TabItem value="add" label="add" default>
 
 ```text
-schedule on_area_loaded add <起点: x y z> <终点: x y z> <函数: filepath>
+/schedule on_area_loaded add <起点: x y z> <终点: x y z> <函数: filepath>
 ```
 
 令`函数`在`起点`和`终点`组成的区域全部加载后执行。
@@ -2128,7 +2117,7 @@ schedule on_area_loaded add <起点: x y z> <终点: x y z> <函数: filepath>
 <TabItem value="add circle" label="add circle">
 
 ```text
-schedule on_area_loaded add circle <中心: x y z> <半径: int> <函数: filepath>
+/schedule on_area_loaded add circle <中心: x y z> <半径: int> <函数: filepath>
 ```
 
 令`函数`在`中心`周围`半径`范围内的圆形区块全部加载后执行。
@@ -2138,7 +2127,7 @@ schedule on_area_loaded add circle <中心: x y z> <半径: int> <函数: filepa
 <TabItem value="add tickingarea" label="add tickingarea">
 
 ```text
-schedule on_area_loaded add tickingarea <名称: string> <函数: filepath>
+/schedule on_area_loaded add tickingarea <名称: string> <函数: filepath>
 ```
 
 令`函数`在名为`名称`的常加载区域加载后执行。
@@ -2154,7 +2143,7 @@ schedule on_area_loaded add tickingarea <名称: string> <函数: filepath>
 :::
 
 ```text
-schedule on_area_loaded clear function <函数: filepath>
+/schedule on_area_loaded clear function <函数: filepath>
 ```
 
 移除区域加载队列的`函数`。
@@ -2170,7 +2159,7 @@ schedule on_area_loaded clear function <函数: filepath>
 :::
 
 ```text
-schedule on_area_loaded clear tickingarea <名称: string> [函数: filepath]
+/schedule on_area_loaded clear tickingarea <名称: string> [函数: filepath]
 ```
 
 移除区域加载队列的名为`名称`的常加载区域，可选择移除该常加载区域下的特定的`函数`。
@@ -2190,7 +2179,7 @@ schedule on_area_loaded clear tickingarea <名称: string> [函数: filepath]
 :::
 
 ```text
-schedule clear <函数: filepath>
+/schedule clear <函数: filepath>
 ```
 
 移除队列中的`函数`。
@@ -2410,7 +2399,7 @@ schedule clear <函数: filepath>
 <TabItem value="set" label="set" default>
 
 ```text
-weather <clear|rain|thunder> [时长: int]
+/weather <clear|rain|thunder> [时长: int]
 ```
 
 设置特定的天气（`clear|rain|thunder`）为`时长`游戏刻。
@@ -2422,7 +2411,7 @@ weather <clear|rain|thunder> [时长: int]
 <TabItem value="query" label="query">
 
 ```text
-weather query
+/weather query
 ```
 
 查询天气。
@@ -2444,8 +2433,8 @@ weather query
 | ★★☆☆☆ | 1 | [2.7 物品操作命令](/docs/commands/chapter2/section7) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/enchant) |
 
 ```text
-enchant <玩家: target> <附魔: int> [等级: int]
-enchant <玩家: target> <附魔: Enchant> [等级: int]
+/enchant <玩家: target> <附魔: int> [等级: int]
+/enchant <玩家: target> <附魔: Enchant> [等级: int]
 ```
 
 将`玩家`手持的物品设置为`等级`的`附魔`。
@@ -2709,6 +2698,15 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | [2.5 世界操作命令](/docs/commands/chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/alwaysday) |
 
+```text
+/alwaysday [锁定: Boolean]
+/daylock [锁定: Boolean]
+```
+
+是否锁定为终为白日。
+
+`锁定`为空时，改为查询。
+
 ---
 
 ### `/clearspawnpoint`
@@ -2718,6 +2716,14 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/clearspawnpoint) |
+
+```text
+/clearspawnpoint [玩家: target]
+```
+
+清除`玩家`的重生点。
+
+`玩家`的默认值为执行者。
 
 ---
 
@@ -2739,6 +2745,12 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/gametest) |
 
+:::danger[实验性玩法警告]
+
+因为当前该命令使用的脚本`@minecraft/gametest`仍然处于`beta`阶段，因此本教程不会介绍相关脚本及该命令。
+
+:::
+
 ---
 
 ### `/locate`
@@ -2748,6 +2760,34 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | [2.10 特效命令](/docs/commands/chapter2/section9/subsection10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/locate) |
+
+<Tabs>
+
+<TabItem value="biome" label="biome" default>
+
+```text
+/locate biome <生物群系: Biome>
+```
+
+定位`生物群系`并返回该生物群系对应的坐标。
+
+会受到游戏规则`sendCommandFeedBack`的影响。
+
+</TabItem>
+
+<TabItem value="structure" label="structure">
+
+```text
+/locate structure <结构: Structure> [只使用新区块: Boolean]
+```
+
+定位`结构`并返回该结构对应的坐标。可以选定在其他区块检索结构（`只使用新区块`）。
+
+会受到游戏规则`sendCommandFeedBack`的影响。
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -2759,6 +2799,14 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/me) |
 
+```text
+/me <消息: message>
+```
+
+对所有玩家公告`消息`。
+
+和`/say`类似，格式为`* 执行者 消息`。
+
 ---
 
 ### `/recipe`
@@ -2768,6 +2816,34 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | （模块 2）[2.4 配方表](/docs/addons_simple/chapter2/section4/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/recipe) |
+
+<Tabs>
+
+<TabItem value="give" label="give" default>
+
+```text
+/recipe give <玩家: target> <配方: string>
+```
+
+给予`玩家` ID 为`配方`的合成配方。
+
+`配方`可以写为`*`以指定全部配方。必须是配方文件中`identifier`规定的字段。
+
+</TabItem>
+
+<TabItem value="take" label="take">
+
+```text
+/recipe take <玩家: target> <配方: string>
+```
+
+夺走`玩家` ID 为`配方`的合成配方。
+
+`配方`可以写为`*`以指定全部配方。必须是配方文件中`identifier`规定的字段。
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -2779,6 +2855,12 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/script) |
 
+:::danger[实验性玩法警告]
+
+因为当前该命令使用的脚本`@minecraft/gametest`仍然处于`beta`阶段，因此本教程不会介绍相关脚本及该命令。
+
+:::
+
 ---
 
 ### `/spreadplayers`
@@ -2789,11 +2871,21 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/spreadplayers) |
 
+```text
+spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: float> <实体: target> [最高高度: value]
+```
+
 :::warning[版本适用性警告]
 
-`[最高高度: value]`参数仅限 1.21.10+ 版本可用。
+`最高高度`参数仅限 1.21.10+ 版本可用。
 
 :::
+
+将实体随机扩散到以`x`和`z`为中心，边长为（2*`最大范围`+1）的正方形区域的地表，并要求其间距不小于`实体间距离`。若指定`最高高度`，则地表的判定改为`最高高度`下方的地表。
+
+`最高高度`为空时，默认为全高度。
+
+实体间距离不为`0`时，可能会因为空间小而随机扩散失败，这可能会导致偶发性问题。
 
 ---
 
@@ -2805,6 +2897,14 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | [2.3 命令执行原理 `/execute`](/docs/commands/chapter2/section3/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/testfor) |
 
+```text
+/testfor <实体: target>
+```
+
+检查`实体`是否存在。
+
+在无特殊要求的情况下，应使用`/execute if entity`代替。
+
 ---
 
 ### `/testforblock`
@@ -2814,6 +2914,16 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | [2.3 命令执行原理 `/execute`](/docs/commands/chapter2/section3/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/testforblock) |
+
+```text
+testforblock <位置: x y z> <方块: Block> [方块状态: block states]
+```
+
+检查`位置`处是否为`方块状态`的`方块`。
+
+`方块状态`的默认值为对应方块默认的方块状态。
+
+在无特殊要求的情况下，应使用`/execute if block`代替。
 
 ---
 
@@ -2825,6 +2935,19 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | [2.3 命令执行原理 `/execute`](/docs/commands/chapter2/section3/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/testforblocks) |
 
+```text
+/testforblocks <起点: x y z> <终点: x y z> <目标点: x y z> [all|masked]
+```
+
+检查`起点`与`终点`确定的长方体源区域的方块是否与`目标点`确定的长方体目标区域一致。可选择*扫描模式*（`all|masked`）。
+
+*扫描模式*的可选值为：
+
+- `all`：扫描所有方块。
+- `masked`：只检查源区域的非空气方块与目标区域是否一致。
+
+在无特殊要求的情况下，应使用`/execute if blocks`代替。
+
 ---
 
 ### `/toggledownfall`
@@ -2835,11 +2958,13 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | [2.5 世界操作命令](/docs/commands/chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/toggledownfall) |
 
----
+```text
+/toggledownfall
+```
+
+切换天气。若为晴天，则切换为雨天或雷暴；若为雨天或雷暴，则改回晴天。
 
 ## 服务器命令
-
----
 
 ### `/op`
 
@@ -2854,6 +2979,14 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
 | 2 | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/op) |
+
+```text
+/op <玩家: target>
+```
+
+给予`玩家`管理权限。
+
+被设置为管理员的玩家，若为房主则权限等级为`3`，否则为`2`。然而，大部分命令还需要开启作弊方可使用。本文档中对于无需开启作弊的命令均已在“权限等级”表格中给出（无需作弊）的字样。
 
 ---
 
@@ -2871,6 +3004,12 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | --- | :---: |
 | 2 | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/deop) |
 
+```text
+/deop <玩家: target>
+```
+
+剥夺`玩家`的管理权限。
+
 ---
 
 ### `/kick`
@@ -2880,6 +3019,14 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
 | 1（无需作弊） | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/kick) |
+
+```text
+/kick <玩家: target> <理由: message>
+```
+
+将`玩家`以`理由`踢出游戏。`理由`将显示在被踢出的玩家的屏幕上。
+
+并不等于永久封禁，被踢出的玩家仍然可以回到游戏。
 
 ---
 
@@ -2891,9 +3038,15 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | --- | :---: |
 | 0（无需作弊） | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/list) |
 
+```text
+/list
+```
+
+列出当前所有玩家，以及总的玩家数量。
+
 ---
 
-### `/connect`
+### `/connect`（或`/wsserver`）
 
 连接到 WebSocket 服务器。
 
@@ -2907,6 +3060,14 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | --- | :---: |
 | 2 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/connect) |
 
+```text
+connect <服务器URI: text>
+```
+
+连接到 URI 为`服务器URI`的 WebSocket 服务器上。
+
+一般用于 Minecraft 和其他软件的连接互通。
+
 ---
 
 ### `/reload`
@@ -2917,17 +3078,17 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | --- | :---: |
 | 2 | （模块 2）[2.1 函数](/docs/addons_simple/chapter2/section1/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/reload) |
 
----
-
 ```text
 /reload [全部: reload_all]
 ```
 
 :::warning[版本适用性警告]
 
-`[全部: reload_all]`参数仅限 1.21.30+ 版本可用。
+`全部`参数仅限 1.21.30+ 版本可用。
 
 :::
+
+重新热加载函数和脚本（仅限国际版的 ScriptAPI）。如果`全部`指定为`all`，则退出地图再重新加载。
 
 ---
 
@@ -2945,6 +3106,12 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | --- | :---: |
 | 4 | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/stop) |
 
+```text
+stop
+```
+
+关闭 BDS 服务器。在控制台的命令不能使用斜杠。
+
 ---
 
 ### `/setmaxplayers`
@@ -2960,6 +3127,12 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
 | 3 | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/setmaxplayers) |
+
+```text
+/setmaxplayers <最大玩家数: int>
+```
+
+将服务器或房间的最大人数设置为`最大玩家数`。
 
 ---
 
@@ -2977,13 +3150,53 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | :---: | --- | :---: |
 | 4 | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/allowlist) |
 
----
+<Tabs>
+
+<TabItem value="add" label="add" default>
+
+```text
+allowlist add <玩家: string>
+```
+
+为服务器增添`玩家`的白名单。
+
+</TabItem>
+
+<TabItem value="remove" label="remove">
+
+```text
+allowlist remove <玩家: string>
+```
+
+为服务器移除`玩家`的白名单。
+
+</TabItem>
+
+<TabItem value="list" label="list">
+
+```text
+allowlist list
+```
+
+在 BDS 窗口返回所有玩家白名单的 JSON。
+
+</TabItem>
+
+<TabItem value="reload" label="reload">
+
+```text
+allowlist reload
+```
+
+重载`allowlist.json`。
+
+</TabItem>
+
+</Tabs>
 
 ## 新版命令
 
 定义当前中国版到目前最新国际正式版中间的这些版本可用的命令，称为新版命令，均为稳定玩法。
-
----
 
 ### `/hud`
 
@@ -2998,6 +3211,19 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
 | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/hud) |
+
+```text
+/hud <玩家: target> <可见性: HudVisibility> [HUD元素: HudElement]
+```
+
+将`玩家`的`HUD元素`的可见性改为`可见性`。
+
+`可见性`的可选值为：
+
+- `reset`：重置 HUD 可见性。
+- `hide`：隐藏 HUD。
+
+`HUD元素`的默认值为`all`，可选值参见 Wiki。
 
 ---
 
@@ -3014,6 +3240,30 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
 | 1 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/aimassist) |
+
+<Tabs>
+
+<TabItem value="clear" label="clear" default>
+
+```text
+/aimassist <玩家: target> clear
+```
+
+移除`玩家`的瞄准辅助。
+
+</TabItem>
+
+<TabItem value="set" label="set">
+
+```text
+/aimassist <玩家: target> set [x角度: float] [y角度: float] [最远距离: float] [瞄准模式: AimAssistTargetMode] [预设ID: string]
+```
+
+设置`玩家`的瞄准辅助[^1]。
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -3036,6 +3286,50 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
 | 2 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/place) |
+
+<Tabs>
+
+<TabItem value="feature" label="feature" default>
+
+```text
+/place feature <地物: features> [position: x y z]
+```
+
+放置地物[^1]。
+
+</TabItem>
+
+<TabItem value="featurerule" label="featurerule">
+
+```text
+/place featurerule <featurerule: featureRules> [position: x y z]
+```
+
+放置地物[^1]。
+
+</TabItem>
+
+<TabItem value="jigsaw" label="jigsaw">
+
+```text
+/place jigsaw <pool: filepath> <jigsawTarget: string> <maxDepth: int> [pos: x y z] [keepJigsaws: Boolean]
+```
+
+放置结构池并展开指定深度[^1]。
+
+</TabItem>
+
+<TabItem value="structure" label="structure">
+
+```text
+/place structure <structure: string> [pos: x y z] [ignoreStartHeight: Boolean] [keepJigsaws: Boolean]
+```
+
+放置结构地物[^1]。
+
+</TabItem>
+
+</Tabs>
 
 ---
 
