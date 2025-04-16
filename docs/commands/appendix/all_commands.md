@@ -19,7 +19,7 @@ import TabItem from '@theme/TabItem';
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 0（无需作弊） | [1.1 命令](../chapter1/section1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/help) |
+| 0（无需作弊） | [1.1 命令](/docs/commands/chapter1/section1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/help) |
 
 <Tabs>
 
@@ -63,7 +63,7 @@ import TabItem from '@theme/TabItem';
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | [2.3 命令执行原理 `/execute`](../chapter2/section3/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/execute) |
+| ★★★★★ | 1 | [2.3 命令执行原理 `/execute`](/docs/commands/chapter2/section3/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/execute) |
 
 <Tabs>
 
@@ -261,7 +261,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | （模块 2）[2.1 函数](../../addons_simple/chapter2/section1/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/function) |
+| ★★★★★ | 1 | （模块 2）[2.1 函数](/docs/addons_simple/chapter2/section1/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/function) |
 
 ```text
 /function <路径: filepath>
@@ -279,7 +279,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | [2.4 标签与计算命令](../chapter2/section4/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/scoreboard) |
+| ★★★★★ | 1 | [2.4 标签与计算命令](/docs/commands/chapter2/section4/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/scoreboard) |
 
 <Tabs>
 
@@ -473,7 +473,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | [2.6 实体操作命令](../chapter2/section6/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/summon) |
+| ★★★★★ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/summon) |
 
 <Tabs>
 
@@ -535,7 +535,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | [2.4 标签与计算命令](../chapter2/section4/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tag) |
+| ★★★★★ | 1 | [2.4 标签与计算命令](/docs/commands/chapter2/section4/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tag) |
 
 <Tabs>
 
@@ -581,7 +581,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | [2.9 特效命令](../chapter2/section9/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tellraw) |
+| ★★★★★ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tellraw) |
 
 ```text
 /tellraw <玩家: target> <原始JSON文本: json>
@@ -601,7 +601,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | （模块 5）[3.4 命令`/scriptevent`](../../sapi/chapter3/section4) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/scriptevent) |
+| ★★★★☆ | 1 | （模块 5）[3.4 命令`/scriptevent`](/docs/sapi/chapter3/section4) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/scriptevent) |
 
 ```text
 /scriptevent <消息ID: string> <消息: message>
@@ -619,7 +619,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.2 简单命令](../chapter2/section2#传送玩家的命令tp或teleport) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/teleport) |
+| ★★★★☆ | 1 | [2.2 简单命令](/docs/commands/chapter2/section2#传送玩家的命令tp或teleport) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/teleport) |
 
 <Tabs>
 
@@ -767,7 +767,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.9 特效命令](../chapter2/section9/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/titleraw) |
+| ★★★★☆ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/titleraw) |
 
 <Tabs>
 
@@ -833,7 +833,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.9 特效命令](../chapter2/section9/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/playsound) |
+| ★★★★☆ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/playsound) |
 
 ```text
 /playsound <音效: string> [玩家: target] [位置: x y z] [音量: float] [音调: float] [最低音量: float]
@@ -853,7 +853,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.9 特效命令](../chapter2/section9/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/particle) |
+| ★★★★☆ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/particle) |
 
 ```text
 /particle <粒子效果: string> [位置: x y z]
@@ -873,7 +873,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.8 方块操作命令](../chapter2/section8) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/setblock) |
+| ★★★★☆ | 1 | [2.8 方块操作命令](/docs/commands/chapter2/section8) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/setblock) |
 
 <Tabs>
 
@@ -919,7 +919,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.2 简单命令](../chapter2/section2#清除物品的命令clear) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/clear) |
+| ★★★★☆ | 1 | [2.2 简单命令](/docs/commands/chapter2/section2#清除物品的命令clear) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/clear) |
 
 ```text
 /clear <玩家: target> <物品: Item> [数据值: int] [最大数量: int]
@@ -939,7 +939,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.5 世界操作命令](../chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/gamerule) |
+| ★★★★☆ | 1 | [2.5 世界操作命令](/docs/commands/chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/gamerule) |
 
 <Tabs>
 
@@ -993,7 +993,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [3.3 结构方块与结构空位](../chapter3/section3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/structure) |
+| ★★★★☆ | 1 | [3.3 结构方块与结构空位](/docs/commands/chapter3/section3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/structure) |
 
 <Tabs>
 
@@ -1128,7 +1128,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.8 方块操作命令](../chapter2/section8) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/clone) |
+| ★★★★☆ | 1 | [2.8 方块操作命令](/docs/commands/chapter2/section8) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/clone) |
 
 <Tabs>
 
@@ -1181,7 +1181,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.6 实体操作命令](../chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/event) |
+| ★★★★☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/event) |
 
 ```text
 /event entity <目标: target> <生成事件: string>
@@ -1199,7 +1199,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.9 特效命令](../chapter2/section9/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/camera) |
+| ★★★★☆ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/camera) |
 
 <Tabs>
 
@@ -1367,7 +1367,7 @@ camera <玩家: target> remove_target
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.6 实体操作命令](../chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/effect) |
+| ★★★★☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/effect) |
 
 <Tabs>
 
@@ -1445,7 +1445,7 @@ effect <实体: target> clear [状态效果: Effect]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.2 简单命令](../chapter2/section2#give的扩展语法) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/give) |
+| ★★★☆☆ | 1 | [2.2 简单命令](/docs/commands/chapter2/section2#give的扩展语法) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/give) |
 
 ```text
 /give <玩家: target> <物品: Item> [数量: int] [数据值: int] [组件: json]
@@ -1463,7 +1463,7 @@ effect <实体: target> clear [状态效果: Effect]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.2 简单命令](../chapter2/section2#清除实体的命令kill) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/kill) |
+| ★★★☆☆ | 1 | [2.2 简单命令](/docs/commands/chapter2/section2#清除实体的命令kill) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/kill) |
 
 ```text
 /kill <实体: target>
@@ -1479,7 +1479,7 @@ effect <实体: target> clear [状态效果: Effect]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.7 物品操作命令](../chapter2/section7) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/replaceitem) |
+| ★★★☆☆ | 1 | [2.7 物品操作命令](/docs/commands/chapter2/section7) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/replaceitem) |
 
 <Tabs>
 
@@ -1571,7 +1571,7 @@ replaceitem entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位I
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.6 实体操作命令](../chapter2/section6/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/inputpermission) |
+| ★★★☆☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/inputpermission) |
 
 <Tabs>
 
@@ -1619,7 +1619,7 @@ inputpermission set <玩家: target> <权限: permission> <状态: state>
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.8 方块操作命令](../chapter2/section8) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/fill) |
+| ★★★☆☆ | 1 | [2.8 方块操作命令](/docs/commands/chapter2/section8) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/fill) |
 
 <Tabs>
 
@@ -1709,7 +1709,7 @@ fill <起点: x y z> <终点: x y z> <方块: Block> replace [替换方块: Bloc
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.6 实体操作命令](../chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/spawnpoint) |
+| ★★★☆☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/spawnpoint) |
 
 ```text
 spawnpoint [玩家: target] [重生点: x y z]
@@ -1733,7 +1733,7 @@ spawnpoint [玩家: target] [重生点: x y z]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | （模块 2）[2.6 NPC 对话预设](../../addons_simple/chapter2/section6) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/dialogue) |
+| ★★★☆☆ | 1 | （模块 2）[2.6 NPC 对话预设](/docs/addons_simple/chapter2/section6) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/dialogue) |
 
 <Tabs>
 
@@ -1777,7 +1777,7 @@ dialogue change <NPC: target> <场景: string> [玩家: target]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.2 简单命令](../chapter2/section2#更改玩家游戏模式的命令gamemode) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/gamemode) |
+| ★★★☆☆ | 1 | [2.2 简单命令](/docs/commands/chapter2/section2#更改玩家游戏模式的命令gamemode) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/gamemode) |
 
 ---
 
@@ -1806,7 +1806,7 @@ dialogue change <NPC: target> <场景: string> [玩家: target]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.2 简单命令](../chapter2/section2#发送消息的命令say) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/say) |
+| ★★★☆☆ | 1 | [2.2 简单命令](/docs/commands/chapter2/section2#发送消息的命令say) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/say) |
 
 ```text
 /say <消息: message>
@@ -1822,7 +1822,7 @@ dialogue change <NPC: target> <场景: string> [玩家: target]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | （模块 3）[3 实体](../../addons_complex/chapter3/section1)（具体章节待定） | [点我进入 Wiki](https://zh.minecraft.wiki/命令/playanimation) |
+| ★★★☆☆ | 1 | （模块 3）[3 实体](/docs/addons_complex/chapter3/section1)（具体章节待定） | [点我进入 Wiki](https://zh.minecraft.wiki/命令/playanimation) |
 
 ```text
 playanimation <实体: target> <动画: string> [下个状态: string] [淡出时间: float] [终止表达式: string] [控制器: string]
@@ -1838,7 +1838,7 @@ playanimation <实体: target> <动画: string> [下个状态: string] [淡出�
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.6 实体操作命令](../chapter2/section6/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/setworldspawn) |
+| ★★★☆☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/setworldspawn) |
 
 ```text
 setworldspawn [出生点: x y z]
@@ -1856,7 +1856,7 @@ setworldspawn [出生点: x y z]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 0（无需作弊） | [2.9 特效命令](../chapter2/section9/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tell) |
+| ★★★☆☆ | 0（无需作弊） | [2.9 特效命令](/docs/commands/chapter2/section9/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tell) |
 
 ```text
 tell <玩家: target> <消息: message>
@@ -1876,7 +1876,7 @@ w <玩家: target> <消息: message>
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.2 简单命令](../chapter2/section2#调整时间的命令time) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/time) |
+| ★★★☆☆ | 1 | [2.2 简单命令](/docs/commands/chapter2/section2#调整时间的命令time) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/time) |
 
 <Tabs>
 
@@ -1935,7 +1935,7 @@ w <玩家: target> <消息: message>
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.5 世界操作命令](../chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/difficulty) |
+| ★★☆☆☆ | 1 | [2.5 世界操作命令](/docs/commands/chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/difficulty) |
 
 ---
 
@@ -1961,7 +1961,7 @@ w <玩家: target> <消息: message>
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.9 特效命令](../chapter2/section9/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/music) |
+| ★★☆☆☆ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/music) |
 
 <Tabs>
 
@@ -2037,7 +2037,7 @@ w <玩家: target> <消息: message>
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | （模块 2）[2.1 函数](../../addons_simple/chapter2/section1/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/schedule) |
+| ★★☆☆☆ | 1 | （模块 2）[2.1 函数](/docs/addons_simple/chapter2/section1/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/schedule) |
 
 <Tabs>
 
@@ -2207,7 +2207,7 @@ schedule clear <函数: filepath>
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.9 特效命令](../chapter2/section9/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/stopsound) |
+| ★★☆☆☆ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/stopsound) |
 
 ```text
 /stopsound <玩家: target> [音效: string]
@@ -2225,7 +2225,7 @@ schedule clear <函数: filepath>
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.5 简单命令](../chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tickingarea) |
+| ★★☆☆☆ | 1 | [2.5 世界操作命令](/docs/commands/chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tickingarea) |
 
 <Tabs>
 
@@ -2313,7 +2313,7 @@ schedule clear <函数: filepath>
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.6 实体操作命令](../chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/ride) |
+| ★★☆☆☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/ride) |
 
 <Tabs>
 
@@ -2403,7 +2403,7 @@ schedule clear <函数: filepath>
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.2 简单命令](../chapter2/section2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/weather) |
+| ★★☆☆☆ | 1 | [2.2 简单命令](/docs/commands/chapter2/section2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/weather) |
 
 <Tabs>
 
@@ -2441,7 +2441,7 @@ weather query
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.7 物品操作命令](../chapter2/section7) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/enchant) |
+| ★★☆☆☆ | 1 | [2.7 物品操作命令](/docs/commands/chapter2/section7) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/enchant) |
 
 ```text
 enchant <玩家: target> <附魔: int> [等级: int]
@@ -2462,7 +2462,7 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.5 简单命令](../chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/mobevent) |
+| ★★☆☆☆ | 1 | [2.5 世界操作命令](/docs/commands/chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/mobevent) |
 
 ```text
 /mobevent <事件: MobEvent> [值: Boolean]
@@ -2480,7 +2480,7 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.6 实体操作命令](../chapter2/section6/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/xp) |
+| ★★☆☆☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/xp) |
 
 <Tabs>
 
@@ -2522,7 +2522,7 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.9 特效命令](../chapter2/section9/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/camerashake) |
+| ★★☆☆☆ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/camerashake) |
 
 <Tabs>
 
@@ -2565,7 +2565,7 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.6 实体操作命令](../chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/damage) |
+| ★★☆☆☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/damage) |
 
 <Tabs>
 
@@ -2599,7 +2599,7 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | （模块 2）[2.3 战利品表与交易表](../../addons_simple/chapter2/section3/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/loot) |
+| ★★☆☆☆ | 1 | （模块 2）[2.3 战利品表与交易表](/docs/addons_simple/chapter2/section3/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/loot) |
 
 ---
 
@@ -2641,7 +2641,7 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.9 特效命令](../chapter2/section9/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/title) |
+| ★★☆☆☆ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/title) |
 
 <Tabs>
 
@@ -2703,37 +2703,37 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 ### `/alwaysday`（或`/daylock`）
 
-!
+设置终为白日。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.5 世界操作命令](../chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/alwaysday) |
+| ★☆☆☆☆ | 1 | [2.5 世界操作命令](/docs/commands/chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/alwaysday) |
 
 ---
 
 ### `/clearspawnpoint`
 
-!
+清除玩家的重生点。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.6 实体操作命令](../chapter2/section6/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/clearspawnpoint) |
+| ★☆☆☆☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/clearspawnpoint) |
 
 ---
 
 ### `/fog`
 
-!
+设置对玩家显示的迷雾。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.9 特效命令](../chapter2/section9/subsection2)、（模块 2）[3.6 迷雾](../../addons_simple/chapter3/section6) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/fog) |
+| ★☆☆☆☆ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection2)、（模块 2）[3.6 迷雾](/docs/addons_simple/chapter3/section6) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/fog) |
 
 ---
 
 ### `/gametest`
 
-!
+触发 Gametest。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
@@ -2743,37 +2743,37 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 ### `/locate`
 
-!
+定位结构或生物群系。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.10 特效命令](../chapter2/section9/subsection10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/locate) |
+| ★☆☆☆☆ | 1 | [2.10 特效命令](/docs/commands/chapter2/section9/subsection10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/locate) |
 
 ---
 
 ### `/me`
 
-!
+公告自身状态。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.9 特效命令](../chapter2/section9/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/me) |
+| ★☆☆☆☆ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/me) |
 
 ---
 
 ### `/recipe`
 
-!
+为玩家添加或移除配方。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | （模块 2）[2.4 配方表](../../addons_simple/chapter2/section4/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/recipe) |
+| ★☆☆☆☆ | 1 | （模块 2）[2.4 配方表](/docs/addons_simple/chapter2/section4/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/recipe) |
 
 ---
 
 ### `/script`
 
-!
+调试 Gametest。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
@@ -2783,11 +2783,11 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 ### `/spreadplayers`
 
-!
+随机扩散实体到地表。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.6 实体操作命令](../chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/spreadplayers) |
+| ★☆☆☆☆ | 1 | [2.6 实体操作命令](/docs/commands/chapter2/section6/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/spreadplayers) |
 
 :::warning[版本适用性警告]
 
@@ -2799,41 +2799,41 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 ### `/testfor`
 
-!
+检查实体是否存在。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.3 命令执行原理 `/execute`](../chapter2/section3/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/testfor) |
+| ★☆☆☆☆ | 1 | [2.3 命令执行原理 `/execute`](/docs/commands/chapter2/section3/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/testfor) |
 
 ---
 
 ### `/testforblock`
 
-!
+检查方块是否存在。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.3 命令执行原理 `/execute`](../chapter2/section3/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/testforblock) |
+| ★☆☆☆☆ | 1 | [2.3 命令执行原理 `/execute`](/docs/commands/chapter2/section3/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/testforblock) |
 
 ---
 
 ### `/testforblocks`
 
-!
+检查一个区域是否和另一个区域一致。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.3 命令执行原理 `/execute`](../chapter2/section3/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/testforblocks) |
+| ★☆☆☆☆ | 1 | [2.3 命令执行原理 `/execute`](/docs/commands/chapter2/section3/subsection3) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/testforblocks) |
 
 ---
 
 ### `/toggledownfall`
 
-!
+切换天气。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.5 世界操作命令](../chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/toggledownfall) |
+| ★☆☆☆☆ | 1 | [2.5 世界操作命令](/docs/commands/chapter2/section5) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/toggledownfall) |
 
 ---
 
@@ -2843,7 +2843,7 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 ### `/op`
 
-!
+将玩家设置为管理员。
 
 :::warning[权限等级适用性警告]
 
@@ -2853,13 +2853,13 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 2 | [2.10 服务器、联机与生存常用命令](../chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/op) |
+| 2 | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/op) |
 
 ---
 
 ### `/deop`
 
-!
+夺走玩家的管理员权限。
 
 :::warning[权限等级适用性警告]
 
@@ -2869,33 +2869,33 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 2 | [2.10 服务器、联机与生存常用命令](../chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/deop) |
+| 2 | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/deop) |
 
 ---
 
 ### `/kick`
 
-!
+移出玩家。
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 1（无需作弊） | [2.10 服务器、联机与生存常用命令](../chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/kick) |
+| 1（无需作弊） | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/kick) |
 
 ---
 
 ### `/list`
 
-!
+列出玩家列表。
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 0（无需作弊） | [2.10 服务器、联机与生存常用命令](../chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/list) |
+| 0（无需作弊） | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/list) |
 
 ---
 
 ### `/connect`
 
-!
+连接到 WebSocket 服务器。
 
 :::warning[权限等级适用性警告]
 
@@ -2911,11 +2911,11 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 ### `/reload`
 
-!
+重新加载函数和脚本（仅限Script API）。
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 2 | （模块 2）[2.1 函数](../../addons_simple/chapter2/section1/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/reload) |
+| 2 | （模块 2）[2.1 函数](/docs/addons_simple/chapter2/section1/subsection1) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/reload) |
 
 ---
 
@@ -2933,7 +2933,7 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 ### `/stop`
 
-!
+关闭服务器。
 
 :::warning[权限等级适用性警告]
 
@@ -2943,13 +2943,13 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 4 | [2.10 服务器、联机与生存常用命令](../chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/stop) |
+| 4 | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/stop) |
 
 ---
 
 ### `/setmaxplayers`
 
-!
+设置房间内允许的最大玩家数。
 
 :::warning[权限等级适用性警告]
 
@@ -2959,13 +2959,13 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 3 | [2.10 服务器、联机与生存常用命令](../chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/setmaxplayers) |
+| 3 | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/setmaxplayers) |
 
 ---
 
 ### `/allowlist`
 
-!
+添加或移除玩家的白名单。
 
 :::warning[权限等级适用性警告]
 
@@ -2975,7 +2975,7 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 4 | [2.10 服务器、联机与生存常用命令](../chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/allowlist) |
+| 4 | [2.10 服务器、联机与生存常用命令](/docs/commands/chapter2/section10) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/allowlist) |
 
 ---
 
@@ -2993,11 +2993,11 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 :::
 
-!
+隐藏或恢复 HUD 的可用性。
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 1 | [2.9 特效命令](../chapter2/section9/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/hud) |
+| 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/hud) |
 
 ---
 
@@ -3009,11 +3009,11 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 :::
 
-!
+设置玩家的瞄准辅助。
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 1 | [2.9 特效命令](../chapter2/section9/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/aimassist) |
+| 1 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/aimassist) |
 
 ---
 
@@ -3031,11 +3031,11 @@ enchant <玩家: target> <附魔: Enchant> [等级: int]
 
 :::
 
-!
+放置地物、结构、拼图等。
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 2 | [2.9 特效命令](../chapter2/section9/subsection2) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/place) |
+| 2 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/place) |
 
 ---
 
