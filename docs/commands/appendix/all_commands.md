@@ -1,3 +1,7 @@
+---
+sidebar_position: 0
+---
+
 # 附录：全部命令汇总
 
 import Tabs from '@theme/Tabs';
@@ -59,7 +63,7 @@ import TabItem from '@theme/TabItem';
 
 按照特定的命令上下文执行命令，并检测条件。
 
-`/execute`除了`run`子命令之外，通用语法为`/execute <子命令> -> execute`。从左到右解析。修饰子命令的`-> execute`是必选参数。
+`/execute`除了`run`子命令之外，通用语法为`/execute <子命令> -> execute`，其中`-> execute`表示下一个子命令的起点。从左到右解析。修饰子命令的`-> execute`是必选参数。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
