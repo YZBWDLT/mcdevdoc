@@ -603,6 +603,12 @@ in <维度: Dimension> -> execute
 
 配合 ScriptAPI 使用，对`system`类发送一个`scriptEventReceive`的后事件。
 
+:::warning[版本适用性警告]
+
+中国版移除了 NPC 的功能，包括实体定义的`minecraft:npc`组件。因此，该命令在中国版的执行结果无论如何都是无效。
+
+:::
+
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
 | ★★★★☆ | 1 | （模块 5）[3.4 命令`/scriptevent`](/docs/sapi/chapter3/section4) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/scriptevent) |
@@ -1714,13 +1720,13 @@ in <维度: Dimension> -> execute
 
 ### `/dialogue`
 
-:::danger[版本适用性警告]
+调用 NPC 的对话框。
+
+:::warning[版本适用性警告]
 
 中国版移除了 NPC 的功能，包括实体定义的`minecraft:npc`组件。因此，该命令在中国版的执行结果无论如何都是无效。
 
 :::
-
-调用 NPC 的对话框。
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
