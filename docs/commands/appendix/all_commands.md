@@ -57,8 +57,6 @@ import TabItem from '@theme/TabItem';
 
 ## 超高频命令
 
----
-
 ### `/execute`
 
 按照特定的命令上下文执行命令，并检测条件。
@@ -596,8 +594,6 @@ in <维度: Dimension> -> execute
 `原始JSON文本`必须是有效的文本组件。
 
 ## 高频命令
-
----
 
 ### `/scriptevent`
 
@@ -1433,8 +1429,6 @@ in <维度: Dimension> -> execute
 </Tabs>
 
 ## 中频命令
-
----
 
 ### `/give`
 
