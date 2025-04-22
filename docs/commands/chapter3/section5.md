@@ -6,4 +6,6 @@ sidebar_position: 5
 
 ## CB 区
 
+## 断链法
+
 ## 生成掉落物
