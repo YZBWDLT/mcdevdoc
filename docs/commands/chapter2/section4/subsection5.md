@@ -281,7 +281,7 @@ execute as @a unless score @s money matches 100.. run say 你没有足够的货�
 
 ```mcfunction
 execute as @a if score @s money matches 1000.. run give @s diamond_sword
-execute as @a unless score @s money matches 1000.. run give @s 你没有足够的货币购买钻石剑！
+execute as @a unless score @s money matches 1000.. run say 你没有足够的货币购买钻石剑！
 ```
 
 不过，这么做有一个问题就是，所有玩家都会看到这个反馈。在后面，我们将陆续学到一些命令，以对特定玩家说话。
