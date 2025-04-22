@@ -2739,6 +2739,35 @@ in <维度: Dimension> -> execute
 | :---: | :---: | --- | :---: |
 | ★☆☆☆☆ | 1 | [2.9 特效命令](/docs/commands/chapter2/section9/subsection2)、（模块 2）[3.6 迷雾](/docs/addons_simple/chapter3/section6) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/fog) |
 
+<Tabs>
+
+<TabItem value="push" label="push" default>
+
+```text
+/fog <玩家: target> push <迷雾设定ID: string> <用户提供ID: string>
+```
+
+对`玩家`推入 ID 为`迷雾设定ID`的迷雾栈，并设置为`用户提供ID`以便于清除迷雾栈。
+
+</TabItem>
+
+<TabItem value="pop | remove" label="pop | remove">
+
+```text
+/fog <玩家: target> <模式: delete> <用户提供ID: string>
+```
+
+移除或弹出`玩家`用户提供 ID `用户提供ID`的迷雾栈。
+
+`模式`的可选值为：
+
+- `pop`：从迷雾栈弹出最后一个符合`用户提供ID`的迷雾。
+- `remove`：从迷雾栈移除所有符合符合`用户提供ID`的迷雾。
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ### `/gametest`
