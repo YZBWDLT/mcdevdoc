@@ -620,7 +620,7 @@ scoreboard players set @a isOnline 1
    8. `/gamerule fallDamage false`、`/gamerule drowningDamage false`、`/gamerule fireDamage false`和`/gamerule freezeDamage true`
    9. `/gamerule sendCommandFeedBack false`
    10. `/mobevent minecraft:wandering_trader_event false`
-2. `/tickingarea add 50 0 50 90 0 90 example`
+2. `/execute in nether run tickingarea add 50 0 50 90 0 90 example`
 3. `/execute if score level data matches 24 run difficulty easy`
 4. 1. `/scoreboard players random weather data 1 3`
    2. `/execute if score weather data matches 1 run weather clear`
@@ -645,7 +645,7 @@ scoreboard players set @a isOnline 1
 4. 命令如下。
 
 ```mcfunction showLineNumbers
-/execute as @e[name=spawner] at @s run summon creeper ~~~
+/execute as @e[name=spawner,type=armor_stand] at @s run summon creeper ~~~
 /kill @e[name=spawner]
 ```
 
