@@ -117,7 +117,7 @@ sidebar_position: 2
 说到物品操作，有给予就必定要有清除。我们现在就来介绍这条**清除物品的命令**：`/clear`。它的语法是：
 
 ```text title="/clear的语法" showLineNumbers
-/clear <玩家: target> <物品: Item> [数据值: int] [最大数量: int]
+/clear [玩家: target] [物品: Item] [数据值: int] [最大数量: int]
 ```
 
 ![/clear](./img/section2/clear.png)
@@ -548,7 +548,7 @@ rym=<x旋转最小值: float>
 | `/help <页码: int>` | 返回第`页码`页的帮助信息 | |
 | `/help [命令: CommandName]` | 返回`命令`的帮助信息 | |
 | **`/give <玩家: target> <物品: Item> [数量: int] [数据值: int] [组件: json]`** | 给予`玩家` `数量`个含有特定`组件`和`数据值`的`物品` | 注意`/clear`和`/give`的参数顺序 |
-| **`/clear <玩家: target> <物品: Item> [数据值: int] [最大数量: int]`** | 清除`玩家`至多`最大数量`个数据值为`数据值`的`物品` | 注意`/clear`和`/give`的参数顺序；物品不足`最大数量`亦可成功执行；`最大数量`可以为 0 |
+| **`/clear [玩家: target] [物品: Item] [数据值: int] [最大数量: int]`** | 清除`玩家`至多`最大数量`个数据值为`数据值`的`物品` | 注意`/clear`和`/give`的参数顺序；物品不足`最大数量`亦可成功执行；`最大数量`可以为 0 |
 | `/gamemode <游戏模式: int\|GameMode> [玩家: target]` | 把`玩家`调整为`游戏模式` | `游戏模式`建议使用全称 |
 | **`/kill [目标: target]`** | 杀死`目标` | 谨慎使用`/kill @e` |
 | `/time add <数值: int>` | 加快`数值`游戏刻的时间 | |
