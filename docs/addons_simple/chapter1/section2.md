@@ -12,7 +12,7 @@ sidebar_position: 2
 
 JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开发的编程语言 JavaScript（这个语言我们在模块 5 中也会见到），并根据其他不同编程语言（如 C、Java、Python、JavaScript）的特点，提炼出了它们的数据表达的精髓，才有了这么一种便于数据交换的格式。现如今，大多数的编程语言都支持解析 JSON，并转换成自己语言可用的数据格式。
 
-所以，使用 JSON 是为了“统一规范”。
+所以，使用 JSON 是出于在不同的编程语言下，“统一规范”的需求。
 
 ## 基本数据类型
 
@@ -149,20 +149,621 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
   - 字符串`"2-2"`；
   - 字符串`"2-3"`。
 
+## 命令中的 JSON
+
+在命令中，我们曾经讲过文本组件和物品组件，不知道你是否还有印象，我们一起回顾一下。
+
+### 文本组件
+
+文本组件以`rawtext`打头，然后用`text`、`translate`和`with`、`selector`和`score` 4 种可用的文本组件显示特定文本。格式分别如下：
+
+```json
+{"rawtext":[{"text":"你好，"},{"selector":"@s"},{"translate":"，你的分数是 %%s。","with":{"rawtext":[{"score":{"objective":"data","name":"@s"}}]}}]}
+```
+
+因为命令并不支持换行，所以在当时我们并没有将它换行来写。实际上如果换行的话，这段 JSON 的层级关系就将一清二楚。
+
+```json showLineNumbers
+{
+    "rawtext": [
+        {
+            "text": "你好，"
+        },
+        {
+            "selector": "@s"
+        },
+        {
+            "translate": "，你的分数是 %%s。",
+            "with": {
+                "rawtext": [
+                    {
+                        "score": {
+                            "objective": "data",
+                            "name": "@s"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+或者我们也可以换一个缩进方式，随你喜好而定，只要易读就都是好的缩进设计。
+
+```json showLineNumbers
+{
+    "rawtext": [
+        { "text": "你好，" },
+        { "selector": "@s" },
+        {
+            "translate": "，你的分数是 %%s。",
+            "with": {
+                "rawtext": [
+                    { "score": { "objective": "data", "name": "@s" } }
+                ]
+            }
+        }
+    ]
+}
+```
+
+我们来分析一下。这个 JSON 由一个对象表示，内含一个`rawtext`数组（键为`rawtext`，值为一个数组，就简称`rawtext`数组）。这个数组中有 3 个对象，也就是 3 个文本组件。
+
+- 第 1 个对象中，包含一个`text`字符串，代表普通文本组件。
+- 第 2 个对象中，包含一个`selector`字符串，代表选择器文本组件。
+- 第 3 个对象中，包含一个`translate`字符串和一个`with`对象，这个对象中是一个新的`rawtext`数组，也就是翻译文本组件。
+
+所以，我们便看到在模块 1 中所没有提及到的细节性内容，比如为什么`rawtext`后接的是方括号而不是花括号，正是因为数组和对象之间的差异所导致的。所以，从本节开始，读者应当能够从 JSON 语法的角度出发去理解文本组件，而不应该仅仅局限于模板的套用了。
+
+### 物品组件
+
+物品组件就要更加简单。我们曾经学过 4 个物品组件：`can_place_on`、`can_destroy`、`item_lock`、`keep_on_death`。我们来回顾一下它们的写法。
+
+```json
+{"can_place_on":{"blocks":["grass_block"]},"can_destroy":{"blocks":["dirt","gravel"]},"item_lock":{"mode":"lock_in_inventory"},"keep_on_death":{}}
+```
+
+我们同样地换行空格大法，一眼便能看出它们的层级关系。
+
+```json showLineNumbers
+{
+    "can_place_on": {
+        "blocks": ["grass_block"]
+    },
+    "can_destroy": {
+        "blocks": ["dirt","gravel"]
+    },
+    "item_lock": {
+        "mode": "lock_in_inventory"
+    },
+    "keep_on_death": {}
+}
+```
+
+可见，这个物品组件中由一个对象表达。对象中含有 4 个键值对：
+
+- `can_place_on`对象，内含一个`blocks`数组，数组内写为各方块的 ID 以代表可以放置的方块。
+- `can_destroy`对象，内含一个`blocks`数组，数组内写为各方块的 ID 以代表可以破坏的方块。
+- `item_lock`对象，内含一个`mode`字符串，代表物品的锁定位置。
+- `keep_on_death`对象，内部不含任何元素。
+
+和文本组件一样，我们同样要求读者能够从 JSON 语法的角度出发去理解物品组件，而不应仅仅局限于模板的套用。
+
 ## 常见错误
+
+JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要 JSON 中出现了哪怕一个意料之外的符号，都会直接报错导致整个 JSON 都无法解析。为此，我们必须强调在 JSON 中的一些常见错误。
 
 ### 意外的或遗漏的逗号
 
+前文我们提到，在对象中的键值对，和在数组中的值以逗号分隔。如果这其中的逗号多了一个或者少了一个，都会出现错误。
+
+:::tip[实验 1.2-1]
+
+```json showLineNumbers
+{
+    "can_place_on": {
+        "blocks": ["grass_block"]
+    },
+    "can_destroy": {
+        "blocks": ["dirt","gravel"]
+    }
+    "item_lock": {
+        "mode": "lock_in_inventory"
+    },
+    "keep_on_death": {}
+}
+```
+
+这个 JSON 最终会解析失败，你能找到问题出在哪里吗？
+
+:::
+
+<details>
+
+<summary>答案</summary>
+
+问题出在第 7 行，`can_destroy`对象和`item_lock`对象中没有逗号分隔。
+
+```json showLineNumbers
+{
+    "can_place_on": {
+        "blocks": ["grass_block"]
+    },
+    "can_destroy": {
+        "blocks": ["dirt","gravel"]
+    }   // <- 解析失败：没有“,”分隔
+    "item_lock": {
+        "mode": "lock_in_inventory"
+    },
+    "keep_on_death": {}
+}
+```
+
+当然，如果是在打命令的时候出现这种问题，是很难发现的：
+
+```json showLineNumbers
+{ "can_place_on": { "blocks": ["grass_block"] }, "can_destroy": { "blocks": ["dirt","gravel"] } "item_lock": { "mode": "lock_in_inventory" }, "keep_on_death": {} }
+```
+
+不妨在记事本或者一些文本编辑器中缩进一下看看，就很快能发现问题。
+
+</details>
+
+我们再来看一种更经典的错误。
+
+:::tip[实验 1.2-2]
+
+```json showLineNumbers
+{
+    "can_place_on": {
+        "blocks": ["grass_block"]
+    },
+    "can_destroy": {
+        "blocks": ["dirt","gravel"]
+    },
+    "item_lock": {
+        "mode": "lock_in_inventory"
+    },
+    "keep_on_death": {},
+}
+```
+
+这个 JSON 最终也会解析失败，你能找到问题出在哪里吗？
+
+:::
+
+<details>
+
+<summary>答案</summary>
+
+问题出在第 11 行，`keep_on_death`对象后面出现了多余的逗号。
+
+```json showLineNumbers
+{
+    "can_place_on": {
+        "blocks": ["grass_block"]
+    },
+    "can_destroy": {
+        "blocks": ["dirt","gravel"]
+    },
+    "item_lock": {
+        "mode": "lock_in_inventory"
+    },
+    "keep_on_death": {},    // <- 解析失败：“,”后没有元素
+}
+```
+
+所以，我们说元素间以逗号分隔，**是不应该在末尾加逗号的**，因为逗号就代表着后面还有新的元素。
+
+</details>
+
 ### 意外的或遗漏的括号
 
-### 语法错误
+有时候，我们在输入 JSON 的时候还容易多一个或者少一个括号出来，造成解析错误。
+
+:::tip[实验 1.2-3]
+
+```json showLineNumbers
+{
+    "rawtext": [
+        {
+            "text": "你好，"
+        },
+        {
+            "selector": "@s"
+        },
+        {
+            "translate": "，你的分数是 %%s。",
+            "with": {
+                "rawtext": [
+                    {
+                        "score": {
+                            "objective": "data",
+                            "name": "@s"
+                    }
+                }
+            ]
+        }
+    ]
+}
+```
+
+请找出这个 JSON 中所存在的问题。
+
+:::
+
+这也是 JSON 中比较难以解决的“丢括号”问题，乍一看，不会发现有什么问题。然而，既然出现的是解析问题，我们就必然不能无视，这意味着我们从语法上出发就已经出错了，通常就是我们在什么地方多了或者少了什么东西。
+
+如何解决这个问题呢？好在这时候我们已经将这个 JSON 进行了缩进，好吧，除了能够让层级关系更直观更清晰之外，正确的缩进还有一个作用就是可以帮我们定位括号问题。你有没有发现，`"score"`这个对象的下面是不是在视觉上就缺了点什么东西？没错，缺的可能就是我们要找的括号！但先不要盲目地直接加`}`上去，因为这个 JSON 可能是经过重排版的，下面那 6 个括号我们不确定究竟是在哪儿缺的。
+
+为了确定究竟是什么地方缺了括号，**我们应该将 JSON 从里向外添加正确的缩进过去**。也就是说，末尾的 6 个括号我们应该从第 1 个开始加缩进，看看能否对应到上面的括号，如果能对应就继续给第 2 个加缩进……一直加到下面的情况，我们开始发现不对了。
+
+```json showLineNumbers
+{
+    "rawtext": [
+        {
+            "text": "你好，"
+        },
+        {
+            "selector": "@s"
+        },
+        {
+            "translate": "，你的分数是 %%s。",
+            "with": {
+                "rawtext": [
+                    {
+                        "score": {
+                            "objective": "data",
+                            "name": "@s"
+                        }
+                    }
+                ]
+            }
+    ]
+}
+```
+
+很显然，倒数第 2 个方括号并不能和`translate`前面的那个花括号正确地对应。看来就是这个地方出现了问题，我们将这个花括号补上，也就是倒数第 3 个位置添加一个花括号`}`：
+
+```json showLineNumbers
+{
+    "rawtext": [
+        {
+            "text": "你好，"
+        },
+        {
+            "selector": "@s"
+        },
+        {
+            "translate": "，你的分数是 %%s。",
+            "with": {
+                "rawtext": [
+                    {
+                        "score": {
+                            "objective": "data",
+                            "name": "@s"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+这样我们就修复了“丢括号”的问题。可见，“丢括号”已经不像“丢逗号”那么好找，要解决起来需要挨个括号排查，对大型 JSON 来讲出现这种问题是十分不友好的。**这就要求我们必须在编辑 JSON 的时候就养成良好的习惯，先打完一整对括号再写入内容**。同时，**养成良好的缩进习惯也是十分重要的**，它能迅速帮助我们找到“病根”所在。如果确实不幸真的丢了括号，可以利用逐个缩进的方法找到无法对应的括号。
+
+### 概念混淆
+
+虽然我们一再强调 JSON 语法是编写附加包的基础，然而还是有很多开发者期望直接上手，最后招致的结果就是出现十分荒谬的 JSON 语法错误。
+
+:::tip[实验 1.2-4]
+
+```json
+{
+    "can_place_on": {
+        "blocks": { "grass_block", "dirt", "gravel" }
+    }
+}
+```
+
+找到这个 JSON 中的问题。
+
+:::
+
+虽然这个 JSON 中并没有丢括号、丢逗号的问题出现，然而能写出这种 JSON 本身就说明开发者对 JSON 的概念不了解。我们看到，在`blocks`对象中写为的是一堆值的集合而不是键值对的集合，这自然就会报错。只需要把`blocks`对象改成`blocks`数组，问题自然就会解决。
+
+```json
+{
+    "can_place_on": {
+        "blocks": [ "grass_block", "dirt", "gravel" ]
+    }
+}
+```
+
+同理地，也有开发者会在数组里面写上一堆键值对，这都是十分明显的错误。
 
 ### 中文符号
 
+相比起上面的几种明显的错误而言，中文符号所带来的错误就很隐晦了。
+
+:::tip[实验 1.2-5]
+
+```json
+{
+    "can_place_on": {
+        "blocks": [ "grass_block" ]
+    },
+    "can_destroy": {
+        "blocks": [ "dirt"，"gravel" ]
+    },
+    "item_lock": {
+        "mode": "lock_in_inventory"
+    },
+    "keep_on_death": {}
+}
+```
+
+找到这个 JSON 中的问题。当然这个问题没那么好找，找不到也不要灰心哦。
+
+:::
+
+<details>
+
+<summary>答案</summary>
+
+问题出在第 6 行，`dirt`和`gravel`之间使用了中文逗号。
+
+```json showLineNumbers
+{
+    "can_place_on": {
+        "blocks": [ "grass_block" ]
+    },
+    "can_destroy": {
+        "blocks": [ "dirt"，"gravel" ] // <- 解析错误：无法解析“，”，应为“,”
+    },
+    "item_lock": {
+        "mode": "lock_in_inventory"
+    },
+    "keep_on_death": {}
+}
+```
+
+如果你能找到这个逗号，那你真是火眼金睛，太厉害了！这是一个很易犯的错误，但是如果我们使用专业的文本编辑器来写 JSON 的话，其中的自动纠错系统就可以帮助我们最大限度地防止这个问题。
+
+</details>
+
 ### JSON 的注释
 
-## 在命令中出现过的 JSON 的解析
+在前面你可以看到我们在答案里添加了类似于`// <- 解析错误：……`的内容，这其实就是公认的 JSON 的注释。JSON 的注释以`//`打头，后面的内容都不会读取。
+
+按理来讲，**我们都是不推荐读者在 JSON 中添加注释的，因为原则上 JSON 本来也就不支持注释**，在上面的示例中，也只是为了说明错误出现的位置而已。有一个好消息是，Minecraft 基岩版是专门支持了这东西的。所以读者如果需要的话，可以在附加包的文件内添加注释。但是我们后面使用的文本编辑器可能会对注释疯狂报错，所以如果不想看着心烦的话，就尽量不要用了。
 
 ---
 
-## 总结
+## 总结与练习
+
+在本节，我们已经了解了 JSON 语法，以及其中所允许的数据类型。然后，我们还介绍了编写 JSON 时常见的错误，希望读者能够在实际编写时尽可能避免，也同时给出了这些错误的排查方法。话不多说，我们现在来进行总结吧。
+
+### JSON 中的数据类型
+
+- **数字**（`number`）：包括整数`int`和浮点数`float`，例如：`3`、`-1`、`1.5`、`0.0`。
+  - 虽然 JSON 中并不区分整数和浮点数，但是在实际运用中常常还是要注意区分。
+- **布尔值**（`boolean`）：`true`和`false`。
+- **字符串**（`string`）：用双引号`"`包裹起来的任意文本。
+  - 有一些转义方法，例如`\n`、`\\`、`\"`等在 JSON 中是适用的。
+- **对象**（`object`）：用花括号（`{}`）包裹起来的**键值对的集合**。
+  - **键值对**是由一个**键**（Key）和一个**值**（Value）配对组成的。
+    - 格式为`key:value`。
+    - `key`必须是一个字符串，代表对象的属性。
+    - `value`可以是 JSON 中的任意的数据类型。
+  - 键值对之间必须用逗号`,`分隔。
+- **数组**（`array`）：用方括号（`[]`）包裹起来的**值的集合**。
+  - 值之间必须用逗号`,`分隔。
+
+### 命令中的 JSON
+
+- 文本组件：由一个对象组成。其中的内容为：
+  - `rawtext`数组，数组由多个对象组成。对象允许的内容为：
+    - `text`字符串，为普通文本组件。
+    - `selector`字符串，为选择器文本组件。
+    - `score`对象，内含`objective`字符串和`name`字符串，为分数文本组件。
+    - `translate`字符串和`with`数组或`with`对象，其中`with`对象的内容为`rawtext`数组，为翻译文本组件。
+- 物品组件：由一个对象组成。其中允许的内容为：
+  - `can_place_on`对象：接受一个`blocks`数组，数组内接受方块 ID，表示可放置到的方块。
+  - `can_destroy`对象：接受一个`blocks`数组，数组内接受方块 ID，表示可破坏的方块。
+  - `item_lock`对象：接受一个`mode`字符串，代表物品锁定方法。
+  - `keep_on_death`对象：不接受任何元素即可生效。
+
+### 常见错误
+
+- 丢逗号或多逗号
+- 丢括号或多括号
+- 概念混淆，在对象中写为值的集合或在数组中写为键值对的集合
+- 中文符号问题，误将`"`打为`“`或`,`打为`，`等
+
+:::info[练习 1.2]
+
+本节的练习我们不强调编写 JSON，编写问题在我们下节讲过文本编辑器之后再谈。现在的练习中，我们只强调对 JSON 的概念的理解。
+
+分析下面的 JSON，判断它们是否有误，如果有误则说明在哪行出现了哪个问题；如果无误则分析 JSON 中的对象、数组等信息。下面的题目中不会出现中文符号的问题（因为它们确实过于不可见）。下面出现错误的 JSON 至多出现 1 个错误。
+
+例 1：
+
+```json showLineNumbers
+{
+    "message": "Hello, world!",
+    "players": [ "YZBWDLT", "Andy7343" ]
+}
+```
+
+答案：这是一个有效的 JSON 对象。其含有一个`message`字符串和`players`数组，数组中由两个字符串组成。
+
+例 2：
+
+```json showLineNumbers
+{
+    "message": "Hello, world!",
+    "players"; [ "YZBWDLT", "Andy7343" ]
+}
+```
+
+答案：这个 JSON 存在语法错误，错误出现在第 3 行的`;`，应当为`:`。
+
+1.
+
+```json showLineNumbers
+{
+    "key1": {
+        "key2": "value2",
+        "key3"
+    }
+}
+```
+
+2.
+
+```json showLineNumbers
+{
+    "minecraft:food": {
+        "nutrition: 4,
+        "saturation_modifier": 0.3
+    }
+}
+```
+
+3.
+
+```json showLineNumbers
+{
+  "format_version": "1.20.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "minecraft:apple",
+      "category": "nature"
+    },
+    "components": {
+    }
+  }
+}
+```
+
+4.
+
+```json showLineNumbers
+{
+    "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+            {
+                "filters": {
+                    "test": "in_lava",
+                    "subject": "self",
+                    "operator": "==",
+                    "value": true
+                },
+                "cause": "lava",
+                "damage_per_tick": 4,
+            }
+        ]
+    }
+}
+```
+
+5.
+
+```json showLineNumbers
+{
+    "text": "Hello, "world"! "
+}
+```
+
+6.
+
+```json showLineNumbers
+"minecraft:type_family": [
+    "family": [ "armor_stand", "inanimate", "mob" ]
+]
+```
+
+7.
+
+```json showLineNumbers
+[
+    "minecraft:nameable": {
+    },
+    "minecraft:persistent": {
+    },
+    "minecraft:physics": {
+    },
+]
+```
+
+8.
+
+```json showLineNumbers
+{
+    "minecraft:spawns_on_surface": {},
+    "minecraft:spawns_on_block_filter": "minecraft:grass",
+    "minecraft:brightness_filter": { "min": 7, "max": 15, "adjust_for_weather": false }
+}
+```
+
+9.
+
+```json showLineNumbers
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:string",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 2
+              }
+            }
+          ]
+        }
+    }
+  ]
+}
+```
+
+10.
+
+```json showLineNumbers
+{
+    "modules": [
+        {
+            "description": "Example vanilla behavior pack",
+            "type": "data",
+            "uuid": "fa6e90c8-c925-460f-8155-c8a60b753caa",
+            "version": [0, 0, 1]
+        }
+    ]
+}
+```
+
+11.
+
+```json showLineNumbers
+{
+    "distance": {
+            "water": {
+                "fog_start": 0.0,
+                "fog_end": 60.0,
+                "fog_color": "#157cab",
+                "render_distance_type": "fixed"
+            }
+        }
+    } 
+```
+
+:::
