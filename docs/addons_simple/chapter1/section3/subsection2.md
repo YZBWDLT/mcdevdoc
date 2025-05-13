@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
-# 1.3 清单文件：`manifest.json`
+# 1.3.2 清单文件：`manifest.json`
 
 ## 清单文件的意义
 
@@ -29,3 +29,4 @@ sidebar_position: 3
 ---
 
 ## 总结与练习
+
