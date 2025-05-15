@@ -18,7 +18,7 @@ sidebar_position: 3
 
 ### 变更权限：`/inputpermission`
 
-使用`/imputpermission`可以变更特定玩家的权限。其语法为：
+使用`/inputpermission`可以变更特定玩家的权限。其语法为：
 
 ```mcfunction showLineNumbers title="/inputpermission的语法"
 /inputpermission query <玩家: target> <权限: permission> [状态: disabled|enabled]
