@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::info[本文更新时间]
 
-本文于 2025 年 4 月 18 日更新，中国版最新版本为 1.20.50，国际版最新版本为 1.21.70。
+本文于 2025 年 5 月 18 日更新，中国版最新版本为 1.20.50，国际版最新版本为 1.21.80。
 
 :::
 
@@ -1279,23 +1279,24 @@ in <维度: Dimension> -> execute
 <TabItem value="3" label="轨道相机">
 
 ```text
-/camera <玩家: target> set <预设: string> [朝向] [视角偏移] [实体偏移]
+/camera <玩家: target> set <预设: string> [缓动] [朝向] [视角偏移] [实体偏移]
 ```
 
 :::warning[版本适用性警告]
 
-`minecraft:follow_orbit`预设仅限 1.21.40+ 版本可用，`minecraft:fixed_boom`预设仅限 1.21.70+ 版本可用。
+`minecraft:follow_orbit`预设仅限 1.21.40+ 版本可用，`minecraft:fixed_boom`预设仅限 1.21.70+ 版本可用，`[缓动]`子命令仅限 1.21.80+ 版本可用。
 
 :::
 
-设置玩家的轨道相机为特定`朝向`，同时设置相机相对玩家位置的偏移为`实体偏移`，相对玩家视角的偏移为`视角偏移`。
+将玩家的轨道相机按照特定的`缓动`动画设置为特定`朝向`，同时设置相机相对玩家位置的偏移为`实体偏移`，相对玩家视角的偏移为`视角偏移`。
 
 `预设`仅限设置为`minecraft:follow_orbit`或`minecraft:fixed_boom`时有效。
 
-`朝向`、`视角偏移`和`实体偏移`可任意缺少一个或若干个，但顺序上必须是`朝向`在前，`视角偏移`其次，`实体偏移`在后。对应关系如下表所示。
+`缓动`、`朝向`、`视角偏移`和`实体偏移`可任意缺少一个或若干个，但顺序上必须是`缓动`在前，`朝向`其次，`视角偏移`再次，`实体偏移`在后。对应关系如下表所示。
 
 | 完整语法 | 简写语法 | 含义 |
 | --- | :---: | --- |
+| `ease <缓动时间: float> <缓动类型: Easing>` | `[缓动]` | 将玩家的相机按照`缓动类型`决定的运镜方式，在`缓动时间`秒内将玩家的相机从起点移动到终点 |
 | `rot <x旋转: value> <y旋转: value>` | `[朝向]` | 设置相机的旋转角度 |
 | `entity_offset <x实体偏移: float> <y实体偏移: float> <z实体偏移: float>` | `[实体偏移]` | 相机焦点相对于玩家位置的偏移 |
 | `view_offset <x视角偏移: float> <y视角偏移: float>` | `[视角偏移]` | 相机焦点相对于玩家视角的偏移 |
@@ -3304,7 +3305,7 @@ allowlist reload
 
 :::warning[版本适用性警告]
 
-该命令仅限 1.21.70+ 版本可用。其中，`jigsaw`和`structure`用法仅限 1.21.80+ 版本可用。
+该命令仅限 1.21.70+ 版本可用。其中，`jigsaw`和`structure`用法仅限 1.21.80+ 版本可用。`[liquidSettings: LiquidSettings]`参数仅限 1.21.90+ 版本可用。
 
 :::
 
@@ -3345,7 +3346,7 @@ allowlist reload
 <TabItem value="jigsaw" label="jigsaw">
 
 ```text
-/place jigsaw <pool: filepath> <jigsawTarget: string> <maxDepth: int> [pos: x y z] [keepJigsaws: Boolean]
+/place jigsaw <pool: filepath> <jigsawTarget: string> <maxDepth: int> [pos: x y z] [keepJigsaws: Boolean] [liquidSettings: LiquidSettings]
 ```
 
 放置结构池并展开指定深度[^1]。
@@ -3355,10 +3356,48 @@ allowlist reload
 <TabItem value="structure" label="structure">
 
 ```text
-/place structure <structure: string> [pos: x y z] [ignoreStartHeight: Boolean] [keepJigsaws: Boolean]
+/place structure <structure: string> [pos: x y z] [ignoreStartHeight: Boolean] [keepJigsaws: Boolean] [liquidSettings: LiquidSettings]
 ```
 
 放置结构地物[^1]。
+
+</TabItem>
+
+</Tabs>
+
+### `/controlscheme`
+
+:::warning[版本适用性警告]
+
+该命令仅限 1.21.90+ 版本可用。
+
+:::
+
+修改相机预设的控制方案。
+
+| 权限等级 | 课时 | Wiki 页面 |
+| :---: | --- | :---: |
+| 1 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/controlscheme) |
+
+<Tabs>
+
+<TabItem value="set" label="set" default>
+
+```text
+/controlscheme <玩家: target> set <控制方案: controlscheme>
+```
+
+设定控制方案[^1]。
+
+</TabItem>
+
+<TabItem value="clear" label="clear">
+
+```text
+/controlscheme <玩家: target> clear
+```
+
+清除控制方案[^1]。
 
 </TabItem>
 
