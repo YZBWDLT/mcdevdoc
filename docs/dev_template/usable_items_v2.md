@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # 可使用物品 v2
@@ -37,14 +37,14 @@ export const Highlight = ({children, color}) => (
 
 ## 文件架构
 
-- `BP_usable_item_script`：**基于脚本原理的自定义物品行为包**。
-  - `functions`：函数
-    - `items`：物品执行的函数
+- `BP_usable_item_script/`：**基于脚本原理的自定义物品行为包**。
+  - `functions/`：函数
+    - `items/`：物品执行的函数
       - `usable_item.mcfunction`：对于`namespace:id`的物品，自动执行`items/(id)`函数
-  - `items`：物品定义
-    - `template`：分类（建议换名）
+  - `items/`：物品定义
+    - `template/`：（*建议换名*）分类
       - `usable_item.item.json`：自定义物品定义
-  - `scripts`：脚本
+  - `scripts/`：脚本
     - `main.js`：（*有冲突风险*）国际版脚本，使用`@minecraft/server@1.7.0`版本
     - `__init__.py`：（*有冲突风险*）中国版脚本
     - `modMain.py`：（*有冲突风险*）中国版脚本入口文件
@@ -52,29 +52,29 @@ export const Highlight = ({children, color}) => (
     - `templateServer.py`：（*有冲突风险*）中国版脚本服务端文件
   - `manifest.json`：（*有冲突风险*）清单文件，包含脚本信息
   - `pack_icon.png`：包图标
-- `BP_usable_item_ac`：**基于动画控制器原理的自定义物品行为包**。
-  - `animation_controllers`：动画控制器
+- `BP_usable_item_ac/`：**基于动画控制器原理的自定义物品行为包**。
+  - `animation_controllers/`：动画控制器
     - `player.animation_controllers.json`：（*有冲突风险*）玩家执行的动画控制器
-  - `entities`：实体定义
-    - `vanilla`：原版实体
+  - `entities/`：实体定义
+    - `vanilla/`：原版实体
       - `player.json`：（*有冲突风险*）玩家的实体定义，用于执行动画控制器
-  - `functions`：同基于脚本原理
-    - `items`：同基于脚本原理
+  - `functions/`：同基于脚本原理
+    - `items/`：同基于脚本原理
       - `usable_item.mcfunction`：同基于脚本原理
-  - `items`：同基于脚本原理
-    - `template`：同基于脚本原理
+  - `items/`：同基于脚本原理
+    - `template/`：同基于脚本原理
       - `usable_item.item.json`：同基于脚本原理，但存在一定的差别
   - `manifest.json`：清单文件
   - `pack_icon.png`：包图标
-- `RP_usable_item`：**自定义物品资源包**。
-  - `texts`：翻译文本
+- `RP_usable_item/`：**自定义物品资源包**。
+  - `texts/`：翻译文本
     - `zh_CN.lang`：（*有冲突风险*）中文翻译文本
     - `en_US.lang`：（*有冲突风险*）英文翻译文本
-  - `textures`：贴图
-    - `items`：物品贴图
+  - `textures/`：贴图
+    - `items/`：物品贴图
       - `usable_item.png`：自定义物品贴图
     - `item_texture.json`：（*有冲突风险*）物品贴图定义
-  - `manifest.json`：清单文件
+  - `manifest.json`：（*有冲突风险*）清单文件
   - `pack_icon.png`：包图标
 
 ### 合并到您的包中
