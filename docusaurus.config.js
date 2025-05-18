@@ -94,8 +94,23 @@ const config = {
             footer: {
                 style: 'dark',
                 links: [
+                    {
+                        title: `优秀笔记`,
+                        items: [
+                            { label: '小飞侠的博客', href: 'https://wstd.pages.dev/' },
+                        ],
+                    },
+                    {
+                        title: `关于`,
+                        items: [
+                            { label: '授权：CC BY-NC-SA 4.0', href: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans' },
+                            { label: '字体：MiSans', href: 'https://hyperos.mi.com/font' },
+                            { label: '网站构建：Docusaurus', href: 'https://docusaurus.io/' },
+                            { label: '联系我们：QQ 群 673941729', href: 'https://qm.qq.com/q/CAJQrm3Rao' }
+                        ],
+                    }
                 ],
-                copyright: `版权归 © 2019 - ${new Date().getFullYear()} 一只卑微的量筒所有。本站使用 Docusaurus 构建，使用 MiSans 字体。`,
+                copyright: `版权归 © 2019 - ${new Date().getFullYear()} 一只卑微的量筒所有。除特殊声明外，本站中的内容均使用 CC BY-NC-SA 4.0 授权。`,
             },
             prism: {
                 theme: prismThemes.github,
