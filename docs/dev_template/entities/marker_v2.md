@@ -29,7 +29,7 @@ export const Highlight = ({children, color}) => (
 
 :::warning[温馨提示]
 
-本文假定您已经能够独立编写属于自己的自定义实体。如果您还不能编写自定义实体，请阅读模块 3 的教程：[3.1 数据驱动实体](../../addons_complex/chapter3/section1)。
+本文假定您已经能够独立编写属于自己的自定义实体。如果您还不能编写自定义实体，请阅读模块 2 的教程：[5.3.1 数据驱动实体](/docs/tutorials/a2_addons/b5_combined_addons/3_custom_entities/1_data_driven_entities)。
 
 :::
 
@@ -124,7 +124,7 @@ event entity @e[type=template:marker] template:remove_immediately
 summon template:marker facingPos 10 10 10
 ```
 
-然后，基于[教程模块 1，3.5](/docs/commands/chapter3/section5#基于命令方块的命令系统的一个实例旋转动画) 的旋转视角的原理，使用一个循环执行的函数`main.mcfunction`来定义玩家的相机旋转行为。假设手持钻石时旋转相机。
+然后，基于[教程模块 1，3.5](/docs/tutorials/a1_commands/b3_command_systems/c5_system_on_cb#基于命令方块的命令系统的一个实例旋转动画) 的旋转视角的原理，使用一个循环执行的函数`main.mcfunction`来定义玩家的相机旋转行为。假设手持钻石时旋转相机。
 
 ```mcfunction title="main.mcfunction" showLineNumbers
 execute as @e[name=facingPos] at @s run tp @s ~~~ ~1

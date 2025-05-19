@@ -80,14 +80,18 @@ const config = {
                 title: '量筒的 Minecraft 基岩版开发文档',
                 logo: { alt: 'Logo', src: 'site/YZBWDLT.jpg', },
                 items: [
-                    { label: '命令', type: 'docSidebar', sidebarId: 'commands', position: 'left', },
-                    { label: '附加包基础', type: 'docSidebar', sidebarId: 'addonsSimple', position: 'left', },
-                    { label: '附加包进阶', type: 'docSidebar', sidebarId: 'addonsComplex', position: 'left', },
-                    { label: '中国版', type: 'docSidebar', sidebarId: 'chinaVersion', position: 'left', },
-                    { label: 'SAPI', type: 'docSidebar', sidebarId: 'sapi', position: 'left', },
-                    { label: 'ModAPI', type: 'docSidebar', sidebarId: 'modapi', position: 'left', },
-                    { label: '开发模板', type: 'docSidebar', sidebarId: 'devTemplate', position: 'right', },
-                    { label: '个人开发博客', to: '/blog', position: 'right' },
+                    { label: '教程', type: 'dropdown', items: [
+                        { label: '模块 1：命令', type: 'docSidebar', sidebarId: 'tutorialCommands', },
+                        { label: '模块 2：附加包', type: 'docSidebar', sidebarId: 'tutorialAddons', },
+                        { label: '模块 3：脚本', type: 'docSidebar', sidebarId: 'tutorialScripts', },
+                    ] },
+                    { label: '文档', type: 'dropdown', items: [
+                        { label: '命令', type: 'docSidebar', sidebarId: 'docCommands'  },
+                        { label: '物品', type: 'docSidebar', sidebarId: 'docItems'  },
+                        { label: '方块', type: 'docSidebar', sidebarId: 'docBlocks'  },
+                    ] },
+                    { label: '预设模板', type: 'docSidebar', sidebarId: 'devTemplate', position: 'left', },
+                    { label: '个人博客', to: '/blog', position: 'left' },
                     { label: 'GitHub', href: 'https://github.com/YZBWDLT/mcdevdoc', position: 'right', },
                 ],
             },
@@ -95,18 +99,37 @@ const config = {
                 style: 'dark',
                 links: [
                     {
+                        title: `我们的作品`,
+                        items: [
+                        ]
+                    },                    {
+                        title: `常用文档`,
+                        items: [
+                            { label: '命令', to: 'docs/docs/commands/all_commands' }
+                        ]
+                    },
+                    {
                         title: `优秀笔记`,
                         items: [
                             { label: '小飞侠的博客', href: 'https://wstd.pages.dev/' },
                         ],
                     },
                     {
+                        title: `相关外部文档与常用链接`,
+                        items: [
+                            { label: '中文 Minecraft Wiki', href: 'https://zh.minecraft.wiki/' },
+                            { label: '微软文档', href: 'https://learn.microsoft.com/en-us/minecraft/creator/?view=minecraft-bedrock-stable' },
+                            { label: '基岩版开发 Wiki', href: 'https://wiki.mcbe-dev.net/p/Minecraft基岩版开发Wiki' },
+                            { label: 'Bedrock Wiki', href: 'https://wiki.bedrock.dev/' },
+                        ],
+                    },                    {
                         title: `关于`,
                         items: [
                             { label: '授权：CC BY-NC-SA 4.0', href: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans' },
                             { label: '字体：MiSans', href: 'https://hyperos.mi.com/font' },
                             { label: '网站构建：Docusaurus', href: 'https://docusaurus.io/' },
-                            { label: '联系我们：QQ 群 673941729', href: 'https://qm.qq.com/q/CAJQrm3Rao' }
+                            { label: 'GitHub', href: 'https://github.com/YZBWDLT/mcdevdoc' },
+                            { label: '联系我们：QQ 群 673941729', href: 'https://qm.qq.com/q/CAJQrm3Rao' },
                         ],
                     }
                 ],

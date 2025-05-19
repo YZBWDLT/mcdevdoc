@@ -128,7 +128,7 @@ execute if score developerMode settings matches 1 run scoreboard players set end
 
 - **条件**：无
 - **函数**：无需调用
-- **原理**：[2.4.5 记分板的运用 变量](../../commands/chapter2/section4/subsection5#处理多人游戏下退出重进的玩家的问题)
+- **原理**：[2.4.5 记分板的运用 变量](/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#处理多人游戏下退出重进的玩家的问题)
 - **代码**：
 
 <details>
@@ -477,7 +477,7 @@ scoreboard players set sound time 3
 - **返回**：
   - `deathCount.@s`：玩家自记分板创建以来的死亡次数
   - `deathState.@s`：`0`=未死亡，`1`=死亡但未记录，`2`=死亡
-- **原理**：[2.4.5 记分板的运用 变量](../../commands/chapter2/section4/subsection5#补偿准则缺憾的实例死亡榜的实现)
+- **原理**：[2.4.5 记分板的运用 变量](/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#补偿准则缺憾的实例死亡榜的实现)
 - **代码**：
 
 <details>
@@ -558,7 +558,7 @@ execute as @a[scores={deathCount=5..}] run say 1
 
 - **返回**：`data.entity`：输出实体数量
 - **函数**：`/function lib/get_data/entity_amount`
-- **原理**：[2.4.5 记分板的运用 变量](../../commands/chapter2/section4/subsection5#获取实体数目)
+- **原理**：[2.4.5 记分板的运用 变量](/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#获取实体数目)
 - **代码**:
 
 <details>
@@ -696,7 +696,7 @@ execute if score client data matches 1 run say 1
 
 - **返回**：标签`isAlive`：玩家是否存活。
 - **函数**：`/function lib/get_data/player_is_alive`
-- **原理**：[2.4.1 标签命令](../../commands/chapter2/section4/subsection1#运用标签的实例)
+- **原理**：[2.4.1 标签命令](/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d1_tag#运用标签的实例)
 - **代码**:
 
 <details>
@@ -742,7 +742,7 @@ execute as @a[tag=!isAlive] as @s run say 1
 
 - **返回**：`state.@s`：输出玩家当前的站立状态，`0`=站立，`1`=潜行，`2`=爬行，`3`=睡觉。
 - **函数**：`/function lib/get_data/player_state`
-- **原理**：[2.4.5 记分板的运用 变量](../../commands/chapter2/section4/subsection5#检测站立潜行爬行和睡觉的玩家)
+- **原理**：[2.4.5 记分板的运用 变量](/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#检测站立潜行爬行和睡觉的玩家)
 - **代码**:
 
 <details>
@@ -812,7 +812,7 @@ execute as @a[scores={state=1}] as @s run say 1
 
 - **返回**：`dimension.@s`：输出玩家当前所处维度，`0`=主世界，`1`=下界，`2`=末地。
 - **函数**：`/function lib/get_data/player_dimension`
-- **原理**：[2.3.2 修饰子命令和`run`子命令](../../commands/chapter2/section3/subsection2#更改执行维度的子命令in)
+- **原理**：[2.3.2 修饰子命令和`run`子命令](/docs/tutorials/a1_commands/b2_commands/c3_execute/d2_subcommands_1#更改执行维度的子命令in)
 - **代码**:
 
 <details>
@@ -881,7 +881,7 @@ execute as @a[scores={dimension=1}] as @s run say 1
 
 - **返回**：——
 - **函数**：`/function lib/modify_data/title`
-- **原理**：[2.9.1 文本操作命令](../../commands/chapter2/section9/subsection1#格式化代码)
+- **原理**：[2.9.1 文本操作命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#格式化代码)
 - **代码**:
 
 <details>
