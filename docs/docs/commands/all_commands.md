@@ -3405,6 +3405,54 @@ allowlist reload
 
 ---
 
+## 中国版命令
+
+### `/enableedunpc`
+
+启用 NPC。
+
+:::warning[版本适用性警告]
+
+该命令仅限中国版可用。
+
+:::
+
+| 权限等级 | 课时 | Wiki 页面 |
+| :---: | --- | :---: |
+| 1 | [2.11 中国版命令](/docs/tutorials/a1_commands/b2_commands/c11_china_edition) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/enableedunpc) |
+
+```text
+/enableedunpc [启用NPC: Boolean]
+```
+
+是否启用 NPC。[^1]
+
+需要注意：即使启用 NPC，它也不能通过`/summon`直接生成，而且也不存在任何实际功能。
+
+---
+
+### `/removeedunpc`
+
+移除全部 NPC。
+
+:::warning[版本适用性警告]
+
+该命令仅限中国版可用。
+
+:::
+
+| 权限等级 | 课时 | Wiki 页面 |
+| :---: | --- | :---: |
+| 1 | [2.11 中国版命令](/docs/tutorials/a1_commands/b2_commands/c11_china_edition) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/removeedunpc) |
+
+```text
+/removeedunpc
+```
+
+移除全部 NPC。[^1]
+
+---
+
 ## 参考资料
 
 - [中文 Minecraft Wiki](https://zh.minecraft.wiki/)
