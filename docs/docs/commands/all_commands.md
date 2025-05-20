@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # 全部命令汇总
 
 import Tabs from '@theme/Tabs';

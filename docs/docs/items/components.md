@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # 组件
 
 收录所有已开放的命名空间为`minecraft`和`netease`的物品组件信息。官方文档请见：[物品组件 - 微软文档](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponentlist?view=minecraft-bedrock-stable)。
