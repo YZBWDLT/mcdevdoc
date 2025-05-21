@@ -10,6 +10,12 @@ sidebar_position: 3
 
 ## 附加包的打包方法
 
+## 世界应用的附加包的注册文件
+
+### `world_behavior_packs.json`
+
+### `world_resource_packs.json`
+
 ---
 
 ## 总结与练习
