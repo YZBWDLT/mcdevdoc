@@ -9,9 +9,8 @@ export default function GiscusComponent() {
     <Giscus    
       repo="YZBWDLT/mcdevdoc"
       repoId="R_kgDOOIcMJg"
-      category="General"
       categoryId="DIC_kwDOOIcMJs4CqaqB"
-      mapping="url"
+      mapping="title"
       strict="1"
       reactionsEnabled="1"
       emitMetadata="1"
