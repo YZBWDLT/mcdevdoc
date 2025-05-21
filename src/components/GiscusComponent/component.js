@@ -12,7 +12,7 @@ export default function GiscusComponent() {
       category="General"
       categoryId="DIC_kwDOOIcMJs4CqaqB"
       mapping="title"
-      strict="0"
+      strict="1"
       reactionsEnabled="1"
       emitMetadata="1"
       inputPosition="top"
