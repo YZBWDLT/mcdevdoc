@@ -11,7 +11,7 @@ export default function GiscusComponent() {
       repoId="R_kgDOOIcMJg"
       category="General"
       categoryId="DIC_kwDOOIcMJs4CqaqB"
-      mapping="title"
+      mapping="url"
       strict="1"
       reactionsEnabled="1"
       emitMetadata="1"
