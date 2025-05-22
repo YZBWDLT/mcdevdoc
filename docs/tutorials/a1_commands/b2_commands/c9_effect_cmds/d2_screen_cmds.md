@@ -668,3 +668,7 @@ camera <玩家> remove_target
     ```
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

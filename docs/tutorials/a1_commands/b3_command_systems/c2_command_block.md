@@ -608,3 +608,7 @@ say 1
 如果你觉得这里只能出 14 道题的话，那你就大错特错了，这里之所以不再出下去是因为很多逻辑性的问题我们已在第二章讨论过，这里的习题只是为了让你能够快速上手命令方块的用法，所以请务必多进行实验。命令方块在实际工程的用途极为广泛！
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

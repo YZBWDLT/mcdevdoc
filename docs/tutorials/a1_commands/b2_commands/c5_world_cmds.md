@@ -324,3 +324,7 @@ time set 6000
 5. 写 1 条命令，假设该命令每游戏刻执行一次，要求其在现实世界的 10 秒内就迅速流逝游戏内的一天。提示：用`/time add`。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

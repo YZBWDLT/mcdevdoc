@@ -115,3 +115,7 @@ sidebar_position: 3
 3. 已知命令方块矿车的 ID 为`command_block_minecart`，请试图生成之。如果你不了解什么是命令方块，先不要紧，把它扔在那里就行。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

@@ -92,3 +92,7 @@ sidebar_position: 4
 3. 然后再给你自己一个钻石块吧！该物品的命名规律不满足一般命名规律，试着先打一个`diamond`然后找找看它的 ID。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

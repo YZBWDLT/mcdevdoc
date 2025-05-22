@@ -111,3 +111,7 @@ sidebar_position: 1
 4. 写两条命令，在名为`spawner`的盔甲架处生成 1 只苦力怕，然后清除`spawner`。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

@@ -562,3 +562,7 @@ execute as @a at @s if entity @s[y=~1.6,dy=0.1] run tag @s add isStanding
 12. （难度较高，选做）假设起床战争中有玩家在游戏中离开，重新进入后已是下一局，试分析如果什么也不做会导致什么问题？试用命令写出你的解决思路，允许额外定义变量。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

@@ -269,3 +269,7 @@ sidebar_position: 8
 6. 当(-2,26,3)的红石粉有红石信号时，并且位于(20,22,7)石英柱的朝向为上下朝向时，提醒所有玩家“已解锁新关卡”。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

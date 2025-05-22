@@ -574,3 +574,7 @@ TNT 在接受到红石信号后会点燃，从发射器射出的 TNT 也是点�
   - 或门：存在一个输入为 1 时，输出为 1；全部输入为 0 时，输出为 0
   - 与门：只有全部输入为 1 时，输出为 1；存在输入为 0 时，输出为 0
 - 对于各元件的用法总结，请读者在对应部分进行实验并自行理解，这里不再过多赘述。
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

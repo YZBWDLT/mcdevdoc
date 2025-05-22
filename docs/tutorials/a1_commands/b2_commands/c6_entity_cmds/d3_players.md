@@ -211,3 +211,7 @@ l=<最大经验等级: int>,lm=<最小经验等级: int>
 7. （选做，如果不熟悉`/spreadplayers`的用法可以在上一节或 Wiki 中查询）原理上讲，如果不考虑区块加载的问题，你能用`/spreadplayers`和`/setworldspawn`联合实现类似于 RLCraft 整合包中的随机出生点的效果吗？
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

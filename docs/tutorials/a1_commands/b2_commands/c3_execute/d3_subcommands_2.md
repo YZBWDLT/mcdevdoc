@@ -234,3 +234,7 @@ sidebar_position: 3
 7. 在地图《冒险世界：筑梦》中，有一种道具为「御风珠」，当它砸中淡蓝色带釉陶瓦时，则会将所有玩家传送到附近。现在我们简化这个需求，假设有一个淡蓝色带釉陶瓦位于(-244,32,23)，当检测到该位置附近 2 格内有雪球时，则传送所有玩家到该陶瓦下方 3 格，并面向正北方。试写出此命令。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

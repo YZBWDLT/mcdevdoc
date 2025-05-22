@@ -4,8 +4,6 @@ sidebar_position: 0
 
 # 0 命令概论
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
-
 ## 为什么我们需要命令？
 
 Minecraft 的世界是丰富多彩的。众所周知，Minecraft 含有非常多的游戏元素：建筑、生存、红石、跑酷等等。
@@ -71,5 +69,7 @@ Minecraft 的世界是丰富多彩的。众所周知，Minecraft 含有非常多
 ### *扩展性章节
 
 如果标题前加上了一个星号，代表这是扩展性知识，仅作了解即可，不要求掌握。
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
 
 <GiscusComponent/>

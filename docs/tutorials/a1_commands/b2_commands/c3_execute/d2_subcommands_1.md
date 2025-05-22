@@ -370,3 +370,7 @@ in <维度: Dimension> -> execute
   如果两条命令的顺序倒转，还能否实现预定效果？为什么？
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

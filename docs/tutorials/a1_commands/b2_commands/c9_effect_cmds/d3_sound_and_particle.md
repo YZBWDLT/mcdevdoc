@@ -192,3 +192,7 @@ sidebar_position: 3
 5. 在雪球经过的路径上播放末地烛的粒子效果。每游戏刻循环执行。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

@@ -77,3 +77,7 @@ Minecraft 中含有各种各样五花八门的 ID，它们一般都以穷举参�
 3. 然后，回到地面，把你脚下的方块用命令清除掉。提示：清除一个方块的实质就是放置一个空气（`air`）。如果你忘了脚下怎么写，请参见[练习 1.2 的第 5 个问题](./c2_coordinate#总结与练习)。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

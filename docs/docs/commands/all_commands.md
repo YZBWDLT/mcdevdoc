@@ -3457,3 +3457,7 @@ allowlist reload
 
 - [中文 Minecraft Wiki](https://zh.minecraft.wiki/)
 - [Minecraft 命令更新日志 | 命令助手](https://ca.projectxero.top/blog/command/command-history/)
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

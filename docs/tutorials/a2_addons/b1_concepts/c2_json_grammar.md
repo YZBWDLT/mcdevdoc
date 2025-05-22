@@ -767,3 +767,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 ```
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

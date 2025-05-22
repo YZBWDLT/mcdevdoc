@@ -141,3 +141,7 @@ Wiki 中，给出下面的定义（但并不明晰）：
 - 世界模板（World Template）允许你在游戏内基于它创建一张地图。它有版本锁定、设置锁定、便于在游戏内重新创建地图等优点，但是中国版并不支持。
 - 皮肤包（Skin Pack）是一类将多个皮肤打包的附加包。但是中国版并不支持。
 - 在附加包领域，我们已不再能仅局限于中文 Minecraft Wiki，诸如微软文档、Bedrock Wiki 等文档才是我们编写附加包时应参考的主要文档。
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

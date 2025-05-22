@@ -591,3 +591,7 @@ rym=<x旋转最小值: float>
 8. 很多服务器都会采用定时清理掉落物的功能，试写出清除所有掉落物的命令。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

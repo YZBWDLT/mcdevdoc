@@ -4,6 +4,10 @@ sidebar_position: 2
 
 # 1.3.2 清单文件：`manifest.json`
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
 在前面我们简单了解了一下文本编辑器和 IDE 的概念。在本节，我们要更进一步，来学习**附加包的“身份证”文件：清单文件`manifest.json`** 的写法。
 
 ## 清单文件的意义
@@ -113,20 +117,148 @@ sidebar_position: 2
 
 应该额外注意一点：**`format_version`会影响这个参数的解析，所以我们才要求读者不要更改格式版本，应设置为`2`**。
 
+- 对于地图模板来说，还有几个额外可用的参数，我们在介绍到的时候再细谈。
+
 ### 模块归属`modules`
 
-### *依赖项`dependencies`
+现在我们再来看看`modules`。Module 意为模块，它进一步地决定这个包的类型，会使用到其中的什么功能。我们给出的示例如下：
+
+```json showLineNumbers
+"modules": [
+    {
+        "type": "data",
+        "uuid": "(uuid2)",
+        "version": [ 1, 0, 0 ]
+    }
+]
+```
+
+我们看到，`modules`是一个数组，其中是对象的集合。我们来看看这三个参数：
+
+- `"type"`：这个参数决定了附加包的类型。我们在 [1.1](./../c1_addon_types) 中曾经讲过几种附加包，这里它们都有对应的字段对应，分别是：
+  - `"data"`：定义此包为行为包。即此包规定了游戏运行的部分基本逻辑。
+  - `"resources"`：定义此包为资源包。即此包规定了游戏运行的部分渲染、显示特性。
+  - `"world_template"`：定义此包为世界模板。
+  - `"skin_pack"`：定义此包为皮肤包。  
+  我们最多使用的类型也就是`"data"`或`"resources"`。需要注意，行为包和资源包应严格区分开来，不能同时定义一个包既是行为包又是资源包。以在安装时能够区分包体类型。
+- `"uuid"`：定义模块的 UUID。只需要注意这个 UUID 不要和上面的`header`的 UUID 一样即可。
+- `"version"`：定义模块的版本。这个通常写成`[ 1, 0, 0 ]`就行。
+
+事实上，对于模块而言，本身也是有很多参数的，以上三个是必填内容，其中的参数的重要性远远没有`header`中来的重要，可以认为唯一具有决定性意义的参数就是`"type"`，其他的两个参数按需填写即可。
+
+---
+
+事实上，上面两个参数`header`和`modules`是`manifest.json`中的必选参数，规定完上面的两个参数后，这个清单文件就已经是一个有效的文件了。现在我们来聊聊清单文件的剩下几个可用参数。
+
+### 依赖项`dependencies`
+
+依赖项是指，**必须有另一个规定的包先安装后才能使用这个包，否则这个包就不能使用**。
+
+通常，依赖项用于联合行为包和资源包使用的复合包，比如添加了新物品的时候，就既需要使用行为包定义这个物品的底层逻辑，又需要使用资源包定义这个物品的贴图等渲染表现。这种时候缺少任何一个包都不能正常工作，而依赖项就可以有效解决这个问题。
+
+显然，如果希望单包运行的话，就不应该添加依赖项了。在使用依赖项的时候，只需要对行为包和资源包的其中的一个包添加依赖项即可，如果两个都用的话，可能会出现互锁的问题。习惯上，在行为包中添加依赖项。
+
+我们来看依赖项的写法：
+
+```json showLineNumbers
+"dependencies": [
+    {
+        "uuid": "(要提前安装的包的 UUID)",
+        "version": [ 1, 0, 0 ]  // <- 要提前安装的包的版本
+    }
+]
+```
+
+可见，`dependencies`是一个数组，指代了它提前需要的一个或多个包的基本信息。这里的 UUID 和版本都是`header`所定义的信息。
+
+我们来举一个例子，假设行为包和资源包的`manifest.json`分别如下定义：
+
+<Tabs>
+
+<TabItem value="行为包" label="行为包" default>
+
+```json title="manifest.json"
+{
+    "format_version": 2,
+    "header": {
+        "name": "行为包",
+        "description": "行为包",
+        "uuid": "d5fe1d02-79f2-4da7-a641-432a1390f8a8",
+        "version": [ 1, 3, 7 ],
+        "min_engine_version": [ 1, 20, 50 ]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "b14aaa05-e524-4e9b-be1b-c98a0a4d2103",
+            "version": [ 1, 0, 0 ]
+        }
+    ]
+}
+```
+
+</TabItem>
+
+<TabItem value="资源包" label="资源包">
+
+```json title="manifest.json"
+{
+    "format_version": 2,
+    "header": {
+        "name": "资源包",
+        "description": "资源包",
+        "uuid": "585c92b2-fb14-4b35-a0ae-46647ea241aa",
+        "version": [ 1, 8, 2 ],
+        "min_engine_version": [ 1, 20, 50 ]
+    },
+    "modules": [
+        {
+            "type": "resources",
+            "uuid": "611cd5bb-21b3-4c5b-b8eb-d12184508864",
+            "version": [ 1, 0, 0 ]
+        }
+    ]
+}
+```
+
+</TabItem>
+
+</Tabs>
+
+那么，我们为行为包添加依赖项的时候就要关注资源包的`header`中的`uuid`和`version`，然后写入到`dependencies`中：
+
+```json title="添加了依赖项的行为包manifest.json"
+{
+    "format_version": 2,
+    "header": {
+        "name": "行为包",
+        "description": "行为包",
+        "uuid": "d5fe1d02-79f2-4da7-a641-432a1390f8a8",
+        "version": [ 1, 3, 7 ],
+        "min_engine_version": [ 1, 20, 50 ]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "b14aaa05-e524-4e9b-be1b-c98a0a4d2103",
+            "version": [ 1, 0, 0 ]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "585c92b2-fb14-4b35-a0ae-46647ea241aa", // <- 使用资源包的 UUID，代表行为包需要这个资源包
+            "version": [ 1, 8, 2 ]  // <- 使用资源包的版本，代表行为包需要资源包的这个版本
+        }
+    ]
+}
+```
 
 ### *作者标记与版权声明`metadata`
 
 ### *子包
 
-## 世界应用的附加包的注册文件
-
-### `world_behavior_packs.json`
-
-### `world_resource_packs.json`
-
 ---
 
 ## 总结与练习
+
+<GiscusComponent/>

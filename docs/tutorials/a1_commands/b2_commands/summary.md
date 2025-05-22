@@ -841,3 +841,7 @@ scoreboard players set @a isOnline 1
    使用的粒子合理即可，但必须经过游戏内验证。
 
 5. `/execute as @e[type=snowball] at @s run particle minecraft:endrod`
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

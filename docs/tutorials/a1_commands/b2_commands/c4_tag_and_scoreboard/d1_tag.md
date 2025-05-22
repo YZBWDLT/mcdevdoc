@@ -129,3 +129,7 @@ tag @e[type=player] add isAlive
    命令 2：\_\_\_\_\_
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

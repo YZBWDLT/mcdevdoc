@@ -10,14 +10,13 @@ export default function GiscusComponent() {
       repo="YZBWDLT/mcdevdoc"
       repoId="R_kgDOOIcMJg"
       categoryId="DIC_kwDOOIcMJs4CqaqB"
-      mapping="title"
+      mapping="pathname"
       strict="1"
       reactionsEnabled="1"
       emitMetadata="1"
       inputPosition="top"
       theme={colorMode}
       lang="zh-CN"
-      loading="lazy"
       crossorigin="anonymous"
       async
     />

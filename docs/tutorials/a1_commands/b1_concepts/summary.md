@@ -155,3 +155,7 @@ sidebar_position: 100
 7. `/tp @e[type=!player] ~~10~`
 8. `/tp @a[name=!"你的昵称"] ~~10~`
 9. `/testfor @a[hasitem={item=tnt}]`
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

@@ -112,3 +112,7 @@ BDS 实际上是开启了一个 Minecraft 的服务端，这样其他玩家就�
 ## 总结
 
 本节主要讲了有关权限等级的内容，和一些服务器常用命令，例如`/op`、`/locate`、`/kick`等命令。希望本节的知识可以帮助你更好地了解服务器运行背后的一些故事。
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

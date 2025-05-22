@@ -436,3 +436,7 @@ sidebar_position: 4
     2. 对于`data.gameId`=3456，输出`data.singleDigit`=6，`data.decimalDigit`=5，`data.hundredthDigit`=34
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

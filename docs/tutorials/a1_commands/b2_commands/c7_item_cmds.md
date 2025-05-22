@@ -536,3 +536,7 @@ hasitem=[{item=...,...},{item=...,...},...]
    ![practice_1](./img/c7_item_cmds/practice_1.png)
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

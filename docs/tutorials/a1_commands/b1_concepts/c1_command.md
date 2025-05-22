@@ -161,3 +161,7 @@ sidebar_position: 1
 2. `/help`命令的另一条语法为`/help [命令条目：CommandName]`。请查询`/difficulty`的用法，并根据其给出的用法尝试自学该命令。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

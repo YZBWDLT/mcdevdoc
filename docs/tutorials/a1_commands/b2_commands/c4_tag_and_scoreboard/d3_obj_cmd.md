@@ -243,3 +243,7 @@ sidebar_position: 3
 3. 在上一题的基础上，移除这个记分项。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

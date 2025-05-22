@@ -324,3 +324,7 @@ tellraw @p {"rawtext":[{"text":"成功购买了金苹果 * 15"}]}
 14. 同理地，检测用`/execute if blocks`，而执行脉冲 CB 链只执行一次，所以用红石比较器结构。
     ![answer_14](./img/c2_command_block/answer_14.png)  
     具体命令不再给出，因为题干并没有明确指定确定的空区域，读者能够理解其中的意思即可。
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

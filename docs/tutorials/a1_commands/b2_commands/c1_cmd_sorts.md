@@ -62,3 +62,7 @@ sidebar_position: 1
 [^7]: 可能涉及相机预设。但脱离附加包该命令也可用。
 [^8]: 可能涉及自定义迷雾。但脱离附加包该命令也可用。
 [^9]: 可能涉及自定义配方。但脱离附加包该命令也可用。
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

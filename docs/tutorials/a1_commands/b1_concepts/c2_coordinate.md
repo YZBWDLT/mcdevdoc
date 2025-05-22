@@ -192,3 +192,7 @@ Minecraft 的坐标以东为 x 轴正方向，以南为 z 轴正方向，而**�
 7. 头朝下并把自己传送到自己视角前方 1 格，观察会传送到哪里？
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

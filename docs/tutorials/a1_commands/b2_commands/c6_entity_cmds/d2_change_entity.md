@@ -231,3 +231,7 @@ spreadplayers <x: value> <z: value> <扩散间距: float> <最大范围: float> 
 5. 为溺尸施加 1 点溺水伤害，为鸡施加 1 点摔落伤害。请通过实验验证哪条命令会执行失败？
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

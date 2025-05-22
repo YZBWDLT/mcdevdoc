@@ -512,3 +512,7 @@ sidebar_position: 6
 :::
 
 [^1]: 事实上编程中不存在无穷大的情况。这个值顶多为一个很大很大的数，例如2,147,483,648。不过，在实际应用中，我们可以认为它就是囊括整个 Minecraft 世界的无穷大。
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

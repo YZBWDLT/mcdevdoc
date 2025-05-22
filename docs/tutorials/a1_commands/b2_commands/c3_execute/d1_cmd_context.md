@@ -86,3 +86,7 @@ sidebar_position: 1
     - 执行朝向：执行命令的朝向。涉及到局部坐标时，和执行者的朝向会有关系。默认为执行者的朝向。
     - 执行维度：执行命令的维度。和执行者的维度会有关系。默认为执行者的维度。
 - `/execute`能够更改执行者和执行环境参数。
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

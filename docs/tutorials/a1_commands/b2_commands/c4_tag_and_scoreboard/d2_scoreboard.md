@@ -73,3 +73,7 @@ sidebar_position: 2
 - 要准确地描述一个被追踪对象的分数，记分项、追踪对象和分数缺一不可。
   - 在本教程系列中，描述`objective`记分项上名为`name`的追踪对象的分数`score`将简写为`objective.name`=`score`。
   - 这并不是*行业惯例*，只是出于简化考虑。
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

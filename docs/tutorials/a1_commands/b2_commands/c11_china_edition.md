@@ -28,3 +28,7 @@ sidebar_position: 11
 1. 利用中国版独有的命令`/enableedunpc true`启用 NPC。当然，这里并没有启用 NPC 的功能，也不允许`/summon`出一个 NPC，它只是允许了 NPC 的存在。
 2. 使用`/give @s spawn_egg 1 51`获得 NPC 的刷怪蛋。将刷怪蛋命名为自己想要的文本，然后将NPC放在地上。
 3. 使用循环型命令方块，执行命令`/playanimation @e[family=npc] animation.creeper.swelling * 99999`，可以看到 NPC 只剩下一个影子，但其上方的名称仍在显示，达成了悬浮文本的效果。
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>
