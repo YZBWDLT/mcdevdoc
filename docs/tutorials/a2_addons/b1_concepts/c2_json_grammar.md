@@ -4,6 +4,9 @@ sidebar_position: 2
 
 # 1.2 JSON 语法基础
 
+import treeview from '/src/css/treeview.css';
+import DataType from "/src/components/DataType"
+
 **在附加包的编写中，我们要时时刻刻跟 JSON 这个东西打交道**。其实这东西已经不是你第一次见了，在模块 1 的物品组件和文本组件中，我们就曾见过 JSON，只是当时我们只给出了一个固定的格式，却从来没有说过为什么要这么写。可以说，学会 JSON 语法是附加包的一个基础门槛，学不会 JSON 语法就无从谈起写附加包。不过好在，JSON 的语法其实是十分简单的——至少它可比`/execute`简单得多。为了满足我们附加包的编写需求，必须要在系统学习附加包之前先学习 JSON 语法。
 
 ## JSON
@@ -22,6 +25,13 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 - **布尔值**（`boolean`）：也就是`true`和`false`。
 - **字符串**（`string`）：用双引号`"`包裹起来的任意文本。在模块 1 我们看到字符串的一些转义方法，例如`\n`、`\\`、`\"`等。通常这些转义方法在附加包领域也已经够用了。
 
+在本教程中，以及中文 Minecraft Wiki 等资料中，对这几种数据类型通常用以下几种记号来标记。
+
+- <DataType dataType="int"/>：代表一个整数（**I**nteger）。
+- <DataType dataType="float"/>：代表一个浮点数（**F**loat）。
+- <DataType dataType="string"/>：代表一个字符串。
+- <DataType dataType="boolean"/>：代表一个布尔值。
+
 ## 键值对
 
 键值对是一种描述属性的方法。例如我们说小明是 15 岁，可以用一个变量赋值`age=15`，代表他是 15 岁。在 JSON 中，我们用**一个键（Key）和一个值（Value）所组成的配对，也就是键值对**来表示这样的属性关系。键的数据类型是一个字符串，而值的数据类型可以是数字、布尔值、字符串，也可以是下面的对象或数组，值的选择范围是很灵活的。
@@ -32,6 +42,12 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 - `"age":15`：键是`"age"`，值是一个数字`15`。
 - `"isAlive":true`：键是`"isAlive"`，值是一个布尔值`true`。
 
+对于上面的键值对，在本站和 Wiki 的文档中这么表示：
+
+- <DataType dataType="string" name="name"/>：代表`"name"`为键，值接受字符串。
+- <DataType dataType="int" name="age"/>：代表`"age"`为键，值接受整数。
+- <DataType dataType="boolean" name="isAlive"/>：代表`"isAlive"`为键，值接受布尔值。
+
 ## 对象`object`
 
 **对象（Object）是一种键值对的集合**，换言之，里面的内容应该是一个个的键值对。**这些键值对的外围，用一个花括号`{}`包裹，并且键值对与键值对之间，需要用逗号分隔**。例如：
@@ -40,7 +56,7 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 {"name":"Steve","age":15,"isAlive":true}
 ```
 
-这就是一个有效的 JSON 了，它是一个对象。这个对象由三个键值对`"name":"Steve"`、`"age":15`、`"isAlive":true`组成，并且这三个键值对中间以逗号分隔。
+这就是一个有效的 JSON 了，它是一个对象。这个对象由三个键值对`"name":"Steve"`、`"age":15`、`"isAlive":true`组成，并且这三个键值对中间以逗号分隔。对象在本站和 Wiki 的记号为<DataType dataType="object"/>。
 
 对象本身也是一种基本数据类型，所以对象也可以成为键值对的值，比如：
 
@@ -49,6 +65,19 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 ```
 
 这同样也是一个有效的 JSON，它是一个对象。这个对象由一个键值对`"playerInfo":{"name":"Steve"}`组成，其中这个键值对的值就是一个对象`{"name":"Steve"}`，由键值对`"name":"Steve"`组成。
+
+对于上面的对象，在本站和 Wiki 的文档中这么表示：
+
+<div class="treeview">
+
+- <DataType dataType="object"/>：根对象
+  - <DataType dataType="object" name="playerInfo"/>
+    - <DataType dataType="string" name="name"/>
+
+<br/>
+</div>
+
+代表根对象下接受一个`playerInfo`，它的值为一个对象，对象内接受一个`name`，它的值为字符串。
 
 ## 换行和空格
 
@@ -114,6 +143,8 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 ```
 
 这里，就是由 4 个值：`"Beijing"`、`"Shanghai"`、`"Guangzhou"`、`"Shenzhen"`所组成的，这 4 个值都是字符串。
+
+数组在本站和 Wiki 的记号为<DataType dataType="array"/>。
 
 同样的，这里的值不仅可以为数字、布尔值、字符串，也可以为对象或者数组。例如：
 

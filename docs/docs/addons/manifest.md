@@ -37,8 +37,6 @@ import DataType from "/src/components/DataType"
 
 :::
 
-该文件为一个对象。可选参数如下。
-
 <div class="treeview">
 
 - <DataType dataType="object"/>：根对象
