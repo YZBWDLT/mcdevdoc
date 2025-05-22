@@ -193,3 +193,57 @@ sidebar_position: 100
 ```
 
 其含有一个`distance`对象，对象中含有一个`water`对象。在这个对象中含有`fog_start`和`fog_end`浮点数，和`fog_color`和`render_distance_type`字符串。
+
+### 练习 1.3-1
+
+1.
+
+```json showLineNumbers title="manifest.json"
+{
+    "format_version": 2,
+    "header": {
+        "name": "实验资源包",
+        "description": "",
+        "uuid": "1eb80b4e-848f-4787-a28f-1058f637c9b3",
+        "version": [ 1, 0, 0 ],
+        "min_engine_version": [ 1, 20, 50 ]
+    },
+    "modules": [
+        {
+            "type": "resources",
+            "uuid": "639d861e-4df0-4194-b3d2-86a04752b6b3",
+            "version": [ 1, 0, 0 ]
+        }
+    ]
+}
+```
+
+2.
+
+```json showLineNumbers title="manifest.json"
+{
+    "format_version": 2,
+    "header": {
+        "name": "实验行为包",
+        "description": "",
+        "uuid": "60d33b76-0916-4943-8f0e-b027603365eb",
+        "version": [ 1, 0, 0 ],
+        "min_engine_version": [ 1, 20, 50 ]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "b02118b3-8fcf-4bba-bf53-dce1d1ae0f3e",
+            "version": [ 1, 0, 0 ]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "1eb80b4e-848f-4787-a28f-1058f637c9b3",
+            "version": [ 1, 0, 0 ]
+        }
+    ]
+}
+```
+
+注意依赖项中的`uuid`应和第一问中定义的资源包的`header`中的`uuid`一致，`version`也是同理的。

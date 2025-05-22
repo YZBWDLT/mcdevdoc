@@ -328,7 +328,6 @@ import TabItem from '@theme/TabItem';
         - <DataType dataType="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
         - <DataType dataType="int" name="1" isRequired/>：代表次版本号。
         - <DataType dataType="int" name="2" isRequired/>：代表修订版本号。
-      - <DataType dataType="string" name="version" isRequired/>：（替代写法）包的版本。应为 [SemVer](https://semver.org/) 约定的版本格式的字符串。
   - <DataType dataType="object" name="metadata"/>：包有关的元数据（例如作者、许可信息等）。
     - <DataType dataType="array" name="authors"/>：本包的作者。
       - <DataType dataType="string" isRequired/>：作者昵称。
@@ -341,7 +340,7 @@ import TabItem from '@theme/TabItem';
 
 <br/></div>
 
-:::info[练习 1.3-2]
+:::info[练习 1.3-1]
 
 1. 写一个清单文件，要求：资源包、随机 UUID、名称为“实验资源包”，描述自定，包版本为 1.0.0、最小引擎版本为 1.20.50 。
 2. 写一个清单文件，要求：行为包、随机 UUID、名称为“实验行为包”，描述自定，包版本为 1.0.0、最小引擎版本为 1.20.50 ，依赖在第 1 问中所编写的资源包。
