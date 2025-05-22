@@ -78,8 +78,8 @@ sidebar_position: 100
   - 在首刻执行：
     - 只能用于循环型命令方块，决定是否在启动后就立刻执行。
 - 常用的命令方块快捷键：
-  - 可以用`Ctrl`+`A`全选、`Ctrl`+`C`复制、`Ctrl`+`V`粘贴。
-  - 可以用`Ctrl`+`鼠标中键`选取带有相同信息的命令方块。
+  - 可以用<kbd>Ctrl</kbd>+<kbd>A</kbd>全选、<kbd>Ctrl</kbd>+<kbd>C</kbd>复制、<kbd>Ctrl</kbd>+<kbd>V</kbd>粘贴。
+  - 可以用<kbd>Ctrl</kbd>+<kbd>鼠标中键</kbd>选取带有相同信息的命令方块。
 
 ## 结构方块、结构空位与命令`/structure`
 
