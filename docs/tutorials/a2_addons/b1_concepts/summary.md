@@ -198,7 +198,7 @@ sidebar_position: 100
 
 1.
 
-```json showLineNumbers title="manifest.json"
+```json showLineNumbers title="manifest_rp.json"
 {
     "format_version": 2,
     "header": {
@@ -220,7 +220,7 @@ sidebar_position: 100
 
 2.
 
-```json showLineNumbers title="manifest.json"
+```json showLineNumbers title="manifest_bp.json"
 {
     "format_version": 2,
     "header": {
