@@ -4,6 +4,9 @@ sidebar_position: 1
 
 # 主包 v3
 
+import treeview from '/src/css/treeview.css';
+import FileType from "/src/components/FileType"
+
 export const Highlight = ({children, color}) => (
   <span
     style={{ backgroundColor: color, borderRadius: '10px', color: '#fff', padding: '10px', cursor: 'pointer', }}
@@ -33,28 +36,33 @@ export const Highlight = ({children, color}) => (
 
 我们必须介绍一下我们的函数包都由什么样的文件结构组成——这是至关重要的，您需要简单了解一下我们各个文件、文件夹都有什么用。
 
-打开`BP/functions/`文件夹，您可以看到 2 个文件夹`system/`、`lib/`和一个`tick.json`。如果看到了您不熟悉的名词（例如时间线），可以在后文看到它们的原理和用法。
+打开<FileType fileType="folder" name="BP/functions"/>，您可以看到 2 个文件夹<FileType fileType="folder" name="system"/>、<FileType fileType="folder" name="lib"/>和一个<FileType fileType="file" name="tick.json"/>。如果看到了您不熟悉的名词（例如时间线），可以在后文看到它们的原理和用法。
 
-- `system/`：**系统函数**，运行最底层的内容。
-  - `main.mcfunction`：**主函数**，通过`tick.json`循环执行的函数。
-  - `timer.mcfunction`：**计时器**，进行时间计时，每刻执行，包括常规计时器和时间线计时器。
-  - `controller/`：**控制器**，用于控制底层函数的执行，*在特定条件下*执行的系统级函数。
-    - `timeline.mcfunction`：**时间线控制器**，当时间线启用后执行的函数。
-- `lib/`：**库函数**，被高频调用的函数。在编写函数的过程中，常常发现一些可能需要不断使用的重复的命令，这时就可以将它们打包为一个库函数。
-  - `get_data/`：**获取数据的函数**，通常进行一些对世界影响不大或者几乎认为无影响的操作，然后将获取到的数据输出到一个记分板变量或标签中。
-    - 虽然没有任何预设文件，但我们在[常用方法合集：获取数据](./useful_methods/get_data)中整合了一些可能有用的方法供你使用。您可以视需求选择性粘贴。
-  - `modify_data/`：**修改数据的函数**，通常进行一些对世界影响较大的操作，或者对玩家执行某些命令，或者强制地修改记分板或标签的值。
-    - `init/`：**初始化函数**，常在地图或模组初始化时执行，但何时执行由您自行指定。
-      - `data.mcfunction`：**数据初始化函数**，用于初始化全局（记分板、标签）变量。
-      - `gamerule.mcfunction`：**游戏规则初始化函数**，用于初始化游戏规则。
-    - `states/`：**修改状态**，用于修改时间线、或者可能涉及状态的内容。
-      - `timeline/`：**修改时间线状态**，例如启用或禁用时间线，启用或禁用时间流逝。
-        - `enable.mcfunction`：**启用时间线**。
-        - `disable.mcfunction`：**禁用时间线**。
-        - `enable_time_lapse.mcfunction`：**启用时间线的时间流逝**。
-        - `disable_time_lapse.mcfunction`：**禁用时间线的时间流逝**。
-        - `keep_value.mcfunction`：**保留时间值**。声明在调用*修改时间线状态*的库函数时，保留时间线的时间值。
-        - `disable_time_lapse.mcfunction`：**不保留时间值**。声明在调用*修改时间线状态*的库函数时，不保留时间线的时间值。
+<div class="treeview">
+
+- <FileType fileType="folder" name="functions"/>：行为包根目录
+  - <FileType fileType="folder" name="system"/>：**系统函数**，运行最底层的内容。
+    - <FileType fileType="file" name="main.mcfunction"/>：**主函数**，通过`tick.json`循环执行的函数。
+    - <FileType fileType="file" name="timer.mcfunction"/>：**计时器**，进行时间计时，每刻执行，包括常规计时器和时间线计时器。
+    - <FileType fileType="folder" name="controller"/>：**控制器**，用于控制底层函数的执行，*在特定条件下*执行的系统级函数。
+      - <FileType fileType="file" name="timeline.mcfunction"/>：**时间线控制器**，当时间线启用后执行的函数。
+  - <FileType fileType="folder" name="lib"/>：**库函数**，被高频调用的函数。在编写函数的过程中，常常发现一些可能需要不断使用的重复的命令，这时就可以将它们打包为一个库函数。
+    - <FileType fileType="folder" name="get_data"/>：**获取数据的函数**，通常进行一些对世界影响不大或者几乎认为无影响的操作，然后将获取到的数据输出到一个记分板变量或标签中。  
+      虽然没有任何预设文件，但我们在[常用方法合集：获取数据](./useful_methods/get_data)中整合了一些可能有用的方法供你使用。您可以视需求选择性粘贴。
+    - <FileType fileType="folder" name="modify_data"/>：**修改数据的函数**，通常进行一些对世界影响较大的操作，或者对玩家执行某些命令，或者强制地修改记分板或标签的值。
+      - <FileType fileType="folder" name="init"/>：**初始化函数**，常在地图或模组初始化时执行，但何时执行由您自行指定。
+        - <FileType fileType="file" name="data.mcfunction"/>：**数据初始化函数**，用于初始化全局（记分板、标签）变量。
+        - <FileType fileType="file" name="gamerule.mcfunction"/>：**游戏规则初始化函数**，用于初始化游戏规则。
+      - <FileType fileType="folder" name="states"/>：**修改状态**，用于修改时间线、或者可能涉及状态的内容。
+        - <FileType fileType="folder" name="timeline"/>：**修改时间线状态**，例如启用或禁用时间线，启用或禁用时间流逝。
+          - <FileType fileType="file" name="enable.mcfunction"/>：**启用时间线**。
+          - <FileType fileType="file" name="disable.mcfunction"/>：**禁用时间线**。
+          - <FileType fileType="file" name="enable_time_lapse.mcfunction"/>：**启用时间线的时间流逝**。
+          - <FileType fileType="file" name="disable_time_lapse.mcfunction"/>：**禁用时间线的时间流逝**。
+          - <FileType fileType="file" name="keep_value.mcfunction"/>：**保留时间值**。声明在调用*修改时间线状态*的库函数时，保留时间线的时间值。
+          - <FileType fileType="file" name="disable_time_lapse.mcfunction"/>：**不保留时间值**。声明在调用*修改时间线状态*的库函数时，不保留时间线的时间值。
+
+<br/></div>
 
 ### 主函数
 

@@ -4,6 +4,9 @@ sidebar_position: 1
 
 # 标记 v2
 
+import treeview from '/src/css/treeview.css';
+import FileType from "/src/components/FileType"
+
 export const Highlight = ({children, color}) => (
   <span
     style={{ backgroundColor: color, borderRadius: '10px', color: '#fff', padding: '10px', cursor: 'pointer', }}
@@ -41,23 +44,27 @@ export const Highlight = ({children, color}) => (
 
 其中可能会出现多个文件冲突。如果在粘贴过程中遇到冲突，**请务必选择跳过这些文件而非覆盖您原有的文件**，并按照下面可能需要修改的文件列表进行选择性粘贴。
 
-- `BP_marker/`：行为包根目录
-  - `entities/`：实体服务端定义
-    - `template/`：（*建议换名*）分类
-      - **`marker.server_entity.json`：标记的行为包定义**
-  - `manifest.json`：（*有冲突风险*）清单文件
-  - `pack_icon.png`：包图标
-- `RP_marker/`：资源包根目录
-  - `entity/`：实体客户端定义
-    - **`marker.client_entity.json`：标记的资源包定义**
-  - `render_controllers/`：渲染控制器
-    - **`marker.render_controllers.json`：标记的渲染控制器**
-  - `texts/`：文本
-    - **`zh_CN.lang`：（*有冲突风险*）中文翻译文本**
-    - **`en_US.lang`：（*有冲突风险*）英文翻译文本**
-  - **`sounds.json`：（*有冲突风险*）音效定义**
-  - `manifest.json`：（*有冲突风险*）清单文件
-  - `pack_icon.png`：包图标
+<div class="treeview">
+
+- <FileType fileType="folder" name="BP_marker"/>：行为包根目录
+  - <FileType fileType="folder" name="entities"/>：实体服务端定义
+    - <FileType fileType="folder" name="template"/>：（*建议换名*）分类
+      - <FileType fileType="file" name="marker.server_entity.json"/>：**标记的行为包定义**
+  - <FileType fileType="file" name="manifest.json"/>：（*有冲突风险*）清单文件
+  - <FileType fileType="image" name="pack_icon.png"/>：包图标
+- <FileType fileType="folder" name="RP_marker"/>：资源包根目录
+  - <FileType fileType="folder" name="entity"/>：实体客户端定义
+    - <FileType fileType="file" name="marker.client_entity.json"/>：**标记的资源包定义**
+  - <FileType fileType="folder" name="render_controllers"/>：渲染控制器
+    - <FileType fileType="file" name="marker.render_controllers.json"/>：**标记的渲染控制器**
+  - <FileType fileType="folder" name="texts"/>：文本
+    - <FileType fileType="file" name="zh_CN.lang"/>：**（*有冲突风险*）中文翻译文本**
+    - <FileType fileType="file" name="en_US.lang"/>：**（*有冲突风险*）英文翻译文本**
+  - <FileType fileType="file" name="sounds.json"/>：**（*有冲突风险*）音效定义**
+  - <FileType fileType="file" name="manifest.json"/>：（*有冲突风险*）清单文件
+  - <FileType fileType="image" name="pack_icon.png"/>：包图标
+
+<br/></div>
 
 ### 合并时可能需要修改的文件
 
