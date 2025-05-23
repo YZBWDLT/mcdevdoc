@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function DataType({ dataType, name, isRequired=false }) {
-    const imgPath = `/img/${dataType}.svg`;
+    const imgPath = `/img/dataType/${dataType}.svg`;
     const requiredIndicator = isRequired ? ( <strong><span className="required-indicator">*</span></strong> ) : null;
     const hasName = name ? ( isRequired ? (<strong><code className="data-type-name">{name}</code></strong>) : (<code className="data-type-name">{name}</code>) ) : null;
 
