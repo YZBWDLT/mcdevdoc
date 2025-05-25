@@ -43,3 +43,7 @@ export const Highlight = ({children, color}) => (
 请注意最小值和最大值都应该是 16 的倍数。
 
 [^1]: [数据驱动的主世界高度和虚空生成](https://learn.microsoft.com/en-us/minecraft/creator/documents/datadrivenoverworldheight?view=minecraft-bedrock-stable)
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

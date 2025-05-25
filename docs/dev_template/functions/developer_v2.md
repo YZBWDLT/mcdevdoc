@@ -331,3 +331,7 @@ execute @s[scores={temp=1}] ~~~ function levels/open/before_opening/start
 您可以在这里下载到过往版本。然而，我们已不再推荐使用这些旧版本。
 
 [<Highlight color="#25c2a0">下载 v1 版本</Highlight>](https://app.nekodrive.net/s/vg2ue)
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

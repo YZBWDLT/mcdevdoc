@@ -158,3 +158,7 @@ camera @a[hasitem={item=diamond,location=slot.weapon.mainhand,quantity=0}] clear
 [<Highlight color="#25c2a0">下载 v1 版本</Highlight>](https://app.nekodrive.net/s/zgGi4)
 
 *备注：v1 版本将同时下载标记和文本展示实体*。
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

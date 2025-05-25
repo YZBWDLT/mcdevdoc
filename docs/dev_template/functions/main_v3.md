@@ -321,3 +321,7 @@ execute if score timeline time matches 101 run function lib/modify_data/states/t
 ## 过往版本下载
 
 [<Highlight color="#25c2a0">下载 v2 版本</Highlight>](https://app.nekodrive.net/s/77Yf5) [<Highlight color="#25c2a0">下载 v1 版本</Highlight>](https://app.nekodrive.net/s/D5Jcm)
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

@@ -58,3 +58,7 @@ export const Highlight = ({children, color}) => (
 ## 更新日志
 
 相比于 v1 版本，新增了对 § 字体的支持
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

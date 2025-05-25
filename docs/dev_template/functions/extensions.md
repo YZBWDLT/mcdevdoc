@@ -1214,3 +1214,7 @@ scoreboard players reset temp.itemTestCraftingTable data
 ```
 
 </details>
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>
