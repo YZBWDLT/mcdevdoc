@@ -239,11 +239,11 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 }
 ```
 
-我们来分析一下。这个 JSON 由一个对象表示，内含一个`rawtext`数组（键为`rawtext`，值为一个数组，就简称`rawtext`数组）。这个数组中有 3 个对象，也就是 3 个文本组件。
+我们来分析一下。这个 JSON 由一个对象表示，内含一个<DataType dataType="array" name="rawtext" isRequired />（键为`"rawtext"`，值为一个数组，就称为`rawtext`数组，标记为<DataType dataType="array" name="rawtext" />；如果右上角标记星号且键名加粗，则代表这个值是必填的）。这个数组中有 3 个对象，也就是 3 个文本组件。
 
-- 第 1 个对象中，包含一个`text`字符串，代表普通文本组件。
-- 第 2 个对象中，包含一个`selector`字符串，代表选择器文本组件。
-- 第 3 个对象中，包含一个`translate`字符串和一个`with`对象，这个对象中是一个新的`rawtext`数组，也就是翻译文本组件。
+- 第 1 个对象中，包含一个<DataType dataType="string" name="text" isRequired />，代表普通文本组件。
+- 第 2 个对象中，包含一个<DataType dataType="string" name="selector" isRequired />，代表选择器文本组件。
+- 第 3 个对象中，包含一个<DataType dataType="string" name="translate" isRequired />和一个<DataType dataType="object" name="with" />，这个对象中是一个新的<DataType dataType="array" name="rawtext" isRequired />，也就是翻译文本组件。
 
 所以，我们便看到在模块 1 中所没有提及到的细节性内容，比如为什么`rawtext`后接的是方括号而不是花括号，正是因为数组和对象之间的差异所导致的。所以，从本节开始，读者应当能够从 JSON 语法的角度出发去理解文本组件，而不应该仅仅局限于模板的套用了。
 
@@ -274,10 +274,10 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 
 可见，这个物品组件中由一个对象表达。对象中含有 4 个键值对：
 
-- `can_place_on`对象，内含一个`blocks`数组，数组内写为各方块的 ID 以代表可以放置的方块。
-- `can_destroy`对象，内含一个`blocks`数组，数组内写为各方块的 ID 以代表可以破坏的方块。
-- `item_lock`对象，内含一个`mode`字符串，代表物品的锁定位置。
-- `keep_on_death`对象，内部不含任何元素。
+- <DataType dataType="object" name="can_place_on" />，内含一个<DataType dataType="array" name="blocks" isRequired />，数组内写为各方块的 ID 以代表可以放置的方块。
+- <DataType dataType="object" name="can_destroy" />，内含一个<DataType dataType="array" name="blocks" isRequired />，数组内写为各方块的 ID 以代表可以破坏的方块。
+- <DataType dataType="object" name="item_lock" />，内含一个<DataType dataType="string" name="mode" isRequired />，代表物品的锁定位置。
+- <DataType dataType="object" name="keep_on_death" />，内部不含任何元素。
 
 和文本组件一样，我们同样要求读者能够从 JSON 语法的角度出发去理解物品组件，而不应仅仅局限于模板的套用。
 
@@ -581,31 +581,58 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 
 - **数字**（`number`）：包括整数`int`和浮点数`float`，例如：`3`、`-1`、`1.5`、`0.0`。
   - 虽然 JSON 中并不区分整数和浮点数，但是在实际运用中常常还是要注意区分。
+  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="int" />代表整数，<DataType dataType="float" />代表浮点数。
 - **布尔值**（`boolean`）：`true`和`false`。
+  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="boolean" />代表布尔值。
 - **字符串**（`string`）：用双引号`"`包裹起来的任意文本。
   - 有一些转义方法，例如`\n`、`\\`、`\"`等在 JSON 中是适用的。
+  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="string" />代表字符串。
 - **对象**（`object`）：用花括号（`{}`）包裹起来的**键值对的集合**。
   - **键值对**是由一个**键**（Key）和一个**值**（Value）配对组成的。
     - 格式为`key:value`。
     - `key`必须是一个字符串，代表对象的属性。
     - `value`可以是 JSON 中的任意的数据类型。
   - 键值对之间必须用逗号`,`分隔。
+  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="object" />代表对象。
 - **数组**（`array`）：用方括号（`[]`）包裹起来的**值的集合**。
   - 值之间必须用逗号`,`分隔。
+  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="array" />代表数组。
 
 ### 命令中的 JSON
 
 - 文本组件：由一个对象组成。其中的内容为：
-  - `rawtext`数组，数组由多个对象组成。对象允许的内容为：
-    - `text`字符串，为普通文本组件。
-    - `selector`字符串，为选择器文本组件。
-    - `score`对象，内含`objective`字符串和`name`字符串，为分数文本组件。
-    - `translate`字符串和`with`数组或`with`对象，其中`with`对象的内容为`rawtext`数组，为翻译文本组件。
+  <div class="treeview">
+  - <DataType dataType="object" />：根对象
+    - <DataType dataType="array" name="rawtext" isRequired />：代表一个原始 JSON 文本，允许以下 4 种组件。至少应指定一种组件。
+      - <DataType dataType="object" />：代表一个普通文本组件（Text）。
+        - <DataType dataType="string" name="text" isRequired />：显示为写入的文本。
+      - <DataType dataType="object" />：代表一个选择器文本组件（Selector）。
+        - <DataType dataType="string" name="selector" isRequired />：填入目标选择器。显示为符合选择器的实体的名称。
+      - <DataType dataType="object" />：代表一个分数文本组件（Score）。
+        - <DataType dataType="object" name="score" isRequired />：显示为特定目标的分数。
+          - <DataType dataType="string" name="objective" isRequired />：填入该目标的记分项。
+          - <DataType dataType="string" name="name" isRequired />：填入该目标的名称或特定的目标选择器。
+      - <DataType dataType="object" />：代表一个翻译文本组件（Translate）。
+        - <DataType dataType="string" name="translate" isRequired />：要翻译的文本或翻译的键名。
+        - <DataType dataType="array" name="with" />：（写法 1）代入的格式化文本。
+        - <DataType dataType="object" name="with" />：（写法 2）代入的格式化文本。
+          - <DataType dataType="array" name="rawtext" isRequired />：代表一个原始 JSON 文本。允许以上 4 种组件。至少应指定一种组件。
+            - ……
+  </div>
+  - 但事实上，文本组件的 JSON 语法树要更复杂一些。更通用的情况可见[文本组件 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/文本组件#基岩版)。
 - 物品组件：由一个对象组成。其中允许的内容为：
-  - `can_place_on`对象：接受一个`blocks`数组，数组内接受方块 ID，表示可放置到的方块。
-  - `can_destroy`对象：接受一个`blocks`数组，数组内接受方块 ID，表示可破坏的方块。
-  - `item_lock`对象：接受一个`mode`字符串，代表物品锁定方法。
-  - `keep_on_death`对象：不接受任何元素即可生效。
+  <div class="treeview">
+  - <DataType dataType="object" />：根对象，允许以下 4 种组件，至少应指定一种。
+    - <DataType dataType="object" name="can_place_on" />：可放置到的方块。可添加`minecraft:`命名空间。
+      - <DataType dataType="array" name="blocks" isRequired />
+        - <DataType dataType="string" isRequired />：填入方块 ID，代表物品可放置到的方块。
+    - <DataType dataType="object" name="can_destroy" />：可破坏的方块。可添加`minecraft:`命名空间。
+      - <DataType dataType="array" name="blocks" isRequired />
+        - <DataType dataType="string" isRequired />：填入方块 ID，代表物品可破坏的方块。
+    - <DataType dataType="object" name="item_lock" />：物品锁定方法。可添加`minecraft:`命名空间。
+      - <DataType dataType="string" name="mode" isRequired />：仅允许`"lock_in_inventory"`、`"lock_in_slot"`，表示物品锁定方法
+    - <DataType dataType="object" name="keep_on_death" />：物品在死亡后保留。可添加`minecraft:`命名空间。
+  </div>
 
 ### 常见错误
 
