@@ -361,7 +361,7 @@ hasitem={item=<物品: Item>,quantity=[数量: integer range],location=[槽位�
 - `quantity`：**指代要检测的物品的数目，可选**。它接受`integer range`类型，也就是我们曾经讲过的范围表达。
   - 例如，`@a[hasitem={item=diamond,quantity=5..10}]`就找到有 5~10 颗钻石的玩家。
   - 如果不指定的话，只要有这个物品就检测通过，可以认为默认值是`1..`。
-  - 特别地，**指代`quantity`为`0`就找到没有这个物品的玩家**。例如`@a[hasitem={item=diamond,quantity=5..10}]`就找到没有钻石的玩家。
+  - 特别地，**指代`quantity`为`0`就找到没有这个物品的玩家**。例如`@a[hasitem={item=diamond,quantity=0}]`就找到没有钻石的玩家。
 - `location`：**指代要检测的物品所在的槽位，可选**。它接受`EntityEquipmentSlot`类型，这是我们刚学过的`槽位类型`的表达。
   - *所以不要觉得我们没有列出来的东西就是非重点哦\~通常我们给出Wiki链接就是让你自学相关内容的，也是重要的内容。如果你没有看的话，建议还是点开那个Wiki链接看看为好哦*。
   - 例如，`@a[hasitem={item=diamond_helmet,location=slot.armor.head}]`就找到戴着钻石头盔的玩家。这里要求玩家不光光只是拥有钻石头盔，必须是戴着才能检查通过。
