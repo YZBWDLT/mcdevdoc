@@ -285,7 +285,7 @@ time set 6000
 
 ---
 
-## 总结与练习
+## 总结
 
 本节，我们主要介绍了一些操作世界的命令，尤其是`/gamerule`和`/tickingarea`是需要重点关注的命令。
 
@@ -304,6 +304,8 @@ time set 6000
 需要注意，常加载区域最多只能添加 10 个，并且每次添加常加载区域的区块数量不能超过 100 个。
 
 在 2.2 中学习过的命令不再列出；扩展章节的命令（例如`/alwaysday`）亦不列出，仅要求简单了解，不必完全掌握。
+
+## 练习
 
 :::info[练习 2.5]
 
@@ -324,6 +326,31 @@ time set 6000
 5. 写 1 条命令，假设该命令每游戏刻执行一次，要求其在现实世界的 10 秒内就迅速流逝游戏内的一天。提示：用`/time add`。
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. 下面的命令，游戏规则写为全小写也是正确的，因为基岩版并不区分大小写。
+   1. `/gamerule keepInventory true`
+   2. `/gamerule doDayLightCycle false`和`/gamerule doWeatherCycle false`
+   3. `/gamerule doMobSpawning false`和`/gamerule mobGriefing false`
+   4. `/gamerule tntExplodes false`
+   5. `/gamerule doMobLoot false`和`/gamerule doEntityDrops true`
+   6. `/gamerule doImmediateRespawn true`
+   7. `/gamerule showCoordinates true`和`/gamerule showDaysPlayed true`
+   8. `/gamerule fallDamage false`、`/gamerule drowningDamage false`、`/gamerule fireDamage false`和`/gamerule freezeDamage true`
+   9. `/gamerule sendCommandFeedBack false`
+   10. `/mobevent minecraft:wandering_trader_event false`
+2. `/execute in nether run tickingarea add 50 0 50 90 0 90 example`
+3. `/execute if score level data matches 24 run difficulty easy`
+4. 1. `/scoreboard players random weather data 1 3`
+   2. `/execute if score weather data matches 1 run weather clear`
+   3. `/execute if score weather data matches 2 run weather rain`
+   4. `/execute if score weather data matches 3 run weather thunder`
+5. `/time add 120`，因为一天为 24000 游戏刻，10 秒为 200 游戏刻，所以每一个游戏刻都要让世界时间加快 24000/200=120 游戏刻。
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

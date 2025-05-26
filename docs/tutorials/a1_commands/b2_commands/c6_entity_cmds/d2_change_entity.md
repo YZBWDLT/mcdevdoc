@@ -208,7 +208,7 @@ spreadplayers <x: value> <z: value> <扩散间距: float> <最大范围: float> 
 
 ---
 
-## 总结与练习
+## 总结
 
 这一节我们学习了一些更改实体属性的命令，其中以触发生成事件`/event`、施加状态效果`/effect`和施加特定伤害`/damage`为重点。让我们来回顾一下它们的语法：
 
@@ -222,6 +222,8 @@ spreadplayers <x: value> <z: value> <扩散间距: float> <最大范围: float> 
 
 其他本节提到的命令，仅要求简单了解，不要求完全掌握。如果你有需求，可以自行查阅 Wiki 学习。
 
+## 练习
+
 :::info[练习 2.6-2]
 
 1. 使用`/event`，令所有苦力怕立刻开始爆炸！
@@ -231,6 +233,20 @@ spreadplayers <x: value> <z: value> <扩散间距: float> <最大范围: float> 
 5. 为溺尸施加 1 点溺水伤害，为鸡施加 1 点摔落伤害。请通过实验验证哪条命令会执行失败？
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. `/event entity @e[type=creeper] minecraft:start_exploding`或`/event entity @e[type=creeper] minecraft:start_exploding_force`  
+   嗯……我是不会告诉你我其实是个熊孩子的！（资源包为 Actions&Stuff）  
+   ![event_3](./../img/c6_entity_cmds/event_3.png)
+2. `/execute as @a at @s if entity @a[rm=0.01,r=1] run effect @s invisibility 1 0 true`
+3. `/effect @a instant_health 5 100 true`和`/damage @a 15`
+4. `/effect @a clear poison`和`/effect @a poison 0 100 true`
+5. `/damage @e[type=drowned] 1 drowning`和`/damage @e[type=chicken] 1 fall`，其中对鸡的伤害是无效的。失败原因在模块 2 会详细说明——这是由`minecraft:damage_sensor`组件决定的。
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

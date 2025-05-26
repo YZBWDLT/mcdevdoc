@@ -573,7 +573,7 @@ fog <玩家: target> <pop|remove> <用户提供ID: string>
 
 ---
 
-## 总结与练习
+## 总结
 
 这一节终于要结束啦！我们再来回顾一下这一节所学习的知识。这一节，我们主要讲了相机命令`/camera`、及其相关命令（例如`/camerashake`和`/fog`（非重点）），此外还学习了`/hud`。在这些命令中，唯独`/camera`是比较难的，所以我们在这里为你专门总结一下`/camera`的语法结构和用法。
 
@@ -648,6 +648,8 @@ camera <玩家> remove_target
 | `/camerashake stop [玩家: target]` | 立刻停止`玩家`的视角摇晃 | |
 | `/hud <玩家: target> <hide\|reset> [HUD元素: HudElement]` | 隐藏或恢复`玩家`的`HUD元素` | |
 
+## 练习
+
 :::info[练习 2.9-2]
 
 1. 播放一个 RGB 组合为(11,45,14)，淡入 1 秒，保持 9 秒，淡出 1 秒的`/camera`转场（喜）
@@ -668,6 +670,28 @@ camera <玩家> remove_target
     ```
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. `/camera @s fade time 1 9 1 color 11 45 14`，注意`time`必须写在`color`前面，别被这条命令臭懵了。>:)
+2. `/camera @s set minecraft:third_person`
+3. `/camera @s set minecraft:free ease 3 in_out_sine pos 17 -24 89 facing 17 -24 95`
+4. `/camera @s set minecraft:free ease 3 in_quad pos 17 -24 89 rot 90 0`
+5. `/camera @s set minecraft:free ease 3 linear pos 17 -24 89 facing 17 -60 89`
+6. `/camerashake @s 1 6 rotational`
+7. `/hud @s hide health`
+
+8. ```text title="每游戏刻执行，命令条数要求固定" showLineNumbers
+   execute if score timeline time matches 1060 run camera @a set minecraft:free ease 3 in_out_quad pos -237 33 130 facing -247 35 130
+   execute if score timeline time matches 1420 as @a at @s anchored eyes run camera @a set minecraft:free ease 3 in_out_quad pos ^^^0.5 facing ^^^1
+   execute if score timeline time matches 1460 run camera @a clear
+   execute if score timeline time matches 1460 run inputpermission set @a camera enabled
+   execute if score timeline time matches 1460 run inputpermission set @a movement enabled
+   ```
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

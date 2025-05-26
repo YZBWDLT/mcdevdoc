@@ -73,7 +73,7 @@ import FileType from "/src/components/FileType"
 
 理清了游戏数据文件夹之后，我们就可以正式开始构建我们的第一个包了！我们这里先做**全局**的附加包，关于地图特制的附加包的话，处理方法我们稍后就会介绍。
 
-在上一节，我们布置了两道习题，读者如果还没有做的话，请先去做一下哦。答案在本章小结中。
+在上一节，我们布置了两道习题，读者如果还没有做的话，请先去做一下哦。答案在上一节练习末尾已经给出。
 
 1. 现在，我们先在全局的<FileType fileType="folder" name="development_behavior_packs"/>下创建一个新的文件夹<FileType fileType="folder" name="BP_test"/>。
 2. 然后再把上一节练习中创建的`manifest_bp.json`放到该文件夹下，并重命名为`manifest.json`。你的文件路径应该如下图所示：
@@ -354,7 +354,7 @@ import FileType from "/src/components/FileType"
 
 ---
 
-## 总结与练习
+## 总结
 
 在这一节中，我们介绍了如何在 Minecraft 中创建并导入我们的附加包。我们来回顾一下本节的内容：
 
@@ -413,8 +413,14 @@ import FileType from "/src/components/FileType"
 
 做附加包开发的话，使用电脑和 VSC 会使得我们的开发变得易上手许多，所以如果读者有条件的话，请尽可能地在电脑上进行开发。虽然手机上也可以做，但确实门槛稍高，而且处处都充满了不便。在未来的教程中，我们就不再强调手机与电脑上编程的差异了（因为差异基本都体现在环境和编辑软件上）。
 
+## 练习
+
 :::info[练习 1.3-2]
 
 根据你的实际情况，选择一个最适合的导入方法导入一个行为包和一个资源包。
 
 :::
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>

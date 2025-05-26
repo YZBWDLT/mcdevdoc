@@ -101,12 +101,14 @@ sidebar_position: 3
 
 ---
 
-## 总结与练习
+## 总结
 
 - 实体包括在 Minecraft 中所有动态的、移动中的对象。简单来说，实体是生物与部分特殊动态移动对象的集合，实体就是广义概念上的生物。
 - 实体 ID 是为了在代码中表示这个实体的种类而设置的唯一标识符。绝大部分的实体 ID 都是其英文名改写来的，即：全小写后再将中间的空格改为下划线。但是，少数实体因为历史原因，其 ID 与其英文名并不完全一致。
 - `/summon <实体：EntityType>`是一条可以在执行者的位置生成`实体`的命令，其中`<实体>`的类型是`EntityType`，因此可以填入实体 ID。
 - `/summon`不能生成一切的实体，因为部分实体被设置为不可生成。
+
+## 练习
 
 :::info[练习 1.3]
 
@@ -115,6 +117,16 @@ sidebar_position: 3
 3. 已知命令方块矿车的 ID 为`command_block_minecart`，请试图生成之。如果你不了解什么是命令方块，先不要紧，把它扔在那里就行。
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. ID 为`lightning_bolt`，生成闪电束为`/summon ligtning_bolt`
+2. ID 为`end_crystal`，生成末地水晶为`/summon end_crystal`
+3. `/summon command_block_minecart`
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

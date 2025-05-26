@@ -78,12 +78,14 @@ sidebar_position: 4
 
 ---
 
-## 总结与练习
+## 总结
 
 - 命令中的物品概念，专门指代物品栏中的物品。
 - 物品 ID 与实体 ID 类似，都是为了在代码中表示这个物品的种类而设置的唯一标识符。绝大部分的物品 ID 也都是其英文名改写来的。少数物品因为历史原因，其 ID 与其英文名并不完全一致。
 - `/give <玩家: target> <物品: Item>`是一条可以给予`玩家` 1 个`物品`，其中`玩家`的类型是`target`，可以填写为玩家昵称；`物品`的类型是`Item`，可以填入物品 ID。
 - `/give`命令能够给予创造模式物品栏中所不存在的物品，但是仍然有部分物品是不能`/give`的。
+
+## 练习
 
 :::info[练习 1.4]
 
@@ -92,6 +94,16 @@ sidebar_position: 4
 3. 然后再给你自己一个钻石块吧！该物品的命名规律不满足一般命名规律，试着先打一个`diamond`然后找找看它的 ID。
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. `/give "你的昵称" diamond`
+2. `/give "你的昵称" barrier`
+3. `/give "你的昵称" diamond_block`
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

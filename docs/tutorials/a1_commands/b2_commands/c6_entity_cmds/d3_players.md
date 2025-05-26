@@ -152,7 +152,7 @@ l=<最大经验等级: int>,lm=<最小经验等级: int>
 
 ---
 
-## 总结与练习
+## 总结
 
 ### 一些温馨小提示
 
@@ -192,6 +192,8 @@ l=<最大经验等级: int>,lm=<最小经验等级: int>
 | `l=<最大经验等级: int>` | **L**evel | 检查经验等级小于等于`最大经验等级`的玩家 | 玩家数据 | |
 | `lm=<最小经验等级: int>` | **M**inimum **L**evel | 检查经验等级大于等于`最小经验等级`的玩家 | 玩家数据 | |
 
+## 练习
+
 :::info[练习 2.6-3]
 
 1. 当玩家靠近(0,-60,0)之后则阻止其移动和视角变换，并且使其面向最近的一个村民。假设你写的命令均只执行一次。
@@ -211,6 +213,30 @@ l=<最大经验等级: int>,lm=<最小经验等级: int>
 7. （选做，如果不熟悉`/spreadplayers`的用法可以在上一节或 Wiki 中查询）原理上讲，如果不考虑区块加载的问题，你能用`/spreadplayers`和`/setworldspawn`联合实现类似于 RLCraft 整合包中的随机出生点的效果吗？
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. 1. `/execute as @a[x=0,y=-60,z=0,r=2] run inputpermission set @s movement disabled`
+   2. `/execute as @a[x=0,y=-60,z=0,r=2] run inputpermission set @s camera disabled`
+   3. `/execute as @a[x=0,y=-60,z=0,r=2] at @s run tp @s ~~~ facing @e[type=villager,c=1]`
+2. `/scoreboard players set @a[haspermission={sneak=disabled}] state 0`
+3. `/execute as @a[x=0,y=26,z=0,r=2] if score allowCheat data matches 0 run gamemode adventure @s`
+4. 1. `/xp 1L @a[hasitem={item=iron_ingot}]`、`/clear @a[hasitem={item=iron_ingot}] iron_ingot -1 1`
+   2. `/execute as @p run give @s[lm=400] diamond_sword`、`/execute as @p run xp -400L @s[lm=400]`，套一个`/execute as @p`的主要理由是，`@p[lm=400]`会直接找到最近的经验等级为 400 的玩家，而不是检查最近的玩家是否拥有 400 经验。
+5. 1. `/gamerule doImmediateRespawn true`、`/spawnpoint @a 0 100 0`
+   2. `/tag @a remove isAlive`、`/tag @e[type=player] add isAlive`、`/scoreboard players set @a[tag=!isAlive,scores={team=1}] respawn 100`、`/gamemode spectator @a[tag=!isAlive,scores={team=1}`
+   3. `/scoreboard players remove @a[scores={team=1,respawn=1..}] respawn 1`（注意写为`respawn=1..`，因为题干要求是大于而非大于等于）
+   4. `/tp @a[scores={team=1,respawn=0},m=spectator] 30 60 30`、`/gamemode adventure @a[scores={team=1,respawn=0},m=spectator]`（注意`gamemode`写在后面，否则条件的变更会导致`tp`执行失败）
+6. `/setworldspawn 0 -60 0`
+7. 1. `/summon armor_stand "setworldspawn"`
+   2. `/spreadplayers 0 0 0 10000 @e[type=armor_stand,name=setworldspawn]`
+   3. `/execute as @e[type=armor_stand,name=setworldspawn] at @s run setworldspawn ~~~`
+
+   但是，这个原理实际上无法奏效，因为区块未加载时也同样检测不到符合要求的实体。这个思路仍需优化才能实际应用。
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

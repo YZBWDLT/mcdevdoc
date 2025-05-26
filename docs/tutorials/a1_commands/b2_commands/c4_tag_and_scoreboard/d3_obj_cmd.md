@@ -216,7 +216,7 @@ sidebar_position: 3
 
 ---
 
-## 总结与练习
+## 总结
 
 本节，我们学习了操作记分项的 5 条命令。现在让我们一起来回顾一下：
 
@@ -236,6 +236,8 @@ sidebar_position: 3
 - 在创建记分项时，需要注意`记分项`为了不影响正常运行和便于后续大量调用，命名应当采用驼峰命名法（例：`isOnline`）或下划线命名法（例：`is_online`），除非有必要使用其他方法命名。
   - 本教程系列，记分项均采用驼峰命名法。
 
+## 练习
+
 :::info[练习 2.4-2]
 
 1. 创建一个**显示名**为“时间数据”的记分项，采用驼峰命名法命名`记分项`。可以考虑“Time”、“Time Data”等字眼。注意：不要直接把`记分项`命名为“时间数据”！
@@ -243,6 +245,16 @@ sidebar_position: 3
 3. 在上一题的基础上，移除这个记分项。
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. `/scoreboard objectives add time dummy "时间数据"`或`/scoreboard objectives add timeData dummy "时间数据"`
+2. `/scoreboard objectives setdisplay sidebar time`或`/scoreboard objectives setdisplay sidebar timeData`
+3. `/scoreboard objectives remove time`或`/scoreboard objectives remove timeData`
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

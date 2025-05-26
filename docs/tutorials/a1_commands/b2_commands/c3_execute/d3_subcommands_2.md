@@ -82,6 +82,14 @@ sidebar_position: 3
 
 将`if entity @e[type=wolf,r=5]`和`as @e[type=sheep] at @s`调换，将得到完全不同的结果。试自行分析该命令的含义和两条命令之间的不同。
 
+<details>
+
+<summary>答案（思考过后再翻看哦~）</summary>
+
+调换后，命令成为`/execute if entity @e[type=wolf,r=5] as @e[type=sheep] at @s run say §c快跑！狼来了！`，将以原执行者（也就是玩家）的位置为基准检查附近 5 格是否存在狼，如果检查到玩家附近有狼就令所有羊执行`/say`命令。可以看到，执行效果还是很不一样的。
+
+</details>
+
 :::
 
 ## 检测方块的子命令：`<if|unless> block`
@@ -189,7 +197,7 @@ sidebar_position: 3
 
 ---
 
-## 总结与练习
+## 总结
 
 在本小节，我们学习了`/execute`的两条条件子命令和它们的 3 个检测项目。
 
@@ -209,6 +217,8 @@ sidebar_position: 3
 | `<if\|unless> blocks <起点: x y z> <终点: x y z> <目标点: x y z> <扫描模式: all\|masked> -> execute` | 检查`起点`与`终点`确定的长方体区域的所有（或除空气外的）方块是否与`目标点`确定的长方体区域一致 | 会同时检查容器、告示牌等特定方块的数据是否完全一致 |
 
 `if score`，是我们在 2.4 中要进一步学习的内容。
+
+## 练习
 
 :::info[练习 2.3-2]
 
@@ -234,6 +244,23 @@ sidebar_position: 3
 7. 在地图《冒险世界：筑梦》中，有一种道具为「御风珠」，当它砸中淡蓝色带釉陶瓦时，则会将所有玩家传送到附近。现在我们简化这个需求，假设有一个淡蓝色带釉陶瓦位于(-244,32,23)，当检测到该位置附近 2 格内有雪球时，则传送所有玩家到该陶瓦下方 3 格，并面向正北方。试写出此命令。
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. `/execute if blocks -1 22 85 -1 22 85 10 5 7 all unless entity @e[type=item] if entity @e[type=skeleton] unless entity @a[hasitem={item=skeleton_spawn_egg}] run say 恭喜你获取进度！`  
+  其中，`if blocks`写为`10 5 7 10 5 7 -1 22 85`也是正确的。
+2. `/execute if block 73 0 -64 green_wool run say 恭喜你们获取了绿色羊毛，你离通关更近了一步！`
+3. `/execute as @a at @s if block ~~-1~ red_concrete run kill @s`
+4. `/execute if blocks 0 0 0 30 20 30 10000 0 10000`，答案合理即可。注意检测点的最高高度不得高于 300，因为该检测区域高达 20 格。
+5. 命令 1：`/execute positioned 0 -60 0 if entity @a[r=2,hasitem={item=tripwire_hook}] run setblock 0 -61 0 redstone_block`  
+  命令 2：`/execute positioned 0 -60 0 as @a[r=2,hasitem={item=tripwire_hook}] run clear @s tripwire_hook`  
+  答案不唯一，合理即可。
+6. `/execute if blocks -50 19 92 -50 19 92 -54 10 87 if block 19 22 7 cyan_terracotta run say [C3]通过本关后将获得纪念品[金锭]`
+7. `/execute positioned -244 32 23 if entity @e[r=2,type=snowball] run tp @a ~~-2~ 180 0`
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

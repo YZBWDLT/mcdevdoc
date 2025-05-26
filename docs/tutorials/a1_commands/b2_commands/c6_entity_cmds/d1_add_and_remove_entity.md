@@ -47,6 +47,16 @@ sidebar_position: 1
 
 你能看出这是使用了哪个语法吗？试分析这条命令的含义。
 
+<details>
+
+<summary>答案（思考过后再翻看哦~）</summary>
+
+显然，这是使用了第一个语法`/summon <实体: EntityType> <名称: string> [生成位置: x y z]`，因为其他命令的第二个参数类型都是`x y z`，而`"a"`是一个`string`。
+
+所以，这条命令是，在执行者的位置生成一个名为“a”的盔甲架。
+
+</details>
+
 :::
 
 :::note[扩展：`/summon`的旧语法]
@@ -90,7 +100,7 @@ sidebar_position: 1
 
 ---
 
-## 总结与练习
+## 总结
 
 本节我们重点学习了`/summon`的其他语法，了解了如何使用`/summon`生成特定名称、特定位置和特定朝向的实体，并能够通过调用生成事件来改变实体的属性。现在让我们一起来回顾一下它的语法：
 
@@ -103,6 +113,8 @@ sidebar_position: 1
 
 其中，生成事件的表可以在 [Wiki](https://zh.minecraft.wiki/w/生成事件) 中找到。`[生成事件: string]`的默认值是`minecraft:entity_spawned`，允许调用实体不支持的事件，但这也会导致`minecraft:entity_spawned`不被调用，使实体的运行出现问题。
 
+## 练习
+
 :::info[练习 2.6-1]
 
 1. 在(0,0,0)处生成一个名为playerAmount的盔甲架，并使用该盔甲架在`data`上的分数记录玩家人数。和假名进行对比，你认为哪种方法更加便捷？
@@ -111,6 +123,31 @@ sidebar_position: 1
 4. 写两条命令，在名为`spawner`的盔甲架处生成 1 只苦力怕，然后清除`spawner`。
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. 命令如下。高亮部分为假名的写法。和假名对比，还是假名更加便捷一些，然而如果要调用分数的时候，则将数据存储在实体上可能会具有独特的优势。
+
+```mcfunction showLineNumbers {4-5}
+/summon armor_stand playerAmount 0 0 0
+/scoreboard players set @e[name=playerAmount,type=armor_stand] data 0
+/execute as @a run scoreboard players add @e[name=playerAmount,type=armor_stand] data 1
+/scoreboard players set playerAmount data 0
+/execute as @a run scoreboard players add playerAmount data 1
+```
+
+2. `/summon villager ~~~~~ minecraft:spawn_librarian`
+3. `/summon tnt ~~~~~ from_explosion`
+4. 命令如下。
+
+```mcfunction showLineNumbers
+/execute as @e[name=spawner,type=armor_stand] at @s run summon creeper ~~~
+/kill @e[name=spawner]
+```
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

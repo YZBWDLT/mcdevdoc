@@ -149,7 +149,7 @@ sidebar_position: 3
 
 ---
 
-## 总结与练习
+## 总结
 
 恭喜你！在学习完这一节之后，不光是了解了所有特效命令，你此时**也已经建立了一套相对完整的命令体系，基本上常用的命令你已经都很熟悉了**。在 2.10 以及后续的教程中，我们会渐渐了解那些我们还没有讲过的更*高级*一些的命令，也就是和附加包联动的命令。此外，我们在后面也将要学到红石系统、结构方块和最重要的命令方块，有了这些东西，你就可以真正地开始投入到项目（尤其是地图）的开发中去了！
 
@@ -166,6 +166,8 @@ sidebar_position: 3
 | `/music stop [淡出秒数: float]` | 以`淡出秒数`秒淡出停止音乐 | |
 | `/music volume <音量: float>` | 调整音乐的音量为`音量` | |
 | `/particle <粒子效果: string> [位置: x y z]` | 在`位置`释放`粒子` | |
+
+## 练习
 
 :::info[练习 2.9-3]
 
@@ -192,6 +194,31 @@ sidebar_position: 3
 5. 在雪球经过的路径上播放末地烛的粒子效果。每游戏刻循环执行。
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. ```text showLineNumbers
+   scoreboard players add sound time 1
+   execute if score sound time matches 3 as @a at @s run playsound random.orb @s ~~~
+   ```
+
+   必须加`as @a at @s`，如果只写为`... matches 3 run playsound ... @a ~~~`视为错误。读者可自行分析其中缘由。
+
+2. `playsound beacon.activate`
+3. `playsound random.glass`
+
+4. ```text showLineNumbers
+   playsound random.explode @a 10 10 10
+   particle minecraft:huge_explosion_emitter 10 10 10
+   ```
+
+   使用的粒子合理即可，但必须经过游戏内验证。
+
+5. `/execute as @e[type=snowball] at @s run particle minecraft:endrod`
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

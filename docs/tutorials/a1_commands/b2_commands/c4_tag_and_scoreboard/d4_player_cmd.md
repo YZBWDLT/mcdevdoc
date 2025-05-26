@@ -372,7 +372,7 @@ sidebar_position: 4
 
 ---
 
-## 总结与练习
+## 总结
 
 本节，我们学习了如何操作追踪对象的分数，主要涉及到增加、减少、设定、随机和复杂运算等操作。让我们一起来回顾一下这一节的内容吧！
 
@@ -405,6 +405,8 @@ sidebar_position: 4
 | `<` | 左右取小赋给左边 | 分数 1 = min(分数 1, 分数 2) | |
 | `><` | 左右分数对调 | 分数 1和分数 2 对调 | 唯一能影响分数 2 的运算 |
 
+## 练习
+
 :::info[练习 2.4-3]
 
 再次强调：在本教程系列中为了表述方便，我们把`objective`记分项上名为`name`的追踪对象的分数`score`，简写为`objective.name`=`score`。
@@ -436,6 +438,88 @@ sidebar_position: 4
     2. 对于`data.gameId`=3456，输出`data.singleDigit`=6，`data.decimalDigit`=5，`data.hundredthDigit`=34
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. `/execute if entity @a[tag=isAlive] if entity @a[tag=isInNether] run scoreboard players set advTemp data 0`
+2. `/scoreboard players add tick time 1`
+3. `/scoreboard players random luckyBlockEvent data 1 47`，只要范围内的数为 47 个即可。如果从 0 开始，应设置为`0 46`。
+4. 1. `/scoreboard players add @a isOnline 0`  
+   2. `/scoreboard players remove * isOnline`，**注意实际工程中一定要指代`isOnline`，否则将波及到其他记分板**！  
+   3. `/scoreboard players set @a isOnline 1`  
+   4. 退出重进玩家的`isOnline.@s`=`0`，应在第一条命令执行后执行该命令，因为在后两条命令中，将会影响所有玩家，使筛选出的分值的信息丢失。  
+5. `/scoreboard players operation x data *= x data`
+6. 1. `/scoreboard players operation x data += x data`  
+   2. 不能用一条命令实现。可以用两条命令实现之：  
+      1. `/scoreboard players set const10 data 10`
+      2. `/scoreboard players operation x data *= const10 data`
+7. 1. `/scoreboard players operation c data = a data`
+   2. `/scoreboard players operation c data += b data`
+8. 1. `/execute as @a at @s if block 0 -64 0 bedrock if block 0 128 0 air run scoreboard players set @s dimension 0`
+   2. `/execute as @a at @s if block ~~-1~ netherrack run scoreboard players set @s dimension 1`
+   3. `/execute as @a in the_end if entity @s[rm=0] run scoreboard players set @s dimension 2`
+
+   显然，第 3 种原理更好，因为它不需要依靠任何外部条件（即世界中的方块），它们随时可能会被更改导致检测出现偏差。
+9. `/execute if entity @a[tag=teamRed,hasitem={item=emerald}] run scoreboard players operation @r[tag=teamRed] data >< @r[tag=teamBlue] data`
+10. `/scoreboard players operation teamRed teamScore -= teamBlue bedAmount`
+11. 题目中出现了 3 个常数：3、-5和 100，先分别定义之：  
+
+   ```mcfunction showLineNumbers
+   /scoreboard players set const3 data 3
+   /scoreboard players set const-5 data -5
+   /scoreboard players set const100 data 100
+   ```
+
+   然后，分别计算第一项、第二项和第三项：
+
+   ```mcfunction showLineNumbers
+   /scoreboard players operation firstTerm data = x data
+   /scoreboard players operation firstTerm data *= firstTerm data
+   /scoreboard players operation firstTerm data *= firstTerm data
+   /scoreboard players operation firstTerm data *= const3 data
+
+   /scoreboard players operation secondTerm data = x data
+   /scoreboard players operation secondTerm data *= const-5 data
+
+   /scoreboard players operation thirdTerm data = const100 data
+   /scoreboard players operation thirdTerm data /= x data
+   ```
+
+   最后，分别相加之：
+
+   ```mcfunction showLineNumbers
+   /scoreboard players operation y data += firstTerm data
+   /scoreboard players operation y data += secondTerm data
+   /scoreboard players operation y data += thirdTerm data
+   ```
+
+12. 对于这种数值分解，基本思路是：  
+    （1）对于个位数，直接用 10 取模，例如 456%10=45……6，很快得到个位数 6；  
+    （2）对于十位数，先用 10 整除，例如 456/10=45，然后将这个数用 10 取模，例如 45%10=4……5，得到十位数 5；  
+    （3）对于百位以上数，直接用 100 整除，例如 3456/100=34，得到百位以上数字 34；  
+    基于此，可以写出如下的代码。  
+
+   ```mcfunction showLineNumbers
+   # 定义常量 10 和 100
+   /scoreboard players set const10 data 10
+   /scoreboard players set const100 data 100
+   # 个位数：data.gameId%10
+   /scoreboard players operation singleDigit data = gameId data
+   /scoreboard players operation singleDigit data %= const10 data
+   # 十位数：data.gameId/10%10
+   /scoreboard players operation demicalDigit data = gameId data
+   /scoreboard players operation demicalDigit data /= const10 data
+   /scoreboard players operation demicalDigit data %= const10 data
+   # 百位数：data.gameId/100
+   /scoreboard players operation hundredthDigit data = gameId data
+   /scoreboard players operation hundredthDigit data /= const100 data
+   ```
+
+   事实上，这就是《冒险小世界：剑之试炼》使用的数值分解方法。
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

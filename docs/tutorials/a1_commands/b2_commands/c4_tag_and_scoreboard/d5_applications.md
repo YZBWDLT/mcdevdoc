@@ -44,6 +44,14 @@ scores={<记分项: string>=<值: integer range>,...}
 
 这时执行`/execute if entity @s[scores={data=!10..}]`是执行成功还是失败？试分析之并在游戏内验证。
 
+<details>
+
+<summary>答案（思考过后再翻看哦~）</summary>
+
+执行失败。因为此时`data.@s`=`15`，但该参数将找到**不**大于等于 10 的分数，也就是小于等于 9 分的分数，所以会执行失败。
+
+</details>
+
 :::
 
 而`...`则代表着，它可以同时检查一个实体的多个记分板上的分数是否符合条件。例如，查找`foo.@s`∈[5,10]并且`bar.@s`∉[3,+∞)的实体，就可以表示为
@@ -116,6 +124,25 @@ scores={<记分项: string>=<值: integer range>,...}
 :::info[思考 2.4-2]
 
 你可以只用`/scoreboard players operation`命令，完成两个分数的大小比较吗？比如，当`data.x`>`data.y`时，执行命令`/say 1`，但是不能用`/execute if score x data > y data`去检测！
+
+<details>
+
+<summary>答案（思考过后再翻看哦~）</summary>
+
+数学上存在一个公理：当 a-b>0 时，则 a>b。所以，在新版`/execute`更新之前，开发者们都是利用减法操作来判断变量的大小关系的。
+
+所以，对于这里给出的问题，我们可以引入一个临时变量`data.temp`，让它等于`data.x`-`data.y`，如果这个临时变量等于 0，则证明它们相等；大于 0，则证明`data.x`>`data.y`；大于等于 0 则证明`data.x`≥`data.y`。
+
+```mcfunction showLineNumbers
+/scoreboard players operation temp data = x data
+/scoreboard players operation temp data -= y data
+/execute if score temp data matches 1.. run say 1
+/scoreboard players reset temp data
+```
+
+当然，实际情况会比上面列出的还要复杂——如果考虑旧版`/execute`的环境的话，用假名这件事本身都会造成不便，所以通常`data.temp`是依附在一些实体上的分数，例如使用盔甲架。
+
+</details>
 
 :::
 
@@ -250,6 +277,19 @@ execute as @a at @s if entity @s[y=~1.3,dy=0.1] unless entity @s[y=~1.6,dy=0.1] 
 
 根据上面的思路，补齐检测爬行和睡觉的玩家的命令。
 
+<details>
+
+<summary>答案（思考过后再翻看哦~）</summary>
+
+```mcfunction showLineNumbers
+execute as @a at @s if entity @s[y=~1.6,dy=0.1] run scoreboard players set @s state 0
+execute as @a at @s if entity @s[y=~1.3,dy=0.1] unless entity @s[y=~1.6,dy=0.1] run scoreboard players set @s state 1
+execute as @a at @s if entity @s[y=~0.5,dy=0.1] unless entity @s[y=~1.3,dy=0.1] run scoreboard players set @s state 1
+execute as @a at @s if entity @s[y=~0.1,dy=0.1] unless entity @s[y=~0.5,dy=0.1] run scoreboard players set @s state 1
+```
+
+</details>
+
 :::
 
 然后，获取到潜行数据之后，传送回重生点就只需要立刻杀死玩家即可。当然，你也可以使用`/tp`。
@@ -313,6 +353,17 @@ execute if score second time matches 60.. run scoreboard players remove second t
 :::info[思考 2.4-4]
 
 根据上面的思路，补齐小时的计时器的检测。使用分数`time.hour`。
+
+<details>
+
+<summary>答案（思考过后再翻看哦~）</summary>
+
+```mcfunction showLineNumbers
+execute if score minute time matches 60.. run scoreboard players add hour time 1
+execute if score minute time matches 60.. run scoreboard players remove minute time 60
+```
+
+</details>
 
 :::
 
@@ -392,6 +443,21 @@ scoreboard players set @a isOnline 1
 :::info[思考 2.4-5]
 
 这里，我们同样也使用了`reset *`的方法。按照前文所述的逻辑，在出现大量追踪对象的情况下，会造成很严重的卡顿。你能否按照前文所述的逻辑，对防退出重进逻辑的命令进行优化呢？
+
+<details>
+
+<summary>答案（思考过后再翻看哦~）</summary>
+
+同样采用直接移除记分板再添加的方法解决。
+
+```mcfunction showLineNumbers
+scoreboard players add @a isOnline 0
+scoreboard objectives remove isOnline
+scoreboard objectives add isOnline dummy "在线数据"
+scoreboard players set @a isOnline 1
+```
+
+</details>
 
 :::
 
@@ -501,7 +567,7 @@ execute as @a at @s if entity @s[y=~1.6,dy=0.1] run tag @s add isStanding
 
 总而言之，**当涉及到实体本身的两种状态的变换时，用标签，其他情况用记分板**。
 
-## 总结与练习
+## 总结
 
 本节，我们介绍了检测分数的常用方法、记分板的一些运用实例和抽象出的变量概念。现在我们一起来回顾一下吧！
 
@@ -538,6 +604,8 @@ execute as @a at @s if entity @s[y=~1.6,dy=0.1] run tag @s add isStanding
     - 对于记分板和标签的众多命令而言，都有非常明确的“增删改查”的原理存在。
   - 当涉及到实体本身的两种状态的变换时，用标签，其他情况用记分板。
 
+## 练习
+
 :::info[练习 2.4-4]
 
 1. 现在我们回顾练习 2.3-2 的第一个问题：  
@@ -562,6 +630,123 @@ execute as @a at @s if entity @s[y=~1.6,dy=0.1] run tag @s add isStanding
 12. （难度较高，选做）假设起床战争中有玩家在游戏中离开，重新进入后已是下一局，试分析如果什么也不做会导致什么问题？试用命令写出你的解决思路，允许额外定义变量。
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. `/execute if score adv1 advancement matches 0 if score adv0 advancement matches 1 if blocks -1 22 85 -1 22 85 10 5 7 all unless entity @e[type=item] if entity @e[type=skeleton] unless entity @a[hasitem={item=skeleton_spawn_egg}] run say 恭喜你获取进度！`
+2. `/execute if score timeline time < parkour data run scoreboard players operation parkour data = timeline time`
+3. 1. `/scoreboard players set playerAmount data 0`
+   2. `/execute as @a run scoreboard players add playerAmount data 1`
+   3. `/execute if score playerAmount data matches 14.. run scoreboard players remove startCountdown time 1`
+   4. `/execute unless score playerAmount data matches 14.. run scoreboard players set startCountdown time 400`
+4. 1. `/execute if block 30 65 60 air if score redBedState data matches 1 run say §c红队的床已被破坏！`，注意要加上`if score`的检测，否则循环执行时会导致该队床在被破坏情况下不断公告。
+   2. `/execute if block 30 65 60 air if score redBedState data matches 1 run scoreboard players set redBedState data 0`
+5. 1. `/tag @a remove isAlive`
+   2. `/tag @e[type=player] add isAlive`
+   3. `/execute as @a[tag=!isAlive,tag=teamRed,tag=!isEliminated] if score redBedState data matches 0 run tag @s add isEliminated`
+6. 1. `/scoreboard players add tick time 1`
+   2. `/execute if score tick time matches 60 run say Hello,world!`
+7. 1. `/scoreboard players add @a isOnline 0`
+   2. `/execute as @a[scores={isOnline=0},tag=vip] run say 欢迎玩家 @s 回到服务器`
+   3. `/scoreboard players reset * isOnline`，这里也可以改为`scoreboard objectives remove isOnline`和`scoreboard objectives add isOnline dummy "在线数据"`，以防止追踪对象过多导致运行负载过大
+   4. `/scoreboard players set @a isOnline 1`
+8. 1. `/scoreboard players set @a[scores={deathState=!2}] deathState 1`
+   2. `/scoreboard players set @e[type=player] deathState 0`
+   3. `/scoreboard players add @a[scores={deathState=1}] deathCount 1`
+   4. `/scoreboard players set @a[scores={deathState=1}] deathState 2`
+   5. `/execute as @a[scores={deathCount=5..}] run say @s 闯关失败`
+   6. `/scoreboard players set @a[scores={deathCount=5..}] deathCount 0`，以使玩家能够重新回到游戏。当然，按照题意，也可以不写这条命令。
+9. 1. `/execute as @p if entity @s[hasitem={item=dirt}] run tag @s add lottery`
+   2. `/execute as @p[tag=lottery] run scoreboard players random lottery data 1 10000`
+   3. `/execute as @p[tag=lottery] if score lottery data matches 1 run give @s enchanted_golden_apple`
+   4. `/execute as @p[tag=lottery] run clear @s dirt`
+   5. `/tag @a remove lottery`
+10. 1. `/scoreboard players set deadPlayerAmount data 0`
+    2. `/tag @a remove isAlive`
+    3. `/tag @e[type=player] add isAlive`
+    4. `/execute as @a[tag=!isAlive] run scoreboard players add deadPlayerAmount data 1`
+11. 事实上，这是地图中《冒险世界：筑梦》中的划船小游戏的基本原理。每通过一个记录点，就为`boatRace.@s`添加 1 分，达到 9 分时则通过。依据此原理，可以写出下面的命令。  
+    首先，先写出经过第一个检查点的命令。在检查点附近检查记录为 0 的玩家，以及玩家附近是否有船，如果有则添加 1 分。
+
+```mcfunction
+execute positioned -52 60 82 as @a[r=2,scores={boatRace=0}] at @s if entity @e[type=boat,r=0.5] run scoreboard players add @s boatRace 1
+```
+
+这样，我们可以把另外 8 个检查点写出来。
+
+```mcfunction title="参考答案1" showLineNumbers
+execute positioned -52 60 82 as @a[r=2,scores={boatRace=0}] at @s if entity @e[type=boat,r=0.5] run scoreboard players add @s boatRace 1
+execute positioned -4 60 76 as @a[r=2,scores={boatRace=1}] at @s if entity @e[type=boat,r=0.5] run scoreboard players add @s boatRace 1
+execute positioned -63 60 106 as @a[r=2,scores={boatRace=2}] at @s if entity @e[type=boat,r=0.5] run scoreboard players add @s boatRace 1
+execute positioned -52 60 82 as @a[r=2,scores={boatRace=3}] at @s if entity @e[type=boat,r=0.5] run scoreboard players add @s boatRace 1
+execute positioned -4 60 76 as @a[r=2,scores={boatRace=4}] at @s if entity @e[type=boat,r=0.5] run scoreboard players add @s boatRace 1
+execute positioned -63 60 106 as @a[r=2,scores={boatRace=5}] at @s if entity @e[type=boat,r=0.5] run scoreboard players add @s boatRace 1
+execute positioned -52 60 82 as @a[r=2,scores={boatRace=6}] at @s if entity @e[type=boat,r=0.5] run scoreboard players add @s boatRace 1
+execute positioned -4 60 76 as @a[r=2,scores={boatRace=7}] at @s if entity @e[type=boat,r=0.5] run scoreboard players add @s boatRace 1
+execute positioned -63 60 106 as @a[r=2,scores={boatRace=8}] at @s if entity @e[type=boat,r=0.5] run say @s 完成了比赛！
+```
+
+现在我们寻求简化命令写法的方法。注意到`boatRace`=`0`、`3`、`6`时，其他执行环境都是类似的，因此我们可以用`boatRace=0..8,boatRace=!1..2,boatRace=!4..5,boatRace=!7..8`的方法来简化几条命令。同样的方法，也可以简化其他命令如下：
+
+```mcfunction title="参考答案2" showLineNumbers
+execute positioned -52 60 82 as @a[r=2,scores={boatRace=0..6,boatRace=!1..2,boatRace=!4..5}] at @s if entity @e[type=boat,r=0.5] run scoreboard players add @s boatRace 1
+execute positioned -4 60 76 as @a[r=2,scores={boatRace=1..7,boatRace=!2..3,boatRace=!5..6}] at @s if entity @e[type=boat,r=0.5] run scoreboard players add @s boatRace 1
+execute positioned -63 60 106 as @a[r=2,scores={boatRace=2..8,boatRace=!3..4,boatRace=!6..7}] at @s if entity @e[type=boat,r=0.5] run scoreboard players add @s boatRace 1
+```
+
+你可以看到上面和我们前面的推理稍微有些差别，但原理是类似的，你可以自行分析。我们还看到`as @a at @s if entity @e[type=boat,r=0.5]`的部分是类似的，都是用于检测玩家附近是否有船，即是否乘船的。这样，我们可以为这样的玩家添加一个标签：
+
+```mcfunction title="参考答案3" showLineNumbers
+tag @a remove ridingBoat
+execute as @a at @s if entity @e[type=boat,r=0.5] run tag @s add ridingBoat
+execute positioned -52 60 82 as @a[r=2,tag=ridingBoat,scores={boatRace=0..6,boatRace=!1..2,boatRace=!4..5}] run scoreboard players add @s boatRace 1
+execute positioned -4 60 76 as @a[r=2,tag=ridingBoat,scores={boatRace=1..7,boatRace=!2..3,boatRace=!5..6}] run scoreboard players add @s boatRace 1
+execute positioned -63 60 106 as @a[r=2,tag=ridingBoat,scores={boatRace=2..8,boatRace=!3..4,boatRace=!6..7}] run scoreboard players add @s boatRace 1
+```
+
+上面的答案都是可用的，使用何种思路看个人喜好。
+
+12. 如果什么都不做，很显然这样的玩家加入后会错误地加入到下一局已经分配好的队伍中，导致队伍中凭空多出一人。而且，如果加入了本局中本不存在的队伍，有导致程序崩溃的风险。因此，必须处理退出重进的玩家的数据。
+
+方法是，可以为每一局的游戏分配一个`gameId`，并让每名玩家分配与本局`gameId`相同的`gameId`。如果`gameId`不相同，则阻止玩家加入进游戏中，并移除该玩家的队伍信息等信息。这样，就可以防止退出重进的玩家影响下一局的情况发生。
+
+首先是，对每局随机一个`gameId`。为了随机不会与以前重复，随机的范围要大，这里取 1000~9999。
+
+```mcfunction
+scoreboard players random this gameId 1000 9999
+scoreboard players operation @a gameId = this gameId
+```
+
+这样，正常情况下，`gameId.@s`=`gameId.this`，其中`gameId.this`代表本局的`gameId`，而`gameId.@s`代表玩家的`gameId`。
+
+如果玩家的`gameId`不符，则将其设为旁观者，并移除其其他信息。
+
+```mcfunction
+execute as @a unless score @s gameId = this gameId run gamemode spectator @s
+execute as @a unless score @s gameId = this gameId run (移除数据的命令)
+execute as @a unless score @s gameId = this gameId run scoreboard players operation @a gameId = this gameId
+```
+
+当然，这些可以放在退出重进的玩家的检测中。综上，只需要将以下的命令循环执行即可。
+
+```mcfunction title="本题参考答案"
+scoreboard players random this gameId 1000 9999
+scoreboard players operation @a gameId = this gameId
+
+scoreboard players add @a isOnline 0
+execute as @a[scores={isOnline=0}] unless score @s gameId = this gameId run gamemode spectator @s
+execute as @a[scores={isOnline=0}] unless score @s gameId = this gameId run (移除数据的命令)
+execute as @a[scores={isOnline=0}] unless score @s gameId = this gameId run scoreboard players operation @a gameId = this gameId
+scoreboard players reset * isOnline
+# 或者可以使用下面两条命令
+# scoreboard objectives remove isOnline
+# scoreboard objectives add isOnline dummy "在线数据"
+scoreboard players set @a isOnline 1
+```
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

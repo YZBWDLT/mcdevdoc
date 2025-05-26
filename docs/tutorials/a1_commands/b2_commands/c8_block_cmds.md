@@ -92,6 +92,14 @@ sidebar_position: 8
 
 如果(0,-60,0)的方块是玻璃，执行`/setblock 0 -60 0 air destroy`会掉落什么出来？如果是黑曜石呢？基岩呢？做个实验来验证你的想法！
 
+<details>
+
+<summary>答案（思考过后再翻看哦~）</summary>
+
+玻璃和基岩不会掉落任何物品，黑曜石将原样掉落。玻璃和黑曜石无需多解释，因为基岩是无法被镐子破坏的，所以也不会掉落。
+
+</details>
+
 :::
 
 ## 检查方块的命令`/execute if block`
@@ -232,7 +240,7 @@ sidebar_position: 8
 
 ---
 
-## 总结与练习
+## 总结
 
 本节我们学习了方块状态的定义，掌握了 4 条命令：如何设置一个特定位置的方块的命令`/setblock`，检测特定位置的方块的命令`/execute if block`、填充特定区域的命令`/fill`，和复制一个特定区域到另一个区域的命令`/clone`。我们现在来总结一下：
 
@@ -257,6 +265,8 @@ sidebar_position: 8
 | `/clone <起点: x y z> <终点: x y z> <目的地: x y z> [masked\|replace] [force\|move\|normal]` | 将从`起点`到`终点`组成的源区域按照过滤模式（`masked\|replace`）和复制模式（`force\|move\|normal`）复制到`目的地`决定的目标区域 | |
 | `/clone <起点: x y z> <终点: x y z> <目的地: x y z> filtered <force\|move\|normal> <方块: Block> [方块状态: block states]` | 将从`起点`到`终点`组成的源区域中的`方块状态`的`方块`按照复制模式（`force\|move\|normal`）复制到`目的地`决定的目标区域 | |
 
+## 练习
+
 :::info[练习 2.8]
 
 下面的所有题目均从实际工程中改编。
@@ -269,6 +279,20 @@ sidebar_position: 8
 6. 当(-2,26,3)的红石粉有红石信号时，并且位于(20,22,7)石英柱的朝向为上下朝向时，提醒所有玩家“已解锁新关卡”。
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. `/execute positioned -13 2 86 if block ~~~ stone_button ["facing_direction"=2,"button_pressed_bit"=true] run setblock ~~~ stone_button ["facing_direction"=2]`
+2. 1. `/execute if score timeline time matches 120 run fill -40 12 28 -9 9 26 air destroy`
+   2. `/execute if score timeline time matches 120 run kill @e[type=item]`
+3. `/execute if block -46 21 55 lit_redstone_lamp positioned -49 25 60 if block ~~~ magma run setblock ~~~ flowing_lava`
+4. `/execute if score getDiamondPickaxe data matches 1 if entity @a[hasitem={item=diamond_pickaxe,quantity=0}] positioned -257 -32 106 run clone ~~~~~~~~3~`
+5. `/execute positioned -145 -43 -33 if block ~~~ stone_button ["facing_direction"=1,"button_pressed_bit"=true] run summon minecart ~1~-1~`
+6. `/execute unless block -2 26 3 redstone_wire ["redstone_signal"=0] if block 20 22 7 quartz_pillar ["pillar_axis"="y"] run say 已解锁新关卡`
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

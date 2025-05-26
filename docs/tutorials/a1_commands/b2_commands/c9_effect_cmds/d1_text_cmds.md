@@ -447,7 +447,7 @@ titleraw @a actionbar {"rawtext":[{"translate":"§l§b 关卡 %%s-%%s | 怪物�
 
 ---
 
-## 总结与练习
+## 总结
 
 本节我们主要讲了标题和文本组件的用法。对于`/tell`或`/me`这种小众命令，现如今已经不在我们的讨论范围内。使用`/tellraw`可以规定任意样式的文本信息，是远强于这些小众命令的。实际工程中，也是`/tellraw`这种命令要用的更多。
 
@@ -512,6 +512,8 @@ titleraw @a actionbar {"rawtext":[{"translate":"§l§b 关卡 %%s-%%s | 怪物�
   | `/title <玩家: target> times <淡入: int> <停留: int> <淡出: int>` | 将标题播放时间改为淡入`淡入`游戏刻、停留`停留`游戏刻、淡出`淡出`游戏刻 | 默认值为`10 70 20`，对快捷栏标题无效，和`/titleraw通用` |
   | `/tellraw <玩家: target> <原始JSON文本: json>` | 对`玩家`在聊天栏输出`原始JSON文本` | |
   | `/titleraw <玩家: target> <title\|subtitle\|actionbar> <原始JSON文本: json>` | 和`title`同义，改为显示`原始JSON文本` | |
+
+## 练习
 
 :::info[练习 2.9-1]
 
@@ -612,6 +614,89 @@ titleraw @a actionbar {"rawtext":[{"translate":"§l§b 关卡 %%s-%%s | 怪物�
    ```
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. ```mcfunction title="高亮部分为相比于给定的参考答案改动的地方" showLineNumbers {1-3}
+   tag @a remove overworld
+   execute in overworld as @a[rm=0] run tag @a add overworld
+   execute in nether as @e[rm=0] run tellraw @a[tag=overworld] {"rawtext":[{"text":"你们好，主世界的生物们！"}]}
+   ```
+
+2. ```mcfunction title="高亮部分为相比于给定的参考答案改动的地方" showLineNumbers {1-3}
+   execute if block 30 65 60 air if score redBedState data matches 1 run tellraw @a[scores={team=1}] {"rawtext":[{"text":"§c你的床已被破坏！"}]}
+   execute if block 30 65 60 air if score redBedState data matches 1 run tellraw @a[scores={team=!1}] {"rawtext":[{"text":"§c红队的床已被破坏！"}]}
+   execute if block 30 65 60 air if score redBedState data matches 1 run title @a[scores={team=1}] title §l床已被破坏！
+   execute if block 30 65 60 air if score redBedState data matches 1 run scoreboard players set redBedState data 0
+   ```
+
+3. ```mcfunction title="高亮部分为相比于给定的参考答案改动的地方" showLineNumbers {2-3}
+   scoreboard players add @a isOnline 0
+   execute as @a[scores={isOnline=0},tag=vip] run tellraw @a {"rawtext":[{"translate":"§lxxx服务器 >> §r§e欢迎 %%s 回到服务器","with":{"rawtext":[{"selector":"@s"}]}}]}
+   execute as @a[scores={isOnline=0},tag=vip] run title @a title §b欢迎回到服务器！
+   scoreboard objectives remove isOnline
+   scoreboard objectives add isOnline dummy "在线数据"
+   scoreboard players set @a isOnline 1
+   ```
+
+4. ```mcfunction title="变量定义" showLineNumbers
+   scoreboard objectives add health dummy "剩余生命"
+   scoreboard players set const5 health 5
+   ```
+
+   ```mcfunction title="玩家死亡时执行" showLineNumbers
+   execute as @a[scores={deathCount=1..4}] run scoreboard players operation @s health = const5 health
+   execute as @a[scores={deathCount=1..4}] run scoreboard players operation @s health -= @s deathCount
+   execute as @a[scores={deathCount=1..4}] run tellraw @s {"rawtext":[{"translate":"§7你已经死亡 %%s 次了，再死亡 %%s 次你将失败！","with":{"rawtext":[{"score":{"objective":"deathCount","name":"@s"}},{"score":{"objective":"health","name":"@s"}}]}}]}
+
+   execute as @a[scores={deathCount=5..}] run tellraw @s {"rawtext":[{"text":"§c闯关失败！重来一次吧！"}]}
+   execute as @a[scores={deathCount=5..}] run title @s title §l§c闯关失败！
+   execute as @a[scores={deathCount=5..}] run §7重来一次吧！
+   execute as @a[scores={deathCount=5..}] run scoreboard players set @s deathCount 0
+   ```
+
+5. ```mcfunction showLineNumbers
+   title @a times 0 60 0
+   execute as @a at @s if entity @e[type=zombie,r=7] run title @s title §1
+   execute as @a at @s if entity @e[type=zombie,r=7] run title @s subtitle §c§l跑！
+   ```
+
+6. ```mcfunction showLineNumbers
+   scoreboard players add timeline time 1
+   execute if score timeline time matches 1 run title @a title §l主 线 已 完 成
+   execute if score timeline time matches 41 run title @a subtitle §b结束屋已开放
+   ```
+
+7. ```mcfunction showLineNumbers
+   scoreboard players set const60 record 60
+   scoreboard players set const20 record 20
+   scoreboard players set const5 record 5
+   ## 获取秒数，为游戏刻数/20（例如810刻/20=40秒）
+   scoreboard players operation second record = @p record
+   scoreboard players operation second record /= const20 record
+   ## 获取毫秒数，为游戏刻数%20*5（例如810刻%20=10,10*5=50毫秒）
+   scoreboard players operation millisecond record = @p record
+   scoreboard players operation millisecond record %= const20 record
+   scoreboard players operation millisecond record *= const5 record
+   ## 获取分钟，为秒数/60（例如125秒/60=2分钟）
+   scoreboard players operation minute record = second record
+   scoreboard players operation minute record /= const60 record
+   ## 输出
+   tellraw @a {"rawtext":[{"translate":"§b你的记录为%%s:%%s.%%s","with":{"rawtext":[{"score":{"objective":"record","name":"minute"}},{"score":{"objective":"record","name":"second"}},{"score":{"objective":"record","name":"millisecond"}}]}}]}
+   ```
+
+8. ```mcfunction showLineNumbers
+   ## 计算两队分数
+   execute as @a[scores={team=0}] run scoreboard players operation redTeam coin += @s coin
+   execute as @a[scores={team=1}] run scoreboard players operation blueTeam coin += @s coin
+   ## 比对后显示分数
+   execute if score redTeam coin > blueTeam coin as @a run titleraw @s actionbar {"rawtext":[{"translate":"你的名字 %%s | 金币 %%s | 击杀 %%s | 死亡 %%s | 优势队伍 红队","with":{"rawtext":[{"selector":"@s"},{"score":{"objective":"coin","name":"@s"}},{"score":{"objective":"killCount","name":"@s"}},{"score":{"objective":"deathCount","name":"@s"}}]}}]}
+   execute if score redTeam coin < blueTeam coin as @a run titleraw @s actionbar {"rawtext":[{"translate":"你的名字 %%s | 金币 %%s | 击杀 %%s | 死亡 %%s | 优势队伍 蓝队","with":{"rawtext":[{"selector":"@s"},{"score":{"objective":"coin","name":"@s"}},{"score":{"objective":"killCount","name":"@s"}},{"score":{"objective":"deathCount","name":"@s"}}]}}]}
+   ```
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

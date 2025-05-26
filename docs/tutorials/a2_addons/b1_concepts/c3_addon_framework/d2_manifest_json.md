@@ -282,7 +282,7 @@ import TabItem from '@theme/TabItem';
 
 ---
 
-## 总结与练习
+## 总结
 
 这一节我们讲解了清单文件的“身份证”，也就是`manifest.json`文件，并且简单讲解了这个文件的简单写法。限于初学者们目前的水平，本教程并没有将清单文件的每一个细节都展现出来。如果读者感兴趣，可以在[附加包文档：清单文件](/docs/docs/addons/manifest)中查看更多的细节。但大多数情况下，这些内容已经足够我们的使用。
 
@@ -340,6 +340,8 @@ import TabItem from '@theme/TabItem';
 
 <br/></div>
 
+## 练习
+
 :::info[练习 1.3-1]
 
 1. 写一个清单文件，暂时起名叫`manifest_rp.json`，要求：资源包、随机 UUID、名称为“实验资源包”，描述自定，包版本为 1.0.0、最小引擎版本为 1.20.50 。
@@ -348,6 +350,64 @@ import TabItem from '@theme/TabItem';
 这两个文件是我们下一节所需要的，请读者思考并提前编写，为下节的学习做好准备。
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1.
+
+```json showLineNumbers title="manifest_rp.json"
+{
+    "format_version": 2,
+    "header": {
+        "name": "实验资源包",
+        "description": "",
+        "uuid": "1eb80b4e-848f-4787-a28f-1058f637c9b3",
+        "version": [ 1, 0, 0 ],
+        "min_engine_version": [ 1, 20, 50 ]
+    },
+    "modules": [
+        {
+            "type": "resources",
+            "uuid": "639d861e-4df0-4194-b3d2-86a04752b6b3",
+            "version": [ 1, 0, 0 ]
+        }
+    ]
+}
+```
+
+2.
+
+```json showLineNumbers title="manifest_bp.json"
+{
+    "format_version": 2,
+    "header": {
+        "name": "实验行为包",
+        "description": "",
+        "uuid": "60d33b76-0916-4943-8f0e-b027603365eb",
+        "version": [ 1, 0, 0 ],
+        "min_engine_version": [ 1, 20, 50 ]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "b02118b3-8fcf-4bba-bf53-dce1d1ae0f3e",
+            "version": [ 1, 0, 0 ]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "1eb80b4e-848f-4787-a28f-1058f637c9b3",
+            "version": [ 1, 0, 0 ]
+        }
+    ]
+}
+```
+
+注意依赖项中的`uuid`应和第一问中定义的资源包的`header`中的`uuid`一致，`version`也是同理的。
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

@@ -107,13 +107,15 @@ tag @e[type=player] add isAlive
 
 ---
 
-## 总结与练习
+## 总结
 
 - 标签可以对实体进行一些特殊标记，常常用于一些分类情况或者复杂情形。
 - 标签命令的语法有两条：
   - `/tag <实体: target> <add|remove> <名称: string>`：为`实体`添加（`add`）或移除（`remove`）名为`名称`的标签。
   - `/tag <实体: target> list`：在聊天栏返回`实体`的所有标签。
 - 使用目标选择器参数`tag`来检测具有特定标签的实体，支持反选。
+
+## 练习
 
 :::info[练习 2.4-1]
 
@@ -129,6 +131,20 @@ tag @e[type=player] add isAlive
    命令 2：\_\_\_\_\_
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. 命令 1：`/execute as @e[type=snowball] at @s run tag @p[r=2] add menu`  
+   命令 2：`/kill @e[type=snowball]`  
+2. 命令 1：`/tag @a remove isAlive`  
+   命令 2：`/tag @e[type=player] add isAlive`  
+   命令 3：`/execute if entity @e[tag=!isAlive] run setblock 56 43 -79 redstone_block`
+3. 命令 1：`give @a[tag=hasPickaxeUpgrade] diamond_pickaxe`  
+   命令 2：`give @a[tag=!hasPickaxeUpgrade] iron_pickaxe`
+
+</details>
 
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 

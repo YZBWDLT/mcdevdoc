@@ -103,59 +103,6 @@ sidebar_position: 100
 | `hasitem={item=<物品: Item>}` | **Has Item** | 拥有物品`物品`的实体 | 实体数据 | |
 | `c=<最大数量: int>` | **C**ount | 至多从近到远选中**至多**`最大数量`个符合条件的实体 | 其他 | 可以指定为负数，并选中从远到近**至多**\|`最大数量`\|个实体 |
 
-## 思考问题答案
-
-### 思考 1.2-1
-
-这是因为如果不输入为空格，例如`~256~`，那么 Minecraft 会将`~256`看作为是`x`的值，而不是将`~`看作`x`，`256`看作`y`。这样，`x y z`就少了一个坐标`z`，而这又是一个必选参数，所以这种情况下 Minecraft 就会报错。
-
-## 练习问题答案
-
-### 练习 1.1
-
-1. `/help 17`
-2. `/help difficulty`；`/difficulty`的用法为`/difficulty <难度>`，指定难度的参数即可选定世界所处的难度。
-
-### 练习 1.2
-
-1. `/tp 11 45 14`
-2. `/tp ~5~~5`
-3. `/tp ~42~~-17`
-4. `/tp ~ -64 ~`
-5. `/tp ~~-1~`
-6. `/tp ^^5^`，这样的传送和相对坐标的区别在于：假如我们视角本身朝上，那么执行`/tp ^^5^`将变为将玩家向后传送 5 格，而`/tp ~~5~`是向上传送 5 格。换言之，采用局部坐标的“上”是相对于玩家视角的上，而采用相对坐标的“上”则是绝对的上。
-7. 埋到土里 1 格。
-
-### 练习 1.3
-
-1. ID 为`lightning_bolt`，生成闪电束为`/summon ligtning_bolt`
-2. ID 为`end_crystal`，生成末地水晶为`/summon end_crystal`
-3. `/summon command_block_minecart`
-
-### 练习 1.4
-
-1. `/give "你的昵称" diamond`
-2. `/give "你的昵称" barrier`
-3. `/give "你的昵称" diamond_block`
-
-### 练习 1.5
-
-1. `/setblock ~~~ grass_block`
-2. `/setblock ^^^5 dirt`
-3. `/setblock ~~-1~ air`
-
-### 练习 1.6
-
-1. `/tp Steve ~ 500 ~`
-2. `/testfor @a`，当服务器没人时，或刚进入单人存档之初，玩家未加载时，执行该命令会检测失败。
-3. `/testfor @e`
-4. `/testfor @s[y=~1.6,dy=0.1]`。这条命令将检测执行者上方 1.6~1.7 格是否有执行者自身。潜行时，玩家的高度仅为 1.4 格，因此该命令将执行失败；而站立时，玩家的高度为 1.8 格，所以该命令执行成功。之所以设置为 1.6，主要是防止处于临界值（例如 1.49）时会出现问题。
-5. `/testfor @e[x=0,y=-60,z=0,rm=5,r=20]`
-6. 我们假设(0,0,0)~(6,6,6)存在一个空心火柴盒，这样，里面的实体就可以用`/testfor @e[x=1,y=1,z=1,dx=4,dy=4,dz=4]`检测。牛可以用`/testfor @e[x=1,y=1,z=1,dx=4,dy=4,dz=4,type=cow]`检测。
-7. `/tp @e[type=!player] ~~10~`
-8. `/tp @a[name=!"你的昵称"] ~~10~`
-9. `/testfor @a[hasitem={item=tnt}]`
-
 import GiscusComponent from "/src/components/GiscusComponent/component.js"
 
 <GiscusComponent/>
