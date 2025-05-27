@@ -263,7 +263,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | （模块 2）[2.1 函数](/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function_and_schedule) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/function) |
+| ★★★★★ | 1 | （模块 2）[2.1 函数](/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function#直接执行函数文件的命令function) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/function) |
 
 ```text
 /function <路径: filepath>
@@ -2031,7 +2031,7 @@ in <维度: Dimension> -> execute
 
 | 使用频率 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | （模块 2）[2.1 函数](/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function_and_schedule) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/schedule) |
+| ★★☆☆☆ | 1 | （模块 2）[2.1 函数](/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function#队列执行函数文件的命令schedule) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/schedule) |
 
 <Tabs>
 
@@ -3110,7 +3110,7 @@ connect <服务器URI: text>
 
 | 权限等级 | 课时 | Wiki 页面 |
 | :---: | --- | :---: |
-| 2 | （模块 2）[2.1 函数](/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function_and_schedule) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/reload) |
+| 2 | （模块 2）[2.1 函数](/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function#重载函数文件的命令reload) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/reload) |
 
 ```text
 /reload [全部: reload_all]

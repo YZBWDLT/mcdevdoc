@@ -85,3 +85,7 @@ import FileType from "/src/components/FileType"
 ```
 
 </details>
+
+import GiscusComponent from "/src/components/GiscusComponent/component.js"
+
+<GiscusComponent/>
