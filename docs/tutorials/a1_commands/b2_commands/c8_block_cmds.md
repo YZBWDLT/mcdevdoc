@@ -146,7 +146,7 @@ sidebar_position: 8
 /fill <起点: x y z> <终点: x y z> <方块: Block> replace [替换方块: Block] [替换方块状态: block states]
 ```
 
-虽然语法很多，有 4 条，但我们不难发现语法 1-2 和语法 3-4 的差别只在`方块状态`上，这和`/setblock`、`/execute if block`是很类似的，都提示我们指代一个方块无需指定方块状态，也就是说我们大可以把`<方块> <方块状态>`和`<方块>`看成是一个整体。
+虽然语法很多，有 4 条，但我们不难发现语法 1-2 和语法 3-4 的差别只在`方块状态`上，这和`/setblock`、`/execute if block`是很类似的，都提示我们指代一个方块无需指定方块状态，也就是说我们大可以把`<方块> [方块状态]`看成是一个整体，指代`方块`。
 
 而再来看语法 1 和语法 2 的差别，只在`[旧方块处理]`和`replace [替换方块] [替换方块状态]`上。在学过前面的`/setblock`之后，你可能已经猜到——`replace`本身也是一种旧方块处理方式，只不过只有它支持后续参数而已。那这样的话，我们大体上就知道了`/fill`的语法结构：
 
@@ -285,7 +285,7 @@ sidebar_position: 8
 <summary>练习题答案</summary>
 
 1. `/execute positioned -13 2 86 if block ~~~ stone_button ["facing_direction"=2,"button_pressed_bit"=true] run setblock ~~~ stone_button ["facing_direction"=2]`
-2. 1. `/execute if score timeline time matches 120 run fill -40 12 28 -9 9 26 air destroy`
+2. 1. `/execute if score timeline time matches 120 run fill -40 12 28 -39 9 26 air destroy`
    2. `/execute if score timeline time matches 120 run kill @e[type=item]`
 3. `/execute if block -46 21 55 lit_redstone_lamp positioned -49 25 60 if block ~~~ magma run setblock ~~~ flowing_lava`
 4. `/execute if score getDiamondPickaxe data matches 1 if entity @a[hasitem={item=diamond_pickaxe,quantity=0}] positioned -257 -32 106 run clone ~~~~~~~~3~`
