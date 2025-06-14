@@ -15,7 +15,7 @@ export const Highlight = ({children, color}) => (
   </span>
 );
 
-## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/XdquY)
+## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/8r3f1)
 
 **本包用于为 NPC 主包中引入的 NPC 添加更多更生动的动作**。
 
