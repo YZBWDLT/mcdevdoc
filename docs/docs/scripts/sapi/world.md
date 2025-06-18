@@ -2,4 +2,4 @@
 sidebar_position: 1
 ---
 
-# 物品描述
+# `World`类

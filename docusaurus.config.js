@@ -90,6 +90,7 @@ const config = {
                         { label: '附加包', type: 'docSidebar', sidebarId: 'docAddons'  },
                         { label: '物品', type: 'docSidebar', sidebarId: 'docItems'  },
                         { label: '方块', type: 'docSidebar', sidebarId: 'docBlocks'  },
+                        { label: '脚本', type: 'docSidebar', sidebarId: 'docScripts'  },
                     ] },
                     { label: '预设模板', type: 'docSidebar', sidebarId: 'devTemplate', position: 'left', },
                     { label: '个人博客', to: '/blog', position: 'left' },
