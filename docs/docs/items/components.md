@@ -649,12 +649,12 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:hover_text_color": {
-    "value": "cyan"
+    "value": "aqua"
 }
 ```
 
 ```json showLineNumbers
-"minecraft:hover_text_color": "cyan"
+"minecraft:hover_text_color": "aqua"
 ```
 
 </TabItem>
