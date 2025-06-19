@@ -135,17 +135,10 @@ import DataType from "/src/components/type/data"
   - <DataType type="boolean" name="replace_block_item"/>：是否将此物品与对应方块绑定，若绑定则当方块被破坏后将掉落该物品。备注：物品 ID 必须与对应的方块 ID 保持一致。
   - <DataType type="array" name="use_on"/>：可放置于的方块列表。如果留空，则默认为可放置于所有方块上。
     - <DataType type="string"/>：方块 ID。
-    - <DataType type="object"/>：方块信息。
-      - <DataType type="string" name="name"/>：方块 ID。
-      - <DataType type="int"/><DataType type="string"/><DataType type="boolean" name="states"/>：方块状态。[^1]
-      - <DataType type="string" name="tags"/>：方块标签。
-  - <DataType type="string" name="use_on"/>（替代 1）：可放置于的方块。
-  - <DataType type="object" name="use_on"/>（替代 2）：可放置于的方块。
-    - <DataType type="string" name="name"/>：方块 ID。
-    - <DataType type="int"/><DataType type="string"/><DataType type="boolean" name="states"/>：方块状态。[^1]
-    - <DataType type="string" name="tags"/>：方块标签。
 
-</div>
+<br/></div>
+
+更完整的用法请查阅官方文档。
 
 </TabItem>
 
@@ -215,11 +208,73 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_can_destroy_in_creative?view=minecraft-bedrock-stable"/>
 
+允许玩家在创造模式下手持该物品时可以破坏方块。如果设置为`false`，该物品就会像剑一样手持时无法破坏方块。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:can_destroy_in_creative"/>：根对象。
+  - <DataType type="boolean" name="value"/>：是否允许玩家在创造模式下手持该物品时破坏方块，默认为`true`。
+
+<br/>或允许简化的写法：
+
+- <DataType type="boolean" name="minecraft:can_destroy_in_creative"/>：是否允许玩家在创造模式下手持该物品时破坏方块，默认为`true`。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:can_destroy_in_creative": {
+    "value": false
+}
+```
+
+```json showLineNumbers
+"minecraft:can_destroy_in_creative": false
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:compostable`
 
 <Version text="1.21.60+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_compostable?view=minecraft-bedrock-stable"/>
+
+定义物品可在堆肥桶中用于堆肥。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:compostable"/>：根对象。
+  - <DataType type="float" name="composting_chance" isRequired/>：有百分之多少的概率会堆肥成功。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:compostable": {
+    "composting_chance": 50
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -227,11 +282,74 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_cooldown?view=minecraft-bedrock-stable"/>
 
+定义物品使用后的冷却。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:cooldown"/>：根对象。
+  - <DataType type="string" name="category"/>：冷却类型，共享同种冷却类型的物品将会一起进入冷却阶段。
+  - <DataType type="float" name="duration"/>：冷却时间，单位为秒。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:cooldown": {
+    "category": "attack",
+    "duration": 1.5
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:custom_components`
 
 <Version text="1.21.20 - 1.21.90" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_custom_components?view=minecraft-bedrock-stable"/>
+
+定义物品的自定义组件。自定义组件的行为需要在世界初始化前事件`WorldInitializeBeforeEvent`中定义。
+
+:::warning[注意]
+
+1. 该组件必须配合 ScriptAPI 使用，因此该组件在现在或未来的中国版也是无效的。
+2. 该组件随着 1.21.90 的自定义组件 V2 的推出，已被弃用。在`1.21.90`或更高版本下的物品定义中不应再使用该组件。
+
+:::
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="array" name="minecraft:custom_components"/>：根数组。
+  - <DataType type="string"/>：自定义组件的名称。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:custom_components": [
+    "example:on_use"
+]
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -239,11 +357,80 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_damage?view=minecraft-bedrock-stable"/>
 
+定义物品的攻击伤害，类似剑。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:damage"/>：根对象。
+  - <DataType type="int" name="value"/>：物品的攻击伤害。
+
+<br/>或允许简化的写法：
+
+- <DataType type="int" name="minecraft:damage"/>：物品的攻击伤害。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:damage": {
+    "value": 7
+}
+```
+
+```json showLineNumbers
+"minecraft:damage": 7
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:damage_absorption`
 
 <Version text="1.21.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_damage_absorption?view=minecraft-bedrock-stable"/>
+
+定义该物品在穿戴时可吸收何种类型的伤害，类似狼铠。
+
+:::warning[注意]
+
+要使用该组件，必须先定义[`minecraft:durability`](#minecraftdurability)和[`minecraft:wearable`](#minecraftwearable)组件。
+
+:::
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:damage_absorption"/>：根对象。
+  - <DataType type="array" name="absorbable_causes" isRequired/>：定义该物品将吸收的伤害类型列表。当实体在盔甲栏上穿戴该物品时，该物品会以降低耐久度为代价吸收列表中的伤害类型，使得实体免受这些类型的伤害。
+    - <DataType type="string"/>：伤害类型。可见`/damage`命令的可用伤害类型。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:damage_absorption": {
+    "absorbable_causes": [ "all" ]
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -251,11 +438,86 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_digger?view=minecraft-bedrock-stable"/>
 
+定义物品破坏特定方块的速度。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:digger"/>：根对象。
+  - <DataType type="array" name="destroy_speeds" isRequired/>：定义列表中的方块的破坏速度。
+    - <DataType type="string" name="block"/>：方块 ID。
+    - <DataType type="object" name="block"/>（替代）：方块标签。
+      - <DataType type="string" name="tags"/>：一个 Molang 表达式。通常使用`query.any_tag()`来代表拥有特定标签的方块。
+    - <DataType type="int" name="speed"/>：破坏方块的速度。若为负数则代表无法破坏。
+  - <DataType type="boolean" name="use_efficiency"/>：定义有效率附魔的物品是否影响挖掘速度。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:digger": {
+    "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+            { "block": { "tags": "query.any_tag( 'wood' )" }, "speed": 6 },
+            { "block": "minecraft:coal_ore", "speed": 2 }
+        ]
+    }
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:display_name`
 
 <Version text="1.20.0+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_display_name?view=minecraft-bedrock-stable"/>
+
+定义物品的显示名称。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:display_name"/>：根对象。
+  - <DataType type="string" name="value"/>：定义物品的显示名称。可以指定为特定名称，也可以指定为本地化键名。不指定时默认为本地化键名`item.(命名空间):(ID)`。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+特定的物品名称：
+
+```json showLineNumbers
+"minecraft:display_name": {
+    "value": "钻石剑"
+}
+```
+
+本地化物品键名：
+
+```json showLineNumbers
+"minecraft:display_name": {
+    "value": "item.diamond_sword.name"
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -264,6 +526,15 @@ import DataType from "/src/components/type/data"
 <Version text="1.20.0+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_durability?view=minecraft-bedrock-stable"/>
 
 定义物品的耐久度。
+
+> Durability does not implicitly damage itself when mining blocks. It must be handled via ScriptAPI. It does however implicitly damage itself when damaging mobs. Each hit on a mob decreases durability by 2. This does not match vanilla property for weapons, but does match vanilla property for tools.  
+> When used with [`minecraft:wearable`](#minecraftwearable), hitting a mob with the item does not decrease durability by 2. Instead, it implicitly decreases durability by 1 when equipped and hit by an entity. This matches vanilla property.
+>
+> 参考翻译：  
+> 耐久度在挖掘方块时不会降低耐久，必须通过 ScriptAPI 强制降低耐久度。但是，当攻击生物时，每次击中生物都会降低 2 点耐久度，这并不符合武器的运作方式，而是工具的。  
+> 当使用[`minecraft:wearable`](#minecraftwearable)时，攻击生物不会降低这 2 点耐久度。在穿着该物品时，被其他实体攻击后会降低 1 点耐久度，这是符合原版的运作方式的。
+>
+> —— [Bedrock Wiki](https://wiki.bedrock.dev/items/item-components#durability)
 
 <Tabs>
 
@@ -306,11 +577,79 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.21.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_durability_sensor?view=minecraft-bedrock-stable"/>
 
+定义物品在降低耐久度后触发的事件。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:durability"/>：根对象。
+  - <DataType type="array" name="durability_thresholds" isRequired/>：当物品耐久度降低到某个阈值时，触发事件。如果同时满足多个阈值，考虑所有阈值中最低的那个。至少指定 1 项。
+    - <DataType type="object"/>：耐久度阈值
+      - <DataType type="int" name="durability"/>：指定耐久度阈值，当物品耐久度低于此值时触发下面的事件。
+      - <DataType type="string" name="particle_type"/>：低于耐久度阈值时释放的粒子。
+      - <DataType type="string" name="sound_event"/>：低于耐久度阈值时播放的音效。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:durability_sensor": {
+    "durability_thresholds": [
+        {
+            "durability": 100,
+            "particle_type": "minecraft:explosion_manual",
+            "sound_event": "blast"
+        },
+        {
+            "durability": 5,
+            "sound_event": "raid.horn"
+        }
+    ]
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:dyeable`
 
 <Version text="1.21.30+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_dyeable?view=minecraft-bedrock-stable"/>
+
+定义物品在炼药锅中可染色。
+
+> 本文暂未更新完毕。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:dyeable"/>：根对象。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:dyeable": {
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -318,11 +657,70 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.20.30+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_enchantable?view=minecraft-bedrock-stable"/>
 
+定义物品为可附魔。
+
+> 本文暂未更新完毕。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:enchantable"/>：根对象。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:enchantable": {
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:entity_placer`
 
 <Version text="1.20.0+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_entity_placer?view=minecraft-bedrock-stable"/>
+
+定义物品可生成实体。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:entity_placer"/>：根对象。
+  - <DataType type="string" name="entity" isRequired/>：生成的实体的 ID。
+  - <DataType type="array" name="dispense_on"/>：可在何种方块上通过发射器使用该物品并生成实体。留空则默认允许全部方块。
+    - <DataType type="string"/>：方块 ID。
+  - <DataType type="array" name="use_on"/>：可在何种方块上使用该物品并生成实体。留空则默认允许全部方块。
+    - <DataType type="string"/>：方块 ID。
+
+<br/></div>
+
+更完整的用法请查阅官方文档。
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:entity_placer": {
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -538,6 +936,33 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.20.0+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_fuel?view=minecraft-bedrock-stable"/>
 
+定义该物品为燃料。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:fuel"/>：根对象。
+  - <DataType type="float" name="duration"/>：定义燃料在熔炉中的燃烧时长，单位秒。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:fuel": {
+    "duration": 80.0
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:glint`
@@ -681,7 +1106,7 @@ import DataType from "/src/components/type/data"
 
 <div class="treeview">
 
-- <DataType type="object" name="minecraft:icon"/>：根对象
+- <DataType type="object" name="minecraft:icon" isRequired/>：根对象
   - <DataType type="object" name="textures"/>：定义该物品的贴图。
     - <DataType type="string" name="default"/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
 
@@ -695,7 +1120,7 @@ import DataType from "/src/components/type/data"
 
 在`1.20.0`~`1.20.40`格式版本下，上面的单值写法应写为下面的写法，不过在高版本下，这种写法已经弃用。
 
-- <DataType type="object" name="minecraft:icon"/>：根对象
+- <DataType type="object" name="minecraft:icon" isRequired/>：根对象
   - <DataType type="string" name="texture"/>：该物品的贴图Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
 
 :::
@@ -728,11 +1153,73 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.20.30+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_interact_button?view=minecraft-bedrock-stable"/>
 
+在触控设备中，为物品添加交互按钮。
+
+> 本文暂未更新完毕。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:interact_button"/>：根对象。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:interact_button": {
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:liquid_clipped`
 
 <Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_liquid_clipped?view=minecraft-bedrock-stable"/>
+
+定义物品是否可与流体交互。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:liquid_clipped"/>：根对象。
+  - <DataType type="boolean" name="value"/>：是否能与液体交互，默认为`false`。
+
+<br/>或允许简化的写法：
+
+- <DataType type="boolean" name="minecraft:liquid_clipped"/>：是否能与液体交互，默认为`false`。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:liquid_clipped": {
+    "value": true
+}
+```
+
+```json showLineNumbers
+"minecraft:liquid_clipped": true
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -817,11 +1304,67 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_projectile?view=minecraft-bedrock-stable"/>
 
+定义物品为弹射物，例如箭。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:projectile"/>：根对象。
+  - <DataType type="float" name="minimum_critical_power"/>：定义蓄力需要多久才能暴击。单位秒。
+  - <DataType type="string" name="projectile_entity" isRequired/>：定义掷出何种实体。若未指定命名空间，默认为`minecraft`。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:projectile": {
+    "minimum_critical_power": 1.25,
+    "projectile_entity": "minecraft:snowball"
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:rarity`
 
 <Version text="1.21.30+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_rarity?view=minecraft-bedrock-stable"/>
+
+定义物品的稀有度。
+
+> 本文暂未更新完毕。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:rarity"/>：根对象。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:rarity": {
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -829,11 +1372,65 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_record?view=minecraft-bedrock-stable"/>
 
+定义物品为唱片。
+
+> 本文暂未更新完毕。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:record"/>：根对象。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:record": {
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:repairable`
 
 <Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_repairable?view=minecraft-bedrock-stable"/>
+
+定义物品为可修复的。
+
+> 本文暂未更新完毕。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:repairable"/>：根对象。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:repairable": {
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -841,11 +1438,73 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_shooter?view=minecraft-bedrock-stable"/>
 
+定义物品为某种弹射物的发射物，类似于弓或弩。
+
+> 本文暂未更新完毕。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:shooter"/>：根对象。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:shooter": {
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:should_despawn`
 
 <Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_should_despawn?view=minecraft-bedrock-stable"/>
+
+定义该物品对应的掉落物是否会在一段时间后消失。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:should_despawn"/>：根对象。
+  - <DataType type="boolean" name="value"/>：掉落物是否会在一段时间后消失，默认为`true`。
+
+<br/>或允许简化的写法：
+
+- <DataType type="boolean" name="minecraft:should_despawn"/>：掉落物是否会在一段时间后消失，默认为`true`。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:should_despawn": {
+    "value": false
+}
+```
+
+```json showLineNumbers
+"minecraft:should_despawn": false
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -936,17 +1595,104 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.21.40+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_item?view=minecraft-bedrock-stable"/>
 
+定义该物品可以存储其他物品，类似于收纳袋。
+
+> 本文暂未更新完毕。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:storage_item"/>：根对象。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:storage_item": {
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:storage_weight_limit`
 
 <Version text="1.21.60+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_limit?view=minecraft-bedrock-stable"/>
 
+定义该可存储物品最多可以存储多少物品。
+
+:::warning[注意]
+
+要使用该组件，必须先定义[`minecraft:storage_item`](#minecraftstorage_item)组件。
+
+:::
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:storage_weight_limit"/>：根对象。
+  - <DataType type="int" name="max_weight_limit"/>：定义该可存储物品（类似于收纳袋）的最大空间。必须在`0`-`64`之间，默认为`64`。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:storage_weight_limit": {
+    "max_weight_limit": 64
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `minecraft:storage_weight_modifier`
 
-<Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_modifier?view=minecraft-bedrock-stable"/>
+<Version text="1.21.60+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_modifier?view=minecraft-bedrock-stable"/>
+
+定义该物品在存储到一个可存储物品时需要占用多大空间。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:storage_weight_modifier"/>：根对象。
+  - <DataType type="int" name="weight_in_storage_item"/>：定义该物品在存储到一个可存储物品（类似于收纳袋）时需要占用多大空间。默认为`4`，若为`0`则代表该物品无法存储到其他可存储物品中。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:storage_weight_modifier": {
+    "weight_in_storage_item": 4
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -1004,6 +1750,33 @@ import DataType from "/src/components/type/data"
 ## `minecraft:throwable`
 
 <Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_throwable?view=minecraft-bedrock-stable"/>
+
+定义该物品可掷出，类似于雪球或鸡蛋。
+
+> 本文暂未更新完毕。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:throwable"/>：根对象。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:throwable": {
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -1156,17 +1929,77 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_wearable?view=minecraft-bedrock-stable"/>
 
+定义该物品为可穿戴物品，例如盔甲。
+
+> 本文暂未更新完毕。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="minecraft:wearable"/>：根对象。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:wearable": {
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `netease:allow_offhand`
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-allow-offhand" isChinaVersion/>
 
+允许玩家将物品放在副手。
+
 :::info[国际版组件替代]
 
-该组件可用国际版新版组件[`minecraft:allow_off_hand`](#minecraftallow_off_hand)替代，但需要在国际版物品定义文件夹<FileType type="folder" name="items"/>中进行物品定义。
+该组件可用国际版新版组件[`minecraft:allow_off_hand`](#minecraftallow_off_hand)替代，但必须在国际版物品定义中进行定义。
 
 :::
+
+:::warning[注意]
+
+使用该组件的物品，在放到副手后可能无法支持[`minecraft:foil`](#minecraftfoil)、[`netease:render_offsets`](#neteaserender_offsets)等组件。
+
+:::
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="netease:allow_offhand"/>：根对象。
+  - <DataType type="boolean" name="value" isRequired/>：是否能将物品放在副手。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:allow_offhand": {
+    "value": true
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -1174,11 +2007,44 @@ import DataType from "/src/components/type/data"
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-armor" isChinaVersion/>
 
+定义物品为盔甲。
+
 :::info[国际版组件替代]
 
-该组件可用国际版新版组件[`minecraft:wearable`](#minecraftwearable)和[`minecraft:enchantable`](#minecraftenchantable)替代，但需要在国际版物品定义文件夹<FileType type="folder" name="items"/>中进行物品定义。
+该组件可**部分**用国际版新版组件[`minecraft:wearable`](#minecraftwearable)和[`minecraft:enchantable`](#minecraftenchantable)替代，但必须在国际版物品定义中进行定义。
 
 :::
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="netease:armor"/>：根对象。
+  - <DataType type="int" name="defense"/>：定义盔甲的防御值。默认值为`0`。
+  - <DataType type="int" name="enchantment"/>：定义盔甲的附魔能力。默认值为`0`。
+  - <DataType type="int" name="armor_slot" isRequired/>：定义盔甲槽位。可选值为`0`（头盔）、`1`（胸甲）、`2`（护腿）、`3`（靴子）。
+  - <DataType type="int" name="toughness"/>：定义盔甲韧性，应在`0`-`20`之间（含）。默认值为`0`。
+  - <DataType type="float" name="knockback_resistance"/>：定义盔甲的击退抗性，应在`0`-`1`之间（含）。默认值为`0.0`。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:armor":{
+    "defense": 10,
+    "enchantment": 4,
+    "armor_slot": 0
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -1186,11 +2052,46 @@ import DataType from "/src/components/type/data"
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-bucket" isChinaVersion/>
 
+定义该物品为桶。
+
+:::warning[注意]
+
+要使用该组件，需在物品描述中将`custom_item_type`设置为`bucket`。
+
+:::
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="netease:bucket"/>：根对象。
+  - <DataType type="string" name="fill_liquid" isRequired/>：定义使用时倒出的流体方块 ID。默认值为`flowing_water`。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:bucket": {
+    "fill_liquid": "flowing_water"
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `netease:compostable`
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-compostable" isChinaVersion/>
+
+定义物品可在堆肥桶中用于堆肥。
 
 :::note[国际版组件替代]
 
@@ -1198,17 +2099,74 @@ import DataType from "/src/components/type/data"
 
 :::
 
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="float" name="netease:compostable"/>：有百分之多少的概率会堆肥成功。例如设置为 50 时则有 50% 的概率堆肥成功。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:compostable": 50
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `netease:cooldown`
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-cooldown" isChinaVersion/>
 
+定义物品使用后的冷却。
+
 :::info[国际版组件替代]
 
-该组件可用国际版新版组件[`minecraft:cooldown`](#minecraftcooldown)替代，但需要在国际版物品定义文件夹<FileType type="folder" name="items"/>中进行物品定义。
+该组件可用国际版新版组件[`minecraft:cooldown`](#minecraftcooldown)替代，但必须在国际版物品定义中进行定义。
 
 :::
+
+:::warning[注意]
+
+定义了食物组件[`minecraft:food`](#minecraftfood)的物品，其冷却需在食物组件中定义。
+
+:::
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="netease:cooldown"/>：根对象。
+  - <DataType type="string" name="category"/>：冷却类型，共享同种冷却类型的物品将会一起进入冷却阶段。默认值为`item`。
+  - <DataType type="int" name="duration"/>：冷却时间，单位为游戏刻。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:cooldown": {
+    "category": "item",
+    "duration": 10
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -1216,17 +2174,71 @@ import DataType from "/src/components/type/data"
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-customtips" isChinaVersion/>
 
+定义物品的描述信息。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="netease:customtips"/>：根对象。
+  - <DataType type="string" name="value" isRequired/>：物品的描述信息。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:customtips": {
+    "value": "§8右键可发射"
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `netease:egg`
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-egg" isChinaVersion/>
 
+定义物品可生成实体。
+
 :::info[国际版组件替代]
 
-该组件可用国际版新版组件[`minecraft:entity_placer`](#minecraftentity_placer)替代，但需要在国际版物品定义文件夹<FileType type="folder" name="items"/>中进行物品定义。
+该组件可用国际版新版组件[`minecraft:entity_placer`](#minecraftentity_placer)替代，但必须在国际版物品定义中进行定义。
 
 :::
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="netease:egg"/>：根对象。
+  - <DataType type="string" name="entity" isRequired/>：生成的实体的 ID。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:egg": {
+    "entity": "minecraft:sheep"
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -1234,11 +2246,65 @@ import DataType from "/src/components/type/data"
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-enchant-material" isChinaVersion/>
 
+定义物品为附魔材料，类似于青金石。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="netease:enchantment_material"/>：根对象。
+  - <DataType type="boolean" name="value" isRequired/>：物品是否为附魔材料。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:enchantment_material": {
+    "value": true
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `netease:fire_resistant`
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-fire-resistant" isChinaVersion/>
+
+定义物品防火，类似于下界合金物品。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="netease:fire_resistant"/>：根对象。
+  - <DataType type="boolean" name="value" isRequired/>：物品是否防火。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:fire_resistant": {
+    "value": true
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -1246,11 +2312,73 @@ import DataType from "/src/components/type/data"
 
 <Version text="RP" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-anim-in-scene" isChinaVersion/>
 
+定义物品的序列帧。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="netease:weapon"/>：根对象。
+  - <DataType type="string" name="flipbook_texture" isRequired/>：序列帧资源的路径。
+  - <DataType type="string" name="atlas_tile" isRequired/>：在图集中声明的名称。
+  - <DataType type="int" name="ticks_per_frame" isRequired/>：代表多少帧切换一次贴图，按 1 秒 20 帧算，设置 20 的话即为 1 秒切换一帧贴图。
+  - <DataType type="boolean" name="blend_frames"/>：切换贴图的时候是否混合上一帧。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:frame_anim_in_scene": {
+    "texture_path": "textures/items/watch_atlas",
+    "ticks_per_frame": 1
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `netease:frame_animation`
 
 <Version text="RP" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-animation" isChinaVersion/>
+
+定义蓄力物品的序列帧。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="netease:weapon"/>：根对象。
+  - <DataType type="string" name="texture_name" isRequired/>：`item_texture.json`中定义的序列帧数组。
+  - <DataType type="int" name="frame_count"/>：定义序列帧帧数。默认值为`1`。
+  - <DataType type="boolean" name="animate_in_toolbar"/>：在物品栏中是否支持动画。默认值为`true`。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:frame_animation": {
+    "frame_count": 3,
+    "texture_name": "bow_pulling",
+    "animate_in_toolbar": true
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -1258,11 +2386,38 @@ import DataType from "/src/components/type/data"
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-fuel" isChinaVersion/>
 
+定义该物品为燃料。
+
 :::info[国际版组件替代]
 
-该组件可用国际版新版组件[`minecraft:fuel`](#minecraftfuel)替代，但需要在国际版物品定义文件夹<FileType type="folder" name="items"/>中进行物品定义。
+该组件可用国际版新版组件[`minecraft:fuel`](#minecraftfuel)替代，但必须在国际版物品定义中进行定义。
 
 :::
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="netease:fuel"/>：根对象。
+  - <DataType type="float" name="duration"/>：定义燃料在熔炉中的燃烧时长，单位秒。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:fuel": {
+    "duration": 80.0
+}
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -1270,17 +2425,99 @@ import DataType from "/src/components/type/data"
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-initial-user-data" isChinaVersion/>
 
+定义物品的初始属性。
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="object" name="netease:initial_user_data"/>：根对象。
+  - <DataType type="object" name="display"/>：物品的显示信息。
+    - <DataType type="string" name="Name"/>（注意大写）：物品的初始名称。
+    - <DataType type="array" name="Lore"/>（注意大写）：物品的描述信息。
+      - <DataType type="string"/>：物品描述。第 i 个元素代表第 i 行描述。
+    - <DataType type="boolean" name="ShowInHand"/>（注意大写）：手持是否显示物品。
+  - <DataType type="array" name="ench"/>：物品的附魔信息列表。
+    - <DataType type="object"/>：附魔信息。
+      - <DataType type="object" name="id" isRequired/>：附魔 ID。
+        - <DataType type="int" name="__type__"/>：下面的`__value__`值的类型，`1`代表字节型（Byte），`2`代表短整型（short）。
+        - <DataType type="int" name="__value__"/>：附魔 ID 对应的数字 ID。若为自定义附魔，则需将该值设为`255`并设置`modEnchant`。
+        - <DataType type="string" name="modEnchant"/>：仅当`__value__`为`255`时有意义，指定设置的附魔 ID。
+      - <DataType type="object" name="lvl" isRequired/>：附魔等级。
+        - <DataType type="int" name="__type__"/>：下面的`__value__`值的类型，`1`代表字节型（Byte），`2`代表短整型（short）。
+        - <DataType type="int" name="__value__"/>：附魔等级。
+  - <DataType type="boolean" name="minecraft:keep_on_death"/>：物品是否在玩家死亡后掉落。默认值为`false`。
+  - <DataType type="int" name="minecraft:item_lock"/>：指定物品锁定。可选值为`0`（不锁定）、`1`（无法移动）、`2`（无法丢弃），默认为`0`。
+  - 其他可用键名及可用值请参考[基岩版物品格式 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/基岩版存档格式#物品格式)。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:initial_user_data": {
+    "display": {
+        "Name": "同铁砧命名",
+        "Lore": ["第一行描述", "第二行描述"]
+    },
+    "ench": [{
+        "id": {
+            "__type__":2,
+            "__value__":12
+        },
+        "lvl": {
+            "__type__":2,
+            "__value__":10
+        }
+    }],
+    "minecraft:keep_on_death": true,
+    "ModAttackDamage": 20
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ---
 
 ## `netease:projectile`
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-projectile" isChinaVersion/>
 
+定义物品为弹射物。
+
 :::info[国际版组件替代]
 
-该组件可用国际版新版组件[`minecraft:projectile`](#minecraftprojectile)替代，但需要在国际版物品定义文件夹<FileType type="folder" name="items"/>中进行物品定义。
+该组件可用国际版新版组件[`minecraft:projectile`](#minecraftprojectile)替代，但必须在国际版物品定义中进行定义。
 
 :::
+
+<Tabs>
+
+<TabItem value="parameters" label="参数" default>
+
+<div class="treeview">
+
+- <DataType type="string" name="netease:projectile"/>：定义将掷出的弹射物。
+
+</div>
+
+</TabItem>
+
+<TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:projectile": "minecraft:snowball"
+```
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -1414,7 +2651,7 @@ import DataType from "/src/components/type/data"
 
 :::info[国际版组件替代]
 
-该组件**部分**可用国际版新版组件[`minecraft:damage`](#minecraftdamage)、[`minecraft:enchantable`](#minecraftenchantable)和[`minecraft:digger`](#minecraftdigger)替代，但需要在国际版物品定义文件夹<FileType type="folder" name="items"/>中进行物品定义。
+该组件**部分**可用国际版新版组件[`minecraft:damage`](#minecraftdamage)、[`minecraft:enchantable`](#minecraftenchantable)和[`minecraft:digger`](#minecraftdigger)替代（暂时不存在`level`的功能），但必须在国际版物品定义中进行定义。
 
 :::
 
@@ -1468,5 +2705,3 @@ import DataType from "/src/components/type/data"
 - [自定义基础物品 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1)
 - [物品文档 | 1.16.20.3 | bedrock.dev](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item)
 - [物品组件 | Bedrock Wki](https://wiki.bedrock.dev/items/item-components)
-
-[^1]: 缺少资料，有待验证。
