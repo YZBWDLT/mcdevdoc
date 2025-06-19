@@ -10,7 +10,7 @@ sidebar_position: 2
 
 :::info[本文更新时间]
 
-本文于 2025 年 6 月 19 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.90。
+本文于 2025 年 6 月 20 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.90。
 
 :::
 
@@ -626,7 +626,13 @@ import DataType from "/src/components/type/data"
 
 定义物品在炼药锅中可染色。
 
-> 本文暂未更新完毕。
+当该物品被染色前，使用[`minecraft:icon`](#minecrafticon)中规定的`default`贴图；而被染色后，使用[`minecraft:icon`](#minecrafticon)中规定的`dyed`贴图。
+
+:::warning[注意]
+
+要使用该组件，应同时在[`minecraft:icon`](#minecrafticon)组件中定义`dyed`的贴图。
+
+:::
 
 <Tabs>
 
@@ -635,6 +641,7 @@ import DataType from "/src/components/type/data"
 <div class="treeview">
 
 - <DataType type="object" name="minecraft:dyeable"/>：根对象。
+  - <DataType type="string" name="default_color"/>：该物品染色前采用的默认颜色，应指定为有效的颜色代码（`#xxxxxx`）。
 
 </div>
 
@@ -644,6 +651,7 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:dyeable": {
+    "default_color": "#ffffff"
 }
 ```
 
@@ -659,8 +667,6 @@ import DataType from "/src/components/type/data"
 
 定义物品为可附魔。
 
-> 本文暂未更新完毕。
-
 <Tabs>
 
 <TabItem value="parameters" label="参数" default>
@@ -668,6 +674,15 @@ import DataType from "/src/components/type/data"
 <div class="treeview">
 
 - <DataType type="object" name="minecraft:enchantable"/>：根对象。
+  - <DataType type="string" name="slot" isRequired/>：该物品可以按照什么类型的物品附魔。只能填写为下列值中的一种：
+    <!-- markdownlint-disable MD058 -->
+    | `armor_feet` | `armor_torso` | `armor_head` | `armor_legs` | `axe` |
+    | :---: | :---: | :---: | :---: | :---: |
+    | **`bow`** | **`cosmetic_head`** | **`crossbow`** | **`elytra`** | **`fishing_rod`** |
+    | **`flintsteel`** | **`hoe`** | **`pickaxe`** | **`shears`** | **`shield`** |
+    | **`shovel`** | **`sword`** | **`all`** |  |  |
+    <!-- markdownlint-enable MD058 -->
+  - <DataType type="int" name="value" isRequired/>：附魔能力。该值越高越容易附魔出更好的魔咒。应在`0`-`255`之间（含）。更多信息参见[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/附魔（物品修饰）#附魔能力)。
 
 </div>
 
@@ -677,6 +692,8 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:enchantable": {
+    "slot": "sword",
+    "value": 10
 }
 ```
 
@@ -1109,10 +1126,11 @@ import DataType from "/src/components/type/data"
 - <DataType type="object" name="minecraft:icon" isRequired/>：根对象
   - <DataType type="object" name="textures"/>：定义该物品的贴图。
     - <DataType type="string" name="default"/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
+    - <DataType type="string" name="dyed"/>：该物品的染色后贴图，仅当指定[`minecraft:dyeable`](#minecraftdyeable)组件后有意义。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
 
 <br/>或允许简化的写法：
 
-- <DataType type="string" name="minecraft:icon"/>：该物品的贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
+- <DataType type="string" name="minecraft:icon"/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
 
 <br/>
 
@@ -1155,15 +1173,13 @@ import DataType from "/src/components/type/data"
 
 在触控设备中，为物品添加交互按钮。
 
-> 本文暂未更新完毕。
-
 <Tabs>
 
 <TabItem value="parameters" label="参数" default>
 
 <div class="treeview">
 
-- <DataType type="object" name="minecraft:interact_button"/>：根对象。
+- <DataType type="boolean"/><DataType type="string" name="minecraft:interact_button"/>：在触控设备上，是否启用物品的交互按钮，以及该按钮上显示的文本。若指定为`true`，则默认显示为`Use Item`，否则显示为指定文本。允许指定为本地化键名。
 
 </div>
 
@@ -1171,9 +1187,16 @@ import DataType from "/src/components/type/data"
 
 <TabItem value="example" label="示例">
 
+默认，显示为“Use Item”：
+
 ```json showLineNumbers
-"minecraft:interact_button": {
-}
+"minecraft:interact_button": true
+```
+
+指定为特定文本：
+
+```json showLineNumbers
+"minecraft:interact_button": "Click me!"
 ```
 
 </TabItem>
@@ -1341,7 +1364,7 @@ import DataType from "/src/components/type/data"
 
 定义物品的稀有度。
 
-> 本文暂未更新完毕。
+注意：物品具有任何魔咒时稀有度会提升，由常见或少见变为稀有、或由稀有变为史诗。关于稀有度机制，详见[稀有度 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/稀有度)。
 
 <Tabs>
 
@@ -1350,6 +1373,11 @@ import DataType from "/src/components/type/data"
 <div class="treeview">
 
 - <DataType type="object" name="minecraft:rarity"/>：根对象。
+  - <DataType type="boolean" name="value"/>：定义物品的基础稀有度。可选值为`common`（普通）、`uncommon`（少见）、`rare`（稀有）、`epic`（传奇）。
+
+<br/>或允许简化的写法：
+
+- <DataType type="boolean" name="minecraft:rarity"/>：定义物品的基础稀有度。可选值为`common`（普通）、`uncommon`（少见）、`rare`（稀有）、`epic`（传奇）。
 
 </div>
 
@@ -1359,7 +1387,12 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:rarity": {
+    "value": "rare"
 }
+```
+
+```json showLineNumbers
+"minecraft:rarity": "rare"
 ```
 
 </TabItem>
@@ -1374,8 +1407,6 @@ import DataType from "/src/components/type/data"
 
 定义物品为唱片。
 
-> 本文暂未更新完毕。
-
 <Tabs>
 
 <TabItem value="parameters" label="参数" default>
@@ -1383,6 +1414,9 @@ import DataType from "/src/components/type/data"
 <div class="treeview">
 
 - <DataType type="object" name="minecraft:record"/>：根对象。
+  - <DataType type="int" name="comparator_signal"/>：在唱片机中通过红石信号输出的信号，应在`0`-`15`之间。
+  - <DataType type="float" name="duration"/>：音乐时长，单位秒。
+  - <DataType type="string" name="sound_event"/>：要播放的音效。
 
 </div>
 
@@ -1390,8 +1424,13 @@ import DataType from "/src/components/type/data"
 
 <TabItem value="example" label="示例">
 
+[官方给出的自定义物品实例](https://github.com/microsoft/minecraft-samples/blob/main/custom_items/behavior_packs/custom_item/items/my_sword_singing.json)：
+
 ```json showLineNumbers
 "minecraft:record": {
+    "comparator_signal": 1,
+    "duration": 5,
+    "sound_event": "pre_ram.screamer"
 }
 ```
 
@@ -1405,9 +1444,7 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_repairable?view=minecraft-bedrock-stable"/>
 
-定义物品为可修复的。
-
-> 本文暂未更新完毕。
+定义物品为可修复的。默认情况下，允许此物品和另一个同种类的物品在一起修复（例如两把损坏铁镐合成一把较新的铁镐），此时恢复的耐久度为二者相加。
 
 <Tabs>
 
@@ -1416,6 +1453,11 @@ import DataType from "/src/components/type/data"
 <div class="treeview">
 
 - <DataType type="object" name="minecraft:repairable"/>：根对象。
+  - <DataType type="array" name="repair_items"/>：可用于修复的物品及其修复耐久度值的列表。
+    - <DataType type="object"/>：可修复的物品项目
+      - <DataType type="int"/><DataType type="string" name="repair_amount"/>：物品恢复的耐久度。当指定为整数时，恢复固定的耐久度值；指定为字符串时，可指定为一个 Molang，可使用`context.other`指定铁砧另一个槽位的物品。
+      - <DataType type="array" name="items" isRequired/>：可用于修复的物品列表。
+        - <DataType type="string"/>：可用于修复的物品 ID。
 
 </div>
 
@@ -1424,7 +1466,39 @@ import DataType from "/src/components/type/data"
 <TabItem value="example" label="示例">
 
 ```json showLineNumbers
-"minecraft:repairable": {
+"minecraft:repairable":{
+    "repair_items": [
+        {
+            "items":[ "minecraft:diamond" ],
+            "repair_amount": 10
+        }
+    ]
+}
+```
+
+```json showLineNumbers
+"minecraft:repairable":{
+    "repair_items": [
+        {
+            "items":[ "minecraft:diamond" ],
+            "repair_amount": "math.random(1, 10)"
+        }
+    ]
+}
+```
+
+按原版计算公式修复（两物品的剩余耐久度 + 该类物品满耐久度 * 0.05）：
+
+```json showLineNumbers
+"minecraft:repairable":{
+    "repair_items": [
+        {
+            "items":[
+                "minecraft:diamond"
+            ],
+            "repair_amount": "math.min(query.remaining_durability + context.other->query.remaining_durability + math.floor(query.max_durability /20), context.other->query.max_durability)"
+        }
+    ]
 }
 ```
 
@@ -1440,7 +1514,20 @@ import DataType from "/src/components/type/data"
 
 定义物品为某种弹射物的发射物，类似于弓或弩。
 
-> 本文暂未更新完毕。
+:::info[提示]
+
+若通过[`minecraft:durability`](#minecraftdurability)定义了发射物的耐久度，该物品将仅在发射子弹时降低耐久度。近战攻击时该物品的耐久度将不受影响。
+
+:::
+
+:::warning[注意]
+
+要使用该组件，必须同时定义下面的组件：
+
+- [`minecraft:use_modifiers`](#minecraftuse_modifiers)（`1.20.50`或更高格式版本）
+- [`minecraft:use_duration`](#minecraftuse_duration)（`1.20.20`-`1.20.40`格式版本）
+
+:::
 
 <Tabs>
 
@@ -1449,6 +1536,15 @@ import DataType from "/src/components/type/data"
 <div class="treeview">
 
 - <DataType type="object" name="minecraft:shooter"/>：根对象。
+  - <DataType type="array" name="ammunition" isRequired/>：定义该发射物使用何种子弹。
+    - <DataType type="object"/>
+      - <DataType type="string" name="item" isRequired/>：子弹所对应的物品 ID。该物品 ID 对应的物品必须具有[`minecraft:projectile`](#minecraftprojectile)组件，否则将会报错。
+      - <DataType type="boolean" name="use_offhand"/>：是否允许使用副手上的子弹，像弩和烟花一样。默认值为`false`。
+      - <DataType type="boolean" name="search_inventory"/>：是否搜索物品栏中是否有子弹可用，创造模式下不会消耗子弹。默认值为`false`，但通常设置为`true`。
+      - <DataType type="boolean" name="use_in_creative"/>：是否在创造模式下可用。若设置为`false`，则无法在物品栏中没有子弹时使用。默认值为`false`。
+  - <DataType type="boolean" name="charge_on_draw"/>：拉动时是否蓄力充能。默认值为`false`。
+  - <DataType type="float" name="max_draw_duration"/>：拉动最长时间。应小于等于[`minecraft:use_modifiers`](#minecraftuse_modifiers)或[`minecraft:use_duration`](#minecraftuse_duration)组件定义的使用时长，默认值为`0`。
+  - <DataType type="boolean" name="scale_power_by_draw_duration"/>：是否随着拉动时间的增长而增加对应子弹（弹射物）发射时威力，默认值为`false`。
 
 </div>
 
@@ -1458,6 +1554,17 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:shooter": {
+    "ammunition": [
+        {
+            "item": "minecraft:snowball",
+            "use_offhand": true,
+            "search_inventory": true,
+            "use_in_creative": true
+        }
+    ],
+    "max_draw_duration": 1,
+    "scale_power_by_draw_duration": true,
+    "charge_on_draw": false
 }
 ```
 
@@ -1595,9 +1702,13 @@ import DataType from "/src/components/type/data"
 
 <Version text="1.21.40+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_item?view=minecraft-bedrock-stable"/>
 
-定义该物品可以存储其他物品，类似于收纳袋。
+定义该物品为可存储物品，可以存储其他物品，类似于收纳袋。
 
-> 本文暂未更新完毕。
+:::warning[注意]
+
+要使用该组件，必须先定义[`minecraft:max_stack_size`](#minecraftmax_stack_size)组件，并将其值设为`1`，否则该组件可能无法正常工作。
+
+:::
 
 <Tabs>
 
@@ -1606,6 +1717,13 @@ import DataType from "/src/components/type/data"
 <div class="treeview">
 
 - <DataType type="object" name="minecraft:storage_item"/>：根对象。
+  - <DataType type="boolean" name="allow_nested_storage_items"/>：是否允许该类物品嵌套存储，例如收纳袋存储收纳袋。
+  - <DataType type="array" name="allowed_items"/>：允许存储的物品，不在此列名单中的物品无法存储。若设置为空则允许存储一切物品。
+    - <DataType type="string"/>：允许存储的物品 ID。
+  - <DataType type="array" name="banned_items"/>：禁止存储的物品，在此列名单中的物品无法存储。
+    - <DataType type="string"/>：允许存储的物品 ID。
+  - <DataType type="int" name="max_slots"/>：该物品的最大容量。注：仅限格式版本`1.21.40`-`1.21.50`下可用，`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)组件。
+  - <DataType type="int" name="max_weight_limit"/>：该物品在其他可存储物品中占用的容量。注：仅限格式版本`1.21.40`-`1.21.50`下可用，`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier)组件。
 
 </div>
 
@@ -1615,6 +1733,9 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:storage_item": {
+    "max_slots": 64,
+    "allow_nested_storage_items": true,
+    "banned_items": [ "minecraft:shulker_box", "minecraft:undyed_shulker_box" ]
 }
 ```
 
@@ -1753,7 +1874,11 @@ import DataType from "/src/components/type/data"
 
 定义该物品可掷出，类似于雪球或鸡蛋。
 
-> 本文暂未更新完毕。
+:::warning[注意]
+
+要使用该组件，必须先定义[`minecraft:projectile`](#minecraftprojectile)组件。
+
+:::
 
 <Tabs>
 
@@ -1762,6 +1887,12 @@ import DataType from "/src/components/type/data"
 <div class="treeview">
 
 - <DataType type="object" name="minecraft:throwable"/>：根对象。
+  - <DataType type="boolean" name="do_swing_animation"/>：物品掷出后是否播放摆手动画。
+  - <DataType type="float" name="launch_power_scale"/>：随着蓄力时间增长而增加的弹射物威力比例。默认值为`1.0`（即蓄力时间增长，弹射物威力不增加）。设置负值将导致弹射物以反方向掷出。
+  - <DataType type="float" name="max_draw_duration"/>：最长蓄力时间，单位秒。默认为`0.0`。
+  - <DataType type="float" name="min_draw_duration"/>：最段蓄力时间，单位秒。默认为`0.0`。
+  - <DataType type="float" name="max_launch_power"/>：弹射物的最大威力（以保证弹射物的威力不会无限增大）。
+  - <DataType type="boolean" name="scale_power_by_draw_duration"/>：是否随着蓄力时间的增长而增加弹射物掷出时的威力，默认值为`false`。
 
 </div>
 
@@ -1771,6 +1902,9 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:throwable": {
+    "do_swing_animation": true,
+    "launch_power_scale": 1.5,
+    "max_launch_power": 1.5
 }
 ```
 
@@ -1931,8 +2065,6 @@ import DataType from "/src/components/type/data"
 
 定义该物品为可穿戴物品，例如盔甲。
 
-> 本文暂未更新完毕。
-
 <Tabs>
 
 <TabItem value="parameters" label="参数" default>
@@ -1940,6 +2072,9 @@ import DataType from "/src/components/type/data"
 <div class="treeview">
 
 - <DataType type="object" name="minecraft:wearable"/>：根对象。
+  - <DataType type="string" name="slot" isRequired/>：定义可穿戴的位置。可选值：`slot.weapon.offhand`、`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`。
+  - <DataType type="int" name="protection"/>：物品可提供的护甲值。默认为`0`。
+  - <DataType type="boolean" name="hides_player_location"/>：穿戴后是否在定位栏中隐藏玩家位置。仅限`1.21.90`或更高格式版本可用。
 
 </div>
 
@@ -1949,6 +2084,15 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:wearable": {
+    "slot": "slot.armor.chest",
+    "protection": 10
+}
+```
+
+```json showLineNumbers
+"minecraft:wearable": {
+    "slot": "slot.armor.head",
+    "hides_player_location": true
 }
 ```
 
