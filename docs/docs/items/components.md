@@ -284,6 +284,15 @@ import DataType from "/src/components/type/data"
 
 定义物品使用后的冷却。
 
+:::warning[注意]
+
+要使用该组件，必须同时定义下面的组件：
+
+- [`minecraft:use_modifiers`](#minecraftuse_modifiers)（`1.20.50`或更高格式版本）
+- [`minecraft:use_duration`](#minecraftuse_duration)（`1.20.30`-`1.20.40`格式版本）
+
+:::
+
 <Tabs>
 
 <TabItem value="parameters" label="参数" default>
