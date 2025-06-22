@@ -4,7 +4,7 @@ sidebar_position: 100
 
 # 第一章小结
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import DataType from "/src/components/DataType"
 import FileType from "/src/components/FileType"
 
@@ -50,7 +50,7 @@ import FileType from "/src/components/FileType"
 ### 命令中的 JSON
 
 - 文本组件：由一个对象组成。其中的内容为：
-  <div class="treeview">
+  <treeview>
   - <DataType dataType="object" />：根对象
     - <DataType dataType="array" name="rawtext" isRequired />：代表一个原始 JSON 文本，允许以下 4 种组件。至少应指定一种组件。
       - <DataType dataType="object" />：代表一个普通文本组件（Text）。
@@ -67,10 +67,10 @@ import FileType from "/src/components/FileType"
         - <DataType dataType="object" name="with" />：（写法 2）代入的格式化文本。
           - <DataType dataType="array" name="rawtext" isRequired />：代表一个原始 JSON 文本。允许以上 4 种组件。至少应指定一种组件。
             - ……
-  </div>
+  </treeview>
   - 但事实上，文本组件的 JSON 语法树要更复杂一些。更通用的情况可见[文本组件 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/文本组件#基岩版)。
 - 物品组件：由一个对象组成。其中允许的内容为：
-  <div class="treeview">
+  <treeview>
   - <DataType dataType="object" />：根对象，允许以下 4 种组件，至少应指定一种。
     - <DataType dataType="object" name="can_place_on" />：可放置到的方块。可添加`minecraft:`命名空间。
       - <DataType dataType="array" name="blocks" isRequired />
@@ -81,7 +81,7 @@ import FileType from "/src/components/FileType"
     - <DataType dataType="object" name="item_lock" />：物品锁定方法。可添加`minecraft:`命名空间。
       - <DataType dataType="string" name="mode" isRequired />：仅允许`"lock_in_inventory"`、`"lock_in_slot"`，表示物品锁定方法
     - <DataType dataType="object" name="keep_on_death" />：物品在死亡后保留。可添加`minecraft:`命名空间。
-  </div>
+  </treeview>
 
 ### 常见错误
 
@@ -98,7 +98,7 @@ import FileType from "/src/components/FileType"
 
 清单文件相当于附加包的“身份证”，是游戏识别我们编写的附加包的关键的一环。其语法结构如下。更完整的语法结构可见[附加包文档：清单文件](/docs/docs/addons/manifest)。
 
-<div class="treeview">
+<treeview>
 
 - <DataType dataType="object"/>：根对象
   - <DataType dataType="int" name="format_version" isRequired/>：清单文件的格式版本。**强烈建议为`2`，非必要不要改动。**
@@ -148,7 +148,7 @@ import FileType from "/src/components/FileType"
     - <DataType dataType="string" name="product_type"/>：本包的类型。设置此参数时，行为包不再影响成就的获取。仅限填写为`"addon"`。
     - <DataType dataType="string" name="url"/>：网站。通常链接到作者的个人网站或公司的公司网站。
 
-<br/></div>
+</treeview>
 
 ## 创建并导入第一个附加包
 
@@ -165,7 +165,7 @@ import FileType from "/src/components/FileType"
     - 如果开发纯附加包类型的资源（即不依托特定地图应用），推荐这种方法。
     - 直接在<FileType fileType="folder" name="com.mojang"/>下的<FileType fileType="folder" name="development_behavior_packs"/>和<FileType fileType="folder" name="development_resource_packs"/>中导入包。
     - 示例：
-      <div class="treeview">
+      <treeview>
       - <FileType fileType="folder" name="com.mojang"/>
         - <FileType fileType="folder" name="development_behavior_packs"/>：开发行为包文件夹
           - **<FileType fileType="folder" name="BP_test"/>：测试行为包**
@@ -175,13 +175,13 @@ import FileType from "/src/components/FileType"
           - **<FileType fileType="folder" name="RP_test"/>：测试资源包**
             - <FileType fileType="file" name="manifest.json"/>：资源包的清单文件
             - <FileType fileType="image" name="pack_icon.png"/>：资源包的图标文件
-      <br/></div>
+      </treeview>
   - 特定地图导入法（强制导入法）：
     - 国际版与中国版均适用。这种导入方法仅适用于特定地图。
     - 如果开发地图类型的资源，推荐这种方法。
     - 直接在<FileType fileType="folder" name="minecraftWorld"/>下的世界文件夹中，在<FileType fileType="folder" name="behavior_packs"/>和<FileType fileType="folder" name="resource_packs"/>中导入包。
     - 示例：
-      <div class="treeview">
+      <treeview>
       - <FileType fileType="folder" name="com.mojang"/>（在中国版，Windows 平台为<FileType fileType="folder" name="MinecraftPE_Netease"/>，Android 平台为<FileType fileType="folder" name="files"/>）
         - <FileType fileType="folder" name="minecraftWorlds"/>
           - <FileType fileType="folder" name="（地图文件夹）"/>
@@ -196,7 +196,7 @@ import FileType from "/src/components/FileType"
             - ……
             - <FileType fileType="file" name="world_behavior_packs.json"/>：地图启用的行为包
             - <FileType fileType="file" name="world_resource_packs.json"/>：地图启用的资源包
-      <br/></div>
+      </treeview>
     - 在国际版游戏内，直接在游戏内的地图设置中启用导入的包。
     - 在中国版或者 BDS 等没有 UI 的地方，直接更改<FileType fileType="file" name="world_behavior_packs.json"/>和<FileType fileType="file" name="world_resource_packs.json"/>来强制导入包，即强制导入法。
   - 打包导入法：

@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # 1.3.3 构建第一个附加包
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import DataType from "/src/components/DataType"
 import FileType from "/src/components/FileType"
 
@@ -38,7 +38,7 @@ import FileType from "/src/components/FileType"
 
 我们挑 com.mojang 里面重点部分来说：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="com.mojang"/>：游戏数据文件夹
   - <FileType fileType="folder" name="behavior_packs"/>：**全局**行为包文件夹，存放所有的行为包
@@ -59,7 +59,7 @@ import FileType from "/src/components/FileType"
       - <FileType fileType="file" name="world_behavior_packs.json"/>：地图启用的行为包
       - <FileType fileType="file" name="world_resource_packs.json"/>：地图启用的资源包
 
-<br/></div>
+</treeview>
 
 此外，com.mojang 里面还有其他文件夹，比如<FileType fileType="folder" name="Screenshots"/>是保存截图的，等等，就留给读者自行探索。
 
@@ -78,13 +78,13 @@ import FileType from "/src/components/FileType"
 1. 现在，我们先在全局的<FileType fileType="folder" name="development_behavior_packs"/>下创建一个新的文件夹<FileType fileType="folder" name="BP_test"/>。
 2. 然后再把上一节练习中创建的`manifest_bp.json`放到该文件夹下，并重命名为`manifest.json`。你的文件路径应该如下图所示：
 
-    <div class="treeview">
+    <treeview>
 
     - <FileType fileType="folder" name="development_behavior_packs"/>：开发行为包文件夹
       - <FileType fileType="folder" name="BP_test"/>：我们的测试行为包
         - <FileType fileType="file" name="manifest.json"/>：行为包的清单文件
 
-    <br/></div>
+    </treeview>
 
 3. 删除清单文件中的依赖项，下面是一个清单文件<FileType fileType="file" name="manifest.json"/>的示例：
 
@@ -123,13 +123,13 @@ import FileType from "/src/components/FileType"
 1. 在全局的<FileType fileType="folder" name="development_resource_packs"/>下创建一个新的文件夹<FileType fileType="folder" name="RP_test"/>。
 2. 把上一节练习中创建的`manifest_rp.json`放到该文件夹下，并重命名为`manifest.json`。你的文件路径应该如下图所示：
 
-    <div class="treeview">
+    <treeview>
 
     - <FileType fileType="folder" name="development_resource_packs"/>：开发资源包文件夹
       - <FileType fileType="folder" name="RP_test"/>：我们的测试资源包
         - <FileType fileType="file" name="manifest.json"/>：资源包的清单文件
 
-    <br/></div>
+    </treeview>
 
 3. 下面是一个清单文件<FileType fileType="file" name="manifest.json"/>的示例：
 
@@ -167,7 +167,7 @@ import FileType from "/src/components/FileType"
 
 我们可以找一个正方形的`.png`文件，起名叫做`pack_icon.png`，并放到包里面去，就可以正常地显示图标出来啦！路径分别如下所示：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="BP_test"/>：测试行为包
   - <FileType fileType="file" name="manifest.json"/>：清单文件
@@ -176,7 +176,7 @@ import FileType from "/src/components/FileType"
   - <FileType fileType="file" name="manifest.json"/>：清单文件
   - <FileType fileType="image" name="pack_icon.png"/>：图标
 
-<br/></div>
+</treeview>
 
 如果你没有的话，这里有一个我们绘制的小图片可供你使用，你可以右键保存该图片并应用到你的附加包中。
 
@@ -207,13 +207,13 @@ import FileType from "/src/components/FileType"
 
 对于国际版来说，你已经知道了世界存储在什么位置上，我们来回顾一下：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="com.mojang"/>：游戏数据文件夹
   - <FileType fileType="folder" name="minecraftWorlds"/>：所有的地图数据
     - <FileType fileType="folder" name="（地图文件夹）"/>
 
-<br/></div>
+</treeview>
 
 对于中国版来说，我们同样也要找到类似于<FileType fileType="folder" name="com.mojang"/>的数据文件夹。路径如下：
 
@@ -229,7 +229,7 @@ import FileType from "/src/components/FileType"
 
 国际版和中国版的地图文件结构都是很一致的：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="（地图文件夹）"/>
   - <FileType fileType="folder" name="db"/>：地图数据文件夹，通常存储一些无法通过常规文本编辑器直接访问的数据文件
@@ -242,11 +242,11 @@ import FileType from "/src/components/FileType"
   - <FileType fileType="file" name="world_behavior_packs.json"/>：地图启用的行为包
   - <FileType fileType="file" name="world_resource_packs.json"/>：地图启用的资源包
 
-<br/></div>
+</treeview>
 
 这样的话，我们可以把上面做出来的行为包和资源包**剪切**粘贴（注意不要复制粘贴，否则可能会和全局资源冲突）到地图内的<FileType fileType="folder" name="behavior_packs"/>和<FileType fileType="folder" name="resource_packs"/>中，如果没有这两个文件夹的话，就手动创建，也就是：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="（地图文件夹）"/>
   - <FileType fileType="folder" name="db"/>：地图数据文件夹，通常存储一些无法通过常规文本编辑器直接访问的数据文件
@@ -265,7 +265,7 @@ import FileType from "/src/components/FileType"
   - <FileType fileType="file" name="world_behavior_packs.json"/>：地图启用的行为包
   - <FileType fileType="file" name="world_resource_packs.json"/>：地图启用的资源包
 
-<br/></div>
+</treeview>
 
 但是，只有这些还是不够的。如果读者是国际版玩家，应该知道在导入了一个包之后是不可能立刻启用的，需要我们在地图设置或全局设置中手动启用才行。而判断启用哪些包的文件，就是下面的<FileType fileType="file" name="world_behavior_packs.json"/>和<FileType fileType="file" name="world_resource_packs.json"/>。
 
@@ -309,7 +309,7 @@ import FileType from "/src/components/FileType"
 
 以上就是强制导入的过程了。读者可以明显地看到，我们就是通过强制在这两个文件中写入附加包的 UUID 和版本，让游戏知道我们导入了哪些附加包的。这两个文件所允许的格式都是一致的，如下所示，还是很简单的。
 
-<div class="treeview">
+<treeview>
 
 - <DataType dataType="array"/>：根数组
   - <DataType dataType="object"/>：启用的附加包信息
@@ -319,7 +319,7 @@ import FileType from "/src/components/FileType"
       - <DataType dataType="int" name="1" isRequired/>：代表次版本号。
       - <DataType dataType="int" name="2" isRequired/>：代表修订版本号。
 
-</div>
+</treeview>
 
 ## 打包附加包并导入
 
@@ -336,13 +336,13 @@ import FileType from "/src/components/FileType"
 我们为附加包打包并导入的方法如下：
 
 1. 将行为包和资源包复制粘贴到同一个路径下。
-    <div class="treeview">
+    <treeview>
     - <FileType fileType="folder" name="（任意名称的文件夹）"/>
       - <FileType fileType="folder" name="BP_test"/>
         - ……
       - <FileType fileType="folder" name="RP_test"/>
         - ……
-    </div>
+    </treeview>
 2. 选中这两个文件夹（<FileType fileType="folder" name="BP_test"/>和<FileType fileType="folder" name="RP_test"/>），然后压缩到一个`.zip`压缩文件中。这样可以保证游戏可以直接读到这两个文件夹，不会出现文件夹套文件夹的情况。
 3. 直接将获得的`.zip`压缩文件的后缀名改为`.mcaddon`。
 4. 导入`.mcaddon`文件。
@@ -371,7 +371,7 @@ import FileType from "/src/components/FileType"
     - 如果开发纯附加包类型的资源（即不依托特定地图应用），推荐这种方法。
     - 直接在<FileType fileType="folder" name="com.mojang"/>下的<FileType fileType="folder" name="development_behavior_packs"/>和<FileType fileType="folder" name="development_resource_packs"/>中导入包。
     - 示例：
-      <div class="treeview">
+      <treeview>
       - <FileType fileType="folder" name="com.mojang"/>
         - <FileType fileType="folder" name="development_behavior_packs"/>：开发行为包文件夹
           - **<FileType fileType="folder" name="BP_test"/>：测试行为包**
@@ -381,13 +381,13 @@ import FileType from "/src/components/FileType"
           - **<FileType fileType="folder" name="RP_test"/>：测试资源包**
             - <FileType fileType="file" name="manifest.json"/>：资源包的清单文件
             - <FileType fileType="image" name="pack_icon.png"/>：资源包的图标文件
-      <br/></div>
+      </treeview>
   - 特定地图导入法（强制导入法）：
     - 国际版与中国版均适用。这种导入方法仅适用于特定地图。
     - 如果开发地图类型的资源，推荐这种方法。
     - 直接在<FileType fileType="folder" name="minecraftWorld"/>下的世界文件夹中，在<FileType fileType="folder" name="behavior_packs"/>和<FileType fileType="folder" name="resource_packs"/>中导入包。
     - 示例：
-      <div class="treeview">
+      <treeview>
       - <FileType fileType="folder" name="com.mojang"/>（在中国版，Windows 平台为<FileType fileType="folder" name="MinecraftPE_Netease"/>，Android 平台为<FileType fileType="folder" name="files"/>）
         - <FileType fileType="folder" name="minecraftWorlds"/>
           - <FileType fileType="folder" name="（地图文件夹）"/>
@@ -402,7 +402,7 @@ import FileType from "/src/components/FileType"
             - ……
             - <FileType fileType="file" name="world_behavior_packs.json"/>：地图启用的行为包
             - <FileType fileType="file" name="world_resource_packs.json"/>：地图启用的资源包
-      <br/></div>
+      </treeview>
     - 在国际版游戏内，直接在游戏内的地图设置中启用导入的包。
     - 在中国版或者 BDS 等没有 UI 的地方，直接更改<FileType fileType="file" name="world_behavior_packs.json"/>和<FileType fileType="file" name="world_resource_packs.json"/>来强制导入包，即强制导入法。
   - 打包导入法：

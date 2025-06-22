@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 扩展包：更多动作
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import FileType from "/src/components/FileType"
 
 export const Highlight = ({children, color}) => (
@@ -36,7 +36,7 @@ export const Highlight = ({children, color}) => (
 
 解压我们给出的扩展包，然后将其中的文件或文件夹解压到主包对应的位置。粗体文件为扩展包的内容，如果和原文件冲突，请在进行对比后进行手动合并。通常，如果没有更改原文件的话，可以直接替换。
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="BP_npc"/>：行为包根目录
   - <FileType fileType="folder" name="entities"/>：实体服务端定义
@@ -67,7 +67,7 @@ export const Highlight = ({children, color}) => (
   - <FileType fileType="file" name="manifest.json"/>：（*有冲突风险*）清单文件
   - <FileType fileType="image" name="pack_icon.png"/>：包图标
 
-<br/></div>
+</treeview>
 
 以上部分文件中的自定义内容使用了字段`template`，然而**我们不推荐您在您的作品中使用该字段**。在正式使用本包之前，您应当将这些字段按您的需求进行改动。
 

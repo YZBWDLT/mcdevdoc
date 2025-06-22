@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 1.3.2 清单文件：`manifest.json`
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import DataType from "/src/components/DataType"
 
 在前面我们简单了解了一下文本编辑器和 IDE 的概念。在本节，我们要更进一步，来学习**附加包的“身份证”文件：清单文件`manifest.json`** 的写法。
@@ -288,7 +288,7 @@ import TabItem from '@theme/TabItem';
 
 下面贴出部分文档内容，均为本节所涉及到的内容。
 
-<div class="treeview">
+<treeview>
 
 - <DataType dataType="object"/>：根对象
   - <DataType dataType="int" name="format_version" isRequired/>：清单文件的格式版本。**强烈建议为`2`，非必要不要改动。**
@@ -338,7 +338,7 @@ import TabItem from '@theme/TabItem';
     - <DataType dataType="string" name="product_type"/>：本包的类型。设置此参数时，行为包不再影响成就的获取。仅限填写为`"addon"`。
     - <DataType dataType="string" name="url"/>：网站。通常链接到作者的个人网站或公司的公司网站。
 
-<br/></div>
+</treeview>
 
 ## 练习
 

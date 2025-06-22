@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # 行为包文件
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import DataType from "/src/components/DataType"
 import FileType from "/src/components/FileType"
 
@@ -12,7 +12,7 @@ import FileType from "/src/components/FileType"
 
 ## 文件路径
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="BP"/>：行为包根目录
   - <FileType fileType="folder" name="functions"/>：函数
@@ -23,7 +23,7 @@ import FileType from "/src/components/FileType"
   - <FileType fileType="file" name="manifest.json"/>：清单文件
   - <FileType fileType="image" name="pack_icon.png"/>：图标文件
 
-</div>
+</treeview>
 
 ## 参考资料
 

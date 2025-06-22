@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 2.1.1 函数及相关命令
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import DataType from "/src/components/DataType"
 import FileType from "/src/components/FileType"
 
@@ -64,7 +64,7 @@ import FileType from "/src/components/FileType"
 
 创建函数文件的方法是很简单的。我们只需要在行为包中创建一个新的文件夹<FileType fileType="folder" name="functions" />，然后在该文件夹内新建一个`.mcfunction`文件，我们这里起名叫<FileType fileType="file" name="test.mcfunction" />吧。这个文件，就是我们所说的**函数（Function）文件**。现在，你的行为包中的文件路径应该是这个样子的：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="BP" />：行为包根目录（*对于本教程系列中第一章所创建的行为包，就是<FileType fileType="folder" name="BP_test" />*）。
   - **<FileType fileType="folder" name="functions" />：函数文件夹**
@@ -72,7 +72,7 @@ import FileType from "/src/components/FileType"
   - <FileType fileType="file" name="manifest.json" />：清单文件
   - <FileType fileType="image" name="pack_icon.png" />：图标文件
 
-<br/></div>
+</treeview>
 
 我们用 VSC 打开这个函数文件，并将 VSC 设置为`.mcfunction`文件默认的打开方式。然后，在这个文件中写入以下内容：
 
@@ -335,13 +335,13 @@ title @a[scores={state=3}] actionbar 睡觉中
 
 在函数文件夹中，新建一个函数文件<FileType fileType="file" name="diamond.mcfunction" />。此时，你的函数文件路径如下：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="functions" />
   - <FileType fileType="file" name="test.mcfunction" />
   - **<FileType fileType="file" name="diamond.mcfunction" />**
 
-<br/></div>
+</treeview>
 
 然后，在<FileType fileType="file" name="diamond.mcfunction" />中写入下面的内容：
 
@@ -368,7 +368,7 @@ execute as @a at @s run setblock ~~-1~ diamond_block
 
 在<FileType fileType="folder" name="lib" />中创建一个函数文件<FileType fileType="file" name="get_player_amount.mcfunction" />。此时，你的函数文件路径如下：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="functions" />
   - **<FileType fileType="folder" name="lib" />**
@@ -376,7 +376,7 @@ execute as @a at @s run setblock ~~-1~ diamond_block
   - <FileType fileType="file" name="test.mcfunction" />
   - <FileType fileType="file" name="diamond.mcfunction" />
 
-<br/></div>
+</treeview>
 
 然后，在<FileType fileType="file" name="get_player_amount.mcfunction" />中写入下面的内容：
 
@@ -396,14 +396,14 @@ execute as @a run scoreboard players add playerAmount data 1
 
 但我们这里要讲到的重点，是套在文件夹内的函数调用方法，也就是**写入除`functions/`外的路径后，再写入除后缀名的文件名**。例如：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="functions" />
   - <FileType fileType="folder" name="foo" />
     - <FileType fileType="folder" name="foo1" />
       - <FileType fileType="file" name="example.mcfunction" />
 
-<br/></div>
+</treeview>
 
 那么，调用<FileType fileType="file" name="example.mcfunction" />，就可以用`/function foo/foo1/example`。
 
@@ -415,7 +415,7 @@ execute as @a run scoreboard players add playerAmount data 1
 
 在函数文件夹中，新建一个函数文件<FileType fileType="file" name="test2.mcfunction" />。此时，你的函数文件路径如下：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="functions" />
   - <FileType fileType="folder" name="lib" />
@@ -424,7 +424,7 @@ execute as @a run scoreboard players add playerAmount data 1
   - **<FileType fileType="file" name="test2.mcfunction" />**
   - <FileType fileType="file" name="diamond.mcfunction" />
 
-<br/></div>
+</treeview>
 
 然后，在<FileType fileType="file" name="test.mcfunction" />中写入下面的内容：
 
@@ -550,7 +550,7 @@ function test
 
 有了思路之后，我们开始进行命令的编写。在<FileType fileType="folder" name="lib" />中创建一个函数文件<FileType fileType="file" name="get_factorial.mcfunction" />：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="functions" />
   - <FileType fileType="folder" name="lib" />
@@ -560,7 +560,7 @@ function test
   - <FileType fileType="file" name="test2.mcfunction" />
   - <FileType fileType="file" name="diamond.mcfunction" />
 
-<br/></div>
+</treeview>
 
 在<FileType fileType="file" name="get_factorial.mcfunction" />中写入下列内容：
 
@@ -654,7 +654,7 @@ tellraw @a {"rawtext":[{"translate":"%%s的阶乘等于%%s","with":{"rawtext":[{
 
 我们在<FileType fileType="folder" name="functions" />根目录中创建一个 JSON 文件<FileType fileType="file" name="tick.json" />：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="functions" />
   - <FileType fileType="folder" name="lib" />
@@ -665,7 +665,7 @@ tellraw @a {"rawtext":[{"translate":"%%s的阶乘等于%%s","with":{"rawtext":[{
   - <FileType fileType="file" name="diamond.mcfunction" />
   - **<FileType fileType="file" name="tick.json" />**
 
-<br/></div>
+</treeview>
 
 向<FileType fileType="file" name="tick.json" />中写入以下内容：
 

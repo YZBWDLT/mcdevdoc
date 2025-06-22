@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 可使用物品 v2
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import FileType from "/src/components/FileType"
 
 export const Highlight = ({children, color}) => (
@@ -40,7 +40,7 @@ export const Highlight = ({children, color}) => (
 
 ## 文件架构
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="BP_usable_item_script"/>：**基于脚本原理的自定义物品行为包**。
   - <FileType fileType="folder" name="functions"/>：函数
@@ -82,7 +82,7 @@ export const Highlight = ({children, color}) => (
   - <FileType fileType="file" name="manifest.json" />：（*有冲突风险*）清单文件
   - <FileType fileType="image" name="pack_icon.png" />：包图标
 
-</div>
+</treeview>
 
 ### 合并到您的包中
 

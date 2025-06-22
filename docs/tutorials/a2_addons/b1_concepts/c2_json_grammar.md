@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 1.2 JSON 语法基础
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import DataType from "/src/components/DataType"
 
 **在附加包的编写中，我们要时时刻刻跟 JSON 这个东西打交道**。其实这东西已经不是你第一次见了，在模块 1 的物品组件和文本组件中，我们就曾见过 JSON，只是当时我们只给出了一个固定的格式，却从来没有说过为什么要这么写。可以说，学会 JSON 语法是附加包的一个基础门槛，学不会 JSON 语法就无从谈起写附加包。不过好在，JSON 的语法其实是十分简单的——至少它可比`/execute`简单得多。为了满足我们附加包的编写需求，必须要在系统学习附加包之前先学习 JSON 语法。
@@ -68,14 +68,14 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 
 对于上面的对象，在本站和 Wiki 的文档中这么表示：
 
-<div class="treeview">
+<treeview>
 
 - <DataType dataType="object"/>：根对象
   - <DataType dataType="object" name="playerInfo"/>
     - <DataType dataType="string" name="name"/>
 
 <br/>
-</div>
+</treeview>
 
 代表根对象下接受一个`playerInfo`，它的值为一个对象，对象内接受一个`name`，它的值为字符串。
 
@@ -601,7 +601,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 ### 命令中的 JSON
 
 - 文本组件：由一个对象组成。其中的内容为：
-  <div class="treeview">
+  <treeview>
   - <DataType dataType="object" />：根对象
     - <DataType dataType="array" name="rawtext" isRequired />：代表一个原始 JSON 文本，允许以下 4 种组件。至少应指定一种组件。
       - <DataType dataType="object" />：代表一个普通文本组件（Text）。
@@ -618,10 +618,10 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
         - <DataType dataType="object" name="with" />：（写法 2）代入的格式化文本。
           - <DataType dataType="array" name="rawtext" isRequired />：代表一个原始 JSON 文本。允许以上 4 种组件。至少应指定一种组件。
             - ……
-  </div>
+  </treeview>
   - 但事实上，文本组件的 JSON 语法树要更复杂一些。更通用的情况可见[文本组件 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/文本组件#基岩版)。
 - 物品组件：由一个对象组成。其中允许的内容为：
-  <div class="treeview">
+  <treeview>
   - <DataType dataType="object" />：根对象，允许以下 4 种组件，至少应指定一种。
     - <DataType dataType="object" name="can_place_on" />：可放置到的方块。可添加`minecraft:`命名空间。
       - <DataType dataType="array" name="blocks" isRequired />
@@ -632,7 +632,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
     - <DataType dataType="object" name="item_lock" />：物品锁定方法。可添加`minecraft:`命名空间。
       - <DataType dataType="string" name="mode" isRequired />：仅允许`"lock_in_inventory"`、`"lock_in_slot"`，表示物品锁定方法
     - <DataType dataType="object" name="keep_on_death" />：物品在死亡后保留。可添加`minecraft:`命名空间。
-  </div>
+  </treeview>
 
 ### 常见错误
 

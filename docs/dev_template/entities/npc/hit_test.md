@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # 扩展包：受击检测
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import FileType from "/src/components/FileType"
 
 export const Highlight = ({children, color}) => (

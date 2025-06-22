@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 清单文件
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import DataType from "/src/components/DataType"
 
 清单文件为附加包根目录中的`manifest.json`，它描述附加包的基本信息，决定 Minecraft 如何识别这个附加包的功能。
@@ -37,7 +37,7 @@ import DataType from "/src/components/DataType"
 
 :::
 
-<div class="treeview">
+<treeview>
 
 - <DataType dataType="object"/>：根对象
   - <DataType dataType="int" name="format_version" isRequired/>：清单文件的格式版本。**强烈建议为`2`，非必要不要改动。**
@@ -119,7 +119,7 @@ import DataType from "/src/components/DataType"
       | `"raytraced"` | 包使用光线追踪的功能，并可能使用自定义着色器。 |
       <!-- markdownlint-enable MD058 -->
 
-</div>
+</treeview>
 
 [^1]: 是否可以运用到行为包有待验证。
 

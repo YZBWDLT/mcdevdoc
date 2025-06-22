@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 血量监控 v2
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import FileType from "/src/components/FileType"
 
 **本文用于进行玩家的血量监控**。监控手段基于脚本。
@@ -19,14 +19,14 @@ import FileType from "/src/components/FileType"
 
 要为国际版添加血量监控，需要更改或新增下面的粗体文件，请提前准备：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="BP_npc"/>：行为包根目录
   - <FileType fileType="folder" name="scripts"/>：脚本
     - **<FileType fileType="file" name="main.js"/>：入口文件**（新增或更改）
   - **<FileType fileType="file" name="manifest.json"/>：清单文件**（更改）
 
-<br/></div>
+</treeview>
 
 在清单文件<FileType fileType="file" name="manifest.json"/>中，添加新的模块和依赖项：
 
@@ -78,7 +78,7 @@ world.afterEvents.entityHealthChanged.subscribe(event => {
 
 要为中国版添加血量监控，需要更改或新增下面的粗体文件，其中下文所有的`template`应填写为您的项目的命名空间，请提前准备：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="BP_npc"/>：行为包根目录
   - <FileType fileType="folder" name="scripts"/>：脚本
@@ -86,7 +86,7 @@ world.afterEvents.entityHealthChanged.subscribe(event => {
     - **<FileType fileType="file" name="templateServerMain.py"/>：服务端脚本**（新增或更改）
   - <FileType fileType="file" name="manifest.json"/>：清单文件
 
-<br/></div>
+</treeview>
 
 打开脚本入口文件<FileType fileType="file" name="modMain.py"/>，进行最基本的初始化。同样，注意高亮行的`template`应填写为您的项目的命名空间。
 

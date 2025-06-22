@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 主包 v2
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import FileType from "/src/components/FileType"
 
 export const Highlight = ({children, color}) => (
@@ -45,7 +45,7 @@ export const Highlight = ({children, color}) => (
 
 其中可能会出现多个文件冲突。如果在粘贴过程中遇到冲突，**请务必选择跳过这些文件而非覆盖您原有的文件**，并按照下面可能需要修改的文件列表进行选择性粘贴。
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="BP_npc"/>：行为包根目录
   - <FileType fileType="folder" name="entities"/>：实体服务端定义
@@ -72,7 +72,7 @@ export const Highlight = ({children, color}) => (
   - <FileType fileType="file" name="manifest.json"/>：（*有冲突风险*）清单文件
   - <FileType fileType="image" name="pack_icon.png"/>：包图标
 
-<br/></div>
+</treeview>
 
 ### 合并时可能需要修改的文件
 
@@ -216,7 +216,7 @@ execute as @e[has_property={template:geometry="default"}] run say 我是默认�
 
 3. 将<FileType fileType="image" name="xiaoming.png"/>和<FileType fileType="image" name="xiaoli.png"/>分别命名为`2.png`和`3.png`，分别代表小明和小丽的贴图，然后放到下面的路径中：
 
-    <div class="treeview">
+    <treeview>
 
     - <FileType fileType="folder" name="RP_npc"/>：资源包根目录
       - <FileType fileType="folder" name="textures"/>：贴图
@@ -227,7 +227,7 @@ execute as @e[has_property={template:geometry="default"}] run say 我是默认�
             - **<FileType fileType="image" name="2.png"/>：NPC 2 的贴图（小明）**
             - **<FileType fileType="image" name="3.png"/>：NPC 3 的贴图（小丽）**
 
-    <br/></div>
+    </treeview>
 
 4. 打开客户端（资源包）实体文件<FileType fileType="file" name="npc.client_entity.json"/>，找到`minecraft:client_entity` - `description` - `textures`，新增刚刚添加的两个皮肤路径。
 

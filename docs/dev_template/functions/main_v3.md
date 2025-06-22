@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 主包 v3
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import FileType from "/src/components/FileType"
 
 export const Highlight = ({children, color}) => (
@@ -38,7 +38,7 @@ export const Highlight = ({children, color}) => (
 
 打开<FileType fileType="folder" name="BP/functions"/>，您可以看到 2 个文件夹<FileType fileType="folder" name="system"/>、<FileType fileType="folder" name="lib"/>和一个<FileType fileType="file" name="tick.json"/>。如果看到了您不熟悉的名词（例如时间线），可以在后文看到它们的原理和用法。
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="functions"/>：行为包根目录
   - <FileType fileType="folder" name="system"/>：**系统函数**，运行最底层的内容。
@@ -62,7 +62,7 @@ export const Highlight = ({children, color}) => (
           - <FileType fileType="file" name="keep_value.mcfunction"/>：**保留时间值**。声明在调用*修改时间线状态*的库函数时，保留时间线的时间值。
           - <FileType fileType="file" name="disable_time_lapse.mcfunction"/>：**不保留时间值**。声明在调用*修改时间线状态*的库函数时，不保留时间线的时间值。
 
-<br/></div>
+</treeview>
 
 ### 主函数
 

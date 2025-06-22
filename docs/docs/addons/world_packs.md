@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 世界启用包文件
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import DataType from "/src/components/DataType"
 import FileType from "/src/components/FileType"
 
@@ -12,7 +12,7 @@ import FileType from "/src/components/FileType"
 
 ## 文件路径
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="（世界文件夹）"/>：
   - <FileType fileType="folder" name="db"/>：世界数据文件夹
@@ -25,7 +25,7 @@ import FileType from "/src/components/FileType"
   - **<FileType fileType="file" name="world_behavior_packs.json"/>：世界启用的行为包**
   - **<FileType fileType="file" name="world_resource_packs.json"/>：世界启用的资源包**
 
-</div>
+</treeview>
 
 ## 参数
 
@@ -51,7 +51,7 @@ import FileType from "/src/components/FileType"
 
 :::
 
-<div class="treeview">
+<treeview>
 
 - <DataType dataType="array"/>：根数组
   - <DataType dataType="object"/>：启用的附加包信息
@@ -61,7 +61,7 @@ import FileType from "/src/components/FileType"
       - <DataType dataType="int" name="1" isRequired/>：代表次版本号。
       - <DataType dataType="int" name="2" isRequired/>：代表修订版本号。
 
-</div>
+</treeview>
 
 ## 示例
 

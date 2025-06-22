@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # 扩展包：交互检测
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import FileType from "/src/components/FileType"
 
 **本文用于为 NPC 主包中引入的 NPC 添加交互检测**。
@@ -20,7 +20,7 @@ import FileType from "/src/components/FileType"
 
 在本文中，我们要更改或新增下面的粗体文件，请提前准备：
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="BP_npc"/>：行为包根目录
   - <FileType fileType="folder" name="entities"/>：实体服务端定义
@@ -51,7 +51,7 @@ import FileType from "/src/components/FileType"
   - <FileType fileType="file" name="manifest.json"/>：清单文件
   - <FileType fileType="image" name="pack_icon.png"/>：包图标
 
-<br/></div>
+</treeview>
 
 打开 NPC 的行为包定义，在其组件（`components`）内部添加一个[`minecraft:interaction`](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_interact?view=minecraft-bedrock-stable)组件，然后添加对应的事件调用：
 

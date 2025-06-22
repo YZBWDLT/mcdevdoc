@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 标记 v2
 
-import treeview from '/src/css/treeview.css';
+import '/src/css/treeview.css';
 import FileType from "/src/components/FileType"
 
 export const Highlight = ({children, color}) => (
@@ -44,7 +44,7 @@ export const Highlight = ({children, color}) => (
 
 其中可能会出现多个文件冲突。如果在粘贴过程中遇到冲突，**请务必选择跳过这些文件而非覆盖您原有的文件**，并按照下面可能需要修改的文件列表进行选择性粘贴。
 
-<div class="treeview">
+<treeview>
 
 - <FileType fileType="folder" name="BP_marker"/>：行为包根目录
   - <FileType fileType="folder" name="entities"/>：实体服务端定义
@@ -64,7 +64,7 @@ export const Highlight = ({children, color}) => (
   - <FileType fileType="file" name="manifest.json"/>：（*有冲突风险*）清单文件
   - <FileType fileType="image" name="pack_icon.png"/>：包图标
 
-<br/></div>
+</treeview>
 
 ### 合并时可能需要修改的文件
 
