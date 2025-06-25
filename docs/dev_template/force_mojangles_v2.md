@@ -4,15 +4,9 @@ sidebar_position: 5
 
 # 强制 Mojangles 字体 v2
 
-export const Highlight = ({children, color}) => (
-  <span
-    style={{ backgroundColor: color, borderRadius: '10px', color: '#fff', padding: '10px', cursor: 'pointer', }}
-    onClick={() => {}}>
-    {children}
-  </span>
-);
+import Download from "/src/components/highlight/download"
 
-## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/0PnSG)
+<Download url="https://app.nekodrive.net/s/0PnSG"/>
 
 本包将**常用的英文和数字字体强制更改为了 Mojangles 字体**，以保证在有其他 GNU Unifont 字体（例如中文）出现时能够和纯英文字段保持一致。
 
@@ -59,6 +53,6 @@ export const Highlight = ({children, color}) => (
 
 相比于 v1 版本，新增了对 § 字体的支持
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

@@ -132,6 +132,6 @@ execute as <源实体: target> at @s positioned <位置: x y z> if block <位置
 /execute positioned -244 32 23 if entity @e[r=2,type=snowball] run tp @a ~~-2~ 180 0
 ```
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

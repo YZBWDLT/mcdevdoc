@@ -5,7 +5,7 @@ sidebar_position: 3
 # 扩展包：交互检测
 
 import '/src/css/treeview.css';
-import FileType from "/src/components/FileType"
+import FileType from "/src/components/type/file"
 
 **本文用于为 NPC 主包中引入的 NPC 添加交互检测**。
 
@@ -22,34 +22,34 @@ import FileType from "/src/components/FileType"
 
 <treeview>
 
-- <FileType fileType="folder" name="BP_npc"/>：行为包根目录
-  - <FileType fileType="folder" name="entities"/>：实体服务端定义
-    - <FileType fileType="folder" name="template"/>：（*建议换名*）分类
-      - **<FileType fileType="file" name="npc.server_entity.json"/>：NPC 的行为包定义**（更改）
-  - **<FileType fileType="folder" name="functions"/>：函数**（新增）
-    - **<FileType fileType="folder" name="entities"/>**（新增）
-      - **<FileType fileType="folder" name="npc"/>**（新增）
-        - **<FileType fileType="file" name="interact.mcfunction"/>：NPC 被交互后调用的函数**（新增）
-  - <FileType fileType="file" name="manifest.json"/>：清单文件
-  - <FileType fileType="image" name="pack_icon.png"/>：包图标
-- <FileType fileType="folder" name="RP_npc"/>：资源包根目录
-  - <FileType fileType="folder" name="entity"/>：实体客户端定义
-    - <FileType fileType="file" name="npc.client_entity.json"/>：NPC 的资源包定义
-  - <FileType fileType="folder" name="models"/>：模型
-    - <FileType fileType="folder" name="entity"/>：实体模型
-      - <FileType fileType="file" name="npc.geo.json"/>：NPC 的模型
-  - <FileType fileType="folder" name="render_controllers"/>：渲染控制器
-    - <FileType fileType="file" name="npc.render_controllers.json"/>：NPC 的渲染控制器
-  - <FileType fileType="folder" name="texts"/>：文本
-    - **<FileType fileType="file" name="zh_CN.lang"/>：中文翻译文本**（更改）
-    - **<FileType fileType="file" name="en_US.lang"/>：英文翻译文本**（更改）
-  - <FileType fileType="folder" name="textures"/>：贴图
-    - <FileType fileType="folder" name="entity"/>：实体贴图
-      - <FileType fileType="folder" name="npc"/>：NPC 贴图
-        - <FileType fileType="image" name="0.png"/>：NPC 0 的贴图（Steve）
-        - <FileType fileType="image" name="1.png"/>：NPC 1 的贴图（Alex）
-  - <FileType fileType="file" name="manifest.json"/>：清单文件
-  - <FileType fileType="image" name="pack_icon.png"/>：包图标
+- <FileType type="folder" name="BP_npc"/>：行为包根目录
+  - <FileType type="folder" name="entities"/>：实体服务端定义
+    - <FileType type="folder" name="template"/>：（*建议换名*）分类
+      - **<FileType type="file" name="npc.server_entity.json"/>：NPC 的行为包定义**（更改）
+  - **<FileType type="folder" name="functions"/>：函数**（新增）
+    - **<FileType type="folder" name="entities"/>**（新增）
+      - **<FileType type="folder" name="npc"/>**（新增）
+        - **<FileType type="file" name="interact.mcfunction"/>：NPC 被交互后调用的函数**（新增）
+  - <FileType type="file" name="manifest.json"/>：清单文件
+  - <FileType type="image" name="pack_icon.png"/>：包图标
+- <FileType type="folder" name="RP_npc"/>：资源包根目录
+  - <FileType type="folder" name="entity"/>：实体客户端定义
+    - <FileType type="file" name="npc.client_entity.json"/>：NPC 的资源包定义
+  - <FileType type="folder" name="models"/>：模型
+    - <FileType type="folder" name="entity"/>：实体模型
+      - <FileType type="file" name="npc.geo.json"/>：NPC 的模型
+  - <FileType type="folder" name="render_controllers"/>：渲染控制器
+    - <FileType type="file" name="npc.render_controllers.json"/>：NPC 的渲染控制器
+  - <FileType type="folder" name="texts"/>：文本
+    - **<FileType type="file" name="zh_CN.lang"/>：中文翻译文本**（更改）
+    - **<FileType type="file" name="en_US.lang"/>：英文翻译文本**（更改）
+  - <FileType type="folder" name="textures"/>：贴图
+    - <FileType type="folder" name="entity"/>：实体贴图
+      - <FileType type="folder" name="npc"/>：NPC 贴图
+        - <FileType type="image" name="0.png"/>：NPC 0 的贴图（Steve）
+        - <FileType type="image" name="1.png"/>：NPC 1 的贴图（Alex）
+  - <FileType type="file" name="manifest.json"/>：清单文件
+  - <FileType type="image" name="pack_icon.png"/>：包图标
 
 </treeview>
 
@@ -94,6 +94,6 @@ action.interact.chat=Chat
 action.interact.chat=聊天
 ```
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

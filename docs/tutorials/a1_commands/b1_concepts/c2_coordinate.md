@@ -217,6 +217,6 @@ Minecraft 的坐标以东为 x 轴正方向，以南为 z 轴正方向，而**�
 
 </details>
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

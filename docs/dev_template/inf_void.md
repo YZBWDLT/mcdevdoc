@@ -4,15 +4,9 @@ sidebar_position: 5
 
 # 无限虚空
 
-export const Highlight = ({children, color}) => (
-  <span
-    style={{ backgroundColor: color, borderRadius: '10px', color: '#fff', padding: '10px', cursor: 'pointer', }}
-    onClick={() => {}}>
-    {children}
-  </span>
-);
+import Download from "/src/components/highlight/download"
 
-## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/3XVI2)
+<Download url="https://app.nekodrive.net/s/3XVI2"/>
 
 本包用于**生成一个无限虚空的世界**。
 
@@ -44,6 +38,6 @@ export const Highlight = ({children, color}) => (
 
 [^1]: [数据驱动的主世界高度和虚空生成](https://learn.microsoft.com/en-us/minecraft/creator/documents/datadrivenoverworldheight?view=minecraft-bedrock-stable)
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

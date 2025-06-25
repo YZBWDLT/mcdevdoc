@@ -5,8 +5,8 @@ sidebar_position: 1
 # 2.1.1 函数及相关命令
 
 import '/src/css/treeview.css';
-import DataType from "/src/components/DataType"
-import FileType from "/src/components/FileType"
+import DataType from "/src/components/type/data"
+import FileType from "/src/components/type/file"
 
 从这章开始一直到最后，我们就要为我们的附加包添加实际功能了。本章，我们着重来探讨那些**只需要行为包就可以实现的功能**，这意味着你可以暂时把资源包丢到一边，导入后就暂时不必管它了。不过，这也要求读者必须在第一章中，无论采用什么方式，至少能够导入附加包进游戏或世界中。如果连导入都不能完成的话，那后面我们所讲的内容便是毫无意义的了。
 
@@ -62,15 +62,15 @@ import FileType from "/src/components/FileType"
 
 ## 创建第一个函数
 
-创建函数文件的方法是很简单的。我们只需要在行为包中创建一个新的文件夹<FileType fileType="folder" name="functions" />，然后在该文件夹内新建一个`.mcfunction`文件，我们这里起名叫<FileType fileType="file" name="test.mcfunction" />吧。这个文件，就是我们所说的**函数（Function）文件**。现在，你的行为包中的文件路径应该是这个样子的：
+创建函数文件的方法是很简单的。我们只需要在行为包中创建一个新的文件夹<FileType type="folder" name="functions" />，然后在该文件夹内新建一个`.mcfunction`文件，我们这里起名叫<FileType type="file" name="test.mcfunction" />吧。这个文件，就是我们所说的**函数（Function）文件**。现在，你的行为包中的文件路径应该是这个样子的：
 
 <treeview>
 
-- <FileType fileType="folder" name="BP" />：行为包根目录（*对于本教程系列中第一章所创建的行为包，就是<FileType fileType="folder" name="BP_test" />*）。
-  - **<FileType fileType="folder" name="functions" />：函数文件夹**
-    - **<FileType fileType="file" name="test.mcfunction" />：我们所创建的测试函数**
-  - <FileType fileType="file" name="manifest.json" />：清单文件
-  - <FileType fileType="image" name="pack_icon.png" />：图标文件
+- <FileType type="folder" name="BP" />：行为包根目录（*对于本教程系列中第一章所创建的行为包，就是<FileType type="folder" name="BP_test" />*）。
+  - **<FileType type="folder" name="functions" />：函数文件夹**
+    - **<FileType type="file" name="test.mcfunction" />：我们所创建的测试函数**
+  - <FileType type="file" name="manifest.json" />：清单文件
+  - <FileType type="image" name="pack_icon.png" />：图标文件
 
 </treeview>
 
@@ -333,17 +333,17 @@ title @a[scores={state=3}] actionbar 睡觉中
 
 :::tip[实验 2.1-7]
 
-在函数文件夹中，新建一个函数文件<FileType fileType="file" name="diamond.mcfunction" />。此时，你的函数文件路径如下：
+在函数文件夹中，新建一个函数文件<FileType type="file" name="diamond.mcfunction" />。此时，你的函数文件路径如下：
 
 <treeview>
 
-- <FileType fileType="folder" name="functions" />
-  - <FileType fileType="file" name="test.mcfunction" />
-  - **<FileType fileType="file" name="diamond.mcfunction" />**
+- <FileType type="folder" name="functions" />
+  - <FileType type="file" name="test.mcfunction" />
+  - **<FileType type="file" name="diamond.mcfunction" />**
 
 </treeview>
 
-然后，在<FileType fileType="file" name="diamond.mcfunction" />中写入下面的内容：
+然后，在<FileType type="file" name="diamond.mcfunction" />中写入下面的内容：
 
 ```mcfunction showLineNumbers title="diamond.mcfunction"
 give @a diamond 64
@@ -364,21 +364,21 @@ execute as @a at @s run setblock ~~-1~ diamond_block
 
 :::tip[实验 2.1-8]
 
-在函数文件夹中，新建一个文件夹<FileType fileType="folder" name="lib" />，在很多领域的实际工程中，lib 代表的是 Library（库），代表其中内含了很多经常调用的方法。这里，我们来向这个 lib 文件夹中插入一个检查玩家数量的方法。
+在函数文件夹中，新建一个文件夹<FileType type="folder" name="lib" />，在很多领域的实际工程中，lib 代表的是 Library（库），代表其中内含了很多经常调用的方法。这里，我们来向这个 lib 文件夹中插入一个检查玩家数量的方法。
 
-在<FileType fileType="folder" name="lib" />中创建一个函数文件<FileType fileType="file" name="get_player_amount.mcfunction" />。此时，你的函数文件路径如下：
+在<FileType type="folder" name="lib" />中创建一个函数文件<FileType type="file" name="get_player_amount.mcfunction" />。此时，你的函数文件路径如下：
 
 <treeview>
 
-- <FileType fileType="folder" name="functions" />
-  - **<FileType fileType="folder" name="lib" />**
-    - **<FileType fileType="file" name="get_player_amount.mcfunction" />**
-  - <FileType fileType="file" name="test.mcfunction" />
-  - <FileType fileType="file" name="diamond.mcfunction" />
+- <FileType type="folder" name="functions" />
+  - **<FileType type="folder" name="lib" />**
+    - **<FileType type="file" name="get_player_amount.mcfunction" />**
+  - <FileType type="file" name="test.mcfunction" />
+  - <FileType type="file" name="diamond.mcfunction" />
 
 </treeview>
 
-然后，在<FileType fileType="file" name="get_player_amount.mcfunction" />中写入下面的内容：
+然后，在<FileType type="file" name="get_player_amount.mcfunction" />中写入下面的内容：
 
 ```mcfunction showLineNumbers title="lib/get_player_amount.mcfunction"
 # ===== 获取玩家数量 =====
@@ -398,14 +398,14 @@ execute as @a run scoreboard players add playerAmount data 1
 
 <treeview>
 
-- <FileType fileType="folder" name="functions" />
-  - <FileType fileType="folder" name="foo" />
-    - <FileType fileType="folder" name="foo1" />
-      - <FileType fileType="file" name="example.mcfunction" />
+- <FileType type="folder" name="functions" />
+  - <FileType type="folder" name="foo" />
+    - <FileType type="folder" name="foo1" />
+      - <FileType type="file" name="example.mcfunction" />
 
 </treeview>
 
-那么，调用<FileType fileType="file" name="example.mcfunction" />，就可以用`/function foo/foo1/example`。
+那么，调用<FileType type="file" name="example.mcfunction" />，就可以用`/function foo/foo1/example`。
 
 ### 函数调用函数
 
@@ -413,20 +413,20 @@ execute as @a run scoreboard players add playerAmount data 1
 
 :::tip[实验 2.1-8]
 
-在函数文件夹中，新建一个函数文件<FileType fileType="file" name="test2.mcfunction" />。此时，你的函数文件路径如下：
+在函数文件夹中，新建一个函数文件<FileType type="file" name="test2.mcfunction" />。此时，你的函数文件路径如下：
 
 <treeview>
 
-- <FileType fileType="folder" name="functions" />
-  - <FileType fileType="folder" name="lib" />
-    - <FileType fileType="file" name="get_player_amount.mcfunction" />
-  - <FileType fileType="file" name="test.mcfunction" />
-  - **<FileType fileType="file" name="test2.mcfunction" />**
-  - <FileType fileType="file" name="diamond.mcfunction" />
+- <FileType type="folder" name="functions" />
+  - <FileType type="folder" name="lib" />
+    - <FileType type="file" name="get_player_amount.mcfunction" />
+  - <FileType type="file" name="test.mcfunction" />
+  - **<FileType type="file" name="test2.mcfunction" />**
+  - <FileType type="file" name="diamond.mcfunction" />
 
 </treeview>
 
-然后，在<FileType fileType="file" name="test.mcfunction" />中写入下面的内容：
+然后，在<FileType type="file" name="test.mcfunction" />中写入下面的内容：
 
 ```mcfunction showLineNumbers title="test.mcfunction"
 say 1
@@ -435,7 +435,7 @@ say 3
 function test2
 ```
 
-在<FileType fileType="file" name="test2.mcfunction" />中写入下面的内容：
+在<FileType type="file" name="test2.mcfunction" />中写入下面的内容：
 
 ```mcfunction showLineNumbers title="test2.mcfunction"
 say 4
@@ -455,7 +455,7 @@ say 6
 
 :::tip[实验 2.1-9]
 
-将<FileType fileType="file" name="test.mcfunction" />中改为下面的内容（将第 3-4 行调换）：
+将<FileType type="file" name="test.mcfunction" />中改为下面的内容（将第 3-4 行调换）：
 
 ```mcfunction showLineNumbers title="test.mcfunction" {3-4}
 say 1
@@ -514,7 +514,7 @@ say 3
 
 :::tip[实验 2.1-10]
 
-将<FileType fileType="file" name="test.mcfunction" />中改为下面的内容：
+将<FileType type="file" name="test.mcfunction" />中改为下面的内容：
 
 ```mcfunction showLineNumbers title="test.mcfunction" {3-4}
 say 1
@@ -548,21 +548,21 @@ function test
 
 退出条件，就看`data.x`什么时候减为 0，换言之，在没有减到 0 之前一直递归。
 
-有了思路之后，我们开始进行命令的编写。在<FileType fileType="folder" name="lib" />中创建一个函数文件<FileType fileType="file" name="get_factorial.mcfunction" />：
+有了思路之后，我们开始进行命令的编写。在<FileType type="folder" name="lib" />中创建一个函数文件<FileType type="file" name="get_factorial.mcfunction" />：
 
 <treeview>
 
-- <FileType fileType="folder" name="functions" />
-  - <FileType fileType="folder" name="lib" />
-    - <FileType fileType="file" name="get_player_amount.mcfunction" />
-    - **<FileType fileType="file" name="get_factorial.mcfunction" />**
-  - <FileType fileType="file" name="test.mcfunction" />
-  - <FileType fileType="file" name="test2.mcfunction" />
-  - <FileType fileType="file" name="diamond.mcfunction" />
+- <FileType type="folder" name="functions" />
+  - <FileType type="folder" name="lib" />
+    - <FileType type="file" name="get_player_amount.mcfunction" />
+    - **<FileType type="file" name="get_factorial.mcfunction" />**
+  - <FileType type="file" name="test.mcfunction" />
+  - <FileType type="file" name="test2.mcfunction" />
+  - <FileType type="file" name="diamond.mcfunction" />
 
 </treeview>
 
-在<FileType fileType="file" name="get_factorial.mcfunction" />中写入下列内容：
+在<FileType type="file" name="get_factorial.mcfunction" />中写入下列内容：
 
 ```mcfunction showLineNumbers title="lib/get_factorial.mcfunction"
 # ===== 获取阶乘 =====
@@ -652,22 +652,22 @@ tellraw @a {"rawtext":[{"translate":"%%s的阶乘等于%%s","with":{"rawtext":[{
 
 :::tip[实验 2.1-12]
 
-我们在<FileType fileType="folder" name="functions" />根目录中创建一个 JSON 文件<FileType fileType="file" name="tick.json" />：
+我们在<FileType type="folder" name="functions" />根目录中创建一个 JSON 文件<FileType type="file" name="tick.json" />：
 
 <treeview>
 
-- <FileType fileType="folder" name="functions" />
-  - <FileType fileType="folder" name="lib" />
-    - <FileType fileType="file" name="get_player_amount.mcfunction" />
-    - <FileType fileType="file" name="get_factorial.mcfunction" />
-  - <FileType fileType="file" name="test.mcfunction" />
-  - <FileType fileType="file" name="test2.mcfunction" />
-  - <FileType fileType="file" name="diamond.mcfunction" />
-  - **<FileType fileType="file" name="tick.json" />**
+- <FileType type="folder" name="functions" />
+  - <FileType type="folder" name="lib" />
+    - <FileType type="file" name="get_player_amount.mcfunction" />
+    - <FileType type="file" name="get_factorial.mcfunction" />
+  - <FileType type="file" name="test.mcfunction" />
+  - <FileType type="file" name="test2.mcfunction" />
+  - <FileType type="file" name="diamond.mcfunction" />
+  - **<FileType type="file" name="tick.json" />**
 
 </treeview>
 
-向<FileType fileType="file" name="tick.json" />中写入以下内容：
+向<FileType type="file" name="tick.json" />中写入以下内容：
 
 ```json title="tick.json" showLineNumber
 {
@@ -677,7 +677,7 @@ tellraw @a {"rawtext":[{"translate":"%%s的阶乘等于%%s","with":{"rawtext":[{
 }
 ```
 
-然后把<FileType fileType="file" name="test.mcfunction" />的内容改为：
+然后把<FileType type="file" name="test.mcfunction" />的内容改为：
 
 ```mcfunction showLineNumbers title="test.mcfunction"
 scoreboard players add tick time 1
@@ -692,9 +692,9 @@ execute if score tick time matches 20.. run scoreboard players remove tick time 
 
 ![func_sys_11](./img/d1_function/func_sys_11.png)
 
-原理就是，**<FileType fileType="file" name="tick.json" />所指定的函数会每游戏刻无条件地执行一次**。在上面的例子中，<FileType fileType="file" name="tick.json" />就指定了<FileType fileType="file" name="test.mcfunction" />为始终执行的函数。
+原理就是，**<FileType type="file" name="tick.json" />所指定的函数会每游戏刻无条件地执行一次**。在上面的例子中，<FileType type="file" name="tick.json" />就指定了<FileType type="file" name="test.mcfunction" />为始终执行的函数。
 
-借助<FileType fileType="file" name="tick.json" />，我们可以做到一张地图内部完全没有命令方块，仅凭函数就可以构建一整套完整的逻辑。这种地图，我个人通常称之为“全函数地图”。
+借助<FileType type="file" name="tick.json" />，我们可以做到一张地图内部完全没有命令方块，仅凭函数就可以构建一整套完整的逻辑。这种地图，我个人通常称之为“全函数地图”。
 
 ## 函数相对于命令方块的劣势及其解决方法
 

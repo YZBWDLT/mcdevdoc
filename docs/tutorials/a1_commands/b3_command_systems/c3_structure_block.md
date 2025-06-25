@@ -357,6 +357,6 @@ sidebar_position: 3
 
 本节不设置习题。我们相信只要读者跟着我们在教程中给出的例子做了之后，应当基本上能够掌握结构方块的用法。
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

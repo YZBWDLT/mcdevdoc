@@ -5,8 +5,8 @@ sidebar_position: 100
 # 第一章小结
 
 import '/src/css/treeview.css';
-import DataType from "/src/components/DataType"
-import FileType from "/src/components/FileType"
+import DataType from "/src/components/type/data"
+import FileType from "/src/components/type/file"
 
 在本章，我们学习了附加包的基本概念，并学习了如何构建一个附加包框架并导入到游戏中。我们来回顾一下第一章所学的内容：
 
@@ -30,57 +30,57 @@ import FileType from "/src/components/FileType"
 
 - **数字**（`number`）：包括整数`int`和浮点数`float`，例如：`3`、`-1`、`1.5`、`0.0`。
   - 虽然 JSON 中并不区分整数和浮点数，但是在实际运用中常常还是要注意区分。
-  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="int" />代表整数，<DataType dataType="float" />代表浮点数。
+  - 本教程和 Minecraft Wiki 中，使用<DataType type="int" />代表整数，<DataType type="float" />代表浮点数。
 - **布尔值**（`boolean`）：`true`和`false`。
-  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="boolean" />代表布尔值。
+  - 本教程和 Minecraft Wiki 中，使用<DataType type="boolean" />代表布尔值。
 - **字符串**（`string`）：用双引号`"`包裹起来的任意文本。
   - 有一些转义方法，例如`\n`、`\\`、`\"`等在 JSON 中是适用的。
-  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="string" />代表字符串。
+  - 本教程和 Minecraft Wiki 中，使用<DataType type="string" />代表字符串。
 - **对象**（`object`）：用花括号（`{}`）包裹起来的**键值对的集合**。
   - **键值对**是由一个**键**（Key）和一个**值**（Value）配对组成的。
     - 格式为`key:value`。
     - `key`必须是一个字符串，代表对象的属性。
     - `value`可以是 JSON 中的任意的数据类型。
   - 键值对之间必须用逗号`,`分隔。
-  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="object" />代表对象。
+  - 本教程和 Minecraft Wiki 中，使用<DataType type="object" />代表对象。
 - **数组**（`array`）：用方括号（`[]`）包裹起来的**值的集合**。
   - 值之间必须用逗号`,`分隔。
-  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="array" />代表数组。
+  - 本教程和 Minecraft Wiki 中，使用<DataType type="array" />代表数组。
 
 ### 命令中的 JSON
 
 - 文本组件：由一个对象组成。其中的内容为：
   <treeview>
-  - <DataType dataType="object" />：根对象
-    - <DataType dataType="array" name="rawtext" isRequired />：代表一个原始 JSON 文本，允许以下 4 种组件。至少应指定一种组件。
-      - <DataType dataType="object" />：代表一个普通文本组件（Text）。
-        - <DataType dataType="string" name="text" isRequired />：显示为写入的文本。
-      - <DataType dataType="object" />：代表一个选择器文本组件（Selector）。
-        - <DataType dataType="string" name="selector" isRequired />：填入目标选择器。显示为符合选择器的实体的名称。
-      - <DataType dataType="object" />：代表一个分数文本组件（Score）。
-        - <DataType dataType="object" name="score" isRequired />：显示为特定目标的分数。
-          - <DataType dataType="string" name="objective" isRequired />：填入该目标的记分项。
-          - <DataType dataType="string" name="name" isRequired />：填入该目标的名称或特定的目标选择器。
-      - <DataType dataType="object" />：代表一个翻译文本组件（Translate）。
-        - <DataType dataType="string" name="translate" isRequired />：要翻译的文本或翻译的键名。
-        - <DataType dataType="array" name="with" />：（写法 1）代入的格式化文本。
-        - <DataType dataType="object" name="with" />：（写法 2）代入的格式化文本。
-          - <DataType dataType="array" name="rawtext" isRequired />：代表一个原始 JSON 文本。允许以上 4 种组件。至少应指定一种组件。
+  - <DataType type="object" />：根对象
+    - <DataType type="array" name="rawtext" isRequired />：代表一个原始 JSON 文本，允许以下 4 种组件。至少应指定一种组件。
+      - <DataType type="object" />：代表一个普通文本组件（Text）。
+        - <DataType type="string" name="text" isRequired />：显示为写入的文本。
+      - <DataType type="object" />：代表一个选择器文本组件（Selector）。
+        - <DataType type="string" name="selector" isRequired />：填入目标选择器。显示为符合选择器的实体的名称。
+      - <DataType type="object" />：代表一个分数文本组件（Score）。
+        - <DataType type="object" name="score" isRequired />：显示为特定目标的分数。
+          - <DataType type="string" name="objective" isRequired />：填入该目标的记分项。
+          - <DataType type="string" name="name" isRequired />：填入该目标的名称或特定的目标选择器。
+      - <DataType type="object" />：代表一个翻译文本组件（Translate）。
+        - <DataType type="string" name="translate" isRequired />：要翻译的文本或翻译的键名。
+        - <DataType type="array" name="with" />：（写法 1）代入的格式化文本。
+        - <DataType type="object" name="with" />：（写法 2）代入的格式化文本。
+          - <DataType type="array" name="rawtext" isRequired />：代表一个原始 JSON 文本。允许以上 4 种组件。至少应指定一种组件。
             - ……
   </treeview>
   - 但事实上，文本组件的 JSON 语法树要更复杂一些。更通用的情况可见[文本组件 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/文本组件#基岩版)。
 - 物品组件：由一个对象组成。其中允许的内容为：
   <treeview>
-  - <DataType dataType="object" />：根对象，允许以下 4 种组件，至少应指定一种。
-    - <DataType dataType="object" name="can_place_on" />：可放置到的方块。可添加`minecraft:`命名空间。
-      - <DataType dataType="array" name="blocks" isRequired />
-        - <DataType dataType="string" isRequired />：填入方块 ID，代表物品可放置到的方块。
-    - <DataType dataType="object" name="can_destroy" />：可破坏的方块。可添加`minecraft:`命名空间。
-      - <DataType dataType="array" name="blocks" isRequired />
-        - <DataType dataType="string" isRequired />：填入方块 ID，代表物品可破坏的方块。
-    - <DataType dataType="object" name="item_lock" />：物品锁定方法。可添加`minecraft:`命名空间。
-      - <DataType dataType="string" name="mode" isRequired />：仅允许`"lock_in_inventory"`、`"lock_in_slot"`，表示物品锁定方法
-    - <DataType dataType="object" name="keep_on_death" />：物品在死亡后保留。可添加`minecraft:`命名空间。
+  - <DataType type="object" />：根对象，允许以下 4 种组件，至少应指定一种。
+    - <DataType type="object" name="can_place_on" />：可放置到的方块。可添加`minecraft:`命名空间。
+      - <DataType type="array" name="blocks" isRequired />
+        - <DataType type="string" isRequired />：填入方块 ID，代表物品可放置到的方块。
+    - <DataType type="object" name="can_destroy" />：可破坏的方块。可添加`minecraft:`命名空间。
+      - <DataType type="array" name="blocks" isRequired />
+        - <DataType type="string" isRequired />：填入方块 ID，代表物品可破坏的方块。
+    - <DataType type="object" name="item_lock" />：物品锁定方法。可添加`minecraft:`命名空间。
+      - <DataType type="string" name="mode" isRequired />：仅允许`"lock_in_inventory"`、`"lock_in_slot"`，表示物品锁定方法
+    - <DataType type="object" name="keep_on_death" />：物品在死亡后保留。可添加`minecraft:`命名空间。
   </treeview>
 
 ### 常见错误
@@ -100,24 +100,24 @@ import FileType from "/src/components/FileType"
 
 <treeview>
 
-- <DataType dataType="object"/>：根对象
-  - <DataType dataType="int" name="format_version" isRequired/>：清单文件的格式版本。**强烈建议为`2`，非必要不要改动。**
-  - <DataType dataType="object" name="header" isRequired/>：包的公开基本信息，包括包名、包描述、包 UUID 等。
-    - <DataType dataType="string" name="name" isRequired/>：包的名称。
-    - <DataType dataType="string" name="description"/>：包的描述。建议简短而清晰，不要写得过长。
-    - <DataType dataType="string" name="uuid" isRequired/>：包的 UUID。表示包的唯一识别码，是 Minecraft 识别包与其他包不同的关键信息，应与其他包区分开。  
+- <DataType type="object"/>：根对象
+  - <DataType type="int" name="format_version" isRequired/>：清单文件的格式版本。**强烈建议为`2`，非必要不要改动。**
+  - <DataType type="object" name="header" isRequired/>：包的公开基本信息，包括包名、包描述、包 UUID 等。
+    - <DataType type="string" name="name" isRequired/>：包的名称。
+    - <DataType type="string" name="description"/>：包的描述。建议简短而清晰，不要写得过长。
+    - <DataType type="string" name="uuid" isRequired/>：包的 UUID。表示包的唯一识别码，是 Minecraft 识别包与其他包不同的关键信息，应与其他包区分开。  
       格式为`xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`，其中每一个`x`均为十六进制数（`0-9`或`a-f`）。建议使用随机 UUID 生成器以有效地与其他包区分开来。
-    - <DataType dataType="array" name="version" isRequired/>：包的版本。
-      - <DataType dataType="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
-      - <DataType dataType="int" name="1" isRequired/>：代表次版本号。
-      - <DataType dataType="int" name="2" isRequired/>：代表修订版本号。
-    - <DataType dataType="array" name="min_engine_version" isRequired/>：包的最小引擎版本。规定使用此附加包至少需要使用何种版本的 Minecraft，并决定了游戏对包的向下兼容能力。
-      - <DataType dataType="int" name="0" isRequired/>：写为`1`，代表 Minecraft 的主版本号。
-      - <DataType dataType="int" name="1" isRequired/>：代表 Minecraft 的次版本号。
-      - <DataType dataType="int" name="2" isRequired/>：代表 Minecraft 的修订版本号。
-  - <DataType dataType="array" name="modules" isRequired/>：包会应用的功能模块。至少应指定一个模块。
-    - <DataType dataType="object" isRequired/>：指代一个或多个模块。
-      - <DataType dataType="string" name="type" isRequired/>：模块会使用的功能。仅限填写为下面的值，并规定包为对应的类型。
+    - <DataType type="array" name="version" isRequired/>：包的版本。
+      - <DataType type="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
+      - <DataType type="int" name="1" isRequired/>：代表次版本号。
+      - <DataType type="int" name="2" isRequired/>：代表修订版本号。
+    - <DataType type="array" name="min_engine_version" isRequired/>：包的最小引擎版本。规定使用此附加包至少需要使用何种版本的 Minecraft，并决定了游戏对包的向下兼容能力。
+      - <DataType type="int" name="0" isRequired/>：写为`1`，代表 Minecraft 的主版本号。
+      - <DataType type="int" name="1" isRequired/>：代表 Minecraft 的次版本号。
+      - <DataType type="int" name="2" isRequired/>：代表 Minecraft 的修订版本号。
+  - <DataType type="array" name="modules" isRequired/>：包会应用的功能模块。至少应指定一个模块。
+    - <DataType type="object" isRequired/>：指代一个或多个模块。
+      - <DataType type="string" name="type" isRequired/>：模块会使用的功能。仅限填写为下面的值，并规定包为对应的类型。
         <!-- markdownlint-disable MD058 -->
         | `type`的值 | 包类型 |
         | :---: | :---: |
@@ -126,27 +126,27 @@ import FileType from "/src/components/FileType"
         | `"world_template"` | 地图模板 |
         | `"skin_pack"` | 皮肤包 |
         <!-- markdownlint-enable MD058 -->
-      - <DataType dataType="string" name="uuid" isRequired/>：模块的 UUID。格式要求同`header`。不宜和`header`的 UUID 相同。
-      - <DataType dataType="array" name="version" isRequired/>：模块的版本。
-        - <DataType dataType="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
-        - <DataType dataType="int" name="1" isRequired/>：代表次版本号。
-        - <DataType dataType="int" name="2" isRequired/>：代表修订版本号。
-  - <DataType dataType="array" name="dependencies"/>：包依赖的其他包。只有这些包安装后，本包才能正常启用。指定该字段时，至少应指定一个依赖的附加包或脚本模块。
-    - <DataType dataType="object"/>：指代要依赖的附加包。依赖其他附加包时接受以下参数。
-      - <DataType dataType="string" name="uuid" isRequired/>：依赖包的 UUID。为依赖包在`header`中所定义的 UUID。
-      - <DataType dataType="array" name="version" isRequired/>：依赖包的版本。为依赖包在`header`中所定义的版本。
-        - <DataType dataType="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
-        - <DataType dataType="int" name="1" isRequired/>：代表次版本号。
-        - <DataType dataType="int" name="2" isRequired/>：代表修订版本号。
-  - <DataType dataType="object" name="metadata"/>：包有关的元数据（例如作者、许可信息等）。
-    - <DataType dataType="array" name="authors"/>：本包的作者。
-      - <DataType dataType="string" isRequired/>：作者昵称。
-    - <DataType dataType="string" name="license"/>：本包采用的协议。
-    - <DataType dataType="object" name="generated_with"/>：本包的清单文件等文件使用哪个（些）软件自动生成。
-      - <DataType dataType="array" name="(软件名)" isRequired/>：使用的软件版本。通常由该软件自行生成。
-        - <DataType dataType="string" isRequired/>：指代使用到的软件版本。通常由该软件自行生成。
-    - <DataType dataType="string" name="product_type"/>：本包的类型。设置此参数时，行为包不再影响成就的获取。仅限填写为`"addon"`。
-    - <DataType dataType="string" name="url"/>：网站。通常链接到作者的个人网站或公司的公司网站。
+      - <DataType type="string" name="uuid" isRequired/>：模块的 UUID。格式要求同`header`。不宜和`header`的 UUID 相同。
+      - <DataType type="array" name="version" isRequired/>：模块的版本。
+        - <DataType type="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
+        - <DataType type="int" name="1" isRequired/>：代表次版本号。
+        - <DataType type="int" name="2" isRequired/>：代表修订版本号。
+  - <DataType type="array" name="dependencies"/>：包依赖的其他包。只有这些包安装后，本包才能正常启用。指定该字段时，至少应指定一个依赖的附加包或脚本模块。
+    - <DataType type="object"/>：指代要依赖的附加包。依赖其他附加包时接受以下参数。
+      - <DataType type="string" name="uuid" isRequired/>：依赖包的 UUID。为依赖包在`header`中所定义的 UUID。
+      - <DataType type="array" name="version" isRequired/>：依赖包的版本。为依赖包在`header`中所定义的版本。
+        - <DataType type="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
+        - <DataType type="int" name="1" isRequired/>：代表次版本号。
+        - <DataType type="int" name="2" isRequired/>：代表修订版本号。
+  - <DataType type="object" name="metadata"/>：包有关的元数据（例如作者、许可信息等）。
+    - <DataType type="array" name="authors"/>：本包的作者。
+      - <DataType type="string" isRequired/>：作者昵称。
+    - <DataType type="string" name="license"/>：本包采用的协议。
+    - <DataType type="object" name="generated_with"/>：本包的清单文件等文件使用哪个（些）软件自动生成。
+      - <DataType type="array" name="(软件名)" isRequired/>：使用的软件版本。通常由该软件自行生成。
+        - <DataType type="string" isRequired/>：指代使用到的软件版本。通常由该软件自行生成。
+    - <DataType type="string" name="product_type"/>：本包的类型。设置此参数时，行为包不再影响成就的获取。仅限填写为`"addon"`。
+    - <DataType type="string" name="url"/>：网站。通常链接到作者的个人网站或公司的公司网站。
 
 </treeview>
 
@@ -163,42 +163,42 @@ import FileType from "/src/components/FileType"
   - 直接导入法：
     - 仅适用于国际版。这种方法导入的附加包是全局和地图均可用的。
     - 如果开发纯附加包类型的资源（即不依托特定地图应用），推荐这种方法。
-    - 直接在<FileType fileType="folder" name="com.mojang"/>下的<FileType fileType="folder" name="development_behavior_packs"/>和<FileType fileType="folder" name="development_resource_packs"/>中导入包。
+    - 直接在<FileType type="folder" name="com.mojang"/>下的<FileType type="folder" name="development_behavior_packs"/>和<FileType type="folder" name="development_resource_packs"/>中导入包。
     - 示例：
       <treeview>
-      - <FileType fileType="folder" name="com.mojang"/>
-        - <FileType fileType="folder" name="development_behavior_packs"/>：开发行为包文件夹
-          - **<FileType fileType="folder" name="BP_test"/>：测试行为包**
-            - <FileType fileType="file" name="manifest.json"/>：行为包的清单文件
-            - <FileType fileType="image" name="pack_icon.png"/>：行为包的图标文件
-        - <FileType fileType="folder" name="development_resource_packs"/>：开发资源包文件夹
-          - **<FileType fileType="folder" name="RP_test"/>：测试资源包**
-            - <FileType fileType="file" name="manifest.json"/>：资源包的清单文件
-            - <FileType fileType="image" name="pack_icon.png"/>：资源包的图标文件
+      - <FileType type="folder" name="com.mojang"/>
+        - <FileType type="folder" name="development_behavior_packs"/>：开发行为包文件夹
+          - **<FileType type="folder" name="BP_test"/>：测试行为包**
+            - <FileType type="file" name="manifest.json"/>：行为包的清单文件
+            - <FileType type="image" name="pack_icon.png"/>：行为包的图标文件
+        - <FileType type="folder" name="development_resource_packs"/>：开发资源包文件夹
+          - **<FileType type="folder" name="RP_test"/>：测试资源包**
+            - <FileType type="file" name="manifest.json"/>：资源包的清单文件
+            - <FileType type="image" name="pack_icon.png"/>：资源包的图标文件
       </treeview>
   - 特定地图导入法（强制导入法）：
     - 国际版与中国版均适用。这种导入方法仅适用于特定地图。
     - 如果开发地图类型的资源，推荐这种方法。
-    - 直接在<FileType fileType="folder" name="minecraftWorld"/>下的世界文件夹中，在<FileType fileType="folder" name="behavior_packs"/>和<FileType fileType="folder" name="resource_packs"/>中导入包。
+    - 直接在<FileType type="folder" name="minecraftWorld"/>下的世界文件夹中，在<FileType type="folder" name="behavior_packs"/>和<FileType type="folder" name="resource_packs"/>中导入包。
     - 示例：
       <treeview>
-      - <FileType fileType="folder" name="com.mojang"/>（在中国版，Windows 平台为<FileType fileType="folder" name="MinecraftPE_Netease"/>，Android 平台为<FileType fileType="folder" name="files"/>）
-        - <FileType fileType="folder" name="minecraftWorlds"/>
-          - <FileType fileType="folder" name="（地图文件夹）"/>
-            - <FileType fileType="folder" name="behavior_packs"/>：地图的行为包
-              - **<FileType fileType="folder" name="BP_test"/>：测试行为包**
-                - <FileType fileType="file" name="manifest.json"/>：清单文件
-                - <FileType fileType="image" name="pack_icon.png"/>：图标
-            - <FileType fileType="folder" name="resource_packs"/>：地图的资源包
-              - **<FileType fileType="folder" name="RP_test"/>：测试资源包**
-                - <FileType fileType="file" name="manifest.json"/>：清单文件
-                - <FileType fileType="image" name="pack_icon.png"/>：图标
+      - <FileType type="folder" name="com.mojang"/>（在中国版，Windows 平台为<FileType type="folder" name="MinecraftPE_Netease"/>，Android 平台为<FileType type="folder" name="files"/>）
+        - <FileType type="folder" name="minecraftWorlds"/>
+          - <FileType type="folder" name="（地图文件夹）"/>
+            - <FileType type="folder" name="behavior_packs"/>：地图的行为包
+              - **<FileType type="folder" name="BP_test"/>：测试行为包**
+                - <FileType type="file" name="manifest.json"/>：清单文件
+                - <FileType type="image" name="pack_icon.png"/>：图标
+            - <FileType type="folder" name="resource_packs"/>：地图的资源包
+              - **<FileType type="folder" name="RP_test"/>：测试资源包**
+                - <FileType type="file" name="manifest.json"/>：清单文件
+                - <FileType type="image" name="pack_icon.png"/>：图标
             - ……
-            - <FileType fileType="file" name="world_behavior_packs.json"/>：地图启用的行为包
-            - <FileType fileType="file" name="world_resource_packs.json"/>：地图启用的资源包
+            - <FileType type="file" name="world_behavior_packs.json"/>：地图启用的行为包
+            - <FileType type="file" name="world_resource_packs.json"/>：地图启用的资源包
       </treeview>
     - 在国际版游戏内，直接在游戏内的地图设置中启用导入的包。
-    - 在中国版或者 BDS 等没有 UI 的地方，直接更改<FileType fileType="file" name="world_behavior_packs.json"/>和<FileType fileType="file" name="world_resource_packs.json"/>来强制导入包，即强制导入法。
+    - 在中国版或者 BDS 等没有 UI 的地方，直接更改<FileType type="file" name="world_behavior_packs.json"/>和<FileType type="file" name="world_resource_packs.json"/>来强制导入包，即强制导入法。
   - 打包导入法：
     - 仅适用于国际版。这种导入方法是全局和地图均可用的。
     - 对于无法访问游戏数据路径的开发者来说，这种方法可能比较好用（虽然日后导出地图可能也是个问题）。

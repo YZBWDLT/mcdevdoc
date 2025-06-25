@@ -5,17 +5,10 @@ sidebar_position: 3
 # 文本展示实体 v2
 
 import '/src/css/treeview.css';
-import FileType from "/src/components/FileType"
+import FileType from "/src/components/type/file"
+import Download from "/src/components/highlight/download"
 
-export const Highlight = ({children, color}) => (
-  <span
-    style={{ backgroundColor: color, borderRadius: '10px', color: '#fff', padding: '10px', cursor: 'pointer', }}
-    onClick={() => {}}>
-    {children}
-  </span>
-);
-
-## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/VZMid)
+<Download url="https://app.nekodrive.net/s/VZMid"/>
 
 **本包用于创建 Java 版中的辅助实体：[文本展示实体](https://zh.minecraft.wiki/w/展示实体)**。
 
@@ -48,23 +41,23 @@ export const Highlight = ({children, color}) => (
 
 <treeview>
 
-- <FileType fileType="folder" name="BP_text_display"/>：行为包根目录
-  - <FileType fileType="folder" name="entities"/>：实体服务端定义
-    - <FileType fileType="folder" name="template"/>：（*建议换名*）分类
-      - <FileType fileType="file" name="text_display.server_entity.json"/>：**文本展示实体的行为包定义**
-  - <FileType fileType="file" name="manifest.json"/>：（*有冲突风险*）清单文件
-  - <FileType fileType="image" name="pack_icon.png"/>：包图标
-- <FileType fileType="folder" name="RP_text_display"/>：资源包根目录
-  - <FileType fileType="folder" name="entity"/>：实体客户端定义
-    - <FileType fileType="file" name="text_display.client_entity.json"/>：**文本展示实体的资源包定义**
-  - <FileType fileType="folder" name="render_controllers"/>：渲染控制器
-    - <FileType fileType="file" name="text_display.render_controllers.json"/>：**文本展示实体的渲染控制器**
-  - <FileType fileType="folder" name="texts"/>：文本
-    - <FileType fileType="file" name="zh_CN.lang"/>：**（*有冲突风险*）中文翻译文本**
-    - <FileType fileType="file" name="en_US.lang"/>：**（*有冲突风险*）英文翻译文本**
-  - <FileType fileType="file" name="sounds.json"/>：**（*有冲突风险*）音效定义**
-  - <FileType fileType="file" name="manifest.json"/>：（*有冲突风险*）清单文件
-  - <FileType fileType="image" name="pack_icon.png"/>：包图标
+- <FileType type="folder" name="BP_text_display"/>：行为包根目录
+  - <FileType type="folder" name="entities"/>：实体服务端定义
+    - <FileType type="folder" name="template"/>：（*建议换名*）分类
+      - <FileType type="file" name="text_display.server_entity.json"/>：**文本展示实体的行为包定义**
+  - <FileType type="file" name="manifest.json"/>：（*有冲突风险*）清单文件
+  - <FileType type="image" name="pack_icon.png"/>：包图标
+- <FileType type="folder" name="RP_text_display"/>：资源包根目录
+  - <FileType type="folder" name="entity"/>：实体客户端定义
+    - <FileType type="file" name="text_display.client_entity.json"/>：**文本展示实体的资源包定义**
+  - <FileType type="folder" name="render_controllers"/>：渲染控制器
+    - <FileType type="file" name="text_display.render_controllers.json"/>：**文本展示实体的渲染控制器**
+  - <FileType type="folder" name="texts"/>：文本
+    - <FileType type="file" name="zh_CN.lang"/>：**（*有冲突风险*）中文翻译文本**
+    - <FileType type="file" name="en_US.lang"/>：**（*有冲突风险*）英文翻译文本**
+  - <FileType type="file" name="sounds.json"/>：**（*有冲突风险*）音效定义**
+  - <FileType type="file" name="manifest.json"/>：（*有冲突风险*）清单文件
+  - <FileType type="image" name="pack_icon.png"/>：包图标
 
 </treeview>
 
@@ -141,10 +134,10 @@ summon template:text_display "§b点击按钮以开始游戏" 10 10 10
 
 您可以在这里下载到过往版本。然而，我们已不再推荐使用这些旧版本。
 
-[<Highlight color="#25c2a0">下载 v1 版本</Highlight>](https://app.nekodrive.net/s/zgGi4)
+<Download text="下载 v1 版本" url="https://app.nekodrive.net/s/zgGi4" isInline/>
 
 *备注：v1 版本将同时下载标记和文本展示实体*。
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

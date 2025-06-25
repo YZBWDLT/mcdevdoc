@@ -142,6 +142,6 @@ Wiki 中，给出下面的定义（但并不明晰）：
 - 皮肤包（Skin Pack）是一类将多个皮肤打包的附加包。但是中国版并不支持。
 - 在附加包领域，我们已不再能仅局限于中文 Minecraft Wiki，诸如微软文档、Bedrock Wiki 等文档才是我们编写附加包时应参考的主要文档。
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

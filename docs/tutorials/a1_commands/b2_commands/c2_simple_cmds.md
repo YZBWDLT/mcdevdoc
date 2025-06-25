@@ -661,6 +661,6 @@ rym=<x旋转最小值: float>
 
 </details>
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

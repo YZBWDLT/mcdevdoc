@@ -29,6 +29,6 @@ sidebar_position: 11
 2. 使用`/give @s spawn_egg 1 51`获得 NPC 的刷怪蛋。将刷怪蛋命名为自己想要的文本，然后将NPC放在地上。
 3. 使用循环型命令方块，执行命令`/playanimation @e[family=npc] animation.creeper.swelling * 99999`，可以看到 NPC 只剩下一个影子，但其上方的名称仍在显示，达成了悬浮文本的效果。
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

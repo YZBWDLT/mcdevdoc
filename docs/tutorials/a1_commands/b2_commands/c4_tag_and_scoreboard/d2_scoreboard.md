@@ -74,6 +74,6 @@ sidebar_position: 2
   - 在本教程系列中，描述`objective`记分项上名为`name`的追踪对象的分数`score`将简写为`objective.name`=`score`。
   - 这并不是*行业惯例*，只是出于简化考虑。
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

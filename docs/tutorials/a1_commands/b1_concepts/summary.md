@@ -103,6 +103,6 @@ sidebar_position: 100
 | `hasitem={item=<物品: Item>}` | **Has Item** | 拥有物品`物品`的实体 | 实体数据 | |
 | `c=<最大数量: int>` | **C**ount | 至多从近到远选中**至多**`最大数量`个符合条件的实体 | 其他 | 可以指定为负数，并选中从远到近**至多**\|`最大数量`\|个实体 |
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

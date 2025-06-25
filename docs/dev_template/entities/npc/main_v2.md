@@ -5,17 +5,10 @@ sidebar_position: 1
 # 主包 v2
 
 import '/src/css/treeview.css';
-import FileType from "/src/components/FileType"
+import FileType from "/src/components/type/file"
+import Download from "/src/components/highlight/download"
 
-export const Highlight = ({children, color}) => (
-  <span
-    style={{ backgroundColor: color, borderRadius: '10px', color: '#fff', padding: '10px', cursor: 'pointer', }}
-    onClick={() => {}}>
-    {children}
-  </span>
-);
-
-## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/XdquY)
+<Download url="https://app.nekodrive.net/s/XdquY"/>
 
 **本包用于创建在玩法地图中常见的实体：NPC**。
 
@@ -47,30 +40,30 @@ export const Highlight = ({children, color}) => (
 
 <treeview>
 
-- <FileType fileType="folder" name="BP_npc"/>：行为包根目录
-  - <FileType fileType="folder" name="entities"/>：实体服务端定义
-    - <FileType fileType="folder" name="template"/>：（*建议换名*）分类
-      - <FileType fileType="file" name="npc.server_entity.json"/>：**NPC 的行为包定义**
-  - <FileType fileType="file" name="manifest.json"/>：（*有冲突风险*）清单文件
-  - <FileType fileType="image" name="pack_icon.png"/>：包图标
-- <FileType fileType="folder" name="RP_npc"/>：资源包根目录
-  - <FileType fileType="folder" name="entity"/>：实体客户端定义
-    - <FileType fileType="file" name="npc.client_entity.json"/>：**NPC 的资源包定义**
-  - <FileType fileType="folder" name="models"/>：模型
-    - <FileType fileType="folder" name="entity"/>：实体模型
-      - <FileType fileType="file" name="npc.geo.json"/>：**NPC 的模型**
-  - <FileType fileType="folder" name="render_controllers"/>：渲染控制器
-    - <FileType fileType="file" name="npc.render_controllers.json"/>：**NPC 的渲染控制器**
-  - <FileType fileType="folder" name="texts"/>：文本
-    - <FileType fileType="file" name="zh_CN.lang"/>：**（*有冲突风险*）中文翻译文本**
-    - <FileType fileType="file" name="en_US.lang"/>：**（*有冲突风险*）英文翻译文本**
-  - <FileType fileType="folder" name="textures"/>：贴图
-    - <FileType fileType="folder" name="entity"/>：实体贴图
-      - <FileType fileType="folder" name="npc"/>：NPC 贴图
-        - <FileType fileType="image" name="0.png"/>：**NPC 0 的贴图（Steve）**
-        - <FileType fileType="image" name="1.png"/>：**NPC 1 的贴图（Alex）**
-  - <FileType fileType="file" name="manifest.json"/>：（*有冲突风险*）清单文件
-  - <FileType fileType="image" name="pack_icon.png"/>：包图标
+- <FileType type="folder" name="BP_npc"/>：行为包根目录
+  - <FileType type="folder" name="entities"/>：实体服务端定义
+    - <FileType type="folder" name="template"/>：（*建议换名*）分类
+      - <FileType type="file" name="npc.server_entity.json"/>：**NPC 的行为包定义**
+  - <FileType type="file" name="manifest.json"/>：（*有冲突风险*）清单文件
+  - <FileType type="image" name="pack_icon.png"/>：包图标
+- <FileType type="folder" name="RP_npc"/>：资源包根目录
+  - <FileType type="folder" name="entity"/>：实体客户端定义
+    - <FileType type="file" name="npc.client_entity.json"/>：**NPC 的资源包定义**
+  - <FileType type="folder" name="models"/>：模型
+    - <FileType type="folder" name="entity"/>：实体模型
+      - <FileType type="file" name="npc.geo.json"/>：**NPC 的模型**
+  - <FileType type="folder" name="render_controllers"/>：渲染控制器
+    - <FileType type="file" name="npc.render_controllers.json"/>：**NPC 的渲染控制器**
+  - <FileType type="folder" name="texts"/>：文本
+    - <FileType type="file" name="zh_CN.lang"/>：**（*有冲突风险*）中文翻译文本**
+    - <FileType type="file" name="en_US.lang"/>：**（*有冲突风险*）英文翻译文本**
+  - <FileType type="folder" name="textures"/>：贴图
+    - <FileType type="folder" name="entity"/>：实体贴图
+      - <FileType type="folder" name="npc"/>：NPC 贴图
+        - <FileType type="image" name="0.png"/>：**NPC 0 的贴图（Steve）**
+        - <FileType type="image" name="1.png"/>：**NPC 1 的贴图（Alex）**
+  - <FileType type="file" name="manifest.json"/>：（*有冲突风险*）清单文件
+  - <FileType type="image" name="pack_icon.png"/>：包图标
 
 </treeview>
 
@@ -171,9 +164,9 @@ execute as @e[has_property={template:geometry="default"}] run say 我是默认�
 
 基于我们的预设，您完全可以自行设定任意数量的新皮肤的 NPC。但在此之前，您需要先准备一个或多个皮肤文件。
 
-下面的教程中，我们假设准备了一个默认手臂模型的皮肤<FileType fileType="image" name="xiaoming.png"/>，代表小明的皮肤；和一个纤细手臂模型的皮肤<FileType fileType="image" name="xiaoli.png"/>，代表小丽的皮肤，并将它们加入到游戏中。
+下面的教程中，我们假设准备了一个默认手臂模型的皮肤<FileType type="image" name="xiaoming.png"/>，代表小明的皮肤；和一个纤细手臂模型的皮肤<FileType type="image" name="xiaoli.png"/>，代表小丽的皮肤，并将它们加入到游戏中。
 
-1. 打开服务端（行为包）实体文件<FileType fileType="file" name="npc.server_entity.json"/>，找到`minecraft:entity` - `description` - `properties` - `template:skin`，因为我们是新增 2 个皮肤，带上预设的 2 个，总共为 4 个皮肤，所以可能的皮肤 ID 应该为`0`-`3`，我们只需要把`range`改动为`[ 0, 3 ]`即可。
+1. 打开服务端（行为包）实体文件<FileType type="file" name="npc.server_entity.json"/>，找到`minecraft:entity` - `description` - `properties` - `template:skin`，因为我们是新增 2 个皮肤，带上预设的 2 个，总共为 4 个皮肤，所以可能的皮肤 ID 应该为`0`-`3`，我们只需要把`range`改动为`[ 0, 3 ]`即可。
 
     ```json showLineNumbers title="BP_npc/entities/template/npc.server_entity.json" {7}
     {
@@ -214,22 +207,22 @@ execute as @e[has_property={template:geometry="default"}] run say 我是默认�
     }
     ```
 
-3. 将<FileType fileType="image" name="xiaoming.png"/>和<FileType fileType="image" name="xiaoli.png"/>分别命名为`2.png`和`3.png`，分别代表小明和小丽的贴图，然后放到下面的路径中：
+3. 将<FileType type="image" name="xiaoming.png"/>和<FileType type="image" name="xiaoli.png"/>分别命名为`2.png`和`3.png`，分别代表小明和小丽的贴图，然后放到下面的路径中：
 
     <treeview>
 
-    - <FileType fileType="folder" name="RP_npc"/>：资源包根目录
-      - <FileType fileType="folder" name="textures"/>：贴图
-        - <FileType fileType="folder" name="entity"/>：实体贴图
-          - <FileType fileType="folder" name="npc"/>：NPC 贴图
-            - <FileType fileType="image" name="0.png"/>：NPC 0 的贴图（Steve）
-            - <FileType fileType="image" name="1.png"/>：NPC 1 的贴图（Alex）
-            - **<FileType fileType="image" name="2.png"/>：NPC 2 的贴图（小明）**
-            - **<FileType fileType="image" name="3.png"/>：NPC 3 的贴图（小丽）**
+    - <FileType type="folder" name="RP_npc"/>：资源包根目录
+      - <FileType type="folder" name="textures"/>：贴图
+        - <FileType type="folder" name="entity"/>：实体贴图
+          - <FileType type="folder" name="npc"/>：NPC 贴图
+            - <FileType type="image" name="0.png"/>：NPC 0 的贴图（Steve）
+            - <FileType type="image" name="1.png"/>：NPC 1 的贴图（Alex）
+            - **<FileType type="image" name="2.png"/>：NPC 2 的贴图（小明）**
+            - **<FileType type="image" name="3.png"/>：NPC 3 的贴图（小丽）**
 
     </treeview>
 
-4. 打开客户端（资源包）实体文件<FileType fileType="file" name="npc.client_entity.json"/>，找到`minecraft:client_entity` - `description` - `textures`，新增刚刚添加的两个皮肤路径。
+4. 打开客户端（资源包）实体文件<FileType type="file" name="npc.client_entity.json"/>，找到`minecraft:client_entity` - `description` - `textures`，新增刚刚添加的两个皮肤路径。
 
     ```json showLineNumbers title="RP_npc/entity/npc.client_entity.json" {9-10}
     {
@@ -248,7 +241,7 @@ execute as @e[has_property={template:geometry="default"}] run say 我是默认�
     }
     ```
 
-5. 打开渲染控制器文件<FileType fileType="file" name="npc.render_controllers.json"/>，找到`render_controllers` - `controller.render.custom_npc` - `arrays` - `textures` - `array.skins`，新增刚刚在客户端（资源包）实体文件中定义的`skin_2`和`skin_3`：
+5. 打开渲染控制器文件<FileType type="file" name="npc.render_controllers.json"/>，找到`render_controllers` - `controller.render.custom_npc` - `arrays` - `textures` - `array.skins`，新增刚刚在客户端（资源包）实体文件中定义的`skin_2`和`skin_3`：
 
     ```json showLineNumbers title="RP_npc/entity/npc.render_controllers.json" {11-12}
     {
@@ -301,10 +294,10 @@ execute as @e[has_property={template:geometry="default"}] run say 我是默认�
 
 您可以在这里下载到过往版本。然而，我们已不再推荐使用这些旧版本。
 
-[<Highlight color="#25c2a0">下载 v1 版本</Highlight>](https://app.nekodrive.net/s/ZmbFw)
+<Download text="下载 v1 版本" url="https://app.nekodrive.net/s/ZmbFw" isInline/>
 
 *备注：v1 版本将同时下载 NPC 与交互实体*。
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

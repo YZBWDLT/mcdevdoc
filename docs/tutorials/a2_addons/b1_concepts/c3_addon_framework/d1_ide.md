@@ -183,6 +183,6 @@ VSC 是一款成熟且专业的 IDE，它含有上百种快捷操作、数十种
 
 :::
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

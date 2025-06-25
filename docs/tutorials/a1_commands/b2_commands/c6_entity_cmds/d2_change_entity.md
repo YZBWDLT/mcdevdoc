@@ -248,6 +248,6 @@ spreadplayers <x: value> <z: value> <扩散间距: float> <最大范围: float> 
 
 </details>
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

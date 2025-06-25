@@ -132,6 +132,6 @@ sidebar_position: 4
 
 本节不设习题，因为这些方块的用法足够简单。读者只需要知道该在什么情况下用这些方块即可。
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

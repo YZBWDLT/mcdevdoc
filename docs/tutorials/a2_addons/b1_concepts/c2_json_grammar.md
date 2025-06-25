@@ -5,7 +5,7 @@ sidebar_position: 2
 # 1.2 JSON 语法基础
 
 import '/src/css/treeview.css';
-import DataType from "/src/components/DataType"
+import DataType from "/src/components/type/data"
 
 **在附加包的编写中，我们要时时刻刻跟 JSON 这个东西打交道**。其实这东西已经不是你第一次见了，在模块 1 的物品组件和文本组件中，我们就曾见过 JSON，只是当时我们只给出了一个固定的格式，却从来没有说过为什么要这么写。可以说，学会 JSON 语法是附加包的一个基础门槛，学不会 JSON 语法就无从谈起写附加包。不过好在，JSON 的语法其实是十分简单的——至少它可比`/execute`简单得多。为了满足我们附加包的编写需求，必须要在系统学习附加包之前先学习 JSON 语法。
 
@@ -27,10 +27,10 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 
 在本教程中，以及中文 Minecraft Wiki 等资料中，对这几种数据类型通常用以下几种记号来标记。
 
-- <DataType dataType="int"/>：代表一个整数（**I**nteger）。
-- <DataType dataType="float"/>：代表一个浮点数（**F**loat）。
-- <DataType dataType="string"/>：代表一个字符串。
-- <DataType dataType="boolean"/>：代表一个布尔值。
+- <DataType type="int"/>：代表一个整数（**I**nteger）。
+- <DataType type="float"/>：代表一个浮点数（**F**loat）。
+- <DataType type="string"/>：代表一个字符串。
+- <DataType type="boolean"/>：代表一个布尔值。
 
 ## 键值对
 
@@ -44,9 +44,9 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 
 对于上面的键值对，在本站和 Wiki 的文档中这么表示：
 
-- <DataType dataType="string" name="name"/>：代表`"name"`为键，值接受字符串。
-- <DataType dataType="int" name="age"/>：代表`"age"`为键，值接受整数。
-- <DataType dataType="boolean" name="isAlive"/>：代表`"isAlive"`为键，值接受布尔值。
+- <DataType type="string" name="name"/>：代表`"name"`为键，值接受字符串。
+- <DataType type="int" name="age"/>：代表`"age"`为键，值接受整数。
+- <DataType type="boolean" name="isAlive"/>：代表`"isAlive"`为键，值接受布尔值。
 
 ## 对象`object`
 
@@ -56,7 +56,7 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 {"name":"Steve","age":15,"isAlive":true}
 ```
 
-这就是一个有效的 JSON 了，它是一个对象。这个对象由三个键值对`"name":"Steve"`、`"age":15`、`"isAlive":true`组成，并且这三个键值对中间以逗号分隔。对象在本站和 Wiki 的记号为<DataType dataType="object"/>。
+这就是一个有效的 JSON 了，它是一个对象。这个对象由三个键值对`"name":"Steve"`、`"age":15`、`"isAlive":true`组成，并且这三个键值对中间以逗号分隔。对象在本站和 Wiki 的记号为<DataType type="object"/>。
 
 对象本身也是一种基本数据类型，所以对象也可以成为键值对的值，比如：
 
@@ -70,9 +70,9 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 
 <treeview>
 
-- <DataType dataType="object"/>：根对象
-  - <DataType dataType="object" name="playerInfo"/>
-    - <DataType dataType="string" name="name"/>
+- <DataType type="object"/>：根对象
+  - <DataType type="object" name="playerInfo"/>
+    - <DataType type="string" name="name"/>
 
 <br/>
 </treeview>
@@ -144,7 +144,7 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 
 这里，就是由 4 个值：`"Beijing"`、`"Shanghai"`、`"Guangzhou"`、`"Shenzhen"`所组成的，这 4 个值都是字符串。
 
-数组在本站和 Wiki 的记号为<DataType dataType="array"/>。
+数组在本站和 Wiki 的记号为<DataType type="array"/>。
 
 同样的，这里的值不仅可以为数字、布尔值、字符串，也可以为对象或者数组。例如：
 
@@ -239,11 +239,11 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 }
 ```
 
-我们来分析一下。这个 JSON 由一个对象表示，内含一个<DataType dataType="array" name="rawtext" isRequired />（键为`"rawtext"`，值为一个数组，就称为`rawtext`数组，标记为<DataType dataType="array" name="rawtext" />；如果右上角标记星号且键名加粗，则代表这个值是必填的）。这个数组中有 3 个对象，也就是 3 个文本组件。
+我们来分析一下。这个 JSON 由一个对象表示，内含一个<DataType type="array" name="rawtext" isRequired />（键为`"rawtext"`，值为一个数组，就称为`rawtext`数组，标记为<DataType type="array" name="rawtext" />；如果右上角标记星号且键名加粗，则代表这个值是必填的）。这个数组中有 3 个对象，也就是 3 个文本组件。
 
-- 第 1 个对象中，包含一个<DataType dataType="string" name="text" isRequired />，代表普通文本组件。
-- 第 2 个对象中，包含一个<DataType dataType="string" name="selector" isRequired />，代表选择器文本组件。
-- 第 3 个对象中，包含一个<DataType dataType="string" name="translate" isRequired />和一个<DataType dataType="object" name="with" />，这个对象中是一个新的<DataType dataType="array" name="rawtext" isRequired />，也就是翻译文本组件。
+- 第 1 个对象中，包含一个<DataType type="string" name="text" isRequired />，代表普通文本组件。
+- 第 2 个对象中，包含一个<DataType type="string" name="selector" isRequired />，代表选择器文本组件。
+- 第 3 个对象中，包含一个<DataType type="string" name="translate" isRequired />和一个<DataType type="object" name="with" />，这个对象中是一个新的<DataType type="array" name="rawtext" isRequired />，也就是翻译文本组件。
 
 所以，我们便看到在模块 1 中所没有提及到的细节性内容，比如为什么`rawtext`后接的是方括号而不是花括号，正是因为数组和对象之间的差异所导致的。所以，从本节开始，读者应当能够从 JSON 语法的角度出发去理解文本组件，而不应该仅仅局限于模板的套用了。
 
@@ -274,10 +274,10 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 
 可见，这个物品组件中由一个对象表达。对象中含有 4 个键值对：
 
-- <DataType dataType="object" name="can_place_on" />，内含一个<DataType dataType="array" name="blocks" isRequired />，数组内写为各方块的 ID 以代表可以放置的方块。
-- <DataType dataType="object" name="can_destroy" />，内含一个<DataType dataType="array" name="blocks" isRequired />，数组内写为各方块的 ID 以代表可以破坏的方块。
-- <DataType dataType="object" name="item_lock" />，内含一个<DataType dataType="string" name="mode" isRequired />，代表物品的锁定位置。
-- <DataType dataType="object" name="keep_on_death" />，内部不含任何元素。
+- <DataType type="object" name="can_place_on" />，内含一个<DataType type="array" name="blocks" isRequired />，数组内写为各方块的 ID 以代表可以放置的方块。
+- <DataType type="object" name="can_destroy" />，内含一个<DataType type="array" name="blocks" isRequired />，数组内写为各方块的 ID 以代表可以破坏的方块。
+- <DataType type="object" name="item_lock" />，内含一个<DataType type="string" name="mode" isRequired />，代表物品的锁定位置。
+- <DataType type="object" name="keep_on_death" />，内部不含任何元素。
 
 和文本组件一样，我们同样要求读者能够从 JSON 语法的角度出发去理解物品组件，而不应仅仅局限于模板的套用。
 
@@ -581,57 +581,57 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 
 - **数字**（`number`）：包括整数`int`和浮点数`float`，例如：`3`、`-1`、`1.5`、`0.0`。
   - 虽然 JSON 中并不区分整数和浮点数，但是在实际运用中常常还是要注意区分。
-  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="int" />代表整数，<DataType dataType="float" />代表浮点数。
+  - 本教程和 Minecraft Wiki 中，使用<DataType type="int" />代表整数，<DataType type="float" />代表浮点数。
 - **布尔值**（`boolean`）：`true`和`false`。
-  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="boolean" />代表布尔值。
+  - 本教程和 Minecraft Wiki 中，使用<DataType type="boolean" />代表布尔值。
 - **字符串**（`string`）：用双引号`"`包裹起来的任意文本。
   - 有一些转义方法，例如`\n`、`\\`、`\"`等在 JSON 中是适用的。
-  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="string" />代表字符串。
+  - 本教程和 Minecraft Wiki 中，使用<DataType type="string" />代表字符串。
 - **对象**（`object`）：用花括号（`{}`）包裹起来的**键值对的集合**。
   - **键值对**是由一个**键**（Key）和一个**值**（Value）配对组成的。
     - 格式为`key:value`。
     - `key`必须是一个字符串，代表对象的属性。
     - `value`可以是 JSON 中的任意的数据类型。
   - 键值对之间必须用逗号`,`分隔。
-  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="object" />代表对象。
+  - 本教程和 Minecraft Wiki 中，使用<DataType type="object" />代表对象。
 - **数组**（`array`）：用方括号（`[]`）包裹起来的**值的集合**。
   - 值之间必须用逗号`,`分隔。
-  - 本教程和 Minecraft Wiki 中，使用<DataType dataType="array" />代表数组。
+  - 本教程和 Minecraft Wiki 中，使用<DataType type="array" />代表数组。
 
 ### 命令中的 JSON
 
 - 文本组件：由一个对象组成。其中的内容为：
   <treeview>
-  - <DataType dataType="object" />：根对象
-    - <DataType dataType="array" name="rawtext" isRequired />：代表一个原始 JSON 文本，允许以下 4 种组件。至少应指定一种组件。
-      - <DataType dataType="object" />：代表一个普通文本组件（Text）。
-        - <DataType dataType="string" name="text" isRequired />：显示为写入的文本。
-      - <DataType dataType="object" />：代表一个选择器文本组件（Selector）。
-        - <DataType dataType="string" name="selector" isRequired />：填入目标选择器。显示为符合选择器的实体的名称。
-      - <DataType dataType="object" />：代表一个分数文本组件（Score）。
-        - <DataType dataType="object" name="score" isRequired />：显示为特定目标的分数。
-          - <DataType dataType="string" name="objective" isRequired />：填入该目标的记分项。
-          - <DataType dataType="string" name="name" isRequired />：填入该目标的名称或特定的目标选择器。
-      - <DataType dataType="object" />：代表一个翻译文本组件（Translate）。
-        - <DataType dataType="string" name="translate" isRequired />：要翻译的文本或翻译的键名。
-        - <DataType dataType="array" name="with" />：（写法 1）代入的格式化文本。
-        - <DataType dataType="object" name="with" />：（写法 2）代入的格式化文本。
-          - <DataType dataType="array" name="rawtext" isRequired />：代表一个原始 JSON 文本。允许以上 4 种组件。至少应指定一种组件。
+  - <DataType type="object" />：根对象
+    - <DataType type="array" name="rawtext" isRequired />：代表一个原始 JSON 文本，允许以下 4 种组件。至少应指定一种组件。
+      - <DataType type="object" />：代表一个普通文本组件（Text）。
+        - <DataType type="string" name="text" isRequired />：显示为写入的文本。
+      - <DataType type="object" />：代表一个选择器文本组件（Selector）。
+        - <DataType type="string" name="selector" isRequired />：填入目标选择器。显示为符合选择器的实体的名称。
+      - <DataType type="object" />：代表一个分数文本组件（Score）。
+        - <DataType type="object" name="score" isRequired />：显示为特定目标的分数。
+          - <DataType type="string" name="objective" isRequired />：填入该目标的记分项。
+          - <DataType type="string" name="name" isRequired />：填入该目标的名称或特定的目标选择器。
+      - <DataType type="object" />：代表一个翻译文本组件（Translate）。
+        - <DataType type="string" name="translate" isRequired />：要翻译的文本或翻译的键名。
+        - <DataType type="array" name="with" />：（写法 1）代入的格式化文本。
+        - <DataType type="object" name="with" />：（写法 2）代入的格式化文本。
+          - <DataType type="array" name="rawtext" isRequired />：代表一个原始 JSON 文本。允许以上 4 种组件。至少应指定一种组件。
             - ……
   </treeview>
   - 但事实上，文本组件的 JSON 语法树要更复杂一些。更通用的情况可见[文本组件 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/文本组件#基岩版)。
 - 物品组件：由一个对象组成。其中允许的内容为：
   <treeview>
-  - <DataType dataType="object" />：根对象，允许以下 4 种组件，至少应指定一种。
-    - <DataType dataType="object" name="can_place_on" />：可放置到的方块。可添加`minecraft:`命名空间。
-      - <DataType dataType="array" name="blocks" isRequired />
-        - <DataType dataType="string" isRequired />：填入方块 ID，代表物品可放置到的方块。
-    - <DataType dataType="object" name="can_destroy" />：可破坏的方块。可添加`minecraft:`命名空间。
-      - <DataType dataType="array" name="blocks" isRequired />
-        - <DataType dataType="string" isRequired />：填入方块 ID，代表物品可破坏的方块。
-    - <DataType dataType="object" name="item_lock" />：物品锁定方法。可添加`minecraft:`命名空间。
-      - <DataType dataType="string" name="mode" isRequired />：仅允许`"lock_in_inventory"`、`"lock_in_slot"`，表示物品锁定方法
-    - <DataType dataType="object" name="keep_on_death" />：物品在死亡后保留。可添加`minecraft:`命名空间。
+  - <DataType type="object" />：根对象，允许以下 4 种组件，至少应指定一种。
+    - <DataType type="object" name="can_place_on" />：可放置到的方块。可添加`minecraft:`命名空间。
+      - <DataType type="array" name="blocks" isRequired />
+        - <DataType type="string" isRequired />：填入方块 ID，代表物品可放置到的方块。
+    - <DataType type="object" name="can_destroy" />：可破坏的方块。可添加`minecraft:`命名空间。
+      - <DataType type="array" name="blocks" isRequired />
+        - <DataType type="string" isRequired />：填入方块 ID，代表物品可破坏的方块。
+    - <DataType type="object" name="item_lock" />：物品锁定方法。可添加`minecraft:`命名空间。
+      - <DataType type="string" name="mode" isRequired />：仅允许`"lock_in_inventory"`、`"lock_in_slot"`，表示物品锁定方法
+    - <DataType type="object" name="keep_on_death" />：物品在死亡后保留。可添加`minecraft:`命名空间。
   </treeview>
 
 ### 常见错误
@@ -1020,6 +1020,6 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 
 </details>
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

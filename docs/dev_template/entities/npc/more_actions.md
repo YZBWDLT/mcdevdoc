@@ -5,17 +5,10 @@ sidebar_position: 2
 # 扩展包：更多动作
 
 import '/src/css/treeview.css';
-import FileType from "/src/components/FileType"
+import FileType from "/src/components/type/file"
+import Download from "/src/components/highlight/download"
 
-export const Highlight = ({children, color}) => (
-  <span
-    style={{ backgroundColor: color, borderRadius: '10px', color: '#fff', padding: '10px', cursor: 'pointer', }}
-    onClick={() => {}}>
-    {children}
-  </span>
-);
-
-## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/8r3f1)
+<Download url="https://app.nekodrive.net/s/8r3f1"/>
 
 **本包用于为 NPC 主包中引入的 NPC 添加更多更生动的动作**。
 
@@ -38,34 +31,34 @@ export const Highlight = ({children, color}) => (
 
 <treeview>
 
-- <FileType fileType="folder" name="BP_npc"/>：行为包根目录
-  - <FileType fileType="folder" name="entities"/>：实体服务端定义
-    - <FileType fileType="folder" name="template"/>：（*建议换名*）分类
-      - **<FileType fileType="file" name="npc.server_entity.json"/>：NPC 的行为包定义**
-  - <FileType fileType="file" name="manifest.json"/>：（*有冲突风险*）清单文件
-  - <FileType fileType="image" name="pack_icon.png"/>：包图标
-- <FileType fileType="folder" name="RP_npc"/>：资源包根目录
-  - **<FileType fileType="folder" name="animations"/>：实体动画**
-    - **<FileType fileType="file" name="npc.animations.json"/>：NPC 的动画**
-  - **<FileType fileType="folder" name="animation_controllers"/>：实体动画控制器**
-    - **<FileType fileType="file" name="npc.animations.json"/>：NPC 的动画控制器**
-  - <FileType fileType="folder" name="entity"/>：实体客户端定义
-    - **<FileType fileType="file" name="npc.client_entity.json"/>：NPC 的资源包定义**
-  - <FileType fileType="folder" name="models"/>：模型
-    - <FileType fileType="folder" name="entity"/>：实体模型
-      - <FileType fileType="file" name="npc.geo.json"/>：NPC 的模型
-  - <FileType fileType="folder" name="render_controllers"/>：渲染控制器
-    - <FileType fileType="file" name="npc.render_controllers.json"/>：NPC 的渲染控制器
-  - <FileType fileType="folder" name="texts"/>：文本
-    - <FileType fileType="file" name="zh_CN.lang"/>：（*有冲突风险*）中文翻译文本
-    - <FileType fileType="file" name="en_US.lang"/>：（*有冲突风险*）英文翻译文本
-  - <FileType fileType="folder" name="textures"/>：贴图
-    - <FileType fileType="folder" name="entity"/>：实体贴图
-      - <FileType fileType="folder" name="npc"/>：NPC 贴图
-        - <FileType fileType="image" name="0.png"/>：NPC 0 的贴图（Steve）
-        - <FileType fileType="image" name="1.png"/>：NPC 1 的贴图（Alex）
-  - <FileType fileType="file" name="manifest.json"/>：（*有冲突风险*）清单文件
-  - <FileType fileType="image" name="pack_icon.png"/>：包图标
+- <FileType type="folder" name="BP_npc"/>：行为包根目录
+  - <FileType type="folder" name="entities"/>：实体服务端定义
+    - <FileType type="folder" name="template"/>：（*建议换名*）分类
+      - **<FileType type="file" name="npc.server_entity.json"/>：NPC 的行为包定义**
+  - <FileType type="file" name="manifest.json"/>：（*有冲突风险*）清单文件
+  - <FileType type="image" name="pack_icon.png"/>：包图标
+- <FileType type="folder" name="RP_npc"/>：资源包根目录
+  - **<FileType type="folder" name="animations"/>：实体动画**
+    - **<FileType type="file" name="npc.animations.json"/>：NPC 的动画**
+  - **<FileType type="folder" name="animation_controllers"/>：实体动画控制器**
+    - **<FileType type="file" name="npc.animations.json"/>：NPC 的动画控制器**
+  - <FileType type="folder" name="entity"/>：实体客户端定义
+    - **<FileType type="file" name="npc.client_entity.json"/>：NPC 的资源包定义**
+  - <FileType type="folder" name="models"/>：模型
+    - <FileType type="folder" name="entity"/>：实体模型
+      - <FileType type="file" name="npc.geo.json"/>：NPC 的模型
+  - <FileType type="folder" name="render_controllers"/>：渲染控制器
+    - <FileType type="file" name="npc.render_controllers.json"/>：NPC 的渲染控制器
+  - <FileType type="folder" name="texts"/>：文本
+    - <FileType type="file" name="zh_CN.lang"/>：（*有冲突风险*）中文翻译文本
+    - <FileType type="file" name="en_US.lang"/>：（*有冲突风险*）英文翻译文本
+  - <FileType type="folder" name="textures"/>：贴图
+    - <FileType type="folder" name="entity"/>：实体贴图
+      - <FileType type="folder" name="npc"/>：NPC 贴图
+        - <FileType type="image" name="0.png"/>：NPC 0 的贴图（Steve）
+        - <FileType type="image" name="1.png"/>：NPC 1 的贴图（Alex）
+  - <FileType type="file" name="manifest.json"/>：（*有冲突风险*）清单文件
+  - <FileType type="image" name="pack_icon.png"/>：包图标
 
 </treeview>
 
@@ -159,6 +152,6 @@ replaceitem entity @e[type=template:npc] slot.weapon.mainhand 0 air
 
 </details>
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

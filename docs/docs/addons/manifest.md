@@ -5,7 +5,7 @@ sidebar_position: 1
 # 清单文件
 
 import '/src/css/treeview.css';
-import DataType from "/src/components/DataType"
+import DataType from "/src/components/type/data"
 
 清单文件为附加包根目录中的`manifest.json`，它描述附加包的基本信息，决定 Minecraft 如何识别这个附加包的功能。
 
@@ -21,51 +21,51 @@ import DataType from "/src/components/DataType"
 
 参数左侧的图案决定该参数的数据类型。这个图案机制在 Minecraft Wiki 中也广泛应用。分别如下：
 
-- <DataType dataType="object"/>：代表一个对象。例如：<DataType dataType="object" name="param"/>代表`"param"`的值是一个对象`{...}`。
-- <DataType dataType="array"/>：代表一个数组。例如：<DataType dataType="array" name="param"/>代表`"param"`的值是一个数组`[...]`。
-  - 若在数组中声明了数字，则代表对应索引的类型。例如<DataType dataType="array" name="0"/>，代表索引`0`的类型是数组。
-- <DataType dataType="int"/>：代表一个整数。例如：<DataType dataType="int" name="param"/>代表`"param"`的值是整数。
-- <DataType dataType="float"/>：代表一个浮点数。例如：<DataType dataType="float" name="param"/>代表`"param"`的值是浮点数。
-- <DataType dataType="string"/>：代表一个字符串。例如：<DataType dataType="string" name="param"/>代表`"param"`的值是字符串。
-- <DataType dataType="boolean"/>：代表一个布尔值。例如：<DataType dataType="boolean" name="param"/>代表`"param"`的值是布尔值。
+- <DataType type="object"/>：代表一个对象。例如：<DataType type="object" name="param"/>代表`"param"`的值是一个对象`{...}`。
+- <DataType type="array"/>：代表一个数组。例如：<DataType type="array" name="param"/>代表`"param"`的值是一个数组`[...]`。
+  - 若在数组中声明了数字，则代表对应索引的类型。例如<DataType type="array" name="0"/>，代表索引`0`的类型是数组。
+- <DataType type="int"/>：代表一个整数。例如：<DataType type="int" name="param"/>代表`"param"`的值是整数。
+- <DataType type="float"/>：代表一个浮点数。例如：<DataType type="float" name="param"/>代表`"param"`的值是浮点数。
+- <DataType type="string"/>：代表一个字符串。例如：<DataType type="string" name="param"/>代表`"param"`的值是字符串。
+- <DataType type="boolean"/>：代表一个布尔值。例如：<DataType type="boolean" name="param"/>代表`"param"`的值是布尔值。
 
 关于可选参数和必选参数：
 
-- 参数右上角标星号的，且参数本身被粗体表示的，代表该参数为必选参数。例如：<DataType dataType="object" name="param" isRequired/>。
-- 参数右上角不标星号的，代表该参数为可选参数。例如：<DataType dataType="object" name="param"/>。
+- 参数右上角标星号的，且参数本身被粗体表示的，代表该参数为必选参数。例如：<DataType type="object" name="param" isRequired/>。
+- 参数右上角不标星号的，代表该参数为可选参数。例如：<DataType type="object" name="param"/>。
   - 若可选参数下存在必选参数，则代表在指定该可选参数后必须指定这个（些）必选参数。
 
 :::
 
 <treeview>
 
-- <DataType dataType="object"/>：根对象
-  - <DataType dataType="int" name="format_version" isRequired/>：清单文件的格式版本。**强烈建议为`2`，非必要不要改动。**
-  - <DataType dataType="object" name="header" isRequired/>：包的公开基本信息，包括包名、包描述、包 UUID 等。
-    - <DataType dataType="string" name="name" isRequired/>：包的名称。
-    - <DataType dataType="string" name="description"/>：包的描述。建议简短而清晰，不要写得过长。
-    - <DataType dataType="string" name="uuid" isRequired/>：包的 UUID。表示包的唯一识别码，是 Minecraft 识别包与其他包不同的关键信息，应与其他包区分开。  
+- <DataType type="object"/>：根对象
+  - <DataType type="int" name="format_version" isRequired/>：清单文件的格式版本。**强烈建议为`2`，非必要不要改动。**
+  - <DataType type="object" name="header" isRequired/>：包的公开基本信息，包括包名、包描述、包 UUID 等。
+    - <DataType type="string" name="name" isRequired/>：包的名称。
+    - <DataType type="string" name="description"/>：包的描述。建议简短而清晰，不要写得过长。
+    - <DataType type="string" name="uuid" isRequired/>：包的 UUID。表示包的唯一识别码，是 Minecraft 识别包与其他包不同的关键信息，应与其他包区分开。  
       格式为`xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`，其中每一个`x`均为十六进制数（`0-9`或`a-f`）。建议使用随机 UUID 生成器以有效地与其他包区分开来。
-    - <DataType dataType="array" name="version" isRequired/>：包的版本。
-      - <DataType dataType="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
-      - <DataType dataType="int" name="1" isRequired/>：代表次版本号。
-      - <DataType dataType="int" name="2" isRequired/>：代表修订版本号。
-    - <DataType dataType="string" name="version" isRequired/>：（替代写法）包的版本。应为 [SemVer](https://semver.org/) 约定的版本格式的字符串。
-    - <DataType dataType="array" name="min_engine_version" isRequired/>：（仅限**行为包和资源包**有意义）包的最小引擎版本。规定使用此附加包至少需要使用何种版本的 Minecraft，并决定了游戏对包的向下兼容能力。  
+    - <DataType type="array" name="version" isRequired/>：包的版本。
+      - <DataType type="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
+      - <DataType type="int" name="1" isRequired/>：代表次版本号。
+      - <DataType type="int" name="2" isRequired/>：代表修订版本号。
+    - <DataType type="string" name="version" isRequired/>：（替代写法）包的版本。应为 [SemVer](https://semver.org/) 约定的版本格式的字符串。
+    - <DataType type="array" name="min_engine_version" isRequired/>：（仅限**行为包和资源包**有意义）包的最小引擎版本。规定使用此附加包至少需要使用何种版本的 Minecraft，并决定了游戏对包的向下兼容能力。  
       `format_version`会影响该值的解析。详见[清单文件 - 基岩版开发文档](https://www.mcbe-dev.net/addons/data-driven/general/manifest.html)。
-      - <DataType dataType="int" name="0" isRequired/>：写为`1`，代表 Minecraft 的主版本号。
-      - <DataType dataType="int" name="1" isRequired/>：代表 Minecraft 的次版本号。
-      - <DataType dataType="int" name="2" isRequired/>：代表 Minecraft 的修订版本号。
-    - <DataType dataType="string" name="pack_scope"/>：（仅限**资源包**有意义）包是否在全局可用，若为`"world"`则仅限地图内可用。仅限填写为`"world"`或`"any"`，默认为`"any"`。
-    - <DataType dataType="array" name="base_game_version" isRequired/>：（仅限**地图模板**有意义）包的基游戏版本。规定使用此附加包使用何版本下的 Minecraft 的特性。通常用于给地图“锁版本”。
-      - <DataType dataType="int" name="0" isRequired/>：写为`1`，代表 Minecraft 的主版本号。
-      - <DataType dataType="int" name="1" isRequired/>：代表 Minecraft 的次版本号。
-      - <DataType dataType="int" name="2" isRequired/>：代表 Minecraft 的修订版本号。
-    - <DataType dataType="boolean" name="allow_random_seed"/>：包是否在每次生成地图的时候随机选择种子，或允许玩家自定义种子。
-    - <DataType dataType="boolean" name="lock_template_options" isRequired/>：（仅限**地图模板**有意义）包是否锁定地图设置，阻止玩家更改。
-  - <DataType dataType="array" name="modules" isRequired/>：包会应用的功能模块。至少应指定一个模块。
-    - <DataType dataType="object" isRequired/>：指代一个或多个模块。
-      - <DataType dataType="string" name="type" isRequired/>：模块会使用的功能。仅限填写为下面的值，并规定包为对应的类型。
+      - <DataType type="int" name="0" isRequired/>：写为`1`，代表 Minecraft 的主版本号。
+      - <DataType type="int" name="1" isRequired/>：代表 Minecraft 的次版本号。
+      - <DataType type="int" name="2" isRequired/>：代表 Minecraft 的修订版本号。
+    - <DataType type="string" name="pack_scope"/>：（仅限**资源包**有意义）包是否在全局可用，若为`"world"`则仅限地图内可用。仅限填写为`"world"`或`"any"`，默认为`"any"`。
+    - <DataType type="array" name="base_game_version" isRequired/>：（仅限**地图模板**有意义）包的基游戏版本。规定使用此附加包使用何版本下的 Minecraft 的特性。通常用于给地图“锁版本”。
+      - <DataType type="int" name="0" isRequired/>：写为`1`，代表 Minecraft 的主版本号。
+      - <DataType type="int" name="1" isRequired/>：代表 Minecraft 的次版本号。
+      - <DataType type="int" name="2" isRequired/>：代表 Minecraft 的修订版本号。
+    - <DataType type="boolean" name="allow_random_seed"/>：包是否在每次生成地图的时候随机选择种子，或允许玩家自定义种子。
+    - <DataType type="boolean" name="lock_template_options" isRequired/>：（仅限**地图模板**有意义）包是否锁定地图设置，阻止玩家更改。
+  - <DataType type="array" name="modules" isRequired/>：包会应用的功能模块。至少应指定一个模块。
+    - <DataType type="object" isRequired/>：指代一个或多个模块。
+      - <DataType type="string" name="type" isRequired/>：模块会使用的功能。仅限填写为下面的值，并规定包为对应的类型。
         <!-- markdownlint-disable MD058 -->
         | `type`的值 | 包类型 |
         | :---: | :---: |
@@ -75,41 +75,41 @@ import DataType from "/src/components/DataType"
         | `"skin_pack"` | 皮肤包 |
         | `"script"` | 会使用到脚本功能，通常结合`data`模块使用 |
         <!-- markdownlint-enable MD058 -->
-      - <DataType dataType="string" name="uuid" isRequired/>：模块的 UUID。格式要求同`header`。不宜和`header`的 UUID 相同。
-      - <DataType dataType="array" name="version" isRequired/>：模块的版本。
-        - <DataType dataType="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
-        - <DataType dataType="int" name="1" isRequired/>：代表次版本号。
-        - <DataType dataType="int" name="2" isRequired/>：代表修订版本号。
-      - <DataType dataType="string" name="description"/>：模块的描述。
-      - <DataType dataType="string" name="language"/>：（仅限**使用`script`类型的模块**时有意义）模块使用的编程语言。仅限填写为`"javascript"`。
-      - <DataType dataType="string" name="entry"/>：（仅限**使用`script`类型的模块**时有意义）脚本的入口文件。
-  - <DataType dataType="array" name="dependencies"/>：包依赖的其他包。只有这些包安装后，本包才能正常启用。指定该字段时，至少应指定一个依赖的附加包或脚本模块。
-    - <DataType dataType="object"/>：指代要依赖的附加包。依赖其他附加包时接受以下参数。
-      - <DataType dataType="string" name="uuid" isRequired/>：依赖包的 UUID。为依赖包在`header`中所定义的 UUID。
-      - <DataType dataType="array" name="version" isRequired/>：依赖包的版本。为依赖包在`header`中所定义的版本。
-        - <DataType dataType="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
-        - <DataType dataType="int" name="1" isRequired/>：代表次版本号。
-        - <DataType dataType="int" name="2" isRequired/>：代表修订版本号。
-      - <DataType dataType="string" name="version" isRequired/>：（替代写法）包的版本。应为 [SemVer](https://semver.org/) 约定的版本格式的字符串。
-    - <DataType dataType="object"/>：指代要依赖的脚本模块。依赖脚本模块时接受以下参数。
-      - <DataType dataType="string" name="module_name" isRequired/>：调用的脚本模块。例如：`@minecraft/server`。
-      - <DataType dataType="string" name="version" isRequired/>：调用的脚本模块所使用的版本，应为 [SemVer](https://semver.org/) 约定的版本格式的字符串。
-  - <DataType dataType="object" name="metadata"/>：包有关的元数据（例如作者、许可信息等）。
-    - <DataType dataType="array" name="authors"/>：本包的作者。
-      - <DataType dataType="string" isRequired/>：作者昵称。
-    - <DataType dataType="string" name="license"/>：本包采用的协议。
-    - <DataType dataType="object" name="generated_with"/>：本包的清单文件等文件使用哪个（些）软件自动生成。
-      - <DataType dataType="array" name="(软件名)" isRequired/>：使用的软件版本。通常由该软件自行生成。
-        - <DataType dataType="string" isRequired/>：指代使用到的软件版本。通常由该软件自行生成。
-    - <DataType dataType="string" name="product_type"/>：本包的类型。设置此参数时，行为包不再影响成就的获取。仅限填写为`"addon"`。
-    - <DataType dataType="string" name="url"/>：网站。通常链接到作者的个人网站或公司的公司网站。
-  - <DataType dataType="array" name="subpack"/>：包的子包设置。玩家可以通过设置包以应用不同的设定。运用于资源包[^1]。
-    - <DataType dataType="object"/>：子包设置
-      - <DataType dataType="string" name="folder_name" isRequired/>：子包的包名，Minecraft 将会应用`RP/subpacks/(folder_name)`下的文件。
-      - <DataType dataType="string" name="name" isRequired/>：子包的设置名，Minecraft 将会在资源包设置中显示该设置的名称，以使玩家了解其正在实用的设置。
-      - <DataType dataType="int" name="memory_tier"/>：子包的内存需求，在选中此设置后将需要额外分配的内存。每一级都需要额外的 256MB 的内存。
-  - <DataType dataType="array" name="capabilities"/>：包将会额外影响的 Minecraft 游戏特性。
-    - <DataType dataType="string" isRequired/>：包会影响的特性。仅限填写为下面的值，并规定包影响的游戏特性。
+      - <DataType type="string" name="uuid" isRequired/>：模块的 UUID。格式要求同`header`。不宜和`header`的 UUID 相同。
+      - <DataType type="array" name="version" isRequired/>：模块的版本。
+        - <DataType type="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
+        - <DataType type="int" name="1" isRequired/>：代表次版本号。
+        - <DataType type="int" name="2" isRequired/>：代表修订版本号。
+      - <DataType type="string" name="description"/>：模块的描述。
+      - <DataType type="string" name="language"/>：（仅限**使用`script`类型的模块**时有意义）模块使用的编程语言。仅限填写为`"javascript"`。
+      - <DataType type="string" name="entry"/>：（仅限**使用`script`类型的模块**时有意义）脚本的入口文件。
+  - <DataType type="array" name="dependencies"/>：包依赖的其他包。只有这些包安装后，本包才能正常启用。指定该字段时，至少应指定一个依赖的附加包或脚本模块。
+    - <DataType type="object"/>：指代要依赖的附加包。依赖其他附加包时接受以下参数。
+      - <DataType type="string" name="uuid" isRequired/>：依赖包的 UUID。为依赖包在`header`中所定义的 UUID。
+      - <DataType type="array" name="version" isRequired/>：依赖包的版本。为依赖包在`header`中所定义的版本。
+        - <DataType type="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
+        - <DataType type="int" name="1" isRequired/>：代表次版本号。
+        - <DataType type="int" name="2" isRequired/>：代表修订版本号。
+      - <DataType type="string" name="version" isRequired/>：（替代写法）包的版本。应为 [SemVer](https://semver.org/) 约定的版本格式的字符串。
+    - <DataType type="object"/>：指代要依赖的脚本模块。依赖脚本模块时接受以下参数。
+      - <DataType type="string" name="module_name" isRequired/>：调用的脚本模块。例如：`@minecraft/server`。
+      - <DataType type="string" name="version" isRequired/>：调用的脚本模块所使用的版本，应为 [SemVer](https://semver.org/) 约定的版本格式的字符串。
+  - <DataType type="object" name="metadata"/>：包有关的元数据（例如作者、许可信息等）。
+    - <DataType type="array" name="authors"/>：本包的作者。
+      - <DataType type="string" isRequired/>：作者昵称。
+    - <DataType type="string" name="license"/>：本包采用的协议。
+    - <DataType type="object" name="generated_with"/>：本包的清单文件等文件使用哪个（些）软件自动生成。
+      - <DataType type="array" name="(软件名)" isRequired/>：使用的软件版本。通常由该软件自行生成。
+        - <DataType type="string" isRequired/>：指代使用到的软件版本。通常由该软件自行生成。
+    - <DataType type="string" name="product_type"/>：本包的类型。设置此参数时，行为包不再影响成就的获取。仅限填写为`"addon"`。
+    - <DataType type="string" name="url"/>：网站。通常链接到作者的个人网站或公司的公司网站。
+  - <DataType type="array" name="subpack"/>：包的子包设置。玩家可以通过设置包以应用不同的设定。运用于资源包[^1]。
+    - <DataType type="object"/>：子包设置
+      - <DataType type="string" name="folder_name" isRequired/>：子包的包名，Minecraft 将会应用`RP/subpacks/(folder_name)`下的文件。
+      - <DataType type="string" name="name" isRequired/>：子包的设置名，Minecraft 将会在资源包设置中显示该设置的名称，以使玩家了解其正在实用的设置。
+      - <DataType type="int" name="memory_tier"/>：子包的内存需求，在选中此设置后将需要额外分配的内存。每一级都需要额外的 256MB 的内存。
+  - <DataType type="array" name="capabilities"/>：包将会额外影响的 Minecraft 游戏特性。
+    - <DataType type="string" isRequired/>：包会影响的特性。仅限填写为下面的值，并规定包影响的游戏特性。
       <!-- markdownlint-disable MD058 -->
       | 允许值 | 包影响的特性 |
       | :---: | :---: |
@@ -314,6 +314,6 @@ import DataType from "/src/components/DataType"
 - [包清单 JSON - 微软文档](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/packmanifest?view=minecraft-bedrock-stable)
 - [清单文件 - 基岩版开发文档](https://www.mcbe-dev.net/addons/data-driven/general/manifest.html)
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

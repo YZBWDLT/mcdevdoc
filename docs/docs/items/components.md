@@ -10,7 +10,7 @@ sidebar_position: 2
 
 :::info[本文更新时间]
 
-本文于 2025 年 6 月 20 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.90。
+本文于 2025 年 6 月 26 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.90。
 
 :::
 
@@ -27,15 +27,15 @@ import DataType from "/src/components/type/data"
 
     - 标注了<Version isLowVersion/>的组件，代表其为**旧版国际版组件**，可应用于**国际版物品定义**（在行为包<FileType type="folder" name="items"/>和资源包<FileType type="folder" name="items"/>定义的物品）。`format_version`必须指定`1.10.0`~`1.16.0`以内时才可使用。
 
-    - 标注了<Version text="（版本号）"/>的组件，代表其为**新版国际版组件**，可应用于**国际版物品定义**（在行为包<FileType type="folder" name="items"/>）。其中，`（版本号）`代表物品定义的`format_version`必须指定为该版本号或更高才可使用。
+    - 标注了<Version version="版本号"/>的组件，代表其为**新版国际版组件**，可应用于**国际版物品定义**（在行为包<FileType type="folder" name="items"/>定义的物品）。其中，`（版本号）`代表物品定义的`format_version`必须指定为该版本号或更高才可使用。
 
-    - 标注了<Version isChinaVersion/>的组件，代表其为**中国版组件**，可应用于中国版物品定义（在行为包<FileType type="folder" name="netease_items_beh"/>和资源包<FileType type="folder" name="netease_items_res"/>定义的物品）。
+    - 标注了<Version isChinaVersion/>的组件，代表其为**中国版组件**，可应用于**中国版物品定义**（在行为包<FileType type="folder" name="netease_items_beh"/>和资源包<FileType type="folder" name="netease_items_res"/>定义的物品）。
 
-    - 标注了<Version isBeta/>的组件，代表其为**实验性玩法组件**，可应用于**国际版物品定义**（在行为包<FileType type="folder" name="items"/>）。本文档不记载已被移除的实验性玩法组件（尤其是假日创作者功能的组件）。开发者在使用这些组件的时候应当万分小心，因为它们随时可能会被移除，这会导致你的资源的关键功能失效。
+    - 标注了<Version isBeta/>的组件，代表其为**实验性玩法组件**，可应用于**国际版物品定义**（在行为包<FileType type="folder" name="items"/>定义的物品）。本文档不记载已被移除的实验性玩法组件（尤其是假日创作者功能的组件）。开发者在使用这些组件的时候应当万分小心，因为它们随时可能会被移除，这会导致你的资源的关键功能失效。
 
     - **注意：中国版可以同时使用国际版物品定义和中国版物品定义，但是国际版只能使用国际版物品定义**。
 
-2. 标注了<Version text="RP" isLowVersion/>或<Version text="RP" isChinaVersion/>的组件，需要在其资源包定义中使用（即资源包<FileType type="folder" name="items"/>或资源包<FileType type="folder" name="netease_items_res"/>），未特殊标注的组件为行为包组件。
+2. 标注了<Version isRP isLowVersion/>或<Version isRP isChinaVersion/>的组件，需要在其资源包定义中使用（即资源包<FileType type="folder" name="items"/>或资源包<FileType type="folder" name="netease_items_res"/>），未特殊标注的组件为行为包组件。
 
 3. 如果官方文档中有记载，以上这些标签将会链接到官方文档。
 
@@ -45,7 +45,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:allow_off_hand`
 
-<Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_allow_off_hand?view=minecraft-bedrock-stable"/>
+<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_allow_off_hand?view=minecraft-bedrock-stable"/>
 
 允许玩家将物品放在副手。
 
@@ -120,7 +120,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:block_placer`
 
-<Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_block_placer?view=minecraft-bedrock-stable"/>
+<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_block_placer?view=minecraft-bedrock-stable"/>
 
 可以在特定方块上放置特定方块。
 
@@ -167,7 +167,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:bundle_interaction`
 
-<Version text="1.21.40+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_bundle_interaction?view=minecraft-bedrock-stable"/>
+<Version version="1.21.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_bundle_interaction?view=minecraft-bedrock-stable"/>
 
 为物品启用收纳袋的交互模式和物品提示。
 
@@ -206,7 +206,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:can_destroy_in_creative`
 
-<Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_can_destroy_in_creative?view=minecraft-bedrock-stable"/>
+<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_can_destroy_in_creative?view=minecraft-bedrock-stable"/>
 
 允许玩家在创造模式下手持该物品时可以破坏方块。如果设置为`false`，该物品就会像剑一样手持时无法破坏方块。
 
@@ -247,7 +247,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:compostable`
 
-<Version text="1.21.60+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_compostable?view=minecraft-bedrock-stable"/>
+<Version version="1.21.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_compostable?view=minecraft-bedrock-stable"/>
 
 定义物品可在堆肥桶中用于堆肥。
 
@@ -280,7 +280,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:cooldown`
 
-<Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_cooldown?view=minecraft-bedrock-stable"/>
+<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_cooldown?view=minecraft-bedrock-stable"/>
 
 定义物品使用后的冷却。
 
@@ -324,7 +324,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:custom_components`
 
-<Version text="1.21.20 - 1.21.90" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_custom_components?view=minecraft-bedrock-stable"/>
+<Version version="1.21.20 - 1.21.90" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_custom_components?view=minecraft-bedrock-stable"/>
 
 定义物品的自定义组件。自定义组件的行为需要在世界初始化前事件`WorldInitializeBeforeEvent`中定义。
 
@@ -364,7 +364,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:damage`
 
-<Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_damage?view=minecraft-bedrock-stable"/>
+<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_damage?view=minecraft-bedrock-stable"/>
 
 定义物品的攻击伤害，类似剑。
 
@@ -405,7 +405,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:damage_absorption`
 
-<Version text="1.21.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_damage_absorption?view=minecraft-bedrock-stable"/>
+<Version version="1.21.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_damage_absorption?view=minecraft-bedrock-stable"/>
 
 定义该物品在穿戴时可吸收何种类型的伤害，类似狼铠。
 
@@ -445,7 +445,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:digger`
 
-<Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_digger?view=minecraft-bedrock-stable"/>
+<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_digger?view=minecraft-bedrock-stable"/>
 
 定义物品破坏特定方块的速度。
 
@@ -489,7 +489,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:display_name`
 
-<Version text="1.20.0+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_display_name?view=minecraft-bedrock-stable"/>
+<Version version="1.20.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_display_name?view=minecraft-bedrock-stable"/>
 
 定义物品的显示名称。
 
@@ -532,7 +532,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:durability`
 
-<Version text="1.20.0+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_durability?view=minecraft-bedrock-stable"/>
+<Version version="1.20.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_durability?view=minecraft-bedrock-stable"/>
 
 定义物品的耐久度。
 
@@ -584,7 +584,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:durability_sensor`
 
-<Version text="1.21.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_durability_sensor?view=minecraft-bedrock-stable"/>
+<Version version="1.21.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_durability_sensor?view=minecraft-bedrock-stable"/>
 
 定义物品在降低耐久度后触发的事件。
 
@@ -631,7 +631,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:dyeable`
 
-<Version text="1.21.30+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_dyeable?view=minecraft-bedrock-stable"/>
+<Version version="1.21.30" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_dyeable?view=minecraft-bedrock-stable"/>
 
 定义物品在炼药锅中可染色。
 
@@ -672,7 +672,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:enchantable`
 
-<Version text="1.20.30+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_enchantable?view=minecraft-bedrock-stable"/>
+<Version version="1.20.30" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_enchantable?view=minecraft-bedrock-stable"/>
 
 定义物品为可附魔。
 
@@ -714,7 +714,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:entity_placer`
 
-<Version text="1.20.0+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_entity_placer?view=minecraft-bedrock-stable"/>
+<Version version="1.20.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_entity_placer?view=minecraft-bedrock-stable"/>
 
 定义物品可生成实体。
 
@@ -902,7 +902,7 @@ import DataType from "/src/components/type/data"
 
 <TabItem value="newVersion" label="新版组件" default>
 
-<Version text="1.20.30+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_food?view=minecraft-bedrock-stable"/>
+<Version version="1.20.30" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_food?view=minecraft-bedrock-stable"/>
 
 :::note[编者注]
 
@@ -960,7 +960,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:fuel`
 
-<Version text="1.20.0+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_fuel?view=minecraft-bedrock-stable"/>
+<Version version="1.20.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_fuel?view=minecraft-bedrock-stable"/>
 
 定义该物品为燃料。
 
@@ -993,7 +993,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:glint`
 
-<Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_glint?view=minecraft-bedrock-stable"/>
+<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_glint?view=minecraft-bedrock-stable"/>
 
 定义该物品会像附魔书一样产生附魔光泽。
 
@@ -1034,7 +1034,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:hand_equipped`
 
-<Version isLowVersion/> <Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_hand_equipped?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-hand-equipped" isChinaVersion/>
+<Version isLowVersion/> <Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_hand_equipped?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-hand-equipped" isChinaVersion/>
 
 定义该物品像工具一样直立展示在玩家手中。
 
@@ -1075,7 +1075,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:hover_text_color`
 
-<Version text="RP" isLowVersion/> <Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_hover_text_color?view=minecraft-bedrock-stable"/> <Version text="RP" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-hover-text-color" isChinaVersion/>
+<Version isRP isLowVersion/> <Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_hover_text_color?view=minecraft-bedrock-stable"/> <Version isRP docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-hover-text-color" isChinaVersion/>
 
 定义物品悬浮文本的颜色。
 
@@ -1116,7 +1116,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:icon`
 
-<Version text="RP" isLowVersion/> <Version text="1.20.0+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_icon?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-icon" isChinaVersion/>
+<Version isRP isLowVersion/> <Version version="1.20.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_icon?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-icon" isChinaVersion/>
 
 定义物品的图标。
 
@@ -1178,7 +1178,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:interact_button`
 
-<Version text="1.20.30+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_interact_button?view=minecraft-bedrock-stable"/>
+<Version version="1.20.30" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_interact_button?view=minecraft-bedrock-stable"/>
 
 在触控设备中，为物品添加交互按钮。
 
@@ -1216,7 +1216,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:liquid_clipped`
 
-<Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_liquid_clipped?view=minecraft-bedrock-stable"/>
+<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_liquid_clipped?view=minecraft-bedrock-stable"/>
 
 定义物品是否可与流体交互。
 
@@ -1293,7 +1293,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:max_stack_size`
 
-<Version isLowVersion/> <Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_max_stack_size?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-max-stack-size" isChinaVersion/>
+<Version isLowVersion/> <Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_max_stack_size?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-max-stack-size" isChinaVersion/>
 
 定义物品的最大堆叠数。
 
@@ -1334,7 +1334,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:projectile`
 
-<Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_projectile?view=minecraft-bedrock-stable"/>
+<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_projectile?view=minecraft-bedrock-stable"/>
 
 定义物品为弹射物，例如箭。
 
@@ -1369,7 +1369,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:rarity`
 
-<Version text="1.21.30+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_rarity?view=minecraft-bedrock-stable"/>
+<Version version="1.21.30" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_rarity?view=minecraft-bedrock-stable"/>
 
 定义物品的稀有度。
 
@@ -1412,7 +1412,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:record`
 
-<Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_record?view=minecraft-bedrock-stable"/>
+<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_record?view=minecraft-bedrock-stable"/>
 
 定义物品为唱片。
 
@@ -1451,7 +1451,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:repairable`
 
-<Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_repairable?view=minecraft-bedrock-stable"/>
+<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_repairable?view=minecraft-bedrock-stable"/>
 
 定义物品为可修复的。默认情况下，允许此物品和另一个同种类的物品在一起修复（例如两把损坏铁镐合成一把较新的铁镐），此时恢复的耐久度为二者相加。
 
@@ -1519,7 +1519,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:shooter`
 
-<Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_shooter?view=minecraft-bedrock-stable"/>
+<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_shooter?view=minecraft-bedrock-stable"/>
 
 定义物品为某种弹射物的发射物，类似于弓或弩。
 
@@ -1585,7 +1585,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:should_despawn`
 
-<Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_should_despawn?view=minecraft-bedrock-stable"/>
+<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_should_despawn?view=minecraft-bedrock-stable"/>
 
 定义该物品对应的掉落物是否会在一段时间后消失。
 
@@ -1668,7 +1668,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:stacked_by_data`
 
-<Version isLowVersion/> <Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_stacked_by_data?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-stacked-by-data" isChinaVersion/>
+<Version isLowVersion/> <Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_stacked_by_data?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-stacked-by-data" isChinaVersion/>
 
 定义是否允许不同数据值的同种物品堆叠。
 
@@ -1709,7 +1709,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:storage_item`
 
-<Version text="1.21.40+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_item?view=minecraft-bedrock-stable"/>
+<Version version="1.21.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_item?view=minecraft-bedrock-stable"/>
 
 定义该物品为可存储物品，可以存储其他物品，类似于收纳袋。
 
@@ -1756,7 +1756,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:storage_weight_limit`
 
-<Version text="1.21.60+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_limit?view=minecraft-bedrock-stable"/>
+<Version version="1.21.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_limit?view=minecraft-bedrock-stable"/>
 
 定义该可存储物品最多可以存储多少物品。
 
@@ -1795,7 +1795,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:storage_weight_modifier`
 
-<Version text="1.21.60+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_modifier?view=minecraft-bedrock-stable"/>
+<Version version="1.21.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_modifier?view=minecraft-bedrock-stable"/>
 
 定义该物品在存储到一个可存储物品时需要占用多大空间。
 
@@ -1828,7 +1828,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:tags`
 
-<Version text="1.20.50+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_tags?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-tags" isChinaVersion/>
+<Version version="1.20.50" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_tags?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-tags" isChinaVersion/>
 
 定义物品标签。
 
@@ -1879,7 +1879,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:throwable`
 
-<Version text="1.20.10+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_throwable?view=minecraft-bedrock-stable"/>
+<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_throwable?view=minecraft-bedrock-stable"/>
 
 定义该物品可掷出，类似于雪球或鸡蛋。
 
@@ -1925,7 +1925,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:use_animation`
 
-<Version text="RP" isLowVersion/> <Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_animation?view=minecraft-bedrock-stable"/> <Version text="RP" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-use-duration" isChinaVersion/>
+<Version isRP isLowVersion/> <Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_animation?view=minecraft-bedrock-stable"/> <Version isRP docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-use-duration" isChinaVersion/>
 
 定义物品的使用动画。
 
@@ -1966,7 +1966,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:use_duration`
 
-<Version isLowVersion/> <Version text="1.20.20 - 1.20.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_duration?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-use-duration" isChinaVersion/>
+<Version isLowVersion/> <Version version="1.20.20 - 1.20.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_duration?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-use-duration" isChinaVersion/>
 
 :::info[新版组件替代]
 
@@ -2019,7 +2019,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:use_modifiers`
 
-<Version text="1.20.50+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_modifiers?view=minecraft-bedrock-stable"/>
+<Version version="1.20.50" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_modifiers?view=minecraft-bedrock-stable"/>
 
 定义该物品的使用时长。
 
@@ -2070,7 +2070,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:wearable`
 
-<Version text="1.20.20+" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_wearable?view=minecraft-bedrock-stable"/>
+<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_wearable?view=minecraft-bedrock-stable"/>
 
 定义该物品为可穿戴物品，例如盔甲。
 
@@ -2463,7 +2463,7 @@ import DataType from "/src/components/type/data"
 
 ## `netease:frame_anim_in_scene`
 
-<Version text="RP" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-anim-in-scene" isChinaVersion/>
+<Version isRP docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-anim-in-scene" isChinaVersion/>
 
 定义物品的序列帧。
 
@@ -2500,7 +2500,7 @@ import DataType from "/src/components/type/data"
 
 ## `netease:frame_animation`
 
-<Version text="RP" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-animation" isChinaVersion/>
+<Version isRP docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-animation" isChinaVersion/>
 
 定义蓄力物品的序列帧。
 
@@ -2858,3 +2858,7 @@ import DataType from "/src/components/type/data"
 - [自定义基础物品 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1)
 - [物品文档 | 1.16.20.3 | bedrock.dev](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item)
 - [物品组件 | Bedrock Wki](https://wiki.bedrock.dev/items/item-components)
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>

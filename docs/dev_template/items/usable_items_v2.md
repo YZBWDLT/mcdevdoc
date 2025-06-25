@@ -5,17 +5,10 @@ sidebar_position: 1
 # 可使用物品 v2
 
 import '/src/css/treeview.css';
-import FileType from "/src/components/FileType"
+import FileType from "/src/components/type/file"
+import Download from "/src/components/highlight/download"
 
-export const Highlight = ({children, color}) => (
-  <span
-    style={{ backgroundColor: color, borderRadius: '10px', color: '#fff', padding: '10px', cursor: 'pointer', }}
-    onClick={() => {}}>
-    {children}
-  </span>
-);
-
-## [<Highlight color="#25c2a0">下载</Highlight>](https://app.nekodrive.net/s/K0Qu0)
+<Download url="https://app.nekodrive.net/s/K0Qu0"/>
 
 本包用于**创建一个可右键使用的物品**。
 
@@ -42,53 +35,53 @@ export const Highlight = ({children, color}) => (
 
 <treeview>
 
-- <FileType fileType="folder" name="BP_usable_item_script"/>：**基于脚本原理的自定义物品行为包**。
-  - <FileType fileType="folder" name="functions"/>：函数
-    - <FileType fileType="folder" name="items"/>：物品执行的函数
-      - <FileType fileType="file" name="usable_item.mcfunction" />：对于`namespace:id`的物品，自动执行`items/(id)`函数
-  - <FileType fileType="folder" name="items"/>：物品定义
-    - <FileType fileType="folder" name="template"/>：（*建议换名*）分类
-      - <FileType fileType="file" name="usable_item.item.json" />：自定义物品定义
-  - <FileType fileType="folder" name="scripts"/>：脚本
-    - <FileType fileType="file" name="main.js" />：（*有冲突风险*）国际版脚本，使用`@minecraft/server@1.7.0`版本
-    - <FileType fileType="file" name="__init__.py" />：（*有冲突风险*）中国版脚本
-    - <FileType fileType="file" name="modMain.py" />：（*有冲突风险*）中国版脚本入口文件
-    - <FileType fileType="file" name="templateClient.py" />：（*有冲突风险*）中国版脚本客户端文件，目前暂时没用到
-    - <FileType fileType="file" name="templateServer.py" />：（*有冲突风险*）中国版脚本服务端文件
-  - <FileType fileType="file" name="manifest.json" />：（*有冲突风险*）清单文件，包含脚本信息
-  - <FileType fileType="image" name="pack_icon.png" />：包图标
-- <FileType fileType="folder" name="BP_usable_item_ac"/>：**基于动画控制器原理的自定义物品行为包**。
-  - <FileType fileType="folder" name="animation_controllers"/>：动画控制器
-    - <FileType fileType="file" name="player.animation_controllers.json" />：（*有冲突风险*）玩家执行的动画控制器
-  - <FileType fileType="folder" name="entities"/>：实体定义
-    - <FileType fileType="file" name="vanilla/" />：原版实体
-      - <FileType fileType="file" name="player.json" />：（*有冲突风险*）玩家的实体定义，用于执行动画控制器
-  - <FileType fileType="folder" name="functions"/>：同基于脚本原理
-    - <FileType fileType="file" name="items/" />：同基于脚本原理
-      - <FileType fileType="file" name="usable_item.mcfunction" />：同基于脚本原理
-  - <FileType fileType="folder" name="items"/>：同基于脚本原理
-    - <FileType fileType="folder" name="template"/>：同基于脚本原理
-      - <FileType fileType="file" name="usable_item.item.json" />：同基于脚本原理，但存在一定的差别
-  - <FileType fileType="file" name="manifest.json" />：清单文件
-  - <FileType fileType="image" name="pack_icon.png" />：包图标
-- <FileType fileType="folder" name="RP_usable_item"/>：**自定义物品资源包**。
-  - <FileType fileType="folder" name="texts"/>：翻译文本
-    - <FileType fileType="file" name="zh_CN.lang" />：（*有冲突风险*）中文翻译文本
-    - <FileType fileType="file" name="en_US.lang" />：（*有冲突风险*）英文翻译文本
-  - <FileType fileType="folder" name="textures"/>：贴图
-    - <FileType fileType="folder" name="items"/>：物品贴图
-      - <FileType fileType="file" name="usable_item.png" />：自定义物品贴图
-    - <FileType fileType="file" name="item_texture.json" />：（*有冲突风险*）物品贴图定义
-  - <FileType fileType="file" name="manifest.json" />：（*有冲突风险*）清单文件
-  - <FileType fileType="image" name="pack_icon.png" />：包图标
+- <FileType type="folder" name="BP_usable_item_script"/>：**基于脚本原理的自定义物品行为包**。
+  - <FileType type="folder" name="functions"/>：函数
+    - <FileType type="folder" name="items"/>：物品执行的函数
+      - <FileType type="file" name="usable_item.mcfunction" />：对于`namespace:id`的物品，自动执行`items/(id)`函数
+  - <FileType type="folder" name="items"/>：物品定义
+    - <FileType type="folder" name="template"/>：（*建议换名*）分类
+      - <FileType type="file" name="usable_item.item.json" />：自定义物品定义
+  - <FileType type="folder" name="scripts"/>：脚本
+    - <FileType type="file" name="main.js" />：（*有冲突风险*）国际版脚本，使用`@minecraft/server@1.7.0`版本
+    - <FileType type="file" name="__init__.py" />：（*有冲突风险*）中国版脚本
+    - <FileType type="file" name="modMain.py" />：（*有冲突风险*）中国版脚本入口文件
+    - <FileType type="file" name="templateClient.py" />：（*有冲突风险*）中国版脚本客户端文件，目前暂时没用到
+    - <FileType type="file" name="templateServer.py" />：（*有冲突风险*）中国版脚本服务端文件
+  - <FileType type="file" name="manifest.json" />：（*有冲突风险*）清单文件，包含脚本信息
+  - <FileType type="image" name="pack_icon.png" />：包图标
+- <FileType type="folder" name="BP_usable_item_ac"/>：**基于动画控制器原理的自定义物品行为包**。
+  - <FileType type="folder" name="animation_controllers"/>：动画控制器
+    - <FileType type="file" name="player.animation_controllers.json" />：（*有冲突风险*）玩家执行的动画控制器
+  - <FileType type="folder" name="entities"/>：实体定义
+    - <FileType type="file" name="vanilla/" />：原版实体
+      - <FileType type="file" name="player.json" />：（*有冲突风险*）玩家的实体定义，用于执行动画控制器
+  - <FileType type="folder" name="functions"/>：同基于脚本原理
+    - <FileType type="file" name="items/" />：同基于脚本原理
+      - <FileType type="file" name="usable_item.mcfunction" />：同基于脚本原理
+  - <FileType type="folder" name="items"/>：同基于脚本原理
+    - <FileType type="folder" name="template"/>：同基于脚本原理
+      - <FileType type="file" name="usable_item.item.json" />：同基于脚本原理，但存在一定的差别
+  - <FileType type="file" name="manifest.json" />：清单文件
+  - <FileType type="image" name="pack_icon.png" />：包图标
+- <FileType type="folder" name="RP_usable_item"/>：**自定义物品资源包**。
+  - <FileType type="folder" name="texts"/>：翻译文本
+    - <FileType type="file" name="zh_CN.lang" />：（*有冲突风险*）中文翻译文本
+    - <FileType type="file" name="en_US.lang" />：（*有冲突风险*）英文翻译文本
+  - <FileType type="folder" name="textures"/>：贴图
+    - <FileType type="folder" name="items"/>：物品贴图
+      - <FileType type="file" name="usable_item.png" />：自定义物品贴图
+    - <FileType type="file" name="item_texture.json" />：（*有冲突风险*）物品贴图定义
+  - <FileType type="file" name="manifest.json" />：（*有冲突风险*）清单文件
+  - <FileType type="image" name="pack_icon.png" />：包图标
 
 </treeview>
 
 ### 合并到您的包中
 
-如果您选择使用**基于脚本原理的包，请合并<FileType fileType="folder" name="BP_usable_item_script"/>和<FileType fileType="folder" name="RP_usable_item"/>到您的包**中。
+如果您选择使用**基于脚本原理的包，请合并<FileType type="folder" name="BP_usable_item_script"/>和<FileType type="folder" name="RP_usable_item"/>到您的包**中。
 
-如果您选择使用**基于动画控制器原理的包，请合并<FileType fileType="folder" name="BP_usable_item_ac"/>和<FileType fileType="folder" name="RP_usable_item"/>到您的包**中。
+如果您选择使用**基于动画控制器原理的包，请合并<FileType type="folder" name="BP_usable_item_ac"/>和<FileType type="folder" name="RP_usable_item"/>到您的包**中。
 
 其中可能会出现多个文件冲突。如果在粘贴过程中遇到冲突，**请务必选择跳过这些文件而非覆盖您原有的文件**，并按照下面可能需要修改的文件列表进行选择性粘贴。
 
@@ -380,8 +373,8 @@ execute if entity @s[hasitem={item=stick,quantity=4..}] run clear @s stick -1 4
 
 您可以在这里下载到过往版本。然而，我们已不再推荐使用这些旧版本。
 
-[<Highlight color="#25c2a0">下载 v1 版本</Highlight>](https://app.nekodrive.net/s/y0Bsg)
+<Download text="下载 v1 版本" url="https://app.nekodrive.net/s/y0Bsg" isInline/>
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

@@ -271,6 +271,6 @@ op @a
   - 逻辑错误：先明确错误的表现形式；然后挨个执行命令的效果是怎么样的，以确定问题根源；最后找到一个解决问题的方案，通常只需要打个补丁，比如加个变量、调换一下命令的顺序就能解决。
   - 读者还应综合考量修复的效益是否和其严重性、难易程度匹配，如果问题不严重修复还难，通常我们就不会修复。
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

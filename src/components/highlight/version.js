@@ -1,39 +1,28 @@
 import React from 'react';
+import Highlight from './standard';
 
-export default function Version({ text = "", docUrl = "", isChinaVersion = false, isLowVersion = false, isBeta = false}) {
-    let backgroundColor = "#25C2A0";
+export default function Version({
+    version = "",
+    docUrl = "",
+    isChinaVersion = false,
+    isLowVersion = false,
+    isBeta = false,
+    isRP = false,
+}) {
+    /** @type {string | undefined} */ let backgroundColor;
     let versionName = "国际版";
-    let cursorStyle = docUrl ? "pointer" : "auto";
-    if ( isChinaVersion ) {
-        backgroundColor = "#ECC93C";
-        versionName = "中国版";
-    }
-    if ( isLowVersion ) {
-        versionName = "国际版（旧版）";
-        backgroundColor = "#3AA2EC"
-    }
-    if ( isBeta ) {
-        backgroundColor = "#EC463A"
-    }
+    if ( isChinaVersion ) { backgroundColor = "#ECC93C"; versionName = "中国版"; }
+    else if ( isLowVersion ) { backgroundColor = "#3AA2EC"; versionName = "国际版 旧版"; }
+    else if ( isBeta ) { backgroundColor = "#EC463A"; }
+    let rpText = isRP ? ` RP` : ``;
+    let versionText = version ? ` ${version}+` : ``;
+    /** 最终显示的文本，格式类似于（国际版 RP 1.20.20+） */
+    let finalText = `${versionName}${rpText}${versionText}`
     return (
-        <span
-            style={{
-                backgroundColor: backgroundColor,
-                borderRadius: "10px",
-                color: "#FFFFFF",
-                padding: "5px",
-                fontWeight: "bold",
-                display: "inline-block",
-                margin: "0 0 10px 0",
-                cursor: cursorStyle,
-            }}
-            onClick={() => {
-                if ( docUrl ) window.open( docUrl, "_blank" )
-            }}
-        >
-            {versionName}
-            {' '}
-            {text}
-        </span>
-    );
+        <Highlight
+            text={finalText}
+            url={docUrl}
+            backgroundColor={backgroundColor}
+        />
+    )
 }

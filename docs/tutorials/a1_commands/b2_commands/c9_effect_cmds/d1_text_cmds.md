@@ -698,6 +698,6 @@ titleraw @a actionbar {"rawtext":[{"translate":"§l§b 关卡 %%s-%%s | 怪物�
 
 </details>
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>

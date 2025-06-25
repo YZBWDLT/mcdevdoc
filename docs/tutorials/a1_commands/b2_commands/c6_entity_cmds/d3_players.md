@@ -238,6 +238,6 @@ l=<最大经验等级: int>,lm=<最小经验等级: int>
 
 </details>
 
-import GiscusComponent from "/src/components/GiscusComponent/component.js"
+import GiscusComment from "/src/components/comment/giscus.js"
 
-<GiscusComponent/>
+<GiscusComment/>
