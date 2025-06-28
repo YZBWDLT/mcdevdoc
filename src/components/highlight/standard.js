@@ -8,26 +8,31 @@ export default function Highlight({
     borderRadius = "10px",
     padding = "5px",
     fontSize = "medium",
+    border = "0px solid #000000"
 }) {
-    let cursorStyle = url ? "pointer" : "auto";
+    let cursorStyle = url ? "pointer" : "auto"
+    let style = {
+        backgroundColor: backgroundColor,
+        borderRadius: borderRadius,
+        fontSize: fontSize,
+        color: fontColor,
+        padding: padding,
+        border: border,
+        fontWeight: "bold",
+        display: "inline-block",
+        margin: "0 0 10px 0",
+        cursor: cursorStyle,
+        textDecoration: "none"
+    }
     return (
-        <span
-            style={{
-                backgroundColor: backgroundColor,
-                borderRadius: borderRadius,
-                fontSize: fontSize,
-                color: fontColor,
-                padding: padding,
-                fontWeight: "bold",
-                display: "inline-block",
-                margin: "0 0 10px 0",
-                cursor: cursorStyle,
-            }}
-            onClick={() => {
-                if ( url ) window.open( url, "_blank" )
-            }}
-        >
-            {text}
-        </span>
+        url ? (
+            <a href={url} target="_blank" rel="noopener noreferrer" style={style} >
+                {text}
+            </a>
+        ) : (
+            <span style={style} >
+                {text}
+            </span>
+        )
     );
 }

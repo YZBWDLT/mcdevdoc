@@ -6,12 +6,19 @@ sidebar_position: 1
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Highlight from '/src/components/highlight/standard';
 
 本文档收录所有正式版或预览版中可用的命令，并给出对应课时。其中，部分内容并未在模块 1 介绍，请阅读本篇文档的初学者注意甄别，如果需要，请学习相关知识。
 
 :::info[本文更新时间]
 
-本文于 2025 年 5 月 21 日更新，中国版最新版本为 1.20.50，国际版最新版本为 1.21.80。
+本文于 2025 年 6 月 28 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.90。
+
+:::
+
+:::note[标签记号说明]
+
+各命令下，<Highlight text="教程"/>是可点击的，点击该按钮将链接到本网站的教程；<Highlight text="Wiki" backgroundColor="#1977E3"/>也是可点击的，点击该按钮将链接到该命令对应的中文 Minecraft Wiki 网页。
 
 :::
 
@@ -19,11 +26,12 @@ import TabItem from '@theme/TabItem';
 
 ### `/help`（或`/?`）
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c1_command" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/help" backgroundColor="#1977E3" />
+
 显示帮助文档。
 
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 0（无需作弊） | [1.1 命令](/docs/tutorials/a1_commands/b1_concepts/c1_command) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/help) |
+- **权限等级**：0（无需作弊）
 
 <Tabs>
 
@@ -59,13 +67,15 @@ import TabItem from '@theme/TabItem';
 
 ### `/execute`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d1_cmd_context" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/execute" backgroundColor="#1977E3" />
+
 按照特定的命令上下文执行命令，并检测条件。
 
 `/execute`除了`run`子命令之外，通用语法为`/execute <子命令> -> execute`，其中`-> execute`表示下一个子命令的起点。从左到右解析。修饰子命令的`-> execute`是必选参数。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | [2.3 命令执行原理 `/execute`](/docs/tutorials/a1_commands/b2_commands/c3_execute/d1_cmd_context) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/execute) |
+- **权限等级**：1
+- **使用频率**：★★★★★
 
 <Tabs>
 
@@ -259,11 +269,13 @@ in <维度: Dimension> -> execute
 
 ### `/function`
 
+<Highlight text="教程" url="/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function#直接执行函数文件的命令function" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/function" backgroundColor="#1977E3" />
+
 执行函数。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | （模块 2）[2.1 函数](/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function#直接执行函数文件的命令function) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/function) |
+- **权限等级**：1
+- **使用频率**：★★★★★
 
 ```text
 /function <路径: filepath>
@@ -277,11 +289,13 @@ in <维度: Dimension> -> execute
 
 ### `/scoreboard`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d2_scoreboard" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/scoreboard" backgroundColor="#1977E3" />
+
 管理记分项和追踪对象。其中，`玩家: target`可以是不存在的玩家，可以指定为`*`以代表所有追踪对象。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | [2.4 标签与记分板命令](/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d2_scoreboard) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/scoreboard) |
+- **权限等级**：1
+- **使用频率**：★★★★★
 
 <Tabs>
 
@@ -471,11 +485,13 @@ in <维度: Dimension> -> execute
 
 ### `/summon`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d1_add_and_remove_entity" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/summon" backgroundColor="#1977E3" />
+
 在特定位置生成特定名称、特定生成事件的实体。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | [2.6 实体操作命令](/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d1_add_and_remove_entity) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/summon) |
+- **权限等级**：1
+- **使用频率**：★★★★★
 
 <Tabs>
 
@@ -533,11 +549,13 @@ in <维度: Dimension> -> execute
 
 ### `/tag`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d1_tag" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/tag" backgroundColor="#1977E3" />
+
 对实体的标签进行操作。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | [2.4 标签与记分板命令](/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d1_tag) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tag) |
+- **权限等级**：1
+- **使用频率**：★★★★★
 
 <Tabs>
 
@@ -579,11 +597,13 @@ in <维度: Dimension> -> execute
 
 ### `/tellraw`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/tellraw" backgroundColor="#1977E3" />
+
 对特定玩家的聊天栏发送原始 JSON 文本。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★★ | 1 | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tellraw) |
+- **权限等级**：1
+- **使用频率**：★★★★★
 
 ```text
 /tellraw <玩家: target> <原始JSON文本: json>
@@ -597,17 +617,18 @@ in <维度: Dimension> -> execute
 
 ### `/scriptevent`
 
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/scriptevent" backgroundColor="#1977E3" />
+
 配合 ScriptAPI 使用，对`system`类发送一个`scriptEventReceive`的后事件。
+
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 :::warning[版本适用性警告]
 
 中国版移除了 SAPI 的功能。因此，该命令在中国版的执行结果无论如何都是无效。
 
 :::
-
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | （模块 3）[1.3.4 命令`/scriptevent`](/docs/tutorials/a3_scripts/b1_sapi/c3_system_class/d4_scriptevent) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/scriptevent) |
 
 ```text
 /scriptevent <消息ID: string> <消息: message>
@@ -621,11 +642,13 @@ in <维度: Dimension> -> execute
 
 ### `/tp`（或`/teleport`）
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#传送玩家的命令tp或teleport" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/teleport" backgroundColor="#1977E3" />
+
 传送实体到特定位置。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.2 简单命令](/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#传送玩家的命令tp或teleport) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/teleport) |
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -769,11 +792,13 @@ in <维度: Dimension> -> execute
 
 ### `/titleraw`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/titleraw" backgroundColor="#1977E3" />
+
 对特定玩家发送原始 JSON 文本的标题。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/titleraw) |
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -835,11 +860,13 @@ in <维度: Dimension> -> execute
 
 ### `/playsound`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/playsound" backgroundColor="#1977E3" />
+
 对玩家播放音效。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/playsound) |
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 ```text
 /playsound <音效: string> [玩家: target] [位置: x y z] [音量: float] [音调: float] [最低音量: float]
@@ -855,11 +882,13 @@ in <维度: Dimension> -> execute
 
 ### `/particle`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/particle" backgroundColor="#1977E3" />
+
 释放粒子。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/particle) |
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 ```text
 /particle <粒子效果: string> [位置: x y z]
@@ -875,11 +904,13 @@ in <维度: Dimension> -> execute
 
 ### `/setblock`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#放置方块的命令setblock" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/setblock" backgroundColor="#1977E3" />
+
 在一个特定位置放置方块。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.8 方块操作命令](/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#放置方块的命令setblock) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/setblock) |
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -921,11 +952,13 @@ in <维度: Dimension> -> execute
 
 ### `/clear`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除物品的命令clear" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/clear" backgroundColor="#1977E3" />
+
 清除玩家的物品。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.2 简单命令](/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除物品的命令clear) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/clear) |
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 ```text
 /clear <玩家: target> <物品: Item> [数据值: int] [最大数量: int]
@@ -941,11 +974,13 @@ in <维度: Dimension> -> execute
 
 ### `/gamerule`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改游戏规则的命令gamerule" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/gamerule" backgroundColor="#1977E3" />
+
 查询或更改游戏规则。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.5 世界操作命令](/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改游戏规则的命令gamerule) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/gamerule) |
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -982,11 +1017,13 @@ in <维度: Dimension> -> execute
 
 ### `/structure`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b3_command_systems/c3_structure_block#结构命令structure" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/structure" backgroundColor="#1977E3" />
+
 保存、加载或删除一个结构。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [3.3 结构方块与结构空位](/docs/tutorials/a1_commands/b3_command_systems/c3_structure_block#结构命令structure) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/structure) |
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -1117,11 +1154,13 @@ in <维度: Dimension> -> execute
 
 ### `/clone`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#复制一片区域的命令clone" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/clone" backgroundColor="#1977E3" />
+
 将一个区域的方块复制到另一个区域。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.8 方块操作命令](/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#复制一片区域的命令clone) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/clone) |
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -1170,11 +1209,13 @@ in <维度: Dimension> -> execute
 
 ### `/event`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#触发生成事件event" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/event" backgroundColor="#1977E3" />
+
 触发一个实体的生成事件。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.6 实体操作命令](/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#触发生成事件event) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/event) |
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 ```text
 /event entity <目标: target> <生成事件: string>
@@ -1188,11 +1229,13 @@ in <维度: Dimension> -> execute
 
 ### `/camera`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机命令camera" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/camera" backgroundColor="#1977E3" />
+
 对玩家的相机填充颜色，或设置玩家的相机视角。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机命令camera) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/camera) |
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -1357,11 +1400,13 @@ in <维度: Dimension> -> execute
 
 ### `/effect`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#添加状态效果effect" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/effect" backgroundColor="#1977E3" />
+
 对实体施加或移除状态效果。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★★☆ | 1 | [2.6 实体操作命令](/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#添加状态效果effect) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/effect) |
+- **权限等级**：1
+- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -1433,11 +1478,13 @@ in <维度: Dimension> -> execute
 
 ### `/give`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#give的扩展语法" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/give" backgroundColor="#1977E3" />
+
 给予玩家物品。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.2 简单命令](/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#give的扩展语法) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/give) |
+- **权限等级**：1
+- **使用频率**：★★★☆☆
 
 ```text
 /give <玩家: target> <物品: Item> [数量: int] [数据值: int] [组件: json]
@@ -1451,11 +1498,13 @@ in <维度: Dimension> -> execute
 
 ### `/kill`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除实体的命令kill" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/kill" backgroundColor="#1977E3" />
+
 清除实体。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.2 简单命令](/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除实体的命令kill) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/kill) |
+- **权限等级**：1
+- **使用频率**：★★★☆☆
 
 ```text
 /kill <实体: target>
@@ -1467,11 +1516,13 @@ in <维度: Dimension> -> execute
 
 ### `/replaceitem`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#改物品更改物品栏物品的命令replaceitem" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/replaceitem" backgroundColor="#1977E3" />
+
 替换实体的物品栏为特定物品。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.7 物品操作命令](/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#改物品更改物品栏物品的命令replaceitem) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/replaceitem) |
+- **权限等级**：1
+- **使用频率**：★★★☆☆
 
 <Tabs>
 
@@ -1559,11 +1610,13 @@ in <维度: Dimension> -> execute
 
 ### `/inputpermission`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#变更权限inputpermission" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/inputpermission" backgroundColor="#1977E3" />
+
 设置玩家的权限。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.6 实体操作命令](/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#变更权限inputpermission) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/inputpermission) |
+- **权限等级**：1
+- **使用频率**：★★★☆☆
 
 <Tabs>
 
@@ -1607,11 +1660,13 @@ in <维度: Dimension> -> execute
 
 ### `/fill`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#批量填充方块的命令fill" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/fill" backgroundColor="#1977E3" />
+
 填充一片区域为特定方块。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.8 方块操作命令](/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#批量填充方块的命令fill) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/fill) |
+- **权限等级**：1
+- **使用频率**：★★★☆☆
 
 <Tabs>
 
@@ -1697,11 +1752,13 @@ in <维度: Dimension> -> execute
 
 ### `/spawnpoint`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置重生点spawnpoint" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/spawnpoint" backgroundColor="#1977E3" />
+
 设置玩家的重生点。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.6 实体操作命令](/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置重生点spawnpoint) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/spawnpoint) |
+- **权限等级**：1
+- **使用频率**：★★★☆☆
 
 ```text
 /spawnpoint [玩家: target] [重生点: x y z]
@@ -1715,17 +1772,18 @@ in <维度: Dimension> -> execute
 
 ### `/dialogue`
 
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/dialogue" backgroundColor="#1977E3" />
+
 调用 NPC 的对话框。
+
+- **权限等级**：1
+- **使用频率**：★★★☆☆
 
 :::warning[版本适用性警告]
 
 中国版移除了 NPC 的功能，包括实体定义的`minecraft:npc`组件。因此，该命令在中国版的执行结果无论如何都是无效。
 
 :::
-
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | （模块 2）[2.6 NPC 对话预设](/docs/tutorials/a2_addons/b2_behavior_packs/c6_dialogues) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/dialogue) |
 
 <Tabs>
 
@@ -1765,11 +1823,13 @@ in <维度: Dimension> -> execute
 
 ### `/gamemode`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#更改玩家游戏模式的命令gamemode" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/gamemode" backgroundColor="#1977E3" />
+
 调整玩家的游戏模式。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.2 简单命令](/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#更改玩家游戏模式的命令gamemode) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/gamemode) |
+- **权限等级**：1
+- **使用频率**：★★★☆☆
 
 ---
 
@@ -1794,11 +1854,13 @@ in <维度: Dimension> -> execute
 
 ### `/say`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#发送消息的命令say" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/say" backgroundColor="#1977E3" />
+
 在服务器公告消息。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.2 简单命令](/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#发送消息的命令say) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/say) |
+- **权限等级**：0（无需作弊）
+- **使用频率**：★★★☆☆
 
 ```text
 /say <消息: message>
@@ -1812,11 +1874,12 @@ in <维度: Dimension> -> execute
 
 ### `/playanimation`
 
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/playanimation" backgroundColor="#1977E3" />
+
 令实体运行动画。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | （模块 2）[5.3 实体](/docs/tutorials/a2_addons/b5_combined_addons/c3_custom_entities/d1_data_driven_entities)（具体章节待定） | [点我进入 Wiki](https://zh.minecraft.wiki/命令/playanimation) |
+- **权限等级**：1
+- **使用频率**：★★★☆☆
 
 ```text
 /playanimation <实体: target> <动画: string> [下个状态: string] [淡出时间: float] [终止表达式: string] [控制器: string]
@@ -1828,11 +1891,13 @@ in <维度: Dimension> -> execute
 
 ### `/setworldspawn`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置出生点setworldspawn" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/setworldspawn" backgroundColor="#1977E3" />
+
 设置世界的出生点。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.6 实体操作命令](/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置出生点setworldspawn) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/setworldspawn) |
+- **权限等级**：1
+- **使用频率**：★★★☆☆
 
 ```text
 /setworldspawn [出生点: x y z]
@@ -1846,11 +1911,13 @@ in <维度: Dimension> -> execute
 
 ### `/tell`（或`/msg`、`/w`）
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#私聊玩家tellwmsg" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/tell" backgroundColor="#1977E3" />
+
 私聊玩家。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 0（无需作弊） | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#私聊玩家tellwmsg) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tell) |
+- **权限等级**：0（无需作弊）
+- **使用频率**：★★★☆☆
 
 ```text
 /tell <玩家: target> <消息: message>
@@ -1866,11 +1933,13 @@ in <维度: Dimension> -> execute
 
 ### `/time`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整时间的命令time" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/time" backgroundColor="#1977E3" />
+
 控制或查询世界时间。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★★☆☆ | 1 | [2.2 简单命令](/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整时间的命令time) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/time) |
+- **权限等级**：1
+- **使用频率**：★★★☆☆
 
 <Tabs>
 
@@ -1925,13 +1994,13 @@ in <维度: Dimension> -> execute
 
 ### `/difficulty`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界难度的命令difficulty" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/difficulty" backgroundColor="#1977E3" />
+
 设置游戏难度。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.5 世界操作命令](/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界难度的命令difficulty) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/difficulty) |
-
----
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 ```text
 /difficulty <难度: Difficulty>
@@ -1951,11 +2020,13 @@ in <维度: Dimension> -> execute
 
 ### `/music`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#播放音乐的命令music" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/music" backgroundColor="#1977E3" />
+
 对玩家播放或停止音乐。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#播放音乐的命令music) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/music) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2027,11 +2098,13 @@ in <维度: Dimension> -> execute
 
 ### `/schedule`
 
+<Highlight text="教程" url="/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function#队列执行函数文件的命令schedule" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/schedule" backgroundColor="#1977E3" />
+
 队列执行函数。当玩家满足特定条件后，执行函数。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | （模块 2）[2.1 函数](/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function#队列执行函数文件的命令schedule) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/schedule) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2197,11 +2270,13 @@ in <维度: Dimension> -> execute
 
 ### `/stopsound`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#停止音效的命令stopsound" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/stopsound" backgroundColor="#1977E3" />
+
 停止播放音效。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#停止音效的命令stopsound) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/stopsound) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 ```text
 /stopsound <玩家: target> [音效: string]
@@ -2215,11 +2290,13 @@ in <维度: Dimension> -> execute
 
 ### `/tickingarea`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界常加载区域的命令tickingarea" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/tickingarea" backgroundColor="#1977E3" />
+
 添加常加载区域。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.5 世界操作命令](/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界常加载区域的命令tickingarea) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/tickingarea) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2303,11 +2380,13 @@ in <维度: Dimension> -> execute
 
 ### `/ride`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#改变骑乘关系ride" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/ride" backgroundColor="#1977E3" />
+
 建立骑乘关系。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.6 实体操作命令](/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#改变骑乘关系ride) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/ride) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2393,11 +2472,13 @@ in <维度: Dimension> -> execute
 
 ### `/weather`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整天气的命令weather" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/weather" backgroundColor="#1977E3" />
+
 调整或查询天气状态。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.2 简单命令](/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整天气的命令weather) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/weather) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2431,11 +2512,13 @@ in <维度: Dimension> -> execute
 
 ### `/enchant`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#为物品附魔的命令enchant" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/enchant" backgroundColor="#1977E3" />
+
 附魔玩家手里的物品。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.7 物品操作命令](/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#为物品附魔的命令enchant) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/enchant) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 ```text
 /enchant <玩家: target> <附魔: int> [等级: int]
@@ -2452,11 +2535,13 @@ in <维度: Dimension> -> execute
 
 ### `/mobevent`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界生物生成事件的命令mobevent" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/mobevent" backgroundColor="#1977E3" />
+
 更改世界生物生成事件。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.5 世界操作命令](/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界生物生成事件的命令mobevent) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/mobevent) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 ```text
 /mobevent <事件: MobEvent> [值: Boolean]
@@ -2470,11 +2555,13 @@ in <维度: Dimension> -> execute
 
 ### `/xp`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#添加或夺走经验xp" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/xp" backgroundColor="#1977E3" />
+
 增加或移除玩家的经验。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.6 实体操作命令](/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#添加或夺走经验xp) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/xp) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2512,11 +2599,13 @@ in <维度: Dimension> -> execute
 
 ### `/camerashake`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机摇晃命令camerashake" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/camerashake" backgroundColor="#1977E3" />
+
 摇晃玩家的相机。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机摇晃命令camerashake) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/camerashake) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2555,11 +2644,13 @@ in <维度: Dimension> -> execute
 
 ### `/damage`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#施加特定伤害damage" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/damage" backgroundColor="#1977E3" />
+
 对实体造成伤害。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.6 实体操作命令](/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#施加特定伤害damage) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/damage) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2589,11 +2680,12 @@ in <维度: Dimension> -> execute
 
 ### `/loot`
 
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/loot" backgroundColor="#1977E3" />
+
 生成、给予、插入、替换战利品。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | （模块 2）[2.3 战利品表与交易表](/docs/tutorials/a2_addons/b2_behavior_packs/c3_loot_and_trade_tables/d2_loot_cmd) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/loot) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 ---
 
@@ -2631,11 +2723,13 @@ in <维度: Dimension> -> execute
 
 ### `/title`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#标题命令title" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/title" backgroundColor="#1977E3" />
+
 对特定玩家发送标题。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★★☆☆☆ | 1 | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#标题命令title) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/title) |
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2697,11 +2791,13 @@ in <维度: Dimension> -> execute
 
 ### `/alwaysday`（或`/daylock`）
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#设置终为白日alwaysday" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/alwaysday" backgroundColor="#1977E3" />
+
 设置终为白日。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.5 世界操作命令](/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#设置终为白日alwaysday) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/alwaysday) |
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
 
 ```text
 /alwaysday [锁定: Boolean]
@@ -2716,11 +2812,13 @@ in <维度: Dimension> -> execute
 
 ### `/clearspawnpoint`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#清除重生点clearspawnpoint" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/clearspawnpoint" backgroundColor="#1977E3" />
+
 清除玩家的重生点。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.6 实体操作命令](/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#清除重生点clearspawnpoint) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/clearspawnpoint) |
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
 
 ```text
 /clearspawnpoint [玩家: target]
@@ -2734,11 +2832,13 @@ in <维度: Dimension> -> execute
 
 ### `/fog`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#迷雾命令fog" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/fog" backgroundColor="#1977E3" />
+
 设置对玩家显示的迷雾。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#迷雾命令fog)、（模块 2）[3.6 迷雾](/docs/tutorials/a2_addons/b3_resource_packs/c6_fogs) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/fog) |
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
 
 <Tabs>
 
@@ -2773,11 +2873,12 @@ in <维度: Dimension> -> execute
 
 ### `/gametest`
 
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/gametest" backgroundColor="#1977E3" />
+
 触发 Gametest。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/gametest) |
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
 
 :::danger[实验性玩法警告]
 
@@ -2789,11 +2890,13 @@ in <维度: Dimension> -> execute
 
 ### `/locate`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#定位命令locate" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/locate" backgroundColor="#1977E3" />
+
 定位结构或生物群系。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.10 特效命令](/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#定位命令locate) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/locate) |
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
 
 <Tabs>
 
@@ -2827,11 +2930,13 @@ in <维度: Dimension> -> execute
 
 ### `/me`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#聊天栏宣告状态me" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/me" backgroundColor="#1977E3" />
+
 公告自身状态。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#聊天栏宣告状态me) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/me) |
+- **权限等级**：0（无需作弊）
+- **使用频率**：★☆☆☆☆
 
 ```text
 /me <消息: message>
@@ -2845,11 +2950,12 @@ in <维度: Dimension> -> execute
 
 ### `/recipe`
 
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/recipe" backgroundColor="#1977E3" />
+
 为玩家添加或移除配方。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | （模块 2）[2.4 配方表](/docs/tutorials/a2_addons/b2_behavior_packs/c4_recipes/d1_shaped_recipes) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/recipe) |
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
 
 <Tabs>
 
@@ -2883,11 +2989,12 @@ in <维度: Dimension> -> execute
 
 ### `/script`
 
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/script" backgroundColor="#1977E3" />
+
 调试 Gametest。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/script) |
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
 
 :::danger[实验性玩法警告]
 
@@ -2899,11 +3006,13 @@ in <维度: Dimension> -> execute
 
 ### `/spreadplayers`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#随机传送玩家spreadplayers" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/spreadplayers" backgroundColor="#1977E3" />
+
 随机扩散实体到地表。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.6 实体操作命令](/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#随机传送玩家spreadplayers) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/spreadplayers) |
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
 
 ```text
 spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: float> <实体: target> [最高高度: value]
@@ -2925,11 +3034,13 @@ spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: floa
 
 ### `/testfor`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c6_target_selector#命令testfor检测实体的命令" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/testfor" backgroundColor="#1977E3" />
+
 检查实体是否存在。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [1.6 目标选择器](/docs/tutorials/a1_commands/b1_concepts/c6_target_selector#命令testfor检测实体的命令) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/testfor) |
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
 
 ```text
 /testfor <实体: target>
@@ -2943,11 +3054,13 @@ spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: floa
 
 ### `/testforblock`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d3_subcommands_2#检测方块的子命令ifunless-block" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/testforblock" backgroundColor="#1977E3" />
+
 检查方块是否存在。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.3 命令执行原理 `/execute`](/docs/tutorials/a1_commands/b2_commands/c3_execute/d3_subcommands_2#检测方块的子命令ifunless-block) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/testforblock) |
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
 
 ```text
 testforblock <位置: x y z> <方块: Block> [方块状态: block states]
@@ -2963,11 +3076,13 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/testforblocks`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d3_subcommands_2#检测区域的子命令ifunless-blocks" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/testforblocks" backgroundColor="#1977E3" />
+
 检查一个区域是否和另一个区域一致。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.3 命令执行原理 `/execute`](/docs/tutorials/a1_commands/b2_commands/c3_execute/d3_subcommands_2#检测区域的子命令ifunless-blocks) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/testforblocks) |
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
 
 ```text
 /testforblocks <起点: x y z> <终点: x y z> <目标点: x y z> [all|masked]
@@ -2986,11 +3101,13 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/toggledownfall`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#切换天气toggledownfall" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/toggledownfall" backgroundColor="#1977E3" />
+
 切换天气。
 
-| 使用频率 | 权限等级 | 课时 | Wiki 页面 |
-| :---: | :---: | --- | :---: |
-| ★☆☆☆☆ | 1 | [2.5 世界操作命令](/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#切换天气toggledownfall) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/toggledownfall) |
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
 
 ```text
 /toggledownfall
@@ -3002,17 +3119,18 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/op`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/op" backgroundColor="#1977E3" />
+
 将玩家设置为管理员。
+
+- **权限等级**：2
 
 :::warning[权限等级适用性警告]
 
 该命令需要至少`2`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
 
 :::
-
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 2 | [2.10 服务器、联机与生存常用命令](/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/op) |
 
 ```text
 /op <玩家: target>
@@ -3026,17 +3144,18 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/deop`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/deop" backgroundColor="#1977E3" />
+
 夺走玩家的管理员权限。
+
+- **权限等级**：2
 
 :::warning[权限等级适用性警告]
 
 该命令需要至少`2`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
 
 :::
-
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 2 | [2.10 服务器、联机与生存常用命令](/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/deop) |
 
 ```text
 /deop <玩家: target>
@@ -3048,11 +3167,12 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/kick`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#移出玩家命令kick" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/kick" backgroundColor="#1977E3" />
+
 移出玩家。
 
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 1（无需作弊） | [2.10 服务器、联机与生存常用命令](/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#移出玩家命令kick) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/kick) |
+- **权限等级**：1（无需作弊）
 
 ```text
 /kick <玩家: target> <理由: message>
@@ -3066,11 +3186,12 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/list`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#玩家列表命令list" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/list" backgroundColor="#1977E3" />
+
 列出玩家列表。
 
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 0（无需作弊） | [2.10 服务器、联机与生存常用命令](/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#玩家列表命令list) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/list) |
+- **权限等级**：0（无需作弊）
 
 ```text
 /list
@@ -3082,17 +3203,17 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/connect`（或`/wsserver`）
 
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/connect" backgroundColor="#1977E3" />
+
 连接到 WebSocket 服务器。
+
+- **权限等级**：2
 
 :::warning[权限等级适用性警告]
 
 该命令需要至少`2`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
 
 :::
-
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 2 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/connect) |
 
 ```text
 connect <服务器URI: text>
@@ -3106,11 +3227,12 @@ connect <服务器URI: text>
 
 ### `/reload`
 
+<Highlight text="教程" url="/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function#重载函数文件的命令reload" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/reload" backgroundColor="#1977E3" />
+
 重新加载函数和脚本（仅限Script API）。
 
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 2 | （模块 2）[2.1 函数](/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function#重载函数文件的命令reload) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/reload) |
+- **权限等级**：2
 
 ```text
 /reload [全部: reload_all]
@@ -3128,17 +3250,18 @@ connect <服务器URI: text>
 
 ### `/stop`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/stop" backgroundColor="#1977E3" />
+
 关闭服务器。
+
+- **权限等级**：4
 
 :::warning[权限等级适用性警告]
 
 该命令需要至少`4`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
 
 :::
-
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 4 | [2.10 服务器、联机与生存常用命令](/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/stop) |
 
 ```text
 stop
@@ -3150,17 +3273,18 @@ stop
 
 ### `/setmaxplayers`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#设置最大玩家数setmaxplayers" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/setmaxplayers" backgroundColor="#1977E3" />
+
 设置房间内允许的最大玩家数。
+
+- **权限等级**：3
 
 :::warning[权限等级适用性警告]
 
 该命令需要至少`3`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
 
 :::
-
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 3 | [2.10 服务器、联机与生存常用命令](/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#设置最大玩家数setmaxplayers) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/setmaxplayers) |
 
 ```text
 /setmaxplayers <最大玩家数: int>
@@ -3172,17 +3296,18 @@ stop
 
 ### `/allowlist`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/allowlist" backgroundColor="#1977E3" />
+
 添加或移除玩家的白名单。
+
+- **权限等级**：4
 
 :::warning[权限等级适用性警告]
 
 该命令需要至少`4`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
 
 :::
-
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 4 | [2.10 服务器、联机与生存常用命令](/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/allowlist) |
 
 <Tabs>
 
@@ -3234,6 +3359,9 @@ allowlist reload
 
 ### `/hud`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#hud-显示命令hud" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/hud" backgroundColor="#1977E3" />
+
 :::warning[版本适用性警告]
 
 该命令仅限 1.20.80+ 版本可用。
@@ -3242,9 +3370,7 @@ allowlist reload
 
 隐藏或恢复 HUD 的可用性。
 
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 1 | [2.9 特效命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#hud-显示命令hud) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/hud) |
+- **权限等级**：1
 
 ```text
 /hud <玩家: target> <可见性: HudVisibility> [HUD元素: HudElement]
@@ -3263,6 +3389,8 @@ allowlist reload
 
 ### `/aimassist`
 
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/aimassist" backgroundColor="#1977E3" />
+
 :::warning[版本适用性警告]
 
 该命令仅限 1.21.70+ 版本可用。
@@ -3271,9 +3399,7 @@ allowlist reload
 
 设置玩家的瞄准辅助。
 
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 1 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/aimassist) |
+- **权限等级**：1
 
 <Tabs>
 
@@ -3303,6 +3429,8 @@ allowlist reload
 
 ### `/place`
 
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/place" backgroundColor="#1977E3" />
+
 :::warning[版本适用性警告]
 
 该命令仅限 1.21.70+ 版本可用。其中，`jigsaw`和`structure`用法仅限 1.21.80+ 版本可用。`[liquidSettings: LiquidSettings]`参数仅限 1.21.90+ 版本可用。
@@ -3317,9 +3445,7 @@ allowlist reload
 
 放置地物、结构、拼图等。
 
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 2 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/place) |
+- **权限等级**：2
 
 <Tabs>
 
@@ -3367,6 +3493,8 @@ allowlist reload
 
 ### `/controlscheme`
 
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/controlscheme" backgroundColor="#1977E3" />
+
 :::warning[版本适用性警告]
 
 该命令仅限 1.21.90+ 版本可用。
@@ -3375,9 +3503,7 @@ allowlist reload
 
 修改相机预设的控制方案。
 
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 1 | —— | [点我进入 Wiki](https://zh.minecraft.wiki/命令/controlscheme) |
+- **权限等级**：1
 
 <Tabs>
 
@@ -3409,17 +3535,18 @@ allowlist reload
 
 ### `/enableedunpc`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c11_china_edition" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/enableedunpc" backgroundColor="#1977E3" />
+
 启用 NPC。
+
+- **权限等级**：1
 
 :::warning[版本适用性警告]
 
 该命令仅限中国版可用。
 
 :::
-
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 1 | [2.11 中国版命令](/docs/tutorials/a1_commands/b2_commands/c11_china_edition) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/enableedunpc) |
 
 ```text
 /enableedunpc [启用NPC: Boolean]
@@ -3433,17 +3560,18 @@ allowlist reload
 
 ### `/removeedunpc`
 
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c11_china_edition" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/removeedunpc" backgroundColor="#1977E3" />
+
 移除全部 NPC。
+
+- **权限等级**：1
 
 :::warning[版本适用性警告]
 
 该命令仅限中国版可用。
 
 :::
-
-| 权限等级 | 课时 | Wiki 页面 |
-| :---: | --- | :---: |
-| 1 | [2.11 中国版命令](/docs/tutorials/a1_commands/b2_commands/c11_china_edition) | [点我进入 Wiki](https://zh.minecraft.wiki/命令/removeedunpc) |
 
 ```text
 /removeedunpc
