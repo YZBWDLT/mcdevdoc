@@ -10,7 +10,7 @@ sidebar_position: 2
 
 :::info[本文更新时间]
 
-本文于 2025 年 6 月 26 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.90。
+本文于 2025 年 6 月 30 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.90。
 
 :::
 
@@ -741,6 +741,15 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:entity_placer": {
+    "entity": "minecraft:spider",
+    "dispense_on": [ "minecraft:web" ],
+    "use_on": [ "minecraft:web" ]
+}
+```
+
+```json showLineNumbers
+"minecraft:entity_placer": {
+    "entity": "minecraft:sheep"
 }
 ```
 
