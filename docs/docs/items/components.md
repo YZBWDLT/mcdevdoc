@@ -49,24 +49,24 @@ import DataType from "/src/components/type/data"
 
 允许玩家将物品放在副手。
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**对象型**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:allow_off_hand"/>：根对象。
   - <DataType type="boolean" name="value"/>：是否能将物品放在副手，默认为`false`。
-
-<br/>或允许简化的写法：
-
-- <DataType type="boolean" name="minecraft:allow_off_hand"/>：是否能将物品放在副手，默认为`false`。
-
 </treeview>
 
-</TabItem>
+**布尔型**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="boolean" name="minecraft:allow_off_hand"/>：是否能将物品放在副手，默认为`false`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
 
 ```json showLineNumbers
 "minecraft:allow_off_hand": {
@@ -74,13 +74,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**布尔型**：
+
 ```json showLineNumbers
 "minecraft:allow_off_hand": true
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -88,33 +88,27 @@ import DataType from "/src/components/type/data"
 
 <Version isLowVersion/>
 
+定义物品可以放置为方块。
+
 :::info[新版组件替代]
 
 该组件在更高版本中用[`minecraft:block_placer`](#minecraftblock_placer)代替。你可以在这里的[旧版文档](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item)中查看该组件接受的参数。
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="string" name="minecraft:block"/>：将放置为何种方块。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:block": "minecraft:camera"
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -124,25 +118,19 @@ import DataType from "/src/components/type/data"
 
 可以在特定方块上放置特定方块。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:block_placer"/>：根对象
   - <DataType type="string" name="block" isRequired/>：将放置为何种方块。
   - <DataType type="boolean" name="replace_block_item"/>：是否将此物品与对应方块绑定，若绑定则当方块被破坏后将掉落该物品。备注：物品 ID 必须与对应的方块 ID 保持一致。
   - <DataType type="array" name="use_on"/>：可放置于的方块列表。如果留空，则默认为可放置于所有方块上。
     - <DataType type="string"/>：方块 ID。
-
 </treeview>
 
-更完整的用法请查阅官方文档。
+> 该组件有更完整的语法描述方块，请查阅官方文档。
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:block_placer": {
@@ -159,9 +147,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -177,20 +163,14 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:bundle_interaction"/>：根对象
   - <DataType type="int" name="num_viewable_slots"/>：定义从收纳袋顶部可访问的物品堆叠的最大数量。必须在`1`到`64`之间（含），默认值为`12`。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:bundle_interaction": {
@@ -198,9 +178,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -210,24 +188,24 @@ import DataType from "/src/components/type/data"
 
 允许玩家在创造模式下手持该物品时可以破坏方块。如果设置为`false`，该物品就会像剑一样手持时无法破坏方块。
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**对象型**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:can_destroy_in_creative"/>：根对象。
   - <DataType type="boolean" name="value"/>：是否允许玩家在创造模式下手持该物品时破坏方块，默认为`true`。
-
-<br/>或允许简化的写法：
-
-- <DataType type="boolean" name="minecraft:can_destroy_in_creative"/>：是否允许玩家在创造模式下手持该物品时破坏方块，默认为`true`。
-
 </treeview>
 
-</TabItem>
+**布尔型**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="boolean" name="minecraft:can_destroy_in_creative"/>：是否允许玩家在创造模式下手持该物品时破坏方块，默认为`true`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
 
 ```json showLineNumbers
 "minecraft:can_destroy_in_creative": {
@@ -235,13 +213,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**布尔型**：
+
 ```json showLineNumbers
 "minecraft:can_destroy_in_creative": false
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -251,20 +229,14 @@ import DataType from "/src/components/type/data"
 
 定义物品可在堆肥桶中用于堆肥。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:compostable"/>：根对象。
   - <DataType type="float" name="composting_chance" isRequired/>：有百分之多少的概率会堆肥成功。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:compostable": {
@@ -272,9 +244,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -293,21 +263,15 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:cooldown"/>：根对象。
   - <DataType type="string" name="category"/>：冷却类型，共享同种冷却类型的物品将会一起进入冷却阶段。
   - <DataType type="float" name="duration"/>：冷却时间，单位为秒。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:cooldown": {
@@ -316,9 +280,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -335,20 +297,14 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="array" name="minecraft:custom_components"/>：根数组。
   - <DataType type="string"/>：自定义组件的名称。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:custom_components": [
@@ -356,9 +312,7 @@ import DataType from "/src/components/type/data"
 ]
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -368,24 +322,24 @@ import DataType from "/src/components/type/data"
 
 定义物品的攻击伤害，类似剑。
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**对象型**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:damage"/>：根对象。
   - <DataType type="int" name="value"/>：物品的攻击伤害。
-
-<br/>或允许简化的写法：
-
-- <DataType type="int" name="minecraft:damage"/>：物品的攻击伤害。
-
 </treeview>
 
-</TabItem>
+**整型**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="int" name="minecraft:damage"/>：物品的攻击伤害。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
 
 ```json showLineNumbers
 "minecraft:damage": {
@@ -393,13 +347,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**整型**：
+
 ```json showLineNumbers
 "minecraft:damage": 7
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -415,21 +369,15 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:damage_absorption"/>：根对象。
   - <DataType type="array" name="absorbable_causes" isRequired/>：定义该物品将吸收的伤害类型列表。当实体在盔甲栏上穿戴该物品时，该物品会以降低耐久度为代价吸收列表中的伤害类型，使得实体免受这些类型的伤害。
     - <DataType type="string"/>：伤害类型。可见`/damage`命令的可用伤害类型。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:damage_absorption": {
@@ -437,9 +385,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -449,12 +395,9 @@ import DataType from "/src/components/type/data"
 
 定义物品破坏特定方块的速度。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:digger"/>：根对象。
   - <DataType type="array" name="destroy_speeds" isRequired/>：定义列表中的方块的破坏速度。
     - <DataType type="string" name="block"/>：方块 ID。
@@ -462,12 +405,9 @@ import DataType from "/src/components/type/data"
       - <DataType type="string" name="tags"/>：一个 Molang 表达式。通常使用`query.any_tag()`来代表拥有特定标签的方块。
     - <DataType type="int" name="speed"/>：破坏方块的速度。若为负数则代表无法破坏。
   - <DataType type="boolean" name="use_efficiency"/>：定义有效率附魔的物品是否影响挖掘速度。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:digger": {
@@ -481,9 +421,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -493,22 +431,16 @@ import DataType from "/src/components/type/data"
 
 定义物品的显示名称。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:display_name"/>：根对象。
   - <DataType type="string" name="value"/>：定义物品的显示名称。可以指定为特定名称，也可以指定为本地化键名。不指定时默认为本地化键名`item.(命名空间):(ID)`。
-
 </treeview>
 
-</TabItem>
+</TabItem><TabItem value="example" label="示例">
 
-<TabItem value="example" label="示例">
-
-特定的物品名称：
+**特定的物品名称**：
 
 ```json showLineNumbers
 "minecraft:display_name": {
@@ -516,7 +448,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-本地化物品键名：
+**本地化物品键名**：
 
 ```json showLineNumbers
 "minecraft:display_name": {
@@ -524,9 +456,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -545,23 +475,17 @@ import DataType from "/src/components/type/data"
 >
 > —— [Bedrock Wiki](https://wiki.bedrock.dev/items/item-components#durability)
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:durability"/>：根对象。
   - <DataType type="object" name="damage_chance"/>：定义该物品有多大概率会在被使用后降低耐久度。不指定时默认为100%。
     - <DataType type="int" name="max" isRequired/>：最大有百分之多少的概率降低耐久度。
     - <DataType type="int" name="min" isRequired/>：最小有百分之多少的概率降低耐久度。
   - <DataType type="int" name="max_durability" isRequired/>：定义物品的总耐久度。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:durability": {
@@ -576,9 +500,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -588,24 +510,18 @@ import DataType from "/src/components/type/data"
 
 定义物品在降低耐久度后触发的事件。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:durability"/>：根对象。
   - <DataType type="array" name="durability_thresholds" isRequired/>：当物品耐久度降低到某个阈值时，触发事件。如果同时满足多个阈值，考虑所有阈值中最低的那个。至少指定 1 项。
     - <DataType type="object"/>：耐久度阈值
       - <DataType type="int" name="durability"/>：指定耐久度阈值，当物品耐久度低于此值时触发下面的事件。
       - <DataType type="string" name="particle_type"/>：低于耐久度阈值时释放的粒子。
       - <DataType type="string" name="sound_event"/>：低于耐久度阈值时播放的音效。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:durability_sensor": {
@@ -623,9 +539,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -643,20 +557,14 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:dyeable"/>：根对象。
   - <DataType type="string" name="default_color"/>：该物品染色前采用的默认颜色，应指定为有效的颜色代码（`#xxxxxx`）。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:dyeable": {
@@ -664,9 +572,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -676,12 +582,9 @@ import DataType from "/src/components/type/data"
 
 定义物品为可附魔。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:enchantable"/>：根对象。
   - <DataType type="string" name="slot" isRequired/>：该物品可以按照什么类型的物品附魔。只能填写为下列值中的一种：
     <!-- markdownlint-disable MD058 -->
@@ -692,12 +595,9 @@ import DataType from "/src/components/type/data"
     | **`shovel`** | **`sword`** | **`all`** |  |  |
     <!-- markdownlint-enable MD058 -->
   - <DataType type="int" name="value" isRequired/>：附魔能力。该值越高越容易附魔出更好的魔咒。应在`0`-`255`之间（含）。更多信息参见[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/附魔（物品修饰）#附魔能力)。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:enchantable": {
@@ -706,9 +606,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -718,26 +616,20 @@ import DataType from "/src/components/type/data"
 
 定义物品可生成实体。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:entity_placer"/>：根对象。
   - <DataType type="string" name="entity" isRequired/>：生成的实体的 ID。
   - <DataType type="array" name="dispense_on"/>：可在何种方块上通过发射器使用该物品并生成实体。留空则默认允许全部方块。
     - <DataType type="string"/>：方块 ID。
   - <DataType type="array" name="use_on"/>：可在何种方块上使用该物品并生成实体。留空则默认允许全部方块。
     - <DataType type="string"/>：方块 ID。
-
 </treeview>
 
 更完整的用法请查阅官方文档。
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:entity_placer": {
@@ -753,9 +645,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -771,47 +661,31 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="boolean" name="minecraft:foil"/>：物品是否有附魔光泽，默认为`false`。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:foil": true
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
 ## `minecraft:food`
 
+<Version isLowVersion/> <Version version="1.20.30" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_food?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-food" isChinaVersion/>
+
 定义物品为食物。
 
-:::warning[注意]
+<Tabs><TabItem value="parameter" label="参数" default>
 
-该组件的旧版格式与新版格式有较大差异。下面将分开给出文档，请读者按需查阅。
-
-:::
-
-<Tabs>
-
-<!-- 旧版组件 -->
-
-<TabItem value="lowVersion" label="旧版组件">
-
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-food" isChinaVersion/>
+**格式版本 1.16.X 及以前或中国版**：
 
 :::info[提示]
 
@@ -825,12 +699,7 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
-
 <treeview>
-
 - <DataType type="object" name="minecraft:food"/>：根对象。
   - <DataType type="int" name="nutrition"/>：食物回复的饥饿值。
   - <DataType type="string" name="saturation_modifier"/>：食物回复的饱和度等级。回复的饱和度将为饥饿值×饱和度系数×2。可选值及其对应饱和度系数如下表：
@@ -856,14 +725,40 @@ import DataType from "/src/components/type/data"
       - <DataType type="int" name="amplifier"/>：提供的状态效果放大倍数，提供的等级为放大倍数 + 1。
   - <DataType type="array" name="remove_effects"/>：食物在食用后解除的状态效果。
     - <DataType type="string"/>：解除的状态效果 ID。
-
 </treeview>
 
-</TabItem>
+**格式版本 1.20.30 及更高**：
 
-<TabItem value="example" label="示例">
+:::note[编者注]
 
-**紫颂果的物品定义**：
+新版的`food`组件相比旧版删去了大量功能，拆分到了其他组件或脚本功能中。以下为功能点差异，若读者有相关需求，请参考以下替代方案，若无法接受请使用旧版组件。
+
+- 提供状态效果（或解除状态效果）：使用脚本的物品使用后事件（`ItemCompleteUseAfterEvent`）监听并对使用实体提供药效。
+- 使用后随机传送：使用脚本的物品使用后事件（`ItemCompleteUseAfterEvent`）监听并传送实体（不要忘记加传送到地表的判定）。
+- 使用冷却：使用物品组件[`minecraft:cooldown`](#minecraftcooldown)代替。
+
+:::
+
+:::warning[注意]
+
+要使用该组件，必须同时定义下面的组件：
+
+- [`minecraft:use_modifiers`](#minecraftuse_modifiers)（`1.20.50`或更高格式版本）
+- [`minecraft:use_duration`](#minecraftuse_duration)（`1.20.30`-`1.20.40`格式版本）
+
+:::
+
+<treeview>
+- <DataType type="object" name="minecraft:food"/>：根对象。
+  - <DataType type="int" name="nutrition"/>：食物回复的饥饿值。默认为`0`。
+  - <DataType type="float" name="saturation_modifier"/>：食物回复的饱和度等级。回复的饱和度将为饥饿值×饱和度系数×2。默认为`0.6`。
+  - <DataType type="string" name="using_converts_to"/>：食物在食用完毕后将转化为的物品。应填写为物品 ID。
+  - <DataType type="boolean" name="can_always_eat"/>：食物是否在任何情况下都可食用，否则仅当玩家的饥饿值不满时才可食用。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例" default>
+
+**格式版本 1.10（紫颂果）**：
 
 ```json showLineNumbers
 "minecraft:food": {
@@ -877,7 +772,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-**金苹果的物品定义**：
+**格式版本 1.10（金苹果）**：
 
 ```json showLineNumbers
 "minecraft:food": {
@@ -901,54 +796,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
-
-</TabItem>
-
-<!-- 新版组件 -->
-
-<TabItem value="newVersion" label="新版组件" default>
-
-<Version version="1.20.30" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_food?view=minecraft-bedrock-stable"/>
-
-:::note[编者注]
-
-新版的`food`组件相比旧版删去了大量功能，拆分到了其他组件或脚本功能中。以下为功能点差异，若读者有相关需求，请参考以下替代方案，若无法接受请使用旧版组件。
-
-- 提供状态效果（或解除状态效果）：使用脚本的物品使用后事件（`ItemCompleteUseAfterEvent`）监听并对使用实体提供药效。
-- 使用后随机传送：使用脚本的物品使用后事件（`ItemCompleteUseAfterEvent`）监听并传送实体（不要忘记加传送到地表的判定）。
-- 使用冷却：使用物品组件[`minecraft:cooldown`](#minecraftcooldown)代替。
-
-:::
-
-:::warning[注意]
-
-要使用该组件，必须同时定义下面的组件：
-
-- [`minecraft:use_modifiers`](#minecraftuse_modifiers)（`1.20.50`或更高格式版本）
-- [`minecraft:use_duration`](#minecraftuse_duration)（`1.20.30`-`1.20.40`格式版本）
-
-:::
-
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
-
-<treeview>
-
-- <DataType type="object" name="minecraft:food"/>：根对象。
-  - <DataType type="int" name="nutrition"/>：食物回复的饥饿值。默认为`0`。
-  - <DataType type="float" name="saturation_modifier"/>：食物回复的饱和度等级。回复的饱和度将为饥饿值×饱和度系数×2。默认为`0.6`。
-  - <DataType type="string" name="using_converts_to"/>：食物在食用完毕后将转化为的物品。应填写为物品 ID。
-  - <DataType type="boolean" name="can_always_eat"/>：食物是否在任何情况下都可食用，否则仅当玩家的饥饿值不满时才可食用。
-
-</treeview>
-
-</TabItem>
-
-<TabItem value="example" label="示例">
+**格式版本 1.20.30 及更高**：
 
 ```json showLineNumbers
 "minecraft:food": {
@@ -957,13 +805,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
-
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -973,20 +815,14 @@ import DataType from "/src/components/type/data"
 
 定义该物品为燃料。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:fuel"/>：根对象。
   - <DataType type="float" name="duration"/>：定义燃料在熔炉中的燃烧时长，单位秒。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:fuel": {
@@ -994,9 +830,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1006,24 +840,24 @@ import DataType from "/src/components/type/data"
 
 定义该物品会像附魔书一样产生附魔光泽。
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**对象型**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:glint"/>：根对象。
   - <DataType type="boolean" name="value"/>：物品是否有附魔光泽，默认为`false`。
-
-<br/>或允许简化的写法：
-
-- <DataType type="boolean" name="minecraft:glint"/>：物品是否有附魔光泽，默认为`false`。
-
 </treeview>
 
-</TabItem>
+**布尔型**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="boolean" name="minecraft:glint"/>：物品是否有附魔光泽，默认为`false`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
 
 ```json showLineNumbers
 "minecraft:glint": {
@@ -1031,13 +865,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**布尔型**：
+
 ```json showLineNumbers
 "minecraft:glint": true
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1047,24 +881,24 @@ import DataType from "/src/components/type/data"
 
 定义该物品像工具一样直立展示在玩家手中。
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**对象型**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:hand_equipped"/>：根对象
   - <DataType type="boolean" name="value"/>：是否在手中像工具一样展示物品，默认为`false`。
-
-<br/>或允许简化的写法：
-
-- <DataType type="boolean" name="minecraft:hand_equipped"/>：是否在手中像工具一样展示物品，默认为`false`。国际版旧版物品和中国版物品应当写为简化写法。
-
 </treeview>
 
-</TabItem>
+**布尔型，或格式版本 1.16.X 及更低**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="boolean" name="minecraft:hand_equipped"/>：是否在手中像工具一样展示物品，默认为`false`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
 
 ```json showLineNumbers
 "minecraft:hand_equipped": {
@@ -1072,13 +906,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**布尔型，或格式版本 1.16.X 及更低**：
+
 ```json showLineNumbers
 "minecraft:hand_equipped": true
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1088,24 +922,24 @@ import DataType from "/src/components/type/data"
 
 定义物品悬浮文本的颜色。
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**对象型**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:hover_text_color"/>：根对象。
   - <DataType type="string" name="value"/>：设置物品的悬浮文本颜色。可选值为格式化代码对应的名称，详见[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/格式化代码#颜色代码) 对应的名称一列。
-
-<br/>或允许简化的写法：
-
-- <DataType type="string" name="minecraft:hover_text_color"/>：设置物品的悬浮文本颜色。可选值为格式化代码对应的名称，详见[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/格式化代码#颜色代码) 对应的名称一列。国际版旧版物品和中国版物品应当写为简化写法。
-
 </treeview>
 
-</TabItem>
+**布尔型，或格式版本 1.16.X 及更低**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="string" name="minecraft:hover_text_color"/>：设置物品的悬浮文本颜色。可选值为格式化代码对应的名称，详见[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/格式化代码#颜色代码) 对应的名称一列。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
 
 ```json showLineNumbers
 "minecraft:hover_text_color": {
@@ -1113,13 +947,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**布尔型，或格式版本 1.16.X 及更低**：
+
 ```json showLineNumbers
 "minecraft:hover_text_color": "aqua"
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1135,37 +969,33 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**多值写法**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:icon" isRequired/>：根对象
   - <DataType type="object" name="textures"/>：定义该物品的贴图。
     - <DataType type="string" name="default"/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
     - <DataType type="string" name="dyed"/>：该物品的染色后贴图，仅当指定[`minecraft:dyeable`](#minecraftdyeable)组件后有意义。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
-
-<br/>或允许简化的写法：
-
-- <DataType type="string" name="minecraft:icon"/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
-
-<br/>
-
-:::warning[旧版本的单值写法]
-
-在`1.20.0`~`1.20.40`格式版本下，上面的单值写法应写为下面的写法，不过在高版本下，这种写法已经弃用。
-
-- <DataType type="object" name="minecraft:icon" isRequired/>：根对象
-  - <DataType type="string" name="texture"/>：该物品的贴图Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
-
-:::
-
 </treeview>
 
-</TabItem>
+**单值写法（适用于格式版本 1.16.X 及更低、格式版本 1.20.50 及更高）**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="string" name="minecraft:icon" isRequired/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
+</treeview>
+
+**单值写法（适用于格式版本 1.20.0 - 1.20.40）**：
+
+<treeview>
+- <DataType type="object" name="minecraft:icon" isRequired/>：根对象
+  - <DataType type="string" name="texture"/>：该物品的贴图Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型（多值写法）**：
 
 ```json showLineNumbers
 "minecraft:icon": {
@@ -1175,13 +1005,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**布尔型（单值写法）**：
+
 ```json showLineNumbers
 "minecraft:icon": "apple"
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1191,19 +1021,13 @@ import DataType from "/src/components/type/data"
 
 在触控设备中，为物品添加交互按钮。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="boolean"/><DataType type="string" name="minecraft:interact_button"/>：在触控设备上，是否启用物品的交互按钮，以及该按钮上显示的文本。若指定为`true`，则默认显示为`Use Item`，否则显示为指定文本。允许指定为本地化键名。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 默认，显示为“Use Item”：
 
@@ -1217,9 +1041,7 @@ import DataType from "/src/components/type/data"
 "minecraft:interact_button": "Click me!"
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1229,24 +1051,24 @@ import DataType from "/src/components/type/data"
 
 定义物品是否可与流体交互。
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**对象型**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:liquid_clipped"/>：根对象。
   - <DataType type="boolean" name="value"/>：是否能与液体交互，默认为`false`。
-
-<br/>或允许简化的写法：
-
-- <DataType type="boolean" name="minecraft:liquid_clipped"/>：是否能与液体交互，默认为`false`。
-
 </treeview>
 
-</TabItem>
+**布尔型**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="boolean" name="minecraft:liquid_clipped"/>：是否能与液体交互，默认为`false`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
 
 ```json showLineNumbers
 "minecraft:liquid_clipped": {
@@ -1254,13 +1076,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**布尔型**：
+
 ```json showLineNumbers
 "minecraft:liquid_clipped": true
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1276,27 +1098,19 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="int" name="minecraft:max_damage"/>：该物品的耐久度。应在`0`-`32767`之间（含）。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:max_damage": 1000
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1306,24 +1120,24 @@ import DataType from "/src/components/type/data"
 
 定义物品的最大堆叠数。
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**对象型**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:max_stack_size"/>：根对象。
   - <DataType type="int" name="value"/>：物品的最大堆叠数，默认为`64`。
-
-<br/>或允许简化的写法：
-
-- <DataType type="int" name="minecraft:max_stack_size"/>：物品的最大堆叠数，默认为`64`。国际版旧版物品和中国版物品应当写为简化写法。
-
 </treeview>
 
-</TabItem>
+**整型，或格式版本 1.16.X 及更低**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="int" name="minecraft:max_stack_size"/>：物品的最大堆叠数，默认为`64`。国际版旧版物品和中国版物品应当写为简化写法。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
 
 ```json showLineNumbers
 "minecraft:max_stack_size": {
@@ -1331,13 +1145,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**整型，或格式版本 1.16.X 及更低**：
+
 ```json showLineNumbers
 "minecraft:max_stack_size": 16
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1347,21 +1161,15 @@ import DataType from "/src/components/type/data"
 
 定义物品为弹射物，例如箭。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:projectile"/>：根对象。
   - <DataType type="float" name="minimum_critical_power"/>：定义蓄力需要多久才能暴击。单位秒。
   - <DataType type="string" name="projectile_entity" isRequired/>：定义掷出何种实体。若未指定命名空间，默认为`minecraft`。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:projectile": {
@@ -1370,9 +1178,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1382,26 +1188,26 @@ import DataType from "/src/components/type/data"
 
 定义物品的稀有度。
 
-注意：物品具有任何魔咒时稀有度会提升，由常见或少见变为稀有、或由稀有变为史诗。关于稀有度机制，详见[稀有度 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/稀有度)。
+> **注意**：物品具有任何魔咒时稀有度会提升，由常见或少见变为稀有、或由稀有变为史诗。关于稀有度机制，详见[稀有度 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/稀有度)。
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**对象型**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:rarity"/>：根对象。
   - <DataType type="boolean" name="value"/>：定义物品的基础稀有度。可选值为`common`（普通）、`uncommon`（少见）、`rare`（稀有）、`epic`（传奇）。
-
-<br/>或允许简化的写法：
-
-- <DataType type="boolean" name="minecraft:rarity"/>：定义物品的基础稀有度。可选值为`common`（普通）、`uncommon`（少见）、`rare`（稀有）、`epic`（传奇）。
-
 </treeview>
 
-</TabItem>
+**字符串型**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="boolean" name="minecraft:rarity"/>：定义物品的基础稀有度。可选值为`common`（普通）、`uncommon`（少见）、`rare`（稀有）、`epic`（传奇）。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
 
 ```json showLineNumbers
 "minecraft:rarity": {
@@ -1409,13 +1215,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**字符串型**：
+
 ```json showLineNumbers
 "minecraft:rarity": "rare"
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1425,24 +1231,18 @@ import DataType from "/src/components/type/data"
 
 定义物品为唱片。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:record"/>：根对象。
   - <DataType type="int" name="comparator_signal"/>：在唱片机中通过红石信号输出的信号，应在`0`-`15`之间。
   - <DataType type="float" name="duration"/>：音乐时长，单位秒。
   - <DataType type="string" name="sound_event"/>：要播放的音效。
-
 </treeview>
 
-</TabItem>
+</TabItem><TabItem value="example" label="示例">
 
-<TabItem value="example" label="示例">
-
-[官方给出的自定义物品实例](https://github.com/microsoft/minecraft-samples/blob/main/custom_items/behavior_packs/custom_item/items/my_sword_singing.json)：
+[**官方给出的自定义物品实例**](https://github.com/microsoft/minecraft-samples/blob/main/custom_items/behavior_packs/custom_item/items/my_sword_singing.json)：
 
 ```json showLineNumbers
 "minecraft:record": {
@@ -1452,9 +1252,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1464,24 +1262,18 @@ import DataType from "/src/components/type/data"
 
 定义物品为可修复的。默认情况下，允许此物品和另一个同种类的物品在一起修复（例如两把损坏铁镐合成一把较新的铁镐），此时恢复的耐久度为二者相加。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:repairable"/>：根对象。
   - <DataType type="array" name="repair_items"/>：可用于修复的物品及其修复耐久度值的列表。
     - <DataType type="object"/>：可修复的物品项目
       - <DataType type="int"/><DataType type="string" name="repair_amount"/>：物品恢复的耐久度。当指定为整数时，恢复固定的耐久度值；指定为字符串时，可指定为一个 Molang，可使用`context.other`指定铁砧另一个槽位的物品。
       - <DataType type="array" name="items" isRequired/>：可用于修复的物品列表。
         - <DataType type="string"/>：可用于修复的物品 ID。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:repairable":{
@@ -1520,9 +1312,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1547,12 +1337,9 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:shooter"/>：根对象。
   - <DataType type="array" name="ammunition" isRequired/>：定义该发射物使用何种子弹。
     - <DataType type="object"/>
@@ -1563,12 +1350,9 @@ import DataType from "/src/components/type/data"
   - <DataType type="boolean" name="charge_on_draw"/>：拉动时是否蓄力充能。默认值为`false`。
   - <DataType type="float" name="max_draw_duration"/>：拉动最长时间。应小于等于[`minecraft:use_modifiers`](#minecraftuse_modifiers)或[`minecraft:use_duration`](#minecraftuse_duration)组件定义的使用时长，默认值为`0`。
   - <DataType type="boolean" name="scale_power_by_draw_duration"/>：是否随着拉动时间的增长而增加对应子弹（弹射物）发射时威力，默认值为`false`。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:shooter": {
@@ -1586,9 +1370,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1598,24 +1380,24 @@ import DataType from "/src/components/type/data"
 
 定义该物品对应的掉落物是否会在一段时间后消失。
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**对象型**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:should_despawn"/>：根对象。
   - <DataType type="boolean" name="value"/>：掉落物是否会在一段时间后消失，默认为`true`。
-
-<br/>或允许简化的写法：
-
-- <DataType type="boolean" name="minecraft:should_despawn"/>：掉落物是否会在一段时间后消失，默认为`true`。
-
 </treeview>
 
-</TabItem>
+**布尔型**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="boolean" name="minecraft:should_despawn"/>：掉落物是否会在一段时间后消失，默认为`true`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
 
 ```json showLineNumbers
 "minecraft:should_despawn": {
@@ -1623,13 +1405,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**布尔型**：
+
 ```json showLineNumbers
 "minecraft:should_despawn": false
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1645,22 +1427,16 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:stacked_by_data"/>：根对象。
   - <DataType type="string" name="crop_result"/>：种植后放置的方块。
   - <DataType type="array" name="plant_at"/>：可被种植的方块列表。
     - <DataType type="string"/>：方块 ID。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:seed": {                                  
@@ -1669,9 +1445,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1681,24 +1455,24 @@ import DataType from "/src/components/type/data"
 
 定义是否允许不同数据值的同种物品堆叠。
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**对象型**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:stacked_by_data"/>：根对象。
   - <DataType type="boolean" name="value"/>：是否允许不同数据值的物品或掉落物堆叠，默认为`false`。
-
-<br/>或允许简化的写法：
-
-- <DataType type="boolean" name="minecraft:stacked_by_data"/>：是否允许不同数据值的物品或掉落物堆叠，默认为`false`。国际版旧版物品和中国版物品应当写为简化写法。
-
 </treeview>
 
-</TabItem>
+**布尔型，或格式版本 1.16.X 及更低**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="boolean" name="minecraft:stacked_by_data"/>：是否允许不同数据值的物品或掉落物堆叠，默认为`false`。国际版旧版物品和中国版物品应当写为简化写法。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
 
 ```json showLineNumbers
 "minecraft:stacked_by_data": {
@@ -1706,13 +1480,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**布尔型，或格式版本 1.16.X 及更低**：
+
 ```json showLineNumbers
 "minecraft:stacked_by_data": true
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1728,12 +1502,9 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:storage_item"/>：根对象。
   - <DataType type="boolean" name="allow_nested_storage_items"/>：是否允许该类物品嵌套存储，例如收纳袋存储收纳袋。
   - <DataType type="array" name="allowed_items"/>：允许存储的物品，不在此列名单中的物品无法存储。若设置为空则允许存储一切物品。
@@ -1742,12 +1513,9 @@ import DataType from "/src/components/type/data"
     - <DataType type="string"/>：允许存储的物品 ID。
   - <DataType type="int" name="max_slots"/>：该物品的最大容量。注：仅限格式版本`1.21.40`-`1.21.50`下可用，`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)组件。
   - <DataType type="int" name="max_weight_limit"/>：该物品在其他可存储物品中占用的容量。注：仅限格式版本`1.21.40`-`1.21.50`下可用，`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier)组件。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:storage_item": {
@@ -1757,9 +1525,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1775,20 +1541,14 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:storage_weight_limit"/>：根对象。
   - <DataType type="int" name="max_weight_limit"/>：定义该可存储物品（类似于收纳袋）的最大空间。必须在`0`-`64`之间，默认为`64`。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:storage_weight_limit": {
@@ -1796,9 +1556,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1808,20 +1566,14 @@ import DataType from "/src/components/type/data"
 
 定义该物品在存储到一个可存储物品时需要占用多大空间。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:storage_weight_modifier"/>：根对象。
   - <DataType type="int" name="weight_in_storage_item"/>：定义该物品在存储到一个可存储物品（类似于收纳袋）时需要占用多大空间。默认为`4`，若为`0`则代表该物品无法存储到其他可存储物品中。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:storage_weight_modifier": {
@@ -1829,9 +1581,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1841,16 +1591,12 @@ import DataType from "/src/components/type/data"
 
 定义物品标签。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:tags"/>：根对象。
   - <DataType type="array" name="tags"/>：物品的标签列表。
     - <DataType type="string"/>：物品标签。
-
 </treeview>
 
 一些原版使用的标签具有实质作用。下表为对这些标签的列举，原版还有大量正在使用的标签，读者可在[Bedrock Wiki](https://wiki.bedrock.dev/items/item-tags)中查看更多相关信息。
@@ -1866,9 +1612,7 @@ import DataType from "/src/components/type/data"
 | `minecraft:vibration_damper` | 标记物品在使用时不发生振动。 |
 | `minecraft:wool` | 标记该物品为一种羊毛材料。 |
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:use_animation": {
@@ -1880,9 +1624,7 @@ import DataType from "/src/components/type/data"
 "minecraft:use_animation": "eat"
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1898,12 +1640,9 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:throwable"/>：根对象。
   - <DataType type="boolean" name="do_swing_animation"/>：物品掷出后是否播放摆手动画。
   - <DataType type="float" name="launch_power_scale"/>：随着蓄力时间增长而增加的弹射物威力比例。默认值为`1.0`（即蓄力时间增长，弹射物威力不增加）。设置负值将导致弹射物以反方向掷出。
@@ -1911,12 +1650,9 @@ import DataType from "/src/components/type/data"
   - <DataType type="float" name="min_draw_duration"/>：最段蓄力时间，单位秒。默认为`0.0`。
   - <DataType type="float" name="max_launch_power"/>：弹射物的最大威力（以保证弹射物的威力不会无限增大）。
   - <DataType type="boolean" name="scale_power_by_draw_duration"/>：是否随着蓄力时间的增长而增加弹射物掷出时的威力，默认值为`false`。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:throwable": {
@@ -1926,9 +1662,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1938,24 +1672,24 @@ import DataType from "/src/components/type/data"
 
 定义物品的使用动画。
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**对象型**：
 
 <treeview>
-
 - <DataType type="object" name="minecraft:use_animation"/>：根对象。
   - <DataType type="string" name="value"/>：使用物品时播放的动画，可选值为`eat`、`drink`、`bow`、`block`、`camera`、`crossbow`、`none`、`brush`、`spear`、`spyglass`，不使用该组件时则不播放动画。
-
-<br/>或允许简化的写法：
-
-- <DataType type="string" name="minecraft:use_animation"/>：使用物品时播放的动画，可选值为`eat`、`drink`、`bow`、`block`、`camera`、`crossbow`、`none`、`brush`、`spear`、`spyglass`，不使用该组件时则不播放动画。国际版旧版物品和中国版物品应当写为简化写法。
-
 </treeview>
 
-</TabItem>
+**字符串型，或格式版本 1.16.X 及更低**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="string" name="minecraft:use_animation"/>：使用物品时播放的动画，可选值为`eat`、`drink`、`bow`、`block`、`camera`、`crossbow`、`none`、`brush`、`spear`、`spyglass`，不使用该组件时则不播放动画。国际版旧版物品和中国版物品应当写为简化写法。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
 
 ```json showLineNumbers
 "minecraft:use_animation": {
@@ -1963,13 +1697,13 @@ import DataType from "/src/components/type/data"
 }
 ```
 
+**字符串型，或格式版本 1.16.X 及更低**：
+
 ```json showLineNumbers
 "minecraft:use_animation": "eat"
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -1995,34 +1729,35 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
+<Tabs><TabItem value="parameters" label="参数" default>
 
-<TabItem value="parameters" label="参数" default>
+**格式版本 1.16.X 及更低**：
 
 <treeview>
-
-- <DataType type="int" name="minecraft:use_duration"/>（旧版国际版物品或中国版物品）：该物品的使用时长。单位为游戏刻，默认值为`32`。
-- <DataType type="float" name="minecraft:use_duration"/>（新版国际版物品）：该物品的使用时长。单位为秒，默认值为`1.6`。
-
+- <DataType type="int" name="minecraft:use_duration"/>：该物品的使用时长。单位为游戏刻，默认值为`32`。
 </treeview>
 
-</TabItem>
+**格式版本 1.20.20 - 1.20.40**：
 
-<TabItem value="example" label="示例">
+<treeview>
+- <DataType type="float" name="minecraft:use_duration"/>：该物品的使用时长。单位为秒，默认值为`1.6`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**格式版本 1.16.X 及更低**：
 
 ```json showLineNumbers
 "minecraft:use_duration": 32
 ```
 
-注意：下面的类型仅限在新版（格式版本`1.20.20`-`1.20.40`）可用，在旧版国际版物品中，这样写会报错。
+**格式版本 1.20.20 - 1.20.40**：
 
 ```json showLineNumbers
 "minecraft:use_duration": 1.6
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2042,21 +1777,15 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:use_modifiers"/>：根对象。
   - <DataType type="float" name="use_duration" isRequired/>：使用时长。例如苹果的该值为`1.6`。
-  - <DataType type="float" name="movement_modifier" isRequired/>：定义玩家使用物品时的速度倍率，必须小于等于`1`。例如苹果的该值为`0.35`。
-
+  - <DataType type="float" name="movement_modifier"/>：定义玩家使用物品时的速度倍率，必须小于等于`1`。例如苹果的该值为`0.35`。
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:use_modifiers": {
@@ -2071,9 +1800,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2083,22 +1810,16 @@ import DataType from "/src/components/type/data"
 
 定义该物品为可穿戴物品，例如盔甲。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="minecraft:wearable"/>：根对象。
   - <DataType type="string" name="slot" isRequired/>：定义可穿戴的位置。可选值：`slot.weapon.offhand`、`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`。
   - <DataType type="int" name="protection"/>：物品可提供的护甲值。默认为`0`。
   - <DataType type="boolean" name="hides_player_location"/>：穿戴后是否在定位栏中隐藏玩家位置。仅限`1.21.90`或更高格式版本可用。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:wearable": {
@@ -2114,9 +1835,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2138,20 +1857,14 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:allow_offhand"/>：根对象。
   - <DataType type="boolean" name="value" isRequired/>：是否能将物品放在副手。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:allow_offhand": {
@@ -2159,9 +1872,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2177,24 +1888,18 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:armor"/>：根对象。
   - <DataType type="int" name="defense"/>：定义盔甲的防御值。默认值为`0`。
   - <DataType type="int" name="enchantment"/>：定义盔甲的附魔能力。默认值为`0`。
   - <DataType type="int" name="armor_slot" isRequired/>：定义盔甲槽位。可选值为`0`（头盔）、`1`（胸甲）、`2`（护腿）、`3`（靴子）。
   - <DataType type="int" name="toughness"/>：定义盔甲韧性，应在`0`-`20`之间（含）。默认值为`0`。
   - <DataType type="float" name="knockback_resistance"/>：定义盔甲的击退抗性，应在`0`-`1`之间（含）。默认值为`0.0`。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:armor":{
@@ -2204,9 +1909,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2222,20 +1925,14 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:bucket"/>：根对象。
   - <DataType type="string" name="fill_liquid" isRequired/>：定义使用时倒出的流体方块 ID。默认值为`flowing_water`。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:bucket": {
@@ -2243,9 +1940,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2261,27 +1956,19 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="float" name="netease:compostable"/>：有百分之多少的概率会堆肥成功。例如设置为 50 时则有 50% 的概率堆肥成功。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:compostable": 50
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2303,21 +1990,15 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:cooldown"/>：根对象。
   - <DataType type="string" name="category"/>：冷却类型，共享同种冷却类型的物品将会一起进入冷却阶段。默认值为`item`。
   - <DataType type="int" name="duration"/>：冷却时间，单位为游戏刻。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:cooldown": {
@@ -2326,9 +2007,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2338,20 +2017,14 @@ import DataType from "/src/components/type/data"
 
 定义物品的描述信息。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:customtips"/>：根对象。
   - <DataType type="string" name="value" isRequired/>：物品的描述信息。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:customtips": {
@@ -2359,9 +2032,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2377,20 +2048,14 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:egg"/>：根对象。
   - <DataType type="string" name="entity" isRequired/>：生成的实体的 ID。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:egg": {
@@ -2398,9 +2063,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2410,20 +2073,14 @@ import DataType from "/src/components/type/data"
 
 定义物品为附魔材料，类似于青金石。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:enchantment_material"/>：根对象。
   - <DataType type="boolean" name="value" isRequired/>：物品是否为附魔材料。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:enchantment_material": {
@@ -2431,9 +2088,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2443,20 +2098,14 @@ import DataType from "/src/components/type/data"
 
 定义物品防火，类似于下界合金物品。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:fire_resistant"/>：根对象。
   - <DataType type="boolean" name="value" isRequired/>：物品是否防火。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:fire_resistant": {
@@ -2464,9 +2113,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2476,23 +2123,17 @@ import DataType from "/src/components/type/data"
 
 定义物品的序列帧。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:weapon"/>：根对象。
   - <DataType type="string" name="flipbook_texture" isRequired/>：序列帧资源的路径。
   - <DataType type="string" name="atlas_tile" isRequired/>：在图集中声明的名称。
   - <DataType type="int" name="ticks_per_frame" isRequired/>：代表多少帧切换一次贴图，按 1 秒 20 帧算，设置 20 的话即为 1 秒切换一帧贴图。
   - <DataType type="boolean" name="blend_frames"/>：切换贴图的时候是否混合上一帧。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:frame_anim_in_scene": {
@@ -2501,9 +2142,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2513,22 +2152,16 @@ import DataType from "/src/components/type/data"
 
 定义蓄力物品的序列帧。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:weapon"/>：根对象。
   - <DataType type="string" name="texture_name" isRequired/>：`item_texture.json`中定义的序列帧数组。
   - <DataType type="int" name="frame_count"/>：定义序列帧帧数。默认值为`1`。
   - <DataType type="boolean" name="animate_in_toolbar"/>：在物品栏中是否支持动画。默认值为`true`。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:frame_animation": {
@@ -2538,9 +2171,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2556,20 +2187,14 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:fuel"/>：根对象。
   - <DataType type="float" name="duration"/>：定义燃料在熔炉中的燃烧时长，单位秒。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:fuel": {
@@ -2577,9 +2202,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2589,12 +2212,9 @@ import DataType from "/src/components/type/data"
 
 定义物品的初始属性。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:initial_user_data"/>：根对象。
   - <DataType type="object" name="display"/>：物品的显示信息。
     - <DataType type="string" name="Name"/>（注意大写）：物品的初始名称。
@@ -2613,12 +2233,9 @@ import DataType from "/src/components/type/data"
   - <DataType type="boolean" name="minecraft:keep_on_death"/>：物品是否在玩家死亡后掉落。默认值为`false`。
   - <DataType type="int" name="minecraft:item_lock"/>：指定物品锁定。可选值为`0`（不锁定）、`1`（无法移动）、`2`（无法丢弃），默认为`0`。
   - 其他可用键名及可用值请参考[基岩版物品格式 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/基岩版存档格式#物品格式)。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:initial_user_data": {
@@ -2641,9 +2258,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2659,27 +2274,19 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="string" name="netease:projectile"/>：定义将掷出的弹射物。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:projectile": "minecraft:snowball"
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2689,12 +2296,9 @@ import DataType from "/src/components/type/data"
 
 定义该物品在右手时的渲染偏移。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:render_offsets"/>：根对象
   - <DataType type="array" name="controller_position_adjust"/>：物品位置偏移。
     - <DataType type="float"/>0：X 轴偏移，默认值为`0.0`。
@@ -2705,12 +2309,9 @@ import DataType from "/src/components/type/data"
     - <DataType type="float"/>1：Y 轴偏移，默认值为`0.0`。
     - <DataType type="float"/>2：Z 轴偏移，默认值为`0.0`。
   - <DataType type="float" name="controller_scale"/>：物品大小。默认值为`1.0`。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:render_offsets": {
@@ -2721,9 +2322,7 @@ import DataType from "/src/components/type/data"
 
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2739,24 +2338,18 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:shield"/>：根对象
   - <DataType type="array" name="defence_damage_source_list"/>：防御的伤害类型。为空时默认设置为原版的格挡伤害逻辑。
     - <DataType type="string"/>：伤害类型。可见`/damage`命令的可用伤害类型。
   - <DataType type="array" name="undefence_damage_source_list"/>：不防御的伤害类型。不宜和`defence_damage_source_list`存在相同元素。
     - <DataType type="string"/>：伤害类型。可见`/damage`命令的可用伤害类型。
   - <DataType type="boolean" name="is_consume_damage"/>：是否消耗物品的耐久度。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:shield":{
@@ -2766,9 +2359,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2778,20 +2369,14 @@ import DataType from "/src/components/type/data"
 
 手持时是否显示该物品。
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:show_in_hand"/>：根对象
   - <DataType type="boolean" name="value" isRequired/>：手持时是否显示该物品。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:show_in_hand": {
@@ -2799,9 +2384,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -2823,24 +2406,18 @@ import DataType from "/src/components/type/data"
 
 :::
 
-<Tabs>
-
-<TabItem value="parameters" label="参数" default>
+<Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-
 - <DataType type="object" name="netease:weapon"/>：根对象
   - <DataType type="string" name="type" isRequired/>：武器或工具类型，可选值：`"sword"`、`"shovel"`、`"pickaxe"`、`"hatchet"`（斧头）、`"hoe"`。
   - <DataType type="int" name="level" isRequired/>：武器或工具的挖掘等级，可选值：`0`（木制或金制工具）、`1`（石制工具）、`2`（铁制工具）、`3`（钻制工具）。详见[网易提供的官方文档](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/2-自定义武器及工具.html#网易components)。
   - <DataType type="int" name="speed"/>：武器或工具挖掘方块的基础速度。默认值为`0`。
   - <DataType type="int" name="attack_damage"/>：武器或工具的攻击伤害。默认值为`0`。
   - <DataType type="int" name="enchantment"/>：武器或工具的附魔能力。默认值为`0`。
-
 </treeview>
 
-</TabItem>
-
-<TabItem value="example" label="示例">
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "netease:weapon": {
@@ -2852,9 +2429,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 ---
