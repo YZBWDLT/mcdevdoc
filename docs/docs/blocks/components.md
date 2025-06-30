@@ -53,6 +53,39 @@ import DataType from "/src/components/type/data"
 
 :::
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+**格式版本 1.16.0 以前**：
+
+<treeview>
+- <DataType type="object" name="minecraft:block_light_absorption"/>：根对象
+  - <DataType type="int" name="value"/>：定义方块会吸收多少光照等级（也可以代表其透光度）。应在`0`-`15`之间（含），如不指定该组件则指定该方块不透光。
+</treeview>
+
+**格式版本 1.16.X**：
+
+<treeview>
+- <DataType type="int" name="minecraft:block_light_absorption"/>：定义方块会吸收多少光照等级（也可以代表其透光度）。应在`0`-`15`之间（含），如不指定该组件则指定该方块不透光。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**格式版本 1.16.0 以前**：
+
+```json showLineNumbers
+"minecraft:block_light_absorption": {
+    "value": 3
+}
+```
+
+**格式版本 1.16.X**：
+
+```json showLineNumbers
+"minecraft:block_light_absorption": 3
+```
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:block_light_emission`
@@ -67,6 +100,41 @@ import DataType from "/src/components/type/data"
 
 :::
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+**格式版本 1.16.0 以前**：
+
+<treeview>
+- <DataType type="object" name="minecraft:block_light_emission"/>：根对象
+  - <DataType type="float" name="emission"/>：定义方块发出的光照强度。应在`0.0`-`1.0`之间（含），如不指定该组件则指定该方块不发光。
+</treeview>
+
+**格式版本 1.16.X**：
+
+<treeview>
+- <DataType type="float" name="minecraft:block_light_emission"/>：定义方块发出的光照强度。应在`0.0`-`1.0`之间（含），如不指定该组件则指定该方块不发光。
+</treeview>
+
+> 嗯对，你没看错，是[0.0, 1.0]，不是[0, 15]，例如 1.0 代表 15 的光照强度。注意别写错了哦。
+
+</TabItem><TabItem value="example" label="示例">
+
+**格式版本 1.16.0 以前**：
+
+```json showLineNumbers
+"minecraft:block_light_emission": {
+    "emission": 1.0
+}
+```
+
+**格式版本 1.16.X**：
+
+```json showLineNumbers
+"minecraft:block_light_emission": 1.0
+```
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:collision_box`
@@ -74,6 +142,12 @@ import DataType from "/src/components/type/data"
 <Version version="1.19.50" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_collision_box?view=minecraft-bedrock-stable"/>
 
 定义方块的碰撞箱。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -83,6 +157,12 @@ import DataType from "/src/components/type/data"
 
 定义方块为一种工作台。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:custom_components`
@@ -90,6 +170,12 @@ import DataType from "/src/components/type/data"
 <Version version="1.21.20 - 1.21.90" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_custom_components?view=minecraft-bedrock-stable"/>
 
 定义方块的自定义组件。自定义组件的行为需要在世界初始化前事件`WorldInitializeBeforeEvent`中定义。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -105,6 +191,41 @@ import DataType from "/src/components/type/data"
 
 :::
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+**格式版本 1.16.0 以前**：
+
+<treeview>
+- <DataType type="object" name="minecraft:destroy_time"/>：根对象
+  - <DataType type="float" name="value"/>：定义方块的*破坏时长*。
+</treeview>
+
+**格式版本 1.16.X**：
+
+<treeview>
+- <DataType type="float" name="minecraft:destroy_time"/>：定义方块的*破坏时长*。
+</treeview>
+
+> **注意**：这里的*破坏时长*实际上为[**硬度**](https://zh.minecraft.wiki/w/挖掘#方块硬度)的概念。在一般情况下，破坏时长（秒）是硬度的 1.5 倍，比如硬度为 1 时，需要 1.5 秒破坏。
+
+</TabItem><TabItem value="example" label="示例">
+
+**格式版本 1.16.0 以前**：
+
+```json showLineNumbers
+"minecraft:destroy_time": {
+    "value": 1.0
+}
+```
+
+**格式版本 1.16.X**：
+
+```json showLineNumbers
+"minecraft:destroy_time": 1.0
+```
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:destructible_by_explosion`
@@ -112,6 +233,12 @@ import DataType from "/src/components/type/data"
 <Version version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_destructible_by_explosion?view=minecraft-bedrock-stable"/>
 
 定义方块是否可被爆炸破坏，及其爆炸抗性。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -121,6 +248,12 @@ import DataType from "/src/components/type/data"
 
 定义方块是否可被挖掘，及其挖掘时长。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:destruction_particles`
@@ -128,6 +261,12 @@ import DataType from "/src/components/type/data"
 <Version version="1.21.70" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_destruction_particles?view=minecraft-bedrock-stable"/>
 
 定义方块被破坏后掉落的粒子。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -137,6 +276,12 @@ import DataType from "/src/components/type/data"
 
 定义方块在物品栏的悬浮文本。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:entity_fall_on`
@@ -144,6 +289,12 @@ import DataType from "/src/components/type/data"
 <Version version="1.21.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_entity_fall_on?view=minecraft-bedrock-stable"/>
 
 定义实体在多高处落到该方块上之后，才能触发 ScriptAPI 中自定义方块组件定义的`onEntityFallOn`事件。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -159,6 +310,39 @@ import DataType from "/src/components/type/data"
 
 :::
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+**格式版本 1.16.0 以前**：
+
+<treeview>
+- <DataType type="object" name="minecraft:explosion_resistance"/>：根对象
+  - <DataType type="float" name="value"/>：定义方块的爆炸抗性。
+</treeview>
+
+**格式版本 1.16.X**：
+
+<treeview>
+- <DataType type="float" name="minecraft:explosion_resistance"/>：定义方块的爆炸抗性。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**格式版本 1.16.0 以前**：
+
+```json showLineNumbers
+"minecraft:explosion_resistance": {
+    "value": 1.0
+}
+```
+
+**格式版本 1.16.X**：
+
+```json showLineNumbers
+"minecraft:explosion_resistance": 1.0
+```
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:flammable`
@@ -167,13 +351,98 @@ import DataType from "/src/components/type/data"
 
 定义方块为可燃方块。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+**格式版本 1.16.X 及更低**：
+
+<treeview>
+- <DataType type="object" name="minecraft:flammable"/>：根对象
+  - <DataType type="int" name="burn_odds"/>：定义方块在燃烧时有多大可能被烧毁。
+  - <DataType type="int" name="flame_odds"/>：定义方块有多大可能被点燃。
+</treeview>
+
+**格式版本 1.19.10 及更高（布尔型）**：
+
+<treeview>
+- <DataType type="boolean" name="minecraft:flammable"/>：定义方块是否可燃。指定为`true`时将使用默认值。
+</treeview>
+
+**格式版本 1.19.10 及更高（对象型）**：
+
+<treeview>
+- <DataType type="object" name="minecraft:flammable"/>：根对象。
+  - <DataType type="int" name="catch_chance_modifier"/>：定义方块有多大可能被点燃。默认值为`5`（木板）。
+  - <DataType type="int" name="destroy_chance_modifier"/>：定义方块在燃烧时有多大可能被烧毁。默认值为`20`（木板）。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**格式版本 1.16.X 及更低**：
+
+```json showLineNumbers
+"minecraft:flammable": {
+    "burn_odds": 5,
+    "flame_odds": 20
+}
+```
+
+**格式版本 1.19.10 及更高（布尔型）**：
+
+```json showLineNumbers
+"minecraft:flammable": true
+```
+
+**格式版本 1.19.10 及更高（对象型）**：
+
+```json showLineNumbers
+"minecraft:flammable": {
+    "catch_chance_modifier": 5,
+    "destroy_chance_modifier": 20
+}
+```
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:friction`
 
 <Version isLowVersion/> <Version version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_friction?view=minecraft-bedrock-stable"/>
 
-定义方块的摩擦力。
+定义方块的摩擦系数。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+**格式版本 1.16.0 以前**：
+
+<treeview>
+- <DataType type="object" name="minecraft:friction"/>：根对象
+  - <DataType type="int" name="value"/>：定义方块的摩擦系数。摩擦系数越低则方块越光滑。应在`0.0`-`0.9`之间（含）。
+</treeview>
+
+**格式版本 1.16.X 或 1.19.20 及更高**：
+
+<treeview>
+- <DataType type="int" name="minecraft:friction"/>：定义方块的摩擦系数。摩擦系数越低则方块越光滑。应在`0.0`-`0.9`之间（含）。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**格式版本 1.16.0 以前**：
+
+```json showLineNumbers
+"minecraft:friction": {
+    "value": 0.4
+}
+```
+
+**格式版本 1.16.X 或 1.19.20 及更高**：
+
+```json showLineNumbers
+"minecraft:friction": 0.4
+```
+
+</TabItem></Tabs>
 
 ---
 
@@ -183,6 +452,12 @@ import DataType from "/src/components/type/data"
 
 定义方块的模型。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:item_visual`
@@ -190,6 +465,12 @@ import DataType from "/src/components/type/data"
 <Version version="1.21.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_item_visual?view=minecraft-bedrock-stable"/>
 
 定义方块在物品栏中的外观。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -199,6 +480,12 @@ import DataType from "/src/components/type/data"
 
 定义方块会吸收光，降低光照等级。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:light_emission`
@@ -206,6 +493,12 @@ import DataType from "/src/components/type/data"
 <Version version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_light_emission?view=minecraft-bedrock-stable"/>
 
 定义方块会发出光，提供光照等级。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -215,6 +508,12 @@ import DataType from "/src/components/type/data"
 
 定义方块在接触到液体后的行为。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:loot`
@@ -222,6 +521,39 @@ import DataType from "/src/components/type/data"
 <Version isLowVersion/> <Version docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_loot?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-loot" isChinaVersion />
 
 定义方块被破坏后的战利品表。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+**格式版本 1.16.0 以前**：
+
+<treeview>
+- <DataType type="object" name="minecraft:loot"/>：根对象
+  - <DataType type="string" name="table"/>：定义方块使用的战利品表，需带有`loot_tables/`和`.json`后缀。
+</treeview>
+
+**格式版本 1.16.X 及更高**：
+
+<treeview>
+- <DataType type="string" name="minecraft:loot"/>：定义方块使用的战利品表，需带有`loot_tables/`和`.json`后缀。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**格式版本 1.16.0 以前**：
+
+```json showLineNumbers
+"minecraft:loot": {
+    "table": "loot_tables/blocks/my_custom_block.json"
+}
+```
+
+**格式版本 1.16.X 及更高**：
+
+```json showLineNumbers
+"minecraft:loot": "loot_tables/blocks/my_custom_block.json"
+```
+
+</TabItem></Tabs>
 
 ---
 
@@ -231,6 +563,12 @@ import DataType from "/src/components/type/data"
 
 定义方块物品最大堆叠数量。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:map_color`
@@ -239,6 +577,39 @@ import DataType from "/src/components/type/data"
 
 定义方块在地图（物品）上显示的颜色。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+**格式版本 1.16.0 以前**：
+
+<treeview>
+- <DataType type="object" name="minecraft:map_color"/>：根对象
+  - <DataType type="string" name="color"/>：定义方块在地图物品上显示的颜色，应为颜色代码`#RRGGBB`。
+</treeview>
+
+**格式版本 1.16.X 及更高**：
+
+<treeview>
+- <DataType type="string" name="minecraft:map_color"/>：定义方块在地图物品上显示的颜色，应为颜色代码`#RRGGBB`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**格式版本 1.16.0 以前**：
+
+```json showLineNumbers
+"minecraft:map_color": {
+    "color": "#FFFFFF"
+}
+```
+
+**格式版本 1.16.X 及更高**：
+
+```json showLineNumbers
+"minecraft:map_color": "#FFFFFF"
+```
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:material_instances`
@@ -246,6 +617,12 @@ import DataType from "/src/components/type/data"
 <Version version="1.19.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_material_instances?view=minecraft-bedrock-stable"/>
 
 定义方块的材质实例。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -261,6 +638,12 @@ import DataType from "/src/components/type/data"
 
 :::
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:placement_filter`
@@ -268,6 +651,12 @@ import DataType from "/src/components/type/data"
 <Version version="1.19.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_placement_filter?view=minecraft-bedrock-stable"/>
 
 定义方块允许被放置或允许存在的条件。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -277,6 +666,12 @@ import DataType from "/src/components/type/data"
 
 定义方块的贴图如何随机产生偏移。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:redstone_conductivity`
@@ -284,6 +679,12 @@ import DataType from "/src/components/type/data"
 <Version version="1.21.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_conductivity?view=minecraft-bedrock-stable"/>
 
 定义方块的红石导体属性。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -293,6 +694,12 @@ import DataType from "/src/components/type/data"
 
 定义方块是否可被另一种方块在原位替代（类似于水、草丛或空气）。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:selection_box`
@@ -300,6 +707,12 @@ import DataType from "/src/components/type/data"
 <Version version="1.19.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_selection_box?view=minecraft-bedrock-stable"/>
 
 定义方块的选择箱。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -309,6 +722,12 @@ import DataType from "/src/components/type/data"
 
 定义方块的标签。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `minecraft:tick`
@@ -316,6 +735,12 @@ import DataType from "/src/components/type/data"
 <Version version="1.21.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tick?view=minecraft-bedrock-stable"/>
 
 定义方块的更新频率，并触发 ScriptAPI 中自定义方块组件定义的`onTick`事件。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -325,6 +750,12 @@ import DataType from "/src/components/type/data"
 
 定义方块的平移、旋转、缩放变换。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:aabb`
@@ -332,6 +763,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-aabb" isChinaVersion />
 
 定义方块的碰撞箱。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -341,6 +778,12 @@ import DataType from "/src/components/type/data"
 
 定义方块会高频率随机更新，并触发 ModAPI 的`BlockAnimateRandomTickEvent`。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:block_chest`
@@ -348,6 +791,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-chest" isChinaVersion />
 
 定义方块的箱子功能。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -357,6 +806,12 @@ import DataType from "/src/components/type/data"
 
 定义方块为一种自定义容器。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:block_crafting_table`
@@ -365,6 +820,12 @@ import DataType from "/src/components/type/data"
 
 定义方块为一种自定义工作台。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:block_entity`
@@ -372,6 +833,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-entity" isChinaVersion />
 
 定义方块的方块实体属性。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -387,6 +854,12 @@ import DataType from "/src/components/type/data"
 
 :::
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:block_random_offset`
@@ -394,6 +867,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-random-offset" isChinaVersion />
 
 定义方块的偏移（类似于花）。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -403,6 +882,12 @@ import DataType from "/src/components/type/data"
 
 定义方块是否可被另一种方块在原位替代（类似于水、草丛或空气）。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:connection`
@@ -410,6 +895,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-connection" isChinaVersion />
 
 定义方块的连接属性。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -419,6 +910,12 @@ import DataType from "/src/components/type/data"
 
 定义方块物品的物品信息描述。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:face_directional`
@@ -426,6 +923,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-face-directional" isChinaVersion />
 
 定义方块的多面向功能。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -435,6 +938,12 @@ import DataType from "/src/components/type/data"
 
 定义方块为重力方块，会受到重力的影响（类似于沙子）。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:fire_resistant`
@@ -442,6 +951,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-fire-resistant" isChinaVersion />
 
 定义方块的防火属性。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -451,6 +966,12 @@ import DataType from "/src/components/type/data"
 
 定义方块对应物品的燃料属性。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:liquid`
@@ -458,6 +979,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%81%E4%BD%93.html?catalog=1" isChinaVersion />
 
 定义方块为一种自定义流体。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -467,6 +994,12 @@ import DataType from "/src/components/type/data"
 
 定义方块在被移除后会触发 ModAPI 的`BlockRemoveServerEvent`事件。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:may_place_on`
@@ -474,6 +1007,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-may-place-on" isChinaVersion />
 
 定义方块允许被放置或允许存在的条件。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -483,6 +1022,12 @@ import DataType from "/src/components/type/data"
 
 定义方块为一种自定义刷怪笼。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:neighborchanged_sendto_script`
@@ -490,6 +1035,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-neighborchanged-sendto-script" isChinaVersion />
 
 定义方块在周围环境变化时，触发 ModAPI 的`BlockNeighborChangedServerEvent`事件。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -499,6 +1050,12 @@ import DataType from "/src/components/type/data"
 
 定义方块与其他方块的相邻面能够正常渲染（类似于树叶）。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:on_after_fall_on`
@@ -506,6 +1063,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-after-fall-on" isChinaVersion />
 
 定义实体刚掉落到该方块上的时候是否触发 ModAPI 的`OnAfterFallOnBlockClientEvent`和`OnAfterFallOnBlockServerEvent`事件。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -515,6 +1078,12 @@ import DataType from "/src/components/type/data"
 
 定义实体刚掉落到该方块上的时候是否触发 ModAPI 的`OnBeforeFallOnBlockServerEvent`事件。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:on_entity_inside`
@@ -522,6 +1091,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-entity-inside" isChinaVersion />
 
 定义实体碰撞箱内有实体的时候是否触发 ModAPI 的`OnEntityInsideBlockClientEvent`和`OnEntityInsideBlockServerEvent`事件。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -531,6 +1106,12 @@ import DataType from "/src/components/type/data"
 
 定义当实体站在该方块后是否触发 ModAPI 的`OnStandOnBlockClientEvent`和`OnStandOnBlockServerEvent`事件。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:on_step_off`
@@ -538,6 +1119,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-step-off" isChinaVersion />
 
 定义当实体移动至该方块上后是否触发 ModAPI 的`StepOffBlockClientEvent`和`StepOffBlockServerEvent`事件。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -547,6 +1134,12 @@ import DataType from "/src/components/type/data"
 
 定义当实体离开该方块上后是否触发 ModAPI 的`StepOnBlockClientEvent`和`StepOnBlockServerEvent`事件。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:pathable`
@@ -554,6 +1147,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-pathable" isChinaVersion />
 
 定义方块在实体 AI 寻路时是否被认作为障碍物。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -563,6 +1162,12 @@ import DataType from "/src/components/type/data"
 
 定义方块为一种自定义传送门。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:random_tick`
@@ -570,6 +1175,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-random-tick" isChinaVersion />
 
 定义方块会随机更新，并触发 ModAPI 的`BlockRandomTickServerEvent`事件。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -579,6 +1190,12 @@ import DataType from "/src/components/type/data"
 
 定义方块的红石电源元件或红石机械元件属性。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:redstone_property`
@@ -586,6 +1203,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-redstone-property" isChinaVersion />
 
 定义方块的红石属性。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -595,13 +1218,25 @@ import DataType from "/src/components/type/data"
 
 定义方块渲染材质。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:snow_recover_able`
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/9-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E9%9B%AA%E6%96%B9%E5%9D%97.html?catalog=1" isChinaVersion />
 
-定义方块是否可含雪（类似草方块、菌丝）。
+定义方块是否可含雪（类似矮草丛、花等）。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -611,6 +1246,12 @@ import DataType from "/src/components/type/data"
 
 定义方块是否实心。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:tier`
@@ -618,6 +1259,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-tier" isChinaVersion />
 
 定义方块的挖掘等级和挖掘相关属性。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -627,6 +1274,12 @@ import DataType from "/src/components/type/data"
 
 定义方块的转换条件。用于自定义农作物。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:water_flow_source`
@@ -634,6 +1287,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1" isChinaVersion />
 
 定义方块在水源或水流中表现为含水方块。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ---
 
@@ -643,6 +1302,12 @@ import DataType from "/src/components/type/data"
 
 定义方块会被水流摧毁，且无法放置在水中（类似红石粉、火把等）。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:water_only`
@@ -651,6 +1316,12 @@ import DataType from "/src/components/type/data"
 
 定义方块只能放置在水中（类似海带、海草等）。
 
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
 ---
 
 ## `netease:water_source`
@@ -658,6 +1329,12 @@ import DataType from "/src/components/type/data"
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1" isChinaVersion />
 
 定义方块在水源中表现为含水方块（类似台阶、楼梯等）。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
 
 ## 参考文档
 
