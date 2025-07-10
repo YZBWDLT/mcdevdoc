@@ -114,7 +114,7 @@ camera <玩家> fade [渐变时间] [颜色]
 
 然而，计算机并不能处理连续的值，哪怕精度再高，计算机所计算的数据也都是由 0 和 1 组成的数据，不可能达到真正的连续。因此，所使用的电流强度、三原色的光强也只能是一个个分立的值。在计算机领域，通常三原色的每个颜色取 256 种不同的强度，这样可以组合出一共 16,777,216 种颜色。如果采用 16 进制，那么 256 种颜色就从十进制的 3 位数压缩到 2 位数（由 00 到 FF，详情请了解有关进制的计算方法）。现在最常用的也更为人所熟知的颜色代码就是这么出现的，例如`#FF00FF`就代表红色（第 1\~2 位）取到最大强度`FF`（255）、绿色（第 3\~4 位）取到最小强度`00`（0）、蓝色（第 5\~6 位）取到最大强度`FF`（255），这样，红色和蓝色组合出的颜色就是紫色，所以`#FF00FF`的含义就是紫色。
 
-在`/camera`命令中，使用的`int`是十进制的，所以范围是从`0`~`256`。
+在`/camera`命令中，使用的`int`是十进制的，所以范围是从`0`~`255`。
 
 :::
 
@@ -680,7 +680,7 @@ camera <玩家> remove_target
 3. `/camera @s set minecraft:free ease 3 in_out_sine pos 17 -24 89 facing 17 -24 95`
 4. `/camera @s set minecraft:free ease 3 in_quad pos 17 -24 89 rot 90 0`
 5. `/camera @s set minecraft:free ease 3 linear pos 17 -24 89 facing 17 -60 89`
-6. `/camerashake @s 1 6 rotational`
+6. `/camerashake add @s 1 6 rotational`
 7. `/hud @s hide health`
 
 8. ```text title="每游戏刻执行，命令条数要求固定" showLineNumbers

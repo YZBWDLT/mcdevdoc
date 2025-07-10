@@ -653,7 +653,7 @@ titleraw @a actionbar {"rawtext":[{"translate":"§l§b 关卡 %%s-%%s | 怪物�
 
    execute as @a[scores={deathCount=5..}] run tellraw @s {"rawtext":[{"text":"§c闯关失败！重来一次吧！"}]}
    execute as @a[scores={deathCount=5..}] run title @s title §l§c闯关失败！
-   execute as @a[scores={deathCount=5..}] run §7重来一次吧！
+   execute as @a[scores={deathCount=5..}] run title @s subtitle §7重来一次吧！
    execute as @a[scores={deathCount=5..}] run scoreboard players set @s deathCount 0
    ```
 
