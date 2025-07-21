@@ -226,7 +226,7 @@ Minecraft 中的一天，对应现实是 20 分钟，也就是 1200 秒，24000 
 
 ## ID 查询工具
 
-本章还介绍了一种由 ProjectXero 开发的 MCBEID 查询网站，开发者可以在这里快速地查询自己想要的 ID。地址为[https://ca.projectxero.top/idlist/](https://ca.projectxero.top/idlist/)。
+本章还介绍了一种由 ProjectXero 开发的 MCBEID 查询网站，开发者可以在这里快速地查询自己想要的 ID。地址为[https://idlist.projectxero.top/](https://idlist.projectxero.top/)。
 
 import GiscusComment from "/src/components/comment/giscus.js"
 

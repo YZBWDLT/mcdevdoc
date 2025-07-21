@@ -60,7 +60,7 @@ sidebar_position: 5
 
 ![放置石头的效果](./img/c5_block/setblock_stone_executed.png)
 
-Minecraft 中含有各种各样五花八门的 ID，它们一般都以穷举参数的形式出现，即`类型`的首字母是大写的参数。你可以在这个网站：[MCBEID 查询表](https://ca.projectxero.top/idlist/)中查询到你所需要的各种 ID，本教程中将只详细介绍这三种最常用的 ID。
+Minecraft 中含有各种各样五花八门的 ID，它们一般都以穷举参数的形式出现，即`类型`的首字母是大写的参数。你可以在这个网站：[MCBEID 查询表](https://idlist.projectxero.top/)中查询到你所需要的各种 ID，本教程中将只详细介绍这三种最常用的 ID。
 
 ---
 

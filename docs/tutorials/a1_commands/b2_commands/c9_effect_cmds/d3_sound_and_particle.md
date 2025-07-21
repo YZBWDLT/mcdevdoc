@@ -34,7 +34,7 @@ sidebar_position: 3
 
 太好了！看来确实有，这个命名空间 ID 正是我们需要的！我们看到它的 ID 是`random.orb`，所以只需要在游戏内写入`/playsound random.orb`，就可以向玩家播放经验球的音效了。
 
-另一个办法是，我们可以借助社区的力量！在前些年，一款安卓软件“命令助手”是很流行的。其开发者 ProjectXero 不仅开发了这款软件，还开发了一款可以快捷查询所有 ID 的网站：[MCBEID 查询表](https://ca.projectxero.top/idlist/)。我们要找音效的话，先在右上角指定寻找声音：
+另一个办法是，我们可以借助社区的力量！在前些年，一款安卓软件“命令助手”是很流行的。其开发者 ProjectXero 不仅开发了这款软件，还开发了一款可以快捷查询所有 ID 的网站：[MCBEID 查询表](https://idlist.projectxero.top/)。我们要找音效的话，先在右上角指定寻找声音：
 
 ![playsound_4](../img/c9_effect_cmds/playsound_4.png)
 
@@ -46,7 +46,7 @@ sidebar_position: 3
 
 :::tip[实验 2.9-18]
 
-播放末影龙吼叫的声音。在[中文 Minecraft Wiki](https://zh.minecraft.wiki)或[MCBEID 查询表](https://ca.projectxero.top/idlist/)里面查询声音，然后代入到`/playsound (音效ID)`中。在没有找到答案并实验成功之前，不要看下面的答案！
+播放末影龙吼叫的声音。在[中文 Minecraft Wiki](https://zh.minecraft.wiki)或[MCBEID 查询表](https://idlist.projectxero.top/)里面查询声音，然后代入到`/playsound (音效ID)`中。在没有找到答案并实验成功之前，不要看下面的答案！
 
 **警告！末影龙的麦很炸！播放音效之前务必调小音量（但不用调成零）！不要怪我们没有警告你！**
 
@@ -131,7 +131,7 @@ sidebar_position: 3
 /particle <粒子效果: string> [位置: x y z]
 ```
 
-在`位置`释放`粒子效果`。和`/playsound`类似，可用的粒子也需要查表。Wiki 上的[粒子 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/粒子#基岩版和教育版)为你提供了一个可用的粒子表格，**但其中的`ID名`必须在前面加上`minecraft:`才能使用**。在模块 2 你就会知道，这叫做**命名空间（Namespace）**。[MCBEID 查询表](https://ca.projectxero.top/idlist/)也可以用来查询。
+在`位置`释放`粒子效果`。和`/playsound`类似，可用的粒子也需要查表。Wiki 上的[粒子 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/粒子#基岩版和教育版)为你提供了一个可用的粒子表格，**但其中的`ID名`必须在前面加上`minecraft:`才能使用**。在模块 2 你就会知道，这叫做**命名空间（Namespace）**。[MCBEID 查询表](https://idlist.projectxero.top/)也可以用来查询。
 
 :::tip[实验 2.9-20]
 
