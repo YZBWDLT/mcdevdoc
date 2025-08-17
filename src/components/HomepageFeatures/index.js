@@ -46,6 +46,46 @@ const DocList = [
         ),
         link: "docs/docs/commands/all_commands"
     },
+    {
+        title: '附加包文档',
+        image: require('@site/static/site/crafting_table.png').default,
+        description: (
+            <>
+                查看附加包的基础文档，包括清单文件、世界启用包文件和行为包文件架构。
+            </>
+        ),
+        link: "docs/docs/addons/manifest"
+    },
+    {
+        title: '物品文档',
+        image: require('@site/static/site/diamond_pickaxe.png').default,
+        description: (
+            <>
+                查看数据驱动物品的文档，包括物品描述、物品组件和物品贴图。
+            </>
+        ),
+        link: "docs/docs/items/description"
+    },
+    {
+        title: '方块文档',
+        image: require('@site/static/site/stone.png').default,
+        description: (
+            <>
+                查看数据驱动方块的文档，包括方块描述、方块组件和方块贴图。
+            </>
+        ),
+        link: "docs/docs/blocks/description"
+    },
+    {
+        title: '脚本文档',
+        image: require('@site/static/site/jigsaw_block.png').default,
+        description: (
+            <>
+                查看脚本的文档，包括 ScriptAPI。
+            </>
+        ),
+        link: "docs/docs/scripts/sapi/world"
+    },
 ];
 
 function Feature({ image, title, description, link }) {
