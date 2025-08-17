@@ -88,12 +88,33 @@ const DocList = [
     },
 ];
 
+const LinkList = [
+    {
+        title: 'nekoawa',
+        description: (
+            <>
+                推荐！新站点，访问速度更快，基于Edgeone Pages。
+            </>
+        ),
+        link: "https://mcdevdoc.nekoawa.com/"
+    },
+    {
+        title: 'Cloudflare Pages',
+        description: (
+            <>
+                旧站点，访问速度较慢，基于Cloudflare Pages。
+            </>
+        ),
+        link: "https://yzbwdlt.pages.dev/"
+    },
+];
+
 function Feature({ image, title, description, link }) {
     return (
         <div className={styles.featureWrapper}>
             <div className={styles.featureContainer}>
                 <div className={styles.imageContainer}>
-                    <img src={image} alt={title} className={styles.featureImage} />
+                    { image ? <img src={image} alt={title} className={styles.featureImage} /> : undefined }
                 </div>
                 <div className={styles.textContainer}>
                     <Heading as="h2">
@@ -110,6 +131,7 @@ export default function HomepageFeatures() {
     return (
         <section className={styles.features}>
             <div className="container">
+
                 <h1 style={{ textAlign: 'center', marginTop: '30px' }}>
                     教程
                 </h1>
@@ -127,6 +149,12 @@ export default function HomepageFeatures() {
                 </p>
                 <div className={styles.featuresRow}> {}
                     {DocList.map((props, idx) => ( <Feature key={idx} {...props} /> ))}
+                </div>
+                <h1 style={{ textAlign: 'center', marginTop: '30px' }}>
+                    本站其他链接
+                </h1>
+                <div className={styles.featuresRow}> {}
+                    {LinkList.map((props, idx) => ( <Feature key={idx} {...props} /> ))}
                 </div>
             </div>
         </section>

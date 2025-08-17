@@ -112,16 +112,23 @@ const config = {
                         title: `我们的作品`,
                         items: [
                         ]
-                    },                    {
+                    },
+                    {
                         title: `常用文档`,
                         items: [
-                            { label: '命令', to: 'docs/docs/commands/all_commands' }
+                            { label: '命令', to: 'docs/docs/commands/all_commands' },
+                            { label: '物品组件', to: 'docs/docs/items/components' },
+                            { label: '方块组件', to: 'docs/docs/blocks/components' },
                         ]
                     },
                     {
-                        title: `优秀笔记`,
+                        title: `友情链接`,
                         items: [
+                            { label: '量筒测试群群文档', href: 'https://docs.nekoawa.com' },
+                            { label: '祉语的个人主页', href: 'https://xiaozhiyuqwq.top' },
                             { label: '小飞侠的博客', href: 'https://wstd.pages.dev/' },
+                            { label: 'Xero的个人主页', href: 'https://projectxero.top' },
+                            { label: '萝卜的ModSAPI项目', href: 'https://modsapi.pages.dev/' },
                         ],
                     },
                     {
