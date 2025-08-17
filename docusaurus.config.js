@@ -75,6 +75,12 @@ const config = {
                     hideable: true,
                 }
             },
+            // 搜索栏
+            algolia: {
+                appId: "655TGMKJ7M",
+                apiKey: "387d6d10fb077b8da37cd6a79c79f800",
+                indexName: "yzbwdlt",
+            },
             // 顶部栏
             navbar: {
                 title: '量筒的 Minecraft 基岩版开发文档',
@@ -94,6 +100,7 @@ const config = {
                     ] },
                     { label: '预设模板', type: 'docSidebar', sidebarId: 'devTemplate', position: 'left', },
                     { label: '个人博客', to: '/blog', position: 'left' },
+                    { type: 'search', position: 'right', },
                     { 
                         html: `
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="vertical-align: middle;">
