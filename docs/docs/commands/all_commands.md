@@ -269,7 +269,7 @@ in <维度: Dimension> -> execute
 
 ### `/function`
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function#直接执行函数文件的命令function" />
+<Highlight text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#直接执行函数文件的命令function" />
 <Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/function" backgroundColor="#1977E3" />
 
 执行函数。
@@ -2098,7 +2098,7 @@ in <维度: Dimension> -> execute
 
 ### `/schedule`
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function#队列执行函数文件的命令schedule" />
+<Highlight text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#队列执行函数文件的命令schedule" />
 <Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/schedule" backgroundColor="#1977E3" />
 
 队列执行函数。当玩家满足特定条件后，执行函数。
@@ -3227,7 +3227,7 @@ connect <服务器URI: text>
 
 ### `/reload`
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b2_behavior_packs/c1_functions/d1_function#重载函数文件的命令reload" />
+<Highlight text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#重载函数文件的命令reload" />
 <Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/reload" backgroundColor="#1977E3" />
 
 重新加载函数和脚本（仅限Script API）。

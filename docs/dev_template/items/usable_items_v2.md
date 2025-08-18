@@ -25,7 +25,7 @@ import Download from "/src/components/highlight/download"
 
 :::warning[温馨提示]
 
-本文假定您已经能够独立编写属于自己的自定义物品。如果您还不能编写自定义物品，请阅读模块 2 的教程：[5.1.1 数据驱动物品](/docs/tutorials/a2_addons/b5_combined_addons/1_custom_items/1_data_driven_items)。
+本文假定您已经能够独立编写属于自己的自定义物品。如果您还不能编写自定义物品，请阅读模块 2 的教程：[3.1 数据驱动物品](/docs/tutorials/a2_addons/b3_data_driven_items/c1_data_driven_items)。
 
 :::
 

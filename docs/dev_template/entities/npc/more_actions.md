@@ -17,7 +17,7 @@ import Download from "/src/components/highlight/download"
 :::warning[温馨提示]
 
 - 本文的内容基于「[主包 v2](main_v2)」的架构。
-- 本文假定您已经能够独立编写属于自己的自定义实体。如果您还不能编写自定义实体，请阅读模块 2 的教程：[5.3.1 数据驱动实体](/docs/tutorials/a2_addons/b5_combined_addons/3_custom_entities/1_data_driven_entities)。
+- 本文假定您已经能够独立编写属于自己的自定义实体。如果您还不能编写自定义实体，请阅读模块 2 的教程：[6.1 数据驱动实体](/docs/tutorials/a2_addons/b6_data_driven_entities/c1_data_driven_entities)。
 
 :::
 
