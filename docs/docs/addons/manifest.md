@@ -300,7 +300,7 @@ import DataType from "/src/components/type/data"
     ],
     "metadata": {
         "authors": [ "YZBWDLT" ],
-        "url": "https://yzbwdlt.pages.dev",
+        "url": "https://docs.nekoawa.com",
         "license": "cc-by-nc-sa 4.0",
         "product_type": "addon"
     }
