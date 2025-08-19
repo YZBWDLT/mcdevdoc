@@ -58,10 +58,6 @@ import FileType from "/src/components/type/file"
 
 5. **函数还是旧语法玩家的唯一选择**。虽然听起来可能比较荒谬，但直到现在仍然存在一些开发者不得不使用旧版本的命令语法（可能是不愿学习，也可能是为兼容性适配，等等情况）。那么，为使用旧语法的话，就必须使用函数。
 
-既然函数相比于命令方块有这么多优点，那函数有没有什么缺点呢？其实也是有的，首先可以看到函数的门槛比较高，因为要使用附加包，而附加包通常需要文件管理，以及掌握 JSON 语法的基础；此外，函数在延时执行、条件执行等方面上有时并没有命令方块来得方便；以及函数成也空间败也空间，在检查空间内的实体、方块等信息的时候会有额外的麻烦。
-
-但总的来说，函数可以实现命令系统的进一步升级和编写效率上的全面提高，读者可以在一个个的函数编写中慢慢地了解到这一点。
-
 ## 创建第一个函数
 
 创建函数文件的方法是很简单的。我们只需要在行为包中创建一个新的文件夹<FileType type="folder" name="functions" />，然后在该文件夹内新建一个`.mcfunction`文件，我们这里起名叫<FileType type="file" name="test.mcfunction" />吧。这个文件，就是我们所说的**函数（Function）文件**。现在，你的行为包中的文件路径应该是这个样子的：
@@ -696,12 +692,78 @@ execute if score tick time matches 20.. run scoreboard players remove tick time 
 
 原理就是，**<FileType type="file" name="tick.json" />所指定的函数会每游戏刻无条件地执行一次**。在上面的例子中，<FileType type="file" name="tick.json" />就指定了<FileType type="file" name="test.mcfunction" />为始终执行的函数。
 
-借助<FileType type="file" name="tick.json" />，我们可以做到一张地图内部完全没有命令方块，仅凭函数就可以构建一整套完整的逻辑。这种地图，我个人通常称之为“全函数地图”。
+借助<FileType type="file" name="tick.json" />，我们可以做到一张地图内部完全没有命令方块，仅凭函数就可以构建一整套完整的逻辑。这种地图，我个人通常称之为“全函数地图”。这种地图能够带来一些显著优势，例如和一款广泛被应用的代码仓库存储软件 Git 进行联动应用时，它可以做到地图内饰与命令的完全分离，当地图因`/fill`、`/clone`等意外被损毁时，命令部分可以丝毫不受影响，而只回退受影响的地图内饰部分。好处有很多，前文已经系统总结过一些，读者感兴趣可以体验一下。
 
 ## 函数相对于命令方块的劣势及其解决方法
 
-## *为函数引入一个命名空间
+既然函数相比于命令方块有这么多优点，那函数有没有什么缺点呢？其实也是有的，凡事总要具有两面性。
+
+- 首先可以看到函数的门槛比较高，因为要使用附加包，而附加包通常需要文件管理、以及 JSON 语法的基础，这就要求我们打好这些基础，才能较好地应用它们；
+- 此外，函数在延时执行、条件执行等方面上有时并没有命令方块来得方便；
+  - 对于延时执行问题，我们通常采取的方案是利用记分板计时器，就是令<FileType type="file" name="tick.json" />执行一个计时器文件（或者令<FileType type="file" name="tick.json" />执行一个主文件，再由主文件执行一个计时器文件），在需要的时候使这个计时器循环执行，通过加减变量的分值（我个人常使用`time.timeline`这个变量）和变量的检测来执行延时命令。例如：
+    <!--markdownlint-disable MD031-->
+    ```mcfunction showLineNumbers title="main.mcfunction"
+    scoreboard players add timeline time 1
+    execute if score timeline time matches 20 run say 这是第一秒！
+    execute if score timeline time matches 40 run say 这是第二秒！
+    execute if score timeline time matches 60 run say 这是第三秒！
+    ```
+  - 或者，在更高版本下，用`/schedule`也是一种不错的选择，但是要注意使用该命令可能遇到的时序问题。
+  - 对于条件检测问题，在 1.19.50 的`/execute`更新之后，这方面的问题已经得到了极大的改善，但不可否认的是命令的执行效果依然是无法获取的（例如`/enchant`或`/clear` 0 个物品），所以我们需要尽可能通过逻辑去弥补这一方面的不足，当然实践证明需要获取命令是否成功执行的情况是很少的，通常使用`/execute if|unless`就能够解决我们的绝大多数问题。
+- 以及函数成也空间败也空间，在检查空间内的实体、方块等信息的时候会有额外的麻烦。
+  - 这方面，就需要善用`/execute if|unless block|blocks|entity`了。
+
+但总的来说，函数可以实现命令系统的进一步升级和编写效率上的全面提高，读者可以在一个个的函数编写中慢慢地了解到这一点。
+
+## 为函数引入一个命名空间
+
+在很多情况下，我们的函数可能不可避免地和别人写的函数冲突，毕竟合适的英文单词就那么几个。那该怎么办呢？我们可以为我们自己的函数加上一个**命名空间（Namespace）**，以防和别人的冲突！
+
+什么叫命名空间？基本上可以理解为，命名空间是我们防止和其他人的包产生冲突的基本手段。命名空间的概念在附加包中有着广泛的应用，例如铜锭的 ID 是`copper_ingot`，但是它的更完整的 ID 应该是`minecraft:copper_ingot`，其中冒号左边的`minecraft`代表是游戏自身加入的物品。如果你也要加一种铜锭呢？那就命名为`my_project:copper_ingot`，其中左边的命名空间可以自定义，比如在我的地图中，就用过`wstd`、`aw`这样的命名空间。通常为了防止和别人的包重复，还可以更复杂一点，比如`bedwars`作为命名空间就很容易和别人的起床战争类似模组冲突（虽然一般情况下也不会有人安装 2 个起床战争模组吧？），但我们也可以写成`yzbwdlt_bedwars`（也就是加上自己的名字）以防止和别人的模组冲突。
+
+那么，函数该怎么引入一个命名空间呢？其实很简单，我们只需要在最外层套上一个命名空间文件夹就好了。例如现在我们在做一张起床战争地图，我们原来的函数文件架构可能是：
+
+<treeview>
+
+- <FileType type="folder" name="functions" />
+  - <FileType type="folder" name="entities" />
+    - ...
+  - <FileType type="folder" name="game" />
+    - ...
+  - <FileType type="folder" name="items" />
+    - ...
+  - <FileType type="folder" name="lib" />
+    - ...
+  - <FileType type="folder" name="system" />
+    - ...
+  - **<FileType type="file" name="tick.json" />**
+
+</treeview>
+
+那么，我们引入一个命名空间`yzbwdlt_bedwars`，就为
+
+<treeview>
+
+- <FileType type="folder" name="functions" />
+  - **<FileType type="folder" name="yzbwdlt_bedwars" />：我们引入的命名空间文件夹**
+    - <FileType type="folder" name="entities" />
+      - ...
+    - <FileType type="folder" name="game" />
+      - ...
+    - <FileType type="folder" name="items" />
+      - ...
+    - <FileType type="folder" name="lib" />
+      - ...
+    - <FileType type="folder" name="system" />
+      - ...
+  - **<FileType type="file" name="tick.json" />**
+
+</treeview>
+
+这样，我们就能有效地防止我们自己的包和别人的包产生冲突了。
 
 ---
 
 ## 总结
+
+在本节，我们学习了函数系统及其使用方法。一起来回顾一下吧！
