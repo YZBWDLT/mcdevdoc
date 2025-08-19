@@ -1,5 +1,5 @@
 ---
-sidebar_position: 10
+sidebar_position: 3
 ---
 
-# 6.10 生成规则
+# 10.3 生成规则
