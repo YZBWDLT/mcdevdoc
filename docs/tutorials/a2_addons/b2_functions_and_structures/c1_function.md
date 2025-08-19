@@ -767,3 +767,187 @@ execute if score tick time matches 20.. run scoreboard players remove tick time 
 ## 总结
 
 在本节，我们学习了函数系统及其使用方法。一起来回顾一下吧！
+
+- 函数（Function）：是一种用于在被调用时，按顺序执行文件中写入的命令的文件
+- 使用函数的优势：可见性强、编辑优势明显、支持更长的注释、空间影响低、支持旧语法等……
+- 创建函数
+  - 在行为包根目录中创建一个名为<FileType type="folder" name="functions" />的文件夹，并在其中创建一个后缀为 .mcfunction 的文件，这就是函数文件
+  - 执行函数的时候，从上到下依次执行每一行命令，和无条件的 CB 链的执行效果一致，命令的开头不允许带斜杠
+  - 开头为 # 的一行是注释，不会被读取，注释不能写到命令的后面，实际工程中推荐使用注释增加代码易读性
+  - 在<FileType type="folder" name="functions" />内部可以创建新的函数文件和文件夹，名字不宜过长
+  - 在实际工程中，建议引入一个命名空间以防止和其他地图产生冲突
+- 调用函数
+  - 函数有 2 种调用方式：使用`/function`命令直接调用、使用`/schedule`命令延迟或在特定位置调用
+  - 函数内命令上下文，取决于是谁调用了这个函数
+    - 如果是玩家调用的，则命令上下文为玩家的命令上下文
+    - 如果是服务器调用的（例如<FileType type="file" name="tick.json" />），则命令上下文为：执行者为空、执行位置为（0, 0, 0），执行朝向为（0, 0），执行维度为主世界
+    - 如果在测试时，玩家调用函数的效果和服务器调用函数的效果不一致，则可以排查命令上下文相关的问题
+  - 修改了函数之后，不必小退或大退重新加载函数，只需要使用`/reload`重载函数即可
+  - 函数可以调用其他函数，符合深度优先原则；调用自身时成为递归（不过这种操作很消耗性能）
+  - 通过函数最多可以在 1 游戏刻内执行 10000 条命令，这可以通过`/gamerule`来调整
+  - 通过<FileType type="file" name="tick.json" />可以每 1 游戏刻执行一次函数，达到循环执行的目的，也可以使得整张地图无 CB 化
+- 使用合适的工具简化工作
+  - 灵活使用 VSC 的两个插件，借助自动补全功能编写函数可以大幅减少工作量
+  - 使用 VSC 打开一整个文件夹，以实现文件之间的协调联动
+  - 对于 VSC 插件报错的情况，务必不要被其可能出现的错误的报错迷惑，在确信自己是正确的情况下使用“快速修复”的功能忽略错误的检查
+
+:::info[练习 2.1]
+
+虽然在本节我们并没有强调利用函数写命令系统的事情，不过目前读者理论上是完全有能力完成这个任务的，因为无非也就是将模块 1 中的逻辑通过另一种方法实现而已。下面布置一些练习题，愿读者积极完成。
+
+在此之前，先在你的函数文件夹内创建一个<FileType type="folder" name="system" />，并创建一个<FileType type="file" name="main.mcfunction" />，使该函数在<FileType type="file" name="tick.json" />中循环执行，我们现在给这个文件起名为主文件。把除了<FileType type="file" name="tick.json" />和<FileType type="file" name="main.mcfunction" />之外的文件全部删除，现在你的文件路径应该长这样：
+
+<treeview>
+
+- <FileType type="folder" name="functions" />
+  - <FileType type="folder" name="lib" />
+  - <FileType type="folder" name="system" />
+    - **<FileType type="file" name="main.mcfunction" />**：主文件
+  - <FileType type="file" name="tick.json" />
+
+</treeview>
+
+现在你可以开始练习了！下面的题目中在编写命令过后请在游戏内实战尝试效果。注意后面的题目中，不要更改<FileType type="file" name="tick.json" />。
+
+1. 新建一个函数`lib/get_data/player_amount`，在函数内编写命令，使得在调用该函数时，可以将玩家数打印到`data.playerAmount`上。
+2. 新建一个函数`system/player_die`，使该函数循环执行，并在函数内编写命令，使得其可以将玩家死亡状态打印到`deathState.@s`上。注：玩家在未死亡时，在`deathState`记分项上的分数应为`0`；刚刚死亡的一瞬间改为`1`；长时间死亡后改为`2`。
+3. 在上一题的基础上，更改上面的函数，使得刚刚死亡的玩家执行`lib/events/player_die`，并使玩家在`deathCount.@s`上增加 1 分。这就是基于函数系统的死亡榜。
+4. 新建一个函数`system/player_join`，使该函数循环执行，并在函数内编写命令，使得退出重进的玩家执行`lib/events/player_join`的命令。在`lib/events/player_join`内指定命令`tp @s 0 0 0`，并退出游戏重进，检查你是否被正确地传送到该位置。
+5. 我们在[模块 1 的 2.4.1](/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d1_tag#目标选择器参数tag) 中曾经介绍过，读者可以利用函数简化命令逻辑：
+
+    > ```mcfunction showLineNumbers
+    > tag @a remove glassBelow
+    > execute as @a at @s if block ~~-1~ glass if block ~~-2~ glass if block ~~-3~ glass if block ~~-4~ glass if block ~~-5~ glass run tag @s add glassBelow
+    > execute as @a[tag=glassBelow] run say 1
+    > execute as @a[tag=glassBelow] run say 2
+    > execute as @a[tag=glassBelow] run say 3
+    > execute as @a[tag=glassBelow] run say 4
+    > execute as @a[tag=glassBelow] run say 5
+    > ```
+    >
+    > 在这里，我们用`glassBelow`标签来表示玩家脚下有玻璃。
+    >
+    > ……
+    >
+    > 之后，在模块 2 学习函数的时候，你可以了解到一种更简单的执行方式。
+
+    假设现在我们在函数`game/game_1/timeline`中处理该主要逻辑，并使该函数循环执行，更改第 3\~7 行，改为当玩家有标签`glassBelow`时，执行`game/game_1/events/step_on_glass`函数。给出这个简化逻辑，试分析将一个函数拆成这样的两个函数有什么利弊？
+
+:::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. 命令如下：
+
+    ```mcfunction showLineNumbers title="lib/get_data/player_amount"
+    # 获取玩家数
+    scoreboard players set playerAmount data 0
+    execute as @a run scoreboard players add playerAmount data 1
+    ```
+
+2. 命令如下：
+
+    ```mcfunction showLineNumbers title="system/main"
+    # 主文件
+    function system/player_die
+    ```
+
+    ```mcfunction showLineNumbers title="system/player_die"
+    # 系统 | 返回玩家死亡状态
+    scoreboard players set @a[scores={deathState=!2}] deathState 1
+    scoreboard players set @e[type=player] deathState 0
+    scoreboard players set @a[scores={deathState=1}] deathState 2
+    ```
+
+3. 命令如下：
+
+    ```mcfunction showLineNumbers title="system/player_die" {3}
+    # 系统 | 返回玩家死亡状态
+    scoreboard players set @a[scores={deathState=!2}] deathState 1
+    scoreboard players set @e[type=player] deathState 0
+    execute as @a[scores={deathState=1}] at @s run function lib/events/player_die
+    scoreboard players set @a[scores={deathState=1}] deathState 2
+    ```
+
+    ```mcfunction showLineNumbers title="lib/events/player_die"
+    # 当玩家死亡时执行
+    scoreboard players add @s deathCount 1
+    ```
+
+4. 命令如下：
+
+    ```mcfunction showLineNumbers title="system/main" {3}
+    # 主文件
+    function system/player_die
+    function system/player_join
+    ```
+
+    ```mcfunction showLineNumbers title="system/player_join"
+    # 系统 | 退出重进系统检测
+    scoreboard players add @a isOnline 0
+    execute as @a[scores={isOnline=0}] at @s run function aw/lib/events/player_join
+    scoreboard objectives remove isOnline
+    scoreboard objectives add isOnline dummy "在线数据"
+    scoreboard players set @a isOnline 1
+    ```
+
+    ```mcfunction showLineNumbers title="lib/events/player_join"
+    # 当玩家重新进入游戏时执行
+    tp @s 0 0 0
+    ```
+
+5. 命令如下：
+
+    ```mcfunction showLineNumbers title="system/main" {4-5}
+    # 主文件
+    function system/player_die
+    function system/player_join
+    ## 游戏函数
+    function game/game_1/timeline
+    ```
+
+    ```mcfunction showLineNumbers title="game/game_1/timeline"
+    tag @a remove glassBelow
+    execute as @a at @s if block ~~-1~ glass if block ~~-2~ glass if block ~~-3~ glass if block ~~-4~ glass if block ~~-5~ glass run tag @s add glassBelow
+    execute as @a[tag=glassBelow] at @s run function game/game_1/events/step_on_glass
+    ```
+
+    ```mcfunction showLineNumbers title="game/game_1/events/step_on_glass"
+    # 当玩家脚下 5 格均为玻璃时执行
+    say 1
+    say 2
+    say 3
+    say 4
+    say 5
+    ```
+
+    相比起
+
+    ```mcfunction showLineNumbers title="game/game_1/timeline" {3-7}
+    tag @a remove glassBelow
+    execute as @a at @s if block ~~-1~ glass if block ~~-2~ glass if block ~~-3~ glass if block ~~-4~ glass if block ~~-5~ glass run tag @s add glassBelow
+    execute as @a[tag=glassBelow] at @s run say 1
+    execute as @a[tag=glassBelow] at @s run say 2
+    execute as @a[tag=glassBelow] at @s run say 3
+    execute as @a[tag=glassBelow] at @s run say 4
+    execute as @a[tag=glassBelow] at @s run say 5
+    ```
+
+    读者是否体会到这种差别？优势有以下几点：
+
+    - 从优化角度上看，当不符合条件时，只有 3 条命令被执行，而符合条件时，一共有 8 条命令会执行。虽然在符合条件时，执行的命令数比原来多了一条，但是如果不符合条件的情况占多数的话，那么这种执行方法的优化反而是更好的。
+    - 从逻辑角度上看，这样写的逻辑更加清晰。从`timeline`函数中看一眼便可看出第 3 行的意义为执行到某个事件上去，减少单个文件的体积，使得该文件的逻辑更加清晰。
+    - 从更改角度上看，这样写更方便更改逻辑。假设不是输出`say`命令，而是改为`fill`、`tellraw`等命令时，只需要简单地更改`step_on_glass`函数的逻辑即可。以及，当使用`fill`等可能更改原条件的命令时，这样做可以防止更改条件所带来的影响。
+
+    而劣势则有：
+
+    - 从优化角度上看，如果符合条件的情况占多数的话，那么这种执行方法的优化反而可能是更差的。
+    - 从逻辑角度上看，必须打开`game/game_1/events/step_on_glass`文件才能了解到更具体的逻辑。而且随着文件数量的增多，有可能会导致代码管理出现轻微的不便。
+
+</details>
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>
