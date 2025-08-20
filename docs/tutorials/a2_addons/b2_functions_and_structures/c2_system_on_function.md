@@ -231,11 +231,83 @@ effect @s instant_health 1 20 true
       execute unless score levelCompleted data matches 0 run scoreboard players operation alivePlayerAmount data = playerAmount data
       ```
 
-## 函数内部错误排查
+## 常见错误的排查方法
+
+在[模块 1 的基于命令方块的命令系统](/docs/tutorials/a1_commands/b3_command_systems/c5_system_on_cb#常见错误的排查方法)中，我们讲到了几个排查方法：语法错误排查；在聊天栏运行成功，而在命令方块运行失败的排查法；逻辑性的错误排查法。对于函数来说，我们同样要来谈谈这几个排查方法，读者会发现这些排查法有很多的共同点，但也的确有一点点不同的地方。
+
+### 利用内容日志进行语法错误排查
+
+对于函数来说，**出现语法错误是非常致命的**，因为函数内**一旦出现一个语法错误，整个函数都无法执行**。例如我们定义一个函数<FileType type="file" name="test.mcfunction" />为：
+
+```mcfunction
+give @s diamond 1
+titleraw @s {"rawtext":[{"text":"获得钻石 * 1"}]}
+```
+
+![content_log_1](./img/c2_system_on_function/content_log_1.png)
+
+我们可以看到，在该函数中，第 2 条命令存在语法错误（缺少`title|subtitle|actionbar`），因此这整个函数都不会被 Minecraft 认为是一个有效函数，你甚至无法在自动补全中看到这个函数！
+
+![content_log_2](./img/c2_system_on_function/content_log_2.png)
+
+**当你无法在自动补全中找到应当看到的函数时，就应该开始怀疑语法是否出现了问题**。好在，出现了语法问题时，Minecraft 会试图告诉你问题出现在哪儿，这就是**内容日志**（**Content Log**）的作用。
+
+但是，内容日志默认是不开启的。我们需要在设置 - 创作者 - 内容日志设置中启用内容日志，如下图所示。
+
+![content_log_3](./img/c2_system_on_function/content_log_3.png)
+
+小退重进后，我们会看到游戏开始在上方蹦出报错。这个报错也可以在设置的内容日志历史中找到：
+
+![content_log_4](./img/c2_system_on_function/content_log_4.png)
+
+我们看到这串内容日志详细地告诉我们错误位置和原因：
+
+- 第一行 “\[Commands\]\[warning\]-Function **test** failed to load correctly with error(s):” 告诉我们，问题出在函数`test`中；
+- 第二行 “\[Commands\]\[warning\]-Error on **line 2**: command failed to parse with error '**语法错误：意外的“\{”：出现在“tleraw @s >>\{\<\<"rawtext":”'**” 告诉我们，在第 2 行出现了一个语法错误，并且错误指向`{`。
+
+相信在系统学习过模块 1 之后的读者应该能够很轻松地看懂这串报错的意义，灵活运用内容日志可以帮助我们避免这些低级错误。
+
+此外，完全空白的函数文件也会报错，但是这问题就显得没那么严重了。
+
+```mcfunction title="空白的test函数的内容日志报错"
+[Commands][warning]-Couldn't load file functions/test.mcfunction in functions directory.
+```
+
+**在后面的附加包编程中，我们将无数次地和内容日志打交道**。
+
+### 在聊天栏或命令方块运行成功，而在函数运行失败
+
+在当时讲命令方块的时候，我们说过这是命令上下文不一致而引起的，所以遇到这种问题首先需要排查命令上下文的问题，对于不合适的命令上下文要使用`/execute`更改命令上下文。
+
+这里引用上一节的总结内容：
+
+> - 函数内命令上下文，取决于是谁调用了这个函数
+>   - 如果是玩家调用的，则命令上下文为玩家的命令上下文
+>   - 如果是服务器调用的（例如<FileType type="file" name="tick.json" />），则命令上下文为：执行者为空、执行位置为（0, 0, 0），执行朝向为（0, 0），执行维度为主世界
+>   - **如果在测试时，玩家调用函数的效果和服务器调用函数的效果不一致，则可以排查命令上下文相关的问题**
+
+例如，对于下面的函数
+
+```mcfunction
+give @s apple
+```
+
+如果是玩家执行是成功的，而其他执行者（包括服务器、命令方块或其他实体）执行就将是失败的。
+
+### 逻辑性的错误
+
+函数中，要格外关注逻辑性的错误。因为函数的执行方式和命令方块有一些不同（尤其是深度优先原则这一方面），使得函数先后执行顺序在某些方面变得格外重要。同样，在遇到类似的问题时，**先明确问题的表现形式，再想办法排查原因，可以逐行读代码查清原因（使用函数后，逐行读代码会变得快许多），最后视问题的解决难易和重要性予以解决**。
 
 ---
 
 ## 总结
+
+本节，我们学习了在函数中编程所使用的一些基本思路，以及相关的错误排查法。让我们来回顾一下吧。
+
+- 为了在循环执行的函数中实现单次执行，我们引入了“事件”这个概念。通过循环检测，触发事件型函数，并回调检测条件，就可以做到函数的单次执行。通常，事件型函数是单独列出的，并在习惯上可以放在<FileType type="folder" name="events" />里表示一个事件，例如<FileType type="file" name="player_join.mcfunction" />可以代表玩家重进游戏，在玩家进入游戏时执行；<FileType type="file" name="player_die.mcfunction" />可以代表玩家死亡，在玩家死亡时执行等等。
+- 为了在无条件瞬时执行的函数中实现有条件延时执行，我们引入了“时间线”这个概念。通过引入这样一个延时执行的计时系统，我们可以规定什么时候执行什么命令。通常，要执行这些时间线对应的函数也是带有条件的，所以这种逻辑很适合特定关卡的循环逻辑。
+- 为了快捷高效地执行大量重复应用的代码，我们引入了“库函数”这个概念。通过引入这样一类函数，我们可以快捷地调用一个函数来执行一长串逻辑，而且更改这个逻辑可以方便地使全局生效。
+- 内容日志：排查附加包问题的一种基本手段。可以用于排查命令语法错误等，需要在设置中启用。
 
 ## 练习
 
@@ -269,19 +341,227 @@ effect @s instant_health 1 20 true
 
 并且假设主文件会在`data.level == n`的时候循环执行`levels/level_n/timeline`函数，在玩家死亡瞬间会执行`lib/events/player_die`函数（详情见练习 2.1 的第 2\~3 题）。
 
-1. 现在让我们尝试编写一个关卡的逻辑。假设第 5 关是一个随机位置生成随机怪物的关卡，玩家需要坚持 3 分钟后才能成功通过关卡。
+现在让我们尝试编写一个关卡的逻辑。假设第 5 关是一个随机位置生成随机怪物的关卡，玩家需要坚持 3 分钟后才能成功通过关卡。
 
-    1. 请选择合适的文件并实现：当`time.nextMonster == 0`时，触发一个生成怪物的事件，可以在（-122, -31, 6）、（-130, -31, -2）、（-130, -31, 14）、（-130, -31, 6）、（-138, -31, 6） 5 个坐标中的其中 1 个随机生成苦力怕、溺尸、僵尸、骷髅 4 种怪物中的 1 种，并在生成完毕后重新指定`time.nextMonster`为`3`到`10`中的任意一个值。允许自定义变量，允许创建新函数，允许使用盔甲架作为辅助实体，试实现之。
-    2. 每一秒都为`time.nextMonster`的值减 1 分，试实现之。假设`time.tick`是一个从`0`-`19`变化的，且每游戏刻加 1 分的变量。
-    3. 在`time.timeline == 3600`时触发完成函数，试选择合适的文件并实现之。
-    4. 在关卡开始时启用时间线并重置时间线的时间值。显然，该逻辑可能在多个关卡都适用，试选择合适的文件位置并编写库函数，然后回答在什么文件调用这个库函数。**在这个问题中，你会发现时间线系统需要一些库函数来更方便地控制其运行状态**。
-    5. 当玩家全部死亡后游戏失败，试选择合适的文件并实现之。可以选定文件并规定玩家死亡后获得`spectator`标签。
-    6. 当玩家在（-95, -30, -6）附近 2 格时，执行第 6 关的开始函数，试选择合适的文件并实现之。
+1. 请选择合适的文件并实现：当`time.nextMonster == 0`时，触发一个生成怪物的事件，可以在（-122, -31, 6）、（-130, -31, -2）、（-130, -31, 14）、（-130, -31, 6）、（-138, -31, 6） 5 个坐标中的其中 1 个随机生成苦力怕、溺尸、僵尸、骷髅 4 种怪物中的 1 种，并在生成完毕后重新指定`time.nextMonster`为`3`到`10`中的任意一个值。允许自定义变量，允许创建新函数，允许使用盔甲架作为辅助实体，试实现之。
+2. 每一秒都为`time.nextMonster`的值减 1 分，试实现之。假设`time.tick`是一个从`0`-`19`变化的，且每游戏刻加 1 分的变量。
+3. 在`time.timeline == 3600`时触发完成函数，试选择合适的文件并实现之。
+4. 在关卡开始时启用时间线并重置时间线的时间值。显然，该逻辑可能在多个关卡都适用，试选择合适的文件位置并编写库函数，然后回答在什么文件调用这个库函数。**在这个问题中，你会发现时间线系统需要一些库函数来更方便地控制其运行状态**。
+5. 当玩家全部死亡后游戏失败，试选择合适的文件并实现之。可以选定文件并规定玩家死亡后获得`spectator`标签。
+6. 当玩家在（-95, -30, -6）附近 2 格时，执行第 6 关的开始函数，试选择合适的文件并实现之。
 
-    基本上，完成上面 6 道练习题，你便发现你写出的关卡逻辑已经开始变得复杂了。
-
-2. 假设第 6 关是一个普通的击杀怪物的关卡。
-
-    1.
+基本上，完成上面 6 道练习题，你便发现你写出的关卡逻辑已经开始变得复杂了。同时，相信这个小练习也会为你理解本节内容提供一些帮助。
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+注意：以下答案仅供参考，答案不唯一。
+
+1. <FileType type="folder" name="levels" /> - <FileType type="folder" name="level_5" /> - <FileType type="file" name="timeline.mcfunction" />：
+
+    ```mcfunction showLineNumbers
+    # 第 5 关时间线
+
+    ## 当倒计时为 0 时生成怪物
+    execute if score nextMonster time matches ..0 run function levels/level_5/events/spawn_monster
+    ```
+
+    <FileType type="folder" name="levels" /> - <FileType type="folder" name="level_5" /> - <FileType type="folder" name="events" /> - <FileType type="file" name="spawn_monster.mcfunction" />：
+
+    ```mcfunction showLineNumbers
+    # 生成怪物
+
+    ## 指定生成位置和生成种类
+    scoreboard players random temp.monsterPos data 1 5
+    scoreboard players random temp.monsterType data 1 4
+
+    ## 生成辅助实体指定位置
+    execute if score temp.monsterPos data matches 1 run summon armor_stand spawner -122 -31 6
+    execute if score temp.monsterPos data matches 2 run summon armor_stand spawner -130 -31 -2
+    execute if score temp.monsterPos data matches 3 run summon armor_stand spawner -130 -31 14
+    execute if score temp.monsterPos data matches 4 run summon armor_stand spawner -130 -31 6
+    execute if score temp.monsterPos data matches 5 run summon armor_stand spawner -138 -31 6
+
+    ## 在spawner上生成怪物
+    execute if score temp.monsterType data matches 1 at @e[name=spawner] run summon zombie
+    execute if score temp.monsterType data matches 2 at @e[name=spawner] run summon creeper
+    execute if score temp.monsterType data matches 3 at @e[name=spawner] run summon drowned
+    execute if score temp.monsterType data matches 4 at @e[name=spawner] run summon skeleton
+
+    ## 移除spawner
+    kill @e[name=spawner]
+
+    ## 重置倒计时
+    scoreboard players random nextMonster time 3 10
+    ```
+
+2. <FileType type="folder" name="levels" /> - <FileType type="folder" name="level_5" /> - <FileType type="file" name="timeline.mcfunction" />：
+
+    ```mcfunction showLineNumbers {3-4}
+    # 第 5 关时间线
+
+    ## 进行倒计时
+    execute if score tick time matches 0 run scoreboard players remove nextMonster time 1
+
+    ## 当倒计时为 0 时生成怪物
+    execute if score nextMonster time matches ..0 run function levels/level_5/events/spawn_monster
+    ```
+
+3. <FileType type="folder" name="levels" /> - <FileType type="folder" name="level_5" /> - <FileType type="file" name="timeline.mcfunction" />：
+
+    ```mcfunction showLineNumbers {9-10}
+    # 第 5 关时间线
+
+    ## 进行倒计时
+    execute if score tick time matches 0 run scoreboard players remove nextMonster time 1
+
+    ## 当倒计时为 0 时生成怪物
+    execute if score nextMonster time matches ..0 run function levels/level_5/events/spawn_monster
+
+    ## 3 分钟后通关
+    execute if score timeline time matches 3600.. run function levels/level_5/complete
+    ```
+
+4. 我们可以将这种函数认为是一种修改数据的库，所以放到<FileType type="folder" name="modify_data" />里。
+
+    <FileType type="folder" name="lib" /> - <FileType type="folder" name="modify_data" /> - <FileType type="file" name="enable_timeline.mcfunction" />：
+
+    ```mcfunction showLineNumbers
+    # 启用时间线
+    # 设置时间线的启用状态为 1，并重置时间值。
+    # 调用此方法时：无需修饰。
+
+    scoreboard players set timeline active 1
+    scoreboard players set timeline time 0
+    ```
+
+    在<FileType type="folder" name="levels" /> - <FileType type="folder" name="level_5" /> - <FileType type="file" name="start.mcfunction" />中，应添加`function lib/modify_data/enable_timeline`一行。
+
+5. 定义获取存活玩家的库函数<FileType type="folder" name="lib" /> - <FileType type="folder" name="get_data" /> - <FileType type="file" name="alive_player_amount.mcfunction" />（因为该函数可能被其他文件多次调用）：
+
+    ```mcfunction showLineNumbers
+    # 获取存活玩家数
+    # 获取当前不含有 spectator 标签玩家的数量。
+    # 调用此方法时：无需修饰。
+
+    scoreboard players set alivePlayerAmount data 0
+    execute as @a[tag=!spectator] run scoreboard players add alivePlayerAmount data 1
+    ```
+
+    然后，在时间线文件中调用该方法以获取存活玩家数。
+
+    <FileType type="folder" name="levels" /> - <FileType type="folder" name="level_5" /> - <FileType type="file" name="timeline.mcfunction" />：
+
+    ```mcfunction showLineNumbers {12-14}
+    # 第 5 关时间线
+
+    ## 进行倒计时
+    execute if score tick time matches 0 run scoreboard players remove nextMonster time 1
+
+    ## 当倒计时为 0 时生成怪物
+    execute if score nextMonster time matches ..0 run function levels/level_5/events/spawn_monster
+
+    ## 3 分钟后通关
+    execute if score timeline time matches 3600.. run function levels/level_5/complete
+
+    ## 当玩家全部淘汰后失败
+    function lib/get_data/alive_player_amount
+    execute if score alivePlayerAmount data matches 0 run function levels/level_5/fail
+    ```
+
+6. <FileType type="folder" name="levels" /> - <FileType type="folder" name="level_5" /> - <FileType type="file" name="timeline.mcfunction" />：
+
+    ```mcfunction showLineNumbers {16-17}
+    # 第 5 关时间线
+
+    ## 进行倒计时
+    execute if score tick time matches 0 run scoreboard players remove nextMonster time 1
+
+    ## 当倒计时为 0 时生成怪物
+    execute if score nextMonster time matches ..0 run function levels/level_5/events/spawn_monster
+
+    ## 3 分钟后通关
+    execute if score timeline time matches 3600.. run function levels/level_5/complete
+
+    ## 当玩家全部淘汰后失败
+    function lib/get_data/alive_player_amount
+    execute if score alivePlayerAmount data matches 0 run function levels/level_5/fail
+
+    ## 当玩家到达下一关时开始下一关
+    execute if entity @a[x=-95,y=-30,z=-6,r=2] run function levels/level_6/start
+    ```
+
+---
+
+事实上，本题改编自我们的地图《冒险小世界：剑之试炼》的关卡 4-4。虽然该关卡所采用的时间线远比本题复杂，但只要明确需求，你也可以写出同等复杂的函数！
+
+（下列代码取自该地图的 Alpha 4.2_02 版本，为项目源代码）
+
+```mcfunction showLineNumbers
+# ===== 关卡游戏时时间线 =====
+# 4-4
+
+# --- 怪物生成 ---
+## 令下一个怪物的剩余时间进行倒计时
+execute if score tick time matches 0 run scoreboard players remove temp.nextMonster time 1
+## 当倒计时为 0 后，尝试生成怪物并重置倒计时
+execute if score temp.nextMonster time matches 0 run function aw/levels/chapter4/level4/events/spawn_monster
+
+# --- 胜利条件 ---
+## 令下一个怪物的剩余时间进行倒计时
+execute if score tick time matches 1 run scoreboard players remove temp.remainingTime time 1
+## 当关卡剩余时间为 0 时，结束关卡
+execute if score temp.remainingTime time matches 0 run function aw/levels/chapter4/level4/complete
+
+# --- 检查存活玩家数目 ---
+# 如果存活玩家数目为 0，则触发关卡失败函数
+execute if score alivePlayerAmount data matches 0 run function aw/levels/chapter4/level4/fail
+
+# --- 阻止旁观模式的玩家出界 ---
+# 不处理正处于死亡状态的玩家
+# 在该关卡上方80格的位置存在与该房间同样大小的屏障外壳，只要眼部检查到上方80格为屏障就立刻判定为出界
+execute as @a[tag=spectator,scores={deathState=0}] at @s anchored eyes if block ~~80~ barrier positioned -141 -30 6 run function aw/lib/events/player_out_of_border
+execute as @a[tag=spectator,scores={deathState=0}] positioned -156 -11 14 if entity @s[r=2] run tp @s -141 -30 6
+
+```
+
+```mcfunction showLineNumbers
+# ===== 生成怪物 =====
+# 当怪物生成时间为 0 时尝试生成
+
+# --- 随机指定刷新位置和怪物类型 ---
+
+## 随机数值
+    scoreboard players random temp.nextMonsterPos data 1 5
+    scoreboard players random temp.nextMonsterType data 1 8
+
+## 确定生成器位置
+    execute if score temp.nextMonsterPos data matches 1 run summon aw:spawner -122 -31 6
+    execute if score temp.nextMonsterPos data matches 2 run summon aw:spawner -130 -31 -2
+    execute if score temp.nextMonsterPos data matches 3 run summon aw:spawner -130 -31 14
+    execute if score temp.nextMonsterPos data matches 4 run summon aw:spawner -130 -31 6
+    execute if score temp.nextMonsterPos data matches 5 run summon aw:spawner -138 -31 6
+
+## 确定生成器类型
+    execute if score temp.nextMonsterType data matches 1 run event entity @e[type=aw:spawner] aw:spawn_creeper_energy
+    execute if score temp.nextMonsterType data matches 2 run event entity @e[type=aw:spawner] aw:spawn_creeper_speed
+    execute if score temp.nextMonsterType data matches 3 run event entity @e[type=aw:spawner] aw:spawn_skeleton_3
+    execute if score temp.nextMonsterType data matches 4 run event entity @e[type=aw:spawner] aw:spawn_stray_3
+    execute if score temp.nextMonsterType data matches 5 run event entity @e[type=aw:spawner] aw:spawn_drowned_3
+    execute if score temp.nextMonsterType data matches 6 run event entity @e[type=aw:spawner] aw:spawn_drowned_trident
+    execute if score temp.nextMonsterType data matches 7 run event entity @e[type=aw:spawner] aw:spawn_zombie_3
+    execute if score temp.nextMonsterType data matches 8 run event entity @e[type=aw:spawner] aw:spawn_zombie_baby_3
+
+# --- 重置倒计时 ---
+scoreboard players random temp.nextMonster time 3 10
+
+```
+
+</details>
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>
