@@ -8,12 +8,6 @@ import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
 
-:::danger[温馨提示]
-
-本文还未编写完成，内容仅供参考。
-
-:::
-
 在上一节中，我们已经讲解了函数的基本原理和使用方法。但是，使用函数编程的思路，和使用命令方块编程的思路却多少有些不同。
 
 - 首先，如果要将地图**全函数化**，以前可能按一个按钮就能实现的功能，现在却要**不断循环检测**，大费周章地检查按钮是否按下，并且很可能本来应该单次执行的命令却变成了循环执行。
