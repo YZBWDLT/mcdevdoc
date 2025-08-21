@@ -80,3 +80,7 @@ execute @a ~~~ setblock ~~-1~ diamond_block
 ## 总结
 
 本节所讲的东西很简单——通过更改<FileType type="file" name="manifest.json" />的<DataType type="array" name="min_engine_version"/>来使用旧语法。当然，**如果你在编写函数的过程中发现无法使用新语法，则为<DataType type="array" name="min_engine_version"/>调的过低的结果，建议至少也要调到网易当前所对应的版本**。
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>
