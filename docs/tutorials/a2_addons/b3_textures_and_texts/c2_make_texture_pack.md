@@ -98,6 +98,20 @@ import FileType from "/src/components/type/file"
 
 之所以不剪切，是因为官方的模板包在其他地方还能派上很多用场，所以我们只需要复制原版的代码就行，尽量不要做出修改。这样，我们就能在我们自己的包里看到钻石矿的贴图了。
 
+:::info[思考 3.1]
+
+假设你是一个整蛊包的作者，如何把钻石矿的贴图改成石头的贴图？（这样你就会得到一个长得像石头但其实是钻石矿的东西了（坏笑）
+
+<details>
+
+<summary>答案（思考过后再翻看哦~）</summary>
+
+找到<FileType type="folder" name="textures" /> - <FileType type="folder" name="blocks" /> - <FileType type="image" name="stone.png" />，把它按原路径复制到我们的包里，再改名为<FileType type="image" name="diamond_ore.png" />即可。
+
+</details>
+
+:::
+
 现在我们要修改这个贴图。修改贴图的软件有很多，毫无疑问 Photoshop 应该是最专业的（之一），但本教程的重点不打算放到 Photoshop 上。它虽然足够专业，但只能应付贴图工作。我们在这里推荐一款“更适合 MC 开发者宝宝体质”的软件——**Blockbench**（简称 **bb**）。
 
 先来对这个软件做一点简单介绍，它是一款用于为 Minecraft 的方块和实体建模的软件。不要一听到建模二字就感觉可怕，这件事并没有你想象的那么复杂。而且，我们现在也并不打算用它的建模功能，你可以认为建模是它的主业，但它也可以从事一些“副业”，比如画贴图、制作实体动画等，它也很专业。
@@ -113,4 +127,48 @@ import FileType from "/src/components/type/file"
 ![blockbench_5](./img/c2_make_texture_pack/blockbench_5.png)
 ![blockbench_6](./img/c2_make_texture_pack/blockbench_6.png)
 
-重启软件后，你的 Blockbench 就改为中文了。
+重启软件后，你的 Blockbench 就改为中文了。好，现在让我们找到复制在我们包里面的那个贴图。读者可以右键贴图，然后选择在文件资源管理器中显示：
+
+![blockbench_7](./img/c2_make_texture_pack/blockbench_7.png)
+![blockbench_8](./img/c2_make_texture_pack/blockbench_8.png)
+
+然后，把这个贴图直接拖到 Blockbench 的窗口里，它会自动打开图像的编辑模式：
+
+![blockbench_9](./img/c2_make_texture_pack/blockbench_9.png)
+
+我们看到 Blockbench 还提供了很多有用的工具，例如画笔、油漆桶、橡皮擦、拾色器等，相信对于这些工具读者早已知晓如何运用，这里不多赘述，读者若感兴趣可以挨个尝试了解它们的功能。我们这里使用拾色器先拾取钻石矿的蓝色，然后换回画笔并描到外缘，也就是这样：
+
+![blockbench_10](./img/c2_make_texture_pack/blockbench_10.png)
+
+然后，按下<kbd>Ctrl</kbd>+<kbd>S</kbd>保存。回到 VSC 里，我们看到这个更改已经生效。
+
+![blockbench_11](./img/c2_make_texture_pack/blockbench_11.png)
+
+进游戏里看一看，我们装上资源包（**千万别忘装资源包哦**），放上钻石矿……
+
+![blockbench_12](./img/c2_make_texture_pack/blockbench_12.png)
+
+看！成功了！恭喜你，这是第一个由你自己更改的原版方块的贴图！对于其他原版贴图，亦如法炮制即可。如果你想要成为一个优秀的贴图包作者，就要做好相关的心理准备了，因为它们的数量……如你所见，非常非常的多。而且，你还会看到一些`.tga`贴图，这些贴图就需要更专业的 Photoshop 来处理了；但对于模组作者和地图作者来说，通常有一个 Blockbench 就能满足极大多数的需求。
+
+---
+
+## 总结
+
+本节我们详细地从技术角度上讲解了如何创作一个贴图包。贴图包的本质是一种资源包，我们的贴图都放在<FileType type="folder" name="textures" />文件夹中，贴图只允许`.png`格式和`.tga`格式，并且要格外注意不要直接改后缀名。
+
+对于纯贴图包作者来说，首要目的就是翻新原版的所有贴图。原版已经规定了贴图的位置，所以我们需要知道原版是如何规定的，因此我们要[在 GitHub 下载原版给出的模板](https://github.com/Mojang/bedrock-samples)，然后基于这个模板来翻新。国内想要流畅地访问 GitHub，可以采用 Steam++ 等软件来加速。
+
+然后，为了更改贴图，我们还介绍了一款集模型设计、动画设计和贴图设计于一体的 MC 开发常用软件：Blockbench（简称 bb），还介绍了这款软件的基本使用方法。在未来的课时，bb 仍要继续发光发热。
+
+## 练习
+
+:::info[练习 3.1]
+
+1. 可以试试为石英矿等其他矿石加上矿物对应颜色的边框！
+2. 不要只局限于方块——来试试把钻石剑改成一把“绿宝石剑”！灵活运用取色功能，把绿宝石的颜色运用到钻石剑上吧！
+
+:::
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>

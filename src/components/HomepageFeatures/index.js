@@ -51,7 +51,7 @@ const DocList = [
         image: require('@site/static/site/crafting_table.png').default,
         description: (
             <>
-                查看附加包的基础文档，包括清单文件、世界启用包文件和行为包文件架构。
+                查看附加包的基础文档，包括清单文件、世界启用包文件、行为包文件架构和资源包文件架构。
             </>
         ),
         link: "docs/docs/addons/manifest"
