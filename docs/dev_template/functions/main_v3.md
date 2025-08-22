@@ -41,8 +41,8 @@ import Download from "/src/components/highlight/download"
       - <FileType type="file" name="timeline.mcfunction"/>：**时间线控制器**，当时间线启用后执行的函数。
   - <FileType type="folder" name="lib"/>：**库函数**，被高频调用的函数。在编写函数的过程中，常常发现一些可能需要不断使用的重复的命令，这时就可以将它们打包为一个库函数。
     - <FileType type="folder" name="get_data"/>：**获取数据的函数**，通常进行一些对世界影响不大或者几乎认为无影响的操作，然后将获取到的数据输出到一个记分板变量或标签中。  
-      虽然没有任何预设文件，但我们在[常用方法合集：获取数据](./useful_methods/get_data)中整合了一些可能有用的方法供你使用。您可以视需求选择性粘贴。
-    - <FileType type="folder" name="modify_data"/>：**修改数据的函数**，通常进行一些对世界影响较大的操作，或者对玩家执行某些命令，或者强制地修改记分板或标签的值。
+      虽然没有任何预设文件，但我们在[主包扩展 - 获取数据](./extensions#获取数据)中整合了一些可能有用的方法供你使用。您可以视需求选择性粘贴。
+    - <FileType type="folder" name="modify_data"/>：**修改数据的函数**，通常用于更改部分关键变量。
       - <FileType type="folder" name="init"/>：**初始化函数**，常在地图或模组初始化时执行，但何时执行由您自行指定。
         - <FileType type="file" name="data.mcfunction"/>：**数据初始化函数**，用于初始化全局（记分板、标签）变量。
         - <FileType type="file" name="gamerule.mcfunction"/>：**游戏规则初始化函数**，用于初始化游戏规则。
@@ -54,6 +54,7 @@ import Download from "/src/components/highlight/download"
           - <FileType type="file" name="disable_time_lapse.mcfunction"/>：**禁用时间线的时间流逝**。
           - <FileType type="file" name="keep_value.mcfunction"/>：**保留时间值**。声明在调用*修改时间线状态*的库函数时，保留时间线的时间值。
           - <FileType type="file" name="disable_time_lapse.mcfunction"/>：**不保留时间值**。声明在调用*修改时间线状态*的库函数时，不保留时间线的时间值。
+    - <FileType type="folder" name="events"/>：**事件**，通常在发生特定事件时执行其中的函数。我们给出的包中不含该文件夹，但是在[主包扩展 - 事件](./extensions#事件)我们给出了它的一些应用。
 
 </treeview>
 

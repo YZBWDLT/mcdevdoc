@@ -4,6 +4,10 @@ sidebar_position: 2
 
 # 主包扩展
 
+import '/src/css/treeview.css';
+import DataType from "/src/components/type/data"
+import FileType from "/src/components/type/file"
+
 本文提供一些您可能需要的命令合集，以使您选择性地插入并合并到您的函数系统中。
 
 :::info[温馨提醒]
@@ -40,34 +44,15 @@ sidebar_position: 2
 
 ```mcfunction title="BP/functions/system/main.mcfunction" showLineNumbers
 # --- 反作弊 ---
-function system/anticheating
-
-```
-
-</details>
-
-<details>
-
-<summary>反作弊文件</summary>
-
-去除注释以启用相关命令。您可根据自己的地图实际修改该文件。
-
-```mcfunction title="BP/functions/system/anticheating.mcfunction" showLineNumbers
-# ===== 反作弊系统 =====
-# 判断玩家是否作弊。
-
-# --- 游戏模式限制 ---
+## 游戏模式限制
 # gamemode adventure @a[m=!adventure]
-
-# --- 禁止玩家放船 ---
+## 禁止玩家放船
 # kill @e[family=boat]
-
-# --- 禁止玩家投掷末影珍珠 ---
+## 禁止玩家投掷末影珍珠
 # kill @e[family=ender_pearl]
-
-# --- 禁止玩家搭建传送门 ---
-# execute as @a at @s run fill  -5 -5 -5 5 5 5 air replace portal
-# execute as @a at @s run fill  -5 -5 -5 5 5 5 air replace end_portal
+## 禁止玩家搭建传送门
+# execute as @a at @s run fill -5 -5 -5 5 5 5 air replace portal
+# execute as @a at @s run fill -5 -5 -5 5 5 5 air replace end_portal
 
 ```
 
@@ -139,34 +124,18 @@ execute if score developerMode settings matches 1 run scoreboard players set end
 
 ```mcfunction title="BP/functions/system/main.mcfunction" showLineNumbers
 # --- 反退出重进 ---
-function system/antileave
-
-```
-
-</details>
-
-<details>
-
-<summary>反退出重进文件</summary>
-
-应在`--- 令退出重进玩家执行的命令 ---`模块中令`isOnline.@s`=`0`的玩家执行命令。您可根据自己的地图实际修改该文件。
-
-```mcfunction title="BP/functions/system/antileave.mcfunction" showLineNumbers {8}
-# ===== 反退出重进系统 =====
-# 本系统仅对退出重进的玩家有效。
-
-# --- 获取退出重进的玩家 ---
+## 获取退出重进的玩家
 scoreboard players add @a isOnline 0
-
-# --- 令退出重进玩家执行的命令 ---
+## 令退出重进玩家执行的命令
 # execute as @a[scores={isOnline=0}] at @s run (退出重进的玩家将会执行这条命令)
-
-# --- 将所有玩家设置为在线模式 ---
+## 将所有玩家设置为在线模式
 scoreboard objectives remove isOnline
 scoreboard objectives add isOnline dummy "玩家在线"
 scoreboard players set @a isOnline 1
 
 ```
+
+**注意：如果重新进入的玩家需要执行的命令过多，请按照[事件库函数：玩家重新进入游戏时](#玩家重新进入游戏时)进行操作**。
 
 </details>
 
@@ -233,32 +202,43 @@ function lib/get_data/is_online_after
 用于延时播放音效，以处理当玩家传送后的瞬间执行`/playsound`命令会导致玩家无法听见音效的问题。当您调用了音效控制器后，将启用一段时间很短的倒计时，倒计时结束后再播放音效，也就是**延时播放音效**。
 
 - **条件**：`active.sound`>=`1` && `time.sound`\<=`0`
-- **函数**：使用`/function lib/modify_data/states/sounds/(...)`调用
+- **函数**：使用`/function lib/modify_data/sounds/(...)`调用
 - **原理**：
   - 音效控制器使用两个变量控制它的运行：*状态*（`active.sound`）和*计时器*（`time.sound`）
   - 如果*状态*为`0`，则代表音效控制器处于**禁用状态**。如果*状态*大于或等于`1`，则代表音效控制器处于**启用状态**。
   - 如果*计时器*的时间大于 0：进行倒计时，每一游戏刻*计时器*将自减 1 分；
   - 如果*计时器*的时间等于 0：通过*状态*来决定播放哪个音效；然后，关闭音效控制器（将状态设置为`0`以表示关闭），并设置*计时器*默认为`3`游戏刻的倒计时。
+- **架构**：
+
+<treeview>
+
+- <FileType type="folder" name="functions" />
+  - <FileType type="folder" name="lib"/>
+    - <FileType type="folder" name="modify_data"/>
+      - <FileType type="folder" name="sound"/>：（新增）音效控制器
+        - <FileType type="file" name="(???).mcfunction"/>：（新增）延时播放`(???)`音效
+        - <FileType type="file" name="reset.mcfunction"/>：（新增）重置音效控制器
+  - <FileType type="folder" name="system"/>
+    - <FileType type="file" name="sound.mcfunction"/>：（新增）音效控制器主文件
+    - <FileType type="file" name="timer.mcfunction"/>：（更改）计时器
+    - <FileType type="file" name="main.mcfunction"/>：（更改）主文件
+
+</treeview>
+
 - **代码**：
 
 <details>
 
-<summary>注册系统</summary>
+<summary>注册系统和计时器</summary>
 
 新增下面的字段到主文件中。
 
 ```mcfunction title="BP/functions/system/main.mcfunction" showLineNumbers
 # --- 音效控制器 ---
 # 仅当启用后执行
-execute if score sound active matches 1.. if score sound time matches ..0 run function system/controller/sound
+execute if score sound active matches 1.. if score sound time matches ..0 run function system/sound
 
 ```
-
-</details>
-
-<details>
-
-<summary>注册计时器</summary>
 
 新增下面的字段到计时器文件中。
 
@@ -277,7 +257,7 @@ execute if score sound active matches 1.. run scoreboard players remove sound ti
 
 在该系统文件中添加需要延迟播放的音效事件。添加的命令的位置应位于`--- 音效事件 ---`模块，格式应类似于高亮部分。
 
-```mcfunction title="BP/functions/system/controller/sound.mcfunction" showLineNumbers {5}
+```mcfunction title="BP/functions/system/sound.mcfunction" showLineNumbers {5}
 # ===== 音效播放器 =====
 # 仅当音效播放器启用且倒计时为0后执行
 
@@ -285,7 +265,7 @@ execute if score sound active matches 1.. run scoreboard players remove sound ti
 execute if score sound active matches (状态) as @a at @s run playsound (音效ID) @s ~~~ (音量) (音调)
 
 # --- 重置音效播放器 ---
-function lib/modify_data/states/sound_player/reset
+function lib/modify_data/sound/reset
 
 ```
 
@@ -300,21 +280,14 @@ function lib/modify_data/states/sound_player/reset
 - **重置音效控制器的库函数**：
   - **请勿修改该函数**，直接原封不动地粘贴上去即可。
 
-```mcfunction title="BP/functions/lib/modify_data/states/sound/reset.mcfunction" showLineNumbers
+```mcfunction title="BP/functions/lib/modify_data/sound/reset.mcfunction" showLineNumbers
 # ===== 禁用音效控制器 =====
 # 用于禁用音效控制器。
+# 调用此方法时：无需修饰。
 
-# 调用此方法时：
-# · 执行者任意
-# · 执行位置任意
-# 输出结果：
-# · 禁用音效播放线，将时间调为非零
-
-# --- 禁用音效控制器 ---
-
-## 禁用音效控制器
+# 禁用音效控制器
 scoreboard players set sound active 0
-## 将音效控制器时间重置
+# 将音效控制器时间重置
 scoreboard players set sound time 3
 
 ```
@@ -324,21 +297,14 @@ scoreboard players set sound time 3
     - 要播放`random.orb`，可写为`random_orb`。
     - 要播放音调 0.75 的`random.levelup`，可写为`random_levelup_0_75`。
 
-```mcfunction title="BP/functions/lib/modify_data/states/sound/(???).mcfunction" showLineNumbers
+```mcfunction title="BP/functions/lib/modify_data/sound/(???).mcfunction" showLineNumbers
 # ===== 播放音效(音效ID) =====
-# 用于延时播放音效(音效ID)。
+# 用于在 3 秒后播放音效(音效ID)。
+# 调用此方法时：无需修饰。
 
-# 调用此方法时：
-# · 执行者任意
-# · 执行位置任意
-# 输出结果：
-# · (倒计时，默认为3)刻后播放音效(音效ID)
-
-# --- 启用音效播放器 ---
-
-## 启用音效播放器
+# 启用音效播放器
 scoreboard players set sound active (状态)
-## 将音效播放器时间重置
+# 将音效播放器时间重置
 scoreboard players set sound time (倒计时，默认为3)
 
 ```
@@ -353,7 +319,7 @@ scoreboard players set sound time (倒计时，默认为3)
 
 - **修改音效控制器**
 
-```mcfunction title="BP/functions/system/controller/sound.mcfunction" showLineNumbers {5}
+```mcfunction title="BP/functions/system/sound.mcfunction" showLineNumbers {5}
 # ===== 音效播放器 =====
 # 仅当音效播放器启用且倒计时为0后执行
 
@@ -361,23 +327,16 @@ scoreboard players set sound time (倒计时，默认为3)
 execute if score sound active matches 1 as @a at @s run playsound random.orb @s ~~~ 1 1
 
 # --- 重置音效播放器 ---
-function lib/modify_data/states/sound_player/reset
+function lib/modify_data/sound/reset
 
 ```
 
 - **新增用于调用的库函数**
 
-```mcfunction title="BP/functions/lib/modify_data/states/sound/random_orb.mcfunction" showLineNumbers
+```mcfunction title="BP/functions/lib/modify_data/sound/random_orb.mcfunction" showLineNumbers
 # ===== 播放音效random.orb =====
-# 用于延时播放音效random.orb。
-
-# 调用此方法时：
-# · 执行者任意
-# · 执行位置任意
-# 输出结果：
-# · 3刻后播放音效random.orb
-
-# --- 启用音效播放器 ---
+# 用于在 3 秒后播放音效random.orb。
+# 调用此方法时：无需修饰。
 
 ## 启用音效播放器
 scoreboard players set sound active 1
@@ -386,7 +345,7 @@ scoreboard players set sound time 3
 
 ```
 
-这样，执行`/function lib/modify_data/states/sound/random_orb`之后将在 3 游戏刻后向所有玩家播放经验球的音效。
+这样，执行`/function lib/modify_data/sound/random_orb`之后将在 3 游戏刻后向所有玩家播放经验球的音效。
 
 </details>
 
@@ -482,21 +441,6 @@ scoreboard players set sound time 3
 
 <details>
 
-<summary>注册系统</summary>
-
-新增下面的字段到主文件中。
-
-```mcfunction title="BP/functions/system/main.mcfunction" showLineNumbers
-# --- 玩家死亡检测 ---
-# 控制死亡榜和玩家死亡后运行的命令
-function system/player_die
-
-```
-
-</details>
-
-<details>
-
 <summary>声明全局变量</summary>
 
 ```mcfunction title="BP/functions/lib/modify_data/init/data.mcfunction" showLineNumbers
@@ -512,24 +456,23 @@ scoreboard players set @a deathState 0
 
 <details>
 
-<summary>死亡检测系统</summary>
+<summary>注册系统</summary>
 
-您可根据自己的地图实际修改该文件。与重进玩家检测不同，`deathState.@s`和`deathCount.@s`是全局变量，可以全局使用。
+新增下面的字段到主文件中。
 
-```mcfunction title="BP/functions/system/player_die.mcfunction" showLineNumbers
-# ===== 死亡机制 =====
-# 判定死亡玩家并执行命令。
-
-# --- 运行死亡榜 ---
+```mcfunction title="BP/functions/system/main.mcfunction" showLineNumbers
+# --- 玩家死亡检测 ---
+## 玩家死亡检测与死亡榜
 scoreboard players set @a[scores={deathState=!2}] deathState 1
 scoreboard players set @e[type=player] deathState 0
 scoreboard players add @a[scores={deathState=1}] deathCount 1
 scoreboard players set @a[scores={deathState=1}] deathState 2
-
-# --- 死亡的玩家执行的命令 ---
+## 死亡玩家执行命令
 # execute as @a[scores={deathState=2}] run (死亡的玩家执行的命令)
 
 ```
+
+**注意：如果刚死亡玩家需要执行的命令过多，请按照[事件库函数：玩家死亡时](#玩家死亡时)进行操作**。
 
 </details>
 
@@ -548,9 +491,26 @@ execute as @a[scores={deathCount=5..}] run say 1
 
 ---
 
-## 库函数：获取数据
+## 获取数据
 
 下面是一些**获取数据的函数**，它们通常进行一些对世界影响不大或者几乎认为无影响的操作，然后将获取到的数据输出到一个记分板变量或标签中。如果您有下面的任意一种相关需求，可以取用下面的函数。也欢迎您在这里补充您认为的一些有用的获取数据的函数。
+
+获取数据的方法很简单，直接调用这些函数后，它们便会更改对应的变量，后续便可便捷地使用这些变量。
+
+本部分涉及的函数：
+
+<treeview>
+
+- <FileType type="folder" name="functions" />
+  - <FileType type="folder" name="lib"/>
+    - <FileType type="folder" name="get_data"/>
+      - [<FileType type="file" name="entity_amount.mcfunction"/>](#检测实体数量)：输出实体数量到`data.entity`。
+      - [<FileType type="file" name="client.mcfunction"/>](#检测客户端检测中国版或国际版)：输出客户端到`data.client`，`0`为国际版，`1`为中国版。
+      - [<FileType type="file" name="player_dimension.mcfunction"/>](#检测玩家站立状态站立潜行爬行睡觉检测)：输出玩家维度到`dimension.@s`，`0`为主世界，`1`为下界，`2`为末地。
+      - [<FileType type="file" name="player_is_alive.mcfunction"/>](#检测玩家为存活或死亡状态)：输出玩家是否存活，存活的玩家获得`isAlive`标签。
+      - [<FileType type="file" name="player_state.mcfunction"/>](#检测玩家站立状态站立潜行爬行睡觉检测)：输出玩家站立状态到`state.@s`，`0`为站立，`1`为潜行，`2`为爬行，`3`为睡觉。
+
+</treeview>
 
 ### 检测实体数量
 
@@ -577,23 +537,14 @@ scoreboard players set entityAmount data 0
 
 <summary>检测文件</summary>
 
-您可以更改第 15 行的目标选择器`@e`为您需要筛选的实体，并把`entityAmount`改为合适的名字，这样该变量就输出为您需要筛选的实体的数量。
+您可以更改第 6 行的目标选择器`@e`为您需要筛选的实体，并把`entityAmount`改为合适的名字，这样该变量就输出为您需要筛选的实体的数量。
 
-```mcfunction title="BP/functions/lib/get_data/entity_amount.mcfunction" showLineNumbers {15}
+```mcfunction title="BP/functions/lib/get_data/entity_amount.mcfunction" showLineNumbers {6}
 # ===== 获取实体数目 =====
-# 用于检测当前情况下的实体数目。
+# 用于检测当前情况下的实体数目并输出到data.entityAmount下。
+# 调用此方法时：无需修饰
 
-# 调用此方法时：
-# · 执行者任意
-# · 执行位置任意
-# 输出结果：
-# · 输出实体数目并保存到data.entityAmount下
-
-# --- 主体部分 ---
-
-## 初始化
 scoreboard players set entityAmount data 0
-## 令每个实体都执行一次该命令，如此可记录实体数
 execute as @e run scoreboard players add entityAmount data 1
 
 ```
@@ -620,7 +571,7 @@ execute if score playerAmount data matches 14 run say 1
 
 返回玩家或服务器拥有者所正在使用的客户端，为国际版还是中国版。
 
-- **返回**：`data.client`：输出客户端，`0`=国际版，`1`=中国版。
+- **返回**：`data.client`：输出客户端，`0`为国际版，`1`为中国版。
 - **函数**：`/function lib/get_data/client`
 - **原理**：网易屏蔽词屏蔽整条命令。
 - **代码**:
@@ -645,24 +596,18 @@ scoreboard players set client data 0
 
 ```mcfunction title="BP/functions/lib/get_data/client.mcfunction" showLineNumbers
 # ===== 获取玩家使用的游戏版本 =====
-# 用于检测玩家使用的版本为国际版/网易版。
+# 用于检测玩家使用的版本为国际版/网易版。若为国际版，输出data.client=0；若为网易版，输出data.client=1。
+# 调用此方法时：无需修饰。
 
-# 调用此方法时：
-# · 执行者任意
-# · 执行位置任意
-# 输出结果：
-# · 若为国际版，输出data.client=0；若为网易版，输出data.client=1。
-
-# --- 主体部分 ---
-
-## 假定当前正在使用网易版
+# 假定当前正在使用网易版
 scoreboard players set client data 1
-## 试图在记分板添加data.sb（这是屏蔽词，如果为网易版，该命令无法执行）
+# 试图在记分板添加data.sb（这是屏蔽词，如果为网易版，该命令无法执行）
 scoreboard players set sb data 0
-## 若检测到data.sb的分数，即上一条命令未被屏蔽，证明是国际版，更改data.client
+# 若检测到data.sb的分数，即上一条命令未被屏蔽，证明是国际版，更改data.client
 execute if score sb data matches 0 run scoreboard players set client data 0
-## 移除data.sb
+# 移除data.sb
 scoreboard players reset sb data
+
 ```
 
 </details>
@@ -705,19 +650,12 @@ execute if score client data matches 1 run say 1
 
 ```mcfunction title="BP/functions/lib/get_data/player_is_alive.mcfunction" showLineNumbers
 # ===== 玩家存活检测 =====
-# 用于检测玩家是否处于存活状态
+# 用于检测玩家是否处于存活状态。存活玩家将获得isAlive标签。
+# 调用此方法时：无需修饰。
 
-# 调用此方法时：
-# · 执行者任意
-# · 执行位置任意
-# 输出结果：
-# · 若玩家存活，则有isAlive标签；若处于死亡状态，则移除isAlive标签
-
-# --- 主体部分 ---
-# 假定所有玩家均未存活（@a对全体玩家生效）
 tag @a remove isAlive
-# 为存活玩家添加存活标签（@e[type=player]仅对存活玩家生效）
 tag @e[type=player] add isAlive
+
 ```
 
 </details>
@@ -740,7 +678,7 @@ execute as @a[tag=!isAlive] as @s run say 1
 
 返回玩家当前的站立状态。
 
-- **返回**：`state.@s`：输出玩家当前的站立状态，`0`=站立，`1`=潜行，`2`=爬行，`3`=睡觉。
+- **返回**：`state.@s`：输出玩家当前的站立状态，`0`为站立，`1`为潜行，`2`为爬行，`3`为睡觉。
 - **函数**：`/function lib/get_data/player_state`
 - **原理**：[2.4.5 记分板的运用 变量](/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#检测站立潜行爬行和睡觉的玩家)
 - **代码**:
@@ -763,29 +701,17 @@ scoreboard players set @a state 0
 <summary>检测文件</summary>
 
 ```mcfunction title="BP/functions/lib/get_data/player_state.mcfunction" showLineNumbers
-# ===== 获取玩家潜行状态 =====
-# 用于检测玩家是否处于潜行状态
+# ===== 获取玩家状态 =====
+# 用于检测玩家处于站立、潜行、爬行或睡觉状态，分别输出state.@s为0,1,2,3
+# 调用此方法时：需修饰执行者为玩家，执行位置为玩家位置（execute as @a[...] at @s）。
 
-# 调用此方法时：
-# · 执行者为玩家
-# · 执行位置为玩家当前位置
-# 输出结果：
-# · 若玩家站立，输出state.@s=0；若玩家潜行，输出state.@s=1；若玩家爬行，输出state.@s=2；若玩家睡觉，输出state.@s=3
-
-# --- 检测站立 ---
-# 当在玩家脚开始往上1.7格仍能检测到玩家，证明玩家站立（玩家站立为1.8格）
+# 当在玩家脚开始往上1.7格仍能检测到玩家，则玩家站立（玩家站立为1.8格）
 execute if entity @s[x=~,y=~1.7,z=~,dx=0,dy=0,dz=0] run scoreboard players set @s state 0
-
-# --- 检测潜行 ---
-# 当在玩家脚开始往上1.4~1.7格仍能检测到玩家，证明玩家潜行（玩家潜行为1.5格）
+# 当在玩家脚开始往上1.4~1.7格仍能检测到玩家，则玩家潜行（玩家潜行为1.5格）
 execute if entity @s[x=~,y=~1.4,z=~,dx=0,dy=0,dz=0] unless entity @s[x=~,y=~1.7,z=~,dx=0,dy=0,dz=0] run scoreboard players set @s state 1
-
-# --- 检测爬行 ---
-# 当在玩家脚开始往上0.5~1.4格仍能检测到玩家，证明玩家爬行（玩家爬行为0.6格）
+# 当在玩家脚开始往上0.5~1.4格仍能检测到玩家，则玩家爬行（玩家爬行为0.6格）
 execute if entity @s[x=~,y=~0.5,z=~,dx=0,dy=0,dz=0] unless entity @s[x=~,y=~1.4,z=~,dx=0,dy=0,dz=0] run scoreboard players set @s state 2
-
-# --- 检测睡觉 ---
-# 当在玩家脚开始往上0.5格以内仍能检测到玩家（或0.5格以上检测不到玩家），证明玩家睡觉（玩家睡觉为0.2格）
+# 当在玩家脚开始往上0.5格以内仍能检测到玩家（或0.5格以上检测不到玩家），则玩家睡觉（玩家睡觉为0.2格）
 execute unless entity @s[x=~,y=~0.5,z=~,dx=0,dy=0,dz=0] run scoreboard players set @s state 3
 
 ```
@@ -810,7 +736,7 @@ execute as @a[scores={state=1}] as @s run say 1
 
 返回玩家当前所处于的维度信息。
 
-- **返回**：`dimension.@s`：输出玩家当前所处维度，`0`=主世界，`1`=下界，`2`=末地。
+- **返回**：`dimension.@s`：输出玩家当前所处维度，`0`为主世界，`1`为下界，`2`为末地。
 - **函数**：`/function lib/get_data/player_dimension`
 - **原理**：[2.3.2 修饰子命令和`run`子命令](/docs/tutorials/a1_commands/b2_commands/c3_execute/d2_subcommands_1#更改执行维度的子命令in)
 - **代码**:
@@ -834,21 +760,14 @@ scoreboard players set @a dimension 0
 
 ```mcfunction title="BP/functions/lib/get_data/player_dimension.mcfunction" showLineNumbers
 # ===== 获取玩家维度 =====
-# 用于检测玩家的维度
+# 用于检测玩家的维度，当玩家处于主世界、下界、末地时，分别输出dimension.@s为0,1,2。
+# 调用此方法时：需修饰执行者为玩家，执行位置为玩家位置（execute as @a[...] at @s）。
 
-# 调用此方法时：
-# · 执行者为玩家
-# · 执行位置为玩家当前位置
-# 输出结果：
-# · 若玩家位于主世界，输出dimension.@s=0；若玩家位于下界，输出dimension.@s=1；若玩家位于末地，输出dimension.@s=2
-
-# --- 检测玩家处于主世界 ---
+# 检测玩家处于主世界
 execute in overworld as @a[rm=0] run scoreboard players set @s dimension 0
-
-# --- 检测玩家处于下界 ---
+# 检测玩家处于下界
 execute in nether as @a[rm=0] run scoreboard players set @s dimension 1
-
-# --- 检测玩家处于主世界 ---
+# 检测玩家处于主世界
 execute in the_end as @a[rm=0] run scoreboard players set @s dimension 2
 
 ```
@@ -871,16 +790,30 @@ execute as @a[scores={dimension=1}] as @s run say 1
 
 ---
 
-## 库函数：修改数据
+## 事件
 
-下面是一些修改数据的函数，它们通常进行一些对世界影响较大的操作，或者对玩家执行某些命令，或者强制地修改记分板或标签的值。
+下面是一些事件函数。通常在发生特定事件时执行其中的函数。
+
+有些事件需要配合系统级函数来运行，在检测到符合条件的情况下才能单次执行某事件。
+
+本部分涉及的函数：
+
+<treeview>
+
+- <FileType type="folder" name="functions" />
+  - <FileType type="folder" name="lib"/>
+    - <FileType type="folder" name="events"/>
+      - [<FileType type="file" name="empty_title.mcfunction"/>](#显示空的主标题)：为玩家显示一个空的主标题，以便于直接显示副标题。可设置标题时间。
+      - [<FileType type="file" name="player_die.mcfunction"/>](#玩家死亡时)：当玩家死亡时执行一连串命令。依赖于[死亡榜与死亡检测系统](#死亡榜与死亡检测系统)。
+      - [<FileType type="file" name="player_join.mcfunction"/>](#玩家重新进入游戏时)：当玩家进入游戏时执行一连串命令。依赖于[反退出重进系统](#反退出重进系统)。
+
+</treeview>
 
 ### 显示空的主标题
 
 为玩家显示一个空的主标题，以便于直接显示副标题。可设置标题时间。
 
-- **返回**：——
-- **函数**：`/function lib/modify_data/title`
+- **函数**：`/function lib/events/empty_title`
 - **原理**：[2.9.1 文本操作命令](/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#格式化代码)
 - **代码**:
 
@@ -888,16 +821,10 @@ execute as @a[scores={dimension=1}] as @s run say 1
 
 <summary>库文件</summary>
 
-```mcfunction title='BP/functions/lib/modify_data/title.mcfunction' showLineNumbers
-# ===== 显示标题 =====
+```mcfunction title='BP/functions/lib/events/empty_title.mcfunction' showLineNumbers
+# ===== 显示空标题 =====
 # 用于显示一个空的标题，便于直接执行副标题
-
-# 调用此方法时：
-# · 执行者任意
-# · 执行位置任意
-# · 执行副标题命令前先执行此命令
-# 输出结果：
-# · 输出一个长3秒的空标题
+# 调用此方法时：无需修饰。
 
 title @a times 0 60 0
 title @a title §1
@@ -913,8 +840,109 @@ title @a title §1
 <summary>仅显示一个副标题</summary>
 
 ```mcfunction title="system/main.mcfunction" showLineNumbers
-function lib/modify_data/title
+function lib/events/empty_title
 title @a subtitle 1
+
+```
+
+</details>
+
+### 玩家重新进入游戏时
+
+:::warning[温馨提示]
+
+本功能依赖于[反退出重进系统](#反退出重进系统)。
+
+:::
+
+当玩家进入游戏时执行一连串命令。
+
+- **函数**：`/function lib/events/player_join`
+- **原理**：[2.4.5 记分板的运用 变量](/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#处理多人游戏下退出重进的玩家的问题)
+- **代码**:
+
+<details>
+
+<summary>重注册系统</summary>
+
+将原来主文件中的`反退出重进`模块的第 5 行改为：
+
+```mcfunction title="BP/functions/system/main.mcfunction" showLineNumbers {5}
+# --- 反退出重进 ---
+## 获取退出重进的玩家
+scoreboard players add @a isOnline 0
+## 令退出重进玩家执行的命令
+## execute as @a[scores={isOnline=0}] at @s run function lib/events/player_rejoin
+## 将所有玩家设置为在线模式
+scoreboard objectives remove isOnline
+scoreboard objectives add isOnline dummy "玩家在线"
+scoreboard players set @a isOnline 1
+
+```
+
+</details>
+
+<details>
+
+<summary>库文件</summary>
+
+```mcfunction title='BP/functions/lib/events/player_join.mcfunction' showLineNumbers
+# ===== 事件：玩家重新进入游戏 =====
+# 用于规定玩家重新进入游戏时执行的命令。
+# 调用此方法时：需修饰执行者为重新进入的玩家，执行位置为该玩家的位置（execute as @a[scores={isOnline=0}] at @s）。
+
+# (要执行的命令，如要指定退出重进的玩家请设为 @s)
+# (例如，give @s apple 将给予重新进入游戏的玩家一个苹果)
+
+```
+
+</details>
+
+### 玩家死亡时
+
+:::warning[温馨提示]
+
+本功能依赖于[死亡榜与死亡检测系统](#死亡榜与死亡检测系统)。
+
+:::
+
+当玩家死亡时执行一连串命令。
+
+- **函数**：`/function lib/events/player_die`
+- **原理**：[2.4.5 记分板的运用 变量](/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#补偿准则缺憾的实例死亡榜的实现)
+- **代码**:
+
+<details>
+
+<summary>重注册系统</summary>
+
+将原来主文件中的`反退出重进`模块的第 2 行和第 5 行改为：
+
+```mcfunction title="BP/functions/system/main.mcfunction" showLineNumbers {2,5}
+# --- 玩家死亡检测 ---
+## 玩家死亡检测
+scoreboard players set @a[scores={deathState=!2}] deathState 1
+scoreboard players set @e[type=player] deathState 0
+execute as @a[scores={deathState=1}] at @s run function lib/events/player_die
+scoreboard players set @a[scores={deathState=1}] deathState 2
+## 死亡玩家执行命令
+# execute as @a[scores={deathState=2}] run (死亡的玩家执行的命令)
+
+```
+
+</details>
+
+<details>
+
+<summary>库文件</summary>
+
+```mcfunction title='BP/functions/lib/events/player_die.mcfunction' showLineNumbers
+# ===== 事件：玩家死亡 =====
+# 用于规定玩家死亡时执行的命令。
+# 调用此方法时：需修饰执行者为死亡的玩家，执行位置为该玩家的位置（execute as @a[scores={isOnline=0}] at @s）。
+
+# (要执行的命令，如要指定退出重进的玩家请设为 @s)
+# (例如，scoreboard players add @s deathCount 1 将为刚死亡的玩家添加 1 分)
 
 ```
 

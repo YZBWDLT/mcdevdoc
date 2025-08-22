@@ -40,3 +40,7 @@ import FileType from "/src/components/type/file"
 ## 总结
 
 本节我们介绍了如何实现自定义字体。通过拆包获取字体文件，然后在图像编辑软件中修改后再按原路径放到我们的资源包下，就可以应用字体包了。然而，字体包在字体变化时可能会出现字体显示异常的问题。一般来说，字体包都适合作为全局资源使用。
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>
