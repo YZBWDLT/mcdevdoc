@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 物品组件
+# 数据驱动物品组件
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -146,21 +146,21 @@ import DataType from "/src/components/type/data"
 <treeview>
 - <DataType type="object" name="minecraft:icon" isRequired/>：根对象
   - <DataType type="object" name="textures"/>：定义该物品的贴图。
-    - <DataType type="string" name="default"/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
-    - <DataType type="string" name="dyed"/>：该物品的染色后贴图，仅当指定[`minecraft:dyeable`](#minecraftdyeable)组件后有意义。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
+    - <DataType type="string" name="default"/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
+    - <DataType type="string" name="dyed"/>：该物品的染色后贴图，仅当指定[`minecraft:dyeable`](#minecraftdyeable)组件后有意义。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
 </treeview>
 
 **单值写法（1.20.50+）**：
 
 <treeview>
-- <DataType type="string" name="minecraft:icon" isRequired/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
+- <DataType type="string" name="minecraft:icon" isRequired/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
 </treeview>
 
 **单值写法（1.20.0 - 1.20.40）**：
 
 <treeview>
 - <DataType type="object" name="minecraft:icon" isRequired/>：根对象
-  - <DataType type="string" name="texture"/>：该物品的贴图Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
+  - <DataType type="string" name="texture"/>：该物品的贴图Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -277,8 +277,7 @@ import DataType from "/src/components/type/data"
 | 剑 | [`minecraft:can_destroy_in_creative`](#minecraftcan_destroy_in_creative)、**[`minecraft:damage`](#minecraftdamage)**、[`minecraft:digger`](#minecraftdigger)、[`minecraft:enchantable`](#minecraftenchantable)、[`minecraft:hand_equipped`](#minecrafthand_equipped)、[`minecraft:repairable`](#minecraftrepairable) | 1.20.30 |
 | 工具 | **[`minecraft:digger`](#minecraftdigger)**、[`minecraft:enchantable`](#minecraftenchantable)、[`minecraft:repairable`](#minecraftrepairable) | 1.20.30 |
 | 盔甲 | [`minecraft:enchantable`](#minecraftenchantable)、[`minecraft:repairable`](#minecraftrepairable)、**[`minecraft:wearable`](#minecraftwearable)** | 1.20.30 |
-| 食物（旧版本） | **[`minecraft:food`](#minecraftfood)**、[`minecraft:use_animation`](#minecraftuse_animation)、[`minecraft:use_duration`](#minecraftuse_duration) | 1.16.0 |
-| 食物（新版本） | **[`minecraft:food`](#minecraftfood)**、[`minecraft:use_animation`](#minecraftuse_animation)、[`minecraft:use_modifiers`](#minecraftuse_modifiers) | 1.20.50 |
+| 食物 | **[`minecraft:food`](#minecraftfood)**、[`minecraft:use_animation`](#minecraftuse_animation)、[`minecraft:use_modifiers`](#minecraftuse_modifiers) | 1.20.50 |
 | 弹射物（如雪球） | [`minecraft:cooldown`](#minecraftcooldown)、[`minecraft:projectile`](#minecraftprojectile)、**[`minecraft:throwable`](#minecraftthrowable)** | 1.20.10 |
 | 弓类似物 | **[`minecraft:shooter`](#minecraftshooter)**、[`minecraft:use_modifiers`](#minecraftuse_modifiers) | 1.20.50 |
 | 收纳袋 | **[`minecraft:bundle_interaction`](#minecraftbundle_interaction)**、[`minecraft:storage_item`](#minecraftstorage_item)、[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)、[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier) | 1.21.60 |
@@ -1851,7 +1850,7 @@ import DataType from "/src/components/type/data"
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-- <DataType type="string" name="minecraft:icon" isRequired/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[物品贴图](./texture)。
+- <DataType type="string" name="minecraft:icon" isRequired/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">

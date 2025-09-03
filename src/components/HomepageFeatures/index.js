@@ -61,7 +61,7 @@ const DocList = [
         image: require('@site/static/site/diamond_pickaxe.png').default,
         description: (
             <>
-                查看数据驱动物品的文档，包括物品描述、物品组件和物品贴图。
+                查看数据驱动物品的文档，包括物品的描述、物品组件、物品贴图、物品分类等。
             </>
         ),
         link: "docs/docs/items/description"
