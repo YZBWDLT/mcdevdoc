@@ -17,7 +17,7 @@ import DataType from "/src/components/type/data"
 
 :::info[本文更新时间]
 
-本文于 2025 年 9 月 2 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.100。
+本文于 2025 年 9 月 3 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.100。
 
 :::
 
@@ -37,7 +37,7 @@ import DataType from "/src/components/type/data"
 
 2. 标注了<Version isRP isLowVersion/>或<Version isRP isChinaVersion/>的组件，需要在其资源包定义中使用（即资源包<FileType type="folder" name="items"/>或资源包<FileType type="folder" name="netease_items_res"/>），未特殊标注的组件为行为包组件。
 
-3. 如果官方文档中有记载，以上这些标签将会链接到官方文档。
+3. 如果官方文档中有记载，以上这些标签将会链接到官方文档，读者可点击以查看对应文档。
 
 :::
 
@@ -777,6 +777,49 @@ import DataType from "/src/components/type/data"
 "minecraft:entity_placer": {
     "entity": "minecraft:sheep"
 }
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:fire_resistance`
+
+<Version version="1.21.110" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_fire_resistance?view=minecraft-bedrock-stable"/>
+
+定义物品防火，类似于下界合金物品。[^1]
+
+[^1]: 该组件于 1.21.110.25 加入，然而更新日志中并未提到该组件的参数信息，需要验证。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+**对象型**：
+
+<treeview>
+- <DataType type="object" name="minecraft:fire_resistance"/>：根对象。
+  - <DataType type="boolean" name="value"/>：物品是否防火，默认为`false`。
+</treeview>
+
+**布尔型**：
+
+<treeview>
+- <DataType type="boolean" name="minecraft:fire_resistance"/>：物品是否防火，默认为`false`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**对象型**：
+
+```json showLineNumbers
+"minecraft:fire_resistance": {
+    "value": true
+}
+```
+
+**布尔型**：
+
+```json showLineNumbers
+"minecraft:fire_resistance": true
 ```
 
 </TabItem></Tabs>
@@ -2019,6 +2062,7 @@ import DataType from "/src/components/type/data"
 | `netease:compostable` | [`minecraft:compostable`](#minecraftcompostable) | 1.21.60（**中国版版本低**） |
 | `netease:cooldown` | [`minecraft:cooldown`](#minecraftcooldown) | 1.20.10 |
 | `netease:egg` | [`minecraft:entity_placer`](#minecraftentity_placer) | 1.20.0 |
+| `netease:fire_resistance` | [`minecraft:fire_resistance`](#minecraftfire_resistance) | 1.21.110（**中国版版本低**） |
 | `netease:fuel` | [`minecraft:fuel`](#minecraftfuel) | 1.20.0 |
 | `netease:projectile` | [`minecraft:projectile`](#minecraftprojectile) | 1.20.10 |
 | `netease:weapon` | [`minecraft:damage`](#minecraftdamage)、[`minecraft:enchantable`](#minecraftenchantable)、[`minecraft:digger`](#minecraftdigger)（**可平替部分功能**） | 1.20.30 |

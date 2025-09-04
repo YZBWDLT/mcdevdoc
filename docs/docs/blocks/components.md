@@ -10,7 +10,7 @@ sidebar_position: 2
 
 :::info[本文更新时间]
 
-本文于 2025 年 6 月 30 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.90。
+本文于 2025 年 9 月 3 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.100。
 
 :::
 
@@ -35,7 +35,7 @@ import DataType from "/src/components/type/data"
 
     - **注意：中国版可以同时使用国际版方块定义和中国版方块定义，但是国际版只能使用国际版方块定义**。
 
-2. 如果官方文档中有记载，以上这些标签将会链接到官方文档。
+2. 如果官方文档中有记载，以上这些标签将会链接到官方文档，读者可点击以查看对应文档。
 
 :::
 
@@ -284,6 +284,26 @@ import DataType from "/src/components/type/data"
 
 ---
 
+## `minecraft:embedded_visual`
+
+<Version version="1.21.110" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_embedded_visual?view=minecraft-bedrock-stable" isBeta/>
+
+定义了方块嵌入另一方块（如花盆）时需要使用的`geometry`和`​material_instances`。
+
+:::danger[警告]
+
+要使用该组件，必须启用“即将到来的创作者功能”实验性玩法。需要注意：启用实验性玩法可能会导致游戏不稳定，并且正在实验性玩法的组件有可能会在后续的版本中被移除。
+
+:::
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
+---
+
 ## `minecraft:entity_fall_on`
 
 <Version version="1.21.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_entity_fall_on?view=minecraft-bedrock-stable"/>
@@ -400,6 +420,26 @@ import DataType from "/src/components/type/data"
     "destroy_chance_modifier": 20
 }
 ```
+
+</TabItem></Tabs>
+
+---
+
+## `minecraft:flower_pottable`
+
+<Version version="1.21.110" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_flower_pottable?view=minecraft-bedrock-stable" isBeta/>
+
+定义方块为一种花盆。
+
+:::danger[警告]
+
+要使用该组件，必须启用“即将到来的创作者功能”实验性玩法。需要注意：启用实验性玩法可能会导致游戏不稳定，并且正在实验性玩法的组件有可能会在后续的版本中被移除。
+
+:::
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
 
 </TabItem></Tabs>
 
@@ -628,15 +668,9 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:movable`
 
-<Version version="1.21.90" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_movable?view=minecraft-bedrock-stable" isBeta/>
+<Version version="1.21.100" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_movable?view=minecraft-bedrock-stable"/>
 
 定义方块是否可被活塞推动，及其属性。
-
-:::danger[警告]
-
-要使用该组件，必须启用“即将到来的创作者功能”实验性玩法。需要注意：启用实验性玩法可能会导致游戏不稳定，并且正在实验性玩法的组件有可能会在后续的版本中被移除。
-
-:::
 
 <Tabs><TabItem value="parameter" label="参数" default>
 
@@ -679,6 +713,28 @@ import DataType from "/src/components/type/data"
 <Version version="1.21.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_conductivity?view=minecraft-bedrock-stable"/>
 
 定义方块的红石导体属性。
+
+<Tabs><TabItem value="parameter" label="参数" default>
+
+</TabItem><TabItem value="example" label="示例">
+
+</TabItem></Tabs>
+
+---
+
+## `minecraft:redstone_producer`
+
+<Version version="1.21.110" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_producer?view=minecraft-bedrock-stable" isBeta/>
+
+定义方块产生红石信号。[^1]
+
+:::danger[警告]
+
+要使用该组件，必须启用“即将到来的创作者功能”实验性玩法。需要注意：启用实验性玩法可能会导致游戏不稳定，并且正在实验性玩法的组件有可能会在后续的版本中被移除。
+
+:::
+
+[^1]: 该组件于 1.21.110.25 加入，然而更新日志中并未提到该组件的参数信息和作用，需要验证。
 
 <Tabs><TabItem value="parameter" label="参数" default>
 
