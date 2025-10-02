@@ -6,8 +6,11 @@ sidebar_position: 1
 
 import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
+import Highlight from '/src/components/highlight/standard';
 
 清单文件为附加包根目录中的`manifest.json`，它描述附加包的基本信息，决定 Minecraft 如何识别这个附加包的功能。
+
+<Highlight text="教程" url="/docs/tutorials/a2_addons/b1_concepts/c3_addon_framework/d2_manifest_json" />
 
 :::info[本文更新时间]
 

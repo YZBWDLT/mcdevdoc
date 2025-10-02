@@ -10,6 +10,12 @@ import FileType from "/src/components/type/file"
 
 本文档记载行为包所允许的文件结构。
 
+:::warning
+
+本文档仍在更新中。本文档计划随教程系列的更新节奏而更新，所以在教程系列更新完毕之前，本文档可能会缺失多项信息。
+
+:::
+
 ## 文件路径
 
 <treeview>
