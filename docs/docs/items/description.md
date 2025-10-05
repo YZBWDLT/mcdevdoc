@@ -124,7 +124,7 @@ import DataType from "/src/components/type/data"
         - <DataType type="string" name="category"/>：定义物品在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）。
         - <DataType type="string" name="group"/>：定义物品在创造模式物品栏中置于何物品组中，详见[物品分类与物品组](#物品分类与物品组)。
         - <DataType type="boolean" name="is_hidden_in_commands"/>：定义物品是否隐藏在命令中。
-    - <DataType type="object" name="components" isRequired/>：物品组件，定义物品的功能。
+    - <DataType type="object" name="components"/>：物品组件，定义物品的功能。
       - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件](./components)。
 
 </treeview>
