@@ -17,26 +17,19 @@ import DataType from "/src/components/type/data"
 
 :::info[本文更新时间]
 
-本文于 2025 年 9 月 3 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.100。
+本文于 2025 年 10 月 29 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.110。
 
 :::
 
 :::note[组件可用性提示]
 
 1. 标签记号说明：
-
-    - 标注了<Version isLowVersion/>的组件，代表其为**旧版国际版组件**，可应用于**国际版物品定义**（在行为包<FileType type="folder" name="items"/>和资源包<FileType type="folder" name="items"/>定义的物品）。`format_version`必须指定`1.10.0`~`1.16.0`以内时才可使用。
-
-    - 标注了<Version version="版本号"/>的组件，代表其为**新版国际版组件**，可应用于**国际版物品定义**（在行为包<FileType type="folder" name="items"/>定义的物品）。其中，`（版本号）`代表物品定义的`format_version`必须指定为该版本号或更高才可使用。
-
-    - 标注了<Version isChinaVersion/>的组件，代表其为**中国版组件**，可应用于**中国版物品定义**（在行为包<FileType type="folder" name="netease_items_beh"/>和资源包<FileType type="folder" name="netease_items_res"/>定义的物品）。
-
-    - 标注了<Version isBeta/>的组件，代表其为**实验性玩法组件**，可应用于**国际版物品定义**（在行为包<FileType type="folder" name="items"/>定义的物品）。本文档不记载已被移除的实验性玩法组件（尤其是假日创作者功能的组件）。开发者在使用这些组件的时候应当万分小心，因为它们随时可能会被移除，这会导致你的资源的关键功能失效。
-
-    - **注意：中国版可以同时使用国际版物品定义和中国版物品定义，但是国际版只能使用国际版物品定义**。
-
-2. 标注了<Version isRP isLowVersion/>或<Version isRP isChinaVersion/>的组件，需要在其资源包定义中使用（即资源包<FileType type="folder" name="items"/>或资源包<FileType type="folder" name="netease_items_res"/>），未特殊标注的组件为行为包组件。
-
+    - 标注了<Version isLowVersion/>的组件，代表其为**旧版国际版组件**，可应用于**国际版物品定义**。`format_version`必须指定`1.10.0`~`1.16.0`以内时才可使用。
+    - 标注了<Version version="版本号"/>的组件，代表其为**新版国际版组件**，可应用于**国际版物品定义**。其中，`（版本号）`代表物品定义的`format_version`必须指定为该版本号或更高才可使用。
+    - 标注了<Version isChinaVersion/>的组件，代表其为**中国版组件**，可应用于**中国版物品定义**。
+    - 标注了<Version isBeta/>的组件，代表其为**实验性玩法组件**，可应用于**国际版物品定义**。本文档不记载已被移除的实验性玩法组件（尤其是假日创作者功能的组件）。开发者在使用这些组件的时候应当万分小心，因为它们随时可能会被移除，这会导致你的资源的关键功能失效。
+    - 标注了<Version version="版本号" toVersion="弃用版本号"/>的组件，代表其为**已弃用组件**，可应用于**国际版物品定义**。虽然微软对它们进行了低版本适配，但在高版本下，开发者不宜再使用这些组件。
+2. 标注了<Version isRP isLowVersion/>或<Version isRP isChinaVersion/>的组件，需要在其资源包定义中使用，未特殊标注的组件为行为包组件。
 3. 如果官方文档中有记载，以上这些标签将会链接到官方文档，读者可点击以查看对应文档。
 
 :::
@@ -150,17 +143,17 @@ import DataType from "/src/components/type/data"
     - <DataType type="string" name="dyed"/>：该物品的染色后贴图，仅当指定[`minecraft:dyeable`](#minecraftdyeable)组件后有意义。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
 </treeview>
 
-**单值写法（1.20.50+）**：
+**单值写法（1.20.40+）**：
 
 <treeview>
 - <DataType type="string" name="minecraft:icon" isRequired/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
 </treeview>
 
-**单值写法（1.20.0 - 1.20.40）**：
+**单值写法（1.20.0 - 1.20.50）**：
 
 <treeview>
 - <DataType type="object" name="minecraft:icon" isRequired/>：根对象
-  - <DataType type="string" name="texture"/>：该物品的贴图Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
+  - <DataType type="string" name="texture"/>：该物品的贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -175,7 +168,7 @@ import DataType from "/src/components/type/data"
 }
 ```
 
-**布尔型（单值写法）**：
+**字符串型（单值写法）**：
 
 ```json showLineNumbers
 "minecraft:icon": "apple"
@@ -336,7 +329,7 @@ import DataType from "/src/components/type/data"
 <treeview>
 - <DataType type="object" name="minecraft:block_placer"/>：根对象
   - <DataType type="string" name="block" isRequired/>：将放置为何种方块。
-  - <DataType type="boolean" name="replace_block_item"/>：是否将此物品与对应方块绑定，若绑定则当方块被破坏后将掉落该物品。备注：物品 ID 必须与对应的方块 ID 保持一致。
+  - <DataType type="boolean" name="replace_block_item"/>：（1.21.60+）是否将此物品与对应方块绑定，若绑定则当方块被破坏后将掉落该物品。备注：物品 ID 必须与对应的方块 ID 保持一致。
   - <DataType type="array" name="use_on"/>：可放置于的方块列表。如果留空，则默认为可放置于所有方块上。
     - <DataType type="string"/>：方块 ID。
 </treeview>
@@ -499,11 +492,11 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:custom_components`
 
-<Version version="1.21.20 - 1.21.90" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_custom_components?view=minecraft-bedrock-stable"/>
+<Version version="1.21.20" toVersion="1.21.90" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_custom_components?view=minecraft-bedrock-stable"/>
 
 定义物品的自定义组件。自定义组件的行为需要在世界初始化前事件`WorldInitializeBeforeEvent`中定义。
 
-:::warning[注意]
+:::danger[警告]
 
 1. 该组件必须配合 ScriptAPI 使用，因此该组件在现在或未来的中国版也是无效的。
 2. 该组件随着 1.21.90 的自定义组件 V2 的推出，已被弃用。在`1.21.90`或更高版本下的物品定义中不应再使用该组件。
@@ -787,39 +780,21 @@ import DataType from "/src/components/type/data"
 
 <Version version="1.21.110" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_fire_resistance?view=minecraft-bedrock-stable"/>
 
-定义物品防火，类似于下界合金物品。[^1]
-
-[^1]: 该组件于 1.21.110.25 加入，然而更新日志中并未提到该组件的参数信息，需要验证。
+定义物品防火，类似于下界合金物品。
 
 <Tabs><TabItem value="parameters" label="参数" default>
-
-**对象型**：
 
 <treeview>
 - <DataType type="object" name="minecraft:fire_resistance"/>：根对象。
   - <DataType type="boolean" name="value"/>：物品是否防火，默认为`false`。
 </treeview>
 
-**布尔型**：
-
-<treeview>
-- <DataType type="boolean" name="minecraft:fire_resistance"/>：物品是否防火，默认为`false`。
-</treeview>
-
 </TabItem><TabItem value="example" label="示例">
-
-**对象型**：
 
 ```json showLineNumbers
 "minecraft:fire_resistance": {
     "value": true
 }
-```
-
-**布尔型**：
-
-```json showLineNumbers
-"minecraft:fire_resistance": true
 ```
 
 </TabItem></Tabs>
@@ -1052,6 +1027,71 @@ import DataType from "/src/components/type/data"
 
 ---
 
+### `minecraft:kinetic_weapon`
+
+<Version version="1.21.130" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_kinetic_weapon?view=minecraft-bedrock-stable"/>
+
+定义物品可造成动能伤害，类似于矛。
+
+动能伤害每刻计算一次，根据使用者和目标投影到视线向量上的速度来计算伤害（通过点积），速度越快伤害越高；越对齐视线向量伤害也越高。若应用参数`damage_multiplier`和`damage_modifier`，伤害值将向下取整。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:kinetic_weapon"/>：根对象。
+  - <DataType type="int" name="delay"/>：施加伤害和效果前需要等待的游戏刻数。
+  - <DataType type="object" name="reach"/>：定义目标必须在使用者的视线向量内多少格的范围才能被击中。如果目标和使用者之间有方块，也会阻止伤害及其效果。
+    - <DataType type="float" name="max"/>：目标和使用者之间的最大范围。默认值为`3`。
+    - <DataType type="float" name="min"/>：目标和使用者之间的最小范围。默认值为`0`。
+  - <DataType type="float" name="hitbox_margin"/>：允许使用者视线向量的偏移误差。默认值为`0`。
+  - <DataType type="float" name="damage_multiplier"/>：在基础伤害的基础上的伤害乘数。默认值为`1`。
+  - <DataType type="float" name="damage_modifier"/>：在基础伤害×伤害乘数（`damage_multiplier`）的基础上的伤害加和值，得到最终伤害。默认值为`0`。
+  - <DataType type="object" name="damage_conditions"/>：应用伤害需满足的条件，条件不满足时不施加伤害。
+    - <DataType type="int" name="max_duration"/>：当`delay`参数计时完毕后，在多长的时间范围内时可施加伤害。如果为负数则不设限制。单位：游戏刻。默认值为`-1`。
+    - <DataType type="int" name="min_relative_speed"/>：目标和使用者之间的相对速度应至少为多大时施加伤害。默认值为`0`。
+    - <DataType type="int" name="min_speed"/>：使用者的速度应至少为多大时施加伤害。默认值为`0`。
+  - <DataType type="object" name="dismount_conditions"/>：击落目标需满足的条件，条件不满足时不会使目标从载具上击落。
+    - <DataType type="int" name="max_duration"/>：当`delay`参数计时完毕后，在多长的时间范围内时可将目标从载具上击落。如果为负数则不设限制。单位：游戏刻。默认值为`-1`。
+    - <DataType type="int" name="min_relative_speed"/>：目标和使用者之间的相对速度应至少为多大时将目标从载具上击落。默认值为`0`。
+    - <DataType type="int" name="min_speed"/>：使用者的速度应至少为多大时将目标从载具上击落。默认值为`0`。
+  - <DataType type="object" name="knockback_conditions"/>：击退目标需满足的条件，条件不满足时不击退目标。
+    - <DataType type="int" name="max_duration"/>：当`delay`参数计时完毕后，在多长的时间范围内时可击退目标。如果为负数则不设限制。单位：游戏刻。默认值为`-1`。
+    - <DataType type="int" name="min_relative_speed"/>：目标和使用者之间的相对速度应至少为多大时击退目标。默认值为`0`。
+    - <DataType type="int" name="min_speed"/>：使用者的速度应至少为多大时击退目标。默认值为`0`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+铁矛数据（见[矛 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E7%9F%9B)）：
+
+```json showLineNumbers
+"minecraft:kinetic_weapon": {
+    "delay": 12,
+    "reach": {
+        "min": 2,
+        "max": 4.5,
+    },
+    "hitbox_margin": 0.25,
+    "damage_multiplier": 0.95,
+    "damage_conditions": {
+        "max_duration": 225,
+        "min_relative_speed": 4.6,
+    },
+    "dismount_conditions": {
+        "max_duration": 50,
+        "min_speed": 8
+    },
+    "knockback_conditions": {
+        "max_duration": 90,
+        "min_speed": 5.1
+    }
+}
+```
+
+</TabItem></Tabs>
+
+---
+
 ### `minecraft:liquid_clipped`
 
 <Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_liquid_clipped?view=minecraft-bedrock-stable"/>
@@ -1087,6 +1127,42 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:liquid_clipped": true
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:piercing_weapon`
+
+<Version version="1.21.130" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_piercing_weapon?view=minecraft-bedrock-stable"/>
+
+定义物品可造成戳刺伤害，类似于矛。
+
+戳刺伤害根据使用者和目标投影到视线向量上的速度来计算伤害（通过点积）。需要注意：应用了该组件的物品不能破坏方块，因为戳刺伤害始终处于更高的优先级之中。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:piercing_weapon"/>：根对象。
+  - <DataType type="object" name="reach"/>：定义目标必须在使用者的视线向量内多少格的范围才能被击中。如果目标和使用者之间有方块，也会阻止伤害及其效果。
+    - <DataType type="float" name="max"/>：目标和使用者之间的最大范围。默认值为`3`。
+    - <DataType type="float" name="min"/>：目标和使用者之间的最小范围。默认值为`0`。
+  - <DataType type="float" name="hitbox_margin"/>：允许使用者视线向量的偏移误差。默认值为`0`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+矛数据（见[矛 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E7%9F%9B)）：
+
+```json showLineNumbers
+"minecraft:piercing_weapon": {
+    "reach": {
+        "min": 2,
+        "max": 4.5,
+    },
+    "hitbox_margin": 0.25
+}
 ```
 
 </TabItem></Tabs>
@@ -1374,8 +1450,8 @@ import DataType from "/src/components/type/data"
     - <DataType type="string"/>：允许存储的物品 ID。
   - <DataType type="array" name="banned_items"/>：禁止存储的物品，在此列名单中的物品无法存储。
     - <DataType type="string"/>：允许存储的物品 ID。
-  - <DataType type="int" name="max_slots"/>：该物品的最大容量。注：仅限格式版本`1.21.40`-`1.21.50`下可用，`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)组件。
-  - <DataType type="int" name="max_weight_limit"/>：该物品在其他可存储物品中占用的容量。注：仅限格式版本`1.21.40`-`1.21.50`下可用，`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier)组件。
+  - <DataType type="int" name="max_slots"/>：（1.21.40 - 1.21.50）该物品的最大容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)组件。
+  - <DataType type="int" name="max_weight_limit"/>：（1.21.40 - 1.21.50）该物品在其他可存储物品中占用的容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier)组件。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -1441,6 +1517,58 @@ import DataType from "/src/components/type/data"
 ```json showLineNumbers
 "minecraft:storage_weight_modifier": {
     "weight_in_storage_item": 4
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:swing_duration`
+
+<Version version="1.21.120" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_swing_duration?view=minecraft-bedrock-stable"/>
+
+定义该物品的挥舞动画（例如攻击、挖掘时）所需时间。仅决定视觉效果，不会影响其他底层机制（例如攻击时间等）。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:swing_duration"/>：根对象。
+  - <DataType type="float" name="value"/>：定义该物品的挥舞动画所需时间。默认值为`0.3`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:swing_duration": {
+    "value": 0.3
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:swing_sounds`
+
+<Version version="1.21.130" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_swing_sounds?view=minecraft-bedrock-stable"/>
+
+定义该物品的挥舞音效。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:swing_sounds"/>：根对象。
+  - <DataType type="string" name="attack_miss"/>：定义未击中时的音效。
+  - <DataType type="string" name="attack_hit"/>：定义击中时的音效。
+  - <DataType type="string" name="attack_critical_hit"/>：定义暴击时的音效。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:swing_sounds": {
+    "attack_critical_hit": ""
 }
 ```
 
@@ -1624,6 +1752,7 @@ import DataType from "/src/components/type/data"
 - <DataType type="object" name="minecraft:use_modifiers"/>：根对象。
   - <DataType type="float" name="use_duration" isRequired/>：使用时长。例如苹果的该值为`1.6`。
   - <DataType type="float" name="movement_modifier"/>：定义玩家使用物品时的速度倍率，必须小于等于`1`。例如苹果的该值为`0.35`。
+  - <DataType type="boolean" name="emit_vibrations"/>：（1.21.120+）定义玩家使用物品时是否发出振动。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -1657,7 +1786,7 @@ import DataType from "/src/components/type/data"
 - <DataType type="object" name="minecraft:wearable"/>：根对象。
   - <DataType type="string" name="slot" isRequired/>：定义可穿戴的位置。可选值：`slot.weapon.offhand`、`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`。
   - <DataType type="int" name="protection"/>：物品可提供的护甲值。默认为`0`。
-  - <DataType type="boolean" name="hides_player_location"/>：穿戴后是否在定位栏中隐藏玩家位置。仅限`1.21.90`或更高格式版本可用。
+  - <DataType type="boolean" name="hides_player_location"/>：（1.21.90+）穿戴后是否在定位栏中隐藏玩家位置。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">

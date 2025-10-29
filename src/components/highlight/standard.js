@@ -11,6 +11,7 @@ export default function Highlight({
     border = "0px solid #000000"
 }) {
     let cursorStyle = url ? "pointer" : "auto"
+    /** @type {React.CSSProperties} */
     let style = {
         backgroundColor: backgroundColor,
         borderRadius: borderRadius,
