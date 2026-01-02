@@ -17,7 +17,7 @@ import DataType from "/src/components/type/data"
 
 :::info[本文更新时间]
 
-本文于 2025 年 9 月 3 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.100。
+本文于 2026 年 1 月 2 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.130。
 
 :::
 
@@ -35,9 +35,11 @@ import DataType from "/src/components/type/data"
 
 - <FileType type="folder" name="behavior_packs"/>
   - <FileType type="folder" name="items"/>
-    - **[<FileType type="file" name="(物品 ID).json"/>](#行为包定义格式)：定义物品的行为和渲染表现**
+    - **[<FileType type="file" name="(物品 ID).item.json"/>](#行为包定义格式)：定义物品的行为和渲染表现**
   - <FileType type="folder" name="item_catalog"/>
-    - **[<FileType type="file" name="crafting_item_catalog.json"/>](#物品分类与物品组)：物品在创造模式物品栏和配方书中的分类信息（仅限 1.21.60 或更高版本可用）**
+    - **[<FileType type="file" name="crafting_item_catalog.json"/>](#物品分类与物品组)：物品在创造模式物品栏和配方书中的分类信息（1.21.60+）**
+  - <FileType type="folder" name="recipes"/>
+    - **[<FileType type="file" name="(物品 ID).recipe.json"/>](recipes)：定义物品的配方表**，亦可用于原版物品
 - <FileType type="folder" name="resource_packs"/>
   - <FileType type="folder" name="texts"/>
     - **[<FileType type="file" name="en_US.lang"/>](#语言文件键名)：定义物品的英文译名**
@@ -59,7 +61,9 @@ import DataType from "/src/components/type/data"
 
 - <FileType type="folder" name="behavior_packs"/>
   - <FileType type="folder" name="items"/>
-    - **[<FileType type="file" name="(物品 ID).json"/>](#行为包定义格式)：定义物品的行为**
+    - **[<FileType type="file" name="(物品 ID).item.json"/>](#行为包定义格式)：定义物品的行为**
+  - <FileType type="folder" name="recipes"/>
+    - **[<FileType type="file" name="(物品 ID).recipe.json"/>](recipes)：定义物品的配方表**，亦可用于原版物品
 - <FileType type="folder" name="resource_packs"/>
   - <FileType type="folder" name="items"/>
     - **[<FileType type="file" name="(物品 ID).json"/>](#资源包定义格式)：定义物品的渲染表现**
@@ -88,6 +92,8 @@ import DataType from "/src/components/type/data"
     - **[<FileType type="file" name="*.json"/>](#物品分类与物品组)：定义物品组，名称可任意指定（例如 crafting_item_catalog.json 或 group_config.json）**
   - <FileType type="folder" name="netease_tab"/>
     - **[<FileType type="file" name="*.json"/>](#物品分类与物品组)：定义物品分类，名称可任意指定（例如  crafting_item_catalog.json 或 category_config.json）**
+  - <FileType type="folder" name="netease_recipes"/>
+    - **[<FileType type="file" name="(物品 ID).json"/>](recipes)：定义物品的配方表**，亦可用于原版物品
 - <FileType type="folder" name="resource_packs"/>
   - <FileType type="folder" name="netease_items_res"/>
     - **[<FileType type="file" name="(物品 ID).json"/>](#资源包定义格式)：定义物品的渲染表现**
@@ -121,7 +127,7 @@ import DataType from "/src/components/type/data"
     - <DataType type="object" name="description" isRequired/>：物品描述，定义物品的基本属性。
       - <DataType type="string" name="identifier" isRequired/>：定义物品的命名空间和物品 ID。
       - <DataType type="object" name="menu_category"/>：定义物品的分类和组别。
-        - <DataType type="string" name="category"/>：定义物品在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）。
+        - <DataType type="string" name="category"/>：定义物品在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`none`（空）。
         - <DataType type="string" name="group"/>：定义物品在创造模式物品栏中置于何物品组中，详见[物品分类与物品组](#物品分类与物品组)。
         - <DataType type="boolean" name="is_hidden_in_commands"/>：定义物品是否隐藏在命令中。
     - <DataType type="object" name="components"/>：物品组件，定义物品的功能。
@@ -417,6 +423,7 @@ import DataType from "/src/components/type/data"
 - [物品目录 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/documents/craftingitemcatalogdocumentation?view=minecraft-bedrock-stable)
 - [自定义物品分组 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/12-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%A9%E5%93%81%E5%88%86%E7%BB%84.html?catalog=1)
 - [自定义物品分页 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/13-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%A9%E5%93%81%E5%88%86%E9%A1%B5.html?catalog=1)
+- [自定义配方 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E6%96%B9.html?catalog=1)
 
 import GiscusComment from "/src/components/comment/giscus.js"
 

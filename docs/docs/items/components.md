@@ -17,7 +17,7 @@ import DataType from "/src/components/type/data"
 
 :::info[本文更新时间]
 
-本文于 2025 年 10 月 29 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.110。
+本文于 2026 年 1 月 2 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.130。
 
 :::
 
@@ -27,7 +27,7 @@ import DataType from "/src/components/type/data"
     - 标注了<Version isLowVersion/>的组件，代表其为**旧版国际版组件**，可应用于**国际版物品定义**。`format_version`必须指定`1.10.0`~`1.16.0`以内时才可使用。
     - 标注了<Version version="版本号"/>的组件，代表其为**新版国际版组件**，可应用于**国际版物品定义**。其中，`（版本号）`代表物品定义的`format_version`必须指定为该版本号或更高才可使用。
     - 标注了<Version isChinaVersion/>的组件，代表其为**中国版组件**，可应用于**中国版物品定义**。
-    - 标注了<Version isBeta/>的组件，代表其为**实验性玩法组件**，可应用于**国际版物品定义**。本文档不记载已被移除的实验性玩法组件（尤其是假日创作者功能的组件）。开发者在使用这些组件的时候应当万分小心，因为它们随时可能会被移除，这会导致你的资源的关键功能失效。
+    - 标注了<Version version="版本号" isBeta/>的组件，代表其为**实验性玩法组件**，可应用于**国际版物品定义**。本文档不记载已被移除的实验性玩法组件（尤其是假日创作者功能的组件）。开发者在使用这些组件的时候应当万分小心，因为它们随时可能会被移除，这会导致你的资源的关键功能失效。
     - 标注了<Version version="版本号" toVersion="弃用版本号"/>的组件，代表其为**已弃用组件**，可应用于**国际版物品定义**。虽然微软对它们进行了低版本适配，但在高版本下，开发者不宜再使用这些组件。
 2. 标注了<Version isRP isLowVersion/>或<Version isRP isChinaVersion/>的组件，需要在其资源包定义中使用，未特殊标注的组件为行为包组件。
 3. 如果官方文档中有记载，以上这些标签将会链接到官方文档，读者可点击以查看对应文档。
@@ -473,8 +473,9 @@ import DataType from "/src/components/type/data"
 
 <treeview>
 - <DataType type="object" name="minecraft:cooldown"/>：根对象。
-  - <DataType type="string" name="category"/>：冷却类型，共享同种冷却类型的物品将会一起进入冷却阶段。
+  - <DataType type="string" name="category"/>：冷却类别，共享同种冷却类别的物品将会一起进入冷却阶段。
   - <DataType type="float" name="duration"/>：冷却时间，单位为秒。
+  - <DataType type="string" name="type"/>：（1.21.130+）冷却类型，在使用或攻击时令此物品进入冷却状态。可选值为：`use`（使用后进入冷却，冷却期间不再允许使用，但允许攻击或进行其他操作）、`attack`（攻击后进入冷却，冷却期间不再允许攻击，但允许使用或进行其他操作）。默认值为`use`。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -482,7 +483,8 @@ import DataType from "/src/components/type/data"
 ```json showLineNumbers
 "minecraft:cooldown": {
     "category": "attack",
-    "duration": 1.5
+    "duration": 1.5,
+    "type": "attack"
 }
 ```
 
@@ -1568,7 +1570,7 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:swing_sounds": {
-    "attack_critical_hit": ""
+    "attack_critical_hit": "attack.critical"
 }
 ```
 
@@ -1700,7 +1702,7 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:use_duration`
 
-<Version version="1.20.20 - 1.20.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_duration?view=minecraft-bedrock-stable"/>
+<Version version="1.20.20" toVersion="1.20.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_duration?view=minecraft-bedrock-stable"/>
 
 定义该物品的使用时长。
 
@@ -1711,6 +1713,12 @@ import DataType from "/src/components/type/data"
 - [`minecraft:food`](#minecraftfood)
 - [`minecraft:shooter`](#minecraftshooter)
 - [`minecraft:throwable`](#minecraftthrowable)
+
+:::
+
+:::danger[警告]
+
+该组件在高于`1.20.50`的格式版本下已被弃用。在高版本下，使用[`minecraft:use_modifiers`](#minecraftuse_modifiers)代替之。
 
 :::
 
@@ -1753,6 +1761,7 @@ import DataType from "/src/components/type/data"
   - <DataType type="float" name="use_duration" isRequired/>：使用时长。例如苹果的该值为`1.6`。
   - <DataType type="float" name="movement_modifier"/>：定义玩家使用物品时的速度倍率，必须小于等于`1`。例如苹果的该值为`0.35`。
   - <DataType type="boolean" name="emit_vibrations"/>：（1.21.120+）定义玩家使用物品时是否发出振动。
+  - <DataType type="string" name="start_sound"/>：（1.21.130+）定义玩家在使用物品后播放何种音效。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -1760,7 +1769,9 @@ import DataType from "/src/components/type/data"
 ```json showLineNumbers
 "minecraft:use_modifiers": {
     "use_duration": 1.6,
-    "movement_modifier": 0.35
+    "movement_modifier": 0.35,
+    "emit_vibrations": true,
+    "start_sound": "random.orb"
 }
 ```
 
