@@ -4,6 +4,8 @@ sidebar_position: 3
 
 # 1.3.3 构建第一个附加包
 
+> 上次更新：2026 年 1 月 4 日
+
 import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
@@ -16,64 +18,92 @@ import FileType from "/src/components/type/file"
 
 ## `com.mojang`文件夹——游戏数据文件夹
 
-:::warning[注意]
-
-随着 Windows 版上 1.21.130 版本的更新，路径被大幅修改。本教程预计在短时间内给出更新后的教程，以下内容适用于 1.21.120 或更低版本，仅供参考。
-
-:::
-
 首先第一步，我们要找到游戏存储数据的路径。读者可以打开文件管理器，并将下面的路径粘贴到文件管理器的导航栏上：
 
 ```text
-%localappdata%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang
+%appdata%\Minecraft Bedrock\Users
 ```
 
-![com_mojang_1](./../img/c3_addon_framework/com_mojang_1.png)
+![com_mojang_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/com_mojang_1.png)
 
 回车进入该路径后，记得将这个路径收藏下来，毕竟这个路径还是有些复杂的，不太好找。
 
-![com_mojang_2](./../img/c3_addon_framework/com_mojang_2.png)
+![com_mojang_2](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/com_mojang_2.png)
 
-这个 **`com.mojang`，就是游戏存储数据的文件夹**。现在，我们来看看这个文件夹里面都有哪些内容吧！
+**这两个文件夹，就是游戏存储数据的文件夹**。现在，我们来看看这个文件夹里面都有哪些内容吧！
 
-![com_mojang_3](./../img/c3_addon_framework/com_mojang_3.png)
+![com_mojang_3](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/com_mojang_3.png)
 
 先指出一点就是，在本教程中，谈文件路径也是很重要的一环。我们用记号<FileType type="folder"/>代表文件夹，用<FileType type="file"/>代表一般文件，用<FileType type="image"/>表示图像，用<FileType type="music"/>表示音乐。相比于 JSON 数据格式的记号来说，这种图案的表示应该是很清晰直观的。
 
 文件是要谈后缀名的，这一点我们在 [1.3.1](./d1_ide#文件管理器的设置) 的时候就已经详细聊过，所以请务必启用后缀名，我们这里也会谈后缀名，比如上一节的清单文件`manifest.json`我们就会这么表示：<FileType type="file" name="manifest.json"/>。
 
-我们挑 com.mojang 里面重点部分来说：
+现在我们来看图说话吧！我们可以看到在<FileType type="folder" name="Users"/>中，会有一个有一串数字 ID 的文件夹，和一个<FileType type="folder" name="Shared"/>文件夹。其中，**数字 ID 的文件夹代表你的个人数据，而<FileType type="folder" name="Shared"/>则为所有账号的公用数据**，其实这就有些类似于 Windows 的逻辑了。
+
+我们来看这里的文件夹分布，从<FileType type="folder" name="Users"/>开始：
 
 <treeview>
 
-- <FileType type="folder" name="com.mojang"/>：游戏数据文件夹
-  - <FileType type="folder" name="behavior_packs"/>：**全局**行为包文件夹，存放所有的行为包
-  - <FileType type="folder" name="resource_packs"/>：**全局**资源包文件夹，存放所有的资源包
-  - <FileType type="folder" name="development_behavior_packs"/>：开发行为包文件夹，存放所有的开发用行为包
-  - <FileType type="folder" name="development_resource_packs"/>：开发资源包文件夹，存放所有的开发用资源包
-  - <FileType type="folder" name="skin_packs"/>：皮肤包文件夹，存放所有的皮肤包
-  - <FileType type="folder" name="world_templates"/>：地图模板文件夹，存放所有导入的外部地图模板
-  - <FileType type="folder" name="minecraftWorlds"/>：**地图**文件夹，存放所有的地图，是的，你所有的世界都存放在这里面!
-    - <FileType type="folder" name="（任意名称）"/>：地图文件
-      - <FileType type="folder" name="db"/>：地图数据文件夹，通常存储一些无法通过常规文本编辑器直接访问的数据文件
-      - <FileType type="folder" name="behavior_packs"/>：地图的行为包
-      - <FileType type="folder" name="resource_packs"/>：地图的资源包
-      - <FileType type="file" name="level.dat"/>：地图的核心数据文件
-      - <FileType type="file" name="level.dat_old"/>：level.dat 的备份文件
-      - <FileType type="file" name="levelname.txt"/>：地图名（虽然直接更改地图名不会起作用）
-      - <FileType type="image" name="world_icon.jpeg"/>：地图图标，会对地图关闭的一瞬间进行截图
-      - <FileType type="file" name="world_behavior_packs.json"/>：地图启用的行为包
-      - <FileType type="file" name="world_resource_packs.json"/>：地图启用的资源包
+- <FileType type="folder" name="Users"/>：游戏数据文件夹
+  - <FileType type="folder" name="(数字 ID)"/>：个人数据文件夹
+    - <FileType type="folder" name="games"/>
+      - <FileType type="folder" name="com.mojang"/>
+        - <FileType type="folder" name="minecraftWorlds"/>：**地图**文件夹，存放所有的地图，是的，你所有的世界都存放在这里面!
+          - <FileType type="folder" name="（任意名称）"/>：地图文件
+            - <FileType type="folder" name="db"/>：地图数据文件夹，通常存储一些无法通过常规文本编辑器直接访问的数据文件
+            - <FileType type="folder" name="behavior_packs"/>：地图的行为包
+            - <FileType type="folder" name="resource_packs"/>：地图的资源包
+            - <FileType type="file" name="level.dat"/>：地图的核心数据文件
+            - <FileType type="file" name="level.dat_old"/>：level.dat 的备份文件
+            - <FileType type="file" name="levelname.txt"/>：地图名（虽然直接更改地图名不会起作用）
+            - <FileType type="image" name="world_icon.jpeg"/>：地图图标，会对地图关闭的一瞬间进行截图
+            - <FileType type="file" name="world_behavior_packs.json"/>：地图启用的行为包
+            - <FileType type="file" name="world_resource_packs.json"/>：地图启用的资源包
+        - <FileType type="folder" name="ScreenShots"/>：截图文件夹，存放所有你用<kbd>F2</kbd>截的图
+        - <FileType type="folder" name="world_templates"/>：地图模板文件夹，存放所有导入的外部地图模板
+  - <FileType type="folder" name="Shared"/>：共享数据文件夹
+    - <FileType type="folder" name="games"/>
+      - <FileType type="folder" name="com.mojang"/>
+        - <FileType type="folder" name="behavior_packs"/>：**全局**行为包文件夹，存放所有的行为包
+        - <FileType type="folder" name="resource_packs"/>：**全局**资源包文件夹，存放所有的资源包
+        - <FileType type="folder" name="development_behavior_packs"/>：开发行为包文件夹，存放所有的开发用行为包
+        - <FileType type="folder" name="development_resource_packs"/>：开发资源包文件夹，存放所有的开发用资源包
+        - <FileType type="folder" name="skin_packs"/>：皮肤包文件夹，存放所有的皮肤包
 
 </treeview>
 
-此外，com.mojang 里面还有其他文件夹，比如<FileType type="folder" name="Screenshots"/>是保存截图的，等等，就留给读者自行探索。
+此外，这里面还有其他文件夹，比如<FileType type="folder" name="Screenshots"/>是保存截图的，等等，就留给读者自行探索。
 
-显然，我们要编写行为包和资源包的话，就要关注<FileType type="folder" name="behavior_packs"/>和<FileType type="folder" name="resource_packs"/>。在上面的文件路径中，我们看到行为包和资源包有“全局”和“地图内”之分，这正对应着游戏内的全局设置和地图设置。所以：
+1.21.120 更新后的文件路径有一定的迷惑性，所以我们需要着重强调：
 
-- 如果你想要做纯附加包的话，应该在**全局**的<FileType type="folder" name="development_behavior_packs"/>和<FileType type="folder" name="development_resource_packs"/>中进行开发；
+- 如果你需要找个人性质的数据，比如地图数据、截图数据等，就在个人文件夹<FileType type="folder" name="(数字 ID)"/>查找，在个人文件夹中的行为包、资源包是不会奏效的；
+- 而如果你要找集体数据性质的数据，**比如行为包、资源包等，就在共享文件夹<FileType type="folder" name="Shared"/>查找**，在共享文件夹中的地图、截图是不会奏效的。
+
+显然，我们要编写行为包和资源包的话，就要关注**共享文件夹中**的<FileType type="folder" name="com.mojang"/>内的 <FileType type="folder" name="behavior_packs"/>和<FileType type="folder" name="resource_packs"/>。在上面的文件路径中，我们看到行为包和资源包有“全局”和“地图内”之分，这正对应着游戏内的全局设置和地图设置。所以：
+
+- 如果你想要做纯附加包的话，应该在**全局（共享文件夹）** 的<FileType type="folder" name="development_behavior_packs"/>和<FileType type="folder" name="development_resource_packs"/>中进行开发；
   - 为什么不用<FileType type="folder" name="behavior_packs"/>和<FileType type="folder" name="resource_packs"/>呢？这主要是因为两个开发文件夹有特别优化，可以方便开发者在退出再重进地图后就应用更改，而无需重启游戏。而从外部导入的行为包资源包就通常直接导入到这两个文件夹里，代表这些包是稳定的包。
-- 而要做地图配套的附加包的话，就应该在**地图中**的<FileType type="folder" name="behavior_packs"/>和<FileType type="folder" name="resource_packs"/>中进行开发。
+- 而要做地图配套的附加包的话，就应该在**地图中（个人文件夹）** 的<FileType type="folder" name="behavior_packs"/>和<FileType type="folder" name="resource_packs"/>中进行开发。
+
+:::note[扩展：Windows 版 1.21.120 之前的文件存储路径]
+
+在 1.21.120 的一次更新中，Mojang 将基岩版从 UWP 迁移到 GDK，并更改了文件路径。虽然此版本因测试工作不足，问题频发，引起了社区的强烈反对与不满，但我们在这里不打算详细展开，读者感兴趣可自行了解。
+
+以前，游戏数据统一存储在<FileType type="folder" name="com.mojang"/>中，路径为
+
+```text
+%localappdata%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang
+```
+
+如果是预览版，则为
+
+```text
+%localappdata%\Packages\Microsoft.MinecraftWindowsBeta_8wekyb3d8bbwe\LocalState\games\com.mojang
+```
+
+以前的路径没有个人数据和共享数据之分，直接进行操作即可，逻辑比现在的路径要简单的多。
+
+:::
 
 ## 创建第一个行为包 & 资源包
 

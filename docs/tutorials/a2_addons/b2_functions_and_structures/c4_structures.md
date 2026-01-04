@@ -45,7 +45,7 @@ import FileType from "/src/components/type/file"
 
 ![structure_4](./img/c4_structures/structure_4.png)
 
-在保存了这些之后，我们可以在其他地图试试效果。可以用`/structure`命令试试效果：
+在保存了这些之后，我们可以在其他地图试试效果。先**大退重进**，然后可以用`/structure`命令试试效果：
 
 ```mcfunction
 /structure load my_house ~~~
