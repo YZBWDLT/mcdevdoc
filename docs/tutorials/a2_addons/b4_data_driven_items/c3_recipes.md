@@ -201,6 +201,10 @@ S
 }
 ```
 
+它的效果如下图所示：
+
+![recipe_shaped_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/recipe_shaped_1.png)
+
 有了上一节定义物品的经验，这里对于读者来说也会有一定的亲切感。我们来逐行解析：
 
 - 首先，我们在第 2 行定义了这个配方表的格式版本。
@@ -219,7 +223,7 @@ S
   }
   ```
 
-  和数驱物品定义的`minecraft:item`不同，这一段更需要明确定义——因为配方表有很多种，读者可能没有意识到，Minecraft 原版有足足 7 种配方！分别是：工作台的有序配方和无序配方、熔炉配方、酿造台的换容配方和混合配方、锻造台的转换配方和纹饰配方。对于不同的配方，下文所支持的 API 也是不一样的。我们这一节着重介绍工作台配方和熔炉配方，因为其他配方的限制比较多，读者可以通过[我们给出的这篇配方表文档](/docs/docs/items/recipes)自学。
+  和数驱物品定义的`minecraft:item`不同，这一段更需要明确定义——因为配方表有很多种，读者可能没有意识到，Minecraft 原版有足足 7 种配方！分别是：工作台的有序配方和无序配方、熔炉配方、酿造台的换容配方和混合配方、锻造台的升级配方和纹饰配方。对于不同的配方，下文所支持的 API 也是不一样的。我们这一节着重介绍工作台配方和熔炉配方，因为其他配方的限制比较多，读者可以通过[我们给出的这篇配方表文档](/docs/docs/items/recipes)自学。
 
 - 第 4\~6 行，我们在<DataType type="object" name="description" isRequired/>定义了这个配方表的 ID。
 
@@ -367,6 +371,68 @@ S
 
 这样，我们就将我们给出的配方表解析完了。故而，我们看到，**有序配方表主要需要指定 ID、工作方块、原材料、配方表、结果和解锁方法这么几项内容**。
 
+除此之外，我们还可以规定配方是否允许对称，用<DataType type="boolean" name="assume_symmetry"/>表示。例如对于锄头，我们知道
+
+```text
+M M
+  S
+  S
+```
+
+和
+
+```text
+M M
+S
+S
+```
+
+是等价的，读者可以看到这两个配方是对称的。默认来说，配方就是假定对称的，代表上面两个配方是等效的。但是我们可以将这个值设定为`false`使得上面两个配方不等效。例如[微软文档](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/recipereference/examples/recipedefinitions/minecraftrecipe_shaped?view=minecraft-bedrock-stable)给出了一个例子，代表下面两个配方是不等价的：
+
+```json showLineNumbers {8-12}
+{
+    "format_version": "1.19",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "minecraft:zig"
+        },
+        "tags": [ "crafting_table" ],
+        "assume_symmetry": false,
+        "pattern": [
+            "## ",
+            " ##"
+        ],
+        "key": {
+            "#": { "item": "minecraft:planks" }
+        },
+        "result": { "item": "minecraft:zig" }
+    }
+}
+```
+
+```json showLineNumbers {8-12}
+{
+    "format_version": "1.20",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "minecraft:zag"
+        },
+        "tags": [ "crafting_table" ],
+        "assume_symmetry": false,
+        "pattern": [
+            " ##",
+            "## "
+        ],
+        "key": {
+            "#": { "item": "minecraft:planks" }
+        },
+        "result": { "item": "minecraft:zag" }
+    }
+}
+```
+
+以及，可以使用<DataType type="int" name="priority"/>来表现同一个物品的配方的优先级。更具体的用法请读者自行研究。
+
 ### 物品的数量和数据值表达
 
 在上面我们只是指定了物品的类型，事实上，**我们还可以指定物品的数量和数据值**。格式上，物品的数据可以由以下结构指定：
@@ -439,16 +505,311 @@ S
 
 ### 无序配方
 
+现在让我们把目光转向无序配方。我们知道，无序配方的逻辑要比有序配方简单一些，工作台中只要有特定数量的特定物品，就可以输出物品，而不关心物品究竟是怎么摆的。
+
+对于我们的红宝石，假如说……我们可以“研磨”红宝石成为红石粉！那么，我们可以添加一个新的配方文件<FileType type="file" name="redstone_from_ruby.recipe.json" />：
+
+<treeview>
+
+- <FileType type="folder" name="BP_test" />：行为包
+  - ……
+  - <FileType type="folder" name="recipes" />：物品定义
+    - <FileType type="folder" name="test" />：以 test 作为物品的命名空间
+      - <FileType type="file" name="ruby_sword.recipe.json" />：红宝石剑的配方文件
+      - **<FileType type="file" name="redstone_from_ruby.recipe.json" />：红石粉的配方文件**
+
+</treeview>
+
+这里，我们将文件命名为`redstone_from_ruby`，同时声明了红石粉的来源，是因为原版就有红石粉的合成配方。正如我们前文所说，遇到这种情况的时候，适合在文件名称和 ID 处添加合成途径。我们写入以下内容：
+
+```json title="redstone_from_ruby.recipe.json" showLineNumbers {3,11-13}
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_shapeless": {
+        "description": {
+            "identifier": "test:redstone_from_ruby"
+        },
+        "tags": [ "crafting_table" ],
+        "unlock": [
+            { "item": "test:ruby" }
+        ],
+        "ingredients": [
+            { "item": "test:ruby" }
+        ],
+        "result": { "item": "minecraft:redstone", "count": 4 }
+    }
+}
+```
+
+它的效果如下图所示：
+
+![recipe_shapeless_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/recipe_shapeless_1.png)
+
+在上面这个 json 中，除了高亮部分是我们在有序配方中没有讲到的东西之外，读者可以看到其他内容和有序配方是很相似的。这个 json 深刻地给出了有序配方和无序配方的区别，一个是第 3 行的 **<DataType type="object" name="minecraft:recipe_shapeless" isRequired/>，定义了这是一个无序配方**；而另一个不同点则是 **<DataType type="array" name="ingredients"/>，它定义了这个合成配方所需的材料列表（包括类型、数据值和数量）**。具体来说，它允许的内容为：
+
+<treeview>
+- <DataType type="array" name="ingredients"/>：该物品的合成配方所需的材料。
+  - <DataType type="object"/>：该配方所需的的物品。
+    - <DataType type="string" name="item" isRequired/>：物品 ID。
+    - <DataType type="string" name="count"/>：所需的物品数量。数量应保持在`1`~`9`之间。默认值为`1`。
+    - <DataType type="string" name="data"/>：所需的物品数据值。默认值为`0`。
+</treeview>
+
+我们来举一个例子进一步理解一下，比如原版的甜菜汤，它代表由 6 个甜菜根和 1 个碗即可合成甜菜汤。我们关注第 10 行，这里就可以直接通过<DataType type="string" name="count"/>指定 6 个甜菜根。
+
+```json showLineNumbers title="BP_vanilla/recipes/beetroot_soup.json" {10}
+{
+    "format_version": "1.20.10",
+    "minecraft:recipe_shapeless": {
+        "description": {
+            "identifier": "minecraft:beetroot_soup"
+        },
+        "tags": [ "crafting_table" ],
+        "ingredients": [
+            { "item": "minecraft:bowl" },
+            { "item": "minecraft:beetroot", "count": 6 }
+        ],
+        "unlock": [
+            { "item": "minecraft:beetroot" }
+        ],
+        "result": {
+            "item": "minecraft:beetroot_soup"
+        }
+    }
+}
+```
+
+无序配方除了适用于工作台之外，也适用于切石机和制图台。我们来看一个切石机切安山岩为安山岩台阶的例子：
+
+```json showLineNumbers title="BP_vanilla/recipes/stonecutter_andesite_slab.json" {10}
+{
+    "format_version": "1.20.10",
+    "minecraft:recipe_shapeless": {
+        "description": {
+            "identifier": "minecraft:stonecutter_andesite_slab"
+        },
+        "tags": [ "stonecutter" ],
+        "priority": 0,
+        "ingredients": [
+            { "item": "minecraft:andesite" }
+        ],
+        "unlock": [
+            { "item": "minecraft:andesite" }
+        ],
+        "result": { "item": "minecraft:andesite_slab", "count": 2 }
+    }
+}
+```
+
+需要注意，对于切石机，因为它只有一个槽位，所以**在切石机配方中，应当注意合成配方所需的材料应当有且仅有一种物品**。
+
 ## 熔炉配方
 
-## 其他配方
+在介绍完有序和无序合成配方之后，我们再来看看熔炉的配方。这里我们就不以红宝石为例子了（~因为实在想不到该写啥了~），我们来做一个腐肉可以烧出皮革的配方吧！这个配方和所谓“天堂维度”一样，是典型的“诈骗”配方了 >:)
+
+我们来新增一个配方<FileType type="file" name="leather_from_rotten_flesh.recipe.json" />。顺带地，我们再嵌套两个文件夹来对目前的配方文件做个整理：
+
+<treeview>
+
+- <FileType type="folder" name="BP_test" />：行为包
+  - ……
+  - <FileType type="folder" name="recipes" />：物品定义
+    - <FileType type="folder" name="test" />：以 test 作为物品的命名空间
+      - **<FileType type="folder" name="crafting_table" />：工作台合成配方**
+        - <FileType type="file" name="ruby_sword.recipe.json" />：红宝石剑的配方文件
+        - <FileType type="file" name="redstone_from_ruby.recipe.json" />：红石粉的配方文件
+      - **<FileType type="folder" name="furnace" />：熔炉合成配方**
+        - **<FileType type="file" name="leather_from_rotten_flesh.recipe.json" />：皮革的配方文件**
+
+</treeview>
+
+对皮革的配方文件，我们写入以下内容：
+
+```json title="redstone_from_ruby.recipe.json" showLineNumbers {3,11-12}
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_furnace": {
+        "description": {
+            "identifier": "test:leather_from_rotten_flesh"
+        },
+        "tags": [ "furnace" ],
+        "unlock": [
+            { "item": "minecraft:rotten_flesh" }
+        ],
+        "input": "minecraft:rotten_flesh",
+        "output": "minecraft:leather"
+    }
+}
+```
+
+![recipe_furnace_2](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/recipe_furnace_2.png)
+
+它的效果如下图所示，是的，我们亲手把曾经的“诈骗”配方变成了现实！
+
+![recipe_furnace_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/recipe_furnace_1.png)
+
+现在让我们来关注一下这个文件的结构。同理地，第 3 行的 **<DataType type="object" name="minecraft:recipe_furnace" isRequired/>定义了这是一个熔炉配方**；而第 11\~12 行的<DataType type="string"/><DataType type="object" name="input" isRequired/>和<DataType type="string"/><DataType type="object" name="output" isRequired/>则分别定义了熔炉的输入和输出物品。和前文不同，这里可以直接在输入和输出中写为字符串，我们在上文就是这么做的。上面的代码和下面的代码是等效的，读者可以着重关注第 11\~12 行两段代码的区别。
+
+```json title="redstone_from_ruby.recipe.json（等效代码）" showLineNumbers {11-12}
+{
+    "format_version": "1.21.0",
+    "minecraft:recipe_furnace": {
+        "description": {
+            "identifier": "test:leather_from_rotten_flesh"
+        },
+        "tags": [ "furnace" ],
+        "unlock": [
+            { "item": "minecraft:rotten_flesh" }
+        ],
+        "input": { "item": "minecraft:rotten_flesh" },
+        "output": { "item": "minecraft:leather" }
+    }
+}
+```
+
+除了熔炉之外，烧炼配方还支持高炉（`blast_furnace`）、烟熏炉（`smoker`）、营火（`campfire`）和灵魂营火（`soul_campfire`），只需要在<DataType type="array" name="tags" isRequired/>中指定这些方块，就可以在它们之上应用。按照原版的逻辑，原则上，一切烧炼配方都应适用于熔炉，矿物类在适用于熔炉的同时适用高炉，而食物类在适用于熔炉的同时适用于烟熏炉营火和灵魂营火。例如，以下为原版牛排的烧制配方：
+
+```json title="BP_vanilla/recipes/furnace_beef.json" showLineNumbers {10}
+{
+    "format_version": "1.20.10",
+    "minecraft:recipe_furnace": {
+        "description": {
+            "identifier": "minecraft:furnace_beef"
+        },
+        "unlock": [
+            { "item": "minecraft:beef" }
+        ],
+        "tags": [ "furnace", "smoker", "campfire", "soul_campfire" ],
+        "input": "minecraft:beef",
+        "output": "minecraft:cooked_beef"
+    }
+}
+```
 
 ---
+
+刚刚我们介绍了有序配方、无序配方和烧炼配方各自的写法。至于酿造配方和锻造配方，因为限制比较大，就不在教程中展开了，读者若需要可以自行在[我们提供的文档中](/docs/docs/items/recipes)自学，原理都是类似的。
 
 ## 物品标签
 
+现在我们来关注一个问题：我们知道有些合成配方需要的是一类物品，例如木桶的合成配方接受任意的木板和任意的木制台阶，但是现在 Minecraft 一共有十多种木板，就算用的都是相同的木板，挨个定义也很麻烦，就更不用说各种木板的混合合成了。好在，**我们可以使用物品标签（Item Tag）来解决这个麻烦的问题**！
+
+我们来看木桶的合成配方：
+
+```json title="BP_vanilla/recipes/barrel.json" showLineNumbers {14-15,18-19}
+{
+    "format_version": "1.20.10",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "minecraft:barrel_with_planks"
+        },
+        "tags": [ "crafting_table" ],
+        "pattern": [
+            "#-#",
+            "# #",
+            "#-#"
+        ],
+        "key": {
+            "#": { "tag": "minecraft:planks" },
+            "-": { "tag": "minecraft:wooden_slabs" }
+        },
+        "unlock": [
+            { "tag": "minecraft:planks" },
+            { "tag": "minecraft:wooden_slabs" }
+        ],
+        "result": {
+            "item": "minecraft:barrel"
+        },
+        "priority": -1
+    }
+}
+```
+
+着重看我们高亮的部分，我们清楚地看到这里**不再是定义一种具体的木板，而是定义了物品标签，拥有这个标签的物品就可用于合成**。
+
+目前来说，原版物品和方块使用的物品标签也可以在[我们提供的文档中](/docs/docs/items/tags)找到。这可以大幅简化某些情况下的配方的复杂度，**当你需要使用一类物品而不是一种特定的物品合成的时候，就请优先想起物品标签吧**。
+
+### 物品组件`minecraft:tags`
+
+那么，我们的自定义物品如何添加物品标签呢？答案是利用物品组件`minecraft:tags`！[我们的文档对这个组件给出了明确的介绍](/docs/docs/items/components#minecrafttags)，它的结构如下：
+
+<treeview>
+- <DataType type="object" name="minecraft:tags"/>：根对象。
+  - <DataType type="array" name="tags"/>：物品的标签列表。
+    - <DataType type="string"/>：物品标签。
+</treeview>
+
+例如，我们一开始所定义的红宝石剑，可以为它加上一个标签`minecraft:is_sword`：
+
+```json showLineNumbers title="ruby_sword.item.json" {12-14}
+{
+    "format_version": "1.21.50",
+    "minecraft:item": {
+        "description": {
+            "identifier": "test:ruby_sword",
+            "menu_category": {
+                "category": "equipment"
+            }
+        },
+        "components": {
+            "minecraft:icon": "ruby_sword",
+            "minecraft:tags": {
+                "tags": [ "minecraft:is_sword" ]
+            }
+        }
+    }
+}
+```
+
+如果需要添加标签来简化合成配方，就可以通过`minecraft:tags`组件来添加。
+
 ---
 
-## 配方命令：`/recipe`
+## *配方命令：`/recipe`
 
-## 与配方相关的游戏规则
+Minecraft 是有一些和配方相关的命令的，也就是命令`/recipe`。来简单看一眼这条命令的使用方法吧：
+
+```text
+/recipe give <玩家: target> <配方: string>
+/recipe take <玩家: target> <配方: string>
+```
+
+第一条命令是给予玩家配方，而第二条命令则是夺走玩家配方。`配方`要填写配方文件的 ID，例如
+
+```mcfunction
+recipe give @a minecraft:barrel_with_planks
+```
+
+就是令全部玩家获得木桶的合成配方。
+
+`配方`也可以写为`*`以指定全部配方。比如
+
+```mcfunction
+recipe take @a *
+```
+
+就是夺走所有玩家的所有配方表。
+
+## *与配方相关的游戏规则
+
+同样地，随着配方解锁的推出，也有一系列的游戏规则加入进游戏，我们在这里给出相关的游戏规则列表[^1]：
+
+[^1]: 此处参考了[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E6%B8%B8%E6%88%8F%E8%A7%84%E5%88%99)。
+
+| 游戏规则 | 效果 |
+| --- | :--- |
+| `doLimitedCrafting` | 玩家的合成配方是否需要解锁才能使用。 |
+| `recipesUnlock` | 配方是否需要解锁。 |
+| `showRecipeMessages` | 是否在解锁新配方时显示消息。 |
+
+然而，这些游戏规则并不能阻止玩家获得新的配方。因此，配方及相关命令在实际工程中的应用事实上是极为有限的。
+
+---
+
+## 总结
+
+## 练习
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>

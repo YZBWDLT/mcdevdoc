@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # 配方表
@@ -16,13 +16,11 @@ import DataType from "/src/components/type/data"
 
 :::info[本文更新时间]
 
-本文于 2026 年 1 月 4 日更新，中国版最新版本为 1.21.50，国际版最新版本为 1.21.130。
+本文于 2026 年 1 月 5 日更新，中国版最新版本为 1.21.50，国际版最新版本为 1.21.130。
 
 :::
 
 ---
-
-## 文件结构
 
 <FileType type="folder" name="recipes"/>下的文件为配方文件。中国版配方宜放在<FileType type="folder" name="netease_recipes"/>中，其支持的接口和国际版完全一致，但在中国版实测在<FileType type="folder" name="recipes"/>下配方文件也可正常工作。允许嵌套文件夹以整理文件。
 
@@ -50,7 +48,7 @@ import DataType from "/src/components/type/data"
         - <DataType type="string" name="item" isRequired/>：物品 ID。
         - <DataType type="string" name="data"/>：物品数据值。默认值为`0`。
       - <DataType type="object"/>：解锁此配方所需的物品标签。
-        - <DataType type="string" name="tag" isRequired/>：物品标签。见[物品标签](#物品标签)。
+        - <DataType type="string" name="tag" isRequired/>：物品标签。见[物品标签](tags)。
     - <DataType type="array" name="pattern"/>：该物品的合成配方图案。一个合成配方由 1~3 行的物品排列构成（例如面包为 1 行，船为 2 行，钻石镐为 3 行），每行由至多 3 个特定的字符表示合成所需的对应的物品或物品类型，这些字符所代表的含义在`key`中指定。每行中如果留空格则代表此位置需要留空（可见下文的实例）。每行超过 3 个字符的部分会自动忽略。每行的字符数原则上应当相同。
       - <DataType type="string" name="0"/>：第 1 行的合成配方。
       - <DataType type="string" name="1"/>：第 2 行的合成配方。
@@ -60,7 +58,7 @@ import DataType from "/src/components/type/data"
         - <DataType type="string" name="item" isRequired/>：物品 ID。
         - <DataType type="string" name="data"/>：物品数据值。默认值为`0`。
       - <DataType type="object" name="(字符)"/>：`pattern`中的`(字符)`所代表的特定类型的物品。
-        - <DataType type="string" name="tag" isRequired/>：物品标签，见[物品标签](#物品标签)。
+        - <DataType type="string" name="tag" isRequired/>：物品标签，见[物品标签](tags)。
     - <DataType type="object" name="result" isRequired/>：该配方所合成的物品。
       - <DataType type="string" name="item" isRequired/>：物品 ID。
       - <DataType type="string" name="count"/>：合成出的物品数量。默认值为`1`。
@@ -178,7 +176,7 @@ import DataType from "/src/components/type/data"
         - <DataType type="string" name="item" isRequired/>：物品 ID。
         - <DataType type="string" name="data"/>：物品数据值。默认值为`0`。
       - <DataType type="object"/>：解锁此配方所需的物品标签。
-        - <DataType type="string" name="tag" isRequired/>：物品标签。见[物品标签](#物品标签)。
+        - <DataType type="string" name="tag" isRequired/>：物品标签。见[物品标签](tags)。
     - <DataType type="array" name="ingredients"/>：该物品的合成配方所需的材料。
       - <DataType type="object"/>：该配方所需的的物品。
         - <DataType type="string" name="item" isRequired/>：物品 ID。
@@ -292,7 +290,7 @@ import DataType from "/src/components/type/data"
         - <DataType type="string" name="item" isRequired/>：物品 ID。
         - <DataType type="string" name="data"/>：物品数据值。默认值为`0`。
       - <DataType type="object"/>：解锁此配方所需的物品标签。
-        - <DataType type="string" name="tag" isRequired/>：物品标签。见[物品标签](#物品标签)。
+        - <DataType type="string" name="tag" isRequired/>：物品标签。见[物品标签](tags)。
     - <DataType type="string"/><DataType type="object" name="input" isRequired/>：该烧炼配方所需的物品 ID。可以使用`(namespace):(id):(aux id)`的方法声明其数据值，也可以采用以下的对象型额外声明其数据值：
       - <DataType type="string" name="item" isRequired/>：物品 ID。
       - <DataType type="string" name="data"/>：所需的物品数据值。默认值为`0`。
@@ -479,23 +477,23 @@ import DataType from "/src/components/type/data"
 
 </TabItem><TabItem value="锻造台锻造配方" label="锻造台锻造配方">
 
-锻造台锻造配方分为转换配方（Smithing Transform Recipes）和纹饰配方（Smithing Trim Recipes）。转换配方类似于下界合金升级，会将一个物品通过模板转换为另一个物品；而纹饰配方则类似于其他纹饰模板，为一个物品（专指盔甲类物品）添加纹饰。
+锻造台锻造配方分为升级配方（Smithing Transform Recipes）和纹饰配方（Smithing Trim Recipes）。升级配方类似于下界合金升级，会将一个物品通过模板转换为另一个物品；而纹饰配方则类似于其他纹饰模板，为一个物品（专指盔甲类物品）添加纹饰。
 
-<Tabs><TabItem value="转换配方" label="转换配方">
+<Tabs><TabItem value="升级配方" label="升级配方">
 
 <treeview>
 
 - <DataType type="object"/>：根对象。
   - <DataType type="string" name="format_version" isRequired/>：格式版本。决定物品采用何种配方表的定义格式。
-  - <DataType type="object" name="minecraft:recipe_smithing_transform" isRequired/>：定义该配方为转换配方。
+  - <DataType type="object" name="minecraft:recipe_smithing_transform" isRequired/>：定义该配方为升级配方。
     - <DataType type="object" name="description" isRequired/>：该配方的描述。
       - <DataType type="string" name="identifier" isRequired/>：配方的 ID。
     - <DataType type="array" name="tags" isRequired/>：该配方适用于的工作方块标签。
-      - <DataType type="string" isRequired/>：工作方块的标签。对于转换配方，可选值为`smithing_table`（适用于锻造台）。
-    - <DataType type="string" name="template" isRequired/>：（中国版配方中，此参数非必需）该转换配方所需的模板物品 ID。该物品必须拥有标签`minecraft:transform_templates`（参见[物品组件`minecraft:tags`](components#minecrafttags)）。
-    - <DataType type="string" name="base" isRequired/>：该转换配方所需的基底物品 ID。该物品必须为工具或盔甲，并且拥有标签`minecraft:transformable_items`（参见[物品组件`minecraft:tags`](components#minecrafttags)）。
-    - <DataType type="string" name="addition" isRequired/>：该转换配方所需的转换物品 ID。目前，只支持指定为下界合金锭（`netherite_ingot`）。
-    - <DataType type="string" name="result" isRequired/>：该转换配方所输出的物品 ID。输出的物品将继承基底物品 ID 的物品属性（例如附魔等）。
+      - <DataType type="string" isRequired/>：工作方块的标签。对于升级配方，可选值为`smithing_table`（适用于锻造台）。
+    - <DataType type="string" name="template" isRequired/>：（中国版配方中，此参数非必需）该升级配方所需的模板物品 ID。该物品必须拥有标签`minecraft:transform_templates`（参见[物品组件`minecraft:tags`](components#minecrafttags)）。
+    - <DataType type="string" name="base" isRequired/>：该升级配方所需的基底物品 ID。该物品必须为工具或盔甲，并且拥有标签`minecraft:transformable_items`（参见[物品组件`minecraft:tags`](components#minecrafttags)）。
+    - <DataType type="string" name="addition" isRequired/>：该升级配方所需的转换物品 ID。目前，只支持指定为下界合金锭（`netherite_ingot`）。
+    - <DataType type="string" name="result" isRequired/>：该升级配方所输出的物品 ID。输出的物品将继承基底物品 ID 的物品属性（例如附魔等）。
 
 </treeview>
 
@@ -575,76 +573,17 @@ import DataType from "/src/components/type/data"
 
 </TabItem></Tabs>
 
-## 物品标签
-
-原版使用了很多的物品标签，以简化部分物品的合成配方。原版可用的物品标签如下表所示。你也可以为你的自定义物品或方块添加标签组件（[物品组件`minecraft:tags`](components#minecrafttags)）。
-
-| 物品种类 | 标签 |
-| --- | :--- |
-| 盔甲 | `minecraft:is_armor` |
-| 箭 | `minecraft:arrow` |
-| 旗帜 | `minecraft:banner` |
-| 船 | `minecraft:boats` |
-| 书架 | `minecraft:bookshelf_books` |
-| 锁链装备 | `minecraft:chainmail_tier` |
-| 运输船 | `minecraft:chest_boat` |
-| 煤炭 | `minecraft:coals` |
-| 熟食 | `minecraft:is_cooked` |
-| 绯红菌柄 | `minecraft:crimson_stems` |
-| 钻石装备 | `minecraft:diamond_tier` |
-| 挖掘物 | `minecraft:digger` |
-| 门 | `minecraft:door` |
-| 鱼 | `minecraft:is_fish` |
-| 食物 | `minecraft:is_food` |
-| 金制装备 | `minecraft:golden_tier` |
-| 悬挂物 | `minecraft:hanging_actor` |
-| 悬挂告示牌 | `minecraft:hanging_sign` |
-| 斧 | `minecraft:is_axe` |
-| 锄 | `minecraft:is_hoe` |
-| 马铠 | `minecraft:horse_armor` |
-| 铁制装备 | `minecraft:iron_tier` |
-| 皮革装备 | `minecraft:leather_tier` |
-| 讲台 | `minecraft:lectern_books` |
-| 原木 | `minecraft:logs` |
-| 可燃烧的原木 | `minecraft:logs_that_burn` |
-| 红树原木 | `minecraft:mangrove_logs` |
-| 肉 | `minecraft:is_meat` |
-| 矿车 | `minecraft:is_minecart` |
-| 音乐唱片 | `minecraft:music_disc` |
-| 下界合金装备 | `minecraft:netherite_tier` |
-| 镐 | `minecraft:is_pickaxe` |
-| 猪灵喜欢的物品 | `minecraft:piglin_loved` |
-| 猪灵排斥的物品 | `minecraft:piglin_repellents` |
-| 木头 | `minecraft:planks` |
-| 沙子 | `minecraft:sand` |
-| 锹 | `minecraft:is_shovel` |
-| 告示牌 | `minecraft:sign` |
-| 灵魂营火的基方块 | `minecraft:soul_fire_base_blocks` |
-| 刷怪蛋 | `minecraft:spawn_egg` |
-| 石砖 | `minecraft:stone_bricks` |
-| 石质合成材料 | `minecraft:stone_crafting_materials` |
-| 石制装备 | `minecraft:stone_tier` |
-| 石工具材料 | `minecraft:stone_tool_materials` |
-| 剑 | `minecraft:is_sword` |
-| 工具 | `minecraft:is_tool` |
-| 振动消除物 | `minecraft:vibration_damper` |
-| 诡异菌 | `minecraft:warped_stems` |
-| 木台阶 | `minecraft:wooden_slabs` |
-| 木制物品 | `minecraft:wooden_tier` |
-| 羊毛 | `minecraft:wool` |
-
 ---
 
 ## 参考文档
 
 - [配方简介 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/documents/RecipeIntroduction?view=minecraft-bedrock-stable)
-- [配方文档 - 物品标签 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/recipereference/examples/recipedefinitions/recipetaglist?view=minecraft-bedrock-stable)
 - [配方文档 - 有序配方 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/recipereference/examples/recipedefinitions/minecraftrecipe_shaped?view=minecraft-bedrock-stable)
 - [配方文档 - 无序配方 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/recipereference/examples/recipedefinitions/minecraftrecipe_shapeless?view=minecraft-bedrock-stable)
 - [配方文档 - 熔炉配方 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/recipereference/examples/recipedefinitions/minecraftrecipe_furnace?view=minecraft-bedrock-stable)
 - [配方文档 - 换容酿造配方 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/recipereference/examples/recipedefinitions/minecraftrecipe_potionbrewing?view=minecraft-bedrock-stable)
 - [配方文档 - 混合酿造配方 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/recipereference/examples/recipedefinitions/minecraftrecipe_potionbrewingmix?view=minecraft-bedrock-stable)
-- [配方文档 - 锻造转换配方 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/recipereference/examples/recipedefinitions/minecraftrecipe_smithingtransform?view=minecraft-bedrock-stable)
+- [配方文档 - 锻造升级配方 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/recipereference/examples/recipedefinitions/minecraftrecipe_smithingtransform?view=minecraft-bedrock-stable)
 - [配方文档 - 锻造纹饰配方 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/recipereference/examples/recipedefinitions/minecraftrecipe_smithingtrim?view=minecraft-bedrock-stable)
 - [配方 | Bedrock Wiki](https://wiki.bedrock.dev/loot/recipes)
 - [自定义配方 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E6%96%B9.html?catalog=1)

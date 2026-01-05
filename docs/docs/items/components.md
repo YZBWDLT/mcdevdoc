@@ -1592,29 +1592,14 @@ import DataType from "/src/components/type/data"
     - <DataType type="string"/>：物品标签。
 </treeview>
 
-一些原版使用的标签具有实质作用。下表为对这些标签的列举，原版还有大量正在使用的标签，读者可在[Bedrock Wiki](https://wiki.bedrock.dev/items/item-tags)中查看更多相关信息。
-
-| 标签 | 功能 |
-| --- | :--- |
-| `minecraft:bookshelf_books` | 标记该物品可存储于雕纹书架内。 |
-| `minecraft:decorated_pot_sherds` | 标记该物品为饰纹陶罐的合成原材料。 |
-| `minecraft:planks` | 标记该物品为一种木板材料。 |
-| `minecraft:stone_crafting_materials` | 标记该物品为一种圆石材料，可用于合成熔炉等。 |
-| `minecraft:stone_tool_materials` | 标记该物品为一种圆石材料，可用于合成石制工具。 |
-| `minecraft:trimmable_armors` | 标记物品为一种盔甲纹饰。 |
-| `minecraft:vibration_damper` | 标记物品在使用时不发生振动。 |
-| `minecraft:wool` | 标记该物品为一种羊毛材料。 |
+有关原版使用的标签，参见[物品标签](tags)。
 
 </TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
-"minecraft:use_animation": {
-    "value": "eat"
+"minecraft:tags": {
+    "tags": [ "minecraft:planks", "example:foo" ]
 }
-```
-
-```json showLineNumbers
-"minecraft:use_animation": "eat"
 ```
 
 </TabItem></Tabs>
