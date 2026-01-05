@@ -26,7 +26,7 @@ import DataType from "/src/components/type/data"
 
 <FileType type="folder" name="recipes"/>下的文件为配方文件。中国版配方宜放在<FileType type="folder" name="netease_recipes"/>中，其支持的接口和国际版完全一致，但在中国版实测在<FileType type="folder" name="recipes"/>下配方文件也可正常工作。允许嵌套文件夹以整理文件。
 
-以下为文件文件<FileType type="folder" name="recipes"/> - <FileType type="file" name="(物品 ID).recipe.json"/>的结构，可以为以下 4 种配方中的一种：
+以下为文件<FileType type="folder" name="recipes"/> - <FileType type="file" name="(物品 ID).recipe.json"/>的结构，可以为以下 4 种配方中的一种：
 
 <Tabs><TabItem value="工作台合成配方" label="工作台合成配方" default>
 
@@ -45,7 +45,7 @@ import DataType from "/src/components/type/data"
       - <DataType type="string" isRequired/>：工作方块的标签。对于有序配方，最常见的为`crafting_table`（适用于工作台），也可以适用于自定义工作台。
     - <DataType type="array" name="unlock" isRequired/>：（1.20.0+ 格式版本必需）（中国版配方中，此参数非必需）该配方的解锁条件。满足规定的条件之一的时候解锁此配方。应至少带有一个解锁条件。
       - <DataType type="object"/>：解锁此配方所需的上下文条件。
-        - <DataType type="string" name="context" isRequired/>：可选值为：`AlwaysUnlocked`（始终解锁此配方）、`PlayerInWater`（玩家入水）、`PlayerHasManyItems`（玩家物品栏超过 10 个物品）。
+        - <DataType type="string" name="context" isRequired/>：可选值为：`AlwaysUnlocked`（始终解锁此配方）、`PlayerInWater`（玩家入水）、`PlayerHasManyItems`（玩家物品栏超过 10 种物品）。
       - <DataType type="object"/>：解锁此配方所需的物品。
         - <DataType type="string" name="item" isRequired/>：物品 ID。
         - <DataType type="string" name="data"/>：物品数据值。默认值为`0`。
@@ -303,7 +303,7 @@ import DataType from "/src/components/type/data"
 
 </treeview>
 
-注意：原则上，一切烧炼配方都应适用于熔炉，矿物类在适用于熔炉的同时适用高炉，而食物类在适用于熔炉的同时适用于烟熏炉‘营火和灵魂营火。
+注意：原则上，一切烧炼配方都应适用于熔炉，矿物类在适用于熔炉的同时适用高炉，而食物类在适用于熔炉的同时适用于烟熏炉营火和灵魂营火。
 
 <details>
 

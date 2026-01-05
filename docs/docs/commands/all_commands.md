@@ -2950,6 +2950,7 @@ in <维度: Dimension> -> execute
 
 ### `/recipe`
 
+<Highlight text="教程" url="/docs/tutorials/a2_addons/b4_data_driven_items/c3_recipes#配方命令recipe" />
 <Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/recipe" backgroundColor="#1977E3" />
 
 为玩家添加或移除配方。
