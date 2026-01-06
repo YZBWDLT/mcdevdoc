@@ -259,6 +259,34 @@ import DataType from "/src/components/type/data"
 </TabItem></Tabs>
 
 ---
+
+### `minecraft:tags`
+
+<Version version="1.20.50" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_tags?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-tags" isChinaVersion/>
+
+定义物品标签。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:tags"/>：根对象。
+  - <DataType type="array" name="tags"/>：物品的标签列表。
+    - <DataType type="string"/>：物品标签。
+</treeview>
+
+有关原版使用的标签，参见[物品标签](tags)。
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:tags": {
+    "tags": [ "minecraft:planks", "example:foo" ]
+}
+```
+
+</TabItem></Tabs>
+
+---
 ---
 
 ## 功能性组件
@@ -611,9 +639,11 @@ import DataType from "/src/components/type/data"
     - <DataType type="string" name="block"/>：方块 ID。
     - <DataType type="object" name="block"/>（替代）：方块标签。
       - <DataType type="string" name="tags"/>：一个 Molang 表达式。通常使用`query.any_tag()`来代表拥有特定标签的方块。
-    - <DataType type="int" name="speed"/>：破坏方块的速度。若为负数则代表无法破坏。
+    - <DataType type="int" name="speed"/>：破坏方块的速度。若为负数则代表无法破坏。更多信息参见[挖掘 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E6%8C%96%E6%8E%98#%E6%8C%96%E6%8E%98%E9%80%9F%E5%BA%A6)，但请格外注意此值不支持浮点数。
   - <DataType type="boolean" name="use_efficiency"/>：定义有效率附魔的物品是否影响挖掘速度。
 </treeview>
+
+实测物品在使用此组件后，将变为指定的方块的合适挖掘工具。例如若指定`minecraft:web`，那么此物品挖掘蜘蛛网就能够掉落线。
 
 </TabItem><TabItem value="example" label="示例">
 
@@ -720,8 +750,8 @@ import DataType from "/src/components/type/data"
     | `armor_feet` | `armor_torso` | `armor_head` | `armor_legs` | `axe` |
     | :---: | :---: | :---: | :---: | :---: |
     | **`bow`** | **`cosmetic_head`** | **`crossbow`** | **`elytra`** | **`fishing_rod`** |
-    | **`flintsteel`** | **`hoe`** | **`pickaxe`** | **`shears`** | **`shield`** |
-    | **`shovel`** | **`sword`** | **`all`** |  |  |
+    | **`flintsteel`** | **`hoe`** | **`melee_spear`** | **`pickaxe`** | **`shears`** |
+    | **`shield`** | **`shovel`** | **`sword`** | **`all`** |   |
     <!-- markdownlint-enable MD058 -->
   - <DataType type="int" name="value" isRequired/>：附魔能力。该值越高越容易附魔出更好的魔咒。应在`0`-`255`之间（含）。更多信息参见[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/附魔（物品修饰）#附魔能力)。
 </treeview>
@@ -1045,6 +1075,9 @@ import DataType from "/src/components/type/data"
   - <DataType type="object" name="reach"/>：定义目标必须在使用者的视线向量内多少格的范围才能被击中。如果目标和使用者之间有方块，也会阻止伤害及其效果。
     - <DataType type="float" name="max"/>：目标和使用者之间的最大范围。默认值为`3`。
     - <DataType type="float" name="min"/>：目标和使用者之间的最小范围。默认值为`0`。
+  - <DataType type="object" name="creative_reach"/>：定义目标必须在*创造模式*使用者的视线向量内多少格的范围才能被击中。如果目标和使用者之间有方块，也会阻止伤害及其效果。
+    - <DataType type="float" name="max"/>：目标和使用者之间的最大范围。默认值为<DataType type="object" name="reach"/>规定的值。
+    - <DataType type="float" name="min"/>：目标和使用者之间的最小范围。默认值为<DataType type="object" name="reach"/>规定的值。
   - <DataType type="float" name="hitbox_margin"/>：允许使用者视线向量的偏移误差。默认值为`0`。
   - <DataType type="float" name="damage_multiplier"/>：在基础伤害的基础上的伤害乘数。默认值为`1`。
   - <DataType type="float" name="damage_modifier"/>：在基础伤害×伤害乘数（`damage_multiplier`）的基础上的伤害加和值，得到最终伤害。默认值为`0`。
@@ -1070,22 +1103,26 @@ import DataType from "/src/components/type/data"
 "minecraft:kinetic_weapon": {
     "delay": 12,
     "reach": {
-        "min": 2,
-        "max": 4.5,
+        "min": 2.0,
+        "max": 4.5
+    },
+    "creative_reach": {
+        "min": 2.0,
+        "max": 7.5
     },
     "hitbox_margin": 0.25,
     "damage_multiplier": 0.95,
     "damage_conditions": {
         "max_duration": 225,
-        "min_relative_speed": 4.6,
-    },
-    "dismount_conditions": {
-        "max_duration": 50,
-        "min_speed": 8
+        "min_relative_speed": 4.6
     },
     "knockback_conditions": {
         "max_duration": 90,
         "min_speed": 5.1
+    },
+    "dismount_conditions": {
+        "max_duration": 50,
+        "min_speed": 11.0
     }
 }
 ```
@@ -1162,6 +1199,10 @@ import DataType from "/src/components/type/data"
     "reach": {
         "min": 2,
         "max": 4.5,
+    },
+    "creative_reach": {
+        "min": 2,
+        "max": 7.5,
     },
     "hitbox_margin": 0.25
 }
@@ -1571,34 +1612,6 @@ import DataType from "/src/components/type/data"
 ```json showLineNumbers
 "minecraft:swing_sounds": {
     "attack_critical_hit": "attack.critical"
-}
-```
-
-</TabItem></Tabs>
-
----
-
-### `minecraft:tags`
-
-<Version version="1.20.50" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_tags?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-tags" isChinaVersion/>
-
-定义物品标签。
-
-<Tabs><TabItem value="parameters" label="参数" default>
-
-<treeview>
-- <DataType type="object" name="minecraft:tags"/>：根对象。
-  - <DataType type="array" name="tags"/>：物品的标签列表。
-    - <DataType type="string"/>：物品标签。
-</treeview>
-
-有关原版使用的标签，参见[物品标签](tags)。
-
-</TabItem><TabItem value="example" label="示例">
-
-```json showLineNumbers
-"minecraft:tags": {
-    "tags": [ "minecraft:planks", "example:foo" ]
 }
 ```
 

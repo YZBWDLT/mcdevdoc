@@ -16,13 +16,13 @@ sidebar_position: 1
 
 - 带有\*的为和附加包（Add-on）有关的命令，本章不会介绍，或不会过于具体地介绍，而会在相关模块介绍相关功能时再介绍该命令或具体内容。你可以看到，命令和附加包现在是深度绑定的！
 
-| 等级 | 命令 | 在一个较大型地图项目中的出现频次 |
+| 等级 | 命令 | 在一个较大型地图项目中的出现频率 |
 | --- | --- | :---: |
-| 超高频命令 | `/execute`<br/>`/function`\*<br/>`/scoreboard`<br/>`/summon`\*[^1]<br/>`/tag`<br/>`/tellraw` | 500~ |
-| 高频命令 | `/scriptevent`\*<br/>`/tp`（或`/teleport`）<br/>`/titleraw`<br/>`/playsound`\*[^2]<br/>`/particle`\*[^3]<br/>`/setblock`\*[^4]<br/>`/clear`\*[^5]<br/>`/gamerule`<br/>`/structure`\*[^6]<br/>`/clone`<br/>`/event`\*[^1]<br/>`/camera`\*[^7]<br/>`/effect` | 51~500 |
-| 中频命令 | `/give`\*[^5]<br/>`/kill`\*[^1]<br/>`/replaceitem`\*[^5]<br/>`/inputpermission`<br/>`/fill`\*[^4]<br/>`/spawnpoint`<br/>`/dialogue`\*<br/>`/gamemode`<br/>`/say`<br/>`/playanimation`\*[^1]<br/>`/setworldspawn`<br/>`/tell`（或`/msg`、`/w`）<br/>`/time` | 6~50 |
-| 低频命令 | `/difficulty`<br/>`/music`\*[^2]<br/>`/schedule`\*<br/>`/stopsound`\*[^2]<br/>`/tickingarea`<br/>`/ride`\*[^1]<br/>`/weather`<br/>`/enchant`<br/>`/mobevent`<br/>`/xp`<br/>`/camerashake`<br/>`/damage`<br/>`/loot`\*[^1]<br/>`/title` | 1~5 |
-| 零频命令 | `/alwaysday`（或`/daylock`）<br/>`/clearspawnpoint`<br/>`/fog`\*[^8]<br/>`/gametest`\*<br/>`/hud`<br/>`/me`<br/>`/recipe`\*[^9]<br/>`/script`\*<br/>`/spreadplayers`<br/>`/testfor`<br/>`/testforblock`<br/>`/testforblocks`<br/>`/toggledownfall` | 几乎用不到 |
+| 超高频命令 | `/execute`<br/>`/function`\*<br/>`/scoreboard`<br/>`/summon`\*[^1]<br/>`/tellraw` | >0.05 |
+| 高频命令 | `/tag`<br/>`/tp`（或`/teleport`）<br/>`/scriptevent`\*<br/>`/titleraw`<br/>`/playsound`\*[^2]<br/>`/setblock`\*[^4]<br/>`/event`\*[^1]<br/>`/particle`\*[^3]<br/>`/clear`\*[^5]<br/>`/clone` | 0.01~0.05 |
+| 中频命令 | `/camera`\*[^7]<br/>`/structure`\*[^6]<br/>`/gamerule`<br/>`/effect`<br/>`/replaceitem`\*[^5]<br/>`/kill`\*[^1]<br/>`/give`\*[^5]<br/>`/spawnpoint`<br/>`/inputpermission`<br/>`/fill`\*[^4]<br/>`/gamemode`<br/>`/music`\*[^2]<br/>`/title` | 0.001~0.01 |
+| 低频命令 | `/fog`\*[^8]<br/>`/hud`<br/>`/dialogue`\*<br/>`/playanimation`\*[^1]<br/>`/say`<br/>`/setworldspawn`<br/>`/tickingarea`<br/>`/tell`（或`/msg`、`/w`）<br/>`/time`<br/>`/xp`<br/>`/loot`\*[^1]<br/>`/difficulty`<br/>`/weather`<br/>`/enchant`<br/>`/schedule`\*<br/>`/ride`\*[^1]<br/>`/stopsound`\*[^2]<br/>`/damage`<br/>`/camerashake`<br/>`/mobevent` | 0~0.001 |
+| 零频命令 | `/alwaysday`（或`/daylock`）<br/>`/clearspawnpoint`<br/>`/gametest`\*<br/>`/me`<br/>`/recipe`\*[^9]<br/>`/script`\*<br/>`/spreadplayers`<br/>`/testfor`<br/>`/testforblock`<br/>`/testforblocks`<br/>`/toggledownfall` | 几乎用不到 |
 | 服务器常用命令 | `/op`<br/>`/deop`<br/>`/kick`<br/>`/list`<br/>`/locate`<br/>`/connect`<br/>`/reload`\*<br/>`/stop`<br/>`/setmaxplayers`<br/>`/allowlist` | — |
 
 也许看到这些命令，你会非常迷茫：这都啥？啥？啥？没关系，这只是一个简单了解而已。在本章后续，你就会逐渐了解这些命令。

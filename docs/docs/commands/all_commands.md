@@ -12,7 +12,7 @@ import Highlight from '/src/components/highlight/standard';
 
 :::info[本文更新时间]
 
-本文于 2025 年 6 月 28 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.90。
+本文于 2026 年 1 月 6 日更新，中国版最新版本为 1.21.50，国际版最新版本为 1.21.130。
 
 :::
 
@@ -547,6 +547,26 @@ in <维度: Dimension> -> execute
 
 ---
 
+### `/tellraw`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/tellraw" backgroundColor="#1977E3" />
+
+对特定玩家的聊天栏发送原始 JSON 文本。
+
+- **权限等级**：1
+- **使用频率**：★★★★★
+
+```text
+/tellraw <玩家: target> <原始JSON文本: json>
+```
+
+对`玩家`在聊天栏输出`原始JSON文本`。
+
+`原始JSON文本`必须是有效的文本组件。
+
+## 高频命令
+
 ### `/tag`
 
 <Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d1_tag" />
@@ -592,51 +612,6 @@ in <维度: Dimension> -> execute
 </TabItem>
 
 </Tabs>
-
----
-
-### `/tellraw`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/tellraw" backgroundColor="#1977E3" />
-
-对特定玩家的聊天栏发送原始 JSON 文本。
-
-- **权限等级**：1
-- **使用频率**：★★★★★
-
-```text
-/tellraw <玩家: target> <原始JSON文本: json>
-```
-
-对`玩家`在聊天栏输出`原始JSON文本`。
-
-`原始JSON文本`必须是有效的文本组件。
-
-## 高频命令
-
-### `/scriptevent`
-
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/scriptevent" backgroundColor="#1977E3" />
-
-配合 ScriptAPI 使用，对`system`类发送一个`scriptEventReceive`的后事件。
-
-- **权限等级**：1
-- **使用频率**：★★★★☆
-
-:::warning[版本适用性警告]
-
-中国版移除了 SAPI 的功能。因此，该命令在中国版的执行结果无论如何都是无效。
-
-:::
-
-```text
-/scriptevent <消息ID: string> <消息: message>
-```
-
-向脚本系统发送一个消息，拥有`消息ID`的 ID 和`消息`的消息属性。
-
-返回`ScriptEventCommandMessageAfterEvent`事件，脚本中可调用`id`属性获取命令中的`消息ID`，调用`message`属性获取命令中的`消息`。
 
 ---
 
@@ -790,6 +765,31 @@ in <维度: Dimension> -> execute
 
 ---
 
+### `/scriptevent`
+
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/scriptevent" backgroundColor="#1977E3" />
+
+配合 ScriptAPI 使用，对`system`类发送一个`scriptEventReceive`的后事件。
+
+- **权限等级**：1
+- **使用频率**：★★★★☆
+
+:::warning[版本适用性警告]
+
+中国版移除了 SAPI 的功能。因此，该命令在中国版的执行结果无论如何都是无效。
+
+:::
+
+```text
+/scriptevent <消息ID: string> <消息: message>
+```
+
+向脚本系统发送一个消息，拥有`消息ID`的 ID 和`消息`的消息属性。
+
+返回`ScriptEventCommandMessageAfterEvent`事件，脚本中可调用`id`属性获取命令中的`消息ID`，调用`message`属性获取命令中的`消息`。
+
+---
+
 ### `/titleraw`
 
 <Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" />
@@ -880,28 +880,6 @@ in <维度: Dimension> -> execute
 
 ---
 
-### `/particle`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/particle" backgroundColor="#1977E3" />
-
-释放粒子。
-
-- **权限等级**：1
-- **使用频率**：★★★★☆
-
-```text
-/particle <粒子效果: string> [位置: x y z]
-```
-
-在`位置`释放`粒子`。
-
-`位置`的默认值为执行位置。
-
-部分粒子可能会因为缺少上下文信息而不能正确释放。
-
----
-
 ### `/setblock`
 
 <Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#放置方块的命令setblock" />
@@ -950,6 +928,48 @@ in <维度: Dimension> -> execute
 
 ---
 
+### `/event`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#触发生成事件event" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/event" backgroundColor="#1977E3" />
+
+触发一个实体的生成事件。
+
+- **权限等级**：1
+- **使用频率**：★★★★☆
+
+```text
+/event entity <目标: target> <生成事件: string>
+```
+
+使`目标`触发`生成事件`。
+
+`生成事件`是由实体行为文件（SE 文件）所定义的`events`的键名。
+
+---
+
+### `/particle`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/particle" backgroundColor="#1977E3" />
+
+释放粒子。
+
+- **权限等级**：1
+- **使用频率**：★★★★☆
+
+```text
+/particle <粒子效果: string> [位置: x y z]
+```
+
+在`位置`释放`粒子`。
+
+`位置`的默认值为执行位置。
+
+部分粒子可能会因为缺少上下文信息而不能正确释放。
+
+---
+
 ### `/clear`
 
 <Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除物品的命令clear" />
@@ -972,46 +992,269 @@ in <维度: Dimension> -> execute
 
 ---
 
-### `/gamerule`
+### `/clone`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改游戏规则的命令gamerule" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/gamerule" backgroundColor="#1977E3" />
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#复制一片区域的命令clone" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/clone" backgroundColor="#1977E3" />
 
-查询或更改游戏规则。
+将一个区域的方块复制到另一个区域。
 
 - **权限等级**：1
 - **使用频率**：★★★★☆
 
 <Tabs>
 
-<TabItem value="gamerule_1" label="查询" default>
+<TabItem value="clone_1" label="非 filtered" default>
 
 ```text
-/gamerule
+/clone <起点: x y z> <终点: x y z> <目的地: x y z> [过滤模式: MaskMode] [复制模式: CloneMode]
 ```
 
-在聊天栏返回所有游戏规则的值。
+将从`起点`到`终点`组成的源区域复制到`目的地`决定的目标区域。可选择按照特定的过滤模式筛选要复制的方块（`过滤模式`），以及如何进行复制（`复制模式`）。
 
-会受到游戏规则`sendCommandFeedBack`的影响。
+`过滤模式`的默认值为`replace`，可选值为：
+
+- `masked`：将源区域的非空气方块复制到目标区域。
+- `replace`：将源区域的所有方块复制到目标区域。
+
+`复制模式`的默认值为`normal`，可选值为：
+
+- `force`：无视源区域和目标区域的重叠复制。
+- `move`：将源区域复制后全部替换为空气。
+- `normal`：正常复制。
 
 </TabItem>
 
-<TabItem value="gamerule_2" label="设置">
+<TabItem value="clone_2" label="filtered">
 
 ```text
-/gamerule <规则: BoolGameRule> [值: Boolean]
-/gamerule <规则: IntGameRule> [值: int]
+/clone <起点: x y z> <终点: x y z> <目的地: x y z> filtered <复制模式: CloneMode> <方块: Block> [方块状态: block states]
 ```
 
-将`规则`设置为`值`。
+将从`起点`到`终点`组成的源区域的`方块状态`的`方块`复制到`目的地`决定的目标区域。可选择按照如何进行复制（`复制模式`）。
 
-`值`为空时，改为查询`规则`。
+`复制模式`的默认值为`normal`，可选值为：
 
-会受到游戏规则`sendCommandFeedBack`的影响。
+- `force`：无视源区域和目标区域的重叠复制。
+- `move`：将源区域复制后全部替换为空气。
+- `normal`：正常复制。
+
+`方块状态`的默认值为对应方块默认的方块状态。
 
 </TabItem>
 
 </Tabs>
+
+## 中频命令
+
+### `/camera`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机命令camera" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/camera" backgroundColor="#1977E3" />
+
+对玩家的相机填充颜色，或设置玩家的相机视角。
+
+- **权限等级**：1
+- **使用频率**：★★★★☆
+
+<Tabs><TabItem value="camera_clear" label="clear" default>
+
+```text
+/camera <玩家: target> clear
+```
+
+清除`玩家`的自定义相机。
+
+</TabItem><TabItem value="camera_fade" label="fade">
+
+```text
+/camera <玩家: target> fade [渐变时间] [颜色]
+```
+
+使`玩家`的自定义相机按照`渐变时间`的要求渐变到`颜色`上。
+
+`渐变时间`和`颜色`可任意缺少一个或若干个，但顺序上必须是`渐变时间`在前，`颜色`在后。对应关系如下表所示。
+
+| 完整语法 | 简写语法 | 含义 |
+| --- | :---: | --- |
+| `color <红: int> <绿: int> <蓝: int>` | `[颜色]` | 将相机颜色设置为 RGB 三原色按照不同强度（`红`、`绿`、`蓝`）组合后的颜色 |
+| `time <淡入秒数: float> <持续秒数: float> <淡出秒数: float>` | `[渐变时间]` | 将相机设置为淡入`淡入秒数`秒、持续`持续秒数`秒、淡出`淡出秒数`秒 |
+
+`[渐变时间]`的默认值为`time 1.5 0 1.5`[^3]。`[颜色]`的默认值为`color 0 0 0`（黑色）。
+
+[^3]: 缺少资料。
+
+</TabItem><TabItem value="camera_set" label="set">
+
+<Tabs><TabItem value="1" label="通用" default>
+
+```text
+/camera <玩家: target> set <预设: string>
+```
+
+:::warning[版本适用性警告]
+
+`minecraft:fixed_boom`预设仅限 1.21.70+ 版本可用。
+
+:::
+
+设置`玩家`的自定义相机为`预设`。可用预设为：
+
+- `minecraft:first_person`：第一人称
+- `minecraft:third_person`：第三人称背面
+- `minecraft:third_person_front`：第三人称正面
+- `minecraft:follow_orbit`：轨道相机
+- `minecraft:fixed_boom`：轨道相机，锁定视角
+- `minecraft:free`：自由视角
+
+</TabItem><TabItem value="2" label="自由视角相机">
+
+```text
+/camera <玩家: target> set minecraft:free [缓动] [位置] [朝向]
+```
+
+**仅限`minecraft:free`预设**。设置`玩家`的自由相机按照特定的`缓动`动画移动到`位置`和`朝向`。
+
+`缓动`、`位置`和`颜色`可任意缺少一个或若干个，但顺序上必须是`缓动`在前，`位置`其次，`颜色`在后。对应关系如下表所示。
+
+| 完整语法 | 简写语法 | 含义 |
+| --- | :---: | --- |
+| `ease <缓动时间: float> <缓动类型: Easing>` | `[缓动]` | 将玩家的相机按照`缓动类型`决定的运镜方式，在`缓动时间`秒内将玩家的相机从起点移动到终点 |
+| `pos <位置: x y z>` | `[位置]` | 玩家的相机移动到的`位置` |
+| `facing <面向实体: target>`或`facing <面向坐标: x y z>`或`rot <x旋转: value> <y旋转: value>` | `[朝向]` | 玩家的相机的朝向 |
+
+`[缓变]`为空时，直接切换视角。`[位置]`的默认值为`pos 0 0 0`[^3]。`[朝向]`的默认值为`rot 0 0`[^3]。
+
+`Easing`类型的可选值详见 Wiki。
+
+</TabItem><TabItem value="3" label="轨道相机">
+
+```text
+/camera <玩家: target> set <预设: string> [缓动] [朝向] [视角偏移] [实体偏移]
+```
+
+:::warning[版本适用性警告]
+
+`minecraft:fixed_boom`预设仅限 1.21.70+ 版本可用，`[缓动]`子命令仅限 1.21.80+ 版本可用。
+
+:::
+
+将玩家的轨道相机按照特定的`缓动`动画设置为特定`朝向`，同时设置相机相对玩家位置的偏移为`实体偏移`，相对玩家视角的偏移为`视角偏移`。
+
+`预设`仅限设置为`minecraft:follow_orbit`或`minecraft:fixed_boom`时有效。
+
+`缓动`、`朝向`、`视角偏移`和`实体偏移`可任意缺少一个或若干个，但顺序上必须是`缓动`在前，`朝向`其次，`视角偏移`再次，`实体偏移`在后。对应关系如下表所示。
+
+| 完整语法 | 简写语法 | 含义 |
+| --- | :---: | --- |
+| `ease <缓动时间: float> <缓动类型: Easing>` | `[缓动]` | 将玩家的相机按照`缓动类型`决定的运镜方式，在`缓动时间`秒内将玩家的相机从起点移动到终点 |
+| `rot <x旋转: value> <y旋转: value>` | `[朝向]` | 设置相机的旋转角度 |
+| `entity_offset <x实体偏移: float> <y实体偏移: float> <z实体偏移: float>` | `[实体偏移]` | 相机焦点相对于玩家位置的偏移 |
+| `view_offset <x视角偏移: float> <y视角偏移: float>` | `[视角偏移]` | 相机焦点相对于玩家视角的偏移 |
+
+`[朝向]`的默认值为`rot 0 0`。`[实体偏移]`为空时，不改变位置偏移。`[视角偏移]`为空时，不改变视角偏移。
+
+</TabItem></Tabs>
+
+</TabItem><TabItem value="target" label="target">
+
+聚焦实体语法，可令玩家的相机焦点始终对准某个实体。包括`target_entity`和`remove_target`。
+
+:::warning[版本适用性警告]
+
+聚焦实体语法仅限 1.21.60+ 版本可用。
+
+:::
+
+<Tabs><TabItem value="target_entity" label="target_entity">
+
+```text
+/camera <玩家: target> target_entity <实体: target> [实体中心偏移]
+```
+
+当`玩家`使用自由视角相机（`minecraft:free`）时，将相机焦点对准`实体`。可设置`实体中心偏移`。
+
+`实体中心偏移`的对应关系如下表所示。
+
+| 完整语法 | 简写语法 | 含义 |
+| --- | :---: | --- |
+| `target_center_offset <x目标中心偏移: float> <y目标中心偏移: float> <z目标中心偏移: float>` | `[实体中心偏移]` | 设置相机的焦点相对于实体中心点的偏移 |
+
+`[实体中心偏移]`为空时，不改变焦点偏移。
+
+如不再使用聚焦实体，必须使用`remove_target`移除聚焦，而不能只`clear`自由相机。
+
+</TabItem><TabItem value="remove_target" label="remove_target">
+
+```text
+/camera <玩家: target> remove_target
+```
+
+当`玩家`使用自由视角相机（`minecraft:free`）聚焦实体时，取消之。
+
+</TabItem></Tabs>
+
+</TabItem><TabItem value="fov" label="fov">
+
+视场角语法，控制玩家相机的视场角。包括`fov_clear`和`fov_set`。
+
+:::warning[版本适用性警告]
+
+视场角语法仅限 1.21.110+ 版本可用。
+
+:::
+
+<Tabs><TabItem value="fov_clear" label="fov_clear">
+
+```text
+/camera <玩家: target> fov_clear [视场角缓动时间: float] [视场角缓动类型: Easing]
+```
+
+按照`视场角缓动时间`和`视场角缓动类型`的缓动动画恢复`玩家`的视场角。
+
+不设置缓变动画时，直接恢复视场角。[^1]
+
+</TabItem><TabItem value="fov_set" label="fov_set">
+
+```text
+/camera <玩家: target> fov_set <视场角值: float> [视场角缓动时间: float] [视场角缓动类型: Easing]
+```
+
+按照`视场角缓动时间`和`视场角缓动类型`的缓动动画设置`玩家`的视场角为`视场角值`。
+
+不设置缓变动画时，直接恢复视场角。[^1]
+
+</TabItem></Tabs>
+
+</TabItem><TabItem value="attach" label="attach">
+
+相机固定到实体语法，控制玩家相机的视场角。包括`attach_to_entity`和`detach_from_entity`。
+
+:::danger[版本适用性警告]
+
+相机固定到实体语法仅限 1.21.120+ 版本可用，并需要启用「创建者照相机的实验性功能」实验性玩法才可使用。
+
+:::
+
+<Tabs><TabItem value="attach_to_entity" label="attach_to_entity">
+
+```text
+/camera <玩家: target> attach_to_entity <实体: target>
+```
+
+将`玩家`的相机固定到`实体`上。[^1]
+
+</TabItem><TabItem value="detach_from_entity" label="detach_from_entity">
+
+```text
+/camera <玩家: target> detach_from_entity
+```
+
+停止固定`玩家`的相机到实体上。[^1]
+
+</TabItem></Tabs>
+
+</TabItem></Tabs>
 
 ---
 
@@ -1152,245 +1395,42 @@ in <维度: Dimension> -> execute
 
 ---
 
-### `/clone`
+### `/gamerule`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#复制一片区域的命令clone" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/clone" backgroundColor="#1977E3" />
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改游戏规则的命令gamerule" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/gamerule" backgroundColor="#1977E3" />
 
-将一个区域的方块复制到另一个区域。
-
-- **权限等级**：1
-- **使用频率**：★★★★☆
-
-<Tabs>
-
-<TabItem value="clone_1" label="非 filtered" default>
-
-```text
-/clone <起点: x y z> <终点: x y z> <目的地: x y z> [过滤模式: MaskMode] [复制模式: CloneMode]
-```
-
-将从`起点`到`终点`组成的源区域复制到`目的地`决定的目标区域。可选择按照特定的过滤模式筛选要复制的方块（`过滤模式`），以及如何进行复制（`复制模式`）。
-
-`过滤模式`的默认值为`replace`，可选值为：
-
-- `masked`：将源区域的非空气方块复制到目标区域。
-- `replace`：将源区域的所有方块复制到目标区域。
-
-`复制模式`的默认值为`normal`，可选值为：
-
-- `force`：无视源区域和目标区域的重叠复制。
-- `move`：将源区域复制后全部替换为空气。
-- `normal`：正常复制。
-
-</TabItem>
-
-<TabItem value="clone_2" label="filtered">
-
-```text
-/clone <起点: x y z> <终点: x y z> <目的地: x y z> filtered <复制模式: CloneMode> <方块: Block> [方块状态: block states]
-```
-
-将从`起点`到`终点`组成的源区域的`方块状态`的`方块`复制到`目的地`决定的目标区域。可选择按照如何进行复制（`复制模式`）。
-
-`复制模式`的默认值为`normal`，可选值为：
-
-- `force`：无视源区域和目标区域的重叠复制。
-- `move`：将源区域复制后全部替换为空气。
-- `normal`：正常复制。
-
-`方块状态`的默认值为对应方块默认的方块状态。
-
-</TabItem>
-
-</Tabs>
-
----
-
-### `/event`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#触发生成事件event" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/event" backgroundColor="#1977E3" />
-
-触发一个实体的生成事件。
-
-- **权限等级**：1
-- **使用频率**：★★★★☆
-
-```text
-/event entity <目标: target> <生成事件: string>
-```
-
-使`目标`触发`生成事件`。
-
-`生成事件`是由实体行为文件（SE 文件）所定义的`events`的键名。
-
----
-
-### `/camera`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机命令camera" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/camera" backgroundColor="#1977E3" />
-
-对玩家的相机填充颜色，或设置玩家的相机视角。
+查询或更改游戏规则。
 
 - **权限等级**：1
 - **使用频率**：★★★★☆
 
 <Tabs>
 
-<TabItem value="camera_clear" label="clear">
+<TabItem value="gamerule_1" label="查询" default>
 
 ```text
-/camera <玩家: target> clear
+/gamerule
 ```
 
-清除`玩家`的自定义相机。
+在聊天栏返回所有游戏规则的值。
+
+会受到游戏规则`sendCommandFeedBack`的影响。
 
 </TabItem>
 
-<TabItem value="camera_fade" label="fade">
+<TabItem value="gamerule_2" label="设置">
 
 ```text
-/camera <玩家: target> fade [渐变时间] [颜色]
+/gamerule <规则: BoolGameRule> [值: Boolean]
+/gamerule <规则: IntGameRule> [值: int]
 ```
 
-使`玩家`的自定义相机按照`渐变时间`的要求渐变到`颜色`上。
+将`规则`设置为`值`。
 
-`渐变时间`和`颜色`可任意缺少一个或若干个，但顺序上必须是`渐变时间`在前，`颜色`在后。对应关系如下表所示。
+`值`为空时，改为查询`规则`。
 
-| 完整语法 | 简写语法 | 含义 |
-| --- | :---: | --- |
-| `color <红: int> <绿: int> <蓝: int>` | `[颜色]` | 将相机颜色设置为 RGB 三原色按照不同强度（`红`、`绿`、`蓝`）组合后的颜色 |
-| `time <淡入秒数: float> <持续秒数: float> <淡出秒数: float>` | `[渐变时间]` | 将相机设置为淡入`淡入秒数`秒、持续`持续秒数`秒、淡出`淡出秒数`秒 |
-
-`[渐变时间]`的默认值为`time 1.5 0 1.5`[^3]。`[颜色]`的默认值为`color 0 0 0`（黑色）。
-
-[^3]: 缺少资料。
-
-</TabItem>
-
-<TabItem value="camera_set" label="set">
-
-<Tabs>
-
-<TabItem value="1" label="通用" default>
-
-```text
-/camera <玩家: target> set <预设: string>
-```
-
-:::warning[版本适用性警告]
-
-`minecraft:follow_orbit`预设仅限 1.21.40+ 版本可用，`minecraft:fixed_boom`预设仅限 1.21.70+ 版本可用。
-
-:::
-
-设置`玩家`的自定义相机为`预设`。可用预设为：
-
-- `minecraft:first_person`：第一人称
-- `minecraft:third_person`：第三人称背面
-- `minecraft:third_person_front`：第三人称正面
-- `minecraft:follow_orbit`：轨道相机
-- `minecraft:fixed_boom`：轨道相机，锁定视角
-- `minecraft:free`：自由视角
-
-</TabItem>
-
-<TabItem value="2" label="自由视角相机">
-
-```text
-/camera <玩家: target> set minecraft:free [缓动] [位置] [朝向]
-```
-
-**仅限`minecraft:free`预设**。设置`玩家`的自由相机按照特定的`缓动`动画移动到`位置`和`朝向`。
-
-`缓动`、`位置`和`颜色`可任意缺少一个或若干个，但顺序上必须是`缓动`在前，`位置`其次，`颜色`在后。对应关系如下表所示。
-
-| 完整语法 | 简写语法 | 含义 |
-| --- | :---: | --- |
-| `ease <缓动时间: float> <缓动类型: Easing>` | `[缓动]` | 将玩家的相机按照`缓动类型`决定的运镜方式，在`缓动时间`秒内将玩家的相机从起点移动到终点 |
-| `pos <位置: x y z>` | `[位置]` | 玩家的相机移动到的`位置` |
-| `facing <面向实体: target>`或`facing <面向坐标: x y z>`或`rot <x旋转: value> <y旋转: value>` | `[朝向]` | 玩家的相机的朝向 |
-
-`[缓变]`为空时，直接切换视角。`[位置]`的默认值为`pos 0 0 0`[^3]。`[朝向]`的默认值为`rot 0 0`[^3]。
-
-`Easing`类型的可选值详见 Wiki。
-
-</TabItem>
-
-<TabItem value="3" label="轨道相机">
-
-```text
-/camera <玩家: target> set <预设: string> [缓动] [朝向] [视角偏移] [实体偏移]
-```
-
-:::warning[版本适用性警告]
-
-`minecraft:follow_orbit`预设仅限 1.21.40+ 版本可用，`minecraft:fixed_boom`预设仅限 1.21.70+ 版本可用，`[缓动]`子命令仅限 1.21.80+ 版本可用。
-
-:::
-
-将玩家的轨道相机按照特定的`缓动`动画设置为特定`朝向`，同时设置相机相对玩家位置的偏移为`实体偏移`，相对玩家视角的偏移为`视角偏移`。
-
-`预设`仅限设置为`minecraft:follow_orbit`或`minecraft:fixed_boom`时有效。
-
-`缓动`、`朝向`、`视角偏移`和`实体偏移`可任意缺少一个或若干个，但顺序上必须是`缓动`在前，`朝向`其次，`视角偏移`再次，`实体偏移`在后。对应关系如下表所示。
-
-| 完整语法 | 简写语法 | 含义 |
-| --- | :---: | --- |
-| `ease <缓动时间: float> <缓动类型: Easing>` | `[缓动]` | 将玩家的相机按照`缓动类型`决定的运镜方式，在`缓动时间`秒内将玩家的相机从起点移动到终点 |
-| `rot <x旋转: value> <y旋转: value>` | `[朝向]` | 设置相机的旋转角度 |
-| `entity_offset <x实体偏移: float> <y实体偏移: float> <z实体偏移: float>` | `[实体偏移]` | 相机焦点相对于玩家位置的偏移 |
-| `view_offset <x视角偏移: float> <y视角偏移: float>` | `[视角偏移]` | 相机焦点相对于玩家视角的偏移 |
-
-`[朝向]`的默认值为`rot 0 0`。`[实体偏移]`为空时，不改变位置偏移。`[视角偏移]`为空时，不改变视角偏移。
-
-</TabItem>
-
-</Tabs>
-
-</TabItem>
-
-<TabItem value="target_entity" label="target_entity">
-
-```text
-/camera <玩家: target> target_entity <实体: target> [实体中心偏移]
-```
-
-:::warning[版本适用性警告]
-
-聚焦实体语法仅限 1.21.60+ 版本可用。
-
-:::
-
-当`玩家`使用自由视角相机（`minecraft:free`）时，将相机焦点对准`实体`。可设置`实体中心偏移`。
-
-`实体中心偏移`的对应关系如下表所示。
-
-| 完整语法 | 简写语法 | 含义 |
-| --- | :---: | --- |
-| `target_center_offset <x目标中心偏移: float> <y目标中心偏移: float> <z目标中心偏移: float>` | `[实体中心偏移]` | 设置相机的焦点相对于实体中心点的偏移 |
-
-`[实体中心偏移]`为空时，不改变焦点偏移。
-
-如不再使用聚焦实体，必须使用`remove_target`移除聚焦，而不能只`clear`自由相机。
-
-</TabItem>
-
-<TabItem value="remove_target" label="remove_target">
-
-```text
-/camera <玩家: target> remove_target
-```
-
-:::warning[版本适用性警告]
-
-取消聚焦实体语法仅限 1.21.60+ 版本可用。
-
-:::
-
-当`玩家`使用自由视角相机（`minecraft:free`）聚焦实体时，取消之。
+会受到游戏规则`sendCommandFeedBack`的影响。
 
 </TabItem>
 
@@ -1436,12 +1476,6 @@ in <维度: Dimension> -> execute
 /effect <实体: target> <状态效果: Effect> infinite [放大倍率: int] [隐藏粒子: Boolean]
 ```
 
-:::warning[版本适用性警告]
-
-无限时长语法仅限 1.21.40+ 版本可用。
-
-:::
-
 对`实体`施加无限时长的、放大`放大倍率`倍的`状态效果`。可选择隐藏粒子（`隐藏粒子`）。
 
 `放大倍率`的默认值为`0`。`隐藏粒子`的默认值为`false`。
@@ -1460,12 +1494,6 @@ in <维度: Dimension> -> execute
 /effect <实体: target> clear [状态效果: Effect]
 ```
 
-:::warning[版本适用性警告]
-
-`状态效果`参数仅限 1.21.40+ 版本可用。
-
-:::
-
 移除`实体`的`状态效果`。
 
 `状态效果`为空时，移除实体的所有状态效果。
@@ -1473,44 +1501,6 @@ in <维度: Dimension> -> execute
 </TabItem>
 
 </Tabs>
-
-## 中频命令
-
-### `/give`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#give的扩展语法" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/give" backgroundColor="#1977E3" />
-
-给予玩家物品。
-
-- **权限等级**：1
-- **使用频率**：★★★☆☆
-
-```text
-/give <玩家: target> <物品: Item> [数量: int] [数据值: int] [组件: json]
-```
-
-给予`玩家` `数量`个含有特定`组件`、特定`数据值`的`物品`。
-
-`数量`的默认值为`1`。`数据值`的默认值为`0`。`组件`为空时，不添加任何组件。
-
----
-
-### `/kill`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除实体的命令kill" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/kill" backgroundColor="#1977E3" />
-
-清除实体。
-
-- **权限等级**：1
-- **使用频率**：★★★☆☆
-
-```text
-/kill <实体: target>
-```
-
-清除`实体`。
 
 ---
 
@@ -1608,6 +1598,66 @@ in <维度: Dimension> -> execute
 
 ---
 
+### `/kill`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除实体的命令kill" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/kill" backgroundColor="#1977E3" />
+
+清除实体。
+
+- **权限等级**：1
+- **使用频率**：★★★☆☆
+
+```text
+/kill <实体: target>
+```
+
+清除`实体`。
+
+---
+
+### `/give`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#give的扩展语法" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/give" backgroundColor="#1977E3" />
+
+给予玩家物品。
+
+- **权限等级**：1
+- **使用频率**：★★★☆☆
+
+```text
+/give <玩家: target> <物品: Item> [数量: int] [数据值: int] [组件: json]
+```
+
+给予`玩家` `数量`个含有特定`组件`、特定`数据值`的`物品`。
+
+`数量`的默认值为`1`。`数据值`的默认值为`0`。`组件`为空时，不添加任何组件。
+
+---
+
+### `/spawnpoint`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置重生点spawnpoint" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/spawnpoint" backgroundColor="#1977E3" />
+
+设置玩家的重生点。
+
+- **权限等级**：1
+- **使用频率**：★★★☆☆
+
+```text
+/spawnpoint [玩家: target] [重生点: x y z]
+```
+
+将`玩家`的重生点设置在`重生点`。
+
+`玩家`的默认值为执行者。`重生点`的默认值为执行位置。
+
+1.21.100 之后，可以在末地设置重生点。
+
+---
+
 ### `/inputpermission`
 
 <Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#变更权限inputpermission" />
@@ -1626,12 +1676,6 @@ in <维度: Dimension> -> execute
 /inputpermission query <玩家: target> <权限: permission> [状态: state]
 ```
 
-:::warning[版本适用性警告]
-
-除`camera`和`movement`权限之外，其他权限仅限 1.21.50+ 可用。
-
-:::
-
 查询有多少`玩家`的`权限`处于`状态`下。
 
 会受到游戏规则`sendCommandFeedBack`的影响。
@@ -1643,12 +1687,6 @@ in <维度: Dimension> -> execute
 ```text
 /inputpermission set <玩家: target> <权限: permission> <状态: state>
 ```
-
-:::warning[版本适用性警告]
-
-除`camera`和`movement`权限之外，其他权限仅限 1.21.50+ 可用。
-
-:::
 
 设定`玩家`的`权限`的状态为`状态`。
 
@@ -1750,23 +1788,243 @@ in <维度: Dimension> -> execute
 
 ---
 
-### `/spawnpoint`
+### `/gamemode`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置重生点spawnpoint" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/spawnpoint" backgroundColor="#1977E3" />
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#更改玩家游戏模式的命令gamemode" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/gamemode" backgroundColor="#1977E3" />
 
-设置玩家的重生点。
+调整玩家的游戏模式。
 
 - **权限等级**：1
 - **使用频率**：★★★☆☆
 
 ```text
-/spawnpoint [玩家: target] [重生点: x y z]
+/gamemode <游戏模式: GameMode> [玩家: target]
+/gamemode <游戏模式: int> [玩家: target]
 ```
 
-将`玩家`的重生点设置在`重生点`。
+将`玩家`的游戏模式改为`游戏模式`。
 
-`玩家`的默认值为执行者。`重生点`的默认值为执行位置。
+`玩家`的默认值为执行者。
+
+`游戏模式`的可选值为：
+
+- `survival`或`s`或`0`：生存模式。
+- `creative`或`c`或`1`：创造模式。
+- `adventure`或`a`或`2`：冒险模式。
+- `default`或`d`或`3`：默认模式。
+- `spectator`：旁观模式。
+
+---
+
+### `/music`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#播放音乐的命令music" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/music" backgroundColor="#1977E3" />
+
+对玩家播放或停止音乐。
+
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
+
+<Tabs>
+
+<TabItem value="play" label="play" default>
+
+```text
+/music play <音轨名: string> [音量: float] [淡入淡出秒数: float] [循环模式: MusicRepeatMode]
+```
+
+对全体玩家立刻播放音乐`音轨名`。可选择音量为`音量`，在刚开始或即将结束时以`淡入淡出秒数`秒淡入淡出，可指定`循环模式`。
+
+`音量`的默认值为`1`。`淡入淡出秒数`的默认值为`0`。
+
+`循环模式`的默认值为`play_once`，可选值为：
+
+- `play_once`：只播放一次。
+- `loop`：循环播放。
+
+`音轨名`必须是在资源包的`sound_definitions.json`中被指定为音乐（`music`）或唱片（`record`）类型的音效才能正常播放。
+
+</TabItem>
+
+<TabItem value="queue" label="queue">
+
+```text
+/music queue <音轨名: string> [音量: float] [淡入淡出秒数: float] [循环模式: MusicRepeatMode]
+```
+
+对全体玩家将 ID 为`音轨名`的音乐加入到播放队列中。可选择音量为`音量`，在刚开始或即将结束时以`淡入淡出秒数`秒淡入淡出，可指定`循环模式`。
+
+`音量`的默认值为`1`。`淡入淡出秒数`的默认值为`0`。
+
+`循环模式`的默认值为`play_once`，可选值为：
+
+- `play_once`：只播放一次。
+- `loop`：循环播放。
+
+`音轨名`必须是在资源包的`sound_definitions.json`中被指定为音乐（`music`）或唱片（`record`）类型的音效才能正常播放。
+
+不能在循环播放的音乐后添加播放队列。
+
+</TabItem>
+
+<TabItem value="stop" label="stop">
+
+```text
+/music stop [淡出秒数: float]
+```
+
+以`淡出秒数`秒淡出停止音乐。
+
+`淡出秒数`的默认值为`0`。
+
+</TabItem>
+
+<TabItem value="volume" label="volume">
+
+```text
+/music volume <音量: float>
+```
+
+调整音乐的音量为`音量`。
+
+</TabItem>
+
+</Tabs>
+
+---
+
+### `/title`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#标题命令title" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/title" backgroundColor="#1977E3" />
+
+对特定玩家发送标题。
+
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
+
+<Tabs>
+
+<TabItem value="title_pos" label="title | subtitle | actionbar" default>
+
+```text
+/title <player: target> <title|subtitle|actionbar> <标题文本: message>
+```
+
+对`玩家`在*标题位置*（`title|subtitle|actionbar`）显示`标题文本`。
+
+*标题位置*可选值为：
+
+- `title`：主标题
+- `subtitle`：副标题
+- `actionbar`：快捷栏标题
+
+</TabItem>
+
+<TabItem value="title_clear" label="clear">
+
+```text
+/title <玩家: target> clear
+```
+
+清空`玩家`的标题。
+
+与`/titleraw`通用。
+
+</TabItem>
+
+<TabItem value="title_reset" label="reset">
+
+```text
+/title <玩家: target> reset
+```
+
+重置`玩家`的标题的淡入、停留和淡出时间。
+
+与`/titleraw`通用。
+
+</TabItem>
+
+<TabItem value="title_times" label="times">
+
+```text
+/title <玩家: target> times <淡入: int> <停留: int> <淡出: int>
+```
+
+将`玩家`的标题时间更改为淡入`淡入`游戏刻、停留`停留`游戏刻、淡出`淡出`游戏刻。
+
+与`/titleraw`通用。
+
+</TabItem>
+
+</Tabs>
+
+## 低频命令
+
+### `/fog`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#迷雾命令fog" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/fog" backgroundColor="#1977E3" />
+
+设置对玩家显示的迷雾。
+
+- **权限等级**：1
+- **使用频率**：★☆☆☆☆
+
+<Tabs>
+
+<TabItem value="push" label="push" default>
+
+```text
+/fog <玩家: target> push <迷雾设定ID: string> <用户提供ID: string>
+```
+
+对`玩家`推入 ID 为`迷雾设定ID`的迷雾栈，并设置为`用户提供ID`以便于清除迷雾栈。
+
+</TabItem>
+
+<TabItem value="pop | remove" label="pop | remove">
+
+```text
+/fog <玩家: target> <模式: delete> <用户提供ID: string>
+```
+
+移除或弹出`玩家`用户提供 ID `用户提供ID`的迷雾栈。
+
+`模式`的可选值为：
+
+- `pop`：从迷雾栈弹出最后一个符合`用户提供ID`的迷雾。
+- `remove`：从迷雾栈移除所有符合符合`用户提供ID`的迷雾。
+
+</TabItem>
+
+</Tabs>
+
+---
+
+### `/hud`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#hud-显示命令hud" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/hud" backgroundColor="#1977E3" />
+
+隐藏或恢复 HUD 的可用性。
+
+- **权限等级**：1
+
+```text
+/hud <玩家: target> <可见性: HudVisibility> [HUD元素: HudElement]
+```
+
+将`玩家`的`HUD元素`的可见性改为`可见性`。
+
+`可见性`的可选值为：
+
+- `reset`：重置 HUD 可见性。
+- `hide`：隐藏 HUD。
+
+`HUD元素`的默认值为`all`，可选值参见 Wiki。
 
 ---
 
@@ -1821,34 +2079,20 @@ in <维度: Dimension> -> execute
 
 ---
 
-### `/gamemode`
+### `/playanimation`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#更改玩家游戏模式的命令gamemode" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/gamemode" backgroundColor="#1977E3" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/playanimation" backgroundColor="#1977E3" />
 
-调整玩家的游戏模式。
+令实体运行动画。
 
 - **权限等级**：1
 - **使用频率**：★★★☆☆
 
----
-
 ```text
-/gamemode <游戏模式: GameMode> [玩家: target]
-/gamemode <游戏模式: int> [玩家: target]
+/playanimation <实体: target> <动画: string> [下个状态: string] [淡出时间: float] [终止表达式: string] [控制器: string]
 ```
 
-将`玩家`的游戏模式改为`游戏模式`。
-
-`玩家`的默认值为执行者。
-
-`游戏模式`的可选值为：
-
-- `survival`或`s`或`0`：生存模式。
-- `creative`或`c`或`1`：创造模式。
-- `adventure`或`a`或`2`：冒险模式。
-- `default`或`d`或`3`：默认模式。
-- `spectator`：旁观模式。
+令`实体`播放`动画`。动画受对应的动画控制器的控制。
 
 ---
 
@@ -1872,23 +2116,6 @@ in <维度: Dimension> -> execute
 
 ---
 
-### `/playanimation`
-
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/playanimation" backgroundColor="#1977E3" />
-
-令实体运行动画。
-
-- **权限等级**：1
-- **使用频率**：★★★☆☆
-
-```text
-/playanimation <实体: target> <动画: string> [下个状态: string] [淡出时间: float] [终止表达式: string] [控制器: string]
-```
-
-令`实体`播放`动画`。动画受对应的动画控制器的控制。
-
----
-
 ### `/setworldspawn`
 
 <Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置出生点setworldspawn" />
@@ -1906,6 +2133,96 @@ in <维度: Dimension> -> execute
 将世界出生点设置在`重生点`。
 
 `重生点`的默认值为执行位置。
+
+---
+
+### `/tickingarea`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界常加载区域的命令tickingarea" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/tickingarea" backgroundColor="#1977E3" />
+
+添加常加载区域。
+
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
+
+<Tabs>
+
+<TabItem value="add" label="add" default>
+
+```text
+/tickingarea add <起点: x y z> <终点: x y z> [名称: string] [预加载: Boolean]
+```
+
+添加含`起点`到`终点`组成的长方体区域的所有区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`。
+
+`名称`的默认值为`AreaX`，其中`X`为从`0`开始的第 n-1 个常加载区域。`预加载`的默认值为`false`。
+
+```text
+/tickingarea add <中心: x y z> <半径: int> [名称: string] [预加载: Boolean]
+```
+
+添加由`中心`和`半径`确定的圆形区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`。
+
+`名称`的默认值为`AreaX`，其中`X`为从`0`开始的第 n-1 个常加载区域。`预加载`的默认值为`false`。
+
+</TabItem>
+
+<TabItem value="remove" label="remove">
+
+```text
+/tickingarea remove <位置: x y z>
+```
+
+移除包含`位置`的常加载区域。
+
+```text
+/tickingarea remove <名称: string>
+```
+
+移除名为`名称`的常加载区域。
+
+```text
+/tickingarea remove_all
+```
+
+移除所有常加载区域。
+
+</TabItem>
+
+<TabItem value="preload" label="preload">
+
+```text
+/tickingarea preload <名称: string> [预加载: Boolean]
+```
+
+将名为`名称`的常加载区域设定预加载信息为`预加载`。
+
+`预加载`为空时，返回符合条件的常加载区域的预加载信息。会受到游戏规则`sendCommandFeedBack`的影响。
+
+```text
+/tickingarea preload <位置: x y z> [预加载: Boolean]
+```
+
+将包含`位置`的常加载区域设定预加载信息为`预加载`。
+
+`预加载`为空时，返回符合条件的常加载区域的预加载信息。会受到游戏规则`sendCommandFeedBack`的影响。
+
+</TabItem>
+
+<TabItem value="list" label="list">
+
+```text
+/tickingarea list [全维度: AllDimensions]
+```
+
+显示当前执行维度的常加载区域。
+
+`全维度`为空时，返回当前维度的常加载区域。`全维度`只能传入`all-dimensions`。`全维度`传入`all-dimensions`时，返回所有维度的常加载区域。
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -1990,7 +2307,94 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
-## 低频命令
+---
+
+### `/xp`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#添加或夺走经验xp" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/xp" backgroundColor="#1977E3" />
+
+增加或移除玩家的经验。
+
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
+
+<Tabs>
+
+<TabItem value="1" label="经验点数" default>
+
+```text
+/xp <数值: int> [玩家: target]
+```
+
+给予`玩家` `数值`点经验值。
+
+`玩家`的默认值为执行者。
+
+`数值`必须是正数。
+
+</TabItem>
+
+<TabItem value="2" label="经验等级">
+
+```text
+/xp <数值: int>L [玩家: target]
+```
+
+给予`玩家` `数值`等级的经验。
+
+`玩家`的默认值为执行者。
+
+`数值`允许为负数，此时将改为移除玩家对应等级的经验值。
+
+</TabItem>
+
+</Tabs>
+
+---
+
+### `/loot`
+
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/loot" backgroundColor="#1977E3" />
+
+生成、给予、插入、替换战利品。
+
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
+
+---
+
+```text
+/loot <目标> <来源>
+```
+
+对`目标`按照`来源`的战利品表进行规定操作。
+
+`目标`确定操作的目标和操作方法。可用的子命令如下表所示。其中，`[数量: int]`的默认值为`1`。
+
+| 子命令 | 含义 |
+| --- | --- |
+| `give <玩家: target>` | 给予`玩家`战利品 |
+| `insert <位置: x y z>` | 向`位置`的容器按顺序插入战利品 |
+| `spawn <位置: x y z>` | 在`位置`生成战利品 |
+| `replace block <位置: x y z> slot.container <槽位ID: int> [数量: int]` | 对`位置`处的容器，从`槽位ID`的槽位开始，清除`数量`个槽位后，再插入至多`数量`种战利品 |
+| `replace entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> [数量: int]` | 对`实体`的物品栏，从`槽位ID`的槽位开始，清除`数量`个`槽位类型`的槽位后，再插入至多`数量`种战利品 |
+
+`来源`确定调用的战利品表。可用的子命令如下表所示：
+
+:::warning[版本适用性警告]
+
+`mine`子命令仅限 1.21.60+ 版本可用。
+
+:::
+
+| 子命令 | 含义 |
+| --- | --- |
+| `kill <实体: target> [<tool>\|mainhand\|offhand: string]` | 模拟使用指定工具杀死`实体`后的战利品表 |
+| `loot <战利品表: string> [<tool>\|mainhand\|offhand: string]` | 模拟使用指定工具直接调用`战利品表`（不带`loot_tables/`和`.json`后缀） |
+| `mine <目标方块位置: x y z> [<tool>\|mainhand\|offhand: string]` | 模拟使用指定工具挖掘`目标方块位置`后的战利品表 |
+
+---
 
 ### `/difficulty`
 
@@ -2018,81 +2422,66 @@ in <维度: Dimension> -> execute
 
 ---
 
-### `/music`
+### `/weather`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#播放音乐的命令music" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/music" backgroundColor="#1977E3" />
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整天气的命令weather" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/weather" backgroundColor="#1977E3" />
 
-对玩家播放或停止音乐。
+调整或查询天气状态。
 
 - **权限等级**：1
 - **使用频率**：★★☆☆☆
 
 <Tabs>
 
-<TabItem value="play" label="play" default>
+<TabItem value="set" label="set" default>
 
 ```text
-/music play <音轨名: string> [音量: float] [淡入淡出秒数: float] [循环模式: MusicRepeatMode]
+/weather <clear|rain|thunder> [时长: int]
 ```
 
-对全体玩家立刻播放音乐`音轨名`。可选择音量为`音量`，在刚开始或即将结束时以`淡入淡出秒数`秒淡入淡出，可指定`循环模式`。
+设置特定的天气（`clear|rain|thunder`）为`时长`游戏刻。
 
-`音量`的默认值为`1`。`淡入淡出秒数`的默认值为`0`。
-
-`循环模式`的默认值为`play_once`，可选值为：
-
-- `play_once`：只播放一次。
-- `loop`：循环播放。
-
-`音轨名`必须是在资源包的`sound_definitions.json`中被指定为音乐（`music`）或唱片（`record`）类型的音效才能正常播放。
+若`时长`为空，则设置为`6000`\~`18000`（5\~15 分钟）之间的一个随机值。
 
 </TabItem>
 
-<TabItem value="queue" label="queue">
+<TabItem value="query" label="query">
 
 ```text
-/music queue <音轨名: string> [音量: float] [淡入淡出秒数: float] [循环模式: MusicRepeatMode]
+/weather query
 ```
 
-对全体玩家将 ID 为`音轨名`的音乐加入到播放队列中。可选择音量为`音量`，在刚开始或即将结束时以`淡入淡出秒数`秒淡入淡出，可指定`循环模式`。
+查询天气。
 
-`音量`的默认值为`1`。`淡入淡出秒数`的默认值为`0`。
-
-`循环模式`的默认值为`play_once`，可选值为：
-
-- `play_once`：只播放一次。
-- `loop`：循环播放。
-
-`音轨名`必须是在资源包的`sound_definitions.json`中被指定为音乐（`music`）或唱片（`record`）类型的音效才能正常播放。
-
-不能在循环播放的音乐后添加播放队列。
-
-</TabItem>
-
-<TabItem value="stop" label="stop">
-
-```text
-/music stop [淡出秒数: float]
-```
-
-以`淡出秒数`秒淡出停止音乐。
-
-`淡出秒数`的默认值为`0`。
-
-</TabItem>
-
-<TabItem value="volume" label="volume">
-
-```text
-/music volume <音量: float>
-```
-
-调整音乐的音量为`音量`。
+会受到游戏规则`sendCommandFeedBack`的影响。
 
 </TabItem>
 
 </Tabs>
+
+---
+
+### `/enchant`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#为物品附魔的命令enchant" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/enchant" backgroundColor="#1977E3" />
+
+附魔玩家手里的物品。
+
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
+
+```text
+/enchant <玩家: target> <附魔: int> [等级: int]
+/enchant <玩家: target> <附魔: Enchant> [等级: int]
+```
+
+将`玩家`手持的物品设置为`等级`的`附魔`。
+
+`等级`的默认值为`1`。
+
+附魔不能超过物品所允许的魔咒类别和魔咒等级。
 
 ---
 
@@ -2109,12 +2498,6 @@ in <维度: Dimension> -> execute
 <Tabs>
 
 <TabItem value="delay" label="delay" default>
-
-:::warning[版本适用性警告]
-
-队列延时语法仅适用于 1.21.50+ 版本。
-
-:::
 
 <Tabs>
 
@@ -2214,12 +2597,6 @@ in <维度: Dimension> -> execute
 
 <TabItem value="clear function" label="clear function">
 
-:::warning[版本适用性警告]
-
-队列清除语法仅适用于 1.21.40+ 版本。
-
-:::
-
 ```text
 /schedule on_area_loaded clear function <函数: filepath>
 ```
@@ -2229,12 +2606,6 @@ in <维度: Dimension> -> execute
 </TabItem>
 
 <TabItem value="clear tickingarea" label="clear tickingarea">
-
-:::warning[版本适用性警告]
-
-队列清除语法仅适用于 1.21.40+ 版本。
-
-:::
 
 ```text
 /schedule on_area_loaded clear tickingarea <名称: string> [函数: filepath]
@@ -2250,127 +2621,11 @@ in <维度: Dimension> -> execute
 
 <TabItem value="clear" label="clear">
 
-:::warning[版本适用性警告]
-
-队列清除语法仅适用于 1.21.40+ 版本。
-
-:::
-
 ```text
 /schedule clear <函数: filepath>
 ```
 
 移除队列中的`函数`。
-
-</TabItem>
-
-</Tabs>
-
----
-
-### `/stopsound`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#停止音效的命令stopsound" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/stopsound" backgroundColor="#1977E3" />
-
-停止播放音效。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
-```text
-/stopsound <玩家: target> [音效: string]
-```
-
-停止对`玩家`播放`音效`。
-
-`音效`为空时，停止播放一切音效。
-
----
-
-### `/tickingarea`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界常加载区域的命令tickingarea" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/tickingarea" backgroundColor="#1977E3" />
-
-添加常加载区域。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
-<Tabs>
-
-<TabItem value="add" label="add" default>
-
-```text
-/tickingarea add <起点: x y z> <终点: x y z> [名称: string] [预加载: Boolean]
-```
-
-添加含`起点`到`终点`组成的长方体区域的所有区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`。
-
-`名称`的默认值为`AreaX`，其中`X`为从`0`开始的第 n-1 个常加载区域。`预加载`的默认值为`false`。
-
-```text
-/tickingarea add <中心: x y z> <半径: int> [名称: string] [预加载: Boolean]
-```
-
-添加由`中心`和`半径`确定的圆形区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`。
-
-`名称`的默认值为`AreaX`，其中`X`为从`0`开始的第 n-1 个常加载区域。`预加载`的默认值为`false`。
-
-</TabItem>
-
-<TabItem value="remove" label="remove">
-
-```text
-/tickingarea remove <位置: x y z>
-```
-
-移除包含`位置`的常加载区域。
-
-```text
-/tickingarea remove <名称: string>
-```
-
-移除名为`名称`的常加载区域。
-
-```text
-/tickingarea remove_all
-```
-
-移除所有常加载区域。
-
-</TabItem>
-
-<TabItem value="preload" label="preload">
-
-```text
-/tickingarea preload <名称: string> [预加载: Boolean]
-```
-
-将名为`名称`的常加载区域设定预加载信息为`预加载`。
-
-`预加载`为空时，返回符合条件的常加载区域的预加载信息。会受到游戏规则`sendCommandFeedBack`的影响。
-
-```text
-/tickingarea preload <位置: x y z> [预加载: Boolean]
-```
-
-将包含`位置`的常加载区域设定预加载信息为`预加载`。
-
-`预加载`为空时，返回符合条件的常加载区域的预加载信息。会受到游戏规则`sendCommandFeedBack`的影响。
-
-</TabItem>
-
-<TabItem value="list" label="list">
-
-```text
-/tickingarea list [全维度: AllDimensions]
-```
-
-显示当前执行维度的常加载区域。
-
-`全维度`为空时，返回当前维度的常加载区域。`全维度`只能传入`all-dimensions`。`全维度`传入`all-dimensions`时，返回所有维度的常加载区域。
 
 </TabItem>
 
@@ -2470,126 +2725,55 @@ in <维度: Dimension> -> execute
 
 ---
 
-### `/weather`
+### `/stopsound`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整天气的命令weather" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/weather" backgroundColor="#1977E3" />
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#停止音效的命令stopsound" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/stopsound" backgroundColor="#1977E3" />
 
-调整或查询天气状态。
+停止播放音效。
+
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
+
+```text
+/stopsound <玩家: target> [音效: string]
+```
+
+停止对`玩家`播放`音效`。
+
+`音效`为空时，停止播放一切音效。
+
+---
+
+### `/damage`
+
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#施加特定伤害damage" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/damage" backgroundColor="#1977E3" />
+
+对实体造成伤害。
 
 - **权限等级**：1
 - **使用频率**：★★☆☆☆
 
 <Tabs>
 
-<TabItem value="set" label="set" default>
+<TabItem value="实体伤害" label="实体伤害" default>
 
 ```text
-/weather <clear|rain|thunder> [时长: int]
+/damage <目标: target> <伤害值: int> <成因: DamageCause> entity <伤害者: target>
 ```
 
-设置特定的天气（`clear|rain|thunder`）为`时长`游戏刻。
-
-若`时长`为空，则设置为`6000`\~`18000`（5\~15 分钟）之间的一个随机值。
+给`目标`施加伤害类型为`成因`、施加伤害的实体为`伤害者`的`伤害值`点伤害。
 
 </TabItem>
 
-<TabItem value="query" label="query">
+<TabItem value="执行者伤害" label="执行者伤害">
 
 ```text
-/weather query
+/damage <目标: target> <伤害值: int> [成因: DamageCause]
 ```
 
-查询天气。
-
-会受到游戏规则`sendCommandFeedBack`的影响。
-
-</TabItem>
-
-</Tabs>
-
----
-
-### `/enchant`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#为物品附魔的命令enchant" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/enchant" backgroundColor="#1977E3" />
-
-附魔玩家手里的物品。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
-```text
-/enchant <玩家: target> <附魔: int> [等级: int]
-/enchant <玩家: target> <附魔: Enchant> [等级: int]
-```
-
-将`玩家`手持的物品设置为`等级`的`附魔`。
-
-`等级`的默认值为`1`。
-
-附魔不能超过物品所允许的魔咒类别和魔咒等级。
-
----
-
-### `/mobevent`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界生物生成事件的命令mobevent" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/mobevent" backgroundColor="#1977E3" />
-
-更改世界生物生成事件。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
-```text
-/mobevent <事件: MobEvent> [值: Boolean]
-```
-
-设置生物生成的`事件`为`值`。
-
-`值`为空时，改为查询事件。会受到游戏规则`sendCommandFeedBack`的影响。
-
----
-
-### `/xp`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#添加或夺走经验xp" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/xp" backgroundColor="#1977E3" />
-
-增加或移除玩家的经验。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
-<Tabs>
-
-<TabItem value="1" label="经验点数" default>
-
-```text
-/xp <数值: int> [玩家: target]
-```
-
-给予`玩家` `数值`点经验值。
-
-`玩家`的默认值为执行者。
-
-`数值`必须是正数。
-
-</TabItem>
-
-<TabItem value="2" label="经验等级">
-
-```text
-/xp <数值: int>L [玩家: target]
-```
-
-给予`玩家` `数值`等级的经验。
-
-`玩家`的默认值为执行者。
-
-`数值`允许为负数，此时将改为移除玩家对应等级的经验值。
+给`目标`施加伤害类型为`成因`的`伤害值`点伤害。
 
 </TabItem>
 
@@ -2642,150 +2826,23 @@ in <维度: Dimension> -> execute
 
 ---
 
-### `/damage`
+### `/mobevent`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#施加特定伤害damage" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/damage" backgroundColor="#1977E3" />
+<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界生物生成事件的命令mobevent" />
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/mobevent" backgroundColor="#1977E3" />
 
-对实体造成伤害。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
-<Tabs>
-
-<TabItem value="实体伤害" label="实体伤害" default>
-
-```text
-/damage <目标: target> <伤害值: int> <成因: DamageCause> entity <伤害者: target>
-```
-
-给`目标`施加伤害类型为`成因`、施加伤害的实体为`伤害者`的`伤害值`点伤害。
-
-</TabItem>
-
-<TabItem value="执行者伤害" label="执行者伤害">
-
-```text
-/damage <目标: target> <伤害值: int> [成因: DamageCause]
-```
-
-给`目标`施加伤害类型为`成因`的`伤害值`点伤害。
-
-</TabItem>
-
-</Tabs>
-
----
-
-### `/loot`
-
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/loot" backgroundColor="#1977E3" />
-
-生成、给予、插入、替换战利品。
+更改世界生物生成事件。
 
 - **权限等级**：1
 - **使用频率**：★★☆☆☆
 
----
-
 ```text
-/loot <目标> <来源>
+/mobevent <事件: MobEvent> [值: Boolean]
 ```
 
-对`目标`按照`来源`的战利品表进行规定操作。
+设置生物生成的`事件`为`值`。
 
-`目标`确定操作的目标和操作方法。可用的子命令如下表所示。其中，`[数量: int]`的默认值为`1`。
-
-| 子命令 | 含义 |
-| --- | --- |
-| `give <玩家: target>` | 给予`玩家`战利品 |
-| `insert <位置: x y z>` | 向`位置`的容器按顺序插入战利品 |
-| `spawn <位置: x y z>` | 在`位置`生成战利品 |
-| `replace block <位置: x y z> slot.container <槽位ID: int> [数量: int]` | 对`位置`处的容器，从`槽位ID`的槽位开始，清除`数量`个槽位后，再插入至多`数量`种战利品 |
-| `replace entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> [数量: int]` | 对`实体`的物品栏，从`槽位ID`的槽位开始，清除`数量`个`槽位类型`的槽位后，再插入至多`数量`种战利品 |
-
-`来源`确定调用的战利品表。可用的子命令如下表所示：
-
-:::warning[版本适用性警告]
-
-`mine`子命令仅限 1.21.60+ 版本可用。
-
-:::
-
-| 子命令 | 含义 |
-| --- | --- |
-| `kill <实体: target> [<tool>\|mainhand\|offhand: string]` | 模拟使用指定工具杀死`实体`后的战利品表 |
-| `loot <战利品表: string> [<tool>\|mainhand\|offhand: string]` | 模拟使用指定工具直接调用`战利品表`（不带`loot_tables/`和`.json`后缀） |
-| `mine <目标方块位置: x y z> [<tool>\|mainhand\|offhand: string]` | 模拟使用指定工具挖掘`目标方块位置`后的战利品表 |
-
----
-
-### `/title`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#标题命令title" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/title" backgroundColor="#1977E3" />
-
-对特定玩家发送标题。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
-<Tabs>
-
-<TabItem value="title_pos" label="title | subtitle | actionbar" default>
-
-```text
-/title <player: target> <title|subtitle|actionbar> <标题文本: message>
-```
-
-对`玩家`在*标题位置*（`title|subtitle|actionbar`）显示`标题文本`。
-
-*标题位置*可选值为：
-
-- `title`：主标题
-- `subtitle`：副标题
-- `actionbar`：快捷栏标题
-
-</TabItem>
-
-<TabItem value="title_clear" label="clear">
-
-```text
-/title <玩家: target> clear
-```
-
-清空`玩家`的标题。
-
-与`/titleraw`通用。
-
-</TabItem>
-
-<TabItem value="title_reset" label="reset">
-
-```text
-/title <玩家: target> reset
-```
-
-重置`玩家`的标题的淡入、停留和淡出时间。
-
-与`/titleraw`通用。
-
-</TabItem>
-
-<TabItem value="title_times" label="times">
-
-```text
-/title <玩家: target> times <淡入: int> <停留: int> <淡出: int>
-```
-
-将`玩家`的标题时间更改为淡入`淡入`游戏刻、停留`停留`游戏刻、淡出`淡出`游戏刻。
-
-与`/titleraw`通用。
-
-</TabItem>
-
-</Tabs>
+`值`为空时，改为查询事件。会受到游戏规则`sendCommandFeedBack`的影响。
 
 ## 零频命令
 
@@ -2827,47 +2884,6 @@ in <维度: Dimension> -> execute
 清除`玩家`的重生点。
 
 `玩家`的默认值为执行者。
-
----
-
-### `/fog`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#迷雾命令fog" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/fog" backgroundColor="#1977E3" />
-
-设置对玩家显示的迷雾。
-
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
-
-<Tabs>
-
-<TabItem value="push" label="push" default>
-
-```text
-/fog <玩家: target> push <迷雾设定ID: string> <用户提供ID: string>
-```
-
-对`玩家`推入 ID 为`迷雾设定ID`的迷雾栈，并设置为`用户提供ID`以便于清除迷雾栈。
-
-</TabItem>
-
-<TabItem value="pop | remove" label="pop | remove">
-
-```text
-/fog <玩家: target> <模式: delete> <用户提供ID: string>
-```
-
-移除或弹出`玩家`用户提供 ID `用户提供ID`的迷雾栈。
-
-`模式`的可选值为：
-
-- `pop`：从迷雾栈弹出最后一个符合`用户提供ID`的迷雾。
-- `remove`：从迷雾栈移除所有符合符合`用户提供ID`的迷雾。
-
-</TabItem>
-
-</Tabs>
 
 ---
 
@@ -3018,12 +3034,6 @@ in <维度: Dimension> -> execute
 ```text
 spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: float> <实体: target> [最高高度: value]
 ```
-
-:::warning[版本适用性警告]
-
-`最高高度`参数仅限 1.21.10+ 版本可用。
-
-:::
 
 将实体随机扩散到以`x`和`z`为中心，边长为（2*`最大范围`+1）的正方形区域的地表，并要求其间距不小于`实体间距离`。若指定`最高高度`，则地表的判定改为`最高高度`下方的地表。
 
@@ -3239,12 +3249,6 @@ connect <服务器URI: text>
 /reload [全部: reload_all]
 ```
 
-:::warning[版本适用性警告]
-
-`全部`参数仅限 1.21.30+ 版本可用。
-
-:::
-
 重新热加载函数和脚本（仅限国际版的 ScriptAPI）。如果`全部`指定为`all`，则退出地图再重新加载。
 
 ---
@@ -3357,36 +3361,6 @@ allowlist reload
 ## 新版命令
 
 定义当前中国版到目前最新国际正式版中间的这些版本可用的命令，称为新版命令，均为稳定玩法。
-
-### `/hud`
-
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#hud-显示命令hud" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/hud" backgroundColor="#1977E3" />
-
-:::warning[版本适用性警告]
-
-该命令仅限 1.20.80+ 版本可用。
-
-:::
-
-隐藏或恢复 HUD 的可用性。
-
-- **权限等级**：1
-
-```text
-/hud <玩家: target> <可见性: HudVisibility> [HUD元素: HudElement]
-```
-
-将`玩家`的`HUD元素`的可见性改为`可见性`。
-
-`可见性`的可选值为：
-
-- `reset`：重置 HUD 可见性。
-- `hide`：隐藏 HUD。
-
-`HUD元素`的默认值为`all`，可选值参见 Wiki。
-
----
 
 ### `/aimassist`
 
@@ -3531,6 +3505,35 @@ allowlist reload
 </Tabs>
 
 ---
+
+### `/packstack`
+
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/packstack" backgroundColor="#1977E3" />
+
+:::warning[版本适用性警告]
+
+该命令仅限 26.0+ 版本可用。
+
+:::
+
+输出当前附加包的数据。
+
+- **权限等级**：0
+
+```text
+/packstack <包类型: stackType> [详细输出: verbose] [是否排除原版包: exclude-vanilla]
+```
+
+输出当前附加包的数据（包名、UUID、类型、版本等）。
+
+`包类型`可选值为：
+
+- `client`：输出资源包数据
+- `server`：输出行为包数据
+
+`详细输出`可选值为`verbose`。指定此参数时将输出包的包名、UUID、类型、版本信息，否则只显示包名信息。
+
+`是否排除原版包`可选值为`exclude-vanilla`。指定此参数时将不再输出原版包信息。
 
 ## 中国版命令
 
