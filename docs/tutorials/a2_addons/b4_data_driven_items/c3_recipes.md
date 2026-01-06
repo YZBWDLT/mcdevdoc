@@ -4,17 +4,11 @@ sidebar_position: 3
 
 # 4.3 合成配方
 
-> 上次更新：2026 年 1 月 5 日
+> 上次更新：2026 年 1 月 6 日
 
 import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
-
-:::warning[温馨提示]
-
-本文仍在编辑中，内容仅供参考。
-
-:::
 
 简单回顾一下，在上一节，我们做了一个红宝石。目前来说，这个红宝石没有任何用途，你拿它是做不了任何事情的。我们可以考虑……用它来合成一些物品！这需要让它成为某个**合成配方（Recipe）** 的一部分。是的，本节我们来介绍一下如何实现新的合成配方。
 
@@ -808,7 +802,89 @@ recipe take @a *
 
 ## 总结
 
+在这一节，我们介绍了有关合成配方的许多内容，主要包括以下几个方面：
+
+- 如何定义一个新的配方。我们在本节详细介绍了有序配方、无序配方和熔炉配方的语法。
+  - 有序配方要求玩家必须按照特定的搭配方式摆放合成材料才能合成物品。
+  - 无序配方仅要求有对应类型的合成材料即可。
+  - 熔炉配方要求玩家必须输入一个有效物品才能烧制为成品。
+  - 以上 3 种配方，和剩下的 4 种配方一起，都记录在[我们给出的配方表文档](/docs/docs/items/recipes)中，读者需要时请自行查阅。
+- 如何在一个配方里表达一种或一类物品。可以使用以下几种方式：
+  - 直接使用<DataType type="string"/>表达物品，例如`"minecraft:black_dye"`。
+  - 使用<DataType type="object"/>表达物品，例如`{ "item": "minecraft:dye", "data": 0, "count": 1 }`。
+  - 使用物品标签<DataType type="object"/>表达一类物品，例如`{ "tag": "minecraft:planks" }`。原版使用的标签可以在[我们给出的物品标签文档](/docs/docs/items/tags)中找到，也可以通过[物品组件`minecraft:tag`](/docs/docs/items/components#minecrafttags)直接为我们的数驱物品定义标签。
+- 如何使用命令控制配方——即利用`/recipe`和`/gamerule`进行控制。因为不能阻止配方的获取，这两条命令在实际工程中的应用有限。
+
 ## 练习
+
+:::info[练习 4.2]
+
+我们在这节讲解了合成配方，但看看这一章的标题吧——数据驱动物品！所以，我们这一节的练习会是一个承上启下的作用！
+
+本节的练习请认真做完哦，我们下节及后续内容都会用到！
+
+1. 利用我们所定义的红宝石，以及前文所介绍的制作红宝石剑的方法，快速定义出红宝石头盔、胸甲、护腿、靴子、镐斧锹锄。我们下一节都会用到！但是，只需要定义即可，不需要给它们加功能——那也是我们下节要做的事。
+2. 然后，基于第 1 问所定义的物品，为它们各自添加配方！
+3. 我们知道 2 个下界石英和 2 个圆石合成 2 个闪长岩，而闪长岩和圆石合成 2 个安山岩。请直接做一个无序配方，直接通过圆石和下界石英一步到位合成安山岩！合成材料所需的数量比例请自行计算。
+4. 民以食为天，我们来做一些新的食物吧！
+   1. 首先定义面粉（`test:flour`）和面团（`test:dough`），以下为两个参考贴图：  
+      面粉：![flour](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/flour.png) 面团：![dough](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/dough.png) （读者可以下载去，~画功不好请见谅~）  
+   2. 现在，我们新增两个配方，首先定义一个无序配方，将小麦合成为面粉；然后，定义一个无序配方，使面粉和水桶合成为面团；最后，使面团在熔炉中烧制为面包。
+
+:::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. 按照上文所介绍的方法（红宝石颜色 + bb 颜色画笔法）分别画出如下所示的图像：  
+   红宝石剑：![ruby_sword](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword.png) 红宝石镐：![ruby_pickaxe](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_pickaxe.png) 红宝石斧：![ruby_axe](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_axe.png) 红宝石锹：![ruby_shovel](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_shovel.png) 红宝石锄：![ruby_hoe](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_hoe.png) 红宝石头盔：![ruby_helmet](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_helmet.png) 红宝石胸甲：![ruby_chestplate](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_chestplate.png) 红宝石护腿：![ruby_leggings](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_leggings.png) 红宝石靴子：![ruby_boots](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_boots.png)  
+   然后，分别定义其他 8 种物品。注意为它们分别加上对应的标签，有些标签是具有特定功能的。  
+   ![practice_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_1.png)
+   ![practice_2](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_2.png)  
+   请不要嫌麻烦！定义物品，尤其是一次性定义很多物品的时候就是这样枯燥的过程！再加上翻译，我们的定义就完成了。  
+   ![practice_3](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_3.png)  
+
+2. 基于第 1 问的结果，现在我们为它们分别添加配方。它们使用的配方均为有序配方。
+   ![practice_4](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_4.png)  
+   ![practice_5](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_5.png)  
+   下面是两个我们定义的结果。读者可以看到，对于对称配方，斧头和我们上面定义的摆放方式是对称的，所以也可以合成。如果使用`"assume_symmetry": false`，那么这样就合成不出东西了。
+   ![practice_6](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_6.png)  
+   ![practice_7](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_7.png)  
+3. 根据题意，2 下界石英 + 2 圆石 → 2 闪长岩，平均每个闪长岩需要 1 下界石英和 1 圆石。这样，2 个安山岩就平均需要 1 个下界石英和 2 个圆石。我们需要定义这样的无序配方：1 下界石英 + 2 圆石 → 2 安山岩。因此，定义下面的配方即可：
+
+    ```json
+    {
+        "format_version": "1.21.0",
+        "minecraft:recipe_shapeless": {
+            "description": {
+                "identifier": "test:andesite_from_quartz"
+            },
+            "tags": [ "crafting_table" ],
+            "unlock": [
+                { "item": "minecraft:quartz" }
+            ],
+            "ingredients": [
+                { "item": "minecraft:cobblestone", "count": 2 },
+                { "item": "minecraft:quartz" }
+            ],
+            "result": { "item": "minecraft:andesite", "count": 2 }
+        }
+    }
+    ```
+
+   ![practice_8](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_8.png)  
+   读者也可以做 2 下界石英 + 4 圆石 → 4 安山岩的配方。
+
+4. 1. 如图，定义这两个新物品：
+      ![practice_9](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_9.png)  
+      ![practice_10](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_10.png)  
+   2. 按照题意，定义三个新配方：
+      ![practice_11](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_11.png)  
+      ![practice_12](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_12.png)  
+      遗憾的是，我们的自定义配方和原版的蛋糕仍然有不同，这个操作会把桶吞掉，且没有补救措施。
+
+</details>
 
 import GiscusComment from "/src/components/comment/giscus.js"
 
