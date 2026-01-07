@@ -357,7 +357,7 @@ import DataType from "/src/components/type/data"
 <treeview>
 - <DataType type="object" name="minecraft:block_placer"/>：根对象
   - <DataType type="string" name="block" isRequired/>：将放置为何种方块。
-  - <DataType type="boolean" name="replace_block_item"/>：（1.21.60+）是否将此物品与对应方块绑定，若绑定则当方块被破坏后将掉落该物品。备注：物品 ID 必须与对应的方块 ID 保持一致。
+  - <DataType type="boolean" name="replace_block_item"/>：（1.21.50+）是否将此物品与对应方块绑定，若绑定则当方块被破坏后将掉落该物品。备注：物品 ID 必须与对应的方块 ID 保持一致。
   - <DataType type="array" name="use_on"/>：可放置于的方块列表。如果留空，则默认为可放置于所有方块上。
     - <DataType type="string"/>：方块 ID。
 </treeview>

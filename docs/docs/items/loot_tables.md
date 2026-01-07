@@ -33,6 +33,8 @@ import DataType from "/src/components/type/data"
 
 ## 战利品功能
 
+### `set_potion`
+
 ---
 ---
 
