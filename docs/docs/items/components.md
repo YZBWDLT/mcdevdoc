@@ -1480,7 +1480,10 @@ import DataType from "/src/components/type/data"
 
 :::warning[注意]
 
-要使用该组件，必须先定义[`minecraft:max_stack_size`](#minecraftmax_stack_size)组件，并将其值设为`1`，否则该组件可能无法正常工作。
+要使用该组件：
+
+- 必须先定义[`minecraft:max_stack_size`](#minecraftmax_stack_size)组件，并将其值设为`1`，否则该组件可能无法正常工作。
+- 建议定义[`minecraft:bundle_interaction`](#minecraftbundle_interaction)组件，以使此物品能够正常交互。
 
 :::
 
@@ -1493,8 +1496,9 @@ import DataType from "/src/components/type/data"
     - <DataType type="string"/>：允许存储的物品 ID。
   - <DataType type="array" name="banned_items"/>：禁止存储的物品，在此列名单中的物品无法存储。
     - <DataType type="string"/>：允许存储的物品 ID。
-  - <DataType type="int" name="max_slots"/>：（1.21.40 - 1.21.50）该物品的最大容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)组件。
-  - <DataType type="int" name="max_weight_limit"/>：（1.21.40 - 1.21.50）该物品在其他可存储物品中占用的容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier)组件。
+  - <DataType type="int" name="max_slots"/>：该物品的最大槽位数。
+  - <DataType type="int" name="max_weight_limit"/>：（1.21.40 - 1.21.50）该物品在其他可存储物品中占用的容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)组件。
+  - <DataType type="int" name="weight_in_storage_item"/>：（1.21.40 - 1.21.50）该物品在其他可存储物品中占用的容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier)组件。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
