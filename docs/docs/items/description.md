@@ -46,7 +46,7 @@ import DataType from "/src/components/type/data"
     - **[<FileType type="file" name="zh_CN.lang"/>](#语言文件键名)：定义物品的中文译名**
   - <FileType type="folder" name="textures"/>
     - <FileType type="folder" name="items"/>
-      - **<FileType type="file" name="(物品 ID).png"/>：定义物品的贴图**
+      - **<FileType type="image" name="(物品 ID).png"/>：定义物品的贴图**
     - **[<FileType type="file" name="item_texture.json"/>](#贴图文件格式)：物品贴图注册**
 
 </treeview>
@@ -72,7 +72,7 @@ import DataType from "/src/components/type/data"
     - **[<FileType type="file" name="zh_CN.lang"/>](#语言文件键名)：定义物品的中文译名**
   - <FileType type="folder" name="textures"/>
     - <FileType type="folder" name="items"/>
-      - **<FileType type="file" name="(物品 ID).png"/>：定义物品的贴图**
+      - **<FileType type="image" name="(物品 ID).png"/>：定义物品的贴图**
     - **[<FileType type="file" name="item_texture.json"/>](#贴图文件格式)：物品贴图注册**
 
 </treeview>
@@ -102,7 +102,7 @@ import DataType from "/src/components/type/data"
     - **[<FileType type="file" name="zh_CN.lang"/>](#语言文件键名)：定义物品的中文译名**
   - <FileType type="folder" name="textures"/>
     - <FileType type="folder" name="items"/>
-      - **<FileType type="file" name="(物品 ID).png"/>：定义物品的贴图**
+      - **<FileType type="image" name="(物品 ID).png"/>：定义物品的贴图**
     - **[<FileType type="file" name="item_texture.json"/>](#贴图文件格式)：物品贴图注册**
 
 </treeview>

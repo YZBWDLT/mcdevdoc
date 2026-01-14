@@ -1922,7 +1922,7 @@ import DataType from "/src/components/type/data"
   - <DataType type="string" name="cooldown_type"/>：食物在使用后进入的冷却类型，共享同种冷却类型的物品将会一起进入冷却阶段。
   - <DataType type="int" name="cooldown_time"/>：食物在使用后进入的冷却时间，单位为游戏刻，共享同种冷却类型的物品将会一起进入冷却阶段。
   - <DataType type="boolean" name="can_always_eat"/>：食物是否在任何情况下都可食用，否则仅当玩家的饥饿值不满时才可食用。
-  - <DataType type="array" name="effect"/>：食物在食用后提供的状态效果。
+  - <DataType type="array" name="effects"/>：食物在食用后提供的状态效果。
     - <DataType type="object"/>：状态效果信息。
       - <DataType type="string" name="name"/>：提供的状态效果 ID。
       - <DataType type="float" name="chance"/>：有多大的几率提供这个状态效果。应在`0.0`-`1.0`之间（含）。不同状态效果间，该值是独立判断的。
