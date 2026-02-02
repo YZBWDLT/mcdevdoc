@@ -6,7 +6,9 @@
 
 :::
 
-> 关键词：玩家与方块交互前事件（`PlayerInteractWithBlockBeforeEvent`）、方块状态替换（`Block.setPermutation()`）、方块状态解析（`BlockPermutation.resolve()`）
+> 上次更新：2026 年 2 月 2 日
+>
+> 关键词：玩家与方块交互前事件（`PlayerInteractWithBlockBeforeEvent`）、方块状态替换（`Block.setPermutation()`）、方块状态解析（`BlockPermutation.resolve()`）、事件取消（`event.cancel`）等
 
 火把、灵魂火把和铜火把的配方是如此的相像，它们都共用煤炭和木棍，而只相差一个材料而已。能不能实现使用特定材料与这些火把交互，并改变它们的类型呢？答案当然是可以！
 
