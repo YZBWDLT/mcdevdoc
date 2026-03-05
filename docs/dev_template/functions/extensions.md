@@ -571,6 +571,12 @@ execute if score playerAmount data matches 14 run say 1
 
 返回玩家或服务器拥有者所正在使用的客户端，为国际版还是中国版。
 
+:::warning[温馨提示]
+
+本段代码因实际需求，被迫采用不雅用语，请理性看待，日常生活请文明发言。
+
+:::
+
 - **返回**：`data.client`：输出客户端，`0`为国际版，`1`为中国版。
 - **函数**：`/function lib/get_data/client`
 - **原理**：网易屏蔽词屏蔽整条命令。
@@ -601,12 +607,12 @@ scoreboard players set client data 0
 
 # 假定当前正在使用网易版
 scoreboard players set client data 1
-# 试图在记分板添加data.sb（这是屏蔽词，如果为网易版，该命令无法执行）
-scoreboard players set sb data 0
-# 若检测到data.sb的分数，即上一条命令未被屏蔽，证明是国际版，更改data.client
-execute if score sb data matches 0 run scoreboard players set client data 0
-# 移除data.sb
-scoreboard players reset sb data
+# 试图在记分板添加data.肏（这是屏蔽词，如果为网易版，该命令无法执行）
+scoreboard players set 肏 data 0
+# 若检测到data.肏的分数，即上一条命令未被屏蔽，证明是国际版，更改data.client
+execute if score 肏 data matches 0 run scoreboard players set client data 0
+# 移除data.肏
+scoreboard players reset 肏 data
 
 ```
 

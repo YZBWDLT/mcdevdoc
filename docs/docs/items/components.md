@@ -2022,7 +2022,7 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:icon`
 
-<Version isRP isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-icon" isChinaVersion/>
+<Version isRP isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-icon" isChinaVersion isRP/>
 
 定义物品的图标。
 
