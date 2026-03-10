@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 1.1 JavaScript 基础
 
-> 上次更新：2026 年 3 月 9 日
+> 上次更新：2026 年 3 月 10 日
 
 :::warning[注意]
 
@@ -478,33 +478,646 @@ value >= 5 && value < 3; // 5 >= 5 为真，5 < 3 为假，真且假为假，fal
 
 ### 运算符的优先级
 
+以上介绍到的运算符的优先级各不相同。高优先级的运算符会先行运算，比如`**`会先于`*`进行计算：
+
+```javascript
+2 * 3 ** 4; // 162，因为先计算 3 的 4 次方为 81 后，再乘 2
+```
+
+很多运算符的优先级和我们在小学就曾学过的运算优先级一致。我们也可以通过添加括号来人为提高一段运算的优先级。
+
+```javascript
+(2 * 3) ** 4; // 1296，因为先计算 2*3=6，再计算 6 的 4 次方为 1296
+```
+
+有关运算符的优先级，读者可以在 [MDN 的这篇文章](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_precedence)了解更多。
+
 ## 条件语句
 
-### `if ...`
+和我们曾经学习命令时类似，我们经常需要在某些条件下才执行特定代码。这就是条件语句的用途了。条件语句主要有以下这么几类：
 
-### `if ... else ...`
+### `if`语句 块语句
 
-### `if ... else if ... else ...`
+`if ...`语句的语法是：
 
-### `switch ... case ...`
+```javascript
+if (condition) {
+    statement;
+}
+```
+
+即：在`condition`为真值时，执行`statement`的内容。其中，`{...}`叫做**块语句**，代表由多个 JavaScript 语句组成的一整块语句。注意，块语句内部的变量不能给块外使用，比如下面的代码就会因为`a`未定义而报错：
+
+```javascript
+{
+    let a = 1;
+    console.log(a); // 1
+}
+console.log(a); // Uncaught ReferenceError: a is not defined
+```
+
+内部对一个变量重定义后，也不会影响外部的变量：
+
+```javascript
+let a = 5;
+{
+    let a = 1;
+    console.log(a); // 1
+}
+console.log(a); // 5
+```
+
+我们来举一个`if`语句的例子：
+
+```javascript
+let playerAmount = 0;
+if (playerAmount >= 4) {
+    console.log("游戏即将开始！"); // 当 playerAmount >= 4 时，执行块语句内的代码
+};
+```
+
+特别地，如果语句块内只有一个语句的情况下，事实上不需要语句块：
+
+```javascript
+let playerAmount = 0;
+if (playerAmount >= 4) console.log("游戏即将开始！");
+```
+
+### `if else`语句
+
+而`if else`则是用于在条件不通过后执行代码的。语法如下：
+
+```javascript
+if (condition) {
+    statement1;
+}
+else {
+    statement2;
+}
+```
+
+当`condition`为真值时，执行`statement1`，否则执行`statement2`。我们来举一个例子：
+
+```javascript
+let playerAmount = 0;
+if (playerAmount >= 4) {
+    console.log("游戏即将开始！"); // 当 playerAmount >= 4 时执行
+} // 注意这里不要加分号，因为if else是一体的语句，加分号意味着从中间断开
+else {
+    console.log("玩家人数不足！"); // 当 playerAmount < 4 时执行
+};
+```
+
+因为`if else`语句本身是一个语句，所以`if else`是可以嵌套的，即`if ... else if ... else ...`：
+
+```javascript
+const item = {
+    typeId: "potion_invisibility",
+};
+if (item.typeId === "potion_jump_boost") {
+    console.log("添加了跳跃提升效果！");
+}
+else if (item.typeId === "potion_speed") { // 当item.typeId不为"potion_jump_boost"时跳转到这里
+    console.log("添加了迅捷效果！");
+}
+else if (item.typeId === "potion_invisibility") { // 当item.typeId不为"potion_jump_boost"和"potion_speed"时跳转到这里
+    console.log("添加了隐身效果！");
+};
+else { // 以上情况全部不满足时跳转到这里
+    console.log("未添加任何效果！");
+}
+```
+
+如果读者写命令和函数（mcfunction）比较多的话，相信这个功能应该是很多开发者所需要的。
+
+### `switch`语句
+
+此外，我们还可以用一种特殊的语句，来检查单个变量的值，并按照这个值的情况执行代码，这就是`switch`语句。它的语法为
+
+```javascript
+switch (expression) {
+    case caseExpression1:
+        statements
+    case caseExpression2:
+        statements
+    // …
+    case caseExpressionN:
+        statements
+    default:
+        statements
+}
+```
+
+在`expression`的值符合`caseExpressionN`时，那么代码将从`caseExpressionN`开始运行，直到遇到`break`终止`switch`语句或`switch`语句本身终止。在所有的`case`都不满足时，从`default`开始执行。例如，对于上面给出的示例代码，我们还可以写成下面的形式：
+
+```javascript
+const item = {
+    typeId: "potion_invisibility",
+};
+switch (item.typeId) {
+    case "potion_jump_boost":
+        console.log("添加了跳跃提升效果！");
+        break; // 使用 break 终止 switch 语句，这个 break 是必要的，否则下面的所有代码也都会执行
+    case "potion_speed":
+        console.log("添加了迅捷效果！");
+        break;
+    case "potion_invisibility":
+        console.log("添加了隐身效果！");
+        break;
+    default: // 以上情况全部不满足时则从 default 开始执行
+        console.log("未添加任何效果！");
+        break;
+};
+```
 
 ### 基于对象的条件执行
 
+除此之外，我们还可以通过将要执行的内容写到对象里，并通过调用对象的属性来实现条件执行代码。通常认为，这样做更有助于节省性能。以下是一个示例：
+
+```javascript
+const item = {
+    typeId: "potion_invisibility",
+};
+const itemMessage = {
+    "potion_jump_boost": "添加了跳跃提升效果！",
+    "potion_speed": "添加了迅捷效果！",
+    "potion_invisibility": "添加了隐身效果！",
+};
+console.log(itemMessage[item.typeId] ?? "未添加任何效果！");
+// itemMessage[item.typeId] 尝试在 itemMessage 中寻找对应消息，并插入到log()里面
+// 而如果没找到，itemMessage[item.typeId] 会返回 undefined，这时用 ?? 做默认值替换
+```
+
 ## 循环语句
 
-### `for`循环
+和我们学习命令时一样，我们也总是会遇到循环执行代码的需求。为了循环执行一串代码，我们主要要介绍到 2 种循环语句：`for`语句和`while`语句。
 
-### `while`循环
+### `while`语句
 
-### 递归
+`while`语句执行循环的逻辑很简单，只要满足条件就开始循环其中的代码。
+
+```javascript
+while (condition)
+    statement
+```
+
+例如，为输出 1~10 的所有数，可以这么做：
+
+```javascript
+let num = 1;
+while (num <= 10) {
+    console.log(num);
+    num++;
+};
+```
+
+:::danger[警告]
+
+使用循环语句必须当心——**你必须保证你的循环代码是能够跳出循环的**！否则一旦代码陷入死循环，不仅要导致极其严重的性能问题（严重到程序将彻底卡死），还会导致此代码后面的逻辑全部失效！比如，这段代码就是极其危险的：
+
+```javascript
+let num = 1;
+while (num <= 10) { // 每次进入循环时，num 总为 1，无法跳出循环
+    console.log(num);
+};
+```
+
+:::
+
+此外，事实上还有一个`do ... while`语句，但这个语句用得相对较少。感兴趣的读者可以自行查阅相关文档。
+
+### `for`语句
+
+`for`语句相比于`while`语句来说，则允许我们进行初始化变量和每次循环后执行表达式。语法是
+
+```javascript
+for (initialization; condition; afterthought)
+    statement
+```
+
+例如，还是刚刚的代码，我们可以这么定义：
+
+```javascript
+// 初始化 num 为 1，在每次循环后都自增，当小于等于 10 时执行代码块的代码
+for (let num = 1; num <= 10; num++) {
+    console.log(num);
+};
+```
+
+通常，为了控制一段代码最多执行 n 次，我们更多地用`for`语句，而计数器通常用`i`表示，代表这是第`i`次循环（当然你也可以用更好的变量名来表达）：
+
+```javascript
+let n = 10;
+for (let i = 0; i < n; i++) {
+    console.log(`这是第 ${i + 1} 次执行此代码！`);
+};
+```
 
 ### `break`与`continue`
 
+对于某些情况，我们不能限定一段代码执行多少次，而只在满足特定情况下时跳出循环，那么可以用`break`语句和`continue`语句。
+
+`break`语句用于**直接打破循环，跳转到后续的代码**。例如
+
+```javascript
+let num = 1;
+while (true) {
+    console.log(num);
+    num++;
+    if (num > 10) break;
+};
+```
+
+虽然上面的`while (true)`看起来是很危险的，但在代码中我们指定了一个打破循环的方法，所以这也是没有问题的。
+
+而`continue`则用于**终止本次循环，但不打破循环**。例如
+
+```javascript
+let num = 1;
+while (num <= 10) {
+    if (num === 5) {
+        num++; // 这里的 num++ 是为了防止 num 不变导致无法跳出循环
+        continue;
+    };
+    console.log(num);
+    num++;
+};
+```
+
+这段代码将输出除了 5 之外的 1~10 之内的数。这段代码其实也可以直接写为
+
+```javascript
+let num = 1;
+while (num <= 10) {
+    if (num !== 5) console.log(num);
+    num++;
+};
+```
+
+但在一些特定情况下，你会需要`continue`的。
+
+### `for in`语句
+
+除了以上应用之外，对于对象这种由多个内容所共同组成的类型来说，我们可以**遍历**其中所有的键值对并输出出来。
+
+**`for in`语句就是专门用来迭代对象的，它把对象里的属性（键名）依次提取出来并用于循环**。它的语法是：
+
+```javascript
+for (variable in object)
+    statement
+```
+
+我们举一个例子：
+
+```javascript
+let player = {
+    name: "YZBWDLT",
+    health: 20,
+    hunger: 20,
+    inventory: ["minecraft:stick"],
+};
+for (let property in player) {
+    console.log(`player 对象里有属性 ${property}，它的值为 ${player[property]}`);
+};
+```
+
+这段代码的执行结果是：
+
+```text
+player 对象里有属性 name，它的值为 YZBWDLT
+player 对象里有属性 health，它的值为 20
+player 对象里有属性 hunger，它的值为 20
+player 对象里有属性 inventory，它的值为 minecraft:stick
+```
+
+数组作为一种特殊的对象，自然也可以用`for in`来迭代其中的属性。读者可以自行尝试。
+
+### `for of`语句
+
+而 **`for of`语句就是专门用来迭代数组、字符串等可迭代对象的**。它会把数组、字符串内的属性值提取出来用于循环。语法是：
+
+```javascript
+for (variable of iterable)
+    statement
+```
+
+我们来举一个例子：
+
+```javascript
+for (let num of [1,2,3,4,6,7,8,9,10]) {
+    console.log(num);
+}
+```
+
+它会输出 1~10 中除了 5 之外的所有值。
+
+注意：**一般的对象并不是可迭代对象**，例如下面的代码会报错：
+
+```javascript
+let player = {
+    name: "YZBWDLT",
+    health: 20,
+    hunger: 20,
+    inventory: ["minecraft:stick"],
+};
+for (let value of player) { // Uncaught TypeError: player is not iterable
+    console.log(`player 对象里有值为 ${value}`);
+};
+```
+
 ## 函数
 
-### 匿名函数
+在实际应用中，我们经常会遇到很多重复的逻辑。我们可以引入一个新的概念——**函数（Function）**，来实现这样重复的功能。
+
+请注意：**请严格把我们在编程领域提到的函数和我们曾在附加包学过的函数的概念区分开**。前者是程序内为执行重复逻辑而创建的代码功能，而后者是由多串命令（或者更具体来说，Minecraft 命令）组成的功能。在本模块，如果未特别指定的情况下，一般都指前者，而后者我们会用函数（mcfunction）或函数文件来指代。
+
+### 函数的定义，调用与返回值
+
+为了定义一个新的函数，我们用`function`关键字来命名。它的具体语法是：
+
+```javascript
+function name(param0) {
+    statements
+}
+function name(param0, param1) {
+    statements
+}
+function name(param0, param1, /* …, */ paramN) {
+    statements
+}
+```
+
+即，创建一个名为`name`的函数。例如，创建一个发送消息的函数：
+
+```javascript showLineNumbers
+function sendMessage(message) {
+    console.log(message);
+};
+
+sendMessage("这是我们创建的第一个函数！");
+```
+
+这里，我们创建了一个名为`sendMessage`的函数`sendMessage(message)`，它接收一个参数`message`。使用已创建的函数的过程称为**调用函数**。在调用函数时，我们写为`sendMessage()`，并按照它的要求传入参数。
+
+我们也可以引入前面介绍过的一种特殊的注释 JSDoc。它可以让 VSC 等编辑器知道它的用途和参数允许的类型。这里，我们就声明了`message`的类型为`string`，即字符串。我们在后面，**用`变量: 类型`来传达`变量`的数据类型应当为`类型`的信息**。事实上，你已经在 Minecraft 的命令中见过这样的表达方法了！例如，这里我们就会写为`sendMessage(message: string)`。
+
+```javascript showLineNumbers
+/** 发送消息
+ * @param {string} message
+ */
+function sendMessage(message) {
+    console.log(message);
+};
+
+sendMessage("这是我们创建的第一个函数！");
+```
+
+不同参数间用逗号分隔。例如我们要做一个加法的函数：
+
+```javascript showLineNumbers
+/** 对两个值进行相加，然后输出
+ * @param {number} value1
+ * @param {number} value2
+ */
+function add(value1, value2) {
+    console.log(value1 + value2);
+};
+
+add(0.1, 0.2); // 不同参数间用逗号分隔，这里代表 value1 = 0.1, value2 = 0.2
+```
+
+顺带一提，读者会注意到这个东西最后输出为`0.30000000000000004`。要解释这个问题比较复杂，总体来说是因为浮点数的计算总是会导致误差。读者可以阅读其他文档了解更多。
+
+那如果我们要从函数内部获取一些东西要怎么办呢？这时候我们可以用`return`语句来返回特定的内容，这个特定的内容就是**返回值**。比如，我们希望创建一个求 x²+1 的函数，可以这么做：
+
+```javascript showLineNumbers
+/** 获取 value 的平方 + 1
+ * @param {number} value
+ */
+function getSquaredPlusOne(value) {
+    return value ** 2 + 1;
+};
+
+let a = getSquaredPlusOne(3);
+console.log(a); // 10
+```
+
+我们看到，首先我们定义了一个函数`getSquaredPlusOne(value: number)`，因为它对一个`number`值做计算，所以返回值也是一个`number`，这样，我们通常用`getSquaredPlusOne(value: number): number`来完整地表示一个函数。
+
+事实上，这正是 TypeScript 对一个函数的表达方式，即 **`函数名(参数0: 类型, 参数1: 类型, ...): 返回值类型`**。随着读者阅历的不断增多，读者可能也会对 TypeScript 感兴趣。**读者需要培养看懂函数信息的能力，因为后面用到的文档总要和这些东西打交道**。例如：
+
+- 对于前面的`sendMessage`函数，完整地写来应该是`sendMessage(message: string): void`，**因为没有用`return`指定返回值，默认的返回值就是`undefined`**（`void`也是一个语句，最终返回值为`undefined`）。
+- 对于前面的`add`函数，完整地写来应该是`add(value1: number, value2: number): void`。
+- 而对于刚刚的`getSquaredPlusOne`函数，它的类型是`getSquaredPlusOne(value: number): number`。
+
+回过头来，接下来我们让一个变量`a`等于`getSquaredPlusOne(3)`的返回值，这个顺序是：先执行这个函数，做完计算之后，把返回值赋给`a`。这样，`a`便等于 3²+1=10 了。
+
+有了函数之后，很多情况下它便可以大幅简化我们的工作。在此请读者注意：**不要重复造轮子，如果遇到重复功能，不要吝啬，请创建一个新的函数，因为你永远不知道这些功能什么时候会被更改**。
+
+### 默认值
+
+在 js 中，如果不给函数传入任何值，那么其中的参数就会变为`undefined`。很多情况下，这或许不是我们想要的结果。例如
+
+```javascript showLineNumbers
+/** 获取 value 的平方 + 1
+ * @param {number} value
+ */
+function getSquaredPlusOne(value) {
+    return value ** 2 + 1;
+};
+
+let a = getSquaredPlusOne(3); // 10
+let b = getSquaredPlusOne("awa"); // NaN
+let c = getSquaredPlusOne(); // NaN，因为此时 value = undefined
+```
+
+对于这种情况，我们可以考虑做类型检查，并结合`if else`语句来保护这个函数：
+
+```javascript showLineNumbers
+/** 获取 value 的平方 + 1
+ * @param {number} value
+ */
+function getSquaredPlusOne(value) {
+    if (typeof value === "number") {
+        return value ** 2 + 1;
+    }
+    else {
+        return undefined;
+    }
+};
+
+let a = getSquaredPlusOne(3); // 10
+let b = getSquaredPlusOne("awa"); // undefined
+```
+
+这样这个函数就变为`getSquaredPlusOne(value: number): number | undefined`。注意我们用`类型1 | 类型2`表示一个值可能是类型 1，也可能是类型 2。
+
+而更多情况下，我们其实更推荐使用`return`。`return`会立刻中止函数，无论这个函数运行到什么地方，运行到什么地步。所以通常，我们也可以用`return`结构来优化许多的`if else`链：
+
+```javascript showLineNumbers
+/** 获取 value 的平方 + 1
+ * @param {number} value
+ */
+function getSquaredPlusOne(value) {
+    // 如果不为 number 就直接终止代码运行
+    // 提前终止代码有助于防止后续冗杂的 else 判断，节省性能
+    // 这里 return; 等效于 return undefined;，一般也用void 0来得到undefined
+    if (typeof value !== "number") return;
+    // 能执行到这里代表 value 一定是 number，进行计算
+    return value ** 2 + 1;
+};
+```
+
+当然，我们还有一计 —— 引入**默认值（Default Value）**。我们可以在一个参数后面用一个`=`接上一个值，这样如果这个参数没有传入，就会使用这个默认值。例如
+
+```javascript showLineNumbers {4}
+/** 获取 value 的平方 + 1
+ * @param {number} value
+ */
+function getSquaredPlusOne(value = 0) {
+    if (typeof value !== "number") return;
+    return value ** 2 + 1;
+};
+
+let a = getSquaredPlusOne(); // 1，此时 value 未传参，默认为 0
+```
+
+此时，我们认为带有默认值的参数为**可选参数**，这和当时我们学习命令时的逻辑是一样的。我们用`value?: number`（即带有问号的`?:`）来表示这是一个可选参数。这样这个函数就变为`getSquaredPlusOne(value?: number): number | undefined`。
+
+如果不希望它的返回值是`undefined`，可以继续改进这个函数，比如输出为`-1`，这样这个函数就变为`getSquaredPlusOne(value?: number): number`：
+
+```javascript showLineNumbers {5}
+/** 获取 value 的平方 + 1
+ * @param {number} value
+ */
+function getSquaredPlusOne(value = 0) {
+    if (typeof value !== "number") return -1;
+    return value ** 2 + 1;
+};
+```
+
+当然，很多情况下，只要不要乱传参（例如声明了应为`number`还传入`string`，这是自找麻烦），通常能避免很多错误。
+
+### 箭头函数
+
+我们也可以使用一种比较新的格式来定义一个函数：
+
+```javascript
+(param0) => {
+    statements
+}
+(param0, param1) => {
+    statements
+}
+(param0, param1, /* …, */ paramN) => {
+    statements
+}
+```
+
+这叫**箭头函数（Arrow Function）**。箭头函数通常是为了简化写法而使用的，并且它还具有一些其他的性质，在后面介绍到的类里通常使用较多。
+
+我们可以像定义一个普通的变量一样定义一个箭头函数：
+
+```javascript
+/** 获取 value 的平方 + 1
+ * @param {number} value
+ */
+const getSquaredPlusOne = (value = 0) => {
+    if (typeof value !== "number") return -1;
+    return value ** 2 + 1;
+};
+
+getSquaredPlusOne(3); // 10
+```
+
+如果表达式简单，这个表达还能得到进一步简化：
+
+```javascript
+/** 获取 value 的平方 + 1
+ * @param {number} value
+ */
+const getSquaredPlusOne = value => value ** 2 + 1;
+getSquaredPlusOne(3); // 10
+```
+
+即，在只有一个参数和一个表达式的情况下可以分别简化掉括号`()`和后面的花括号`{}`。
+
+### JavaScript 提升
+
+函数是一个比较特殊的东西，它具有一个性质：**JavaScript 提升（JavaScript Hoisting）**。所谓 JavaScript 提升，其实就是你可以先用再声明，就像这样：
+
+```javascript
+square(5); // 25
+
+function square(value) {
+    return value ** 2;
+};
+```
+
+对于一般的变量，就不能这么干：
+
+```javascript
+let result = num ** 2; // Uncaught ReferenceError: num is not defined
+let num = 5;
+```
+
+基本原理是，具有提升性质的对象（比如函数、类、导入语句），会在解析时就自动把它们挪到代码开头。读者如果感兴趣，可以查阅 [MDN 的这篇文章](https://developer.mozilla.org/zh-CN/docs/Glossary/Hoisting)了解更多。
+
+### 匿名函数 立即执行一个匿名函数
+
+事实上我们可以不对一个函数命名。例如，下面的函数就是没有名字的函数，这样的函数叫做**匿名函数（Anonymous Function）**。
+
+```javascript showLineNumbers {4}
+/** 获取 value 的平方 + 1
+ * @param {number} value
+ */
+function (value = 0) {
+    if (typeof value !== "number") return;
+    return value ** 2 + 1;
+};
+```
+
+匿名函数因为没有办法按照常规的方法调用，通常都是即时定义即时调用的。例如：
+
+```javascript showLineNumbers
+let square = function (value = 0) {
+    return value ** 2
+};
+```
+
+这叫做**函数表达式（Function Expression）**。这里实质上是创建了一个对该函数的引用。虽然和一般的函数相比，我们都是通过`squared()`来调用这个函数，但这样定义的函数不会有提升。
+
+此外，我们还可以定义一个函数并立刻执行一次：
+
+```javascript showLineNumbers
+let square = (function (value = 0) {
+    return value ** 2
+})(5); // 25
+```
+
+在这段代码中，使用括号`()`将函数整体包裹起来，并在后面接上一个`()`，代表立即执行这个函数。你也可以写成箭头函数的形式：
+
+```javascript showLineNumbers
+let square = (value => value ** 2)(5); // 25
+```
 
 ### 回调函数
+
+回调函数是指将一个函数作为另一个函数的参数。是的，函数本身也能作为参数！例如下面这个例子：
+
+```javascript showLineNumbers
+function calculate(x, calculateFunc) {
+    calculateFunc(x)
+};
+
+calculate(5, value => 2 * value + 1); // 11
+```
+
+这段代码传入了`x`为 5，并且传入了一个计算的匿名函数`value => 2 * value + 1`，即 2x+1，显然它接收一个参数`value`。在实际计算时，`calculate`函数会把`x`传入到匿名函数的`value`里面，并执行这个匿名函数的逻辑。
+
+回调函数是很重要的，在 SAPI 的所有事件中都要用到回调函数。
+
+### 递归
 
 ## 类
 
@@ -521,6 +1134,8 @@ value >= 5 && value < 3; // 5 >= 5 为真，5 < 3 为假，真且假为假，fal
 ## 字符串常用方法
 
 ## 对象常用方法
+
+## 模块导入
 
 ## 生成器与迭代器
 
