@@ -4,6 +4,10 @@ sidebar_position: 1
 
 # 1.1 JavaScript 基础
 
+import '/src/css/treeview.css';
+import DataType from "/src/components/type/data"
+import FileType from "/src/components/type/file"
+
 > 上次更新：2026 年 3 月 10 日
 
 :::warning[注意]
@@ -1119,24 +1123,751 @@ calculate(5, value => 2 * value + 1); // 11
 
 ### 递归
 
+函数可以调用自身，我们规定调用了自身的函数为**递归函数（Recursive Function）**。我们在曾经[讲函数（mcfunction）的时候](/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#递归)也曾介绍到过递归。想起来了吗？
+
+类似地，我们现在利用递归来实现一个阶乘函数`factorial(value: number): number`：
+
+```javascript
+/** 获取一个值的阶乘（基于递归）
+ * @param {number} value 一个正整数
+ */
+function factorial(value) {
+    if (value === 0 || value === 1) return 1; // 终止条件
+    return value * factorial(value - 1); // 递归
+};
+
+factorial(10); // 3628800
+```
+
+必须注意：**递归的本质是循环执行函数。所以你必须指定一个有效的跳出循环的终止条件，否则你的代码将有可能彻底进入死循环**！
+
+当然，这个函数还需要更多的边界检查条件，以防用户乱输入导致代码报错。此外，过大的递归容易导致栈溢出的问题，所以使用递归需要谨慎。
+
 ## 类
+
+你或许听说过**面向对象编程（Object-Oriented Programming，OOP）** 这样的词汇，这是一种常见的编程思路。
+
+所谓面向对象，是指把我们要处理的事物抽象为一个对象。**事物具有属性（Property），以具体地描述这个事物；而事物又具有方法（Method），以代表这个事物能做某些事情**。这样，**我们的代码写出来的东西将变为对象与对象之间的交互**。
+
+例如，我们现在写了一只猫（`Cat`），猫有很多种颜色，比如橘猫、白猫、黑猫等，它们可以共享一个`color`的属性，并用不同的值去区分它们；此外，名字`name`也可以不一样，等等……
+
+而猫会叫，这样我们就可以定义一个方法`meow()`来表示猫叫；或者也可以定义一个方法`catchMouse()`来表示抓老鼠。在调用这些方法时，就代表着它做这件事了。
+
+是不是听起来很有意思？而**类（Class）就通常用于创建这些相同类型的对象**。有关面向对象编程的特点，读者可以自行查阅相关资料。很多编程语言都支持面向对象的编程思路。
 
 ### 类的定义、属性与方法
 
-### 类的实例化
+要定义一个类，我们需要用到`class`关键字，具体语法是：
+
+```javascript
+class Name {
+    // 类体
+}
+```
+
+类的命名习惯为大写开头。例如，对于刚刚说到的猫，我们可以考虑这么定义猫：
+
+```javascript
+class Cat {
+    color; // 定义了猫的 color 属性
+    name; // 定义了猫的 name 属性
+    meow() { }; // 定义了猫的 meow 方法，调用此方法时代表猫叫
+    catchMouse() { }; // 定义了猫的 catchMouse 方法，调用此方法时代表猫抓老鼠
+}
+```
+
+可以看到，类的属性通常就对应普通对象里的键值对，而类的方法则对应一个函数。事实上，普通的对象里也可以写函数，也称之为方法。
+
+### 类的构建器与实例化
+
+不同的猫具有的特性也不一样，对应地，不同的类所构建的对象也各不相同，我们说由构建器所构建的这些对象就是**实例**。
+
+为了构建一个实例，我们需要在类里面用`constructor`关键字来定义构造函数，然后用`new`来实例化一个类。实例化的时候，js 会尝试调用一次构造函数。
+
+```javascript showLineNumbers {4,9}
+class Cat {
+    color;
+    name;
+    constructor() { }; // 在实例化时，会调用一次构造函数
+    meow() { };
+    catchMouse() { };
+};
+
+const orangeCat = new Cat(); // 通过 Cat 类构建了一个 orangeCat 实例
+```
+
+每次构建时，我们可以把我们想要更改的参数写到构建器里，因为它本质上是个函数，然后通过`this`来指向这个类里面的属性和方法。
+
+```javascript showLineNumbers {5-6,12}
+class Cat {
+    color;
+    name;
+    constructor(color, name) {
+        this.color = color; // 这里，this指代这个类，this.color代表的是这个类的color属性
+        this.name = name; // 这里，this指代这个类，this.name代表的是这个类的name属性
+    };
+    meow() { };
+    catchMouse() { };
+};
+
+const orangeCat = new Cat("orange", "咪咪"); // 将color和name属性传入进来
+```
+
+事实上，在方法里面我们也可以用`this`来指代类的属性和方法：
+
+```javascript showLineNumbers {9,15}
+class Cat {
+    color;
+    name;
+    constructor(color, name) {
+        this.color = color;
+        this.name = name;
+    };
+    meow() {
+        console.log(`${this.name}：喵~ UwU`);  // 这里调用了这个类的name属性
+    };
+    catchMouse() { };
+};
+
+const orangeCat = new Cat("orange", "咪咪");
+orangeCat.meow(); // 咪咪：喵~ UwU
+```
 
 ### 类的继承
 
+现在我们可以更进一步，试试创建一个动物类。动物有很多种，比如狗、鸡鸭牛羊猪这些，以及刚刚提到的猫等等。显然后面这些具体的动物是动物这个大类的一个具体形式，这些所有的动物应该统一地具有动物的共性。
+
+这时，为了表达一个类（称之为**父类**，Parent Class）是另一个类的**子类（Child Class）**（例如猫是动物的子类），我们就可以引入**类的继承（Class Inheritance）** 这个概念了。**子类会继承父类的所有属性和方法，并可以定义独属于自己的新方法**。
+
+例如，我们分别定义动物、猫和老鼠，并为动物添加跑和停的两个方法：
+
+```javascript showLineNumbers
+class Animal {
+    type;
+    name;
+    running = false;
+    constructor(type, name) {
+        this.type = type;
+        this.name = name;
+    };
+    run() {
+        if (this.running) return; // 在跑的时候，不尝试改变状态
+        this.running = true;
+        console.log(`跑起来啦！`);
+    };
+    stopRunning() {
+        if (!this.running) return; // 没在跑的时候，不尝试改变状态
+        this.running = false;
+        console.log(`停下来啦！`);
+    };
+};
+
+class Cat {
+    color;
+    name;
+    constructor(color, name) {
+        this.color = color;
+        this.name = name;
+    };
+    meow() {
+        console.log(`${this.name}：喵~ UwU`);
+    };
+    catchMouse() { };
+};
+
+class Mouse {
+    constructor() { };
+};
+```
+
+现在，我们要让猫成为动物的子类，这时需要用`extends`来指代继承了哪个类，并在构造函数里使用`super`进行初始化。对于老鼠，也是如此：
+
+```javascript showLineNumbers {1,4,13,15}
+class Cat extends Animal {
+    color;
+    constructor(color, name) {
+        super("cat", name); // 调用 Animal 的构造函数，注意在使用 this 之前必须先用 super 继承父类
+        this.color = color;
+    };
+    meow() {
+        console.log(`${this.name}：喵~ UwU`);
+    };
+    catchMouse() { };
+};
+
+class Mouse extends Animal {
+    constructor(name) {
+        super("mouse", name); // 调用 Animal 的构造函数
+    };
+};
+```
+
+其中，因为父类拥有`name`属性，所以不需要为猫重新声明`name`属性。现在，我们可以分别实例化两种具体的动物了！
+
+```javascript showLineNumbers
+const tom = new Cat("blue", "Tom");
+const jerry = new Mouse("Jerry");
+
+tom.run(); // 跑起来啦！
+tom.meow(); // Tom：喵~ UwU
+jerry.run(); // 跑起来啦！
+jerry.stopRunning(); // 停下来啦！
+```
+
 ### 静态方法
 
-## 数组常用方法
+在某些情况下，我们需要的是一些工具性的函数，而不特定地依赖于某个实例。这种情况下，我们可以用**静态方法（Static Methods）** 解决问题。静态方法是类的一种特殊方法，在实例化之前可以直接调用，而实例化之后静态方法则自动销毁。
+
+定义静态方法需要在方法名前面加上`static`字段，例如：
+
+```javascript showLineNumbers {11-14}
+class Cat extends Animal {
+    color;
+    constructor(color, name) {
+        super("cat", name); // 调用 Animal 的构造函数，注意在使用 this 之前必须先用 super 继承父类
+        this.color = color;
+    };
+    meow() {
+        console.log(`${this.name}：喵~ UwU`);
+    };
+    catchMouse() { };
+    static isCat(animal) {
+        if (animal.type === "cat") return true;
+        return false;
+    };
+};
+
+const tom = new Cat("blue", "Tom");
+const jerry = new Mouse("Jerry");
+Cat.isCat(tom); // true
+Cat.isCat(jerry); // false
+tom.isCat(tom); // Uncaught TypeError: tom.isCat is not a function
+// 因此，不要对实例化后的对象调用静态方法
+```
+
+静态方法往往用作为工具函数，比如 js 自带的[`Math`类](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math)就含有大量的静态方法，用于数学计算，比如求绝对值、求正弦余弦、对数、指数、随机数等。
+
+例如，我们现在来写一个`JSUtil`类，里面包含一个生成 [a, b] 区间内的随机整数的静态方法`JSUtil.randomInt(min: number, max: number): number`：
+
+```javascript showLineNumbers
+class JSUtil {
+    /** 在[a, b]取随机整数
+     * @param {number} min 最小值
+     * @param {number} max 最大值
+     */
+    static randomInt(min, max) {
+        if (min > max) [min, max] = [max, min]; // 确保 min <= max
+        return Math.floor(Math.random() * (max - min + 1)) + min; // 生成 [min, max] 之间的随机整数
+    };
+};
+
+JSUtil.randomInt(5, 10);
+```
+
+![static_method_1](/img/tutorials/a3_scripts/b1_programming_language/c1_js/static_method_1.png)
+
+做一点解释：
+
+- `Math.random()`会生成一个[0, 1]之间的随机数（浮点数），而`Math.floor()`会将任意数字向下取整。
+- 我们要做的是生成 [a, b] 区间内的随机整数，从 [0, 1] 映射到 [a, b]，首先需要整体 +a，变成 [a, a+1]。
+- 然后再让随机数乘以 (b-a+1)，变成[a, a+(b-a+1)]，即生成了 [a, b+1] 区间内的浮点数。
+- 最后做向下取整处理，因为 a 本身就是整数，所以向下取整不会变动，而生成的随机数 r 一般取不到边界值 0 或 1，这会导致 a+r*(b-a+1) 往往小于 b+1，从而在向下取整后控制在 [a, b] 区间内。
+  - 所以，如果不 +1，最后生成的随机整数在 [a, b) 区间内。
+
+## 数组常用属性与方法
+
+在实际工程中，我们总是要对各种各样的数据进行处理。对于数组、字符串等，总是有一些常用的内建方法可用。我们一起学习一些相对常见的数组方法。
+
+应该说明的是，某些未列出的方法（比如`flatMap()`、`concat()`、`join()`）等事实上也很常用，取决于你的需求。读者在有相关需求时应该及时学习。
+
+### `length`属性
+
+对一个实例化的数组，可以调用其`length`属性获取其长度，比如：
+
+```javascript
+[1, 2, 3, 4, 5, 6].length; // 6
+```
+
+例如，往往用这个办法也可以获取一个数组的最后一个索引：
+
+```javascript
+let letters = ["a", "b", "c", "d", "e", "f", "g"];
+letters[letters.length - 1]; // 'g'
+```
+
+### `Array.isArray()`静态方法
+
+**用于获取一个数据是否为数组**：
+
+```ts
+Array.isArray(value: any): boolean
+```
+
+这个在前文我们也已提及过。例如：
+
+```javascript
+Array.isArray([1, 2, 3]); // true
+Array.isArray({ a: 1, b: 2, c: 3 }); // false
+```
+
+### `Array.prototype.forEach()`方法
+
+**用于使数组内的所有元素都执行一次函数**。这个方法接收一个回调函数和任意一个值作为参数，大多数情况下，只用到第一个参数。
+
+```ts
+Array<T>.forEach(callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any): void
+```
+
+我们来重点关注这个回调函数，它本身返回 3 个参数：
+
+- `value: T`，代表目前正在遍历的值。`T`类型是 TypeScript 所规定的，叫做**泛型（Generics）**，代表这里的类型是动态判断的，便于编译器和编辑器进行进一步的分析。例如，如果读者调用一个纯字符串的`forEach`方法，这里`T`就自动替换为`string`。
+- `index: number`，代表目前正在遍历的值的索引。
+- `array: T[]`，直接返回当前正遍历的数组。
+
+我们来举一个例子：
+
+```javascript
+let letters = ["a", "b", "c", "d", "e", "f", "g"];
+letters.forEach((letter, index) => {
+    console.log(`当前正遍历第 ${index} 个元素，遍历的元素是 ${letter}`);
+});
+```
+
+它得到下面的结果：
+
+```text
+当前正遍历第 0 个元素，遍历的元素是 a
+当前正遍历第 1 个元素，遍历的元素是 b
+当前正遍历第 2 个元素，遍历的元素是 c
+当前正遍历第 3 个元素，遍历的元素是 d
+当前正遍历第 4 个元素，遍历的元素是 e
+当前正遍历第 5 个元素，遍历的元素是 f
+当前正遍历第 6 个元素，遍历的元素是 g
+```
+
+输出 1~10 除了 5 之外的所有数字，也可以用这个方法：
+
+```javascript
+[1, 2, 3, 4, 6, 7, 8, 9, 10].forEach(num => console.log(num));
+```
+
+顺便一提，标题中提到的`prototype`是原型的意思。这和 js 的原型链机制有关系，感兴趣的读者可以自行查阅。读者只需要知道现在，`Array.prototype`代表一个数组就可以了。
+
+### `Array.prototype.includes()`方法
+
+**用于检查数组内是否含有符合特定元素**。这个方法接收一个待查找元素和查找起点索引，但多数情况下只用第一个参数。
+
+```ts
+Array<T>.includes(searchElement: T, fromIndex?: number): boolean
+```
+
+例如：
+
+```javascript
+const breakableVanillaBlocks = [
+    "minecraft:bed",
+    "minecraft:short_grass",
+    "minecraft:ladder",
+    "minecraft:sponge",
+    "minecraft:wet_sponge",
+    "minecraft:fern"
+];
+breakableVanillaBlocks.includes("minecraft:grass_block"); // false
+```
+
+### `Array.prototype.find()`方法
+
+**用于查找数组内符合条件的第一个元素**。这个方法接收一个回调函数和任意一个值作为参数，大多数情况下，只用到第一个参数。这个语法和`forEach()`方法是很类似的。
+
+```ts
+Array<T>.find(predicate: (value: T, index: number, obj: T[]) => unknown, thisArg?: any): T | undefined
+```
+
+举例：
+
+```javascript
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+numbers.find(num => num % 3 === 0); // 3
+numbers.find(num => num > 11); // undefined
+```
+
+第 2 行是查找所给的数字里面是否有能被 3 整除的数字，有则输出第一个符合条件的结果，也就是 3。而第 3 行则是查找所给的数字里面是否有大于 11 的数，因为没有，所以返回`undefined`。
+
+注意，上面代码的完整写法应该是下面这样，因为不少情况下我们都要做比较复杂的逻辑判断，这个时候你应该按照文档的要求用`return`给出返回值，否则代码将不能正确工作。
+
+```javascript
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+numbers.find((num) => {
+    return num % 3 === 0;
+});
+numbers.find((num) => {
+    return num > 11;
+});
+```
+
+### `Array.prototype.filter()`方法
+
+**用于过滤出数组内符合要求的元素**。这个方法接收一个回调函数和任意一个值作为参数，大多数情况下，只用到第一个参数。这个语法和`forEach()`方法也是很类似的。
+
+```ts
+Array<T>.filter(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): T[]
+```
+
+举例：
+
+```javascript
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+numbers.filter(num => num % 3 === 0); // [3, 6, 9]
+numbers.filter(num => num > 11); // []
+```
+
+这和我们在`find()`给出的逻辑是比较像的。只是，`filter()`的返回结果和`find()`是不太一样的，无论如何`filter()`都会返回一个数组——哪怕这个数组是空数组。
+
+### `Array.prototype.map()`方法
+
+**用于对数组内所有元素进行计算，并输出为特定的值**。这个方法接收一个回调函数和任意一个值作为参数，大多数情况下，只用到第一个参数。这个语法和`forEach()`方法还是很类似的。
+
+```ts
+Array<T>.map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[]
+```
+
+举例：
+
+```javascript
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+numbers.map(num => 2 * num + 1); // [3, 5, 7, 9, 11, 13, 15, 17, 19, 21]
+```
+
+这段代码把数组内所有的数都乘以 2 之后加 1，并返回新数组。
+
+### `Array.prototype.push()`方法
+
+**用于对数组的末尾添加新的元素，并返回新数组的长度**。**注意：这个方法会修改原来的数组**！
+
+```ts
+Array<T>.push(...items: T[]): number;
+```
+
+这里，`...items`是一种**剩余参数（Rest Parameters）**，它代表你可以输入多个参数进去，然后这些参数将以数组的形式传递到函数内部。比如：
+
+```js
+function testFunc(...values) {
+    console.log(values);
+};
+
+testFunc(1, 2, 3, 4); // [1, 2, 3, 4]
+```
+
+我们为`push()`方法举个例子：
+
+```javascript
+let numbers = [1, 2, 3, 4, 5];
+numbers.push(6, 7, 8); // 8
+numbers; // [1, 2, 3, 4, 5, 6, 7, 8]，此时原数组已被修改
+```
+
+如果你希望找一个不会修改原数组的方法，可以参考[`concat()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)，或者直接询问 AI。
+
+### `Array.prototype.some()`方法
+
+**用于查找数组内是否有符合条件的元素**。这个方法接收一个回调函数和任意一个值作为参数，大多数情况下，只用到第一个参数。这个语法和`find()`方法是很类似的。
+
+```ts
+Array<T>.some(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): boolean
+```
+
+举例：
+
+```javascript
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+numbers.some(num => num % 3 === 0); // true
+numbers.some(num => num > 11); // false
+```
 
 ## 字符串常用方法
 
+除了数组之外，字符串也有几个常用方法，我们这里主要介绍一下`includes()`和`split()`。对于其他的方法，读者最好也多学习一下，技多不压身嘛。
+
+### `String.prototype.includes()`方法
+
+**用于检查字符串内是否含有符合特定子字符串**。和数组类似，这个方法接收一个待查找子字符串和查找起点索引，但多数情况下只用第一个参数。
+
+```ts
+String.includes(searchString: string, position?: number): boolean
+```
+
+例如下面这个例子，因为提供的物品 ID 中含有子字符串`"minecraft:"`，所以`includes()`会返回`true`。这通常用于判断返回的物品、方块、实体信息是否为原版的。
+
+```js
+const itemTypeId = "minecraft:stick";
+itemTypeId.includes("minecraft:"); // true
+```
+
+### `String.prototype.split()`方法
+
+**用于将字符串在特定子字符串的位置处分割，并输出为剩余子字符串的数组**。它接收两个参数，第一个`seperator`表示从何字符串切割，而第二个`limit`则表示切割的字符串数组最长应为多长。通常，我们只需要第一个参数就足够了。
+
+```ts
+String.split(separator: string | RegExp, limit?: number): string[]
+```
+
+其中`RegExp`是正则表达式，在某些情况正则表达式可以很好地做字符串的筛选，但这不是我们目前关心的问题，感兴趣的读者可以自行研究。示例：
+
+```js
+const itemTypeId = "minecraft:stick";
+itemTypeId.split(":"); // ['minecraft', 'stick']
+```
+
 ## 对象常用方法
 
-## 模块导入
+接下来我们要学习一下`Object`的一些方法，都是静态方法。实例方法通常来说并不建议调用。
 
-## 生成器与迭代器
+### `Object.entries()`静态方法
+
+**这个方法会把对象的键值对的键和值同时打包到一个数组里**。
+
+```ts
+Object.entries<T>(o: { [s: string]: T }): [string, T][]
+```
+
+示例：
+
+```js
+let player = {
+    name: "YZBWDLT",
+    health: 20,
+    hunger: 20,
+    inventory: ["minecraft:stick"],
+};
+let a = Object.entries(player);
+```
+
+最后的`a`为下面这个数组。一目了然了吧？
+
+```js
+[
+    ['name', 'YZBWDLT'],
+    ['health', 20],
+    ['hunger', 20],
+    ['inventory', ["minecraft:stick"]]
+]
+```
+
+### `Object.keys()`静态方法
+
+**这个方法会把对象的键值对的键打包到一个数组里**。
+
+```ts
+Object.keys(o: {}): string[]
+```
+
+还是拿上面的`player`对象做示例，不同的是现在返回的是几个键名了。**一般用`Object.keys()`更多，因为事实上我们可以直接通过键名得到对象内对应的值**。
+
+```js
+let player = {
+    name: "YZBWDLT",
+    health: 20,
+    hunger: 20,
+    inventory: ["minecraft:stick"],
+};
+Object.keys(player); // ['name', 'health', 'hunger', 'inventory']
+```
+
+### `Object.values()`静态方法
+
+和`keys()`类似，**这个方法会把对象的键值对的值打包到一个数组里**。
+
+```ts
+Object.values<T>(o: { [s: string]: T }): T[]
+```
+
+还是拿上面的`player`对象做示例。
+
+```js
+let player = {
+    name: "YZBWDLT",
+    health: 20,
+    hunger: 20,
+    inventory: ["minecraft:stick"],
+};
+Object.values(player); // ['YZBWDLT', 20, 20, ["minecraft:stick"]]
+```
+
+## 模块
+
+像是 Python、JavaScript 这些语言，之所以能够发扬光大，不仅仅是因为语言特色，还要归功于社区的辛勤付出。人们为开源社区贡献了一批又一批的代码，并不断地方便其他各路软件开发者。那么，我们要想使用社区的代码，就必须要使用**模块（Module）** 了。
+
+截止目前，我们的所有代码都还只是写在浏览器并执行的。事实上，我们完全可以在一个或多个单独的文件中写好所有的 js 代码，并统一执行，这和函数（mcfunction）的逻辑还是很像的。
+
+现在，让我们随便在什么地方新建一个<FileType type="file" name="main.js" />，注意它的后缀名是`.js`。事实上，这就可以认为是一个**模块**了。然后，在同样的目录下随便创建一个 js 文件，比如<FileType type="file" name="lib.js" />：
+
+<treeview>
+
+- <FileType type="folder" />
+  - <FileType type="file" name="main.js" />
+  - <FileType type="file" name="lib.js" />
+
+</treeview>
+
+**js 文件也是可以用 VSC 打开的，并且拥有十分完备的自动补全和纠错机制**。我们在<FileType type="file" name="lib.js" />里面写一些有用的东西进去，比如还是这个生成随机数：
+
+```js showLineNumbers {1}
+export class JSUtil {
+
+    /** 在[a, b]取随机整数
+     * @param {number} min 最小值
+     * @param {number} max 最大值
+     */
+    static randomInt(min, max) {
+        // 确保 min <= max
+        if (min > max) { [min, max] = [max, min]; }
+        return Math.floor(Math.random() * (max - min + 1)) + min;    // 生成 [min, max] 之间的随机整数
+    };
+
+};
+```
+
+注意到我们在定义类的时候加了一个`export`，这就是**模块的导出（Export）功能**，模块中的内容只有导出后才能被其他 js 文件或代码使用。
+
+现在，我们在<FileType type="file" name="main.js" />导入我们刚刚写的模块，并调用其中的方法：
+
+```js showLineNumbers
+import { JSUtil } from "./lib"; // 从当前目录的lib.js中导入JSUtil类
+JSUtil.randomInt(1, 10);
+```
+
+注意：我们用`./`代表当前文件夹目录，而用`../`代表上一级的文件夹目录。
+
+现在你可能很想测试一下看看效果……嗯，先别急，因为 js 往往是和 html、css 等结合使用的，所以这需要我们构建一个本地网页，但我们现在属于是“平地起高楼”，因为没有学过 html 和 css（事实上我们也不需要），构建网页这部分对读者的要求可能太高，这段代码的有效性只有等到我们正式开始写 Minecraft 脚本的时候才能一探究竟了。
+
+导入的写法很多，如果一个文件内可导入的内容过多的话，我们还可以换一种写法：
+
+```js showLineNumbers
+import * as lib from "./lib"; // 将 lib.js 中所有的导出内容全部导入，并且后续可以用 lib.xxx 获取它们
+lib.JSUtil.randomInt(1, 10);
+```
+
+注意，`import`也是具有提升性质的，并且`import`并不是可以随便导入的，因为`import`的一些性质，你可能会遇到**循环加载**的问题，也就是`a`依赖脚本`b`，`b`又反过来依赖脚本`a`的问题……我们需要尽可能避免这样的问题。但如果真的遇到，你可以查阅相关文档了解更多。
+
+## 生成器函数
+
+**生成器函数（Generator Function）** 是一种特殊的函数，它是一种在某个你规定的点处中断执行，并等待下次执行的函数。
+
+### 生成器函数的定义 `next()`
+
+生成器函数的定义方法和普通函数类似，唯一的区别在于它需要用`function*`来定义：
+
+```js
+function* doSomething() { };
+```
+
+我们使用`yield`字段来中断这个函数的运行，后面接上这次中断后所返回的内容：
+
+```js
+/** @param {number} value */
+function* doSomething(value) {
+    yield value;
+    yield value + 1;
+    yield value + 2;
+    yield value + 3;
+};
+
+doSomething(1); // [object Generator]
+```
+
+现在，如果我们直接调用这个函数，会发现我们得到了一个奇怪的东西`[object Generator]`，这是因为它现在是一个生成器函数，类型是一个`Generator`，我们直接这么看它的结果是不行的。为了使它按我们预期的一点点往外蹦结果，我们需要先做一个这个函数的引用（也就是赋值），然后调用它的`next()`方法：
+
+```js
+/** @param {number} value */
+function* doSomething(value) {
+    yield value;
+    yield value + 1;
+    yield value + 2;
+    yield value + 3;
+};
+
+let justDoIt = doSomething(1);
+justDoIt.next(); // { value: 1, done: false }
+justDoIt.next(); // { value: 2, done: false }
+justDoIt.next(); // { value: 3, done: false }
+justDoIt.next(); // { value: 4, done: false }
+justDoIt.next(); // { value: undefined, done: true }
+justDoIt.next(); // { value: undefined, done: true }
+```
+
+对这段代码做一个简单分析：
+
+- 第 1 次调用`next()`方法后，会执行到第 1 个`yield`处并中断执行，这时返回的是一开始输入的`value`值，也就是`1`；然后，把它们打包为了`{ value: number, done: boolean }`格式的对象输出出来。
+- 第 2 次再调用`next()`方法后，会执行到第 2 个`yield`处并再次中断执行，这时返回的是`value + 1`，也就是`2`。
+- 以此类推，执行到第 3 个、第 4 个`yield`后中断，返回`value + 2`和`value + 3`。
+- 最后，这个函数执行到底，已经执行完毕。此时因为没有`return`语句，默认返回了`undefined`，同时输出的对象的`done`属性也变为了`true`，证明这个函数已经执行完毕了。
+- 此后无论再怎么`next()`，它都保持它执行完毕的状态。
+
+### 生成器的泛型参数 `next()`的参数
+
+在 VSC 的类型提示中，我们看到这个函数的类型是
+
+```ts
+function doSomething(value: number): Generator<number, void, unknown>
+```
+
+事实上，尖括号内的这三个类型各有来头。生成器的泛型参数含义如下：
+
+```ts
+Generator<YieldType, ReturnType, NextType> 
+```
+
+- `YieldType`代表每次`yield`时所返回的类型。上面的`Generator<number, void, unknown>`就代表每次`yield`返回一个`number`。
+- `ReturnType`则代表函数终止运行时`return`时所返回的类型。上面的`Generator<number, void, unknown>`就代表函数终止时没有指定类型，会返回`undefined`。
+- `NextType`则代表函数调用`next()`时所需要输入的类型。
+
+是的，`next()`方法其实支持输入一个参数，并传递给中断的`yield`。例如下面的`function adder(): Generator<"Give me a value!" | "Give me another value!", number, number>`：
+
+```js
+function* adder() {
+    /** @type {number} */
+    let a = yield "Give me a value!";
+    /** @type {number} */
+    let b = yield "Give me another value!";
+    return a + b;
+};
+
+let add = adder();
+add.next(); // { value: "Give me a value!", done: false }
+add.next(30); // { value: "Give me another value!", done: false }
+add.next(40); // { value: 70, done: true }
+add.next(50); // { value: undefined, done: true }
+```
+
+- 第 1 次`next()`后，在`yield "Give me a value!"`处中断。
+- 第 2 次`next(30)`后，`yield "Give me a value!"`得到了一个值 30，并把这个值赋给`a`，然后在`yield "Give me another value!"`处中断。
+- 第 3 次`next(40)`后，`yield "Give me another value!"`得到了一个值 40，并把这个值赋给`b`，然后`return a + b`返回 70，程序中止。
+- 第 4 次`next(40)`后，因为生成器已执行完毕，所以对于无效的请求返回了`undefined`。
+
+### 实例：线性同余生成器
+
+因为生成器函数的特殊性，我们可以在这里写无跳出条件的循环语句，来使得每次调用它时就生成一个值。我们来写一个随机数生成器吧！基于线性同余生成器（LCG）写一个伪随机数算法。读者可以在网上搜索线性同余生成器来了解更多。
+
+```js
+/** 生成一个随机数（基于线性同余生成器（LCG）算法）
+ * @param {number} seed 
+ */
+function* random(seed) {
+    let n = seed;
+    while (true) {
+        n++;
+        yield (1103515245 * n + 12345) % (2 ** 31);
+    };
+};
+
+let randomGenerator = random(114514);
+randomGenerator.next().value; // 1476542205
+randomGenerator.next().value; // 432573802
+randomGenerator.next().value; // 1536089047
+```
+
+这里，我们就直接写了一个“安全的死循环”，因为是在生成器函数里，所以我们无需担心程序卡死的问题，只需要考虑按需取用就可以了。
 
 ## 异步
+
+## 学会问 AI

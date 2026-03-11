@@ -3588,7 +3588,7 @@ allowlist reload
 ## 参考资料
 
 - [中文 Minecraft Wiki](https://zh.minecraft.wiki/)
-- [Minecraft 命令更新日志 | 命令助手](https://ca.projectxero.top/blog/command/command-history/)
+- [Minecraft 命令更新日志 | 命令助手](https://github.com/XeroAlpha/Minecraft-Bedrock-Command-Log)
 
 import GiscusComment from "/src/components/comment/giscus.js"
 
