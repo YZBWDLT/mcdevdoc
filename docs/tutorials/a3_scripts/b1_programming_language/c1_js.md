@@ -1870,4 +1870,124 @@ randomGenerator.next().value; // 1536089047
 
 ## 异步
 
-## 学会问 AI
+直到前文，我们所接触的代码逻辑都是「每行依次执行」的逻辑。考虑到 js 是单线程的，Minecraft 也是单线程的，万一遇到某些运行需要时间比较长的代码，有可能会导致代码短期的中止。这时，我们需要将某些运行时间比较长的代码先“扔到一边去”，让它单独运行后再将结果回传回来。这就是**异步（Async）** 的作用。
+
+### `async`与`await`
+
+我们用`async`创建一个新的异步函数，它代表其中的内容会按照异步的方式执行。
+
+```js
+async function doSomething() {};
+```
+
+但是，如果我们往里面写入普通的代码，它和普通的函数事实上并没有多少区别，唯一的区别在于它的返回值是一个`Promise`对象。`Promise`类似于一种承诺，代表虽然不和其他代码同步执行，但这段代码总承诺能够执行并返回什么值。
+
+在 Minecraft，Mojang 已经为我们提供了一个专门用于等待特定时长的接口`System.waitTicks(ticks: number): Promise<void>`，但其他情况下，需要我们自己去写一个`new Promise()`来指定一个需要耗时的任务。读者若感兴趣，可以自行查阅相关文档研究。
+
+那么现在，我们以这个接口为例写一段代码。可以看到，我们使用`await`来等待一段代码的执行：
+
+```js
+import { system } from "@minecraft/server"; // 这里是导入 Minecraft 的模块，之后我们会详细介绍
+async function doSomething() {
+    console.log("Started!"); // 执行到doSomething()的时候，这段代码不耗时，立刻执行
+    await system.waitTicks(100); // 这里会使代码等待 100 游戏刻
+    console.log("Finished!"); // 在 100 游戏刻之后执行这段代码
+};
+```
+
+呃……同样的，这段代码在浏览器测试是行不通的。在后面的实战部分我们会看到它的用法。
+
+### `Promise`的`then()`方法
+
+除此之外，`Promise`对象也有几个内置方法可以处理一段函数执行完之后的状态。这其中，最重要的方法就是`then()`，它可以用来在一段异步代码执行完毕后，对执行后的结果（更具体而言，是分别对执行完成和执行失败两种情况）做进一步处理。对于脚本自带的 UI，就是如此运行的。我们在介绍到的时候会再进一步强调。
+
+例如，对于上面的`function doSomething(): Promise<void>`，我们可以这么做来处理这段代码的后续：
+
+```js
+doSomething().then(
+    value => { }, // 这里是doSomething()执行成功后执行的回调函数，并将返回值返回给 value
+    reason => { } // 这里是doSomething()执行失败后执行的回调函数，并将失败原因返回给 reason
+);
+```
+
+`then()`方法返回的也是一个`Promise`对象，因此其后可以再接一个`then()`等`Promise`对象允许的方法。
+
+到这里，我们只是非常简单地介绍了一点有关异步的内容。关于异步，读者可以也应该在有了一定经验之后了解更多，这里只是为了让读者先知道有这样一个处理长时间代码的手段。在 Minecraft 的脚本编写中，有很多地方都会涉及这样的长时间代码，比如大结构加载时就可以使用异步。
+
+## 错误处理
+
+在前文，我们始终都是基于不要产生报错的心态去写的代码。通常而言，这样写出来的代码逻辑比较完整，在正常使用时很少会遇到报错。但总是不乏极少数情况，报错是无法避免的，或者需要我们去调试究竟是为什么出现了报错。
+
+这就是`try catch`语句的作用了。它可以对`try`中的代码块做执行测试，一旦测试出现问题就会跳到`catch`语句内部。`try catch`还支持一个`finally`，用于指代这段代码无论最终运行成什么样都需要执行。具体语法是：
+
+```js
+try {
+    tryStatements
+} catch (exceptionVar) {
+    catchStatements
+} finally {
+    finallyStatements
+}
+```
+
+例如，我们前面曾介绍到，试图调用`undefined`的属性时会报错：
+
+```js
+(void 0).hello; // Uncaught TypeError: Cannot read properties of undefined (reading 'hello')
+```
+
+如果把它放到`try catch`语句内，读者便能看到这串代码的运行逻辑：
+
+```js
+try {
+    (void 0).hello;
+} catch (error) {
+    console.log(error.name); // 输出 TypeError
+};
+```
+
+注意：因为抛出的`TypeError`本身也是一个对象，我们可以读取它的属性。
+
+此外，我们也可以自己在代码运行有问题的情况下尝试抛出报错，当然了，这只在内部调试时用得比较多。抛出错误需要使用`throw`语句，并实例化一个`Error`类或`Error`的子类：
+
+```js
+try {
+    throw new TypeError("这段代码会抛出一个 TypeError 报错！");
+} catch (error) {
+    console.log(error.name); // 输出 TypeError
+    console.log(error.message); // 输出 这段代码会抛出一个 TypeError 报错！
+};
+```
+
+请读者不要过度依赖`try catch`语句，尤其是`catch`语句内什么也没有的情况，如果代码会出现问题，应该从逻辑上去解决它，而不是“撒手不管”，在非必要的情况下，这样的处理方法都是很糟糕的：
+
+```js
+try {
+    (statements)
+} catch (error) { };
+```
+
+## 结尾 学会问 AI
+
+我们的 JavaScript 基础教程就到这里了。我们还是再强调一次，本文仅供入门，有很多未介绍到的东西，比如原型链、展开语法等等，其中有很多我们不一定用得上，有的能用得上但是对于初学者理解难度太高，也不乏相当一部分是编者自己的水平也受限，就没有介绍了。我们希望这篇文章可以帮助你以最快的速度上手 JavaScript，但之后在这方面的深耕，则需要读者自己努力了。
+
+好消息是，因为 JavaScript 是一门广泛应用的、成熟的编程语言，**这意味着我们现在问 AI 往往能够得到很多可靠的答案，在自己不熟悉的领域问 AI 也是提升自己的一个捷径，问得好就能够事半功倍**。然而，**提问 AI 是有技巧的，这可以防止 AI 一本正经的胡说八道**：
+
+- **我们不应该提问那些小众且专业性的问题**，比如 Minecraft 的这个接口是怎么编写的？那个事件是怎么运行的？——不要这么问。尤其是不要问到具体的 Minecraft 问题上。
+- **应该提问 js 的基础问题，或者基础的逻辑问题**，比如要处理这个数据为那个数据怎么做？要实现这个功能大概需要做什么样的处理？——请这么问。
+
+例如，你可以对国内外的常见 AI（比如 Deepseek、豆包、千问等）这么问，这都是大家问的最多的常见问题，AI 不光能给出正确答案，而且往往能给出健全且靠谱的答案：
+
+- 请使用 JavaScript 给我一个生成随机数的函数`randomNumber(min: number, max: number): number`。
+- 请使用 JavaScript 给我一个从`number`转化为罗马数字的函数。
+- JavaScript，现在有一个数组`[1, 6, 3, 8, 10, 3, 7, 0]`，如何将这个数组从大到小排序？
+
+例如：不要这么问，很多编程新手往往特别喜欢这么问：*帮我做一个我的世界的武器*。这个问题不仅过于专业，涉及到 Minecraft 这个具体的领域，而且问题过于笼统，是基岩版还是 Java 版？是一个什么样的武器？伤害多少？有没有具体细节要求？这是一个很糟糕的问题！最终 AI 往往都是一本正经的胡说八道。
+
+所以，**不要把一切都全部交给 AI，做开发这方面，自己肚子里一定要有点墨水**。
+
+本文我们就不再做总结和布置练习题了，你可以在我们给出的那几个 js 教程中看到很多总结和练习题，而且那些教程网站往往还有成熟的在线 js 编程环境，读者可以在那里进行练习。我们尤其推荐[廖雪峰的官方网站](https://liaoxuefeng.com/books/javascript/introduction/index.html)和[javascript.info](https://zh.javascript.info/intro)，在这里你可以成体系地学习到更多的 js 知识！
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>
