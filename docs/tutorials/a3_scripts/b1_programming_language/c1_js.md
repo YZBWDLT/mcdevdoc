@@ -8,13 +8,7 @@ import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
 
-> 上次更新：2026 年 3 月 10 日
-
-:::warning[注意]
-
-本文仍在编写中，仅供参考。
-
-:::
+> 上次更新：2026 年 3 月 13 日
 
 :::warning[注意]
 
@@ -22,7 +16,7 @@ import FileType from "/src/components/type/file"
 
 :::
 
-从本节开始，我们将要开始逐步了解国际版的 ScriptAPI，简称 SAPI。但是，在正式了解 SAPI 之前，我们必须充分且快速地学习 JavaScript。你可能听说过 JavaScript 的大名，它的简称是 js，广泛应用于网页编写，和 HTML、CSS 一起用于实现网页的复杂功能。好消息是我们学习 js 仅仅为了 Minecraft 的脚本服务，因此不用学习 HTML、CSS。但坏消息是，为了写出质量过关的 js 代码，你可能必须要花大约 1 个小时甚至数个小时的时间进行快速入门。
+从本节开始，**我们将要开始逐步了解国际版的 ScriptAPI，简称 SAPI**。但是，在正式了解 SAPI 之前，我们必须充分且快速地学习 JavaScript。你可能听说过 JavaScript 的大名，它的简称是 js，广泛应用于网页编写，和 HTML、CSS 一起用于实现网页的复杂功能。好消息是我们学习 js 仅仅为了 Minecraft 的脚本服务，因此不用学习 HTML、CSS。但坏消息是，为了写出质量过关的 js 代码，你可能必须要花大约 1 个小时甚至数个小时的时间进行快速入门。
 
 > **关于 JavaScript 的历史**
 >
