@@ -7,12 +7,15 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Highlight from '/src/components/highlight/standard';
+import '/src/css/treeview.css';
+import DataType from "/src/components/type/data"
+import FileType from "/src/components/type/file"
 
 本文档收录所有正式版或预览版中可用的命令，并给出对应课时。其中，部分内容并未在模块 1 介绍，请阅读本篇文档的初学者注意甄别，如果需要，请学习相关知识。
 
 :::info[本文更新时间]
 
-本文于 2026 年 1 月 6 日更新，中国版最新版本为 1.21.50，国际版最新版本为 1.21.130。
+本文于 2026 年 3 月 13 日更新，中国版最新版本为 1.21.50，国际版最新版本为 26.0。
 
 :::
 
@@ -1059,13 +1062,17 @@ in <维度: Dimension> -> execute
 
 <Tabs><TabItem value="camera_clear" label="clear" default>
 
+清除相机语法。
+
 ```text
 /camera <玩家: target> clear
 ```
 
-清除`玩家`的自定义相机。
+清除`玩家`的自定义相机。不清除渐变相机。
 
 </TabItem><TabItem value="camera_fade" label="fade">
+
+渐变相机语法，将玩家的相机设定为某个颜色。
 
 ```text
 /camera <玩家: target> fade [渐变时间] [颜色]
@@ -1080,11 +1087,11 @@ in <维度: Dimension> -> execute
 | `color <红: int> <绿: int> <蓝: int>` | `[颜色]` | 将相机颜色设置为 RGB 三原色按照不同强度（`红`、`绿`、`蓝`）组合后的颜色 |
 | `time <淡入秒数: float> <持续秒数: float> <淡出秒数: float>` | `[渐变时间]` | 将相机设置为淡入`淡入秒数`秒、持续`持续秒数`秒、淡出`淡出秒数`秒 |
 
-`[渐变时间]`的默认值为`time 1.5 0 1.5`[^3]。`[颜色]`的默认值为`color 0 0 0`（黑色）。
-
-[^3]: 缺少资料。
+`[渐变时间]`的默认值为`time 1.5 0 1.5`[^lackOfDocs]。`[颜色]`的默认值为`color 0 0 0`（黑色）。
 
 </TabItem><TabItem value="camera_set" label="set">
+
+设定相机语法，将玩家的相机设定某个预设。
 
 <Tabs><TabItem value="1" label="通用" default>
 
@@ -1123,7 +1130,7 @@ in <维度: Dimension> -> execute
 | `pos <位置: x y z>` | `[位置]` | 玩家的相机移动到的`位置` |
 | `facing <面向实体: target>`或`facing <面向坐标: x y z>`或`rot <x旋转: value> <y旋转: value>` | `[朝向]` | 玩家的相机的朝向 |
 
-`[缓变]`为空时，直接切换视角。`[位置]`的默认值为`pos 0 0 0`[^3]。`[朝向]`的默认值为`rot 0 0`[^3]。
+`[缓变]`为空时，直接切换视角。`[位置]`的默认值为`pos 0 0 0`[^lackOfDocs]。`[朝向]`的默认值为`rot 0 0`[^lackOfDocs]。
 
 `Easing`类型的可选值详见 Wiki。
 
@@ -1212,7 +1219,7 @@ in <维度: Dimension> -> execute
 
 按照`视场角缓动时间`和`视场角缓动类型`的缓动动画恢复`玩家`的视场角。
 
-不设置缓变动画时，直接恢复视场角。[^1]
+不设置缓变动画时，直接恢复视场角。
 
 </TabItem><TabItem value="fov_set" label="fov_set">
 
@@ -1222,17 +1229,17 @@ in <维度: Dimension> -> execute
 
 按照`视场角缓动时间`和`视场角缓动类型`的缓动动画设置`玩家`的视场角为`视场角值`。
 
-不设置缓变动画时，直接恢复视场角。[^1]
+不设置缓变动画时，直接设置视场角。
 
 </TabItem></Tabs>
 
 </TabItem><TabItem value="attach" label="attach">
 
-相机固定到实体语法，控制玩家相机的视场角。包括`attach_to_entity`和`detach_from_entity`。
+相机固定到实体语法，将相机固定到特定实体上。包括`attach_to_entity`和`detach_from_entity`。
 
-:::danger[版本适用性警告]
+:::warning[版本适用性警告]
 
-相机固定到实体语法仅限 1.21.120+ 版本可用，并需要启用「创建者照相机的实验性功能」实验性玩法才可使用。
+相机固定到实体语法仅限 26.10+ 版本可用。
 
 :::
 
@@ -1242,7 +1249,7 @@ in <维度: Dimension> -> execute
 /camera <玩家: target> attach_to_entity <实体: target>
 ```
 
-将`玩家`的相机固定到`实体`上。[^1]
+当玩家使用轨道相机（`minecraft:follow_orbit`和`minecraft:fixed_boom`）时，将`玩家`的相机固定到`实体`上。
 
 </TabItem><TabItem value="detach_from_entity" label="detach_from_entity">
 
@@ -1250,9 +1257,25 @@ in <维度: Dimension> -> execute
 /camera <玩家: target> detach_from_entity
 ```
 
-停止固定`玩家`的相机到实体上。[^1]
+停止固定`玩家`的相机到其他实体上。
 
 </TabItem></Tabs>
+
+</TabItem><TabItem value="play_spline" label="play_spline">
+
+样条语法，按照特定样条路径播放相机。
+
+:::warning[版本适用性警告]
+
+样条语法仅限 26.10+ 版本可用。
+
+:::
+
+```text
+/camera <玩家: target> play_spline <名称: string>
+```
+
+当`玩家`使用自由视角相机（`minecraft:free`）时，对`玩家`播放行为包中<FileType type="folder" name="cameras"/> - <FileType type="folder" name="splines"/>内的名为`名称`的样条。[^needTest]
 
 </TabItem></Tabs>
 
@@ -1286,10 +1309,8 @@ in <维度: Dimension> -> execute
 
 `存储模式`的默认值为`memory`，可选值为：
 
-- `memory`：保存在内存中，在*游戏关闭或存档关闭*[^1]后销毁。
+- `memory`：保存在内存中，在存档关闭后销毁。
 - `disk`：保存在硬盘中。
-
-[^1]: 有待验证。
 
 </TabItem>
 
@@ -1303,7 +1324,7 @@ in <维度: Dimension> -> execute
 
 `存储模式`的默认值为`memory`，可选值为：
 
-- `memory`：保存在内存中，在*游戏关闭或存档关闭*[^1]后销毁。
+- `memory`：保存在内存中，在存档关闭后销毁。
 - `disk`：保存在硬盘中。
 
 `包含实体`的默认值为`true`。`包含方块`的默认值为`true`。
@@ -1324,9 +1345,7 @@ in <维度: Dimension> -> execute
 /structure load <名称: string> <目的地: x y z> [旋转: Rotation] [镜像: Mirror] [包含实体: Boolean] [包含方块: Boolean] [含水: Boolean] [完整度: float] [种子: string]
 ```
 
-将名为`名称`的结构在`目的地`处加载。可选择顺时针旋转加载（`旋转`）、沿 x 或 z 轴镜像加载（`镜像`）、是否加载结构内的实体（`包含实体`）、是否加载结构内的方块（`包含方块`）、是否含水[^2]（`含水`）、按照多大的完整度加载（`完整度`）、以及在完整度低于 100% 时，通过什么样的种子随机加载（`种子`）。
-
-[^2]: 需要验证该参数的运行方式。
+将名为`名称`的结构在`目的地`处加载。可选择顺时针旋转加载（`旋转`）、沿 x 或 z 轴镜像加载（`镜像`）、是否加载结构内的实体（`包含实体`）、是否加载结构内的方块（`包含方块`）、是否含水（`含水`）、按照多大的完整度加载（`完整度`）、以及在完整度低于 100% 时，通过什么样的种子随机加载（`种子`）。
 
 `旋转`的默认值为`0_degree`，可选值为：
 
@@ -1352,7 +1371,7 @@ in <维度: Dimension> -> execute
 /structure load <名称: string> <目的地: x y z> [旋转: Rotation] [镜像: Mirror] [动画模式: StructureAnimationMode] [动画秒数: float] [包含实体: Boolean] [包含方块: Boolean] [含水: Boolean] [完整度: float] [种子: string]
 ```
 
-将名为`名称`的结构在`目的地`处加载。可选择顺时针旋转加载（`旋转`）、沿 x 或 z 轴镜像加载（`镜像`）、按照何种动画加载（`动画模式`和`动画秒数`）、是否加载结构内的实体（`包含实体`）、是否加载结构内的方块（`包含方块`）、是否含水[^2]（`含水`）、按照多大的完整度加载（`完整度`）、以及在完整度低于 100% 时，通过什么样的种子随机加载（`种子`）。
+将名为`名称`的结构在`目的地`处加载。可选择顺时针旋转加载（`旋转`）、沿 x 或 z 轴镜像加载（`镜像`）、按照何种动画加载（`动画模式`和`动画秒数`）、是否加载结构内的实体（`包含实体`）、是否加载结构内的方块（`包含方块`）、是否含水（`含水`）、按照多大的完整度加载（`完整度`）、以及在完整度低于 100% 时，通过什么样的种子随机加载（`种子`）。
 
 `旋转`的默认值为`0_degree`，可选值为：
 
@@ -1373,7 +1392,7 @@ in <维度: Dimension> -> execute
 - `block_by_block`：逐个方块加载。
 - `layer_by_layer`：逐层加载。
 
-`包含实体`的默认值为`true`。`包含方块`的默认值为`true`。`动画秒数`的默认值为？[^1]。`含水`的默认值为`false`。`完整度`的默认值为`100`。`种子`为空时，随机取值。
+`包含实体`的默认值为`true`。`包含方块`的默认值为`true`。`动画秒数`的默认值为`0`。`含水`的默认值为`false`。`完整度`的默认值为`100`。`种子`为空时，随机取值。
 
 </TabItem>
 
@@ -2801,7 +2820,7 @@ in <维度: Dimension> -> execute
 
 对`玩家`施加`秒数`秒的、强度为`强度`的`摇晃类型`视角摇晃。
 
-`强度`的默认值为`0.5`[^1]。`秒数`的默认值为`1`[^1]。
+`强度`的默认值为`0.5`[^lackOfDocs]。`秒数`的默认值为`1`。
 
 `摇晃`的默认值为`positional`，可选值为：
 
@@ -3374,11 +3393,30 @@ allowlist reload
 
 设置玩家的瞄准辅助。
 
+**瞄准辅助（Aim Assist）** 是用于非第一人称时的瞄准功能。瞄准辅助会尝试以玩家的眼睛为顶点，向外以一定的角度发散一个锥形的区域，并按照特定规则选取方块和实体。
+
 - **权限等级**：1
 
-<Tabs>
+<Tabs><TabItem value="set" label="set" default>
 
-<TabItem value="clear" label="clear" default>
+```text
+/aimassist <玩家: target> set [x角度: float] [y角度: float] [最远距离: float] [瞄准模式: AimAssistTargetMode] [预设ID: string]
+```
+
+当玩家使用非第一人称视角时，设置`玩家`的瞄准辅助。
+
+使用`x角度`来指定玩家视角水平方向的锥底面轴长，`y角度`来指定玩家视角垂直方向的锥底面轴长，而`最远距离`指定玩家视角锥面的母线长。这三个变量所组成的锥面如下图所示：
+
+![aim_assist](/img/docs/commands/all_commands/aim_assist.png)
+
+`瞄准模式`的默认值为`angle`，可选值为：
+
+- `angle`：在上图锥面中瞄准与锥底中心最近的实体或方块。这和第三人称的一般情况类似。
+- `distance`：在上图锥面中瞄准与玩家眼睛距离最近的实体或方块。
+
+`预设ID`须指定为行为包中<FileType type="folder" name="cameras"/> - <FileType type="folder" name="presets"/> - <FileType type="file" name="aim_assist_preset.json"/>的有效预设 ID，详见[瞄准辅助预设 - Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/documents/camerasystem/aimassistpresets?view=minecraft-bedrock-stable)。
+
+</TabItem><TabItem value="clear" label="clear">
 
 ```text
 /aimassist <玩家: target> clear
@@ -3386,19 +3424,7 @@ allowlist reload
 
 移除`玩家`的瞄准辅助。
 
-</TabItem>
-
-<TabItem value="set" label="set">
-
-```text
-/aimassist <玩家: target> set [x角度: float] [y角度: float] [最远距离: float] [瞄准模式: AimAssistTargetMode] [预设ID: string]
-```
-
-设置`玩家`的瞄准辅助[^1]。
-
-</TabItem>
-
-</Tabs>
+</TabItem></Tabs>
 
 ---
 
@@ -3416,6 +3442,8 @@ allowlist reload
 
 该命令需要至少`2`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
 
+但是，在 SAPI 中有`Dimension.placeFeature()`、`StructureManager.placeJigsaw()`等对应方法可用。
+
 :::
 
 放置地物、结构、拼图等。
@@ -3427,20 +3455,24 @@ allowlist reload
 <TabItem value="feature" label="feature" default>
 
 ```text
-/place feature <地物: features> [position: x y z]
+/place feature <地物: features> [位置: x y z]
 ```
 
-放置地物[^1]。
+在`位置`放置`地物`。
+
+放置地物必须要符合其放置条件，否则无法放置。
 
 </TabItem>
 
 <TabItem value="featurerule" label="featurerule">
 
 ```text
-/place featurerule <featurerule: featureRules> [position: x y z]
+/place featurerule <地物规则: featureRules> [位置: x y z]
 ```
 
-放置地物[^1]。
+在`位置`按照`地物规则`放置地物。
+
+放置地物规则必须要符合其放置条件，否则无法放置。
 
 </TabItem>
 
@@ -3450,7 +3482,7 @@ allowlist reload
 /place jigsaw <pool: filepath> <jigsawTarget: string> <maxDepth: int> [pos: x y z] [keepJigsaws: Boolean] [liquidSettings: LiquidSettings]
 ```
 
-放置结构池并展开指定深度[^1]。
+放置结构池并展开指定深度[^needTest]。
 
 </TabItem>
 
@@ -3460,23 +3492,25 @@ allowlist reload
 /place structure <structure: string> [pos: x y z] [ignoreStartHeight: Boolean] [keepJigsaws: Boolean] [liquidSettings: LiquidSettings]
 ```
 
-放置结构地物[^1]。
+放置结构地物[^needTest]。
 
 </TabItem>
 
 </Tabs>
 
+---
+
 ### `/controlscheme`
 
 <Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/controlscheme" backgroundColor="#1977E3" />
+
+修改相机预设的控制方案。此命令需要结合`/camera`使用。
 
 :::warning[版本适用性警告]
 
 该命令仅限 1.21.90+ 版本可用。
 
 :::
-
-修改相机预设的控制方案。
 
 - **权限等级**：1
 
@@ -3488,7 +3522,22 @@ allowlist reload
 /controlscheme <玩家: target> set <控制方案: controlscheme>
 ```
 
-设定控制方案[^1]。
+设定`玩家`的控制方案为`控制方案`。
+
+`控制方案`的默认值为`locked_player_relative_strafe`，可选值为：
+
+| 可选值 | 移动方向 | 朝向 | 是否显示鼠标指针 | 是否锁定水平方向 |
+| --- | --- | --- | --- | --- |
+| `camera_relative` | 相机方向 | 由移动方向决定，立刻变为移动方向 | ❌ | ✔️ |
+| `camera_relative_strafe` | 相机方向 | 由鼠标指针决定，立刻面向鼠标指针 | ✔️ | ✔️ |
+| `locked_player_relative_strafe` | 由玩家朝向决定 | 随鼠标滑动方向改变 | ❌ | ❌ |
+| `player_relative` | 由玩家朝向决定 | 按<kbd>A</kbd>、<kbd>D</kbd>分别使玩家向左、向右看 | ❌ | ✔️ |
+| `player_relative_strafe` | 由玩家朝向决定 | 由鼠标指针决定，立刻面向鼠标指针 | ✔️ | ✔️ |
+
+备注：
+
+1. 移动方向为相机方向时，按<kbd>W</kbd>、<kbd>A</kbd>、<kbd>S</kbd>、<kbd>D</kbd>将分别使玩家按**相机**的面向向前、向左、向后、向右走。
+2. 移动方向由玩家朝向决定时，按<kbd>W</kbd>、<kbd>S</kbd>将分别使玩家按**玩家**的面向向前、向后走。除了`player_relative`之外，按<kbd>A</kbd>、<kbd>D</kbd>使玩家按**玩家**的面向向左、向右走。
 
 </TabItem>
 
@@ -3498,7 +3547,7 @@ allowlist reload
 /controlscheme <玩家: target> clear
 ```
 
-清除控制方案[^1]。
+清除`玩家`的控制方案。
 
 </TabItem>
 
@@ -3553,12 +3602,12 @@ allowlist reload
 :::
 
 ```text
-/enableedunpc [启用NPC: Boolean]
+/enableedunpc <启用NPC: Boolean>
 ```
 
-是否启用 NPC。[^1]
+是否启用 NPC。
 
-需要注意：即使启用 NPC，它也不能通过`/summon`直接生成，而且也不存在任何实际功能。
+需要注意：即使启用 NPC，它也不能通过`/summon`直接生成，而且也不存在任何实际功能。你可以使用`/give @s spawn_egg 1 51`获得 NPC 的刷怪蛋。
 
 ---
 
@@ -3581,9 +3630,12 @@ allowlist reload
 /removeedunpc
 ```
 
-移除全部 NPC。[^1]
+移除地图内现有的全部 NPC。但这不会禁止 NPC 的生成。
 
 ---
+
+[^needTest]: 有待验证。
+[^lackOfDocs]: 缺少资料。
 
 ## 参考资料
 

@@ -17,7 +17,7 @@ sidebar_position: 11
 它们的语法也很简单：
 
 ```text showLineNumbers
-/enableedunpc [启用NPC: Boolean]
+/enableedunpc <启用NPC: Boolean>
 /removeedunpc
 ```
 

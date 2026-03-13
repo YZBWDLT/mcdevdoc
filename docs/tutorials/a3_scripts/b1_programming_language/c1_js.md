@@ -53,6 +53,8 @@ console.log("Hello,world!");
 
 上面的代码就是一个 **JavaScript 语句（JavaScript Statements）**。对于初学者，每个语句之间都要用`;`分隔，并且为了美观和稳定考虑，要用换行分隔不同的语句。
 
+读者也可以在[JS Playground](https://runjs.app/play)里执行 js 代码。
+
 读者还需要注意：和命令不同，编程语言的程序一旦报错会导致整段代码终止运行，这会导致严重的运行问题。所以在脚本的实际运行过程中，**我们必须全力阻止脚本发生报错**。
 
 ## 变量与常量
@@ -226,11 +228,12 @@ let player = {
     "name": "YZBWDLT",
     "health": 20,
     "hunger": 20,
-    "inventory": ["minecraft:stick"], // js 内是允许尾逗号的，但 json 不允许
+    "inventory": ["minecraft:stick"],
+    "foo:example": true, // js 内是允许尾逗号的，但 json 不允许
 };
 ```
 
-如果键名是字符串，还可以把双引号省略掉，例如上面的代码和下面的代码是一致的：
+对于键名比较简单的情况，还可以把双引号省略掉，例如上面的代码和下面的代码是一致的：
 
 ```javascript
 let player = {
@@ -238,6 +241,7 @@ let player = {
     health: 20,
     hunger: 20,
     inventory: ["minecraft:stick"],
+    "foo:example": true, // foo:example 不能略去双引号，否则会引起歧义
 };
 ```
 
