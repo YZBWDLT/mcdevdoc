@@ -1235,11 +1235,11 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="attach" label="attach">
 
-相机固定到实体语法，将相机固定到特定实体上。包括`attach_to_entity`和`detach_from_entity`。
+附着相机语法，将相机固定到特定实体上。包括`attach_to_entity`和`detach_from_entity`。
 
 :::warning[版本适用性警告]
 
-相机固定到实体语法仅限 26.10+ 版本可用。
+附着相机语法仅限 26.10+ 版本可用。
 
 :::
 

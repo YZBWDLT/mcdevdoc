@@ -555,10 +555,16 @@ replaceitem entity @s[hasitem={item=ender_eye,location=slot.weapon.mainhand}] sl
 
 ```
 
-## 算法
+<!--
 
-### 遍历
+### 二分法获取实体坐标
 
-### 二分法
+### 实体遍历
 
 ### FMBE
+
+-->
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>
