@@ -192,7 +192,7 @@ import DataType from "/src/components/type/data"
 
 可用于新建物品组，但不能新建物品分类。
 
-:::warning[注意]
+:::warning[版本适用性警告]
 
 该功能仅限 1.21.60 及更高版本可用。
 
@@ -209,8 +209,8 @@ import DataType from "/src/components/type/data"
         - <DataType type="array" name="groups" isRequired/>：定义物品组。
           - <DataType type="object"/>
             - <DataType type="object" name="group_identifier"/>：定义物品组。如果不指定该参数将直接指定下面<DataType type="string" name="items" isRequired/>中的物品为分散在物品栏中的物品。
-              - <DataType type="string" name="icon"/>：定义物品组的图标使用何物品的图标。
-              - <DataType type="string" name="name"/>：定义物品组的名称和 ID。可以指定为原版物品组（必须带`minecraft:`命名空间），详见[原版使用的物品组](#原版使用的物品组)，也可以自行新建（必须带命名空间）。
+              - <DataType type="string" name="icon" isRequired/>：定义物品组的图标使用何物品的图标。
+              - <DataType type="string" name="name" isRequired/>：定义物品组的名称和 ID。可以指定为原版物品组（必须带`minecraft:`命名空间），详见[原版使用的物品组](#原版使用的物品组)，也可以自行新建（必须带命名空间）。
             - <DataType type="string" name="items" isRequired/>：定义哪些物品归类进该物品组。
 
 </treeview>

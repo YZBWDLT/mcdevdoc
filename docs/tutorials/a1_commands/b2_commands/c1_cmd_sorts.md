@@ -4,6 +4,8 @@ sidebar_position: 1
 
 # 2.1 命令的分类
 
+> 上次更新：2026 年 4 月 4 日
+
 在第一章，我们学习了一些基本概念，例如坐标、实体、目标选择器等。从本章开始，我们就将开始学习各个具体的命令。不过，考虑到现在很多命令都是和附加包相关的，所以在本章，很多命令会暂且按下不表。
 
 请注意：本教程的重点，是帮助你了解我们在工程中所常用的命令，以及命令的大体用途。本教程不会具体地介绍每条命令的用法。关于具体的用法，你可以参阅[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/命令)的条目，或者`/help`。应该说的是，记载信息非常详细的文档已经有很多，微软文档、Wiki 都有大量权威且详细的记载，因此已经掌握了命令基础知识的读者，可以配合 Wiki 进行学习。**本教程是为新手准备的**，包括逻辑、学习路线等都是为新手准备的。因此如果你是新手，可以在看完我们的教程后再看 Wiki，新手直接看 Wiki 是很容易看不懂的。
@@ -14,16 +16,91 @@ sidebar_position: 1
 
 根据[附录 1](../appendix/command_frequency_table)，我们可以将一些命令按照在实际工程中的频率进行分类。这个频率表可以帮助你了解各个命令的重要性。
 
-- 带有\*的为和附加包（Add-on）有关的命令，本章不会介绍，或不会过于具体地介绍，而会在相关模块介绍相关功能时再介绍该命令或具体内容。你可以看到，命令和附加包现在是深度绑定的！
+带有\*的为和附加包（Add-on）有关的命令，本章不会介绍，或不会过于具体地介绍，而会在相关模块介绍相关功能时再介绍该命令或具体内容。你可以看到，命令和附加包现在是深度绑定的！
 
-| 等级 | 命令 | 在一个较大型地图项目中的出现频率 |
-| --- | --- | :---: |
-| 超高频命令 | `/execute`<br/>`/function`\*<br/>`/scoreboard`<br/>`/summon`\*[^1]<br/>`/tellraw` | >0.05 |
-| 高频命令 | `/tag`<br/>`/tp`（或`/teleport`）<br/>`/scriptevent`\*<br/>`/titleraw`<br/>`/playsound`\*[^2]<br/>`/setblock`\*[^4]<br/>`/event`\*[^1]<br/>`/particle`\*[^3]<br/>`/clear`\*[^5]<br/>`/clone` | 0.01~0.05 |
-| 中频命令 | `/camera`\*[^7]<br/>`/structure`\*[^6]<br/>`/gamerule`<br/>`/effect`<br/>`/replaceitem`\*[^5]<br/>`/kill`\*[^1]<br/>`/give`\*[^5]<br/>`/spawnpoint`<br/>`/inputpermission`<br/>`/fill`\*[^4]<br/>`/gamemode`<br/>`/music`\*[^2]<br/>`/title` | 0.001~0.01 |
-| 低频命令 | `/fog`\*[^8]<br/>`/hud`<br/>`/dialogue`\*<br/>`/playanimation`\*[^1]<br/>`/say`<br/>`/setworldspawn`<br/>`/tickingarea`<br/>`/tell`（或`/msg`、`/w`）<br/>`/time`<br/>`/xp`<br/>`/loot`\*[^1]<br/>`/difficulty`<br/>`/weather`<br/>`/enchant`<br/>`/schedule`\*<br/>`/ride`\*[^1]<br/>`/stopsound`\*[^2]<br/>`/damage`<br/>`/camerashake`<br/>`/mobevent` | 0~0.001 |
-| 零频命令 | `/alwaysday`（或`/daylock`）<br/>`/clearspawnpoint`<br/>`/gametest`\*<br/>`/me`<br/>`/recipe`\*[^9]<br/>`/script`\*<br/>`/spreadplayers`<br/>`/testfor`<br/>`/testforblock`<br/>`/testforblocks`<br/>`/toggledownfall` | 几乎用不到 |
-| 服务器常用命令 | `/op`<br/>`/deop`<br/>`/kick`<br/>`/list`<br/>`/locate`<br/>`/connect`<br/>`/reload`\*<br/>`/stop`<br/>`/setmaxplayers`<br/>`/allowlist` | — |
+- **超高频命令**：在一张较大型地图项目中的出现频率高于 0.05
+  - `/execute`
+  - `/function`\*
+  - `/scoreboard`
+  - `/summon`\*[^1]
+  - `/tellraw`
+- **超高频命令**：在一张较大型地图项目中的出现频率在 0.01 ~ 0.05
+  - `/tag`
+  - `/tp`（或`/teleport`）
+  - `/setblock`\*[^4]
+  - `/scriptevent`\*
+  - `/titleraw`
+  - `/event`\*[^1]
+  - `/camera`\*[^7]
+  - `/clone`
+  - `/playsound`\*[^2]
+  - `/fill`\*[^4]
+  - `/clear`\*[^5]
+- **中频命令**：在一张较大型地图项目中的出现频率在 0.001 ~ 0.01
+  - `/particle`\*[^3]
+  - `/structure`\*[^6]
+  - `/kill`\*[^1]
+  - `/gamerule`
+  - `/effect`
+  - `/spawnpoint`
+  - `/give`\*[^5]
+  - `/replaceitem`\*[^5]
+  - `/title`
+  - `/say`
+  - `/music`\*[^2]
+  - `/inputpermission`
+  - `/gamemode`
+  - `/setworldspawn`
+- **低频命令**：在一张较大型地图项目中的出现频率在 0 ~ 0.001
+  - `/fog`\*[^8]
+  - `/hud`
+  - `/dialogue`\*
+  - `/playanimation`\*[^1]
+  - `/time`
+  - `/tickingarea`
+  - `/tell`
+  - `/xp`
+  - `/enchant`
+  - `/spreadplayers`
+  - `/loot`\*[^1]
+  - `/difficulty`
+  - `/damage`
+  - `/weather`
+  - `/schedule`\*
+  - `/ride`\*
+  - `/stopsound`\*
+  - `/camerashake`
+  - `/mobevent`
+- **零频命令**：在一张较大型地图项目中几乎用不到
+  - `/alwaysday`
+  - `/clearspawnpoint`
+  - `/daylock`
+  - `/gametest`\*
+  - `/help`
+  - `/kick`
+  - `/list`
+  - `/locate`
+  - `/me`
+  - `/msg`
+  - `/recipe`\*[^9]
+  - `/script`\*
+  - `/teleport`
+  - `/testfor`
+  - `/testforblock`
+  - `/testforblocks`
+  - `/toggledownfall`
+  - `/w`
+- **服务器常用命令**
+  - `/op`
+  - `/deop`
+  - `/kick`
+  - `/list`
+  - `/locate`
+  - `/connect`
+  - `/reload`\*
+  - `/stop`
+  - `/setmaxplayers`
+  - `/allowlist`
 
 也许看到这些命令，你会非常迷茫：这都啥？啥？啥？没关系，这只是一个简单了解而已。在本章后续，你就会逐渐了解这些命令。
 

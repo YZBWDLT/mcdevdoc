@@ -49,7 +49,7 @@ import FileType from "/src/components/type/file"
 ## 获取退出重进的玩家
 scoreboard players add @a isOnline 0
 ## 令退出重进玩家执行的命令
-## execute as @a[scores={isOnline=0}] at @s run function lib/events/player_join
+execute as @a[scores={isOnline=0}] at @s run function events/player_join
 ## 将所有玩家设置为在线模式
 scoreboard objectives remove isOnline
 scoreboard objectives add isOnline dummy "玩家在线"
@@ -124,7 +124,7 @@ function lib/get_data/player_amount
 ## 玩家死亡检测
 scoreboard players set @a[scores={deathState=!2}] deathState 1
 scoreboard players set @e[type=player] deathState 0
-execute as @a[scores={deathState=1}] at @s run function lib/events/player_die
+execute as @a[scores={deathState=1}] at @s run function events/player_die
 scoreboard players set @a[scores={deathState=1}] deathState 2
 ## 死亡玩家执行命令
 # execute as @a[scores={deathState=2}] run (死亡的玩家执行的命令)
