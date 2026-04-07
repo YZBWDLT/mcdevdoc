@@ -141,7 +141,7 @@ scoreboard players set @a[scores={deathState=1}] deathState 2
 
 ### 玩家复活时
 
-当玩家复活时，执行`events/player_respawn`函数。这需要你事先实现[事件：玩家死亡时](#玩家死亡时)和[数据获取：获取玩家存活状态]。
+当玩家复活时，执行`events/player_respawn`函数。这需要你事先实现[事件：玩家死亡时](#玩家死亡时)和[数据获取：获取玩家存活状态](#获取玩家存活状态)。
 
 <treeview>
 - <FileType type="folder" name="functions"/>
