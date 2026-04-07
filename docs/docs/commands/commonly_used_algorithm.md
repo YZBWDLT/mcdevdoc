@@ -139,6 +139,51 @@ scoreboard players set @a[scores={deathState=1}] deathState 2
 # (例如，scoreboard players add @s deathCount 1 将为刚死亡的玩家添加 1 分)
 ```
 
+### 玩家复活时
+
+当玩家复活时，执行`events/player_respawn`函数。这需要你事先实现[事件：玩家死亡时](#玩家死亡时)和[数据获取：获取玩家存活状态]。
+
+<treeview>
+- <FileType type="folder" name="functions"/>
+  - <FileType type="folder" name="events"/>
+    - <FileType type="file" name="player_respawn.mcfunction"/>：事件函数：玩家复活
+  - <FileType type="folder" name="lib"/>
+    - <FileType type="folder" name="get_data"/>
+      - <FileType type="file" name="player_is_alive.mcfunction"/>：获取玩家存活状态
+  - <FileType type="folder" name="system"/>
+    - <FileType type="file" name="main.mcfunction"/>：主函数，每刻循环执行
+  - <FileType type="file" name="tick.json"/>
+</treeview>
+
+:::warning[温馨提示]
+
+下文主函数高亮的命令请放到玩家死亡检测开头，防止其他命令先行检测玩家死亡状态导致此功能失效。需注意命令方块系统可能会因为时序问题而出现运行问题。
+
+:::
+
+```mcfunction showLineNumbers title="主函数 system/main"
+# --- 玩家死亡检测 ---
+## 玩家复活检测
+function lib/get_data/player_is_alive
+execute as @a[tag=isAlive,scores={deathState=2}] run function events/player_respawn
+## 玩家死亡检测
+scoreboard players set @a[scores={deathState=!2}] deathState 1
+scoreboard players set @e[type=player] deathState 0
+execute as @a[scores={deathState=1}] at @s run function events/player_die
+scoreboard players set @a[scores={deathState=1}] deathState 2
+## 死亡玩家执行命令
+# execute as @a[scores={deathState=2}] run (死亡的玩家执行的命令)
+```
+
+```mcfunction showLineNumbers title="事件函数 events/player_respawn"
+# ===== 事件：玩家重生 =====
+# 用于规定玩家重生时执行的命令。
+# 调用此方法时：需修饰执行者为重生的玩家，执行位置为该玩家的位置（execute as @a[tag=isAlive,scores={deathState=1..2}] run）。
+
+# (要执行的命令，如要指定重生的玩家请设为 @s)
+# (例如，scoreboard players add @s respawnCount 1 将为刚重生的玩家添加 1 分)
+```
+
 ### 玩家切换维度时
 
 当玩家死亡时，执行`events/player_changed_dimension/...`函数。这需要你事先实现[获取数据：获取玩家所处维度](#获取玩家所处维度)。
