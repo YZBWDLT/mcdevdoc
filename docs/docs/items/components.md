@@ -17,7 +17,7 @@ import DataType from "/src/components/type/data"
 
 :::info[本文更新时间]
 
-本文于 2026 年 1 月 2 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.130。
+本文于 2026 年 4 月 14 日更新，中国版最新版本为 1.21.90，国际版最新版本为 26.10。
 
 :::
 
@@ -360,6 +360,7 @@ import DataType from "/src/components/type/data"
   - <DataType type="boolean" name="replace_block_item"/>：（1.21.50+）是否将此物品与对应方块绑定，若绑定则当方块被破坏后将掉落该物品。备注：物品 ID 必须与对应的方块 ID 保持一致。
   - <DataType type="array" name="use_on"/>：可放置于的方块列表。如果留空，则默认为可放置于所有方块上。
     - <DataType type="string"/>：方块 ID。
+  - <DataType type="boolean" name="aligned_placement"/>：（26.10+）是否对齐放置。当指定为`true`时，在玩家移动时将允许方块按照玩家移动的方向放置，默认为`false`。
 </treeview>
 
 > 该组件有更完整的语法描述方块，请查阅官方文档。

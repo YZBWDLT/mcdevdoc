@@ -246,7 +246,7 @@ import DataType from "/src/components/type/data"
       - <DataType type="boolean" name="sort_by_identifier"/>：定义物品分类中的物品是否进行排序，默认为`false`。分类规则为：  
         分类中全部为未分组物品时，则按照物品的 ID 排序；  
         分类中全部为具有分组的物品时，则按照分组中第一个物品的 ID 排序；  
-        分类中既有分组物品和未分组物品时，则按照分组中第一个物品的 ID 和未分组物品的 ID 排序；
+        分类中既有分组物品和未分组物品时，则按照分组中第一个物品的 ID 和未分组物品的 ID 排序。
 
 </treeview>
 
