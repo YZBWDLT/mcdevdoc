@@ -23,6 +23,9 @@ import FileType from "/src/components/type/file"
 - <FileType type="folder" name="RP"/>：资源包根目录
   - <FileType type="folder" name="fonts"/>：字体贴图
     - <FileType type="image" name="（文件名）.png"/>：字体贴图，可通过解包获取。必须使用原版贴图，修改后更改游戏内显示该字的方式。需注意在非全局资源下可能会出现间距错误问题。
+  - <FileType type="folder" name="items"/> / <FileType type="folder" name="netease_items_res"/>：数据驱动物品定义（netease_前缀的仅适用于中国版）
+    - <FileType type="folder" name="（文件夹名）"/>：习惯上命名为命名空间或用途（例如`weapon`、`food`）
+      - <FileType type="file" name="(物品 ID).json"/>：物品定义文件，可以直接放在<FileType type="folder" name="items"/>下，也可以放在嵌套文件夹下，效果等同。习惯上命名为`（物品 ID）.item.json`。
   - <FileType type="folder" name="texts"/>：翻译文本
     - <FileType type="file" name="languages.json"/>：可以定义语言，并在玩家选择特定语言后使用`语言名.lang`的翻译。
     - <FileType type="file" name="language_names.json"/>：可以定义语言在游戏内显示的名称。
@@ -30,6 +33,7 @@ import FileType from "/src/components/type/file"
   - <FileType type="folder" name="textures"/>：贴图
     - <FileType type="folder" name="（文件夹名）"/>：放在特定文件夹下面的贴图。习惯上，采用原版的分类方式，例如实体为`entity`、物品为`items`、方块为`blocks`等。允许子文件夹存在。原版贴图必须严格走原版的路径。
       - <FileType type="image" name="（文件名）.png"/>或<FileType type="image" name="（文件名）.tga"/>：贴图，仅限`.png`或`.tga`格式。备注：严禁直接改文件后缀，需要格式转换请使用专业工具。
+    - <FileType type="file" name="item_texture.json"/>：物品贴图注册
   - [<FileType type="file" name="manifest.json"/>](./manifest)：清单文件
   - <FileType type="image" name="pack_icon.png"/>：图标文件
 

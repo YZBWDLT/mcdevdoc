@@ -12,7 +12,7 @@ import FileType from "/src/components/type/file"
 
 :::info[本文更新时间]
 
-本文于 2026 年 1 月 5 日更新，中国版最新版本为 1.21.50，国际版最新版本为 1.21.130。
+本文于 2026 年 4 月 18 日更新，中国版最新版本为 1.21.90，国际版最新版本为 26.10。
 
 :::
 
@@ -32,10 +32,16 @@ import FileType from "/src/components/type/file"
     - <FileType type="folder" name="（文件夹名）"/>
       - <FileType type="file" name="（文件名）.mcfunction"/>：函数文件，通过`/function (文件夹名)/(文件名)`执行该函数
     - <FileType type="file" name="tick.json"/>：循环执行的函数
-  - <FileType type="folder" name="items"/>：数据驱动物品定义
+  - <FileType type="folder" name="items"/> / <FileType type="folder" name="netease_items_beh"/>：数据驱动物品定义（netease_前缀的仅适用于中国版）
     - <FileType type="folder" name="（文件夹名）"/>：习惯上命名为命名空间或用途（例如`weapon`、`food`）
       - <FileType type="file" name="（文件名）.json"/>：物品定义文件，可以直接放在<FileType type="folder" name="items"/>下，也可以放在嵌套文件夹下，效果等同。习惯上命名为`（物品 ID）.item.json`。
-  - <FileType type="folder" name="recipes"/>：配方表定义
+  - <FileType type="folder" name="item_catalog"/>
+    - <FileType type="file" name="crafting_item_catalog.json"/>：（1.21.60+）物品在创造模式物品栏和配方书中的分类信息
+  - <FileType type="folder" name="netease_group"/>（仅适用于中国版）物品组
+    - <FileType type="file" name="*.json"/>：定义物品组，名称可任意指定（例如 crafting_item_catalog.json 或 group_config.json）
+  - <FileType type="folder" name="netease_tab"/>：（仅适用于中国版）物品分类
+    - <FileType type="file" name="*.json"/>：定义物品分类，名称可任意指定（例如  crafting_item_catalog.json 或 category_config.json）
+  - <FileType type="folder" name="recipes"/> / <FileType type="folder" name="netease_recipes"/>：配方表定义（netease_前缀的仅适用于中国版）
     - <FileType type="folder" name="（文件夹名）"/>：习惯上命名为命名空间或用途、途径等（例如`crafting_table`、`furnace`）
       - <FileType type="file" name="（文件名）.json"/>：配方表文件，可以直接放在<FileType type="folder" name="recipes"/>下，也可以放在嵌套文件夹下，效果等同。习惯上命名为`（物品 ID）.recipe.json`。
   - <FileType type="folder" name="structures"/>：结构

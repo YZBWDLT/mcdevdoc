@@ -357,7 +357,7 @@ import DataType from "/src/components/type/data"
 <treeview>
 - <DataType type="object" name="minecraft:block_placer"/>：根对象
   - <DataType type="string" name="block" isRequired/>：将放置为何种方块。
-  - <DataType type="boolean" name="replace_block_item"/>：（1.21.50+）是否将此物品与对应方块绑定，若绑定则当方块被破坏后将掉落该物品。备注：物品 ID 必须与对应的方块 ID 保持一致。
+  - <DataType type="boolean" name="replace_block_item"/>：（1.21.60+）是否将此物品与对应方块绑定，若绑定则当方块被破坏后将掉落该物品。备注：物品 ID 必须与对应的方块 ID 保持一致。
   - <DataType type="array" name="use_on"/>：可放置于的方块列表。如果留空，则默认为可放置于所有方块上。
     - <DataType type="string"/>：方块 ID。
   - <DataType type="boolean" name="aligned_placement"/>：（26.10+）是否对齐放置。当指定为`true`时，在玩家移动时将允许方块按照玩家移动的方向放置，默认为`false`。
@@ -637,10 +637,11 @@ import DataType from "/src/components/type/data"
 <treeview>
 - <DataType type="object" name="minecraft:digger"/>：根对象。
   - <DataType type="array" name="destroy_speeds" isRequired/>：定义列表中的方块的破坏速度。
-    - <DataType type="string" name="block"/>：方块 ID。
-    - <DataType type="object" name="block"/>（替代）：方块标签。
-      - <DataType type="string" name="tags"/>：一个 Molang 表达式。通常使用`query.any_tag()`来代表拥有特定标签的方块。
-    - <DataType type="int" name="speed"/>：破坏方块的速度。若为负数则代表无法破坏。更多信息参见[挖掘 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E6%8C%96%E6%8E%98#%E6%8C%96%E6%8E%98%E9%80%9F%E5%BA%A6)，但请格外注意此值不支持浮点数。
+    - <DataType type="object"/>
+      - <DataType type="string" name="block"/>：方块 ID。
+      - <DataType type="object" name="block"/>（替代）：方块标签。
+        - <DataType type="string" name="tags"/>：一个 Molang 表达式。通常使用`query.any_tag()`来代表拥有特定标签的方块。
+      - <DataType type="int" name="speed"/>：破坏方块的速度。若为负数则代表无法破坏。更多信息参见[挖掘 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E6%8C%96%E6%8E%98#%E6%8C%96%E6%8E%98%E9%80%9F%E5%BA%A6)，但请格外注意此值不支持浮点数。
   - <DataType type="boolean" name="use_efficiency"/>：定义有效率附魔的物品是否影响挖掘速度。
 </treeview>
 
@@ -650,13 +651,11 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:digger": {
-    "minecraft:digger": {
-        "use_efficiency": true,
-        "destroy_speeds": [
-            { "block": { "tags": "query.any_tag( 'wood' )" }, "speed": 6 },
-            { "block": "minecraft:coal_ore", "speed": 2 }
-        ]
-    }
+    "use_efficiency": true,
+    "destroy_speeds": [
+        { "block": { "tags": "query.any_tag( 'wood' )" }, "speed": 6 },
+        { "block": "minecraft:coal_ore", "speed": 2 }
+    ]
 }
 ```
 
