@@ -10,23 +10,18 @@ import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
-收录物品标签的相关信息。
-
-你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
-
-:::info[本文更新时间]
-
-本文于 2026 年 1 月 5 日更新，中国版最新版本为 1.21.50，国际版最新版本为 1.21.130。
-
-:::
+> 上次更新：2026 年 4 月 21 日。  
+> 其中文档内容更新于 2026 年 1 月 5 日。此时中国版最新版本为 1.21.50，国际版最新版本为 1.21.130。
 
 ---
 
+物品标签（Item Tags）可以用于将多个物品在底层代码上进行分类，可用于[相关 Molang](./molang) 和[配方表](./recipes)中。物品标签可以在数据驱动物品中通过[物品组件`minecraft:tags`](components#minecrafttags)定义。原版的物品也在大量使用物品标签。
+
+本文档收录物品标签的相关信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
+
 ## 原版使用的标签
 
-原版可用的物品标签如下表所示。你也可以为你的自定义物品或方块添加标签组件（参见[物品组件`minecraft:tags`](components#minecrafttags)）。
-
-读者也可在[Bedrock Wiki](https://wiki.bedrock.dev/items/item-tags)中查看更多相关信息。
+原版可用的物品标签如下表所示。读者可在[Bedrock Wiki](https://wiki.bedrock.dev/items/item-tags)中查看更多相关信息。
 
 | 标签 | 解释及功能 |
 | :--- | :--- |
@@ -100,22 +95,7 @@ import DataType from "/src/components/type/data"
 [^1]: 在微软文档中记载，而 Bedrock Wiki 中未记载。
 [^2]: 在Bedrock Wiki 中记载，而微软文档中未记载。
 
-## 标签的用途
-
-### 相关 Molang
-
-使用 Molang 可以判断物品带有的标签。
-
-| Molang | 含义 |
-| --- | :--- |
-| `query.equipped_item_all_tags(slot, ...tags)` | 实体的特定位置是否均为特定标签的物品 |
-| `query.equipped_item_any_tag(slot, ...tags)` | 实体的特定位置是否存在特定标签的物品 |
-| `query.all_tags(...tags)` | 物品是否具有全部列出的标签 |
-| `query.any_tag(...tags)` | 物品是否存在列出的标签 |
-
-### 配方
-
-可以在配方表中指定特定标签的物品用于合成。见[配方表](recipes)。
+---
 
 ## 参考文档
 

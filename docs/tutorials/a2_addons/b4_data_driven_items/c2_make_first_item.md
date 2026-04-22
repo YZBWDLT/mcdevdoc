@@ -113,7 +113,7 @@ import FileType from "/src/components/type/file"
 
 ![item_group_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/item_group_1.png)
 
-恍然大悟了吧？只是它可以填写的内容看起来有点玄学，读者可以在我们[提供的文档](/docs/docs/items/description#原版使用的物品组)中查看它的可选字段，例如如果指定了`"group":"itemGroup.name.sword"`就会把物品折叠到剑这个物品组里。至于<DataType type="boolean" name="is_hidden_in_commands"/>，这个是好理解的，它可以规定物品是否隐藏在命令中，就像命令方块一样，默认情况下都是不隐藏的。
+恍然大悟了吧？只是它可以填写的内容看起来有点玄学，读者可以在我们[提供的文档](/docs/docs/items/item_category_and_group#原版使用的物品组)中查看它的可选字段，例如如果指定了`"group":"itemGroup.name.sword"`就会把物品折叠到剑这个物品组里。至于<DataType type="boolean" name="is_hidden_in_commands"/>，这个是好理解的，它可以规定物品是否隐藏在命令中，就像命令方块一样，默认情况下都是不隐藏的。
 
 综上，我们可以给出物品描述`description`的一般格式如下：
 
@@ -371,7 +371,7 @@ Bedrock Wiki 的页面相对简洁易找许多了，我们直接点物品（Item
       - <DataType type="string" name="identifier" isRequired/>：定义物品的 ID。
       - <DataType type="object" name="menu_category"/>：定义物品的分类和组别。
         - <DataType type="string" name="category"/>：定义物品在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）。
-        - <DataType type="string" name="group"/>：定义物品在创造模式物品栏中置于何物品组中。可用的物品组见[数据驱动物品文档](/docs/docs/items/description#原版使用的物品组)。
+        - <DataType type="string" name="group"/>：定义物品在创造模式物品栏中置于何物品组中。可用的物品组见[数据驱动物品文档](/docs/docs/items/item_category_and_group#原版使用的物品组)。
         - <DataType type="boolean" name="is_hidden_in_commands"/>：定义物品是否隐藏在命令中。
     - <DataType type="object" name="components"/>：物品组件，定义物品的功能。
       - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件文档](/docs/docs/items/components)。

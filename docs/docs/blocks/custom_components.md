@@ -11,15 +11,11 @@ import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
+> 上次更新：2026 年 4 月 18 日。中国版最新版本为 1.21.90，国际版最新版本为 26.10。
+
 :::warning[注意]
 
 自定义方块组件仅限国际版的 ScriptAPI 可用。
-
-:::
-
-:::info[本文更新时间]
-
-本文于 2026 年 4 月 18 日更新，中国版最新版本为 1.21.90，国际版最新版本为 26.10。
 
 :::
 

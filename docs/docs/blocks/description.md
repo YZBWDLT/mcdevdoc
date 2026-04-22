@@ -11,15 +11,11 @@ import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
+> 上次更新：2026 年 4 月 21 日。中国版最新版本为 1.21.90，国际版最新版本为 26.10。
+
 数据驱动方块（Data-Driven Blocks，简称数驱方块）是由开发者给定数据，由游戏引擎自行注册的方块。
 
-数驱物品由行为包和资源包组成。国际版和中国版均可编写数驱物品。数驱物品分为国际版物品和中国版物品，两者的编写流程有所不同。
-
-:::info[本文更新时间]
-
-本文于 2026 年 4 月 14 日更新，中国版最新版本为 1.21.90，国际版最新版本为 26.10。
-
-:::
+数驱方块由行为包和资源包组成。国际版和中国版均可编写数驱方块。数驱方块分为国际版方块和中国版方块，两者的编写流程有所不同。
 
 ## 文件架构
 
@@ -35,6 +31,11 @@ import DataType from "/src/components/type/data"
   - <FileType type="folder" name="blocks"/>
     - **<FileType type="file" name="(方块 ID).block.json"/>：行为包方块定义**
 - <FileType type="folder" name="resource_packs"/>
+  - <FileType type="folder" name="block_culling"/>
+    - **<FileType type="file" name="*.json"/>：定义方块面剔除规则**
+  - <FileType type="folder" name="models"/>
+    - <FileType type="folder" name="block"/>
+      - **<FileType type="file" name="*.geo.json"/>：定义方块模型**
   - <FileType type="folder" name="texts"/>
     - **<FileType type="file" name="en_US.lang"/>：定义方块的英文译名**
     - **<FileType type="file" name="zh_CN.lang"/>：定义方块的中文译名**
@@ -59,8 +60,6 @@ import DataType from "/src/components/type/data"
   - <FileType type="folder" name="netease_blocks"/>
     - **<FileType type="file" name="(方块 ID).block.json"/>：行为包方块定义**
 - <FileType type="folder" name="resource_packs"/>
-  - <FileType type="folder" name="block_culling"/>
-    - **<FileType type="file" name="*.json"/>：定义方块面剔除规则**
   - <FileType type="folder" name="texts"/>
     - **<FileType type="file" name="en_US.lang"/>：定义方块的英文译名**
     - **<FileType type="file" name="zh_CN.lang"/>：定义方块的中文译名**
@@ -90,11 +89,11 @@ import DataType from "/src/components/type/data"
   - <DataType type="object" name="minecraft:block" isRequired/>：定义数驱方块。
     - <DataType type="object" name="description" isRequired/>：方块描述，定义方块的基本属性。
       - <DataType type="string" name="identifier" isRequired/>：定义方块的命名空间和方块 ID。
-      - <DataType type="object" name="menu_category" isRequired/>：定义方块的分类和组别。
+      - <DataType type="object" name="menu_category" isRequired/>：（1.19.30+）定义方块的分类和组别。
         - <DataType type="string" name="category"/>：定义方块在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`none`（空）。
-        - <DataType type="string" name="group"/>：定义方块在创造模式物品栏中置于何物品组中，详见[物品分类与物品组](../items/description#物品分类与物品组)。  
+        - <DataType type="string" name="group"/>：定义方块在创造模式物品栏中置于何物品组中，详见[物品组与物品分类](../items/item_category_and_group#物品组)。  
         在格式版本为`1.21.50`或更低时，不能添加命名空间；在格式版本为`1.21.60`或更高时，必须添加命名空间。
-        - <DataType type="boolean" name="is_hidden_in_commands"/>：定义方块是否隐藏在命令中。
+        - <DataType type="boolean" name="is_hidden_in_commands"/>：（1.19.40+）定义方块是否隐藏在命令中。
       - <DataType type="object" name="states"/>[^1]：（1.20.20+）定义方块状态。
         - <DataType type="array" name="(方块状态 ID)"/>：方块状态，需注意每种方块状态允许的状态值不能超过 16 种
           - <DataType type="string"/><DataType type="boolean"/><DataType type="int"/>：方块状态枚举
@@ -121,7 +120,7 @@ import DataType from "/src/components/type/data"
   - <DataType type="object" name="minecraft:block" isRequired/>：定义数驱方块。
     - <DataType type="object" name="description" isRequired/>：方块描述，定义方块的基本属性。
       - <DataType type="string" name="identifier" isRequired/>：定义方块的命名空间和方块 ID。
-      - <DataType type="string" name="category"/>：定义物品在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`commands`（只有命令和 API 可获取）、`none`（只有 API 可获取）。也可设置为自定义分类，详见[物品分类与物品组](../items/description#物品分类与物品组)。
+      - <DataType type="string" name="category"/>：定义物品在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`commands`（只有命令和 API 可获取）、`none`（只有 API 可获取）。也可设置为自定义分类，详见[物品组与物品分类](../items/item_category_and_group#物品分类)。
       - <DataType type="boolean" name="register_to_create_menu"/>：是否注册到创造模式物品栏中。
       - <DataType type="string" name="base_block"/>：定义方块的基础行为，可选值有`mob_spawner`（刷怪笼）、`portal`（传送门）、`custom_crop_block`（农作物）、`custom_heavy_block`（重力方块）、`liquid`（静态流体）、`flowing_liquid`（动态流体）、`netease_container`（容器）。
     - <DataType type="object" name="components"/>：方块组件，定义方块的功能。
@@ -133,21 +132,23 @@ import DataType from "/src/components/type/data"
 
 ## 资源包配置
 
-### 资源包定义格式
+在资源包内通过<FileType type="file" name="blocks.json"/>定义方块在资源包中的表现，然后进一步通过<FileType type="file" name="terrain_texture.json"/>定义方块的贴图，用<FileType type="file" name="sounds.json"/>定义方块的音效。
 
-以下为 <FileType type="folder" name="resource_packs"/> - <FileType type="file" name="blocks.json"/> 的结构。
+### `blocks.json`
+
+以下为<FileType type="folder" name="resource_packs"/> - <FileType type="file" name="blocks.json"/>的结构。
 
 <treeview>
 
 - <DataType type="object"/>：根对象。
   - <DataType type="string" name="format_version" isRequired/>：格式版本，默认为`1.1.0`。不填写此字段时会报错（警告）。
   - <DataType type="object" name="(方块 ID)" isRequired/>：定义方块使用的资源。`方块 ID`应是带命名空间的 ID。
-    - <DataType type="string" name="textures"/>：定义方块使用的贴图（写法 1），使方块六面全部使用`terrain_texture.json`中对应的贴图路径。
-    - <DataType type="object" name="textures"/>：定义方块使用的贴图（写法 2）。使用此写法时将定义方块顶底侧面各采用`terrain_texture.json`中对应的贴图路径。
+    - <DataType type="string" name="textures"/>：定义方块使用的贴图（写法 1），使方块六面全部使用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。
+    - <DataType type="object" name="textures"/>：定义方块使用的贴图（写法 2）。使用此写法时将定义方块顶底侧面各采用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。
       - <DataType type="string" name="up"/>：方块顶面贴图 ID。
       - <DataType type="string" name="down"/>：方块底面贴图 ID。
       - <DataType type="string" name="side"/>：方块侧面贴图 ID。
-    - <DataType type="object" name="textures"/>：定义方块使用的贴图（写法 3）。使用此写法时将定义方块顶底东西南北面各采用`terrain_texture.json`中对应的贴图路径。
+    - <DataType type="object" name="textures"/>：定义方块使用的贴图（写法 3）。使用此写法时将定义方块顶底东西南北面各采用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。
       - <DataType type="string" name="up"/>：方块顶面贴图 ID。
       - <DataType type="string" name="down"/>：方块底面贴图 ID。
       - <DataType type="string" name="east"/>：方块东面贴图 ID。
@@ -164,9 +165,9 @@ import DataType from "/src/components/type/data"
 
 备注：在方块指定了[`minecraft:material_instance`](./components#minecraftmaterial_instances)组件后，请在该组件内部指定方块贴图，无需在<FileType type="file" name="blocks.json"/>中通过<DataType type="object" name="textures"/>指定方块的贴图。
 
-### 贴图定义格式
+### `terrain_texture.json`
 
-### 音效定义格式
+### `sounds.json`
 
 ---
 

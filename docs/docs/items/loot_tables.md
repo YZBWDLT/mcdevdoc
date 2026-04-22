@@ -10,15 +10,12 @@ import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
-收录战利品表的相关信息。
+> 上次更新：2026 年 4 月 21 日。  
+> 其中文档内容更新于 2025 年 10 月 28 日。此时中国版最新版本为 1.21.0，国际版最新版本为 1.21.110。
 
-你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
+战利品表（Loot Tables）用于为世界中各结构中散落的宝箱、杀死生物时或钓鱼等情况按计划按要求生成战利品物品。
 
-:::info[本文更新时间]
-
-本文于 2025 年 10 月 28 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.110。
-
-:::
+本文档收录战利品表的相关信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
 
 :::warning
 
@@ -26,10 +23,15 @@ import DataType from "/src/components/type/data"
 
 :::
 
+## 战利品表基本结构
+
 ---
 ---
 
 ## 战利品池
+
+---
+---
 
 ## 战利品功能
 

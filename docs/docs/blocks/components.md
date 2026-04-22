@@ -4,16 +4,6 @@ sidebar_position: 2
 
 # 数据驱动方块组件
 
-收录所有已开放或即将开放的命名空间为`minecraft`和`netease`的方块组件信息。
-
-你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
-
-:::info[本文更新时间]
-
-本文于 2025 年 9 月 3 日更新，中国版最新版本为 1.21.0，国际版最新版本为 1.21.100。
-
-:::
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import '/src/css/treeview.css';
@@ -21,20 +11,21 @@ import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
+> 上次更新：2026 年 4 月 21 日。  
+> 其中文档内容更新于 2025 年 9 月 3 日。此时中国版最新版本为 1.21.0，国际版最新版本为 1.21.100。
+
+数据驱动方块组件（Data-Driven Block Components）用于规定方块的功能。将不同的方块组件组合在一起可以实现多种复杂的功能。方块组件可以指定到<DataType type="object" name="components" isRequired/>中，以使得方块在所有情况下都使用相关功能；也可以指定到方块置换<DataType type="array" name="permutations"/> - <DataType type="object"/> - <DataType type="object" name="components" isRequired/>中，使得方块在使用特定方块置换时使用特定的功能。
+
+本文档收录所有已开放或即将开放的命名空间为`minecraft`和`netease`的方块组件信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
+
 :::note[组件可用性提示]
 
 1. 标签记号说明：
-
-    - 标注了<Version isLowVersion/>的组件，代表其为**旧版国际版组件**，可应用于**国际版方块定义**（在行为包<FileType type="folder" name="blocks"/>定义的方块）。`format_version`必须指定`1.10.0`~`1.16.0`以内时才可使用。
-
-    - 标注了<Version version="版本号"/>的组件，代表其为**新版国际版组件**，可应用于**国际版方块定义**（在行为包<FileType type="folder" name="blocks"/>定义的方块）。其中，`（版本号）`代表方块定义的`format_version`必须指定为该版本号或更高才可使用。
-
-    - 标注了<Version isChinaVersion/>的组件，代表其为**中国版组件**，可应用于**中国版方块定义**（在行为包<FileType type="folder" name="netease_blocks"/>定义的方块）。
-
+    - 标注了<Version version="版本号"/>的组件，代表其为**国际版组件**，可应用于**国际版方块定义**（在行为包<FileType type="folder" name="blocks"/>定义的方块）。其中，`（版本号）`代表方块定义的`format_version`必须指定为该版本号或更高才可使用。
+    - 标注了<Version isChinaVersion/>或<Version version="版本号" isChinaVersion/>的组件，代表其为**中国版组件**，可应用于**中国版方块定义**（在行为包<FileType type="folder" name="netease_blocks"/>定义的方块）。其中，`（版本号）`代表方块定义的`format_version`必须指定为该版本号或更高才可使用。
     - 标注了<Version isBeta/>的组件，代表其为**实验性玩法组件**，可应用于**国际版方块定义**（在行为包<FileType type="folder" name="blocks"/>定义的方块）。本文档不记载已被移除的实验性玩法组件（尤其是假日创作者功能的组件）。开发者在使用这些组件的时候应当万分小心，因为它们随时可能会被移除，这会导致你的资源的关键功能失效。
-
     - **注意：中国版可以同时使用国际版方块定义和中国版方块定义，但是国际版只能使用国际版方块定义**。
-
+    - 标注了<Version version="版本号" toVersion="弃用版本号"/>的组件，代表其为**已弃用组件**，可应用于**国际版物品定义**。虽然微软对它们进行了低版本适配，但在高版本下，开发者不宜再使用这些组件。
 2. 如果官方文档中有记载，以上这些标签将会链接到官方文档，读者可点击以查看对应文档。
 
 :::
@@ -42,102 +33,6 @@ import DataType from "/src/components/type/data"
 ---
 
 ## 国际版组件
-
-### `minecraft:block_light_absorption`
-
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-block-light-absorption" isChinaVersion />
-
-定义方块会吸收光，降低光照等级。
-
-:::info[新版组件替代]
-
-该组件在更高版本中用[`minecraft:light_dampening`](#minecraftlight_dampening)代替。你可以在这里的[旧版文档](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks)中查看该组件接受的参数。
-
-:::
-
-<Tabs><TabItem value="参数" label="参数" default>
-
-**格式版本 1.16.0 以前**：
-
-<treeview>
-- <DataType type="object" name="minecraft:block_light_absorption"/>：根对象
-  - <DataType type="int" name="value"/>：定义方块会吸收多少光照等级（也可以代表其透光度）。应在`0`-`15`之间（含），如不指定该组件则指定该方块不透光。
-</treeview>
-
-**格式版本 1.16.X**：
-
-<treeview>
-- <DataType type="int" name="minecraft:block_light_absorption"/>：定义方块会吸收多少光照等级（也可以代表其透光度）。应在`0`-`15`之间（含），如不指定该组件则指定该方块不透光。
-</treeview>
-
-</TabItem><TabItem value="示例" label="示例">
-
-**格式版本 1.16.0 以前**：
-
-```json showLineNumbers
-"minecraft:block_light_absorption": {
-    "value": 3
-}
-```
-
-**格式版本 1.16.X**：
-
-```json showLineNumbers
-"minecraft:block_light_absorption": 3
-```
-
-</TabItem></Tabs>
-
----
-
-### `minecraft:block_light_emission`
-
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-block-light-emission" isChinaVersion />
-
-定义方块会发出光，提供光照等级。
-
-:::info[新版组件替代]
-
-该组件在更高版本中用[`minecraft:light_emission`](#minecraftlight_emission)代替。你可以在这里的[旧版文档](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks)中查看该组件接受的参数。
-
-:::
-
-<Tabs><TabItem value="参数" label="参数" default>
-
-**格式版本 1.16.0 以前**：
-
-<treeview>
-- <DataType type="object" name="minecraft:block_light_emission"/>：根对象
-  - <DataType type="float" name="emission"/>：定义方块发出的光照强度。应在`0.0`-`1.0`之间（含），如不指定该组件则指定该方块不发光。
-</treeview>
-
-**格式版本 1.16.X**：
-
-<treeview>
-- <DataType type="float" name="minecraft:block_light_emission"/>：定义方块发出的光照强度。应在`0.0`-`1.0`之间（含），如不指定该组件则指定该方块不发光。
-</treeview>
-
-> 嗯对，你没看错，是[0.0, 1.0]，不是[0, 15]，例如 1.0 代表 15 的光照强度。注意别写错了哦。
-
-</TabItem><TabItem value="示例" label="示例">
-
-**格式版本 1.16.0 以前**：
-
-```json showLineNumbers
-"minecraft:block_light_emission": {
-    "emission": 1.0
-}
-```
-
-**格式版本 1.16.X**：
-
-```json showLineNumbers
-"minecraft:block_light_emission": 1.0
-```
-
-</TabItem></Tabs>
-
----
 
 ### `minecraft:collision_box`
 
@@ -181,64 +76,42 @@ import DataType from "/src/components/type/data"
 
 ---
 
-### `minecraft:destroy_time`
-
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-destroy-time" isChinaVersion />
-
-定义方块的挖掘时长。
-
-:::info[新版组件替代]
-
-该组件在更高版本中用[`minecraft:destructible_by_mining`](#minecraftdestructible_by_mining)代替。你可以在这里的[旧版文档](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks)中查看该组件接受的参数。
-
-:::
-
-<Tabs><TabItem value="参数" label="参数" default>
-
-**格式版本 1.16.0 以前**：
-
-<treeview>
-- <DataType type="object" name="minecraft:destroy_time"/>：根对象
-  - <DataType type="float" name="value"/>：定义方块的*破坏时长*。
-</treeview>
-
-**格式版本 1.16.X**：
-
-<treeview>
-- <DataType type="float" name="minecraft:destroy_time"/>：定义方块的*破坏时长*。
-</treeview>
-
-> **注意**：这里的*破坏时长*实际上为[**硬度**](https://zh.minecraft.wiki/w/挖掘#方块硬度)的概念。在一般情况下，破坏时长（秒）是硬度的 1.5 倍，比如硬度为 1 时，需要 1.5 秒破坏。
-
-</TabItem><TabItem value="示例" label="示例">
-
-**格式版本 1.16.0 以前**：
-
-```json showLineNumbers
-"minecraft:destroy_time": {
-    "value": 1.0
-}
-```
-
-**格式版本 1.16.X**：
-
-```json showLineNumbers
-"minecraft:destroy_time": 1.0
-```
-
-</TabItem></Tabs>
-
----
-
 ### `minecraft:destructible_by_explosion`
 
-<Version version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_destructible_by_explosion?view=minecraft-bedrock-stable"/>
+<Version version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_destructible_by_explosion?view=minecraft-bedrock-stable"/> <Version version="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-destructible-by-explosion" isChinaVersion />
 
 定义方块是否可被爆炸破坏，及其爆炸抗性。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+**对象型**：
+
+<treeview>
+- <DataType type="object" name="minecraft:destructible_by_explosion"/>：根对象。
+  - <DataType type="float" name="explosion_resistance"/>：定义方块的爆炸抗性。默认值为`0`。
+</treeview>
+
+**布尔型**：
+
+<treeview>
+- <DataType type="boolean" name="minecraft:destructible_by_explosion"/>：定义方块是否可被爆炸破坏。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+**对象型**：
+
+```json showLineNumbers
+"minecraft:destructible_by_explosion": {
+    "explosion_resistance": 20.0
+}
+```
+
+**布尔型**：
+
+```json showLineNumbers
+"minecraft:destructible_by_explosion": false
+```
 
 </TabItem></Tabs>
 
@@ -246,13 +119,65 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:destructible_by_mining`
 
-<Version version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_destructible_by_mining?view=minecraft-bedrock-stable"/>
+<Version version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_destructible_by_mining?view=minecraft-bedrock-stable"/> <Version version="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-destructible-by-mining" isChinaVersion />
 
 定义方块是否可被挖掘，及其挖掘时长。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+**对象型**：
+
+<treeview>
+- <DataType type="object" name="minecraft:destructible_by_mining"/>：根对象。
+  - <DataType type="float" name="seconds_to_destroy"/>：定义方块的挖掘*破坏时长*。
+  - <DataType type="array" name="item_specific_speeds"/>：（1.21.50+）定义使用特定物品破坏此方块时的速度。
+    - <DataType type="object"/>
+      - <DataType type="string" name="item"/>：（写法 1）定义该物品的 ID。
+      - <DataType type="object" name="item"/>：（写法 2）定义符合特定标签的物品。
+        - <DataType type="string" name="tags"/>：检查物品是否具有特殊的标签。应指定为[检查标签的 Molang](../items/molang#物品标签)。原版可用的物品标签详见[物品标签](../items/tags#原版使用的标签)。
+      - <DataType type="float" name="destroy_speed"/>：定义方块的*破坏时长*。
+
+</treeview>
+
+> **注意**：这里的*破坏时长*实际上为[**硬度**](https://zh.minecraft.wiki/w/挖掘#方块硬度)的概念。在一般情况下，破坏时长（秒）是硬度的 1.5 倍，比如硬度为 1 时，需要 1.5 秒破坏。
+
+**布尔型**：
+
+<treeview>
+- <DataType type="boolean" name="minecraft:destructible_by_mining"/>：定义方块是否可被挖掘破坏。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+**对象型**：
+
+```json showLineNumbers
+"minecraft:destructible_by_mining": {
+    "seconds_to_destroy": 1.0
+}
+```
+
+```json showLineNumbers
+"minecraft:destructible_by_mining": {
+    "seconds_to_destroy": 1.0,
+    "item_specific_speeds": [
+        {
+            "item": "minecraft:diamond_pickaxe",
+            "destroy_speed": 5.0
+        },
+        {
+            "item": { "tags": "query.any_tag('minecraft:is_sword')" },
+            "destroy_speed": 10.0
+        }
+    ]
+}
+```
+
+**布尔型**：
+
+```json showLineNumbers
+"minecraft:destructible_by_mining": false
+```
 
 </TabItem></Tabs>
 
@@ -274,7 +199,7 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:display_name`
 
-<Version version="1.19.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_display_name?view=minecraft-bedrock-stable"/>
+<Version version="1.19.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_display_name?view=minecraft-bedrock-stable"/> <Version version="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-display-name" isChinaVersion />
 
 定义方块在物品栏的悬浮文本。
 
@@ -320,81 +245,26 @@ import DataType from "/src/components/type/data"
 
 ---
 
-### `minecraft:explosion_resistance`
-
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-explosion-resistance" isChinaVersion />
-
-定义方块的爆炸抗性。
-
-:::info[新版组件替代]
-
-该组件在更高版本中用[`minecraft:destructible_by_explosion`](#minecraftdestructible_by_explosion)代替。你可以在这里的[旧版文档](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks)中查看该组件接受的参数。
-
-:::
-
-<Tabs><TabItem value="参数" label="参数" default>
-
-**格式版本 1.16.0 以前**：
-
-<treeview>
-- <DataType type="object" name="minecraft:explosion_resistance"/>：根对象
-  - <DataType type="float" name="value"/>：定义方块的爆炸抗性。
-</treeview>
-
-**格式版本 1.16.X**：
-
-<treeview>
-- <DataType type="float" name="minecraft:explosion_resistance"/>：定义方块的爆炸抗性。
-</treeview>
-
-</TabItem><TabItem value="示例" label="示例">
-
-**格式版本 1.16.0 以前**：
-
-```json showLineNumbers
-"minecraft:explosion_resistance": {
-    "value": 1.0
-}
-```
-
-**格式版本 1.16.X**：
-
-```json showLineNumbers
-"minecraft:explosion_resistance": 1.0
-```
-
-</TabItem></Tabs>
-
----
-
 ### `minecraft:flammable`
 
-<Version isLowVersion/> <Version version="1.19.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_flammable?view=minecraft-bedrock-stable"/>
+<Version version="1.12.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_flammable?view=minecraft-bedrock-stable"/>
 
 定义方块为可燃方块。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
-**格式版本 1.16.X 及更低**：
+**对象型**：
 
 <treeview>
 - <DataType type="object" name="minecraft:flammable"/>：根对象
-  - <DataType type="int" name="burn_odds"/>：定义方块在燃烧时有多大可能被烧毁。
-  - <DataType type="int" name="flame_odds"/>：定义方块有多大可能被点燃。
+  - <DataType type="int" name="burn_odds"/>（1.19.0-） / <DataType type="int" name="destroy_chance_modifier"/>（1.19.10+）：定义方块在燃烧时有多大可能被烧毁。默认值为`20`（木板）。
+  - <DataType type="int" name="flame_odds"/>（1.19.0-） / <DataType type="int" name="catch_chance_modifier"/>（1.19.10+）：定义方块有多大可能被点燃。默认值为`5`（木板）。
 </treeview>
 
-**格式版本 1.19.10 及更高（布尔型）**：
+**布尔型**：
 
 <treeview>
-- <DataType type="boolean" name="minecraft:flammable"/>：定义方块是否可燃。指定为`true`时将使用默认值。
-</treeview>
-
-**格式版本 1.19.10 及更高（对象型）**：
-
-<treeview>
-- <DataType type="object" name="minecraft:flammable"/>：根对象。
-  - <DataType type="int" name="catch_chance_modifier"/>：定义方块有多大可能被点燃。默认值为`5`（木板）。
-  - <DataType type="int" name="destroy_chance_modifier"/>：定义方块在燃烧时有多大可能被烧毁。默认值为`20`（木板）。
+- <DataType type="boolean" name="minecraft:flammable"/>：（1.19.10+）定义方块是否可燃。指定为`true`时将使用默认值。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -403,8 +273,8 @@ import DataType from "/src/components/type/data"
 
 ```json showLineNumbers
 "minecraft:flammable": {
-    "burn_odds": 5,
-    "flame_odds": 20
+    "flame_odds": 5,
+    "burn_odds": 20
 }
 ```
 
@@ -449,7 +319,7 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:friction`
 
-<Version isLowVersion/> <Version version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_friction?view=minecraft-bedrock-stable"/>
+<Version version="1.12.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_friction?view=minecraft-bedrock-stable"/>
 
 定义方块的摩擦系数。
 
@@ -459,13 +329,21 @@ import DataType from "/src/components/type/data"
 
 <treeview>
 - <DataType type="object" name="minecraft:friction"/>：根对象
-  - <DataType type="int" name="value"/>：定义方块的摩擦系数。摩擦系数越低则方块越光滑。应在`0.0`-`0.9`之间（含）。
+  - <DataType type="int" name="value"/>：定义方块的移动系数。移动系数越高则方块越光滑。应在`0.0`-`0.9`之间（含）。
 </treeview>
 
-**格式版本 1.16.X 或 1.19.20 及更高**：
+**格式版本 1.16.0 - 1.19.10**：
 
 <treeview>
-- <DataType type="int" name="minecraft:friction"/>：定义方块的摩擦系数。摩擦系数越低则方块越光滑。应在`0.0`-`0.9`之间（含）。
+- <DataType type="int" name="minecraft:friction"/>：定义方块的移动系数。移动系数越高则方块越光滑。应在`0.0`-`0.9`之间（含）。
+</treeview>
+
+> **注意**：在格式版本`1.19.20`前，指定的系数是移动系数而不是摩擦系数，值越高方块越光滑。
+
+**格式版本 1.19.20 及更高**：
+
+<treeview>
+- <DataType type="int" name="minecraft:friction"/>：定义方块的摩擦系数。摩擦系数越低则方块越光滑。应在`0.0`-`0.9`之间（含）。默认值为`0.4`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -490,13 +368,39 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:geometry`
 
-<Version version="1.21.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_geometry?view=minecraft-bedrock-stable"/>
+<Version version="1.19.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_geometry?view=minecraft-bedrock-stable"/>
 
-定义方块的模型。
+定义方块的模型和使用的方块面剔除规则。
+
+:::warning[注意]
+
+在高于`1.21.80`的格式版本中，要使用该组件，必须同时定义[`minecraft:material_instances`](#minecraftmaterial_instances)组件。
+
+:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:geometry"/>：根对象
+  - <DataType type="string" name="identifier"/>：定义方块使用的方块模型。可指定[原版使用的方块模型](./model#原版使用的方块模型)，或指定在<FileType type="folder" name="models"/> - <FileType type="folder" name="block"/> - <FileType type="file" name="*.geo.json"/>中所定义的方块模型。详见[方块模型](./model)。
+  - <DataType type="object" name="bone_visibility"/>：定义方块骨骼可见性。
+    - <DataType type="boolean"/><DataType type="string" name="(骨骼 ID)"/>：定义`骨骼 ID`在方块中的可见性，可指定 [Molang 表达式](./molang)（常用`query.block_state()`）。默认值为`true`。
+  - <DataType type="string" name="culling"/>：定义方块骨骼可见性。
+</treeview>
+
+**字符串型**：
+
+<treeview>
+- <DataType type="string" name="minecraft:geometry"/>：定义方块使用的方块模型。可指定[原版使用的方块模型](./model#原版使用的方块模型)，或指定在<FileType type="folder" name="models"/> - <FileType type="folder" name="block"/> - <FileType type="file" name="*.geo.json"/>中所定义的方块模型。详见[方块模型](./model)。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+**字符串型**：
+
+```json showLineNumbers
+"minecraft:geometry": "minecraft:geometry.full_block"
+```
 
 </TabItem></Tabs>
 
@@ -518,7 +422,7 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:light_dampening`
 
-<Version version="1.19.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_light_dampening?view=minecraft-bedrock-stable"/>
+<Version version="1.19.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_light_dampening?view=minecraft-bedrock-stable"/> <Version version="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-light-dampening" isChinaVersion />
 
 定义方块会吸收光，降低光照等级。
 
@@ -532,13 +436,21 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:light_emission`
 
-<Version version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_light_emission?view=minecraft-bedrock-stable"/>
+<Version version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_light_emission?view=minecraft-bedrock-stable"/> <Version version="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-light-emission" isChinaVersion />
 
 定义方块会发出光，提供光照等级。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="int" name="minecraft:light_emission"/>：定义方块发出的光照强度。应在`0`-`15`之间（含），如不指定该组件则该方块不发光。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:light_emission": 15
+```
 
 </TabItem></Tabs>
 
@@ -820,6 +732,57 @@ import DataType from "/src/components/type/data"
 
 ## 中国版组件
 
+中国版组件只适用于定义在<FileType type="folder" name="netease_blocks"/>中的方块（即中国版方块）。因为中国版方块基于较旧格式的中国版组件，因此部分已被国际版弃用的旧版方块组件也在其中。
+
+其中，下述部分方块组件有国际版组件的平替，或组件的部分功能有国际版组件的平替。
+
+| 中国版组件 | 国际版可用的平替组件 | 国际版组件需求的最低格式版本 |
+| :--- | :--- | --- |
+| `minecraft:block_light_absorption` | [`minecraft:light_dampening`](#minecraftlight_dampening) | 1.19.10 |
+
+### `minecraft:block_light_absorption`
+
+<Version version="1.12.0" toVersion="1.18.0"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-block-light-absorption" isChinaVersion />
+
+定义方块会吸收光，降低光照等级。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+**格式版本 1.16.0 以前**：
+
+<treeview>
+- <DataType type="object" name="minecraft:block_light_absorption"/>：根对象
+  - <DataType type="int" name="value"/>：定义方块会吸收多少光照等级（也可以代表其透光度）。应在`0`-`15`之间（含），如不指定该组件则指定该方块不透光。
+</treeview>
+
+**格式版本 1.16.X**：
+
+<treeview>
+- <DataType type="int" name="minecraft:block_light_absorption"/>：定义方块会吸收多少光照等级（也可以代表其透光度）。应在`0`-`15`之间（含），如不指定该组件则指定该方块不透光。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+**格式版本 1.16.0 以前**：
+
+```json showLineNumbers
+"minecraft:block_light_absorption": {
+    "value": 3
+}
+```
+
+**格式版本 1.16.X**：
+
+```json showLineNumbers
+"minecraft:block_light_absorption": 3
+```
+
+</TabItem></Tabs>
+
+---
+
+---
+
 ### `netease:aabb`
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-aabb" isChinaVersion />
@@ -831,8 +794,6 @@ import DataType from "/src/components/type/data"
 </TabItem><TabItem value="示例" label="示例">
 
 </TabItem></Tabs>
-
----
 
 ### `netease:block_animate_random_tick`
 
@@ -1401,6 +1362,169 @@ import DataType from "/src/components/type/data"
 ---
 ---
 
+## 国际版弃用组件
+
+以下组件仅限旧版本的方块适用，因这些组件曾在非实验性方块中可用，故本文档也一并列出，但强烈不推荐使用。这些方块组件均有高版本组件的平替。读者可以在这里的[旧版文档](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks)中查看这些组件接受的参数。
+
+| 弃用组件 | 可平替组件 | 平替组件需求的最低格式版本 |
+| :--- | :--- | --- |
+| `minecraft:block_light_filter` | [`minecraft:light_dampening`](#minecraftlight_dampening) | 1.19.10 |
+| `minecraft:block_light_emission` | [`minecraft:light_emission`](#minecraftlight_emission) | 1.19.20 |
+| `minecraft:destroy_time` | [`minecraft:destructible_by_mining`](#minecraftdestructible_by_mining) | 1.19.20 |
+| `minecraft:explosion_resistance` | [`minecraft:destructible_by_explosion`](#minecraftdestructible_by_explosion) | 1.19.20 |
+
+### `minecraft:block_light_filter`
+
+<Version version="1.18.10" toVersion="1.19.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_light_filter?view=minecraft-bedrock-stable"/>
+
+定义方块会吸收光，降低光照等级。
+
+于 1.18.10 版本由[`minecraft:block_light_absorption`](#minecraftblock_light_absorption)组件更名来，但现已再次被更名。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="int" name="minecraft:block_light_filter"/>：定义方块会吸收多少光照等级（也可以代表其透光度）。应在`0`-`15`之间（含），如不指定该组件则指定该方块不透光。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:block_light_filter": 3
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:block_light_emission`
+
+<Version version="1.12.0" toVersion="1.19.20"/> <Version version="1.12.0" toVersion="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-block-light-emission" isChinaVersion />
+
+定义方块会发出光，提供光照等级。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+**格式版本 1.16.0 以前**：
+
+<treeview>
+- <DataType type="object" name="minecraft:block_light_emission"/>：根对象
+  - <DataType type="float" name="emission"/>：定义方块发出的光照强度。应在`0.0`-`1.0`之间（含），如不指定该组件则指定该方块不发光。
+</treeview>
+
+**格式版本 1.16.X**：
+
+<treeview>
+- <DataType type="float" name="minecraft:block_light_emission"/>：定义方块发出的光照强度。应在`0.0`-`1.0`之间（含），如不指定该组件则指定该方块不发光。
+</treeview>
+
+> 嗯对，你没看错，是[0.0, 1.0]，不是[0, 15]，例如 1.0 代表 15 的光照强度。注意别写错了哦。
+
+</TabItem><TabItem value="示例" label="示例">
+
+**格式版本 1.16.0 以前**：
+
+```json showLineNumbers
+"minecraft:block_light_emission": {
+    "emission": 1.0
+}
+```
+
+**格式版本 1.16.X**：
+
+```json showLineNumbers
+"minecraft:block_light_emission": 1.0
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:destroy_time`
+
+<Version version="1.12.0" toVersion="1.19.20"/> <Version version="1.12.0" toVersion="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-destroy-time" isChinaVersion />
+
+定义方块的挖掘时长。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+**格式版本 1.16.0 以前**：
+
+<treeview>
+- <DataType type="object" name="minecraft:destroy_time"/>：根对象
+  - <DataType type="float" name="value"/>：定义方块的*破坏时长*。
+</treeview>
+
+**格式版本 1.16.X**：
+
+<treeview>
+- <DataType type="float" name="minecraft:destroy_time"/>：定义方块的*破坏时长*。
+</treeview>
+
+> **注意**：这里的*破坏时长*实际上为[**硬度**](https://zh.minecraft.wiki/w/挖掘#方块硬度)的概念。在一般情况下，破坏时长（秒）是硬度的 1.5 倍，比如硬度为 1 时，需要 1.5 秒破坏。
+
+</TabItem><TabItem value="示例" label="示例">
+
+**格式版本 1.16.0 以前**：
+
+```json showLineNumbers
+"minecraft:destroy_time": {
+    "value": 1.0
+}
+```
+
+**格式版本 1.16.X**：
+
+```json showLineNumbers
+"minecraft:destroy_time": 1.0
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:explosion_resistance`
+
+<Version version="1.12.0" toVersion="1.19.20"/> <Version version="1.12.0" toVersion="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-explosion-resistance" isChinaVersion />
+
+定义方块的爆炸抗性。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+**格式版本 1.16.0 以前**：
+
+<treeview>
+- <DataType type="object" name="minecraft:explosion_resistance"/>：根对象
+  - <DataType type="float" name="value"/>：定义方块的爆炸抗性。
+</treeview>
+
+**格式版本 1.16.X**：
+
+<treeview>
+- <DataType type="float" name="minecraft:explosion_resistance"/>：定义方块的爆炸抗性。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+**格式版本 1.16.0 以前**：
+
+```json showLineNumbers
+"minecraft:explosion_resistance": {
+    "value": 1.0
+}
+```
+
+**格式版本 1.16.X**：
+
+```json showLineNumbers
+"minecraft:explosion_resistance": 1.0
+```
+
+</TabItem></Tabs>
+
+---
+---
+
 ## 参考文档
 
 本文主要参考文档如下，读者可以在这些文档获得更多信息。
@@ -1408,7 +1532,8 @@ import DataType from "/src/components/type/data"
 - [方块组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/blockcomponentslist?view=minecraft-bedrock-stable)
 - [JSON 组件 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1)
 - [方块文档 | 1.16.20.3 | bedrock.dev](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks)
-- [方块组件 | Bedrock Wki](https://wiki.bedrock.dev/blocks/block-components)
+- [方块组件 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-components)
+- [方块格式历史 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-format-history)
 
 import GiscusComment from "/src/components/comment/giscus.js"
 

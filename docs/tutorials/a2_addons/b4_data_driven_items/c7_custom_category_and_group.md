@@ -15,7 +15,7 @@ import '/src/css/treeview.css';
 
 在前面的学习中，我们已经学会加入了许许多多的物品。然而，随着我们添加的物品逐渐变多，往往发现这些物品堆积在创造模式物品栏中难以区分。这就要求我们将具有类似性质的物品进行整理合并。
 
-我们在前面已经学过，在物品定义中可以在<DataType type="object" name="description"/> - <DataType type="object" name="menu_category"/> - <DataType type="string" name="group"/>中指定一个物品所归属的物品组，但是我们只能将它们归类到[原版的物品组](/docs/docs/items/description#原版使用的物品组)中。有没有一种方式能够允许我们自定义一个新的物品组呢？答案是：有！
+我们在前面已经学过，在物品定义中可以在<DataType type="object" name="description"/> - <DataType type="object" name="menu_category"/> - <DataType type="string" name="group"/>中指定一个物品所归属的物品组，但是我们只能将它们归类到[原版的物品组](/docs/docs/items/item_category_and_group#原版使用的物品组)中。有没有一种方式能够允许我们自定义一个新的物品组呢？答案是：有！
 
 ## 物品组定义
 
@@ -139,7 +139,7 @@ import '/src/css/treeview.css';
 
 ![item_group_2](/img/tutorials/a2_addons/b4_data_driven_items/c7_custom_category_and_group/item_group_2.png)
 
-现在读者可以在[我们提供的文档](/docs/docs/items/description#物品分类与物品组)中查阅国际版物品组所支持的格式。
+现在读者可以在[我们提供的文档](/docs/docs/items/item_category_and_group#物品组)中查阅国际版物品组所支持的格式。
 
 ### 中国版定义法
 
@@ -178,7 +178,7 @@ import '/src/css/treeview.css';
 }
 ```
 
-读者可以发现，和国际版的定义相比，我们都定义了物品组的名称、图标和物品列表，而国际版还需要额外指定物品分类。要注意，只有`test:dough`和`test:golden_dough`均为中国版物品且处于同一个物品分类时，才能正确创建物品组。有关中国版的物品组定义方法，读者可见[我们提供的这篇文档](/docs/docs/items/description#物品分类与物品组)。
+读者可以发现，和国际版的定义相比，我们都定义了物品组的名称、图标和物品列表，而国际版还需要额外指定物品分类。要注意，只有`test:dough`和`test:golden_dough`均为中国版物品且处于同一个物品分类时，才能正确创建物品组。有关中国版的物品组定义方法，读者可见[我们提供的这篇文档](/docs/docs/items/item_category_and_group#物品组)。
 
 ![item_group_3](/img/tutorials/a2_addons/b4_data_driven_items/c7_custom_category_and_group/item_group_3.png)
 
@@ -222,7 +222,7 @@ import '/src/css/treeview.css';
 
 这段代码是很好解释的。我们定义了一个名为`test`的物品分类，就像原版的`nature`、`equipment`等一样。同时，通过`labelText`字段定义了物品分类的显示名称，并用`icon`定义了它的图标。注意这里的图标应该定义完整的文件路径，而不再是某个特殊的物品。
 
-此外，每个物品分类还允许一个<DataType type="boolean" name="sort_by_identifier"/>属性，以进行物品排序。同样地，有关中国版的物品分类定义方法，读者可见[我们提供的这篇文档](/docs/docs/items/description#物品分类与物品组)。
+此外，每个物品分类还允许一个<DataType type="boolean" name="sort_by_identifier"/>属性，以进行物品排序。同样地，有关中国版的物品分类定义方法，读者可见[我们提供的这篇文档](/docs/docs/items/item_category_and_group#物品分类)。
 
 要把物品放到我们自定义的物品分类中，只需要在物品定义中的描述部分指定它的`category`即可：
 
@@ -249,7 +249,7 @@ import '/src/css/treeview.css';
 
 中国版不仅可以自定义物品组，也可以自定义物品分类。中国版在<FileType type="folder" name="BP"/> - <FileType type="folder" name="netease_group"/> - <FileType type="file" name="*.json"/>中定义物品组，在<FileType type="folder" name="BP"/> - <FileType type="folder" name="netease_tab"/> - <FileType type="file" name="*.json"/>中定义物品分类。和国际版不同，物品组处于何种物品分类取决于图标的物品分类。
 
-[我们提供的这篇文档](/docs/docs/items/description#物品分类与物品组)记载了详细的格式信息，读者可以查阅。
+[我们提供的这篇文档](/docs/docs/items/item_category_and_group)记载了详细的格式信息，读者可以查阅。
 
 import GiscusComment from "/src/components/comment/giscus.js"
 

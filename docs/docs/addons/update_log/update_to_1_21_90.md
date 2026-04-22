@@ -96,7 +96,7 @@ import DataType from "/src/components/type/data"
 
 ### 物品组
 
-- 现在国际版正式支持[自定义物品组](/docs/docs/items/description#物品分类与物品组)。同时，`1.21.60`或更高格式版本的物品在指定物品组时必须指定命名空间。
+- 现在国际版正式支持[自定义物品组](/docs/docs/items/item_category_and_group#自定义物品组)。同时，`1.21.60`或更高格式版本的物品在指定物品组时必须指定命名空间。
 
 ### 战利品表
 

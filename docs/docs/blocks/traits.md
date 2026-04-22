@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # 方块特征
@@ -11,13 +11,13 @@ import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
-方块特征（Block Traits）可以用来启用原版的方块状态和方块功能。
+> 上次更新：2026 年 4 月 15 日。中国版最新版本为 1.21.90，国际版最新版本为 26.10。
 
-:::info[本文更新时间]
+方块特征（Block Traits）[^1]可以用来启用原版的方块状态和方块功能。
 
-本文于 2026 年 4 月 15 日更新，中国版最新版本为 1.21.90，国际版最新版本为 26.10。
+[^1]: 直至本文更新时，Block Traits 的译名仍在讨论，且未能明确统一。读者可以在其他不同的文档中看到不同的翻译，例如方块性状、方块特质等。在未明确声明的情况下，为读者理解方便，本文档系列采用与中文 Minecraft Wiki 在多数基岩版相关更新日志中采用的译名：方块特征。
 
-:::
+本文档收录方块特征的相关信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
 
 :::note[温馨提示]
 

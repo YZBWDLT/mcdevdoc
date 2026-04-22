@@ -11,15 +11,11 @@ import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
-收录所有已开放（包括旧版本）或即将开放的命名空间为`minecraft`和`netease`的物品组件信息。
+> 上次更新：2026 年 4 月 14 日。此时中国版最新版本为 1.21.90，国际版最新版本为 26.10。
 
-你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
+数据驱动物品组件（Data-Driven Item Components）用于规定物品的功能。将不同的物品组件组合在一起可以实现多种复杂的功能。
 
-:::info[本文更新时间]
-
-本文于 2026 年 4 月 14 日更新，中国版最新版本为 1.21.90，国际版最新版本为 26.10。
-
-:::
+本文档收录所有已开放（包括旧版本）或即将开放的命名空间为`minecraft`和`netease`的物品组件信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
 
 :::note[组件可用性提示]
 
@@ -139,21 +135,21 @@ import DataType from "/src/components/type/data"
 <treeview>
 - <DataType type="object" name="minecraft:icon" isRequired/>：根对象
   - <DataType type="object" name="textures"/>：定义该物品的贴图。
-    - <DataType type="string" name="default"/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
-    - <DataType type="string" name="dyed"/>：该物品的染色后贴图，仅当指定[`minecraft:dyeable`](#minecraftdyeable)组件后有意义。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
+    - <DataType type="string" name="default"/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[`item_texture.json`](./description#item_texturejson)。
+    - <DataType type="string" name="dyed"/>：该物品的染色后贴图，仅当指定[`minecraft:dyeable`](#minecraftdyeable)组件后有意义。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[`item_texture.json`](./description#item_texturejson)。
 </treeview>
 
 **单值写法（1.20.40+）**：
 
 <treeview>
-- <DataType type="string" name="minecraft:icon" isRequired/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
+- <DataType type="string" name="minecraft:icon" isRequired/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[`item_texture.json`](./description#item_texturejson)。
 </treeview>
 
 **单值写法（1.20.0 - 1.20.50）**：
 
 <treeview>
 - <DataType type="object" name="minecraft:icon" isRequired/>：根对象
-  - <DataType type="string" name="texture"/>：该物品的贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
+  - <DataType type="string" name="texture"/>：该物品的贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[`item_texture.json`](./description#item_texturejson)。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -2035,7 +2031,7 @@ import DataType from "/src/components/type/data"
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-- <DataType type="string" name="minecraft:icon" isRequired/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[贴图文件格式](./description#贴图文件格式)。
+- <DataType type="string" name="minecraft:icon" isRequired/>：该物品的默认贴图。Minecraft 将会试图找到在资源包中定义的`textures/item_texture.json`的短 ID。详见[`item_texture.json`](./description#item_texturejson)。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">

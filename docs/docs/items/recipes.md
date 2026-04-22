@@ -6,21 +6,22 @@ sidebar_position: 5
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Highlight from '/src/components/highlight/standard';
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
-收录配方表的相关信息。
+> 上次更新：2026 年 4 月 21 日。  
+> 其中文档内容更新于 2026 年 1 月 5 日。此时中国版最新版本为 1.21.50，国际版最新版本为 1.21.130。  
+> 本文档配备教程，您可以点击下面的「教程」按钮查看我们提供的教程。
 
-你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
-
-:::info[本文更新时间]
-
-本文于 2026 年 1 月 5 日更新，中国版最新版本为 1.21.50，国际版最新版本为 1.21.130。
-
-:::
+<Highlight text="教程" url="/docs/tutorials/a2_addons/b4_data_driven_items/c3_recipes" />
 
 ---
+
+配方表（Recipes）用于在工作台、熔炉、酿造台等将不同原材料物品合成为新材料。
+
+本文档收录配方表的相关信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
 
 <FileType type="folder" name="recipes"/>下的文件为配方文件。中国版配方宜放在<FileType type="folder" name="netease_recipes"/>中，其支持的接口和国际版完全一致，但在中国版实测在<FileType type="folder" name="recipes"/>下配方文件也可正常工作。允许嵌套文件夹以整理文件。
 
