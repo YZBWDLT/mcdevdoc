@@ -176,3 +176,7 @@ import DataType from "/src/components/type/data"
 - [方块简介 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/blocks-intro)
 - [自定义方块概述 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/0-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97%E6%A6%82%E8%BF%B0.html?catalog=1)
 - [方块状态 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-states)
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>

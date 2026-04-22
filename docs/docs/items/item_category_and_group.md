@@ -217,3 +217,7 @@ import DataType from "/src/components/type/data"
 - [物品目录 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/documents/craftingitemcatalogdocumentation?view=minecraft-bedrock-stable)
 - [自定义物品分组 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/12-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%A9%E5%93%81%E5%88%86%E7%BB%84.html?catalog=1)
 - [自定义物品分页 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/13-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%A9%E5%93%81%E5%88%86%E9%A1%B5.html?catalog=1)
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>

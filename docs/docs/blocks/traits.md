@@ -214,3 +214,7 @@ import DataType from "/src/components/type/data"
 - [方块特征 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-traits)
 - [方块格式历史 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-format-history)
 - [默认方块状态和特征列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockstateandtraitlistings?view=minecraft-bedrock-stable#block-traits)
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>

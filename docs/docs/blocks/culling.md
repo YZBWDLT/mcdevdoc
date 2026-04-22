@@ -32,8 +32,8 @@ import DataType from "/src/components/type/data"
         - <DataType type="string" name="direction" isRequired/>：当方块的何种方向上存在方块时则开始剔除。可选值为`up`、`down`、`east`、`west`、`south`、`north`。
         - <DataType type="object" name="geometry_part" isRequired/>：待剔除的模型的部分。详见[方块模型](./model)。
           - <DataType type="string" name="bone" isRequired/>：待剔除的模型的骨骼 ID。
-          - <DataType type="int" name="cube"/>：待剔除的模型的骨骼 ID 中，将其中的第几个块剔除掉。
-          - <DataType type="string" name="face"/>：待剔除的模型的骨骼 ID 中，将选定的块的哪个面剔除掉。必须指定<DataType type="int" name="cube"/>后可用。可选值为`up`、`down`、`east`、`west`、`south`、`north`。一般来说，这个值会指定为和<DataType type="string" name="direction" isRequired/>相同的值。
+          - <DataType type="int" name="cube"/>：待剔除的模型的骨骼 ID 中，将其中的第几个部件剔除掉。
+          - <DataType type="string" name="face"/>：待剔除的模型的骨骼 ID 中，将选定的部件的哪个面剔除掉。必须指定<DataType type="int" name="cube"/>后可用。可选值为`up`、`down`、`east`、`west`、`south`、`north`。一般来说，这个值会指定为和<DataType type="string" name="direction" isRequired/>相同的值。
         - <DataType type="string" name="condition"/>：当满足何种额外条件时进行面剔除。可选值为：
           | 可选值 | 描述 |
           | --- | --- |
@@ -94,10 +94,47 @@ import DataType from "/src/components/type/data"
 ```
 
 ![glass_1](/img/docs/docs/blocks/culling/glass_1.png)  
-↑ 面剔除前 | 面剔除后 ↓
+↑ 面剔除前 | 面剔除后 ↓  
 ![glass_2](/img/docs/docs/blocks/culling/glass_2.png)
 
 </details>
+
+## 按体素剔除面
+
+:::danger[警告]
+
+按体素剔除面的功能仍处于实验性玩法，必须开启「实验性 Voxel 形状特征」才可使用。在实验性玩法中，该功能存在功能不稳定、功能更改甚至未来被移除的风险。
+
+因此，在此功能正式实装之前，本部分将仅作少量的介绍。感兴趣的读者可以阅读[体素形状 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/documents/voxelshapes?view=minecraft-bedrock-stable)了解更多。
+
+:::
+
+体素（Voxel）是和像素（Pixel）类似的概念，指使用立方体为基本单位构成的空间图形。在基岩版，可以通过体素剔除相邻方块的面。
+
+可在<FileType type="folder" name="behavior_packs"/> - <FileType type="folder" name="shapes"/> - <FileType type="file" name="*.json"/>中定义体素，例如下面的下半砖形状体素：
+
+```json showLineNumbers title="shapes/slab_bottom.voxel.json"
+{
+    "format_version": "1.21.110",
+    "minecraft:voxel_shape": {
+        "description": {
+            "identifier": "test:slab_bottom"
+        },
+        "shape": {
+            "boxes": [
+                {
+                    "min": [ 0, 0, 0 ],
+                    "max": [ 16, 8, 16 ]
+                }
+            ]
+        }
+    }
+}
+```
+
+然后，在[`minecraft:geometry`组件](./components#minecraftgeometry)中的`culling_shape`选定此体素，当其他临近方块和该方块指定的体素完全重叠后就会被剔除面，如下图所示：
+
+![voxel_1](/img/docs/docs/blocks/culling/voxel_1.png)
 
 ---
 
@@ -108,3 +145,7 @@ import DataType from "/src/components/type/data"
 - [方块格式历史 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-format-history)
 - [方块面剔除文档 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockcullingreference/examples/blockcullingrules/block_culling?view=minecraft-bedrock-stable)
 - [方块外观进阶：尺寸与面剔除 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/documents/customblockoversized?view=minecraft-bedrock-stable)
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>

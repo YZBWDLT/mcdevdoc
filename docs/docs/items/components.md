@@ -1760,7 +1760,9 @@ import DataType from "/src/components/type/data"
   - <DataType type="float" name="movement_modifier"/>：定义玩家使用物品时的速度倍率，必须小于等于`1`。例如苹果的该值为`0.35`。
   - <DataType type="boolean" name="emit_vibrations"/>：（1.21.120+）定义玩家使用物品时是否发出振动。
   - <DataType type="string" name="start_sound"/>：（1.21.130+）定义玩家在使用物品后播放何种音效。
+  - <DataType type="string" name="start_using"/>[^1]：（1.26.30+，实验性玩法「即将推出的创作者功能」）
 </treeview>
+[^1]: 有待验证。
 
 </TabItem><TabItem value="example" label="示例">
 

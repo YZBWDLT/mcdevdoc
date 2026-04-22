@@ -25,3 +25,7 @@ sidebar_position: 8
 ## 参考文档
 
 - [物品标签 | Bedrock Wiki](https://wiki.bedrock.dev/items/item-tags)
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>
