@@ -20,12 +20,12 @@ import FileType from "/src/components/type/file"
 
 我们知道通过结构方块可以导出结构文件，下面我们以一个小房子为例，先导出它的结构文件：
 
-![structure_1](./img/c4_structures/structure_1.png)
+![structure_1](/img/tutorials/a2_addons/b2_functions_and_structures/c4_structures/structure_1.png)
 
 我们知道，在 1.20.50 更新后，加载模式的结构方块可以直接导入一个结构，这极大地简化了跨存档导出导入结构的难度。例如，在另一张地图里通过这个方式可以直接导入结构：
 
-![structure_2](./img/c4_structures/structure_2.png)
-![structure_3](./img/c4_structures/structure_3.png)
+![structure_2](/img/tutorials/a2_addons/b2_functions_and_structures/c4_structures/structure_2.png)
+![structure_3](/img/tutorials/a2_addons/b2_functions_and_structures/c4_structures/structure_3.png)
 
 但是，在玩法地图中我们却不能让玩家自行手动导入结构——因为大多数玩家都不会用结构方块。以前，我们是直接把结构保存到地图内部的，但是我们现在要讲一种新的手段，也就是利用附加包来保存结构文件。利用附加包保存结构文件有一个优点，**就是任选一张地图，只要安装了我们的包，就都可以使用**。
 
@@ -43,7 +43,7 @@ import FileType from "/src/components/type/file"
 
 </treeview>
 
-![structure_4](./img/c4_structures/structure_4.png)
+![structure_4](/img/tutorials/a2_addons/b2_functions_and_structures/c4_structures/structure_4.png)
 
 在保存了这些之后，我们可以在其他地图试试效果。先**大退重进**，然后可以用`/structure`命令试试效果：
 
@@ -51,7 +51,7 @@ import FileType from "/src/components/type/file"
 /structure load my_house ~~~
 ```
 
-![structure_5](./img/c4_structures/structure_5.png)
+![structure_5](/img/tutorials/a2_addons/b2_functions_and_structures/c4_structures/structure_5.png)
 
 看！效果还不错，可以以假乱真咯，嘿嘿。
 
@@ -96,11 +96,11 @@ import FileType from "/src/components/type/file"
 
 下载好 NBT Studio 后，我们将导出的`.mcstructure`文件拖到软件里面，可以看到结构真正储存的数据：
 
-![nbt_studio_1](./img/c4_structures/nbt_studio_1.png)
+![nbt_studio_1](/img/tutorials/a2_addons/b2_functions_and_structures/c4_structures/nbt_studio_1.png)
 
 关于 NBT 的语法结构，我们在此不过多涉及，感兴趣的读者可以在 Wiki 中查到。例如，我们可以看到结构中所有使用到的方块类型：
 
-![nbt_studio_2](./img/c4_structures/nbt_studio_2.png)
+![nbt_studio_2](/img/tutorials/a2_addons/b2_functions_and_structures/c4_structures/nbt_studio_2.png)
 
 在极少数情况下，也可能会有直接通过此方式修改结构文件的需求。
 

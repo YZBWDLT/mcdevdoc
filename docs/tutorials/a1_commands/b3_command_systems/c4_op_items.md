@@ -20,7 +20,7 @@ sidebar_position: 4
 
 屏障的外观如下图所示，为一个红色的禁止图案。和结构空位类似，都是只有创造模式的玩家拿在手上的时候可见。
 
-![barrier_1](./img/c4_op_items/barrier_1.png)
+![barrier_1](/img/tutorials/a1_commands/b3_command_systems/c4_op_items/barrier_1.png)
 
 和结构空位完全相反的是，**它无法被非创造模式的玩家破坏，也不能穿过，所以常常作为隐形的阻挡玩家前进的方块**。
 
@@ -68,7 +68,7 @@ sidebar_position: 4
 
 顾名思义，**光源方块能够提供特定的光照强度**。
 
-![light_block_1](./img/c4_op_items/light_block_1.png)
+![light_block_1](/img/tutorials/a1_commands/b3_command_systems/c4_op_items/light_block_1.png)
 
 和屏障、结构空位类似，必须在创造模式下手持才可见此方块。
 
@@ -92,7 +92,7 @@ sidebar_position: 4
 
 这两种方块的外观如下图所示，左边为允许方块，显示为类似于木板的颜色；而右边为拒绝方块，显示为灰色。
 
-![allow_deny_1](./img/c4_op_items/allow_deny_1.png)
+![allow_deny_1](/img/tutorials/a1_commands/b3_command_systems/c4_op_items/allow_deny_1.png)
 
 对于允许方块而言，无论该玩家处于何种游戏模式下（哪怕是冒险模式），也能随意地在允许方块上方放置方块或破坏方块。所以，**允许方块的摆放通常设计为使冒险模式的玩家拥有类似于生存模式的体验**，并且可以只限定在一个特定的范围内。
 
@@ -112,7 +112,7 @@ sidebar_position: 4
 
 边界的外观类似于红色的墙，如下图所示。边界还会释放出红色的粒子，这个粒子可以由`showBorderEffect`游戏规则控制。
 
-![border_1](./img/c4_op_items/border_1.png)
+![border_1](/img/tutorials/a1_commands/b3_command_systems/c4_op_items/border_1.png)
 
 显然，边界的用途和屏障是很类似的，都是阻挡玩家或生物通过。但是读者应当注意，虽然边界可以防止生物越过，但不能阻止弹射物（例如末影珍珠、雪球、鸡蛋等）越过。在一些必要情况下，可能还是需要使用屏障。
 

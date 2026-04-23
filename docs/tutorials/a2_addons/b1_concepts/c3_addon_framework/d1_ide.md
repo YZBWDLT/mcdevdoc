@@ -21,7 +21,7 @@ sidebar_position: 1
 
 **由微软出品的 Visual Studio Code（VSC）是我们首选中的首选**。VSC 是一款轻量化的 IDE 和代码编辑器，它适配市面上主流的各种编程语言代码和编程相关的代码，包括知名的 Java、C、C++、JavaScript、Python 等，以及我们在附加包编写中所常见的 JSON。它甚至支持 Minecraft 独有的`.mcfunction`！都不用说在 Minecraft 基岩版的编程领域，就是在整个计算机编程领域，VSC 都是十分受欢迎的 IDE。
 
-![vsc](./../img/c3_addon_framework/vsc.png)
+![vsc](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc.png)
 
 这还没完，VSC 还可以下载各路开发者所提供的辅助扩展（有时大家也称之为插件），来进一步强化在特定领域的功能。在 Minecraft 基岩版附加包编写这方面，我们也会强调“属于我们自己的”插件。可以说，在基岩版的附加包编写领域，但凡是有条件的开发者的首选 IDE 几乎清一色地都是 VSC，或者至少需要用到 VSC。
 
@@ -33,7 +33,7 @@ sidebar_position: 1
 
 此外，在基岩版开发的领域还有一种专门的 IDE 叫做 bridge. 。[它的官网在这里](https://bridge-core.app/)。bridge. 和 VSC 其实是高度类似的，而且在创建各种初始文件上会比 VSC 这种适配万家语言的 IDE 要更加专业一些，最关键的是它支持在线编辑，无需下载任何软件即可编写附加包，如下图所示。
 
-![bridge](./../img/c3_addon_framework/bridge.png)
+![bridge](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/bridge.png)
 
 只是在编写脚本的时候，bridge. 的便利性就远远没有 VSC 要来的方便，在全局查找这方面也没有 VSC 做的更好，而且 bridge. 的插件太少而且很多都已过时。可以说，二者分别有二者的优缺点。从各种角度综合考虑，接下来的所有教程中我们都会以 VSC 作为基准。
 
@@ -61,15 +61,15 @@ VSC 是一款成熟且专业的 IDE，它含有上百种快捷操作、数十种
 
 要改变主题的话可以按照下图的操作进行。使用什么主题全看个人心情，我个人更偏爱白色一些。
 
-![vsc_1](./../img/c3_addon_framework/vsc_1.png)
+![vsc_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_1.png)
 
 接下来，我们将 VSC 改成中文。按照下图的步骤，搜索并安装简体中文的插件并重启 VSC 后就可以使用中文了。
 
-![vsc_2](./../img/c3_addon_framework/vsc_2.png)
+![vsc_2](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_2.png)
 
 在重启 VSC 之后，我们来安装几个非常关键的基岩版开发相关的插件。还是左边插件，我们搜索“bedrock”，会蹦出来几个可用的插件，我们先安装 **Blockception's Minecraft Bedrock Development、Bedrock Definitions、Snowstorm** 这三个插件，其他插件看读者个人兴趣和需求自行安装。
 
-![vsc_3](./../img/c3_addon_framework/vsc_3.png)
+![vsc_3](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_3.png)
 
 - 第一个插件 Blockception's Minecraft Bedrock Development 是我们要用到的最主要的插件，它负责进行各种环境检查、自动补全和自动纠错等。虽然它的纠错时常会出毛病，至于如何禁用不正确的纠错我们之后会详谈。
 - 第二个插件 Bedrock Definitions 则负责链接代码中涉及到的其他文件的定义。毕竟写附加包的话我们不可能只有一个文件，多个文件之间的联动是几乎不可避免的，这时候使用链接功能就能够很快地帮助我们重定向。
@@ -79,8 +79,8 @@ VSC 是一款成熟且专业的 IDE，它含有上百种快捷操作、数十种
 
 接下来我们再学习一些最基本的操作。在文件 - 新建文本文件这里新建一个文本文件，选择语言为 JSON：
 
-![vsc_4](./../img/c3_addon_framework/vsc_4.png)  
-![vsc_5](./../img/c3_addon_framework/vsc_5.png)
+![vsc_4](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_4.png)  
+![vsc_5](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_5.png)
 
 然后我们试着打一段内容上去吧！试着把下面的东西原样地输入上去，包括换行和 4 缩进，但是不要直接复制粘贴，先练练手，作为打字练习。
 
@@ -107,26 +107,26 @@ VSC 是一款成熟且专业的 IDE，它含有上百种快捷操作、数十种
 
 然后，按下<kbd>Ctrl</kbd>+<kbd>S</kbd>来保存文件，我们可以先保存到桌面上，反正只是一个草稿而已，不需要的时候删掉就好了。这是一个很常用的快捷键，养成良好的习惯，要勤于保存哦。
 
-![vsc_6](./../img/c3_addon_framework/vsc_6.png)  
+![vsc_6](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_6.png)  
 *备注：我这里选择的字体和读者默认的代码字体 Consolas 应该是有区别的，这个代码字体叫 JetBrains，喜欢的读者可以自行下载并在网上查找更改字体的方法，视情况可能需要重启软件甚至重启电脑*。
 
 来回顾一下上一节的内容。我们在第 12 行加一个尾随逗号试试：
 
-![vsc_7](./../img/c3_addon_framework/vsc_7.png)
+![vsc_7](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_7.png)
 
 你会看到，那个尾随逗号出现了一个红色波浪线，代表这是一个**错误（Error）**。这种错误是会严重影响 JSON 的解析的，所以通常要重视。鼠标指向红色波浪线的时候，会告诉你问题原因。
 
 对付中文符号的时候，VSC 的报错也十分好用。下图的逗号就是中文逗号，报错“缺少逗号”，说明这不是 JSON 预期的逗号，显然这就是中文逗号，换掉即可。
 
-![vsc_8](./../img/c3_addon_framework/vsc_8.png)
+![vsc_8](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_8.png)
 
 对付各种 JSON 的语法错误，VSC 都能够正确即时解析，有效帮助我们避免这种低级问题。
 
-![vsc_9](./../img/c3_addon_framework/vsc_9.png)
+![vsc_9](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_9.png)
 
 唯一可能无须担心的就是注释问题，VSC 不知道我们正在编写的是 Minecraft 附加包，所以会对注释报错。通常为了避免 VSC 报错，我们也不推荐在 JSON 中引入注释。
 
-![vsc_10](./../img/c3_addon_framework/vsc_10.png)
+![vsc_10](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_10.png)
 
 下面是一些常用快捷键的用法。
 
@@ -135,10 +135,10 @@ VSC 是一款成熟且专业的 IDE，它含有上百种快捷操作、数十种
 - <kbd>Ctrl</kbd>+<kbd>V</kbd>：粘贴剪贴板中的内容到光标的位置。
 - <kbd>Ctrl</kbd>+<kbd>A</kbd>：全选。
 - <kbd>Ctrl</kbd>+<kbd>D</kbd>：选中下一个匹配项。将下一个和选中内容一致的内容也选中。
-  ![ctrl_d](./../img/c3_addon_framework/ctrl_d.png)
+  ![ctrl_d](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/ctrl_d.png)
 - <kbd>Ctrl</kbd>+<kbd>F</kbd>：启用查找替换。
 - 在按住左<kbd>Alt</kbd>的情况下，可以点击代码的其他位置以添加一个新的光标，用于批量编辑。  
-  ![alt](./../img/c3_addon_framework/alt.png)
+  ![alt](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/alt.png)
 
 日后我们还会看到更多的 VSC 快捷用法。
 
@@ -147,9 +147,9 @@ VSC 是一款成熟且专业的 IDE，它含有上百种快捷操作、数十种
 现在我们来简单调整一下文件管理器的设置，主要就是两件事。
 
 1. 启用文件名后缀。无论是新建、修改、还是识别文件的时候，启用文件名后缀都是很重要的。对于 MC 开发来说，要了解到很多种文件的格式。以 Windows 11 为例，启用方法如下：  
-   ![file_explorer_1](./../img/c3_addon_framework/file_explorer_1.png)
+   ![file_explorer_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/file_explorer_1.png)
 2. 将一些文件（目前主要是`*.json`）的默认启用软件改成 VSC。如果以前已经有默认软件比如记事本，可以通过下面的方法改过来（或者“选择其他应用”中选择 VSC）。  
-   ![file_explorer_2](./../img/c3_addon_framework/file_explorer_2.png)
+   ![file_explorer_2](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/file_explorer_2.png)
 
 ---
 

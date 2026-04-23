@@ -24,7 +24,7 @@ sidebar_position: 1
 
 下图是一台运行在 Windows Server 2025 上的 BDS 服务器。
 
-![BDS](./img/c1_addon_types/bds.png)
+![BDS](/img/tutorials/a2_addons/b1_concepts/c1_addon_types/bds.png)
 
 那么，是什么将羊、方块和你的物品栏显示到你面前的呢？**这种画面的渲染、绘制工作，就是客户端（Client）所负责的事情**。比如，服务端告诉客户端，这只羊的种类是`0`，该怎么渲染到玩家的屏幕上，你懂得？客户端表示，我懂我懂，然后将一只白色的羊渲染到你的屏幕上，这样你就看到了这只白色的羊在你面前活蹦乱跳。
 
@@ -82,13 +82,13 @@ Wiki 中，给出下面的定义（但并不明晰）：
 
 你在国际版市场中购买的地图，本质上也都是购买了一个世界模板，并且创建时都是在“从模板创建”中创建的地图。
 
-![world_template](./img/c1_addon_types/world_template.png)
+![world_template](/img/tutorials/a2_addons/b1_concepts/c1_addon_types/world_template.png)
 
 使用世界模板发布地图有几点好处：
 
 - 版本锁定。虽然附加包是由 Mojang 官方支持的，但是地图内使用的一些特性难免在高版本中无法适应，例如蜘蛛网无法分解为线的特性就可能造成很大的影响。地图模板就可以锁定地图版本，阻止其使用更高版本的特性，以免受到高版本影响。
 - 设置锁定。一些玩家可能会在游玩地图时乱调整设置，导致地图运行出错或偏离预期。因此，可以用这个功能锁定设置，阻止玩家乱调预设设置。
-  ![world_template_2](./img/c1_addon_types/world_template_2.png)
+  ![world_template_2](/img/tutorials/a2_addons/b1_concepts/c1_addon_types/world_template_2.png)
 - 便于在游戏内重新创建地图。如果你的地图不支持重开，但是玩家还想要重玩一遍，使用这个功能可以免除玩家再次导入地图的麻烦。
 
 但是，中国版不支持世界模板。
@@ -99,7 +99,7 @@ Wiki 中，给出下面的定义（但并不明晰）：
 
 皮肤包（Skin Pack）是一类将多个皮肤打包的附加包。在市场中购买的皮肤，也都是以多份皮肤打包为一个皮肤包的形式出售的。
 
-![skin_pack](./img/c1_addon_types/skin_pack.png)
+![skin_pack](/img/tutorials/a2_addons/b1_concepts/c1_addon_types/skin_pack.png)
 
 但是，中国版不支持皮肤包。
 

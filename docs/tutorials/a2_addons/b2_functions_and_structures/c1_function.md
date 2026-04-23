@@ -80,7 +80,7 @@ say Hello,world!
 
 系统学习过模块 1 的你应该知道这条命令的含义，这里我们不再赘述。读者应注意：**函数中的命令是不能带斜杠的**，不是不建议，是不允许。尤其是在从游戏中复制命令的时候要格外关注。如果读者使用 VSC 的话，还会得到自动补全的提示。
 
-![vsc_1](./img/c1_function/vsc_1.png)
+![vsc_1](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_1.png)
 
 ## 调用函数
 
@@ -106,13 +106,13 @@ say Hello,world!
 
 如果包正确安装，游戏内应当有自动补全。
 
-![function_1](./img/c1_function/function_1.png)
+![function_1](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/function_1.png)
 
 观察执行效果。一定要确保你的包目前是正确安装的！
 
 :::
 
-![function_2](./img/c1_function/function_2.png)
+![function_2](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/function_2.png)
 
 我们看到，执行这个函数后，便以我们自己的身份运行了这条`/say`命令。有关函数的命令上下文，我们一会儿再强调。
 
@@ -157,7 +157,7 @@ say Hello,world!
 
 这条命令的执行效果如下，可以看到该函数在 1 秒钟后，由服务器执行。这是函数延迟执行命令的一个关键方法，在这条命令加入之前，我们都是用记分板控制条件来实现延时的，相比来说就会麻烦不少了。
 
-![schedule_1](./img/c1_function/schedule_1.png)
+![schedule_1](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/schedule_1.png)
 
 现在我们再来试一下`[replace|append]`的用途。
 
@@ -183,11 +183,11 @@ say Hello,world!
 
 我们看到，使用`replace`就只返回了一次，证明第一次添加的延迟队列被替换，所以只有第二次添加的延迟队列执行。
 
-![schedule_2](./img/c1_function/schedule_2.png)
+![schedule_2](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/schedule_2.png)
 
 而`append`模式就返回了两次，代表两次的队列都成功执行。
 
-![schedule_3](./img/c1_function/schedule_3.png)
+![schedule_3](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/schedule_3.png)
 
 `replace`是默认值，所以如果有不能替换的需求的话，就要额外指定`append`参数了。
 
@@ -207,7 +207,7 @@ say 1
 
 然后，执行`/reload`之后再执行`/function test`，此时游戏返回更改后的“1”。
 
-![reload_1](./img/c1_function/reload_1.png)
+![reload_1](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/reload_1.png)
 
 :::
 
@@ -219,7 +219,7 @@ say 1
 
 - 如果有明显的执行者，那么就直接使用该执行者的上下文。
   - 例如我们自己来执行`/function`命令，那么函数内的所有命令都视为是我们自己执行。例如，如果函数文件写入命令`setblock ~~~ stone`，那么就会在我们自己的位置放置一块石头。  
-    ![context_1](./img/c1_function/context_1.png)
+    ![context_1](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/context_1.png)
   - 而如果是命令方块执行`/function`命令，那么函数内的所有命令都视为是命令方块执行的。
 - 如果是`/schedule`执行，此时是**服务端**直接执行命令。此时的命令上下文分别如下表所示，读者感兴趣的话可以用`/tp`等命令做个实验：
 
@@ -253,7 +253,7 @@ say 5
 
 我们看到执行效果如下图所示。也就是说，**函数中的命令是严格从上到下执行完毕的，和一条无条件的脉冲 CB 链的逻辑是一致的**。
 
-![function_3](./img/c1_function/function_3.png)
+![function_3](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/function_3.png)
 
 我们再来看一个更复杂的逻辑。
 
@@ -277,13 +277,13 @@ title @a[scores={state=3}] actionbar 睡觉中
 
 `/reload`后，在一个 RCB 中写入`function test`并启用，观察现象。
 
-![function_4](./img/c1_function/function_4.png)
+![function_4](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/function_4.png)
 
 :::
 
 这是上面这些命令的执行效果。可以看到，使用函数就可以把一条长达 8 个 CB 的 CB 链大幅地简化为 1 个 CB。
 
-![function_5](./img/c1_function/function_5.png)
+![function_5](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/function_5.png)
 
 ## 注释
 
@@ -354,7 +354,7 @@ execute as @a at @s run setblock ~~-1~ diamond_block
 
 执行后，我们得到 64 颗钻石，以及在脚下放置了 1 个钻石块。看，创建“另一条 CB 链”也是如此简单！
 
-![func_sys_1](./img/c1_function/func_sys_1.png)
+![func_sys_1](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_1.png)
 
 ### 套用在文件夹内的函数
 
@@ -390,7 +390,7 @@ execute as @a run scoreboard players add playerAmount data 1
 
 我们看到，只需要调用一次这个函数，在记分板上就能够输出玩家数量，还是很好用的。
 
-![func_sys_2](./img/c1_function/func_sys_2.png)
+![func_sys_2](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_2.png)
 
 但我们这里要讲到的重点，是套在文件夹内的函数调用方法，也就是**写入除`functions/`外的路径后，再写入除后缀名的文件名**。例如：
 
@@ -447,7 +447,7 @@ say 6
 
 执行后的效果如下图。可以看到，在返回了“1”“2”“3”之后，就执行到`test2`上面，继续返回“4”“5”“6”。但是，游戏显示一共执行了 7 条命令，代表`/function`本身也需要一条命令，终究会消耗一点性能。
 
-![func_sys_3](./img/c1_function/func_sys_3.png)
+![func_sys_3](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_3.png)
 
 现在，我们需要研究一下函数执行的顺序问题。我们知道，函数和 CB 链都是瞬时执行命令的，但是在调用其他 CB 链（调用其他函数）的时候，就存在执行顺序问题了。我们来做一个小实验，来了解一下二者的调用顺序问题。
 
@@ -466,25 +466,25 @@ say 3
 
 然后，使用同样的两个 CB 链，写入同样的命令，观察执行效果。
 
-![func_sys_4](./img/c1_function/func_sys_4.png)
+![func_sys_4](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_4.png)
 
 :::
 
 我们看到两种执行效果分别如下。
 
-![func_sys_5](./img/c1_function/func_sys_5.png)
+![func_sys_5](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_5.png)
 
 这个结果是很有意义的，**它直接为我们揭示了传统的 CB 链调用和函数调用顺序的一个本质区别**。
 
 对于函数调用的情况，在执行了“1”和“2”之后，会立刻执行`test2`里面的内容，在“4”“5”“6”执行完毕之后再回到`test`中继续执行“3”，这个过程，可以用下面的图来表示。
 
-![func_sys_6](./img/c1_function/func_sys_6.png)
+![func_sys_6](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_6.png)
 
 这叫做**深度优先原则**，在遇到一个更深层逻辑的时候，会先将这个逻辑处理完毕，然后再处理浅层逻辑。例如在这里，`test2`就是一个更深层的逻辑，所以先处理这其中的所有命令，再回到`test`这个浅层逻辑。
 
 而 CB 链调用的情况，则是先执行了本链中的“1”“2”“3”再执行了“4”“5”“6”。这个过程则可以由下图表示。
 
-![func_sys_7](./img/c1_function/func_sys_7.png)
+![func_sys_7](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_7.png)
 
 这叫做**广度优先原则**，在遇到一个更深层逻辑的时候，会先暂时搁置，把浅层逻辑处理完毕之后再处理深层逻辑。例如在这里，第二条 CB 链（相当于`test2`）是一个更深层的逻辑，所以先处理第一条 CB 链（相当于`test`）这个浅层逻辑的所有其他内容，再处理深层逻辑。
 
@@ -525,7 +525,7 @@ function test
 
 命令的执行效果如下。
 
-![func_sys_9](./img/c1_function/func_sys_9.png)
+![func_sys_9](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_9.png)
 
 我们看到，这里是变相地实现了循环执行的。但是，这个循环会在 10000 次循环后终止。能不能改变这个值呢？其实是可以的，我们可以用`/gamerule functionCommandLimit <值>`来控制函数执行命令的上限，然而很遗憾，这个值最大值就是 10000，不能设置为`maxCommandChainLength`那么大的值（比如 65535）。
 
@@ -598,49 +598,49 @@ tellraw @a {"rawtext":[{"translate":"%%s的阶乘等于%%s","with":{"rawtext":[{
 
 这样，我们就能得到 10! = 3628800 了。
 
-![func_sys_10](./img/c1_function/func_sys_10.png)
+![func_sys_10](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_10.png)
 
 ### 使用 VSC 打开附加包文件夹
 
 到现在为止，我们已经创建了 5 个函数文件。如果每次我们编辑查看各个函数，都要打开文件资源管理器并双击打开函数的话，也是很不方便的。然而，我们可以用一个非常简单的方法快捷管理文件夹的文件，也就是**用 VSC 直接打开附加包的文件夹**。步骤也很简单：
 
 1. 新开一个 VSC 窗口，以及在文件管理器中找到我们的行为包：
-    ![vsc_2](./img/c1_function/vsc_2.png)
+    ![vsc_2](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_2.png)
 2. 然后，点开 VSC 左侧第一个按钮，打开文件管理器界面，将我们的行为包拖进去：
-    ![vsc_3](./img/c1_function/vsc_3.png)
+    ![vsc_3](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_3.png)
 3. 为日后使用 VSC 方便，将我们的工作区直接保存：
-    ![vsc_4](./img/c1_function/vsc_4.png)  
-    ![vsc_5](./img/c1_function/vsc_5.png)  
+    ![vsc_4](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_4.png)  
+    ![vsc_5](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_5.png)  
     日后，双击该工作区文件即可快速打开我们上次的编辑。
 
 **这样做的好处非常多，可以说这是我们充分利用 VSC 编辑优势的关键**。
 
 - 第一，VSC 的文件管理器可以折叠展开多个文件夹，可以专门打开我们所需要的文件，方便我们进行文件编辑和查找。
-  ![vsc_6](./img/c1_function/vsc_6.png)
+  ![vsc_6](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_6.png)
 - 第二，我们可以通过左侧的第二个按钮，也就是查找替换来进行全局的查找替换，高效地找到我们要找的关键字。
-  ![vsc_7](./img/c1_function/vsc_7.png)
+  ![vsc_7](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_7.png)
 - 第三，我们在第一章安装的两个插件可以更好地成体系运行，可以直接基于我们的项目，综合进行检查和自动补全。
-  ![vsc_8](./img/c1_function/vsc_8.png)  
+  ![vsc_8](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_8.png)  
   尤其是在和自定义方块、物品、实体联动的时候，甚至可以对这些内容进行自动补全，十分强大。
   - 我们还可以在函数文件内，鼠标指向`function`命令写入的文件路径，使用<kbd>Ctrl</kbd>+<kbd>鼠标左键</kbd>快速跳转到对应函数，非常方便。  
-    ![vsc_9](./img/c1_function/vsc_9.png)  
+    ![vsc_9](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_9.png)  
 
 要使用 VSC 新建文件或文件夹也是很简单的。只需要在文件管理器中使用这两个小按钮即可解决。
 
-![vsc_10](./img/c1_function/vsc_10.png)
+![vsc_10](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_10.png)
 
 但是，美中不足的是，有时候我们安装的两个插件有可能会因为一些 bug 而判断出错。例如上图中，插件就对我们的`/scoreboard`命令报错，我们将鼠标指向红色波浪线（也就是报错的位置）处：
 
-![vsc_11](./img/c1_function/vsc_11.png)
+![vsc_11](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_11.png)
 
 如果你有信心保证你的写法是正确的，那么就可以点击报错处底下的“快速修复（Ctrl+.）”，然后选择忽略相关的错误检查：
 
-![vsc_12](./img/c1_function/vsc_12.png)
+![vsc_12](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_12.png)
 
 这里 VSC 会自动创建一个`.mcattributes`文件，我们保存之，然后重启 VSC，就不会再在这里报错了。
 
-![vsc_13](./img/c1_function/vsc_13.png)  
-![vsc_14](./img/c1_function/vsc_14.png)
+![vsc_13](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_13.png)  
+![vsc_14](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_14.png)
 
 ### 循环执行函数
 
@@ -688,7 +688,7 @@ execute if score tick time matches 20.. run scoreboard players remove tick time 
 
 最后，你会发现`time.tick`变量在`0`~`19`之间循环。
 
-![func_sys_11](./img/c1_function/func_sys_11.png)
+![func_sys_11](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_11.png)
 
 原理就是，**<FileType type="file" name="tick.json" />所指定的函数会每游戏刻无条件地执行一次**。在上面的例子中，<FileType type="file" name="tick.json" />就指定了<FileType type="file" name="test.mcfunction" />为始终执行的函数。
 

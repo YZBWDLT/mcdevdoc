@@ -238,21 +238,21 @@ give @s diamond 1
 titleraw @s {"rawtext":[{"text":"获得钻石 * 1"}]}
 ```
 
-![content_log_1](./img/c2_system_on_function/content_log_1.png)
+![content_log_1](/img/tutorials/a2_addons/b2_functions_and_structures/c2_system_on_function/content_log_1.png)
 
 我们可以看到，在该函数中，第 2 条命令存在语法错误（缺少`title|subtitle|actionbar`），因此这整个函数都不会被 Minecraft 认为是一个有效函数，你甚至无法在自动补全中看到这个函数！
 
-![content_log_2](./img/c2_system_on_function/content_log_2.png)
+![content_log_2](/img/tutorials/a2_addons/b2_functions_and_structures/c2_system_on_function/content_log_2.png)
 
 **当你无法在自动补全中找到应当看到的函数时，就应该开始怀疑语法是否出现了问题**。好在，出现了语法问题时，Minecraft 会试图告诉你问题出现在哪儿，这就是**内容日志**（**Content Log**）的作用。
 
 但是，内容日志默认是不开启的。我们需要在设置 - 创作者 - 内容日志设置中启用内容日志，如下图所示。
 
-![content_log_3](./img/c2_system_on_function/content_log_3.png)
+![content_log_3](/img/tutorials/a2_addons/b2_functions_and_structures/c2_system_on_function/content_log_3.png)
 
 小退重进后，我们会看到游戏开始在上方蹦出报错。这个报错也可以在设置的内容日志历史中找到：
 
-![content_log_4](./img/c2_system_on_function/content_log_4.png)
+![content_log_4](/img/tutorials/a2_addons/b2_functions_and_structures/c2_system_on_function/content_log_4.png)
 
 我们看到这串内容日志详细地告诉我们错误位置和原因：
 

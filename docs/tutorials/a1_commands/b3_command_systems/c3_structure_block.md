@@ -32,11 +32,11 @@ sidebar_position: 3
 
 拿到结构方块之后，我们来看看结构方块的 UI 吧：
 
-![ui_1](./img/c3_structure_block/ui_1.png)
+![ui_1](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/ui_1.png)
 
 并且，结构方块会默认把自己要操作的区域的边框呈现在世界中，这大幅提高了待操作区域的可见性，比`/clone`要清晰直观得多：
 
-![ui_2](./img/c3_structure_block/ui_2.png)
+![ui_2](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/ui_2.png)
 
 ---
 
@@ -48,7 +48,7 @@ sidebar_position: 3
 
 保存模式是用于保存结构的模式。在上面的 UI 图中，我们已经看到保存模式的 UI。除了可选定结构方块的模式之外，右侧有一个结构方块选定方块区域的 3D 预览图，右下角可以选择保存结构或导出结构，而左侧则是保存模式的众多设置。
 
-![save_1](./img/c3_structure_block/save_1.png)
+![save_1](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/save_1.png)
 
 我们现在来关注左侧的各项设置。下面的选项中，**需要格外强调的选项我们已粗体标注，这些是结构方块最核心的功能**。
 
@@ -59,7 +59,7 @@ sidebar_position: 3
 - **偏移（X Y Z）**：**待保存的结构的位置相对于结构方块的位置的偏移**，默认为（0, -1, 0）。
   - 我们曾经讲过，要唯一地指定一个区域，需要指定一个位置，然后从这个位置延伸出大小。所以，偏移就是指定位置的，而大小就是指定大小。读者可以尝试多次调整大小和偏移，体会大小和偏移的作用。
   - 例如，大小设置为（10, 1, 10），偏移设置为（0, 1, 0），效果如下图所示，其中红色代表 X 轴正方向，绿色表示 Y 轴正方向，蓝色表示 Z 轴正方向。  
-    ![save_2](./img/c3_structure_block/save_2.png)‘
+    ![save_2](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/save_2.png)‘
 - 探测：这个设置要配合角落模式使用，我们稍后再强调。
 - **包括实体**：**待保存的结构是否要包含实体**。默认值为`true`。
   - 是的，结构是允许自含实体的！这是相对于`/clone`的一个重大优势。通常也用这种方法来加载现成的掉落物。
@@ -78,7 +78,7 @@ sidebar_position: 3
 
 - **保存**：顾名思义，直接保存结构。注意这里无论如何都是保存到硬盘中。
 - **导出**：使用导出按钮后，将把这个结构以`.mcstructure`文件的形式导出出去，供其他地图的结构方块和行为包使用。  
-  ![save_3](./img/c3_structure_block/save_3.png)
+  ![save_3](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/save_3.png)
   - 这个选项只有 Windows 版本有，手机端是没有的。*~我们手机玩家招你惹你了~*
 - 重置：将左侧的设置回退到上一次更改的设置，类似于撤销的操作。
 
@@ -88,8 +88,8 @@ sidebar_position: 3
 
 新开一张地图，默认世界（不开超平坦）、打开作弊、开创造、显示坐标、关闭天气更替、终为白日，然后使用`/locate structure minecraft:pillager_outpost`寻找掠夺者哨塔，然后用结构方块保存这个结构。注意保存的结构里面不要带上结构方块。
 
-![save_4](./img/c3_structure_block/save_4.png)  
-![save_5](./img/c3_structure_block/save_5.png)
+![save_4](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/save_4.png)  
+![save_5](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/save_5.png)
 
 保存完了之后就先放这儿，一会儿另有他用……（坏笑）
 
@@ -99,7 +99,7 @@ sidebar_position: 3
 
 现在我们来看加载模式。将左上角的模式从保存模式改为加载模式后，我们可以看到左边的设置项和右下角的几个按钮都发生了变化。
 
-![load_1](./img/c3_structure_block/load_1.png)  
+![load_1](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/load_1.png)  
 
 对于右下角的三个加载选项，想必你很快就能理解：
 
@@ -123,12 +123,12 @@ sidebar_position: 3
 - 种子：决定完整性这个选项如何加载其中的方块。即使同样都是 20%，不同的种子也会导致不同的加载效果。
   - 通常我们更关心完整度，不太关心种子。每次加载都会重新生成一个新的种子。
 - **旋转**：**决定一个结构以多少度旋转的方式加载**，默认为`0`°。旋转的方向为以 Y 轴为旋转轴时俯瞰的**顺时针**。下图是一个旋转加载的示例，读者可以看到90°、180°、270°顺时针旋转加载所带来的不同效果。  
-  ![load_2](./img/c3_structure_block/load_2.png)
+  ![load_2](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/load_2.png)
 - **镜像（X,Z）**：**决定一个结构以哪个轴作为对称轴加载**，默认为`x`和`z`均不勾选。话不多说，我们直接看实例：  
-  ![load_3](./img/c3_structure_block/load_3.png)  
+  ![load_3](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/load_3.png)  
   读者可以清楚地看到以 X、Z 轴为对称轴加载所带来的影响。同时，读者还能注意到这些加载效果和旋转很类似，但实际上却并不一样，所以不可以将旋转和镜像混为一谈，不能直接认为特定的旋转等同于特定的镜像（比如 X 镜像等同于 270° 旋转就是错误的）。
 - **动画**：**决定如何加载这个结构，是一层一层加载、一个一个方块加载还是直接一口气加载完，以及加载时间**。分为动画模式（`无`、`逐层放置`、`逐块放置`，默认为`无`）和动画时长（可填写为浮点数，默认为`0.0`）。对于一些大型结构来说，延长动画时长可以防止瞬间加载大量方块所造成的卡顿。下图是一个动画的示例，逐层和逐块放置均设置为 100 秒的动画。
-  ![load_4](./img/c3_structure_block/load_4.png)
+  ![load_4](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/load_4.png)
 - 显示边框：是否在世界中显示选中区域的边框。默认值为`true`。
 
 可以说，只要你愿意动手挨个去试一试，很快就能发现这些设置的用途。所以，使用结构方块加载结构的大概步骤就是，**设定结构的名称和位置，进行一些杂项设置后，点击加载按钮即可**。
@@ -137,7 +137,7 @@ sidebar_position: 3
 
 使用`/locate`命令定位一个村庄，然后在村庄里加载这个掠夺者哨塔吧！>:)
 
-![load_5](./img/c3_structure_block/load_5.png)
+![load_5](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/load_5.png)
 
 :::
 
@@ -145,28 +145,28 @@ sidebar_position: 3
 
 角落模式可以说是从保存模式延伸出的一种特殊模式，它是用来帮我们快速定位一个结构的两个角落的。
 
-![corner_1](./img/c3_structure_block/corner_1.png)  
+![corner_1](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/corner_1.png)  
 ↑ 结构方块的角落模式 UI
 
 我们可以看到，这个 UI 是很简单的。现在我们来介绍一下角落模式的用法。我们以下面这棵树为例：
 
-![corner_2](./img/c3_structure_block/corner_2.png)
+![corner_2](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/corner_2.png)
 
 首先，我们找到这棵树的角落，确定这个角落后能够完全地包括这整个结构，也就是这棵树，然后在这个角落外角处放一个保存模式的结构方块：
 
-![corner_3](./img/c3_structure_block/corner_3.png)
+![corner_3](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/corner_3.png)
 
 至于为什么要这么放，而不是直接放到角落位置上，一会儿我们就会谈到。然后，在这个结构的对角处，也类似地放一个角落模式的结构方块，同样不要放到角落位置上：
 
-![corner_4](./img/c3_structure_block/corner_4.png)
+![corner_4](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/corner_4.png)
 
 现在，对于这两个结构方块，我们使用同样的结构名称`mystructure:tree`：
 
-![corner_5](./img/c3_structure_block/corner_5.png)
+![corner_5](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/corner_5.png)
 
 然后，我们便可以使用保存模式的“检测”来检查同名的角落模式的结构方块了：
 
-![corner_6](./img/c3_structure_block/corner_6.png)
+![corner_6](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/corner_6.png)
 
 现在，你便知道为什么我们不能直接将结构方块放到角落位置上了，为了结构中不包含结构方块，角落模式的运行是特意被设计为选中两个结构方块所成区域的内部的。角落模式的实际用途并不是很多，因为选中这样一个角落并不是什么简单事情，通常我们是直接调整保存模式的大小和偏移参数直接选定结构区域的。
 
@@ -174,7 +174,7 @@ sidebar_position: 3
 
 3D 输出模式可以用于将结构输出为一个`.glb`的 3D 模型，以便其他软件进行进一步的更改。
 
-![export_1](./img/c3_structure_block/export_1.png)
+![export_1](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/export_1.png)
 
 这个模式可由画图 3D 打开，但现在该软件已经停止更新。而且，这个模式仅限 Windows 版本可用。
 
@@ -184,25 +184,25 @@ sidebar_position: 3
 
 在建筑领域，我们总是会有随机做旧的需求。假设现在我们要将下面的这个石砖火柴盒做旧：
 
-![use_1](./img/c3_structure_block/use_1.png)
+![use_1](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_1.png)
 
 我们可以先复制这个火柴盒，然后全部换为苔石砖；同理地可以再复制一个然后全换为裂纹石砖。
 
-![use_2](./img/c3_structure_block/use_2.png)
+![use_2](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_2.png)
 
 我们可以重新再分别保存为`mystructure:room`、`mystructure:room_mossy`和`mystructure:room_cracked`，然后先加载普通石砖的`room`，再在同一个位置再加载完整度为 20% 的苔石砖的`room_mossy`，清除种子后再加载完整度为 10% 的裂纹石砖的`room_cracked`，就能呈现出做旧效果：
 
-![use_3](./img/c3_structure_block/use_3.png)
+![use_3](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_3.png)
 
 ### 加载掉落物
 
 虽然我们不能使用`/summon`直接生成掉落物，但是我们还是有一些方法可以用于加载掉落物。以前，我们通常使用在箱子内放上特定物品，然后复制箱子后再通过`/setblock ... destroy`等方法破坏掉复制的箱子，传送特定位置的掉落物。然而，现在我们还可以使用结构的方法直接保存掉落物实体，在特定的时候再加载。假设我们现在要加载一颗钻石，我们可以将结构名称设置为`mystructure:item_diamond`，然后将大小设置为（1, 1, 1），偏移设置为（0, 1, 0）：
 
-![use_4](./img/c3_structure_block/use_4.png)
+![use_4](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_4.png)
 
 然后，我们可以在这个区域内扔一颗钻石，然后尽快保存。因为众所周知，掉落物会在 5 分钟后消失，即使是重新加载，也不会重置这个掉落物存在的时长，所以通过这种方式加载的掉落物不到 5 分钟就会消失（毕竟保存也是需要时间的）。如果你的要求比较高的话，可以把物品传送到方块中间，这可以用`/execute ... align`来实现。
 
-![use_5](./img/c3_structure_block/use_5.png)
+![use_5](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_5.png)
 
 参考命令如下：
 
@@ -212,7 +212,7 @@ sidebar_position: 3
 
 然后，加载这个结构就能生成钻石了。
 
-![use_6](./img/c3_structure_block/use_6.png)
+![use_6](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_6.png)
 
 ### 跨存档复制结构
 
@@ -224,7 +224,7 @@ sidebar_position: 3
 
 现在假设我们希望将上面的`mystructure:room`复制到另一个存档，我们可以在保存这个方块的时候将结构导出为`room.mcstructure`。然后，在另一个存档中直接在加载模式的结构方块中导入。
 
-![use_7](./img/c3_structure_block/use_7.png)
+![use_7](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_7.png)
 
 结构一经导入，就是保存到硬盘中的，即便退出游戏再回来也能使用。
 
@@ -234,24 +234,24 @@ sidebar_position: 3
 
 对于起床战争、空岛战争这种和空岛有关的 PVP，常常需要制作一模一样的环境的岛屿，以实现双方或多方的公平竞争。这时候，我们就可以使用结构方块了。现在假设有这样的一个红队岛屿：
 
-![use_8](./img/c3_structure_block/use_8.png)
+![use_8](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_8.png)
 
 其中，中心为（50, ?, 0）的石头。如何确保另一边的岛屿的布局是完全和红队一样，并且中心位于（-50, ?, 0）的呢？首先我们不难发现一点，这两个坐标是关于 Z 轴对称的，所以，稍后应该使用 Z 轴镜像。我们使用结构方块保存这个结构：
 
-![use_9](./img/c3_structure_block/use_9.png)  
-![use_10](./img/c3_structure_block/use_10.png)  
+![use_9](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_9.png)  
+![use_10](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_10.png)  
 
 原则上，岛屿结构应该是恰好被包括在内的，不宜过大或过小，就像上图一样，将岛屿的所有元素刚刚好地囊括在内，可以帮助我们更好地确定该复制到的目标位置。然后，我们记录下结构方块所在的位置，例如这里是（47, 279, -3）。接下来，我们可以考虑在对称的（-47, 279, -3）先放一个任意的方块，如下图所示：
 
-![use_11](./img/c3_structure_block/use_11.png)
+![use_11](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_11.png)
 
 使用<kbd>Ctrl</kbd>+<kbd>鼠标中键</kbd>来复制结构方块（当然你也可以尝试短暂记忆一下结构方块的大小和偏移信息），基于（-47, 279, -3）的方块确定一个结构方块的位置，使得其框架刚好是和另一侧为关于 Z 轴对称的：
 
-![use_12](./img/c3_structure_block/use_12.png)
+![use_12](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_12.png)
 
 最后，将结构方块改为加载模式，并改为关于 Z 轴镜像对称加载，就可以得到两个关于 Z=0 对称的岛屿。中间的石头经过此番操作后，可以发现确实是我们所预期的那样对称。最后不要忘了将红色羊毛改为蓝色羊毛哦。
 
-![use_13](./img/c3_structure_block/use_13.png)
+![use_13](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/use_13.png)
 
 空岛战争或起床战争基本都是用类似的方法加载的结构，**本质上都是在使用旋转功能、镜像功能、或者二者兼备**。
 
@@ -259,7 +259,7 @@ sidebar_position: 3
 
 如果我们在地底加载刚刚保存的结构`mystructure:tree`，我们可以看到地底会被掏空：
 
-![void_1](./img/c3_structure_block/void_1.png)
+![void_1](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/void_1.png)
 
 这是因为，我们刚刚保存的结构中是包含了空气的，所以在加载的时候，原有位置的方块就会被加载为空气，也就是“被掏空”。有什么办法可以防止原来的位置被替换为空气呢？我们可以用**结构空位（Structure Void）**，它是一种**标记加载结构时不替换某一位置的方块**。和结构方块、命令方块类似，结构空位也必须依靠命令获取，我们给一条参考命令，读者可以执行之：
 
@@ -269,17 +269,17 @@ sidebar_position: 3
 
 结构空位的长相如下图所示。和其他方块不同，结构空位必须要在创造模式的玩家手持时才能在该玩家的屏幕中显示出来，否则就不会再显示了。
 
-![void_2](./img/c3_structure_block/void_2.png)
+![void_2](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/void_2.png)
 
 ### 基本用法
 
 基本的用法就是在保存结构的时候，将所有的空气都换为结构空位，以防止加载结构的时候加载出空气。所以，刚刚的结构中我们可以用`/fill ... structure_void keep`命令先把空气都替换为结构空位：
 
-![void_3](./img/c3_structure_block/void_3.png)
+![void_3](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/void_3.png)
 
 保存之后再加载，就不会导致原来的区域被掏空了：
 
-![void_4](./img/c3_structure_block/void_4.png)
+![void_4](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/void_4.png)
 
 看，结构空位的用法很简单吧？
 
@@ -289,7 +289,7 @@ sidebar_position: 3
 
 这时候，我们就可以在工作台旁边套上结构空位，阻止玩家和工作台进行交互。
 
-![void_5](./img/c3_structure_block/void_5.png)
+![void_5](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/void_5.png)
 
 一些租赁服可能会采用更极端的手段，将一些主要区域全部填充为结构空位，甚至可以防止玩家之间在大厅互相攻击，这样就不用调整`pvp`游戏规则了（因为`pvp`游戏规则对全世界都生效，有时候是被迫不能开启这个游戏规则的）。
 
@@ -299,7 +299,7 @@ sidebar_position: 3
 
 和 Java 版不同的是，基岩版的结构空位是允许其他方块附着的！这就允许我们直接在上面放灯笼、告示牌、铁轨这种强烈依赖附着面的方块。依据这种特性，我们便可以制作这种**稳定的**浮空告示牌、浮空灯笼、浮空铁轨等，铁轨上面还可以放矿车，还能坐人哦！
 
-![void_6](./img/c3_structure_block/void_6.png)
+![void_6](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/void_6.png)
 
 注意一点是，结构空位并不是红石导体。*（虽然上图并不足以说明这一点，总之换成红石中继器也不能传输信号）*
 
@@ -307,7 +307,7 @@ sidebar_position: 3
 
 结构空位具有一些非常好的性质，尤其是可穿过且不可见这种类似于空气的性质。在这里，我们可以将一种门设定在这个位置：
 
-![void_7](./img/c3_structure_block/void_7.png)
+![void_7](/img/tutorials/a1_commands/b3_command_systems/c3_structure_block/void_7.png)
 
 这种门在开启的时候就是结构空位，而关闭的时候可以采用某种方法将结构空位改变为特殊的实体方块。在遇到某些特殊需求的时候，比如要相对于玩家位置而言的这种**相对坐标**和**局部坐标**，而不是用绝对坐标的情况下，结构空位作为占位符可以防止其他方块被波及（使用`/fill ... replace structure_void`来解决）。
 

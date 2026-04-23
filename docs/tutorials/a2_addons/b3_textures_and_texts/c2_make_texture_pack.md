@@ -66,23 +66,23 @@ import FileType from "/src/components/type/file"
 
 我们现在打开 Mojang 提供的官方模板的 [GitHub 仓库（Mojang/bedrock-samples）](https://github.com/Mojang/bedrock-samples)，在国内可能 GitHub 的访问速度比较缓慢，读者可以尝试使用 Steam++（现名 Watt Toolkit，微软商店上可下载）等软件加速。我们建议收藏该网址，**后面我们要无数次地用到官方模板**。
 
-![template_1](./img/c2_make_texture_pack/template_1.png)
+![template_1](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/template_1.png)
 
 如果读者使用电脑，可以在右侧看到一栏 Release，这就是目前 Mojang 在 GitHub 上传的极大多数附加包模板的版本。如果是中国版或双版本开发者，我们可以选择中国版所对应的国际版版本；如果是国际版开发者，则通常选择最新的正式版。
 
-![template_2](./img/c2_make_texture_pack/template_2.png)
+![template_2](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/template_2.png)
 
 例如，我们找到 1.21.0 的正式版本，也就是不带`-preview`的版本，点击 Assets，然后点击 Source code (zip) 即可开始下载。因为国内网络原因，下载需要一定的时间，需要耐心等待。
 
-![template_3](./img/c2_make_texture_pack/template_3.png)
+![template_3](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/template_3.png)
 
 下载完成后，我们将包解压到某处，你可以看到官方提供的包还是比较齐备的，有很多内容可供我们学习。
 
-![template_4](./img/c2_make_texture_pack/template_4.png)
+![template_4](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/template_4.png)
 
 针对于我们现在的任务，我们打开<FileType type="folder" name="resource_pack" /> - <FileType type="folder" name="textures" />文件夹，读者应该能看到很多内容：
 
-![template_5](./img/c2_make_texture_pack/template_5.png)
+![template_5](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/template_5.png)
 
 这些就是原版用到的贴图了。**接下来我们只需要修改这些贴图，并按照*原路径*放到我们的包中，就可以应用我们的更改了**。
 
@@ -90,11 +90,11 @@ import FileType from "/src/components/type/file"
 
 现在我们要想办法修改官方给出的贴图，例如……为钻石矿添加一个闪亮的蓝色边框！我们首先找到钻石矿的文件位置，这应该是很好找的，就在<FileType type="folder" name="textures" /> - <FileType type="folder" name="blocks" /> - <FileType type="image" name="diamond_ore.png" />：
 
-![blockbench_1](./img/c2_make_texture_pack/blockbench_1.png)
+![blockbench_1](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_1.png)
 
 知道了原路径并找到贴图后，我们在我们的包中**创建一个相同的路径**，并把贴图**复制**到我们的包里：
 
-![blockbench_2](./img/c2_make_texture_pack/blockbench_2.png)
+![blockbench_2](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_2.png)
 
 之所以不剪切，是因为官方的模板包在其他地方还能派上很多用场，所以我们只需要复制原版的代码就行，尽量不要做出修改。这样，我们就能在我们自己的包里看到钻石矿的贴图了。
 
@@ -118,35 +118,35 @@ import FileType from "/src/components/type/file"
 
 首先我们要先下载 Blockbench，我们打开 [Blockbench 的官网](https://www.blockbench.net/)，选择 DOWNLOAD 以开始下载。
 
-![blockbench_3](./img/c2_make_texture_pack/blockbench_3.png)
+![blockbench_3](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_3.png)
 
 然而，Blockbench 在国内的下载速度极其缓慢，请读者务必耐心等待。不要觉得 Blockbench 下载时间长就要放弃了哦，因为**我们后面做方块和实体的时候要多次地用到 Blockbench**。读者可以耐心等待，或者采用一些特殊手段来提速，或者[**下载我们事先准备好的这个安装包**](https://app.nekodrive.net/s/RZ2te)（`.exe`为 Windows 可用，`.dmg`为 MacOS 可用，其他平台恕不提供，下载日期 2025 年 8 月 22 日，能用就行了，需要更新可以评论回复哦）。如果实在没有条件下载的话，我们用网页 APP 也是可以的，也就是点击 OPEN WEB APP。当然，使用线上软件的体验就没有线下软件好了，因为要正常使用需要等待加载也是比较烦人的。
 
 下文，我们假设读者已经正常下载完并安装软件（*毕竟有我们提供的安装包，理论上应该都能下载吧*）。打开软件，读者可以在 File - Preferences - Settings 中切换语言为简体中文，如下两图所示：
 
-![blockbench_5](./img/c2_make_texture_pack/blockbench_5.png)
-![blockbench_6](./img/c2_make_texture_pack/blockbench_6.png)
+![blockbench_5](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_5.png)
+![blockbench_6](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_6.png)
 
 重启软件后，你的 Blockbench 就改为中文了。好，现在让我们找到复制在我们包里面的那个贴图。读者可以右键贴图，然后选择在文件资源管理器中显示：
 
-![blockbench_7](./img/c2_make_texture_pack/blockbench_7.png)
-![blockbench_8](./img/c2_make_texture_pack/blockbench_8.png)
+![blockbench_7](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_7.png)
+![blockbench_8](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_8.png)
 
 然后，把这个贴图直接拖到 Blockbench 的窗口里，它会自动打开图像的编辑模式：
 
-![blockbench_9](./img/c2_make_texture_pack/blockbench_9.png)
+![blockbench_9](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_9.png)
 
 我们看到 Blockbench 还提供了很多有用的工具，例如画笔、油漆桶、橡皮擦、拾色器等，相信对于这些工具读者早已知晓如何运用，这里不多赘述，读者若感兴趣可以挨个尝试了解它们的功能。我们这里使用拾色器先拾取钻石矿的蓝色，然后换回画笔并描到外缘，也就是这样：
 
-![blockbench_10](./img/c2_make_texture_pack/blockbench_10.png)
+![blockbench_10](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_10.png)
 
 然后，按下<kbd>Ctrl</kbd>+<kbd>S</kbd>保存。回到 VSC 里，我们看到这个更改已经生效。
 
-![blockbench_11](./img/c2_make_texture_pack/blockbench_11.png)
+![blockbench_11](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_11.png)
 
 进游戏里看一看，我们装上资源包（**千万别忘装资源包哦**），放上钻石矿……
 
-![blockbench_12](./img/c2_make_texture_pack/blockbench_12.png)
+![blockbench_12](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_12.png)
 
 看！成功了！恭喜你，这是第一个由你自己更改的原版方块的贴图！对于其他原版贴图，亦如法炮制即可。要注意，如果你在游戏内且新增了贴图，这时候你要**大退**以应用更改，否则会出现紫黑错误块。
 

@@ -22,7 +22,7 @@ sidebar_position: 2
 
 获得命令方块之后，放下来，右键看看它的 UI 吧：
 
-![cb_ui_1](./img/c2_command_block/cb_ui_1.png)
+![cb_ui_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_ui_1.png)
 
 你可以看到设置项是很多的，但是不必心急，我们很快就会依次介绍它们的作用。
 
@@ -36,7 +36,7 @@ sidebar_position: 2
 
 使用命令方块执行命令非常简单。在下图所示的这个区域，就是输入命令的区域：
 
-![cb_ui_2](./img/c2_command_block/cb_ui_2.png)
+![cb_ui_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_ui_2.png)
 
 因为命令方块是专门执行命令的，所以没有必要使用`/`专门指代这条消息是一条命令，因此在命令方块内可以不写`/`。
 
@@ -52,7 +52,7 @@ say 1
 
 可以不带斜杠。然后，按下右上角的“x”，或者按下“ESC”键，它会自动保存你写的命令，并在左上角提示。
 
-![cb_use_1](./img/c2_command_block/cb_use_1.png)
+![cb_use_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_use_1.png)
 
 试着启动命令方块，观察它的执行效果！
 
@@ -60,17 +60,17 @@ say 1
 
 我们看到，左上角返回了一个`[!]1`，其中`!`的问题我们稍后会强调，但不论如何，它确实成功执行了`/say`命令并输出！
 
-![cb_use_2](./img/c2_command_block/cb_use_2.png)
+![cb_use_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_use_2.png)
 
 命令输入区还有两个有用的按钮，第一个按钮是粘贴剪切板的内容，结合复制坐标 UI 会非常有用；而第二个按钮（“+”）就是放大命令输入区的 UI，对于输入长命令时会很有用。但是，因为基岩版的 bug，在输入长命令时，实际的光标位置和显示的光标位置是存在偏移的，这就导致在命令方块输入长命令（尤其是`/tellraw`等）往往是一种很痛苦的体验。
 
-![cb_ui_3](./img/c2_command_block/cb_ui_3.png)
+![cb_ui_3](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_ui_3.png)
 
 ### 保存与取消
 
 刚刚在实验中，我们提到**按下右上角的“x”或者按下“ESC”键都会保存命令**。然而，如果输错了命令怎么办呢？放心，这点手机和电脑倒是一视同仁——电脑也不支持 <kbd>Ctrl</kbd>+<kbd>Z</kbd> 撤销的操作。这时候，你可以直接使用命令方块左侧栏的“取消”按钮，这样就不会保存你输入错误的命令了。
 
-![cb_ui_4](./img/c2_command_block/cb_ui_4.png)
+![cb_ui_4](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_ui_4.png)
 
 ### 添加注释
 
@@ -78,8 +78,8 @@ say 1
 
 这个时候，我们就需要使用 UI 左上角的那个“悬停注释”，来标记这个命令方块里面写入的内容。在“悬停注释”里面写入内容并保存后，会使你的准心在面对命令方块的时候显示出来。
 
-![cb_use_3](./img/c2_command_block/cb_use_3.png)  
-![cb_use_4](./img/c2_command_block/cb_use_4.png)
+![cb_use_3](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_use_3.png)  
+![cb_use_4](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_use_4.png)
 
 在写大型项目的时候，为代码添加注释总是良好的习惯。我们也鼓励你在必要的时候为命令方块添加注释，这样便于你的后期维护和架构调整，同时大幅提高可读性。
 
@@ -137,7 +137,7 @@ give @s apple
 
 我们看到下面的结果：
 
-![cb_executor_1](./img/c2_command_block/cb_executor_1.png)
+![cb_executor_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_executor_1.png)
 
 事实上，**执行者这个上下文是可以细分为执行者实体和执行者名称的**。只是在聊天栏执行命令的时候，执行者实体和执行者名称无一例外都是相互吻合的。但是对于命令方块而言，因为**命令方块本身是个方块，不是实体，所以执行者实体是不存在的，执行者名称没有办法对应到一个执行者实体上**。这样，命令方块就只能默认地将执行者名称设置为`!`。在 Java 版和更古早的基岩版中，默认的执行者名称都是`@`。
 
@@ -173,19 +173,19 @@ give @s apple
 
 事实上，命令的执行效果不仅有**是否执行成功**的概念，还有**执行成功次数（Success Count）** 的概念。如果执行命令`/testfor @e`，那么命令将会这么反馈：
 
-![success_count](./img/c2_command_block/success_count.png)
+![success_count](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/success_count.png)
 
 这说明，这条命令不仅成功执行了，而且成功执行了 7 次（因为检查到了 7 个实体）。
 
 执行成功次数有什么用呢？基岩版要想读取成功次数，就必须使用命令方块或者 ScriptAPI。对于命令方块，后面接一个红石比较器就可以检查成功次数了：
 
-![cb_feedback_1](./img/c2_command_block/cb_feedback_1.png)
+![cb_feedback_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_feedback_1.png)
 
 **对于绝大多数的命令来说，执行成功次数只有`0`和`1`的区别，换言之执行失败就不输出红石信号，而执行成功就输出强度为 1 的红石信号**。少部分的命令可能影响多个玩家、或者多个方块，所以执行成功次数可能会多一些，例如`/testfor @a`就可以用来快速地检查玩家数目，也是它相比于`/execute if entity @a`唯一的优势（输出固定为 1）。**大多数的情况下，还是只用这个机制检查命令是否成功执行**。
 
 如果读者想要了解那些不止输出`0`或`1`的命令，请查阅各命令条目下的“输出”一节。例如，下面是`/fill`的输出数据。
 
-![fill_success_count](./img/c2_command_block/fill_success_count.png)  
+![fill_success_count](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/fill_success_count.png)  
 ↑ `/fill`的成功次数，可见只有`0`和`1`的区别
 
 ---
@@ -196,7 +196,7 @@ give @s apple
 
 这个游戏规则会**控制命令方块是否输出反馈消息到聊天栏**。在初次使用命令方块的时候，你可能常常会被命令方块在聊天栏的自动输出所困扰。
 
-![commandblockoutput](./img/c2_command_block/commandblockoutput.png)  
+![commandblockoutput](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/commandblockoutput.png)  
 ↑ 这些 *[!:……]* 就是命令方块输出的消息
 
 将这个游戏规则关掉，就可以禁用这些消息。在开发过程中，可能会有部分开发者需要开启命令方块的反馈，但在正式发布地图前，或者在服务器中，都请把这个游戏规则关闭掉，因为玩家是不需要这些信息的。
@@ -215,7 +215,7 @@ give @s apple
 
 一些命令在涉及到多名玩家之后，会通知该玩家发生了什么变化，比如给予了玩家物品、传送了玩家等，这些变化信息即使在关闭命令方块的情况下也会提示，所以通常在正式发布地图前也应关闭该游戏规则。
 
-![sendcommandfeedback](./img/c2_command_block/sendcommandfeedback.png)  
+![sendcommandfeedback](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/sendcommandfeedback.png)  
 ↑ 即使关闭命令方块反馈之后，使用命令方块传送还是会返回信息，这时必须将`sendCommandFeedBack`游戏规则关闭才能彻底关闭所有命令反馈
 
 ### `maxCommandChainLength`
@@ -230,12 +230,12 @@ give @s apple
 
 我们先来关注命令方块 UI 的左侧的类型设置，可以看到命令方块一共有 3 种类型：脉冲、连锁、循环。
 
-![cb_type_1](./img/c2_command_block/cb_type_1.png)  
+![cb_type_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_1.png)  
 ↑ 命令方块的 3 种类型
 
 命令方块的类型区别可以说是各个命令方块的最本质的区别，所以它们之间的差异也是最明显的——就是颜色差异。
 
-![cb_type_2](./img/c2_command_block/cb_type_2.png)  
+![cb_type_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_2.png)  
 ↑ 从左到右，依次为：脉冲型命令方块（橙色）、连锁型命令方块（青色）、循环型命令方块（紫色）
 
 现在，我们来看看这 3 种命令方块的功能吧！
@@ -250,7 +250,7 @@ give @s apple
 
 :::
 
-![cb_type_3](./img/c2_command_block/cb_type_3.png)
+![cb_type_3](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_3.png)
 
 我们看到，当拉杆给一次红石信号后，（脉冲型）命令方块就执行一次，此后就不再执行命令了。关闭拉杆后，再打开，命令方块就又执行命令。所以，只有给出新的红石信号后，才能让命令方块重新执行命令。
 
@@ -262,21 +262,21 @@ give @s apple
 
 这里，我们必须首先强调命令方块的方向问题。所谓指向，就是指代命令方块的方向。命令方块的方向可以从其贴图中心图案的尖端看出来，尖端指向的方向就是这个命令方块的方向。
 
-![cb_type_4](./img/c2_command_block/cb_type_4.png)  
+![cb_type_4](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_4.png)  
 ↑ 命令方块的朝向判断
 
 所以，连锁型命令方块会在指向它的命令方块执行后执行。这话听起来比较拗口，我们给个示例你就可以明白了：
 
-![cb_type_5](./img/c2_command_block/cb_type_5.png)
+![cb_type_5](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_5.png)
 
 在上图的这个例子中，我们给出了命令方块的标号。可以看到①指向的命令方块是②，②指向的命令方块是③，③指向④，④指向⑤，这里尤其注意，**虽然在⑤那里转变了方向，但是④的方向依然是指向到⑤身上的**；然后，⑤指向⑥，⑥指向⑦，⑦指向⑧。这 8 个命令方块如果被同时激活，那么就会一连串执行 8 条命令，这种由 1 个非 CCB 和若干个 CCB 组成的完整的命令方块链条，社区内通常称为**命令方块链（CB 链）**。上文所提到的`maxCommandChainLength`就是控制这个的。
 
 使用 CB 链的意义何在呢？可能你会说，我全用脉冲型命令方块，接上红石粉不是一样的吗，为什么要舍近求远用不同类型的命令方块呢？还真不一样。请不要忘记：红石粉最多传输 15 格距离，如果再远就要使用中继器传输信号，而这会带来至少 2 游戏刻的延迟，在很多情况下这并不是我们想要的，光是延迟的这 0.1 秒，可能就发生了很多事情，这样做会很耽误事。对于比较复杂的逻辑链条来说，只有 15 个命令方块是不够用的。
 
-![cb_type_6](./img/c2_command_block/cb_type_6.png)  
+![cb_type_6](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_6.png)  
 ↑ 社区内通常采用基于 CCB 的 CB 链的形式，在适合的条件下，无需额外布线即可批量无延迟地执行命令，而且便于命令的编辑
 
-![cb_type_7](./img/c2_command_block/cb_type_7.png)  
+![cb_type_7](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_7.png)  
 ↑ 此外，很多开发者也会采用这种纵向布置 CB 链的形式
 
 :::info[思考 3.2-1]
@@ -305,13 +305,13 @@ give @s apple
 
 <summary>点我查看答案</summary>
 
-![cb_type_8](./img/c2_command_block/cb_type_8.png)
+![cb_type_8](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_8.png)
 
 注意所有的 CCB，都应该额外将红石控制模式调整为“保持开启”。
 
 在拉下拉杆后，应该同时显示 5 条聊天信息。
 
-![cb_type_9](./img/c2_command_block/cb_type_9.png)
+![cb_type_9](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_9.png)
 
 </details>
 
@@ -331,7 +331,7 @@ give @s apple
 
 你可以看到，激活 RCB 后，左上角就开始有大量的“消息轰炸”。这就是 RCB 的作用，还是很易懂的吧？
 
-![cb_type_10](./img/c2_command_block/cb_type_10.png)
+![cb_type_10](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_10.png)
 
 不知道你是否还记得，在第 2 章的时候，我们曾经布置了很多习题，说一些命令是每游戏刻都执行的。当时你可能不知道这是怎么实现的，而现在你就已经了解了第一种能每游戏刻执行命令的工具——循环型命令方块。在默认情况下，**循环型命令方块正是每游戏刻执行一次命令的**。结合 CB 链，就可以做到每游戏刻执行多条命令。
 
@@ -341,12 +341,12 @@ give @s apple
 
 现在我们来关注命令方块的执行条件的设置。命令方块一共有两种执行条件的设置：不受制约和条件制约。
 
-![cb_condition_1](./img/c2_command_block/cb_condition_1.png)  
+![cb_condition_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_1.png)  
 ↑ 命令方块的 2 种执行条件
 
 所谓执行条件，就是判断**命令方块背后的命令方块是否成功执行**。**在设置为条件制约的情况下，只有当该 CB 背后的命令成功执行后，才能执行这个 CB**。这里注意，和连锁型命令方块谈“被指向”不同，这里是这个命令方块的“**背后**”，也就是**命令方块方向的反方向**。我们还是以刚刚的 8 CB 的 CB 链来举例：
 
-![cb_type_5](./img/c2_command_block/cb_type_5.png)
+![cb_type_5](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_5.png)
 
 在这个地方，②背后的命令方块，也就是它的朝向的反方向的命令方块，是①；③背后是②，④背后是③，以此类推。但注意，**转弯处不能“以此类推”** 了，因为显然，**⑤背后是没有命令方块**的，所以将⑤设置为条件制约的命令方块就一定不会执行。同理地，**CB 链开始的命令方块也不能是条件制约型的命令方块**。
 
@@ -354,7 +354,7 @@ give @s apple
 
 条件制约命令方块和不受制约命令方块的贴图也是有区别的，区别在于条件制约的箭头图案会凹陷一部分，来表示只有其背后的命令方块执行后，自己才能执行。
 
-![cb_condition_2](./img/c2_command_block/cb_condition_2.png)  
+![cb_condition_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_2.png)  
 ↑ 从左到右，依次为：不受制约、条件制约。
 
 条件制约在什么地方有用呢？答案是在条件判断的命令上会很有用。我们曾经学习过`/execute`命令的`if|unless`条件子命令，以及一些条件判定命令，比如`/testfor`、`/testforblock`、`/testforblocks`，或者`/clear`0 个物品等判定方法上，这些命令不会做什么，但是可以把检测的结果传递给下面的命令方块，让它们依照传递的结果去执行命令。
@@ -382,11 +382,11 @@ tellraw @p {"rawtext":[{"text":"成功购买了金苹果 * 15"}]}
 
 现在你的命令系统应该长这个样子：
 
-![cb_condition_3](./img/c2_command_block/cb_condition_3.png)
+![cb_condition_3](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_3.png)
 
 并且，如果拿出 3 个绿宝石，按下按钮后就能得到 15 个金苹果；如果绿宝石不足，则不会有任何反应。
 
-![cb_condition_4](./img/c2_command_block/cb_condition_4.png)
+![cb_condition_4](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_4.png)
 
 现在我们再来考虑，不足时应该提醒玩家绿宝石不够，因为刚刚是检查超过 3 个绿宝石后执行一系列命令，现在需要重新设置一个新的条件，也就是不足 3 个绿宝石的时候，就执行另一套逻辑，这样的话我们只需要再接一个不受制约的 CCB，并且写好绿宝石不足时的逻辑：
 
@@ -399,8 +399,8 @@ execute as @p unless entity @s[hasitem={item=emerald,quantity=3..}]
 tellraw @p {"rawtext":[{"text":"§c绿宝石不足！"}]}
 ```
 
-![cb_condition_5](./img/c2_command_block/cb_condition_5.png)  
-![cb_condition_6](./img/c2_command_block/cb_condition_6.png)
+![cb_condition_5](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_5.png)  
+![cb_condition_6](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_6.png)
 
 你也可以尝试用这个思路多做几种商店试试哦！
 
@@ -462,7 +462,7 @@ tellraw @p {"rawtext":[{"text":"成功购买了金苹果 * 15"}]}
 
 接下来我们来关注命令方块另外两个比较有用的设置：**在首刻执行**和**延迟刻数**。因为基岩版众所周知的渣中文翻译，如果没有装中文 Minecraft Wiki 提供的译名包的话，会显示为*执行第一个已选项*和*已选项中的延迟*，这两个翻译通常会为新手造成极大的困扰，请格外注意这一点，掌握它们正确的用途是很重要的。
 
-![cb_tick_1](./img/c2_command_block/cb_tick_1.png)
+![cb_tick_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_tick_1.png)
 
 ### 延迟刻数（Delay in Ticks）
 
@@ -484,7 +484,7 @@ tellraw @p {"rawtext":[{"text":"成功购买了金苹果 * 15"}]}
 
 :::
 
-![cb_tick_2](./img/c2_command_block/cb_tick_2.png)
+![cb_tick_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_tick_2.png)
 
 读者可以看到，`time.second`会在每一秒增加 1 分。是的，这就是一个简易的计时器！
 
@@ -518,7 +518,7 @@ say 1
 
 读者应该已经发现，这本质上就是一个倒计时公告，每秒进行一次倒计时。
 
-![cb_tick_3](./img/c2_command_block/cb_tick_3.png)
+![cb_tick_3](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_tick_3.png)
 
 在这个例子中，①号 CB 在 1 秒执行后，激活②号 CB，开始延迟计时，并在 20 刻后执行并激活③号 CB，以此类推。可见，在脉冲型 CB 链中，各个 CB 的执行是**遵循依次延迟执行的规律**的。
 
@@ -530,7 +530,7 @@ say 1
 
 :::
 
-![cb_tick_4](./img/c2_command_block/cb_tick_4.png)
+![cb_tick_4](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_tick_4.png)
 
 可能和读者预期之中的效果不同的是，它的执行效果看起来很混乱，这个过程大体上如下：
 
@@ -653,9 +653,9 @@ say 1
 注意：命令系统的设计并不是唯一的，所以下面的大部分答案也都是不唯一的，仅供参考。命令系统设计的一些优化原则是：能少用命令方块就少用命令方块；能只执行一次的命令就不要重复执行；尽量把开销大的命令（例如`/fill`、`/clone`）分片分时执行等。总之，能少执行就少执行为好。
 
 1. 将给定命令按照下列 RCB 链排列即可：  
-   ![answer_1](./img/c2_command_block/answer_1.png)
+   ![answer_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_1.png)
 2. 设计下图所示的命令系统：
-   ![answer_2](./img/c2_command_block/answer_2.png)  
+   ![answer_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_2.png)  
    然后，按编号写入下面的命令，其中`...`分别指代其对应的红石导体的位置：
 
    ```text showLineNumbers
@@ -668,22 +668,22 @@ say 1
 3. 这里采用`data.levelCompleted`来指代关卡完成数。显然，当完成一关后，应该为该值加 1。为了防止一个关卡能重复完成多次，可以采用始终激活 CB 的方式，确保它只执行一次。当关卡完成后，就在一个位置上放上红石块，这可以满足我们的需求。最后，检测到满足条件后，应该执行`say 本章已完成`的命令，但是只能执行一次。
 
    首先，对于红石块的需求，我们可以采用活塞解决：  
-   ![answer_3_1](./img/c2_command_block/answer_3_1.png)  
+   ![answer_3_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_3_1.png)  
    这里的每个命令方块的命令都是`scoreboard players add levelCompleted data 1`。
 
    然后，检测到条件满足后执行一次`say 本章已完成`。检测通常是需要循环执行的，而待执行的命令只能执行一次，这是一个经典的矛盾问题。这里有两种可以考虑的方法：
 
    1. 使用红石比较器连接：  
-      ![answer_3_2](./img/c2_command_block/answer_3_2.png)  
+      ![answer_3_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_3_2.png)  
       其中，RCB 的命令为`execute if score levelCompleted data matches 3..`，CB 的命令为`say 本章已完成`。
    2. 直接在检测成功后停止执行命令：  
-      ![answer_3_3](./img/c2_command_block/answer_3_3.png)  
+      ![answer_3_3](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_3_3.png)  
       其中，RCB 的命令为`execute if score levelCompleted data matches 3.. run say 本章已完成`，CCB 的命令为`setblock ... air`，其中`...`为红石块的坐标。这种方案的优势在于不会在检测成功后引入额外延迟，但缺点在于待执行的命令不能过于复杂，否则会导致后面的命令方块都带上长长的检测条件，并且因为要中间插入命令方块，也不利于后续维护。
 
    将关卡完成的活塞装置和上面两种检测装置的任意一种拿出来并组合一下，就得到题意需要的命令系统。
 
 4. 和第 3 问类似，这里同样面临检测的循环和给予物品的单次执行的矛盾。这里我们采用经典的红石比较器的思路。检测到物品后，激活 CB 链，清除玩家的原物品并给予一个新物品。然后，为了防止玩家刷物品，可以在给予后就直接停止检测。这样，我们就得到下图的命令系统：
-   ![answer_4](./img/c2_command_block/answer_4.png)  
+   ![answer_4](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_4.png)  
    然后，按编号写入下面的命令，其中`...`指代红石块的位置：
 
    ```text showLineNumbers
@@ -696,10 +696,10 @@ say 1
    视情况，可以继续优化这个逻辑，例如多人适配、或者添加提示语、音效等。
 
 5. 这里可以结合红石系统。此处，设计了如下图的一种感应门，当玩家到 RCB（`testfor @a[y=~2,dy=0]`）上方 2 格时，门会自动打开。注意：这里此时只有一名玩家，所以必须使用红石中继器延续信号。
-   ![answer_5](./img/c2_command_block/answer_5.png)
+   ![answer_5](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_5.png)
 
 6. 这一问的要求开始变得复杂起来，主要是因为这是实际工程中常用的与 NPC 交互的逻辑。首先，我们需要明确目标：我们要实现村民的检测，然后后续调整权限、传送、对话这些操作都只需要执行一次即可。只需要将我们后续那个比较复杂的需求按顺序写成一个 CB 链即可解决。为此，我们还是设计如下图的命令系统：
-   ![answer_6](./img/c2_command_block/answer_6.png)
+   ![answer_6](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_6.png)
    然后，按编号写入下面的命令，其中第 6~11 个命令方块应设置为 80 刻的延迟刻数：
 
    ```text showLineNumbers
@@ -720,10 +720,10 @@ say 1
    命令逻辑是比较简单的，这里不再详细解析。无法理解上述命令含义的读者请回顾第 2 章的内容。
 
 7. 这个问题非常简单，命令方块写入`setblock ~~1~ air`即可。通常来说，结合 CB 链可以实现多次的 CB 链调用，例如下图的结构中可以通过多次放置红石块的方式来多次调用这个 CB 链，因此这种结构是一种很常见的扩展版 CB 链结构。  
-   ![answer_7](./img/c2_command_block/answer_7.png)
+   ![answer_7](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_7.png)
 
 8. 不使用记分板检查玩家，可以使用`/testfor @a`+红石比较器检测的方法。注意：这里不能使用`/execute if entity @a`了，因为这条命令的执行成功次数固定为 1。
-   ![answer_8](./img/c2_command_block/answer_8.png)  
+   ![answer_8](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_8.png)  
    注意红石线路的长度为 14。然后，按编号写入下面的命令，其中第 2 个命令方块应该设置为 20 刻的延迟刻数：
 
    ```text showLineNumbers
@@ -732,7 +732,7 @@ say 1
    ```
 
 9. 这里我们需要检测玩家是否扔出钓竿，然后执行单次的命令。很经典的循环与单次的矛盾，所以采用红石比较器结构。检测钓竿可以使用`execute if entity`命令检查浮漂，然后检查到之后将距离浮漂最近的玩家传送，并立刻移除浮漂以防误判，这就是最基础的“钓竿回城”了。
-   ![answer_9_1](./img/c2_command_block/answer_9_1.png)
+   ![answer_9_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_9_1.png)
 
    ```text showLineNumbers
    execute if entity @e[type=fishing_hook]
@@ -741,7 +741,7 @@ say 1
    ```
 
    不过这样做，会导致额外的延迟。事实上我们注意到，在我们这个思路的最后，移除了浮漂，**这直接影响了一开始的检测条件**，所以哪怕后面两条命令循环执行，最后的传送效果也是单次的传送。所以，这个思路可以继续优化为
-   ![answer_9_2](./img/c2_command_block/answer_9_2.png)
+   ![answer_9_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_9_2.png)
 
    ```text showLineNumbers {2} title="高亮部分为条件制约型命令方块"
    execute as @e[type=fishing_hook] at @s run tp @p 0 128 0
@@ -751,7 +751,7 @@ say 1
    这里不使用条件制约也是可以的，这个小优化只是为了每游戏刻少执行一些命令而已。
 
 10. 商店的逻辑已在实验 3.2-8 中讲过，这里不再赘述，直接给出命令系统和答案。
-    ![answer_10](./img/c2_command_block/answer_10.png)
+    ![answer_10](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_10.png)
 
     ```text showLineNumbers {2,4-6} title="高亮部分为条件制约型命令方块"
     execute as @p unless entity @s[hasitem={item=rotten_flesh,quantity=36..}]
@@ -765,7 +765,7 @@ say 1
     顺带一提，可以将实验 3.2-8 中第 1\~2 条命令和第 3\~6 条命令调换的理论基础，也是检测条件会在物品清除时被更改。请注意，**要格外关注检测条件会在执行逻辑中被更改的问题，这往往会导致一系列的意外问题**。
 
 11. 这里首先要进行玩家的维度检测，这在我们讲记分板（练习 2.4-3 第 8 题）的时候曾经提过，可以用`dimension.@s`记录玩家的维度信息，然后基于`execute in`和`rm`目标选择器参数来进行检测：
-    ![answer_11_1](./img/c2_command_block/answer_11_1.png)
+    ![answer_11_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_11_1.png)
 
     ```text showLineNumbers
     execute in overworld run scoreboard players set @a[rm=0] dimension 0
@@ -774,7 +774,7 @@ say 1
     ```
 
     接下来，我们需要找到刚进下界的玩家，将其传送到(0,128,0)。我们可以想到，只要检测到`dimension.@s`不为`1`的玩家在下界里面，不就是刚进下界么？但是，单开一个 RCB 链却不太现实，因为我们不敢保证是上面的 RCB 链先执行还是我们新加的 RCB 链先执行。所以，我们必须基于上面的 RCB 链进行改进，在第一个命令方块前面新增检测和传送命令，然后再更改状态，就能保证先后的逻辑问题。综上，答案为  
-    ![answer_11_2](./img/c2_command_block/answer_11_2.png)
+    ![answer_11_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_11_2.png)
 
     ```text showLineNumbers
     execute in nether run tp @a[rm=0,scores={dimension=!1}] 0 128 0
@@ -786,7 +786,7 @@ say 1
     注意为保证这个命令系统在维度切换的时候依然能正常运行，必须使用`/tickingarea`添加一个常加载区域，使这个 CB 链常加载。在这里，基于命令方块的命令系统的一些弊端可以说是已经初见端倪，你已经能看到基于已经成型的命令方块进行改进还是有些麻烦的，尤其是中间插入命令的时候。所以，事先做好命令设计还是比较重要的。
 
 12. 这题很简单，用`tp`命令就好了。注意命令方块的上下文，所以需要套一个`execute`。综上，答案为：
-    ![answer_12](./img/c2_command_block/answer_12.png)
+    ![answer_12](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_12.png)
 
     ```text showLineNumbers
     execute as @e[type=armor_stand] at @s run tp @s ~~~ ~1
@@ -795,7 +795,7 @@ say 1
     更改`~1`为别的值可以变换自转的角速度，而改为负数则可以变换旋转方向。
 
 13. 新增一个 T 显即可。答案为：
-    ![answer_13](./img/c2_command_block/answer_13.png)  
+    ![answer_13](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_13.png)  
     新增的 CCB 的命令：
 
     ```text showLineNumbers
@@ -803,7 +803,7 @@ say 1
     ```
 
 14. 同理地，检测用`/execute if blocks`，而执行脉冲 CB 链只执行一次，所以用红石比较器结构。
-    ![answer_14](./img/c2_command_block/answer_14.png)  
+    ![answer_14](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_14.png)  
     具体命令不再给出，因为题干并没有明确指定确定的空区域，读者能够理解其中的意思即可。
 
 </details>

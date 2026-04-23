@@ -36,7 +36,7 @@ sidebar_position: 5
 
 大体上，一个关卡的命令系统是类似于下图的构造：
 
-![command_system_1](./img/c5_system_on_cb/command_system_1.png)
+![command_system_1](/img/tutorials/a1_commands/b3_command_systems/c5_system_on_cb/command_system_1.png)
 
 视关卡需求的不同，这三个基本逻辑可以分化出其他逻辑，从而帮助你建立一个复杂的命令系统。
 
@@ -55,9 +55,9 @@ sidebar_position: 5
 1. 远。最好远到让玩家看不见。例如对于一些起床战争、空岛战争服务器来说，就绝不能将 CB 区拉近，一旦被玩家破坏，哪怕只是不小心把一个中继器调档，后果都可能是相当严重的。如果不得已要拉近的话，至少也应当让普通玩家看不见，起码放在玩家不可及的地方。
 2. 便。因为距离足够远，至少应当选一个方便的坐标以传送到 CB 区里。可想而知，CB 区内的命令是常常需要维护的，如果连自己都找不到 CB 区的话，未免有些太荒诞了。可以选取一个坐标值较大的整数，比如（10000, ?, 10000）这种，这样就算有恶意玩家想爆破，想走到这么远的地方也绝非易事，可以再结合拒绝方块，只有创造模式的管理员才能编辑，效果更佳。
 3. 小。不要把 CB 区搞得太大，通常我们会采用 1×1 个区块（16×16 的区域）到 2×2 个区块（32×32 的区域）之间的大小，然后为这些区块添加常加载区域。常加载区域面积太大会对性能造成明显的负担。  
-   ![cb_area_1](./img/c5_system_on_cb/cb_area_1.png)  
+   ![cb_area_1](/img/tutorials/a1_commands/b3_command_systems/c5_system_on_cb/cb_area_1.png)  
    然后，根据常加载区域命令返回的坐标，进行 CB 区的圈地。写命令系统的时候，我们通常采用叠层的方法来容纳我们的复杂逻辑。例如下面的这种 CB 区（仅作为一种示例）。  
-   ![cb_area_2](./img/c5_system_on_cb/cb_area_2.png)
+   ![cb_area_2](/img/tutorials/a1_commands/b3_command_systems/c5_system_on_cb/cb_area_2.png)
 
 ## 常见的命令系统结构
 
@@ -67,7 +67,7 @@ sidebar_position: 5
 
 脉冲链是用于**执行一次我们希望执行的逻辑的**。它的基本构造是，一个信号源下方的 CB 和一个脉冲 CB 链，如下图所示。
 
-![cb_chain_1](./img/c5_system_on_cb/cb_chain_1.png)
+![cb_chain_1](/img/tutorials/a1_commands/b3_command_systems/c5_system_on_cb/cb_chain_1.png)
 
 在下方那个 CB 写入命令`setblock ~~1~ air`，上面放红石块的时候可以在激活 CB 链的同时清除红石块，这样就便于下一次的重复执行。每次执行时，只要在对应位置放上红石块即可，就不用再考虑清除的问题了。
 
@@ -75,7 +75,7 @@ sidebar_position: 5
 
 循环链的构造要更简单一些，它是用于**多次执行我们希望执行的逻辑的**。在 3.2，我们已经详细地讲过循环链的构造和延迟表现，这里便不再过多赘述。
 
-![cb_chain_2](./img/c5_system_on_cb/cb_chain_2.png)
+![cb_chain_2](/img/tutorials/a1_commands/b3_command_systems/c5_system_on_cb/cb_chain_2.png)
 
 不过，话虽这么说，有一种结构却是我们常常遇到的。通常情况下，大多数有功能的命令（即会对世界运行做出明显改变）是不应该循环执行的，比如`fill`、`kill`等，它们的执行通常在实际工程中都要寻求一个外部条件，一般来说这个外部条件是由**循环检测**来检查的。大多数循环检测的命令的性能消耗都很小，所以只要检测项目没有多到过于逆天的程度，其实不必太过担心性能问题。
 
@@ -102,7 +102,7 @@ execute if entity @e[type=snowball] run kill @e[type=snowball]
 
 最常见的方法是，在 RCB 中写入检测项目，然后通过红石比较器检查项目是否成功检测，最后通过红石比较器输出信号并执行一个脉冲 CB 链，如下图所示：
 
-![cb_chain_3](./img/c5_system_on_cb/cb_chain_3.png)
+![cb_chain_3](/img/tutorials/a1_commands/b3_command_systems/c5_system_on_cb/cb_chain_3.png)
 
 这个原理是很清晰易懂的。还是以扔出雪球后回复消息为例，这时上图的结构可以只简化为 3 个 CB，从左到右的命令为：
 
@@ -121,7 +121,7 @@ kill @e[type=snowball]
 - 如果执行成功，则将③改为向右，此时 CB 链正确连接，所以后续的命令将会执行；同时，为了防止命令在后续始终执行成功，需要在执行成功后再改变③的方向为断开。
 - 如果执行失败，②不会执行，后续命令都不会执行。
 
-![chain_break_1](./img/c5_system_on_cb/chain_break_1.png)
+![chain_break_1](/img/tutorials/a1_commands/b3_command_systems/c5_system_on_cb/chain_break_1.png)
 
 因为②和③在这其中约等于扮演红石比较器的作用，检测成功则允许后续命令执行，检测失败则保持断开状态而不允许后续命令执行，所以称之为断链法。
 
@@ -153,7 +153,7 @@ execute as @e[type=armor_stand] at @s run tp @s ~~~ ~1
 /execute align xz positioned ~0.5~~0.5 run summon armor_stand facingPos
 ```
 
-![rot_anim_1](./img/c5_system_on_cb/rot_anim_1.png)
+![rot_anim_1](/img/tutorials/a1_commands/b3_command_systems/c5_system_on_cb/rot_anim_1.png)
 
 然后在一个 2 CB 的 RCB 链里面写入下面的命令：
 
@@ -162,7 +162,7 @@ execute as @e[name=facingPos] at @s run tp @s ~~~ ~1
 execute as @e[name=facingPos] at @s positioned ^^^5 run camera @a set minecraft:free ease 0.1 linear pos ~~~ facing @s
 ```
 
-![rot_anim_2](./img/c5_system_on_cb/rot_anim_2.png)
+![rot_anim_2](/img/tutorials/a1_commands/b3_command_systems/c5_system_on_cb/rot_anim_2.png)
 
 其中，第一条命令读者已经清楚，而第二条命令的含义则是令玩家的相机时刻在盔甲架前方 5 格，并紧盯盔甲架。这样，盔甲架转起来，玩家的相机不就转起来了吗？但是到这里先别急着启动，如果启动了我们就必须用`/camera @a clear`来恢复视角，但是命令方块可是始终执行的，它会重新设置你的视角，就卡在这里了。这里主要请各位注意的是：**启用循环型命令方块之前请务必谨慎**。看来我们要有一个启用视角动画的条件，我们在这里先采用手持钻石好了。这却不难，我们用一个`hasitem`即可解决。
 
@@ -181,11 +181,11 @@ camera @a[hasitem={item=diamond,location=slot.weapon.mainhand,quantity=0}] clear
 
 现在我们可以启用这个循环链了，看来运行的很好哦！
 
-![rot_anim_3](./img/c5_system_on_cb/rot_anim_3.png)
+![rot_anim_3](/img/tutorials/a1_commands/b3_command_systems/c5_system_on_cb/rot_anim_3.png)
 
 如果我们要改变一下观察半径，比如采用一个略微俯视的较远的视角，可以改变第二条命令的`^^^5`，比如`^^5^15`（别忘了~坐上钱~左上前），就得到这样的效果：
 
-![rot_anim_4](./img/c5_system_on_cb/rot_anim_4.png)
+![rot_anim_4](/img/tutorials/a1_commands/b3_command_systems/c5_system_on_cb/rot_anim_4.png)
 
 以及，如果要改变旋转的角速度，可以改变第一条命令的`~1`。
 
@@ -198,7 +198,7 @@ camera @a[hasitem={item=diamond,location=slot.weapon.mainhand,quantity=0}] clear
 effect @e[name=facingPos] invisibility 1 0 true
 ```
 
-![rot_anim_5](./img/c5_system_on_cb/rot_anim_5.png)
+![rot_anim_5](/img/tutorials/a1_commands/b3_command_systems/c5_system_on_cb/rot_anim_5.png)
 
 这样，我们就用 4 个 CB 实现了旋转视角动画。
 

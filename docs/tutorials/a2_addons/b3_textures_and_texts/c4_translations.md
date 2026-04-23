@@ -31,7 +31,7 @@ import FileType from "/src/components/type/file"
 
 </treeview>
 
-![zh_cn_lang](./img/c4_translations/zh_cn_lang.png)
+![zh_cn_lang](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/zh_cn_lang.png)
 
 我们来看语言文件的结构，虽然内容极多，多达万行，但总体上讲语言文件的结构还是很简单的，主要由如下方面组成：
 <!-- markdownlint-disable MD010 -->
@@ -46,15 +46,15 @@ import FileType from "/src/components/type/file"
 在这么多行的语言文件之中，如何找到自己想要的那个翻译？我们有几种方法可以快速定位到我们要找的键名或翻译。
 
 1. **使用<kbd>Ctrl</kbd>+<kbd>F</kbd>启用搜索替换**，例如我们要搜索苹果的翻译，就在搜索栏中搜索“苹果”，VSC 会自动帮我们定位。其他的文本编辑器理论上也都支持搜索替换功能，要灵活运用。  
-    ![search_1](./img/c4_translations/search_1.png)
+    ![search_1](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/search_1.png)
 2. **通过键名格式定位翻译**。事实上键名都是具有高度的规律性的，例如，仔细观察物品的翻译键名，我们看到都是`item.(物品 ID).name`的格式，所以我们只需要搜索物品 ID 便能快速查到我们需要的键名。  
-    ![search_2](./img/c4_translations/search_2.png)
+    ![search_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/search_2.png)
     通常来说，物品、方块、实体的键名是最常用的，它们的格式通常分别是`item.(物品 ID).name`、`tile.(方块 ID).name`（注意不是`block`）、`entity.(实体 ID).name`。在后面的数驱物品、方块、实体中，我们还会看到这一点，也会看到这些键名的另一种格式。
 
 如果读者使用 VSC 的插件，会发现语言文件在**键重复**的情况下会报错，键值对和注释之间**未用制表符**（比如多个空格）连接也会报错。
 
-![error_1](./img/c4_translations/error_1.png)
-![error_2](./img/c4_translations/error_2.png)
+![error_1](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/error_1.png)
+![error_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/error_2.png)
 
 读者可以借此规范化自己的语言文件，如果错误太多的情况下也可以用以前讲过的方法忽略错误。
 
@@ -78,10 +78,10 @@ import FileType from "/src/components/type/file"
 
 1. 在**我们的资源包**中新增<FileType type="folder" name="texts" />文件夹，在文件夹内新增文件<FileType type="file" name="zh_CN.lang" />。
 2. 在**模板包**中找到对应键名，例如找到“雷霆之杖”，获得它对应的键名`tile.lightning_rod.name`。  
-    ![standardization_1](./img/c4_translations/standardization_1.png)  
+    ![standardization_1](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/standardization_1.png)  
     备注：*这个翻译是在 Preview 1.21.110.26 的模板包中找到的，随着铜器时代更新，新增加了多种避雷针。然而，本来在 1.21.0 时期就已经改好了的避雷针翻译，在这个版本居然又倒退了回来！果然靠官方靠不住吧……*
 3. 将键名复制到我们新增的文件中，后面用等号连接正确的译名。
-    ![standardization_2](./img/c4_translations/standardization_2.png)  
+    ![standardization_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/standardization_2.png)  
 
 这样就大功告成了！要注意，**应用语言文件的更改无需复制全部的语言文件，那样会大量地浪费空间，也不利于我们后续更改**，我们只要将需要更改的键名复制过来即可。
 
@@ -93,19 +93,19 @@ import FileType from "/src/components/type/file"
 
 有了上一个实例做引导，实现这一点也并非难事。我们在模板中找到钻石矿对应的键名：
 
-![prank_1](./img/c4_translations/prank_1.png)
+![prank_1](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/prank_1.png)
 
 将这个键名`tile.diamond_ore.name`复制到我们的包中，改名为石头，再把贴图复制过来，大功告成！
 
-![prank_2](./img/c4_translations/prank_2.png)  
-![prank_3](./img/c4_translations/prank_3.png)
+![prank_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/prank_2.png)  
+![prank_3](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/prank_3.png)
 
 <!-- markdownlint-disable MD036 -->
 
 *~~拿着石镐的朋友：诶这游戏是不是出bug了？（~~*
 
-![prank_4](./img/c4_translations/prank_4.png)  
-![prank_5](./img/c4_translations/prank_5.png)
+![prank_4](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/prank_4.png)  
+![prank_5](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/prank_5.png)
 
 ## 在命令`/tellraw`和`/titleraw`中语言文件的应用
 
@@ -119,17 +119,17 @@ import FileType from "/src/components/type/file"
 
 我们来随便试一个语言文件中的键名，例如第 3686 行的这个：
 
-![command_1](./img/c4_translations/command_1.png)  
+![command_1](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/command_1.png)  
 
 在游戏内使用`/tellraw @s {"rawtext":[{"translate":"howtoplay.fireworks.text.3.notTouch"}]}`就是这样表现的：
 
-![command_2](./img/c4_translations/command_2.png)  
+![command_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/command_2.png)  
 
 *备注：我这里安装了 Wiki 的标准译名包，所以内容会有些不同*。
 
 如果要联合`with`使用时，**我们使用`%s`来格式化**，例如众所周知的玩家进入游戏：
 
-![command_3](./img/c4_translations/command_3.png)  
+![command_3](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/command_3.png)  
 
 其中，这里的`%s`就相当于我们当时讲的`%%s`。这样，我们在写命令时就可以不写成
 
@@ -163,7 +163,7 @@ text.your_score=§b你的分数是 %s ！
 
 在游戏中的实际效果就为
 
-![command_4](./img/c4_translations/command_4.png)  
+![command_4](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/command_4.png)  
 
 怎么样，很简单吧？
 
@@ -171,20 +171,20 @@ text.your_score=§b你的分数是 %s ！
 
 你应该听说过社区曾经有一款梗体中文吧？如果没听说过，它是一款能够让你的游戏翻译变得很难绷的一个语言包。我们可以在[茶馆工作室的官网](https://meme.teahouse.team/)下载这款梗体中文。让我们先来看看它的效果：
 
-![meme_pack_1](./img/c4_translations/meme_pack_1.png)  
-![meme_pack_2](./img/c4_translations/meme_pack_2.png)  
-![meme_pack_3](./img/c4_translations/meme_pack_3.png)  
-![meme_pack_4](./img/c4_translations/meme_pack_4.png)  
+![meme_pack_1](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_1.png)  
+![meme_pack_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_2.png)  
+![meme_pack_3](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_3.png)  
+![meme_pack_4](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_4.png)  
 
 很难绷，对吧？我们在图 1 展示出这是一个完全独立于中文（简体）的语言，它是如何实现的呢？
 
 我们首先下载这个包。进入他们的官网后，一步步按照图中所示的参数下载包：
 
-![meme_pack_5](./img/c4_translations/meme_pack_5.png)  
+![meme_pack_5](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_5.png)  
 
 下载好后通过压缩包打开这个附加包并解压，我们就能发现它的“奥妙”。
 
-![meme_pack_6](./img/c4_translations/meme_pack_6.png)  
+![meme_pack_6](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_6.png)  
 
 事实上 Mojang 官方给出的模板包中我们也能看到<FileType type="file" name="languages.json" />和<FileType type="file" name="language_names.json" />，它们分别**用于注册语言**，和**给注册的语言一个语言名字**。观察官方给出的这两个文件的架构，不难发现两个文件应该符合这样的 Json 架构：
 

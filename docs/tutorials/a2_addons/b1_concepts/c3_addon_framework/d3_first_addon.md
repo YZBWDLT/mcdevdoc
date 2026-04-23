@@ -148,7 +148,7 @@ import FileType from "/src/components/type/file"
 
 我们来打开游戏，来看看我们刚装上的包的效果吧！在设置 - 存储 - 行为包中可以看到我们刚创建的行为包：
 
-![first_pack_1](./../img/c3_addon_framework/first_pack_1.png)
+![first_pack_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/first_pack_1.png)
 
 它的图标目前显示为一个奇怪的紫黑块，并且因为没有内容，所以显示为 0.00 MB。但是，只要能够让游戏成功地识别到这是一个行为包，就已经是一个巨大的成功了。
 
@@ -191,7 +191,7 @@ import FileType from "/src/components/type/file"
 
 然后启动游戏检查一下，你应该能看到刚创建的资源包，你甚至可以在全局资源中启动你的资源包（虽然目前不会有任何效果就是了）。
 
-![first_pack_2](./../img/c3_addon_framework/first_pack_2.png)
+![first_pack_2](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/first_pack_2.png)
 
 恭喜你！这就是我们实现的第一个附加包啦！接下来，我们就要在这两个附加包中不断地加入功能，来实现我们的需求了。
 
@@ -220,7 +220,7 @@ import FileType from "/src/components/type/file"
 
 添加了图标文件之后，就会显示正常啦。
 
-![first_pack_3](./../img/c3_addon_framework/first_pack_3.png)
+![first_pack_3](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/first_pack_3.png)
 
 ---
 
@@ -259,7 +259,7 @@ import FileType from "/src/components/type/file"
 
 用类似的方法打开这个文件夹，你会看到下面这些文件：
 
-![map_addon_1](./../img/c3_addon_framework/map_addon_1.png)
+![map_addon_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/map_addon_1.png)
 
 你可以看到这个路径和国际版的<FileType type="folder" name="com.mojang"/>还是有一些相似度的，尤其是<FileType type="folder" name="minecraftWorlds"/>，这里面就存储了你的地图的信息。
 
@@ -307,7 +307,7 @@ import FileType from "/src/components/type/file"
 
 对于国际版玩家来说，在世界中应用我们插入的附加包是很简单的。我们只需要进入特定世界的设置，并在设置中启用包即可，游戏会自动为上面的两个文件中写入内容。
 
-![map_addon_2](./../img/c3_addon_framework/map_addon_2.png)
+![map_addon_2](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/map_addon_2.png)
 
 对于中国版或者国际版的 BDS 服务器的话，情况则没有那么简单。因为没有方便的 UI 来启用这些文件，我们必须手动向这两个文件中写入内容，这种方法叫做**强制导入法**。强制导入法对中国版和国际版都是有效的。
 
@@ -367,7 +367,7 @@ import FileType from "/src/components/type/file"
 
 这一节我们来学习一下如何通过**打包导入法**来向游戏导入我们的附加包。这个方法通常对手机玩家是更有效的，因为我们难以在手机中访问到游戏数据文件夹，而且手机版还可能会有存储路径的问题，很多玩家会将游戏数据存储到*应用程序*（也是默认设置），致使很多人找不到上面给出的国际版路径。对于这种棘手情况，我们就可以直接将包导入游戏。
 
-![pack_addon_1](./../img/c3_addon_framework/pack_addon_1.jpg)
+![pack_addon_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/pack_addon_1.jpg)
 
 我们为附加包打包并导入的方法如下：
 
