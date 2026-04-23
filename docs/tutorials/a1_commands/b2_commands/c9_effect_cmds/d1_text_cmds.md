@@ -12,7 +12,7 @@ sidebar_position: 1
 
 通常来说，很多必要的消息都是从聊天栏输出的。例如地图中一个 NPC 说过的话；或者起床战争中通知自己和别人的床被破坏；或者在密室杀手提示特定的玩家游戏目标；等等。好在，聊天栏输出文本信息的命令还是很多的，主要有 4 条：`/say`、`/tell`、`/me`、`/tellraw`，其中`/tell`和`/me`现在并不常用，最常用的是`/tellraw`，但是我们先简单介绍另外三条。
 
-![chat_commands_1](../img/c9_effect_cmds/chat_commands_1.png)
+![chat_commands_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/chat_commands_1.png)
 
 ### 公告命令：`/say`
 
@@ -34,7 +34,7 @@ sidebar_position: 1
 
 执行命令`/tell @a @a，你们好，这是对玩家私聊一条消息的效果！`的效果如下图所示。
 
-![tell_1](../img/c9_effect_cmds/tell_1.png)
+![tell_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/tell_1.png)
 
 :::note[扩展：关于该命令的返回]
 
@@ -52,7 +52,7 @@ sidebar_position: 1
 
 和`/say`的区别在于，它的输出格式从`[执行者] 消息`的格式变成了`* 执行者 消息`的格式。例如执行`/me 掉出了这个世界`，它的执行效果为
 
-![me_1](../img/c9_effect_cmds/me_1.png)
+![me_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/me_1.png)
 
 ## 标题命令：`/title`
 
@@ -60,7 +60,7 @@ sidebar_position: 1
 
 下图展现了 MC 中可用的三种标题：主标题（屏幕中央）、副标题（主标题下方）和快捷栏标题（快捷栏上方）。
 
-![title_1](../img/c9_effect_cmds/title_1.png)
+![title_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/title_1.png)
 
 标题命令的语法如下所示：
 
@@ -166,7 +166,7 @@ sidebar_position: 1
 
 这两条命令都输出“Hello,world!”。
 
-![tellraw_1](../img/c9_effect_cmds/tellraw_1.png)
+![tellraw_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/tellraw_1.png)
 
 其中：
 
@@ -190,7 +190,7 @@ sidebar_position: 1
 
 这里面，第一条命令会报错，而其他命令都将正常执行。
 
-![tellraw_2](../img/c9_effect_cmds/tellraw_2.png)
+![tellraw_2](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/tellraw_2.png)
 
 第一条命令希望打印`Hello,"world!"`，也就是希望打印出双引号。但是为什么报错了呢？
 
@@ -210,11 +210,11 @@ sidebar_position: 1
 
 如果你用电脑，打出“zjh”的时候理应就能在你的输入法上看到这个符号：
 
-![format_code_1](../img/c9_effect_cmds/format_code_1.png)
+![format_code_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/format_code_1.png)
 
 在游戏中，“§”后面跟一个数字或者小写的英文字母，就能够使文字更改颜色，或者格式。常见的格式化代码如下图所示：
 
-![format_code_2](../img/c9_effect_cmds/format_code_2.png)
+![format_code_2](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/format_code_2.png)
 
 :::tip[实验 2.9-5]
 
@@ -222,7 +222,7 @@ sidebar_position: 1
 
 找一个告示牌，然后按下面的格式打字并使其发光（*当然基岩版没有`/back`这种命令哈*）：
 
-![format_code_3](../img/c9_effect_cmds/format_code_3.png)
+![format_code_3](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/format_code_3.png)
 
 如果你想不清楚怎么打出来的，可以参考下面：
 
@@ -264,7 +264,7 @@ title @a subtitle 这是一段只有副标题的内容！
 
 执行的结果如下：
 
-![tellraw_3](../img/c9_effect_cmds/tellraw_3.png)
+![tellraw_3](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/tellraw_3.png)
 
 原理上和`text`是类似的，这两条命令都有两个组件，一个是`text`，输出`Hello,`；另一个是`selector`，输出所有符合条件的实体名字，例如`YZBWDLT`,将这两个组件前后组合起来就是`Hello,YZBWDLT`了。
 
@@ -274,7 +274,7 @@ title @a subtitle 这是一段只有副标题的内容！
 /tellraw @a {"rawtext":[{"text":"§e"},{"selector":"@s"},{"text":" 退出了游戏"}]}
 ```
 
-![tellraw_4](../img/c9_effect_cmds/tellraw_4.png)
+![tellraw_4](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/tellraw_4.png)
 
 然而其实你根本就没有退出！哈哈！
 
@@ -299,7 +299,7 @@ title @a subtitle 这是一段只有副标题的内容！
 
 我们可以看到，最终的执行效果如下：
 
-![tellraw_5](../img/c9_effect_cmds/tellraw_5.png)
+![tellraw_5](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/tellraw_5.png)
 
 这两条命令的执行原理比较清楚，想必我们也无需再多说什么了。需要注意的是，如果这些分数碰到章节号，依然是会生效并转化为格式化代码的：
 
@@ -307,7 +307,7 @@ title @a subtitle 这是一段只有副标题的内容！
 /tellraw @a {"rawtext":[{"text":"§"},{"score":{"objective":"data","name":"x"}}]}
 ```
 
-![tellraw_6](../img/c9_effect_cmds/tellraw_6.png)
+![tellraw_6](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/tellraw_6.png)
 
 这是因为，左边`text`组件返回`§`，右边`score`组件返回分值`13`，组合在一起就是`§13`，然后`§1`成为深蓝色的格式化代码，所以最后输出深蓝色的 3。依据这个原理，你甚至可以做一个自动彩虹文本（只是颜色比较匮乏罢了）！
 
@@ -327,7 +327,7 @@ titleraw @a actionbar {"rawtext":[{"text":"§"},{"score":{"objective":"data","na
 /tellraw @a {"rawtext":[{"translate":"item.stick.name"}]}
 ```
 
-![tellraw_7](../img/c9_effect_cmds/tellraw_7.png)
+![tellraw_7](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/tellraw_7.png)
 
 神奇吧？看不懂吧？看不懂就对了，看得懂的话你还来看命令干嘛（bushi
 
@@ -387,7 +387,7 @@ titleraw @a actionbar {"rawtext":[{"text":"§l§b 关卡 "},{"score":{"objective
 
 这 3 条命令，是为了让你体会 3 种不同的`translate`的文本组件的用法。它们的执行结果如下：
 
-![tellraw_8](../img/c9_effect_cmds/tellraw_8.png)
+![tellraw_8](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/tellraw_8.png)
 
 现在我们再来体会不同插入方法所带来的不同效果。执行下面的命令：
 
@@ -397,7 +397,7 @@ titleraw @a actionbar {"rawtext":[{"text":"§l§b 关卡 "},{"score":{"objective
 
 执行结果如下：
 
-![tellraw_9](../img/c9_effect_cmds/tellraw_9.png)
+![tellraw_9](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/tellraw_9.png)
 
 :::
 

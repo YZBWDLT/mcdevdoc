@@ -10,6 +10,7 @@ import Highlight from '/src/components/highlight/standard';
 import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
+import Image from "/src/components/image/standard"
 
 本文档收录所有正式版或预览版中可用的命令，并给出对应课时。其中，部分内容并未在模块 1 介绍，请阅读本篇文档的初学者注意甄别，如果需要，请学习相关知识。
 
@@ -3407,7 +3408,7 @@ allowlist reload
 
 使用`x角度`来指定玩家视角水平方向的锥底面轴长，`y角度`来指定玩家视角垂直方向的锥底面轴长，而`最远距离`指定玩家视角锥面的母线长。这三个变量所组成的锥面如下图所示：
 
-![aim_assist](/img/docs/commands/all_commands/aim_assist.png)
+<Image src="/img/docs/commands/all_commands/aim_assist.png" text="x 角度、y 角度和最远距离组成的锥面图"/>
 
 `瞄准模式`的默认值为`angle`，可选值为：
 

@@ -20,11 +20,11 @@ sidebar_position: 1
 
 例如，同样的一条命令`/give @s apple`，Steve 执行的效果和 Alex 执行的效果明显是不同的。**很多命令中，执行者都是至关重要的，它们可能需要执行者作为自己执行的默认值**，比如`/gamemode`、`/kill`这些命令的`目标`参数的默认值都是`@s`，换句话讲，都是执行者自身。
 
-![执行者](../img/c3_execute/executor.png)
+![执行者](/img/tutorials/a1_commands/b2_commands/c3_execute/executor.png)
 
 我们很快就要了解到：`/execute`能够修改命令的执行者。例如让一只羊执行命令！
 
-![执行者羊](../img/c3_execute/executor_sheep.png)
+![执行者羊](/img/tutorials/a1_commands/b2_commands/c3_execute/executor_sheep.png)
 
 ---
 
@@ -34,11 +34,11 @@ sidebar_position: 1
 
 例如`/tp`、`/setblock`命令中，我们都指定了命令的执行位置为特定位置。比如`/tp 0 0 0`就是把命令的执行位置设置到了(0,0,0)位置上。
 
-![执行位置](../img/c3_execute/execute_position.png)
+![执行位置](/img/tutorials/a1_commands/b2_commands/c3_execute/execute_position.png)
 
 如果我们指定`/tp ~5~~`或者`/tp ^5^^`这样的命令，它们的执行位置是基于执行者的位置和朝向来确定的，也就是说，**相对坐标和局部坐标都要相对于执行者来确定执行位置**。所以，很多看似与执行者无关的命令（即那些没有`target`类型参数的命令），事实上也和执行者有关，因为坐标可能是与它们的位置相关的。
 
-![执行位置2](../img/c3_execute/execute_position_2.png)
+![执行位置2](/img/tutorials/a1_commands/b2_commands/c3_execute/execute_position_2.png)
 
 同样地，我们很快就要了解到：`/execute`能够修改命令的执行位置，例如在一只羊脚下执行命令。
 

@@ -48,6 +48,7 @@ const config = {
                 docs: {
                     sidebarPath: './sidebars.js',
                     editUrl: 'https://github.com/YZBWDLT/mcdevdoc/tree/main/',
+                    showLastUpdateTime: true
                 },
                 blog: {
                     showReadingTime: true,

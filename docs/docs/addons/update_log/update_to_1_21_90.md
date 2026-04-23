@@ -3,6 +3,7 @@
 > 上次更新：2026 年 4 月 18 日
 
 import DataType from "/src/components/type/data"
+import Image from "/src/components/image/standard"
 
 随着网易正式宣布加快更新节奏，这次网易将要正式发布 3.8 版本，并将版本进一步推进到 1.21.90，也正式拉近了和国际版的时间差距。这里将 1.21.60-1.21.90 的所有更新内容汇总到本文，供查阅本文的开发者参考！
 
@@ -317,9 +318,9 @@ world.afterEvents.worldLoad.subscribe(event => {
 });
 ```
 
-总体而言，`2.0.0`版本的脚本在世界加载时的变化如下图所示（图源来自[脚本 V2 概述 - Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/documents/scripting/v2-overview?view=minecraft-bedrock-stable)）
+总体而言，`2.0.0`版本的脚本在世界加载时的变化如下图所示
 
-![script_v2](/img/docs/docs/addons/update_log/update_to_1_21_90/script_v2.png)
+<Image src="/img/docs/docs/addons/update_log/update_to_1_21_90/script_v2.png" text="2.0.0 版本的脚本在世界加载时的变化，图源来自脚本 V2 概述 - Microsoft Learn" size="85%"/>
 
 以下为`2.0.0`的版本中的功能变化：
 
@@ -409,8 +410,7 @@ world.afterEvents.worldLoad.subscribe(event => {
 
 脚本 UI 的动作表单 UI 和模态表单 UI 现在都支持添加大标题、分割线和普通文本了，并且模态表单 UI 的元素还支持添加新的提示框。
 
-![script_ui_v2](/img/docs/docs/addons/update_log/update_to_1_21_90/script_ui_v2.png)  
-> 新版脚本 UI 演示，包括大标题和分割线，图片来自 xKingDark（取自[JaylyMC 的 SAPI 文档](https://jaylydev.github.io/scriptapi-docs/1.21.90/classes/_minecraft_server-ui.ModalFormData.html#dropdown)）。
+<Image src="/img/docs/docs/addons/update_log/update_to_1_21_90/script_ui_v2.png" text="新版脚本 UI 演示，包括大标题和分割线，图片来自 xKingDark（取自 JaylyMC 的 SAPI 文档）"/>
 
 - **动作表单 UI**：
   - 开放了`ActionFormUI.divider()`方法，以在 UI 内添加分割线。

@@ -78,7 +78,7 @@ sidebar_position: 1
 
 然而，关于生成事件的基本原理，目前我们没有办法给出，因为这涉及到附加包的实体定义的原理，在模块 2 你才能看到它的本质。我们可以简单告诉你的是，每个实体都拥有其自己独有的生成事件，而下图中所列出来的是所有实体可用的生成事件，所以并不是所有的生成事件都是可用的。例如，如果你要强行给僵尸添加一个`calmed_down`事件，企图让僵尸不攻击其他生物，这是不可能实现的，因为僵尸的实体定义并没有这个事件，所以写为`calmed_down`并没有任何效果。
 
-![summon_1](../img/c6_entity_cmds/summon_1.png)
+![summon_1](/img/tutorials/a1_commands/b2_commands/c6_entity_cmds/summon_1.png)
 
 然而，总是有那么几个事件，是大量实体可用甚至是通用的。[Wiki 已经为我们列出了一张表格](https://zh.minecraft.wiki/w/生成事件)，是所有实体对应的生成事件。我们看到，这么几个组件是大量实体都在使用的：
 
@@ -94,7 +94,7 @@ sidebar_position: 1
 
 我们看到，使用`minecraft:as_baby`之后，生成的便全是小僵尸。有需要时，你可以参照[生成事件 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/生成事件)给出的表格，直接生成一些特殊的实体。
 
-![summon_2](../img/c6_entity_cmds/summon_2.png)
+![summon_2](/img/tutorials/a1_commands/b2_commands/c6_entity_cmds/summon_2.png)
 
 此外，还需要注意一点：**虽然`生成事件: string`可以任意填写，哪怕写为所有实体都没有的生成事件（比如`*`）也能成功执行，但是如果调用了实体所不支持的事件，就会被认为是调用了一个无效的事件**。在这种情况下，**`minecraft:entity_spawned`也不会被调用，这会导致一系列的实体运行的问题**。比如，如果使用`/summon zombie ~~~~~ *`的话，你会发现僵尸的速度变得异常地快，这就是使用了无效的生成事件`*`所导致的未调用`minecraft:entity_spawned`生成事件的后果。
 

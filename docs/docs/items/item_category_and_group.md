@@ -11,6 +11,7 @@ import '/src/css/treeview.css';
 import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
+import Image from "/src/components/image/standard"
 
 > 上次更新：2026 年 4 月 21 日。此时中国版最新版本为 1.21.90，国际版最新版本为 26.10。  
 > 本文档配备教程，您可以点击下面的「教程」按钮查看我们提供的教程。
@@ -23,7 +24,7 @@ import DataType from "/src/components/type/data"
 
 物品组（Item Group）可以在创造模式物品栏中将少量相似功能的物品、方块折叠到一起。例如下图：
 
-![item_group_1](/img/docs/docs/items/item_category_and_group/item_group_1.png)
+<Image src="/img/docs/docs/items/item_category_and_group/item_group_1.png" text="物品组"/>
 
 ### 自定义物品组
 
@@ -181,7 +182,7 @@ import DataType from "/src/components/type/data"
 
 物品分类（Item Category）则将大量物品囊括到一个大分类中。例如下图：
 
-![item_category_1](/img/docs/docs/items/item_category_and_group/item_category_1.png)
+<Image src="/img/docs/docs/items/item_category_and_group/item_category_1.png" text="物品分类"/>
 
 原版拥有 4 个物品分类：建筑（`construction`）、装备（`equipment`）、物品（`items`）和自然（`nature`）。
 

@@ -63,7 +63,7 @@ sidebar_position: 3
 
 执行命令`/scoreboard objectives add test dummy`。注意`dummy`是必选参数，不要丢下！
 
-![obj_add_1](../img/c4_tag_and_scoreboard/obj_add_1.png)
+![obj_add_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_add_1.png)
 
 :::
 
@@ -73,7 +73,7 @@ sidebar_position: 3
 
 这里需要注意，一个已经存在的记分项是不能被重复创建的，命令将会报错：
 
-![obj_add_2](../img/c4_tag_and_scoreboard/obj_add_2.png)
+![obj_add_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_add_2.png)
 
 ### 为`记分项`命名的规范
 
@@ -92,7 +92,7 @@ sidebar_position: 3
 
 在 Java 版的同名命令中，这第 4 个参数不止可以填写为`dummy`，事实上它能填写的东西甚至五花八门，用鼠标划半天都划不到头。
 
-![obj_add_3](../img/c4_tag_and_scoreboard/obj_add_3.png)
+![obj_add_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_add_3.png)
 
 这个参数，叫做**准则（Criteria）**。准则决定了这个记分板如何追踪玩家和实体的分数。例如，`deathCount`准则可以追踪玩家的死亡次数、`totalKillCount`准则可以追踪玩家杀死了多少实体、`health`准则追踪玩家的血量等等。[^2]
 
@@ -121,13 +121,13 @@ sidebar_position: 3
 
 执行命令`/scoreboard objectives setdisplay sidebar test`。
 
-![obj_setdisplay_1](../img/c4_tag_and_scoreboard/obj_setdisplay_1.png)
+![obj_setdisplay_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_1.png)
 
 :::
 
 最后，它将把`test`显示在你的屏幕右侧：
 
-![obj_setdisplay_2](../img/c4_tag_and_scoreboard/obj_setdisplay_2.png)
+![obj_setdisplay_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_2.png)
 
 然而，它现在因为没有追踪任何玩家或实体的分数，所以只是很单调地显示一个 test。
 
@@ -137,11 +137,11 @@ sidebar_position: 3
 
 - 降序（`descending`）（默认参数）：分数从高到低排列。
 
-  ![obj_setdisplay_3](../img/c4_tag_and_scoreboard/obj_setdisplay_3.png)
+  ![obj_setdisplay_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_3.png)
 
 - 升序（`ascending`）：分数从低到高排列。
 
-  ![obj_setdisplay_4](../img/c4_tag_and_scoreboard/obj_setdisplay_4.png)
+  ![obj_setdisplay_4](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_4.png)
 
 ### 显示在不同位置的效果
 
@@ -149,11 +149,11 @@ sidebar_position: 3
 
 - 玩家列表（`list`），它会把分数排名写在前面，并在右下角显示分数。
 
-  ![obj_setdisplay_5](../img/c4_tag_and_scoreboard/obj_setdisplay_5.png)
+  ![obj_setdisplay_5](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_5.png)
 
 - 玩家名下方（`belowname`，Below Name），它会把分数和记分板名称显示在玩家名牌的下方。也就是说，**只有实际玩家的分数会显示出来，而实体和假名的分数则都无法显示**。
 
-  ![obj_setdisplay_6](../img/c4_tag_and_scoreboard/obj_setdisplay_6.png)
+  ![obj_setdisplay_6](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_6.png)
 
 ### `显示名称`的效果
 
@@ -170,7 +170,7 @@ sidebar_position: 3
 
 看，这样就可以保证记分项`data`显示为“数据”：
 
-![obj_setdisplay_7](../img/c4_tag_and_scoreboard/obj_setdisplay_7.png)
+![obj_setdisplay_7](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_7.png)
 
 这就是能同时保证`记分项`简洁的同时还能保证显示名称符合要求的“秘诀”，只是一个参数的事。然而，一些经验相对丰富的开发者不知道这回事的情况也并不鲜见。
 
@@ -212,7 +212,7 @@ sidebar_position: 3
 
 这条命令将在聊天栏返回所有记分项的显示名称和准则。显然，基岩版的准则全是`dummy`。此外，没有指定`显示名称`的记分项，显示名称就默认变成了记分项的名称。当然，我们还是那句话：建议你在创建记分板时事先指定一个另外的显示名称，不要用记分项来做显示名称。
 
-![obj_list_1](../img/c4_tag_and_scoreboard/obj_list_1.png)
+![obj_list_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_list_1.png)
 
 ---
 

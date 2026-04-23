@@ -14,7 +14,7 @@ sidebar_position: 8
 
 所以，我们更建议在你要查找方块状态的时候，直接在对应的方块条目下查找。例如，查找红石火把的方块状态，就直接在 Wiki 中搜索红石火把：
 
-![block_state_1](./img/c8_block_cmds/block_state_1.png)
+![block_state_1](/img/tutorials/a1_commands/b2_commands/c8_block_cmds/block_state_1.png)
 
 :::note[扩展：方块状态的历史]
 
@@ -42,7 +42,7 @@ sidebar_position: 8
 
 那么如果一个方块拥有多种方块状态呢？例如按钮：
 
-![block_state_2](./img/c8_block_cmds/block_state_2.png)
+![block_state_2](/img/tutorials/a1_commands/b2_commands/c8_block_cmds/block_state_2.png)
 
 可以看到，它允许两种方块状态：`button_pressed_bit`和`facing_direction`。假设我们要检测特定朝向的已经按下的按钮，就可以写为
 
@@ -77,7 +77,7 @@ sidebar_position: 8
 
 执行命令`/setblock ~~~ acacia_stairs["upside_down_bit"=false,"weirdo_direction"=3]`。它将放置一个面朝南方且正置的金合欢木楼梯。
 
-![setblock_1](./img/c8_block_cmds/setblock_1.png)
+![setblock_1](/img/tutorials/a1_commands/b2_commands/c8_block_cmds/setblock_1.png)
 
 :::
 
@@ -117,13 +117,13 @@ sidebar_position: 8
 
 在你脚下放一个石按钮，然后执行`/execute if block ~~~ stone_button`，它会执行通过。
 
-![execute_if_block_1](./img/c8_block_cmds/execute_if_block_1.png)
+![execute_if_block_1](/img/tutorials/a1_commands/b2_commands/c8_block_cmds/execute_if_block_1.png)
 
 然后，执行`/execute if block ~~~ stone_button ["facing_direction"=0]`，它的测试还通过吗？如果不通过，把 0 换成其它的状态，看看躺在地上的按钮的朝向应该是什么值？
 
 :::
 
-![execute_if_block_2](./img/c8_block_cmds/execute_if_block_2.png)
+![execute_if_block_2](/img/tutorials/a1_commands/b2_commands/c8_block_cmds/execute_if_block_2.png)
 
 - 在执行`/execute if block ~~~ stone_button`后，测试通过，这是很显然的。
 - 然后，执行`/execute if block ~~~ stone_button ["facing_direction"=0]`，测试失败，说明此时这个按钮的朝向信息不是`0`。
@@ -180,7 +180,7 @@ sidebar_position: 8
 
 我们看到，由(-5,-61,-5)到(5,-61,5)组成的区域的草方块，全部被替换为了钻石块。
 
-![fill_1](./img/c8_block_cmds/fill_1.png)
+![fill_1](/img/tutorials/a1_commands/b2_commands/c8_block_cmds/fill_1.png)
 
 接下来，我们再来体验一下加上方块状态的效果吧！
 
@@ -192,7 +192,7 @@ sidebar_position: 8
 
 在执行上面的命令之后，我们得到了一个长宽高均为 11 的石英柱外壳，因为使用了`hollow`参数，所以是空心的。而因为指定了一个方块状态`["pillar_axis"="y"]`，所以放置了竖向的石英柱。
 
-![fill_2](./img/c8_block_cmds/fill_2.png)
+![fill_2](/img/tutorials/a1_commands/b2_commands/c8_block_cmds/fill_2.png)
 
 此外在使用时需要注意，**`/fill`允许同时填充的最大方块数是 32767**，这个上限并不算很高，所以很多开发者在执行这条命令的时候常常会因为超限而报错。
 

@@ -7,6 +7,7 @@ sidebar_position: 5
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import Download from "/src/components/highlight/download"
+import Image from "/src/components/image/standard"
 
 <Download url="https://app.nekodrive.net/s/gvdck"/>
 
@@ -14,13 +15,11 @@ import Download from "/src/components/highlight/download"
 
 在现在的众多高端地图中，总是会有一些「公告板」来宣传作者和团队信息。例如，下图为著名的 *15 Years Journey* 地图中的公告板：
 
-![billboard_1](/img/dev_template/billboard/billboard_1.png)
+<Image src="/img/dev_template/billboard/billboard_1.png" text="15 Years Journey 地图中的公告板" size="85%"/>
 
 为此，我们创建了一个类似的实体模板，便于广大地图开发者使用。
 
-效果图（开启 Vibrant Visuals）：
-
-![billboard_2](/img/dev_template/billboard/billboard_2.png)
+<Image src="/img/dev_template/billboard/billboard_2.png" text="效果图（开启 Vibrant Visuals）" size="85%"/>
 
 本包为**行为包**和**资源包**组合的包。
 

@@ -30,13 +30,13 @@ sidebar_position: 2
 
 在后面的一节，我们将看到如何显示一个记分板。记分板显示出来的效果大约是下图的效果：
 
-![scoreboard_1](../img/c4_tag_and_scoreboard/scoreboard_1.png)
+![scoreboard_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/scoreboard_1.png)
 
 它表示，YZBWDLT 在`data`记分板上的分数为 1 分——**记分项、玩家和分数缺一不可**，它们是描述分数信息的重要内容。
 
 以及，很多服务器都使用记分板来作为信息的承载体（这里显示了一个 Java 版服务器的记分板）：
 
-![scoreboard_2](../img/c4_tag_and_scoreboard/scoreboard_2.png)
+![scoreboard_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/scoreboard_2.png)
 
 ### 追踪对象
 
@@ -48,7 +48,7 @@ sidebar_position: 2
 
 假名的应用是十分广泛的。因为它不必受到实际实体存在的约束，可以免去很多麻烦，无论是初始化还是分数操作，都是极为简便的。
 
-![scoreboard_3](../img/c4_tag_and_scoreboard/scoreboard_3.png)
+![scoreboard_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/scoreboard_3.png)
 
 例如在图中，`fakePlayer`就是一个假名，服务器中并不存在名为 fakePlayer 的玩家，它在`data`记分板上的分数是 50 分。
 

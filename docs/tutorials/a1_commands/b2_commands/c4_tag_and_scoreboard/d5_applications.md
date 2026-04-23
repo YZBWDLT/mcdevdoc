@@ -255,7 +255,7 @@ execute as @e[type=custom:npc] run scoreboard players reset @s data
 
 假设现在我们在做一个难度很高的跑酷游戏，禁止玩家潜行，否则将其传送回出生点。检测潜行怎么做呢？我们可以从 1.20.10 加入的潜行高度上入手。玩家在站立时的高度是 1.8 格，而潜行时的高度仅为 1.5 格。也就是说，只要我们能够抓住这个高度变化，就能够检测到玩家潜行了。
 
-![player_height](../img/c4_tag_and_scoreboard/player_height.png)
+![player_height](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_height.png)
 
 这不由得让我们想起目标选择器，因为基本上只有它能在不依靠任何外部环境的情况下做检测。而检测位置的参数，主要有`x`、`y`、`z`、`dx`、`dy`、`dz`、`r`和`rm`，这些都是**判定碰撞箱是否和检测区域重叠**。利用这些，我们就可以考虑从玩家的位置开始，在 1.6 格高度处看能不能检测到这个玩家的碰撞箱，如果检测得到，那么玩家必定处于站立状态下，为站立玩家添加`isStanding`标签，否则就不处于站立状态，没有`isStanding`标签。用命令来写，就是：
 

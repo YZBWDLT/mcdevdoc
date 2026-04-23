@@ -31,7 +31,7 @@ sidebar_position: 10
 
 用这条命令，可以用来定位樱花树林、蘑菇岛这样比较稀有的群系，也可以用来定位村庄、下界要塞这样的特殊结构。在该维度定位到之后，会返回一个坐标值，这时候`/tp`过去就可以。具体用法就交给读者自行尝试了。
 
-![locate_1](./img/c10_server_cmds/locate_1.png)
+![locate_1](/img/tutorials/a1_commands/b2_commands/c10_server_cmds/locate_1.png)
 
 ## 玩家列表命令`/list`
 
@@ -87,13 +87,13 @@ sidebar_position: 10
 
 BDS 的服务端软件可以在 Wiki 各个版本简介窗口下面下载到。
 
-![bds_1](./img/c10_server_cmds/bds_1.png)
+![bds_1](/img/tutorials/a1_commands/b2_commands/c10_server_cmds/bds_1.png)
 
 它拥有一个配置文件`server.properties`、白名单文件`allowlist.json`和管理权限文件`permissions.json`。此外，还有一个服务器的核心文件`bedrock_server.exe`。启动这个`.exe`文件后，服务器就会读取前面 3 种配置文件的数据，选择性地放玩家进来，并且按照服主配置的方式运行。
 
 下图是 BDS 在 Windows Server 2025 上运行的窗口。
 
-![bds_2](./img/c10_server_cmds/bds_2.png)
+![bds_2](/img/tutorials/a1_commands/b2_commands/c10_server_cmds/bds_2.png)
 
 BDS 实际上是开启了一个 Minecraft 的服务端，这样其他玩家就都能够通过和这个服务器联络以进行游戏。通常来说，服主们都是自行购买各大厂家的服务器面板，通过厂家提供的地址和端口让玩家连接，从而进入服务器的。这些服务器面板通常价格高昂，而且操作门槛也很高，因此对于普通玩家，应谨慎考虑购入服务器的事情。
 

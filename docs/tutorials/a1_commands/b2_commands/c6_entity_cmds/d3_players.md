@@ -27,7 +27,7 @@ sidebar_position: 3
 
 我们看到有两个用法。第一个用法是**查询有多少`玩家`的`权限`处于`状态`下**，例如查询`sneak`是否启用、禁用，就用`/inputpermission query @a sneak ...`，如果`状态`不指定就全部查询，最后返回有多少玩家启用了潜行，有多少玩家禁用了潜行。
 
-![inputpermission_1](../img/c6_entity_cmds/inputpermission_1.png)
+![inputpermission_1](/img/tutorials/a1_commands/b2_commands/c6_entity_cmds/inputpermission_1.png)
 
 第二个语法是**设定`玩家`的`权限`的状态为`状态`**。
 
@@ -39,7 +39,7 @@ sidebar_position: 3
 
 是的，它会阻止你旋转你的视角。改回`enabled`就是允许旋转视角了。这在一些对话场景中，需要面向 NPC 的场景中，就显得尤为重要了。
 
-![inputpermission_2](../img/c6_entity_cmds/inputpermission_2.png)
+![inputpermission_2](/img/tutorials/a1_commands/b2_commands/c6_entity_cmds/inputpermission_2.png)
 
 关于支持更改的权限，你可以参考[命令/inputpermission - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/命令/inputpermission)。如果你在使用旧版本的话，则还需要注意版本问题！
 
@@ -80,7 +80,7 @@ haspermission={<权限: permission>=<状态: disabled|enabled>,...}
 
 先把难度调整为和平，然后调整为生存模式，执行命令`/xp 100L`。这条命令将给予你 100 级的经验。
 
-![xp_1](../img/c6_entity_cmds/xp_1.png)
+![xp_1](/img/tutorials/a1_commands/b2_commands/c6_entity_cmds/xp_1.png)
 
 :::
 

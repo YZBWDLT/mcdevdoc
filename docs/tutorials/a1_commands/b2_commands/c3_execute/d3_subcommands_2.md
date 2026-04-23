@@ -52,11 +52,11 @@ sidebar_position: 3
 
 通过实验，我们看到只有检测到盔甲架时，`/execute if entity @e[type=armor_stand] run say 检测到盔甲架！`才能够检测通过，并输出`检测到盔甲架`。
 
-![if1](../img/c3_execute/if1.png)
+![if1](/img/tutorials/a1_commands/b2_commands/c3_execute/if1.png)
 
 而只有检测**不**到盔甲架时，`/execute unless entity @e[type=armor_stand] run say 未检测到盔甲架！`才能够检测通过，并输出`未检测到盔甲架`。相信通过这个例子，你已经深刻地了解了`if`和`unless`的区别，我们后文也都不再会强调它们的异同，而是更关注这些检测项目。
 
-![unless1](../img/c3_execute/unless1.png)
+![unless1](/img/tutorials/a1_commands/b2_commands/c3_execute/unless1.png)
 
 接下来，让我们和修饰子命令联用，看看修饰子命令对后续条件子命令的影响如何。
 
@@ -66,11 +66,11 @@ sidebar_position: 3
 
 :::
 
-![if2](../img/c3_execute/if2.png)
+![if2](/img/tutorials/a1_commands/b2_commands/c3_execute/if2.png)
 
 我们可以看到，只有 1 只绵羊说了一句`§c快跑！狼来了！`，而其他的羊都返回`if entity`测试失败。我们来简单分析一下这条命令执行的全过程：
 
-![if3](../img/c3_execute/if3.png)
+![if3](/img/tutorials/a1_commands/b2_commands/c3_execute/if3.png)
 
 1. `as @e[type=sheep] at @s`先把执行者和执行环境参数全部改为所有羊。因为世界可能存在多只羊，所以所有羊依次执行后续命令。
 2. `if entity @e[type=wolf,r=5]`为在所有羊附近 5 格范围内寻找是否有狼的存在。如果有则继续执行，如果没有则命令中止执行。
@@ -111,7 +111,7 @@ sidebar_position: 3
 
 :::
 
-![if_block1](../img/c3_execute/if_block1.png)
+![if_block1](/img/tutorials/a1_commands/b2_commands/c3_execute/if_block1.png)
 
 很简单的命令，对吧？
 
@@ -141,7 +141,7 @@ sidebar_position: 3
 
 我们不妨考虑一下，确定一个长方体区域需要什么参量？无非也就是大小和基准点。假如你已经确定了一个基准点(0,0,0)，并且指定一个 x 正方向为 5 格、y 正方向为 7 格，z 正方向为 9 格的长方体区域，不难发现这个区域是完全确定的。
 
-![if_blocks1](../img/c3_execute/if_blocks1.png)
+![if_blocks1](/img/tutorials/a1_commands/b2_commands/c3_execute/if_blocks1.png)
 
 而在`起点`和`终点`所组成的区域中，我们已经知道了需要比较的区域的大小，所以如果要确定另一个需要比较的区域，就只需要找到这个基准点即可。这个基准点就是`目标点`。
 
@@ -149,7 +149,7 @@ sidebar_position: 3
 
 回到(0,-60,0)的位置，在脚下挖一个 3×3 的区域并放上钻石块，中心点为(0,-61,0)。然后，向上搭 6 格，搭一个 3×3 的平台。就像下图这样：
 
-![if_blocks2](../img/c3_execute/if_blocks2.png)
+![if_blocks2](/img/tutorials/a1_commands/b2_commands/c3_execute/if_blocks2.png)
 
 接下来，执行命令`/execute if blocks -1 -61 -1 1 -61 1 -1 -55 -1 all`。
 
@@ -167,7 +167,7 @@ sidebar_position: 3
 
 现在，把两个平台中心的钻石块挖掉，换成朝向相同的箱子。
 
-![if_blocks4](../img/c3_execute/if_blocks4.png)
+![if_blocks4](/img/tutorials/a1_commands/b2_commands/c3_execute/if_blocks4.png)
 
 执行命令`/execute if blocks -1 -61 -1 1 -61 1 -1 -55 -1 all`，它应该仍然成功执行。
 
@@ -177,7 +177,7 @@ sidebar_position: 3
 
 在执行此命令后，你会看到一开始是执行成功的，但是放入一个物品后，就执行失败了。因此，我们常检测两个区域的箱子等容器是否完全一致，来判断箱子内的物品是否被拿走。
 
-![if_blocks5](../img/c3_execute/if_blocks5.png)
+![if_blocks5](/img/tutorials/a1_commands/b2_commands/c3_execute/if_blocks5.png)
 
 接下来我们再简单聊聊`扫描模式`的问题。扫描模式分为 2 种：`all`和`masked`。`all`将检测包括空气方块在内的所有方块，而`masked`则排除由`起点`和`终点`组成的检测区域中的空气的检测。例如，如果`起点`和`终点`组成的检测区域全部都是空气，此时采用`masked`进行检测，无论如何都将检测通过。在实际工程中，常用`all`进行检测。
 

@@ -20,27 +20,27 @@ sidebar_position: 3
 
 只有一个语法，还是很简单的哦。但是，获取音效却并不是什么简单的事情。我们可以看到在打出`/playsound`之后，没有任何自动补全。
 
-![playsound_1](../img/c9_effect_cmds/playsound_1.png)
+![playsound_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/playsound_1.png)
 
 这是因为，`/playsound`对应的音效是一种资源包决定的客户端行为，而这种枚举值一律没有自动补全。这句话暂时看不懂也不要紧，在模块 2 你就能看懂了。既然没有自动补全，我们该怎么办呢？
 
 一个办法是，我们可以找 Wiki 的对应条目，获取到音效 ID。例如，经验球的音效和升级的音效是比较常用的，我们不知道该填什么的时候，可以在 Wiki 中搜索“经验球”的相关条目：
 
-![playsound_2](../img/c9_effect_cmds/playsound_2.png)
+![playsound_2](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/playsound_2.png)
 
 点一下经验球这个条目进去看看有没有我们需要的信息……
 
-![playsound_3](../img/c9_effect_cmds/playsound_3.png)
+![playsound_3](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/playsound_3.png)
 
 太好了！看来确实有，这个命名空间 ID 正是我们需要的！我们看到它的 ID 是`random.orb`，所以只需要在游戏内写入`/playsound random.orb`，就可以向玩家播放经验球的音效了。
 
 另一个办法是，我们可以借助社区的力量！在前些年，一款安卓软件“命令助手”是很流行的。其开发者 ProjectXero 不仅开发了这款软件，还开发了一款可以快捷查询所有 ID 的网站：[MCBEID 查询表](https://idlist.projectxero.top/)。我们要找音效的话，先在右上角指定寻找声音：
 
-![playsound_4](../img/c9_effect_cmds/playsound_4.png)
+![playsound_4](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/playsound_4.png)
 
 然后可以直接找播放经验的相关条目：
 
-![playsound_5](../img/c9_effect_cmds/playsound_5.png)
+![playsound_5](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/playsound_5.png)
 
 看，一下子就找到了！这个网站建议收藏下来，对你可能很有帮助。未来，在使用 Visual Studio Code 写函数的时候，我们还会了解到更多的自动补全的方法。
 
@@ -66,7 +66,7 @@ sidebar_position: 3
 
 `位置`则指代声音播放的位置，通常情况下`位置`离玩家越远，这个音效就越难听清（其实有例外，但目前请读者先这么理解吧），远到一定距离的时候，这条命令甚至会报错：
 
-![playsound_6](../img/c9_effect_cmds/playsound_6.png)
+![playsound_6](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/playsound_6.png)
 
 所以，**一般情况下，我们想要让玩家听到音效，通常都需要套一个`/execute`，将执行位置改为玩家的位置，再播放音效，玩家才容易听见**。
 
@@ -74,7 +74,7 @@ sidebar_position: 3
 
 `音调`则是控制音效的音调的，默认是 1，调整为小于 1 的值会拉长音效，而大于 1 则缩短音效。许多音效在更改了音调之后，都会有一些很神奇的音效表现。其实，有时候在 Minecraft 里面调音，本质上就是在调这个音调，尤其是在播放音符盒的音效的时候，调这东西还是一门学问，有讲究的哦。读者如果感兴趣，甚至可以尝试结合`/execute`、`/scoreboard`和这篇文献：[音符盒 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/音符盒#用途)，在学习了命令方块和函数之后自己写一个红石音乐！
 
-![playsound_7](../img/c9_effect_cmds/playsound_7.png)
+![playsound_7](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/playsound_7.png)
 
 :::tip[实验 2.9-19]
 
@@ -98,7 +98,7 @@ sidebar_position: 3
 
 停止对`玩家`播放的`音效`。应该不用多说什么了吧？例如，停止活塞的音效就是`/stopsound @a tile.piston.in`和`/stopsound @a tile.piston.out`。当然啦，灵活使用查询表或 Wiki 查这些 ID！
 
-![stopsound_1](../img/c9_effect_cmds/stopsound_1.png)
+![stopsound_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/stopsound_1.png)
 
 ### 播放音乐的命令`/music`
 
@@ -137,13 +137,13 @@ sidebar_position: 3
 
 执行命令`/particle minecraft:endrod ~~-5~`，这条命令会在你脚下 5 格的位置生成末地烛的粒子。记住这个粒子，它很常用！
 
-![particle_1](../img/c9_effect_cmds/particle_1.png)
+![particle_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/particle_1.png)
 
 :::
 
 不过，因为基岩版粒子的运行机制，它注定无法做到像 Java 版那么自由。基岩版的粒子都是通过资源包写的，很多粒子都需要充足的上下文信息才能正确显示，否则就会显示异常。例如，在释放粒子`minecraft:death_explosion_emitter`的时候，游戏就通过内容日志报了一大堆错误：
 
-![particle_2](../img/c9_effect_cmds/particle_2.png)
+![particle_2](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/particle_2.png)
 
 如果你不知道这是什么，不要紧，知道这并不是一个什么好的征兆，就足够了。这就是因为命令不能提供粒子所需的上下文所导致的。
 

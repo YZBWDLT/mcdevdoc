@@ -59,13 +59,13 @@ sidebar_position: 3
 
 试执行命令`/summon sheep`。
 
-![执行summon命令](./img/c3_entity/summon_command.png)
+![执行summon命令](/img/tutorials/a1_commands/b1_concepts/c3_entity/summon_command.png)
 
 :::
 
 执行上述的命令，将会在你的位置生成一只绵羊。
 
-![执行summon命令后](./img/c3_entity/summon_command_executed.png)
+![执行summon命令后](/img/tutorials/a1_commands/b1_concepts/c3_entity/summon_command_executed.png)
 
 `EntityType`是一种穷举类型的参数。如果不是允许的实体 ID，换言之，传入的参数指代了一个不存在的实体，比如传入`tiger`，但 MC 可没有老虎，那么执行的命令将会报错。
 
@@ -87,13 +87,13 @@ sidebar_position: 3
 
 试执行命令`/summon item`。事实上你可以看到与上面的实验的不同之处——前面是有`sheep`的自动补全的，而现在已经没有自动补全了。
 
-![尝试生成物品](./img/c3_entity/summon_item.png)
+![尝试生成物品](/img/tutorials/a1_commands/b1_concepts/c3_entity/summon_item.png)
 
 :::
 
 执行上述的命令，`/summon`会执行失败：
 
-![生成物品失败](./img/c3_entity/summon_item_failed.png)
+![生成物品失败](/img/tutorials/a1_commands/b1_concepts/c3_entity/summon_item_failed.png)
 
 奇了怪了，物品不是实体吗？怎么会生成出错呢？
 

@@ -23,7 +23,7 @@ sidebar_position: 1
 /tag <实体: target> list
 ```
 
-![tag_1](../img/c4_tag_and_scoreboard/tag_1.png)
+![tag_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/tag_1.png)
 
 这些语法是很直观的。第一个语法的含义是，**为`实体`添加（`add`）或移除（`remove`）名为`名称`的标签**。第二个语法，则是**在聊天栏返回`实体`的所有标签**。添加这些标签不会对实体的运行有任何影响和变化，它仅仅作为在命令或底层上的标记。
 
@@ -37,7 +37,7 @@ sidebar_position: 1
 
 下面是执行结果。你可以看到，执行这条命令对实体的行为并没有任何影响，只是简单地添加了一个标记。
 
-![tag_2](../img/c4_tag_and_scoreboard/tag_2.png)
+![tag_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/tag_2.png)
 
 ## 目标选择器参数`tag`
 
@@ -49,7 +49,7 @@ tag=<标签: string>
 
 例如，查找所有具有`testTag`标签的实体，就是`@e[tag=testTag]`。
 
-![tag_3](../img/c4_tag_and_scoreboard/tag_3.png)
+![tag_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/tag_3.png)
 
 `tag`是支持反选的。例如`@e[tag=!testTag]`就寻找没有`testTag`标签的实体。
 

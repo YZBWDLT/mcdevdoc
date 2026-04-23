@@ -49,7 +49,7 @@ spreadplayers <x: value> <z: value> <扩散间距: float> <最大范围: float> 
 /spreadplayers 0 0 0 5 @e[type=slime]
 ```
 
-![spreadplayers_1](../img/c6_entity_cmds/spreadplayers_1.png)
+![spreadplayers_1](/img/tutorials/a1_commands/b2_commands/c6_entity_cmds/spreadplayers_1.png)
 
 该命令在有特殊需求的时候，是可以派上用场的，比如如果要做一个吃鸡游戏，在场地内随机投放一个箱子，就可以用该命令确定一个位置。但总归是传送到一个特定位置的需求更多，所以这条命令也是一条不太常用的命令，仅作简单了解即可，有需求的时候读者可以阅读[命令/spreadplayers - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/命令/spreadplayers) 来更系统地学习。
 
@@ -67,7 +67,7 @@ spreadplayers <x: value> <z: value> <扩散间距: float> <最大范围: float> 
 
 为几个成年僵尸搭一个小棚，然后执行命令`/event entity @e minecraft:as_baby`。
 
-![event_1](../img/c6_entity_cmds/event_1.png)
+![event_1](/img/tutorials/a1_commands/b2_commands/c6_entity_cmds/event_1.png)
 
 备注：不用加`type`，我们稍后分析这条命令。
 
@@ -75,7 +75,7 @@ spreadplayers <x: value> <z: value> <扩散间距: float> <最大范围: float> 
 
 下图是我们的执行结果。
 
-![event_2](../img/c6_entity_cmds/event_2.png)
+![event_2](/img/tutorials/a1_commands/b2_commands/c6_entity_cmds/event_2.png)
 
 我们看到，如果施加一个无效的生成事件，那么命令就会执行失败。所以，`@e`最终还是只对僵尸有效。而且，我们还看到本来是成年的僵尸现在全部变成了幼年僵尸，这便是`/event`强行更改属性的功效了。
 
@@ -158,7 +158,7 @@ spreadplayers <x: value> <z: value> <扩散间距: float> <最大范围: float> 
 
 哇哦！铁傀儡开始攻击村民了，倒反天罡！哪怕施加的伤害是 0 点，铁傀儡也是反过来攻击了村民，这就是铁傀儡的实体定义所决定的。
 
-![damage_1](../img/c6_entity_cmds/damage_1.png)
+![damage_1](/img/tutorials/a1_commands/b2_commands/c6_entity_cmds/damage_1.png)
 
 关于`成因`所对应的伤害类型，你可以查看[伤害类型 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/伤害类型#基岩版)。某种意义上，你可以认为`/kill`的本质，是施加了类型为`self_destruct`的巨大数值的伤害。其他的参数，相信已经无需我们多言了。
 
@@ -240,7 +240,7 @@ spreadplayers <x: value> <z: value> <扩散间距: float> <最大范围: float> 
 
 1. `/event entity @e[type=creeper] minecraft:start_exploding`或`/event entity @e[type=creeper] minecraft:start_exploding_force`  
    嗯……我是不会告诉你我其实是个熊孩子的！（资源包为 Actions&Stuff）  
-   ![event_3](./../img/c6_entity_cmds/event_3.png)
+   ![event_3](/img/tutorials/a1_commands/b2_commands/c6_entity_cmds/event_3.png)
 2. `/execute as @a at @s if entity @a[rm=0.01,r=1] run effect @s invisibility 1 0 true`
 3. `/effect @a instant_health 5 100 true`和`/damage @a 15`
 4. `/effect @a clear poison`和`/effect @a poison 0 100 true`

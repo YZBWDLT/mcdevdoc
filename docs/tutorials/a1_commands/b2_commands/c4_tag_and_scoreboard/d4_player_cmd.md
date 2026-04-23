@@ -52,11 +52,11 @@ sidebar_position: 4
 
 我们看到，在执行`/scoreboard players add @s data 1`后，右侧的记分板显示我们的分数为 1 分。
 
-![player_add_1](../img/c4_tag_and_scoreboard/player_add_1.png)
+![player_add_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_add_1.png)
 
 而执行`/scoreboard players remove @s data 1`后，右侧的记分板则显示我们的分数为 0 分。
 
-![player_remove_1](../img/c4_tag_and_scoreboard/player_remove_1.png)
+![player_remove_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_remove_1.png)
 
 很简单吧？相信你已经理解了这个语法。和`/tag`类似，记分板同样作为一种标记，不会对实体的行为有任何影响。
 
@@ -77,7 +77,7 @@ sidebar_position: 4
 
 *事出反常必有妖*，我们来看看 Java 版`add` -1 的效果如何：
 
-![player_add_2](../img/c4_tag_and_scoreboard/player_add_2.png)
+![player_add_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_add_2.png)
 
 看来这就是 Mojang 添加`remove`语法的理由——因为 Java 版不支持添加负数。当然，如果你不放心，担心未来的基岩版会开倒车禁止填写为负数的话，那么在涉及减分操作时就用`remove`吧。
 
@@ -95,7 +95,7 @@ sidebar_position: 4
 
 我们清楚地看到，世界中并不存在任何一名名字叫做“test”的玩家，然而这条命令还是成功执行，并显示在了侧边栏上。这就是为一个假名添加分数的方法。
 
-![player_add_3](../img/c4_tag_and_scoreboard/player_add_3.png)
+![player_add_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_add_3.png)
 
 ### 针对所有追踪对象的操作
 
@@ -109,7 +109,7 @@ sidebar_position: 4
 
 我们看到，包括假名在内的所有被追踪对象都增加了 100 分，同时其他实体却不受影响。但是，**这么做也同时影响其他记分项上的被追踪对象**，例如在下图中，被`test`记分项追踪的假名也同样受到了影响并显现在`data`中。
 
-![player_add_4](../img/c4_tag_and_scoreboard/player_add_4.png)
+![player_add_4](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_add_4.png)
 
 实际情况下，`*`的使用应当慎之又慎，因为它不像目标选择器一样，它没有任何筛选手段。
 
@@ -145,7 +145,7 @@ sidebar_position: 4
 
 执行命令`/scoreboard players set test data 1`。这将指定一个假名分数`data.test`=`1`。
 
-![player_reset_1](../img/c4_tag_and_scoreboard/player_reset_1.png)
+![player_reset_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_reset_1.png)
 
 然后，用`/scoreboard players reset test data`移除它的分数。
 
@@ -153,7 +153,7 @@ sidebar_position: 4
 
 你会看到，`data.test`从记分板上消失，代表它不再被追踪。在某些情况下，这条命令是比较有用的，例如要抛弃一个变量或者处理“玩家下线”问题时，这些问题我们都会在下一节详细讲讲。
 
-![player_reset_2](../img/c4_tag_and_scoreboard/player_reset_2.png)
+![player_reset_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_reset_2.png)
 
 ## 随机分数
 
@@ -175,7 +175,7 @@ sidebar_position: 4
 
 可以看到，这次的执行随机取值为了 56。你也可以多尝试几次这条命令，感受随机取值的特点。
 
-![player_random_1](../img/c4_tag_and_scoreboard/player_random_1.png)
+![player_random_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_random_1.png)
 
 随机取值在许多情况下都拥有它独特的意义，例如幸运方块、抽奖机等需要涉及概率、随机事件的情况。从更底层一点的机制上来说，诸如苦力怕爆炸掉落方块、发射器投掷器发射物品、甚至于我们曾学过的`@r`都需要用到随机。可见，无论是实际工程中还是游戏中，随机都无处不在。
 
@@ -219,7 +219,7 @@ sidebar_position: 4
 
 **这条命令将返回所有的追踪对象。如果指定了`玩家名称`的话，就专门返回该追踪对象在特定记分项上的分数**。下图是执行了`/scoreboard players list`和`scoreboard players list @s`的结果。
 
-![player_list_1](../img/c4_tag_and_scoreboard/player_list_1.png)
+![player_list_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_list_1.png)
 
 ## 对分数进行运算操作
 
@@ -277,7 +277,7 @@ sidebar_position: 4
 /scoreboard players set y data 5
 ```
 
-![player_operation_1](../img/c4_tag_and_scoreboard/player_operation_1.png)
+![player_operation_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_1.png)
 
 然后，执行下面的每一条命令，执行每一条命令结束后，观察两个变量发生的变化，然后**再执行一次上面的两条命令以复原原有的值**。
 
@@ -294,31 +294,31 @@ sidebar_position: 4
 
 - `=`进行的操作是`obj1.name1=obj2.name2`，也就是将右边的值赋给左边。在这个例子中，执行命令 1 后就是`data.x=data.y`，所以`data.x`变为 5。
 
-  ![player_operation_2](../img/c4_tag_and_scoreboard/player_operation_2.png)
+  ![player_operation_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_2.png)
 
 - `+=`进行的操作是`obj1.name1+=obj2.name2`，也就是将左加右赋给左边。在这个例子中，执行命令 2 后就是`data.x+=data.y`，所以`data.x`变为 100+5=105。
 
-  ![player_operation_3](../img/c4_tag_and_scoreboard/player_operation_3.png)
+  ![player_operation_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_3.png)
 
 - `-=`进行的操作是`obj1.name1-=obj2.name2`，也就是将左减右赋给左边。在这个例子中，执行命令 3 后就是`data.x-=data.y`，所以`data.x`变为 100-5=95。
 
-  ![player_operation_4](../img/c4_tag_and_scoreboard/player_operation_4.png)
+  ![player_operation_4](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_4.png)
 
 - `*=`进行的操作是`obj1.name1*=obj2.name2`，也就是将左乘右赋给左边。在这个例子中，执行命令 4 后就是`data.x*=data.y`，所以`data.x`变为 100×5=500。
 
-  ![player_operation_5](../img/c4_tag_and_scoreboard/player_operation_5.png)
+  ![player_operation_5](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_5.png)
 
 - `/=`进行的操作是`obj1.name1/=obj2.name2`，也就是将左除以右赋给左边。在这个例子中，执行命令 5 后就是`data.x/=data.y`，所以`data.x`变为 100/5=20。
   - 请注意：记分板的值不允许小数，所以**计算得到的小数将会全部向零取整**。例如，如果是 48/5=9.6 ，那么最终得到的结果就是 9。
   - 我们在小学时就学过，除数不能为 0。但是，在基岩版中，除以 0 并不会报错，而是不计算，什么也不会发生。
 
-  ![player_operation_6](../img/c4_tag_and_scoreboard/player_operation_6.png)
+  ![player_operation_6](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_6.png)
 
 - `%=`进行的操作是`obj1.name1%=obj2.name2`，也就是将左除以右的模赋给左边。在这个例子中，执行命令 6 后就是`data.x%=data.y`，所以`data.x`变为 100/5=20……0 的 0。
   - 如果你忘记了模是什么的话，定义 x÷y=a……b 的 b 为模。例如，48÷5=9……3，那么这里的模就是 3。
   - 和`/=`类似，除以 0 则什么也不会发生。
 
-  ![player_operation_7](../img/c4_tag_and_scoreboard/player_operation_7.png)
+  ![player_operation_7](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_7.png)
 
 ### 比较并赋值
 
@@ -342,13 +342,13 @@ sidebar_position: 4
 
 我们看到，在这个实验中，执行命令 1 后看似什么也没有发生？
 
-![player_operation_8](../img/c4_tag_and_scoreboard/player_operation_8.png)
+![player_operation_8](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_8.png)
 
 其实不然。实际上，`>`进行的操作是**两值取大赋给左边**，即`obj1.name1=max(obj1.name1,obj2.name2)`，这里的`max(a,b)`是返回 a 和 b 中的最大值，常用于数学和计算机领域。所以，在上面的例子中，执行命令 1 之后，先对`data.x`和`data.y`进行比较，发现 100>5，所以把 100 赋给`data.x`。
 
 同样，`<`进行的操作是**两值取小赋给左边**，即`obj1.name1=min(obj1.name1,obj2.name2)`，这里的`min(a,b)`是返回 a 和 b 中的最小值。在上面的例子中，执行命令 2 之后，对`data.x`和`data.y`比较发现 100\<5，所以把 5 赋给`data.x`。
 
-![player_operation_9](../img/c4_tag_and_scoreboard/player_operation_9.png)
+![player_operation_9](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_9.png)
 
 ### 对调分数
 
@@ -368,7 +368,7 @@ sidebar_position: 4
 
 这条命令的含义，则是相当清晰的，简单地对调分数。它也是唯一一个能影响右边分数`obj2.name2`的操作。
 
-![player_operation_10](../img/c4_tag_and_scoreboard/player_operation_10.png)
+![player_operation_10](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_10.png)
 
 ---
 

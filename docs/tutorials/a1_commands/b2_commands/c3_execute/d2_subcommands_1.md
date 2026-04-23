@@ -97,7 +97,7 @@ as <源目标: target> -> execute
 
 我们用下面这张图来反映这个子命令究竟做了什么：
 
-![as @e type=sheep](../img/c3_execute/as.png)
+![as @e type=sheep](/img/tutorials/a1_commands/b2_commands/c3_execute/as.png)
 
 不过！这张图有一点并没有说清楚……这张图似乎隐晦地传达了一个信息：难道更改执行者就会把执行位置、执行朝向和执行维度全部改过去吗？事实上，这种想法是错误的。何以见得？我们来做下一个实验，你就会看到这点。
 
@@ -111,11 +111,11 @@ as <源目标: target> -> execute
 
 实验结果如下图：
 
-![as2](../img/c3_execute/as2.png)
+![as2](/img/tutorials/a1_commands/b2_commands/c3_execute/as2.png)
 
 看来，结果是显然的：**`as`更改且仅更改执行者**。换言之，**执行环境参数不受影响**，这张图的更完整的画法应当为：
 
-![as @e type=sheep 3](../img/c3_execute/as3.png)
+![as @e type=sheep 3](/img/tutorials/a1_commands/b2_commands/c3_execute/as3.png)
 
 我们着重强调这点，就是为了提醒你：务必注意这些子命令都会更改什么上下文，以及它们可能会带来什么影响，不会带来什么影响。尤其对于`as`，因为它不改变执行位置，很多开发者会错误地认为它更改了执行者之后，就认为是该实体完全执行此命令，隐晦地认为这条命令更改执行位置（哪怕他们明确地知道这条命令不更改执行位置），这是不正确的。
 
@@ -146,15 +146,15 @@ at <源目标: target> -> execute
 
 所以，所有的玩家都将传送到所有羊（事实上是所有羊执行一遍，依次执行，并执行到最后那只羊身上）的位置上。
 
-![at1](../img/c3_execute/at1.png)
+![at1](/img/tutorials/a1_commands/b2_commands/c3_execute/at1.png)
 
 上面这个过程，可以用下面这张图来表示。
 
-![at2](../img/c3_execute/at2.png)
+![at2](/img/tutorials/a1_commands/b2_commands/c3_execute/at2.png)
 
 我们也不妨来看一下，如果对调`as @e[type=sheep]`和`at @s`，出现的将会是下图的局面。换言之，这条命令就将*把所有的玩家传送到原执行者玩家身上*了。可见，子命令的顺序是不能任意调换的。
 
-![at3](../img/c3_execute/at3.png)
+![at3](/img/tutorials/a1_commands/b2_commands/c3_execute/at3.png)
 
 ## 更改执行位置的子命令：`positioned`、`align`、`anchored`
 
@@ -182,20 +182,20 @@ positioned as <源目标: target> -> execute
 
 在矫正朝向之前，你可以用一些标记方块来指示你的朝向变化：
 
-![positioned as1](../img/c3_execute/positioned_as1.png)
+![positioned as1](/img/tutorials/a1_commands/b2_commands/c3_execute/positioned_as1.png)
 
 :::
 
 通过实验，你可以看到两条命令的执行效果如下：
 
 1. `/execute as @a at @e[type=sheep,c=1] run tp @s ~~~ ~~`的执行效果，它把玩家传送到羊的身上，并且朝向也改为羊的朝向：  
-  ![positioned as2](../img/c3_execute/positioned_as2.png)
+  ![positioned as2](/img/tutorials/a1_commands/b2_commands/c3_execute/positioned_as2.png)
 2. `/execute as @a positioned as @e[type=sheep,c=1] run tp @s ~~~ ~~`的执行效果，它把玩家传送到羊的身上，但是朝向仍然为玩家原来的朝向：  
-  ![positioned as3](../img/c3_execute/positioned_as3.png)
+  ![positioned as3](/img/tutorials/a1_commands/b2_commands/c3_execute/positioned_as3.png)
 
 这样，你便看到这两条命令的异同点。它们都修改了执行位置为最近的羊，所以`tp @s ~~~`都传送玩家到相同的位置；但`positioned as`并不改变执行朝向，所以`tp`命令后面的两个`~~`就认定执行朝向仍为原执行者的朝向。
 
-![positioned as4](../img/c3_execute/positioned_as4.png)
+![positioned as4](/img/tutorials/a1_commands/b2_commands/c3_execute/positioned_as4.png)
 
 讲一句题外话。如果我们执行的命令不是`/tp @s ~~~ ~~`，而是`/tp @s ~~~`，那么这时候朝向无论如何都是玩家原来的朝向，这是因为这时候调用的不是`/tp`更改朝向的命令，**`/tp @s ~~~`只单纯地指定执行位置，所以更改执行朝向并不能影响这条命令的执行效果**。很多开发者都会在使用这条命令时，错误地认为更改执行朝向会一同改变被传送者的朝向，这是不正确的。
 
@@ -215,7 +215,7 @@ positioned <位置: x y z> -> execute
 
 :::
 
-![positioned](../img/c3_execute/positioned1.png)
+![positioned](/img/tutorials/a1_commands/b2_commands/c3_execute/positioned1.png)
 
 好像报了很多错，但不要紧，仔细一看就知道这是`/setblock`试图在未加载的区域放置方块，从而报错，其实就是离得太远了。我们后面会学习到`/tickingarea`命令，用它来添加一个常加载区域，就可以在足够远的同时使这些操作方块的命令生效。
 
@@ -241,7 +241,7 @@ align <坐标轴: string> -> execute
 
 执行后，这条命令的执行结果为：
 
-![align1](../img/c3_execute/align1.png)
+![align1](/img/tutorials/a1_commands/b2_commands/c3_execute/align1.png)
 
 可以看到，`positioned`指定的执行位置(0.75,-59.5,0.25)被`align`修正为了(0.0,-60.0,0.0)。因为`align`指定为了`xyz`，所以 3 个坐标均被修正并向下取整。
 

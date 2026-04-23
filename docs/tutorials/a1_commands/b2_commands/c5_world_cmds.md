@@ -14,7 +14,7 @@ sidebar_position: 5
 
 世界规则，就是能够影响到世界运行方式的规则。其实，在你创建世界时，你所看到的一些“作弊选项”本质上就是更改了这些规则。
 
-![gamerule_1](./img/c5_world_cmds/gamerule_1.png)
+![gamerule_1](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_1.png)
 
 在基岩版中，世界规则主要由两条命令控制：`/gamerule`和`/mobevent`。其中，`/gamerule`是我们这一节的重点内容，而`/mobevent`相对来说，使用频次就要低得多了。
 
@@ -32,13 +32,13 @@ sidebar_position: 5
 
 第一种，可以直接写为`/gamerule`，来**查询当前所有的游戏规则**。
 
-![gamerule_2](./img/c5_world_cmds/gamerule_2.png)
+![gamerule_2](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_2.png)
 
 我们看到可用的游戏规则还是很多的。第二种，就是语法 2 和 3 的含义：`/gamerule <规则> [值]`，**将`规则`改为`值`，如果`值`未指定就改为查询**。只是规则分为布尔值的规则和整数的规则，所以值也对应地调整为布尔值和整数。
 
 这些游戏规则都有什么用处呢？现在，请你在 [Wiki 给出的所有游戏规则](https://zh.minecraft.wiki/w/游戏规则#基岩版)的表里面查看更具体的细节，Wiki 给出的列表可谓十分详细，无需我们再额外强调什么。这张表怎么看？很简单，我们只需要关注“游戏规则 ID”、“默认值”和“效果”这几列就行。
 
-![gamerule_3](./img/c5_world_cmds/gamerule_3.png)
+![gamerule_3](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_3.png)
 
 当然，这个表格中有些规则你可能目前还看不懂，比如`commandBlockOutPut`、或者`functionCommandLimit`等涉及到你还没有接触到的概念，如果看不懂，就直接跳过去，我们在讲到相关内容的时候会简单谈谈这些游戏规则。但是，其中的大多数内容，你应该已经能看懂了。
 
@@ -48,7 +48,7 @@ sidebar_position: 5
 
 在对所有游戏规则进行简单了解后，执行命令`/gamerule mobGriefing false`，然后点燃一只苦力怕，看看效果如何。
 
-![gamerule_4](./img/c5_world_cmds/gamerule_4.png)
+![gamerule_4](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_4.png)
 
 :::
 
@@ -75,7 +75,7 @@ sidebar_position: 5
 
 关于这条命令更加详细的解释，参见[命令/mobevent - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/命令/mobevent)。当然，就算不看 Wiki，实际想要掌握这条命令也是非常简单的，用法和`/gamerule`如出一辙。考虑到这条命令实际并不常用，在这里我们就不再赘述太多了。
 
-![mobevent_1](./img/c5_world_cmds/mobevent_1.png)
+![mobevent_1](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/mobevent_1.png)
 
 :::note[扩展：关于`/mobevent`存在意义的讨论]
 
@@ -97,7 +97,7 @@ sidebar_position: 5
 
 在创建世界时，我们可以看到这个世界在一开始就要求我们指定一个模拟距离。很多人并不理解怎么回事，然而你现在可能已经有了一点头绪。是的，**模拟距离控制着玩家附近的范围，有多远的区块会被加载，有多远的生物会不断地运行**。如果你是生电（生存电路）玩家，对这个名词必然不陌生。模拟距离如果不特别指定，一般是 4 个区块，代表玩家所在区块以外延伸的 4 个区块都会加载。下图来源于[模拟距离 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/模拟距离)，可能对你理解这个概念有所帮助。
 
-![simulation_distance](./img/c5_world_cmds/simulation_distance.png)
+![simulation_distance](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/simulation_distance.png)
 
 我们再来扩展一点小知识，关于实体的自然生成、自然消失和持久性。
 
@@ -158,11 +158,11 @@ sidebar_position: 5
 
 在上面的例子中，如果我们直接在(0,-60,0)放置石头，`/setblock`会提示我们无法在世界外放置方块，这便是区块仍处于卸载状态的缘故。不光是`/setblock`，还有众多涉及方块操作的命令例如`/execute if block`和`/execute if blocks`等，都会在对应位置的区块卸载时执行失败。
 
-![tickingarea_1](./img/c5_world_cmds/tickingarea_1.png)
+![tickingarea_1](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/tickingarea_1.png)
 
 我们还看到，添加了常加载区域之后，游戏返回的信息并不是添加了(100,0,100)\~(200,0,200)的常加载区域，而是(96,0,96)\~(207,0,207)。这是因为，每一个区块占地面积都是 16×16，所以区块的边界坐标并不是一个任意的整数，而是 16 的倍数，例如这里 96 就是 16 的倍数，而 x=207 和 x=96 之间相隔的方块数量 207-96+1 也是 16 的倍数。所以这里你就理解，“长方体区域有重叠部分的所有区块”的含义，其实就是含这些坐标的区块。
 
-![tickingarea_2](./img/c5_world_cmds/tickingarea_2.png)
+![tickingarea_2](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/tickingarea_2.png)
 
 在添加常加载区域后，再次放置石头就能够执行成功了。
 
@@ -170,7 +170,7 @@ sidebar_position: 5
 
 需要注意的一点是，每次添加常加载区域，不能超过 100 个区块，否则会执行失败。而对于语法 2 而言，因为半径超过 5 会导致添加的区块数量超过 100，因此`半径`最大为 4。这也就导致我们通常使用添加矩形常加载区域的语法 1，而非实际上添加很少常加载区域的语法 2。
 
-![tickingarea_3](./img/c5_world_cmds/tickingarea_3.png)
+![tickingarea_3](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/tickingarea_3.png)
 
 *备注：本图仅为示意*。
 

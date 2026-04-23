@@ -10,6 +10,7 @@ import '/src/css/treeview.css';
 import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
+import Image from "/src/components/image/standard"
 
 > 上次更新：2026 年 4 月 22 日。中国版最新版本为 1.21.90，国际版最新版本为 26.10。
 
@@ -52,6 +53,7 @@ import DataType from "/src/components/type/data"
                 - <DataType type="object" name="east" isRequired/>/<DataType type="object" name="west" isRequired/>/<DataType type="object" name="south" isRequired/>/<DataType type="object" name="north" isRequired/>/<DataType type="object" name="up" isRequired/>/<DataType type="object" name="down" isRequired/>：定义东西南北顶底分别如何取用 UV（贴图）。
                   - <DataType type="array" name="uv" isRequired/>：定义对应的面取 UV 的何像素点作为源点。应为一个<DataType type="int"/>的二元数组。
                   - <DataType type="array" name="uv_size" isRequired/>：定义在 UV 源点的基础上应该沿长宽方向多少像素的范围内取用 UV。应为一个<DataType type="int"/>的二元数组。
+                  - <DataType type="array" name="material_instance"/>：定义方块的材质实例，可用于[`minecraft:material_instances`](./components#minecraftmaterial_instances)组件批量更改多个面。
               - <DataType type="float" name="inflate"/>：定义部件的膨胀值，在基础大小的基础上放大多少倍。
               - <DataType type="array" name="pivot"/>：定义部件枢轴点。对部件的旋转操作基于此枢轴点。应为一个<DataType type="float"/>的三元数组。
               - <DataType type="array" name="rotation"/>：定义部件相对于部件枢轴点的旋转角度。应为一个<DataType type="float"/>的三元数组。
@@ -122,8 +124,8 @@ import DataType from "/src/components/type/data"
 
 | 模型 ID | 描述 | 示例 |
 | --- | --- | --- |
-| `minecraft:geometry.full_block` | 完整的 16×16×16 方块模型 | ![model_full_block_1](/img/docs/docs/blocks/model/model_full_block_1.png) |
-| `minecraft:geometry.cross` | 类似于花、草一样的贴图交叉模型 | ![model_cross_1](/img/docs/docs/blocks/model/model_cross_1.png) |
+| `minecraft:geometry.full_block` | 完整的 16×16×16 方块模型 | <Image src="/img/docs/docs/blocks/model/model_full_block_1.png" text="完整方块模型" showText={false}/> |
+| `minecraft:geometry.cross` | 类似于花、草一样的贴图交叉模型 | <Image src="/img/docs/docs/blocks/model/model_cross_1.png" text="交叉模型" showText={false}/> |
 
 > 图片取自中文 Minecraft Wiki。
 
