@@ -12,13 +12,15 @@ import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
 
-> 上次更新：2026 年 4 月 22 日。中国版最新版本为 1.21.90，国际版最新版本为 26.10。
+> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
 
-方块面剔除（Block Culling）可用于在临近存在方块时隐藏特定的骨骼或方块面。通常用于透明的自定义方块，消除内部仍渲染的方块面，并提升客户端方面的性能。方块面剔除规则需要将相关规则文件指定到<FileType type="folder" name="block_culling"/>的 json 文件下。
+方块面剔除（Block Culling）可用于在临近存在方块时、方块面不可见时、或间距过远时隐藏特定的骨骼或方块面，这可以显著提升客户端方面的性能。
 
 本文档收录方块面剔除的相关信息。
 
-## 方块面剔除文件格式
+## 方块面剔除规则文件格式
+
+方块面剔除规则需要将相关规则文件指定到<FileType type="folder" name="block_culling"/>的 json 文件下，在[`minecraft:geometry`组件](./components#minecraftgeometry)的`culling`参数中可以指定方块面剔除规则。这通常用于透明的自定义方块。
 
 以下为<FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="block_culling"/> - <FileType type="file" name="*.json"/>的结构。
 
@@ -136,6 +138,8 @@ import Image from "/src/components/image/standard"
 
 ![voxel_1](/img/docs/docs/blocks/culling/voxel_1.png)
 
+---
+
 ## 背面剔除
 
 背面剔除（Backface Culling）是一项用于提升性能的渲染技术。众所周知，我们在现实生活中看一个立方体只能看到 3 个面，故而没有看到的 3 个面就可以防止渲染，这可以提升程序性能。对于非透明方块来讲，是否渲染这 3 个面就没有任何的影响了。
@@ -147,6 +151,14 @@ import Image from "/src/components/image/standard"
 <Image src="/img/docs/docs/blocks/culling/backface_culling_2.png" text="背面剔除（左）与背面不剔除（右）的对比" size="75%"/>
 
 在[`minecraft:material_instance`组件](./components#minecraftmaterial_instance)中，指定不同的材质（`render_method`）会有不同的背面剔除效果。
+
+## 远距剔除
+
+远距剔除（Distant Culling）则是另一项用于提升性能的渲染技术。当距离过远时，方块会停止继续渲染，如下图所示。
+
+<Image src="/img/docs/docs/blocks/culling/distant_culling_1.png" text="远距不剔除（玻璃，左）与远距剔除（刷怪笼，右）的对比" size="75%"/>
+
+和背面剔除类似，在[`minecraft:material_instance`组件](./components#minecraftmaterial_instance)中，指定不同的材质（`render_method`）会有不同的远距剔除效果。
 
 ---
 

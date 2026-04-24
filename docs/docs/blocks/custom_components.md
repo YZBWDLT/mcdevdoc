@@ -11,7 +11,7 @@ import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
-> 上次更新：2026 年 4 月 18 日。中国版最新版本为 1.21.90，国际版最新版本为 26.10。
+> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
 
 :::warning[注意]
 

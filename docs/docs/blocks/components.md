@@ -10,8 +10,9 @@ import '/src/css/treeview.css';
 import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
+import Image from "/src/components/image/standard"
 
-> 上次更新：2026 年 4 月 23 日。中国版最新版本为 1.21.90，国际版最新版本为 26.10。
+> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
 
 数据驱动方块组件（Data-Driven Block Components）用于规定方块的功能。将不同的方块组件组合在一起可以实现多种复杂的功能。方块组件可以指定到<DataType type="object" name="components" isRequired/>中，以使得方块在所有情况下都使用相关功能；也可以指定到方块置换<DataType type="array" name="permutations"/> - <DataType type="object"/> - <DataType type="object" name="components" isRequired/>中，使得方块在使用特定方块置换时使用特定的功能。
 
@@ -120,7 +121,7 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:display_name`
 
-<Version version="1.19.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_display_name?view=minecraft-bedrock-stable"/> <Version version="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-display-name" isChinaVersion />
+<Version version="1.19.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_display_name?view=minecraft-bedrock-stable"/> <Version version="1.19.60" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-display-name" isChinaVersion />
 
 定义方块在物品栏的悬浮文本。
 
@@ -381,7 +382,7 @@ import DataType from "/src/components/type/data"
 
 <Version version="1.19.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_material_instances?view=minecraft-bedrock-stable"/>
 
-定义方块的材质实例。
+定义方块的材质和贴图实例。这个组件可以按照给定的方块模型的要求，将特定的材质和贴图应用到给定的模型上，并控制其他的渲染参数。
 
 :::warning[注意]
 
@@ -391,7 +392,50 @@ import DataType from "/src/components/type/data"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:material_instance"/>：根对象
+  - <DataType type="object" name="(材质实例)"/>：定义方块的面如何实例化。`(材质实例)`可指定为原版内置的`east`、`west`、`south`、`north`、`up`、`down`、`*`（应用到所有面上）或在[模型文件](./model#方块模型文件格式)中定义的`material_instance`参数（以应用到这些面上）。
+    - <DataType type="string" name="texture" isRequired/>：定义方块的贴图。会对指定的面使用[`terrain_texture.json`](#terrain_texturejson)中定义的对应的贴图路径。
+    - <DataType type="string" name="render_method"/>：定义方块的材质。所有材质实例应使用相同的材质。可选值见下表，默认值为`opaque`。
+    - <DataType type="string" name="tint_method"/>：定义对方块进行特殊着色。通常在雨天或特定温度的生物群系下使用特殊的着色方法。可选值为`none`（默认值）、`default_foliage`、`birch_foliage`、`evergreen_foliage`、`dry_foliage`、`grass`或`water`。
+    - <DataType type="boolean" name="alpha_masked_tint"/>：定义是否在 alpha 通道上对方块进行<DataType type="string" name="tint_method"/>定义的特殊着色。默认值为`false`。
+    - <DataType type="string"/><DataType type="float" name="ambient_occlusion"/>：定义方块是否启用环境光遮蔽，这会影响方块的平滑光照效果。对于发光方块默认为`false`，不发光方块默认为`true`。  
+    指定为浮点数时即指定环境光遮蔽强度，可指定为`0.0`-`10.0`（含），`false`对应`0.0`，`true`对应`1.0`。  
+    可见「部分渲染参数对比图」。
+    - <DataType type="boolean" name="face_dimming"/>：定义是否调暗方块面。对于发光方块默认为`false`，不发光方块默认值为`true`。  
+    可见「部分渲染参数对比图」。
+    - <DataType type="boolean" name="isotropic"/>：定义是否设置方块贴图为各向同性。这会根据方块所处的位置随机地旋转贴图。默认值为`false`。  
+    可见「部分渲染参数对比图」。
+  - <DataType type="string" name="(材质实例)"/>：直接定义方块的贴图。会对指定的面使用[`terrain_texture.json`](#terrain_texturejson)中定义的对应的贴图路径。`(材质实例)`可指定为原版内置的`east`、`west`、`south`、`north`、`up`、`down`、`*`（应用到所有面上）或在[模型文件](./model#方块模型文件格式)中定义的`material_instance`参数（以应用到这些面上）。
+</treeview>
+
+`render_method`的可用值有（可点击背面剔除 / 远距剔除查看相关概念）：
+
+| 可选值 | 描述 | 完全透明 | 半透明 | [背面剔除](./culling#背面剔除) | [远距剔除](./culling#远距剔除) | 原版实例 |
+| --- | --- | --- | --- | --- | --- | --- |
+| `opaque` | 定义方块不透明。 | ❌ | ❌ | ✔️ | ❌ | 泥土、石头等一般方块 |
+| `double_sided` | 定义方块不透明且前后均可见。 | ❌ | ❌ | ❌ | ❌ | 细雪 |
+| `alpha_test` | 定义方块完全透明。 | ✔️ | ❌ | ❌ | ✔️ | 刷怪笼、梯子等 |
+| `alpha_test_single_sided` | 定义方块完全透明，仅前面可见。 | ✔️ | ❌ | ✔️ | ✔️ | 门、活板门 |
+| `blend` | 定义方块完全透明或半透明。 | ✔️ | ✔️ | ✔️ | ❌ | 玻璃、染色玻璃等 |
+
+| 可选值 | 描述 | 原版实例 |
+| --- | --- | --- |
+| `alpha_test_to_opaque` | 近距时渲染为`alpha_test`，远距时渲染为`opaque` | 树叶 |
+| `alpha_test_single_sided_to_opaque` | 近距时渲染为`alpha_test_single_sided`，远距时渲染为`opaque` | 海带、甘蔗 |
+| `blend_to_opaque` | 近距时渲染为`blend`，远距时渲染为`opaque` | —— |
+
 </TabItem><TabItem value="示例" label="示例">
+
+</TabItem><TabItem value="部分渲染参数对比图" label="部分渲染参数对比图">
+
+<Image src="/img/docs/docs/blocks/components/ambient_occlusion_1.png" text="环境光遮蔽（ambient occlusion），左侧为开，右侧为关，可见右侧的方块似乎禁用了平滑光照，这可以提升性能"/>
+
+<Image src="/img/docs/docs/blocks/components/ambient_occlusion_2.png" text="环境光遮蔽（ambient occlusion），左侧为 0.0，右侧为 7.5，可见很强烈的遮蔽现象"/>
+
+<Image src="/img/docs/docs/blocks/components/face_dimming_1.png" text="方块面调暗（face dimming），左侧为关，右侧为开，可见左侧的方块面显然更亮"/>
+
+<Image src="/img/docs/docs/blocks/components/isotropic_1.png" text="各向同性（isotropic），左侧为关，右侧为开，可见右侧的方块面被随机旋转"/>
 
 </TabItem></Tabs>
 
