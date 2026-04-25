@@ -73,7 +73,7 @@ import Image from "/src/components/image/standard"
       - <DataType type="int" name="2"/>：基于源坐标的 Z 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
     - <DataType type="array" name="size"/>：定义方块碰撞箱基于源坐标的大小。默认值为`[16, 16, 16]`。
       - <DataType type="int" name="0"/>：X 方向的方块大小。与`origin`的 X 坐标相加后必须在`-8`~`8`之间（含）。
-      - <DataType type="int" name="1"/>：Y 方向的方块大小。与`origin`的 Y 坐标相加后必须在`0`\~`24`之间（含）。格式版本低于`1.26.0`时范围缩小到`0`\~`16`之间。
+      - <DataType type="int" name="1"/>：Y 方向的方块大小。与`origin`的 Y 坐标相加后必须在`0`\~`24`之间（含）。格式版本低于`1.26.0`时范围缩小到`0`\~`16`之间（含）。
       - <DataType type="int" name="2"/>：Z 方向的方块大小。与`origin`的 Z 坐标相加后必须在`-8`~`8`之间（含）。
 </treeview>
 
@@ -127,7 +127,15 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="string" name="minecraft:display_name"/>：定义方块的悬浮文本。不指定此组件时，默认为`tile.(方块 ID).name`。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:display_name": "tile.test:custom_block.name"
+```
 
 </TabItem></Tabs>
 
@@ -242,7 +250,7 @@ import Image from "/src/components/image/standard"
 
 ### `minecraft:map_color`
 
-<Version isLowVersion/> <Version docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_map_color?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-map-color" isChinaVersion />
+<Version version="1.12.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_map_color?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-map-color" isChinaVersion />
 
 定义方块在地图（物品）上显示的颜色。
 
@@ -290,7 +298,42 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+**对象型**：
+
+<treeview>
+- <DataType type="object" name="minecraft:selection_box"/>：根对象。
+  - <DataType type="array" name="origin"/>：定义方块选择箱源坐标，`[0, 0, 0]`为底面中心点的坐标。默认值为`[-8, 0, -8]`。
+    - <DataType type="int" name="0"/>：基于源坐标的 X 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
+    - <DataType type="int" name="1"/>：基于源坐标的 Y 坐标（像素）偏移值。必须在`0`~`16`之间（含）。
+    - <DataType type="int" name="2"/>：基于源坐标的 Z 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
+  - <DataType type="array" name="size"/>：定义方块选择箱基于源坐标的大小。默认值为`[16, 16, 16]`。
+    - <DataType type="int" name="0"/>：X 方向的方块大小。与`origin`的 X 坐标相加后必须在`-8`~`8`之间（含）。
+    - <DataType type="int" name="1"/>：Y 方向的方块大小。与`origin`的 Y 坐标相加后必须在`0`~`16`之间（含）。
+    - <DataType type="int" name="2"/>：Z 方向的方块大小。与`origin`的 Z 坐标相加后必须在`-8`~`8`之间（含）。
+</treeview>
+
+**布尔型**：
+
+<treeview>
+- <DataType type="boolean" name="minecraft:selection_box"/>：定义方块是否具有选择箱。默认为`true`，且使用 16×16×16 像素的选择箱大小。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+**对象型**（半砖尺寸）：
+
+```json showLineNumbers
+"minecraft:selection_box": {
+    "origin": [-8, 0, -8],
+    "size": [16, 8, 16]
+}
+```
+
+**布尔型**（正常方块尺寸）：
+
+```json showLineNumbers
+"minecraft:selection_box": true
+```
 
 </TabItem></Tabs>
 
@@ -334,9 +377,10 @@ import Image from "/src/components/image/standard"
 <treeview>
 - <DataType type="object" name="minecraft:geometry"/>：根对象
   - <DataType type="string" name="identifier" isRequired/>：定义方块使用的方块模型。可指定[原版使用的方块模型](./model#原版使用的方块模型)，或指定在<FileType type="folder" name="models"/> - <FileType type="folder" name="block"/> - <FileType type="file" name="*.geo.json"/>中所定义的方块模型。详见[方块模型](./model)。
-  - <DataType type="object" name="bone_visibility"/>：定义方块骨骼可见性。
-    - <DataType type="boolean"/><DataType type="string" name="(骨骼 ID)"/>：定义`骨骼 ID`在方块中的可见性，可指定 [Molang 表达式](./molang)（常用`query.block_state()`）。默认值为`true`。
-  - <DataType type="string" name="culling"/>：定义方块采用何种面剔除规则。详见[方块面剔除](./culling)。不指定时则不进行面剔除。
+  - <DataType type="object" name="bone_visibility"/>：（1.19.80+）定义方块骨骼可见性。
+    - <DataType type="boolean" name="(骨骼 ID)"/>：（写法 1）定义`骨骼 ID`是否可见。默认值为`true`。
+    - <DataType type="string" name="(骨骼 ID)"/>：（写法 2，1.20.10+）定义`骨骼 ID`是否可见，需指定 [Molang 表达式](./molang)（常用`query.block_state()`）。
+  - <DataType type="string" name="culling"/>：（1.20.60+）定义方块采用何种面剔除规则。详见[方块面剔除](./culling)。不指定时则不进行面剔除。
   - <DataType type="string" name="culling_layer"/>：定义方块面剔除层。当在[面剔除规则](./culling)的`condition`中指定了`same_culling_layer`条件后，会在此方块在和临近方块使用相同的面剔除层时进行剔除。习惯上定义为`(命名空间):culling_layer.(面剔除层 ID)`。  
   原版有两个内置的面剔除层，包括`minecraft:culling_layer.undefined`（默认值）、`minecraft:culling_layer.leaves`（树叶剔除模式）。
   - <DataType type="string" name="culling_shape"/>：（26.20+，需开启「实验性 Voxel 形状特征」实验性玩法）定义方块面剔除体素。默认值为`minecraft:empty`。详见[按体素剔除面](./culling#按体素剔除面)。
@@ -427,6 +471,34 @@ import Image from "/src/components/image/standard"
 
 </TabItem><TabItem value="示例" label="示例">
 
+```json showLineNumbers
+"minecraft:material_instance": {
+    "*": {
+        "texture": "stone",
+        "isotropic": true
+    }
+}
+```
+
+```json showLineNumbers
+"minecraft:material_instance": {
+    "*": {
+        "texture": "stone",
+        "ambient_occlusion": false,
+        "face_dimming": false
+    }
+}
+```
+
+```json showLineNumbers
+"minecraft:material_instance": {
+    "*": {
+        "texture": "glass",
+        "render_method": "blend"
+    }
+}
+```
+
 </TabItem><TabItem value="部分渲染参数对比图" label="部分渲染参数对比图">
 
 <Image src="/img/docs/docs/blocks/components/ambient_occlusion_1.png" text="环境光遮蔽（ambient occlusion），左侧为开，右侧为关，可见右侧的方块似乎禁用了平滑光照，这可以提升性能"/>
@@ -473,11 +545,24 @@ import Image from "/src/components/image/standard"
 
 <Version version="1.21.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_item_visual?view=minecraft-bedrock-stable"/>
 
-定义方块在物品栏中的外观。
+定义方块在物品栏中和手持时的外观。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:item_visual"/>：定义方块在物品栏中和手持时如何显示。
+  - <DataType type="object" name="geometry"/>：定义方块在物品栏中和手持时使用的模型。可写入的内容详见[`minecraft:geometry`](#minecraftgeometry)组件。
+  - <DataType type="object" name="material_instance"/>：定义方块在物品栏中和手持时使用的材质贴图实例。可写入的内容详见[`minecraft:material_instance`](#minecraftmaterial_instance)组件。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:item_visual": {
+    "geometry": { "identifier": "minecraft:geometry.full_block" },
+    "material_instances": { "*": { "texture": "dirt" } }
+}
+```
 
 </TabItem></Tabs>
 
@@ -523,13 +608,26 @@ import Image from "/src/components/image/standard"
 
 ### `minecraft:crafting_table`
 
-<Version version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_crafting_table?view=minecraft-bedrock-stable"/>
+<Version version="1.19.50" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_crafting_table?view=minecraft-bedrock-stable"/>
 
 定义方块为一种工作台。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:crafting_table"/>：根对象。
+  - <DataType type="array" name="crafting_tags" isRequired/>：定义工作台的标签，这可以用于[配方表](../items/recipes)。
+  - <DataType type="array" name="table_name"/>：定义工作台的 UI 文本，可以使用语言文件的键名。默认值为`(方块 ID)`。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:crafting_table": {
+    "crafting_tags": ["crafting_table", "stonecutter"],
+    "table_name": "test:crafting_table.crafting"
+}
+```
 
 </TabItem></Tabs>
 
@@ -553,11 +651,30 @@ import Image from "/src/components/image/standard"
 
 <Version version="1.21.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_entity_fall_on?view=minecraft-bedrock-stable"/>
 
-定义实体在多高处落到该方块上之后，才能触发 ScriptAPI 中自定义方块组件定义的`onEntityFallOn`事件。
+定义实体在多高处落到该方块上之后，才能触发 ScriptAPI 中自定义方块组件定义的[`onEntityFallOn`事件](./custom_components#onentityfallon属性)。
+
+:::warning[注意]
+
+该组件必须配合 ScriptAPI 使用，因此该组件在现在或未来的中国版也是无效的。
+
+:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:entity_fall_on"/>：根数组。
+  - <DataType type="float" name="min_fall_distance"/>：在从多高的高度掉落到该方块上后，才能触发 ScriptAPI 中自定义方块组件定义的[`onEntityFallOn`事件](./custom_components#onentityfallon属性)。默认值为`1`。
+</treeview>
+
+> **注意**：经过实测，Microsoft Learn 给出的`minimum_fall_distance`是错误写法，请使用本文档给出的写法。参见[Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-components#entity-fall-on)。
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:entity_fall_on": {
+    "min_fall_distance": 3
+}
+```
 
 </TabItem></Tabs>
 
@@ -700,7 +817,15 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="int" name="minecraft:light_emission"/>：定义方块减弱的光照强度。应在`0`-`15`之间（含）。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:light_dampening": 15
+```
 
 </TabItem></Tabs>
 
@@ -736,7 +861,31 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:liquid_detection"/>：根对象。
+  - <DataType type="array" name="detection_rules"/>：根对象。
+    - <DataType type="object"/>
+      - <DataType type="string" name="liquid_type"/>：方块检查何种液体的行为。可选值为`water`（水）。默认值为`water`。
+      - <DataType type="string" name="can_contain_liquid"/>：方块是否可以容纳该液体。默认值为`false`。若为`true`则代表方块可含水。
+      - <DataType type="string" name="on_liquid_touches"/>：方块在接触到该液体时触发何种行为。可选值为`blocking`（默认值，阻挡水流过）、`broken`（打破该方块）、`no_reaction`（水正常流过）、`popped`（打破该方块并掉落物品）。
+      - <DataType type="array" name="stops_liquid_flowing_from_direction"/>
+        - <DataType type="string"/>
+      - <DataType type="boolean" name="use_liquid_clipping"/>
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:liquid_detection": {
+    "detection_rules": [
+        { "on_liquid_touches": "blocking" }
+    ]
+}
+```
+
+</TabItem><TabItem value="效果图" label="效果图">
+
+<Image src="/img/docs/docs/blocks/components/liquid_detection_1.png" text="on_liquid_touches 各参数的效果"/>
 
 </TabItem></Tabs>
 
@@ -744,7 +893,7 @@ import Image from "/src/components/image/standard"
 
 ### `minecraft:loot`
 
-<Version isLowVersion/> <Version docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_loot?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-loot" isChinaVersion />
+<Version version="1.12.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_loot?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-loot" isChinaVersion />
 
 定义方块被破坏后的战利品表。
 
@@ -805,7 +954,34 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:placement_filter"/>：根对象。
+  - <DataType type="array" name="conditions" isRequired/>：定义方块允许放置或允许存在的条件。哪怕已被放置，在不满足条件时仍会掉落对应的物品形式。
+    - <DataType type="object"/>
+      - <DataType type="array" name="allow_faces"/>：定义可以放置于其他方块的哪个或哪些面上。默认值为`["all"]`。
+        - <DataType type="string"/>：可选值：`all`、`side`、`down`、`up`、`north`、`south`、`west`和`east`。
+      - <DataType type="array" name="block_filter"/>：定义可以放置于何种方块上。默认值为`[{"tags":"1"}]`。
+        - <DataType type="string"/>：（写法 1）方块 ID。
+        - <DataType type="object"/>：（写法 2）特定状态的方块。
+          - <DataType type="string" name="name"/>：方块 ID。
+          - <DataType type="object" name="state"/>：方块状态。
+            - <DataType type="int"/><DataType type="boolean"/><DataType type="string" name="(方块状态 ID)"/>
+        - <DataType type="object"/>：（写法 3）特定标签的方块。
+          - <DataType type="string" name="tags"/>：[方块标签](./tags)。需指定为一个 Molang（通常使用`query.any_tag()`或`query.all_tags()`），默认值为`"1"`。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:placement_filter": {
+    "conditions": [
+        {
+            "allowed_faces": [ "up" ],
+            "block_filter": [ "minecraft:grass_block" ]
+        }
+    ]
+}
+```
 
 </TabItem></Tabs>
 
@@ -833,7 +1009,22 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:redstone_conductivity"/>：根对象。
+  - <DataType type="boolean" name="allows_wire_to_step_down"/>：定义红石线路能否沿着方块向下传导。默认值为`true`。
+  - <DataType type="boolean" name="redstone_conductor"/>：定义该方块为红石导体。默认值为`false`。
+</treeview>
+
+> 是的，自定义方块默认不是红石导体。
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:redstone_conductivity": {
+    "allows_wire_to_step_down": true,
+    "redstone_conductor": true
+}
+```
 
 </TabItem></Tabs>
 
@@ -899,11 +1090,32 @@ import Image from "/src/components/image/standard"
 
 <Version version="1.21.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tick?view=minecraft-bedrock-stable"/>
 
-定义方块的更新频率，并触发 ScriptAPI 中自定义方块组件定义的`onTick`事件。
+定义方块的更新频率，并触发 ScriptAPI 中自定义方块组件定义的[`onTick`事件](./custom_components#ontick属性)。
+
+:::warning[注意]
+
+该组件必须配合 ScriptAPI 使用，因此该组件在现在或未来的中国版也是无效的。
+
+:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:tick"/>：根数组。
+  - <DataType type="array" name="interval_range" isRequired/>：间隔多久执行一次[`onTick`事件](./custom_components#ontick属性)。
+    - <DataType type="int" name="0"/>：最短在多少游戏刻内执行一次事件。
+    - <DataType type="int" name="1"/>：最长在多少游戏刻内执行一次事件。
+  - <DataType type="boolean" name="looping"/>：是否循环执行更新事件。默认值为`true`。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:tick": {
+    "interval_range": [ 20, 100 ],
+    "looping": true
+}
+```
 
 </TabItem></Tabs>
 
@@ -911,13 +1123,28 @@ import Image from "/src/components/image/standard"
 
 ### `minecraft:transformation`
 
-<Version version="1.21.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_transformation?view=minecraft-bedrock-stable"/>
+<Version version="1.19.80" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_transformation?view=minecraft-bedrock-stable"/>
 
-定义方块的平移、旋转、缩放变换。
+定义方块模型与碰撞箱的平移、旋转与缩放变换。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:transformation"/>：根对象。
+  - <DataType type="array" name="rotation_pivot"/>：（1.21.0+）旋转枢轴，默认的`[0, 0, 0]`为方块底部中心位置。应为一个<DataType type="float"/>的三元数组。
+  - <DataType type="array" name="rotation"/>：相对于旋转枢轴的旋转值。应为一个<DataType type="float"/>的三元数组。
+  - <DataType type="array" name="scale_pivot"/>：（1.21.0+）尺寸枢轴，默认的`[0, 0, 0]`为方块底部中心位置。应为一个<DataType type="float"/>的三元数组。
+  - <DataType type="array" name="scale"/>：相对于尺寸枢轴调整的尺寸值。应为一个<DataType type="float"/>的三元数组。
+  - <DataType type="array" name="translation"/>：偏移值。应为一个<DataType type="float"/>的三元数组。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:transformation": {
+    "rotation": [180, 0, 0]
+}
+```
 
 </TabItem></Tabs>
 
@@ -1738,13 +1965,31 @@ import Image from "/src/components/image/standard"
 
 ### `minecraft:custom_components`
 
-<Version version="1.21.20 - 1.21.90" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_custom_components?view=minecraft-bedrock-stable"/>
+<Version version="1.21.20" toVersion="1.21.90" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_custom_components?view=minecraft-bedrock-stable"/>
 
 定义方块的自定义组件。自定义组件的行为需要在世界初始化前事件`WorldInitializeBeforeEvent`中定义。
 
+:::danger[警告]
+
+1. 该组件必须配合 ScriptAPI 使用，因此该组件在现在或未来的中国版也是无效的。
+2. 该组件随着 1.21.90 的自定义组件 V2 的推出，已被弃用。在`1.21.90`或更高版本下的物品定义中不应再使用该组件。
+
+:::
+
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="array" name="minecraft:custom_components"/>：根数组。
+  - <DataType type="string"/>：自定义组件的名称。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:custom_components": [
+    "example:on_step"
+]
+```
 
 </TabItem></Tabs>
 

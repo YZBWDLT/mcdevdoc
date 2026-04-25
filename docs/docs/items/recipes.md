@@ -11,8 +11,7 @@ import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
-> 上次更新：2026 年 4 月 21 日。  
-> 其中文档内容更新于 2026 年 1 月 5 日。此时中国版最新版本为 1.21.50，国际版最新版本为 1.21.130。  
+> 适用版本：国际版 1.21.130，中国版 3.7（1.21.50）。  
 > 本文档配备教程，您可以点击下面的「教程」按钮查看我们提供的教程。
 
 <Highlight text="教程" url="/docs/tutorials/a2_addons/b4_data_driven_items/c3_recipes" />

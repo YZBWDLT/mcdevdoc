@@ -171,6 +171,8 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 ## `onEntity`属性
 
+<!--
+
 <Version version="26.10"/>
 
 当实体触发`execute_event_on_home_block`事件时执行事件。适用脚本`@minecraft/server`版本`2.6.0`或更高。
@@ -194,7 +196,35 @@ onEntity?: (arg0: BlockComponentEntityEvent, arg1: CustomComponentParameters) =>
 
 </TabItem><TabItem value="示例" label="示例">
 
-注册一个当方块被破坏后即生成实体的组件`"test:spawn_entity_on_break"`，该组件接收 2 个参数：<DataType type="string" name="entity_id" isRequired/>（生成的实体）和<DataType type="int" name="count"/>（生成的实体数量）。
+```JavaScript showLineNumbers
+```
+
+</TabItem></Tabs>
+
+-->
+
+---
+
+## `onEntityFallOn`属性
+
+<Version version="1.21.20"/>
+
+实体掉落到此方块后执行事件。适用脚本`@minecraft/server`版本`1.12.0`或更高。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+```TypeScript
+beforeOnPlayerPlace?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters) => void
+```
+
+**参数**：
+
+- `arg0`：[`BlockComponentEntityFallOnEvent`](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcomponententityfallonevent?view=minecraft-bedrock-stable)类型，返回实体跌落的事件，包含方块、维度、跌落实体、跌落高度等信息。
+- `arg1`：[`CustomComponentParameters`](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/customcomponentparameters?view=minecraft-bedrock-stable)类型，返回自定义组件中的参数。
+
+</TabItem><TabItem value="示例" label="示例">
+
+注册一个当实体落地即执行命令的组件`test:run_command_on_entity_fall_on`，该组件接收 1 个参数：<DataType type="string" name="command"/>（实体待执行的命令）。可结合[`minecraft:entity_fall_on`](./components#minecraftentity_fall_on)组件控制至少要高于多高的高度才能执行。
 
 ```JavaScript showLineNumbers
 // @ts-check
@@ -203,18 +233,85 @@ import * as minecraft from "@minecraft/server";
 
 minecraft.system.beforeEvents.startup.subscribe(event => {
     /** @type {minecraft.BlockCustomComponent} */
-    const spawnEntityOnBreakComponent = {
-        onBreak: (compEvent, arg) => {
-            /** @type {{entity_id: string, count?: number}} */ // @ts-ignore
+    const runCommandOnEntityFallOnComponent = {
+        onEntityFallOn: (compEvent, arg) => {
+            /** @type {{command: string}} */ // @ts-ignore
             const params = arg.params;
-            const entityId = params.entity_id;
-            const count = params.count ?? 1;
-            for (let i = 0; i < count; i++) { // @ts-ignore
-                compEvent.dimension.spawnEntity(entityId, compEvent.block.location);
-            }
+            compEvent.entity?.runCommand(params.command);
         },
     };
-    event.blockComponentRegistry.registerCustomComponent("test:spawn_entity_on_break", spawnEntityOnBreakComponent);
+    event.blockComponentRegistry.registerCustomComponent("test:run_command_on_entity_fall_on", runCommandOnEntityFallOnComponent);
+});
+```
+
+</TabItem></Tabs>
+
+---
+
+## `onPlace`属性
+
+---
+
+## `onPlayerBreak`属性
+
+---
+
+## `onPlayerInteract`属性
+
+---
+
+## `onRandomTick`属性
+
+---
+
+## `onRedstoneUpdate`属性
+
+---
+
+## `onStepOff`属性
+
+---
+
+## `onStepOn`属性
+
+---
+
+## `onTick`属性
+
+<Version version="1.21.20"/>
+
+令方块循环执行代码。适用脚本`@minecraft/server`版本`1.12.0`或更高。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+```TypeScript
+beforeOnPlayerPlace?: (arg0: BlockComponentTickEvent, arg1: CustomComponentParameters) => void
+```
+
+**参数**：
+
+- `arg0`：[`BlockComponentTickEvent`](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcomponenttickevent?view=minecraft-bedrock-stable)类型，返回方块循环执行的事件，包含方块、维度。
+- `arg1`：[`CustomComponentParameters`](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/customcomponentparameters?view=minecraft-bedrock-stable)类型，返回自定义组件中的参数。
+
+</TabItem><TabItem value="示例" label="示例">
+
+注册一个循环执行命令的组件`test:run_command_on_tick`，该组件接收 1 个参数：<DataType type="string" name="command"/>（实体待执行的命令）。可结合[`minecraft:tick`](./components#minecrafttick)组件控制循环执行频率。
+
+```JavaScript showLineNumbers
+// @ts-check
+
+import * as minecraft from "@minecraft/server";
+
+minecraft.system.beforeEvents.startup.subscribe(event => {
+    /** @type {minecraft.BlockCustomComponent} */
+    const runCommandOnTickComponent = {
+        onTick: (compEvent, arg) => {
+            /** @type {{command: string}} */ // @ts-ignore
+            const params = arg.params;
+            compEvent.dimension.runCommand(params.command);
+        },
+    };
+    event.blockComponentRegistry.registerCustomComponent("test:run_command_on_tick", runCommandOnTickComponent);
 });
 ```
 

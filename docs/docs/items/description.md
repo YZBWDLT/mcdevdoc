@@ -11,8 +11,7 @@ import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
-> 上次更新：2026 年 4 月 21 日。  
-> 其中文档内容更新于 2026 年 1 月 2 日。此时中国版最新版本为 1.21.0，国际版最新版本为 1.21.130。
+> 适用版本：国际版 1.21.130，中国版 3.7（1.21.50）。
 
 数据驱动物品（Data-Driven Items，简称数驱物品）是由开发者给定数据，由游戏引擎自行注册的物品。
 

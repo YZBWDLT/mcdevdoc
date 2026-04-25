@@ -11,7 +11,7 @@ import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
-> 上次更新：2026 年 4 月 14 日。此时中国版最新版本为 1.21.90，国际版最新版本为 26.10。
+> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
 
 数据驱动物品组件（Data-Driven Item Components）用于规定物品的功能。将不同的物品组件组合在一起可以实现多种复杂的功能。
 

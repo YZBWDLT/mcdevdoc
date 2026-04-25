@@ -94,7 +94,7 @@ import DataType from "/src/components/type/data"
         - <DataType type="string" name="group"/>：定义方块在创造模式物品栏中置于何物品组中，详见[物品组与物品分类](../items/item_category_and_group#物品组)。  
         在格式版本为`1.21.50`或更低时，不能添加命名空间；在格式版本为`1.21.60`或更高时，必须添加命名空间。
         - <DataType type="boolean" name="is_hidden_in_commands"/>：（1.19.40+）定义方块是否隐藏在命令中。
-      - <DataType type="object" name="states"/>[^1]：（1.20.20+）定义方块状态。
+      - <DataType type="object" name="states"/>[^1] [^2]：（1.20.10+）定义方块状态。
         - <DataType type="array" name="(方块状态 ID)"/>：方块状态，需注意每种方块状态允许的状态值不能超过 16 种
           - <DataType type="string"/><DataType type="boolean"/><DataType type="int"/>：方块状态枚举
       - <DataType type="object" name="traits"/>：（1.20.20+）定义方块特征，以引用原版的方块特征并应用原版的方块状态。
@@ -110,6 +110,7 @@ import DataType from "/src/components/type/data"
 </treeview>
 
 [^1]: 关于方块状态的定义，不止有(方块状态 ID)数组一种定义方法，然而我们给出的数组定义方法已可以解决所有情况。感兴趣的读者可以阅读[参考文档的*方块状态 | Bedrock Wiki*](#参考文档)了解更多。
+[^2]: 在 1.19.70 - 1.20.0 格式版本中，使用`properties`参数而非`states`。
 
 </TabItem><TabItem value="中国版" label="中国版" default>
 
