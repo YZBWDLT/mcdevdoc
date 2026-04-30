@@ -266,6 +266,94 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 ## `onRedstoneUpdate`属性
 
+<Version version="1.26.0"/>
+
+此方块接收的红石信号更新后执行事件。适用脚本`@minecraft/server`版本`2.5.0`或更高。
+
+:::warning[注意]
+
+要使用此事件，必须规定[`minecraft:redstone_consumer`](./components#minecraftredstone_consumer)组件。
+
+:::
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+```TypeScript
+beforeOnPlayerPlace?: (arg0: BlockComponentRedstoneUpdateEvent, arg1: CustomComponentParameters) => void
+```
+
+**参数**：
+
+- `arg0`：[`BlockComponentRedstoneUpdateEvent`](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcomponentredstoneupdateevent?view=minecraft-bedrock-stable)类型，返回实体跌落的事件，包含方块、维度、新红石信号强度和旧红石信号强度（1.26.10+，脚本版本`2.6.0`+）等信息。
+- `arg1`：[`CustomComponentParameters`](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/customcomponentparameters?view=minecraft-bedrock-stable)类型，返回自定义组件中的参数。
+
+</TabItem><TabItem value="示例" label="示例">
+
+注册一个当接收到红石信号即使方块发光的组件`test:lit_on_redstone_update`，该组件接收 1 个参数：<DataType type="int" name="min_power"/>（至少应为多大的红石强度可激活）。可结合[`minecraft:redstone_consumer`](./components#minecraftredstone_consumer)组件控制至少要大于等于多少红石信号才能执行。
+
+```JavaScript showLineNumbers title="脚本逻辑"
+// @ts-check
+
+import * as minecraft from "@minecraft/server";
+
+minecraft.system.beforeEvents.startup.subscribe(event => {
+    /** @type {minecraft.BlockCustomComponent} */
+    const litOnRestoneUpdateComponent = {
+        onRedstoneUpdate: (compEvent, arg) => {
+            /** @type {{min_power: number}} */ // @ts-ignore
+            const params = arg.params;
+            // @ts-ignore
+            const newBlockPermutation = compEvent.block.permutation.withState("test:is_lit", compEvent.powerLevel >= params.min_power ? true : false);
+            compEvent.block.setPermutation(newBlockPermutation);
+        },
+    };
+    event.blockComponentRegistry.registerCustomComponent("test:lit_on_redstone_update", litOnRestoneUpdateComponent);
+});
+```
+
+这里定义了一个只有红石信号强度高于 10 才能被激活的红石灯。
+
+```json showLineNumbers title="方块定义"
+{
+    "format_version": "1.26.10",
+    "minecraft:block": {
+        "description": {
+            "identifier": "test:my_custom_lamp",
+            "menu_category": {
+                "category": "construction"
+            },
+            "states": {
+                "test:is_lit": [false, true]
+            }
+        },
+        "components": {
+            "minecraft:geometry": "geometry.full_block",
+            "minecraft:material_instances": { "*": { "texture": "redstone_lamp_off", "render_method": "blend" } },
+            "minecraft:redstone_consumer": { "min_power": 0, "propagates_power": true },
+            "test:lit_on_redstone_update": { "min_power": 10 }
+        },
+        "permutations": [
+            {
+                "condition": "query.block_state('test:is_lit')",
+                "components": {
+                    "minecraft:material_instances": { "*": { "texture": "redstone_lamp_on" } },
+                    "minecraft:light_emission": 15
+                }
+            },
+            {
+                "condition": "!query.block_state('test:is_lit')",
+                "components": {
+                    "minecraft:material_instances": { "*": { "texture": "redstone_lamp_off" } },
+                    "minecraft:light_emission": 0
+                }
+            }
+        ]
+    }
+}
+```
+
+</TabItem></Tabs>
+
 ---
 
 ## `onStepOff`属性

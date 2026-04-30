@@ -256,7 +256,7 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
-**格式版本 1.16.0 以前**：
+**对象型**：
 
 <treeview>
 - <DataType type="object" name="minecraft:map_color"/>：根对象
@@ -264,7 +264,7 @@ import Image from "/src/components/image/standard"
   - <DataType type="string" name="tint_method"/>：（1.21.80+）定义方块的着色方法，将方块颜色与预定义的色调相乘，可选值为`none`、`​default_foliage`、`​birch_foliage`、`​evergreen_foliage`、`​grass`和​`water`。默认值为`none`。
 </treeview>
 
-**格式版本 1.16.X 及更高**：
+**字符串型（1.16.0+）**：
 
 <treeview>
 - <DataType type="string" name="minecraft:map_color"/>：定义方块在地图物品上显示的颜色，应为颜色代码`#RRGGBB`。
@@ -272,15 +272,12 @@ import Image from "/src/components/image/standard"
 
 </TabItem><TabItem value="示例" label="示例">
 
-**格式版本 1.16.0 以前**：
-
 ```json showLineNumbers
 "minecraft:map_color": {
-    "color": "#FFFFFF"
+    "color": "#FFFFFF",
+    "tint_method": "grass"
 }
 ```
-
-**格式版本 1.16.X 及更高**：
 
 ```json showLineNumbers
 "minecraft:map_color": "#FFFFFF"
@@ -381,10 +378,10 @@ import Image from "/src/components/image/standard"
     - <DataType type="boolean" name="(骨骼 ID)"/>：（写法 1）定义`骨骼 ID`是否可见。默认值为`true`。
     - <DataType type="string" name="(骨骼 ID)"/>：（写法 2，1.20.10+）定义`骨骼 ID`是否可见，需指定 [Molang 表达式](./molang)（常用`query.block_state()`）。
   - <DataType type="string" name="culling"/>：（1.20.60+）定义方块采用何种面剔除规则。详见[方块面剔除](./culling)。不指定时则不进行面剔除。
-  - <DataType type="string" name="culling_layer"/>：定义方块面剔除层。当在[面剔除规则](./culling)的`condition`中指定了`same_culling_layer`条件后，会在此方块在和临近方块使用相同的面剔除层时进行剔除。习惯上定义为`(命名空间):culling_layer.(面剔除层 ID)`。  
+  - <DataType type="string" name="culling_layer"/>：（1.21.90+）定义方块面剔除层。当在[面剔除规则](./culling)的`condition`中指定了`same_culling_layer`条件后，会在此方块在和临近方块使用相同的面剔除层时进行剔除。习惯上定义为`(命名空间):culling_layer.(面剔除层 ID)`。  
   原版有两个内置的面剔除层，包括`minecraft:culling_layer.undefined`（默认值）、`minecraft:culling_layer.leaves`（树叶剔除模式）。
   - <DataType type="string" name="culling_shape"/>：（26.20+，需开启「实验性 Voxel 形状特征」实验性玩法）定义方块面剔除体素。默认值为`minecraft:empty`。详见[按体素剔除面](./culling#按体素剔除面)。
-  - <DataType type="boolean"/><DataType type="array" name="uv_lock"/>：是否锁定 UV 面。若锁定 UV 面，则方块的 UV 不会随着[`minecraft:transformation`](#minecrafttransformation)组件的旋转而旋转。默认值为`false`。
+  - <DataType type="boolean"/><DataType type="array" name="uv_lock"/>：（1.21.100+）是否锁定 UV 面。若锁定 UV 面，则方块的 UV 不会随着[`minecraft:transformation`](#minecrafttransformation)组件的旋转而旋转。默认值为`false`。
     - <DataType type="string"/>：当指定为数组形式时，可指定为骨骼 ID 的数组，以确保这些骨骼不会随着[`minecraft:transformation`](#minecrafttransformation)组件的旋转而旋转。
 </treeview>
 
@@ -438,19 +435,19 @@ import Image from "/src/components/image/standard"
 
 <treeview>
 - <DataType type="object" name="minecraft:material_instance"/>：根对象
-  - <DataType type="object" name="(材质实例)"/>：定义方块的面如何实例化。`(材质实例)`可指定为原版内置的`east`、`west`、`south`、`north`、`up`、`down`、`*`（应用到所有面上）或在[模型文件](./model#方块模型文件格式)中定义的`material_instance`参数（以应用到这些面上）。
-    - <DataType type="string" name="texture" isRequired/>：定义方块的贴图。会对指定的面使用[`terrain_texture.json`](#terrain_texturejson)中定义的对应的贴图路径。
+  - <DataType type="object" name="(材质实例)"/>：定义方块的面如何实例化。`(材质实例)`可指定为原版内置的`east`、`west`、`south`、`north`、`up`、`down`、`*`（应用到所有面上）或在[模型文件](./model#方块模型文件格式)中定义的`material_instance`参数（以应用到这些面上）。  
+  在`1.21.80`及之前的格式版本，必须指定`*`的实例。
+    - <DataType type="string" name="texture" isRequired/>：定义方块的贴图。会对指定的面使用[`terrain_texture.json`](./description#terrain_texturejson)中定义的对应的贴图路径。
     - <DataType type="string" name="render_method"/>：定义方块的材质。所有材质实例应使用相同的材质。可选值见下表，默认值为`opaque`。
-    - <DataType type="string" name="tint_method"/>：定义对方块进行特殊着色。通常在雨天或特定温度的生物群系下使用特殊的着色方法。可选值为`none`（默认值）、`default_foliage`、`birch_foliage`、`evergreen_foliage`、`dry_foliage`、`grass`或`water`。
-    - <DataType type="boolean" name="alpha_masked_tint"/>：定义是否在 alpha 通道上对方块进行<DataType type="string" name="tint_method"/>定义的特殊着色。默认值为`false`。
+    - <DataType type="string" name="tint_method"/>：（1.21.80+）定义对方块进行特殊着色。通常在雨天或特定温度的生物群系下使用特殊的着色方法。可选值为`none`（默认值）、`default_foliage`、`birch_foliage`、`evergreen_foliage`、`dry_foliage`、`grass`或`water`。
+    - <DataType type="boolean" name="alpha_masked_tint"/>：（1.26.0+）定义是否在 alpha 通道上对方块进行<DataType type="string" name="tint_method"/>定义的特殊着色。默认值为`false`。
     - <DataType type="string"/><DataType type="float" name="ambient_occlusion"/>：定义方块是否启用环境光遮蔽，这会影响方块的平滑光照效果。对于发光方块默认为`false`，不发光方块默认为`true`。  
-    指定为浮点数时即指定环境光遮蔽强度，可指定为`0.0`-`10.0`（含），`false`对应`0.0`，`true`对应`1.0`。  
+    （1.21.60+）指定为浮点数时即指定环境光遮蔽强度，可指定为`0.0`-`10.0`（含），`false`对应`0.0`，`true`对应`1.0`。  
     可见「部分渲染参数对比图」。
     - <DataType type="boolean" name="face_dimming"/>：定义是否调暗方块面。对于发光方块默认为`false`，不发光方块默认值为`true`。  
     可见「部分渲染参数对比图」。
-    - <DataType type="boolean" name="isotropic"/>：定义是否设置方块贴图为各向同性。这会根据方块所处的位置随机地旋转贴图。默认值为`false`。  
+    - <DataType type="boolean" name="isotropic"/>：（1.21.80+）定义是否设置方块贴图为各向同性。这会根据方块所处的位置随机地旋转贴图。默认值为`false`。  
     可见「部分渲染参数对比图」。
-  - <DataType type="string" name="(材质实例)"/>：直接定义方块的贴图。会对指定的面使用[`terrain_texture.json`](#terrain_texturejson)中定义的对应的贴图路径。`(材质实例)`可指定为原版内置的`east`、`west`、`south`、`north`、`up`、`down`、`*`（应用到所有面上）或在[模型文件](./model#方块模型文件格式)中定义的`material_instance`参数（以应用到这些面上）。
 </treeview>
 
 `render_method`的可用值有（可点击背面剔除 / 远距剔除查看相关概念）：
@@ -465,9 +462,9 @@ import Image from "/src/components/image/standard"
 
 | 可选值 | 描述 | 原版实例 |
 | --- | --- | --- |
-| `alpha_test_to_opaque` | 近距时渲染为`alpha_test`，远距时渲染为`opaque` | 树叶 |
-| `alpha_test_single_sided_to_opaque` | 近距时渲染为`alpha_test_single_sided`，远距时渲染为`opaque` | 海带、甘蔗 |
-| `blend_to_opaque` | 近距时渲染为`blend`，远距时渲染为`opaque` | —— |
+| `alpha_test_to_opaque` | （1.21.80+）近距时渲染为`alpha_test`，远距时渲染为`opaque` | 树叶 |
+| `alpha_test_single_sided_to_opaque` | （1.21.80+）近距时渲染为`alpha_test_single_sided`，远距时渲染为`opaque` | 海带、甘蔗 |
+| `blend_to_opaque` | （1.21.80+）近距时渲染为`blend`，远距时渲染为`opaque` | —— |
 
 </TabItem><TabItem value="示例" label="示例">
 
@@ -521,7 +518,21 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:destruction_particles"/>：根对象。
+  - <DataType type="int" name="particle_count"/>：（1.21.100+）破坏方块释放的粒子数量。应为`0`-`255`（含），默认为`100`。
+  - <DataType type="string" name="texture"/>：粒子调用的贴图。使用[`terrain_texture.json`](./description#terrain_texturejson)中定义的对应的贴图路径。默认使用此方块底部的贴图。
+  - <DataType type="string" name="tint_method"/>：定义对粒子进行特殊着色。通常在雨天或特定温度的生物群系下使用特殊的着色方法。可选值为`none`（默认值）、`default_foliage`、`birch_foliage`、`evergreen_foliage`、`dry_foliage`、`grass`或`water`。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:destruction_particles": {
+    "particle_count": 255,
+    "texture": "dirt"
+}
+```
 
 </TabItem></Tabs>
 
@@ -533,9 +544,34 @@ import Image from "/src/components/image/standard"
 
 定义了方块嵌入另一方块（如花盆）时需要使用的`geometry`和`​material_instances`。
 
+:::warning[注意]
+
+此组件不可定义在方块置换<DataType type="object" name="permutations"/>内。
+
+:::
+
+:::tip[提示]
+
+目前，该组件只适用于花盆。因此，要使用此组件，请事先定义[`minecraft:flower_pottable`](#minecraftflower_pottable)组件。
+
+:::
+
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:embedded_visual"/>：根对象。
+  - <DataType type="object" name="geometry"/>：定义方块在其他方块内使用的模型。可写入的内容详见[`minecraft:geometry`](#minecraftgeometry)组件。
+  - <DataType type="object" name="material_instance"/>：定义方块在其他方块内使用的材质贴图实例。可写入的内容详见[`minecraft:material_instance`](#minecraftmaterial_instance)组件。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:embedded_visual": {
+    "geometry": { "identifier": "minecraft:geometry.full_block" },
+    "material_instances": { "*": { "texture": "dirt" } }
+}
+```
 
 </TabItem></Tabs>
 
@@ -545,12 +581,12 @@ import Image from "/src/components/image/standard"
 
 <Version version="1.21.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_item_visual?view=minecraft-bedrock-stable"/>
 
-定义方块在物品栏中和手持时的外观。
+定义方块在物品栏中和手持时需要使用的`geometry`和`​material_instances`。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
-- <DataType type="object" name="minecraft:item_visual"/>：定义方块在物品栏中和手持时如何显示。
+- <DataType type="object" name="minecraft:item_visual"/>：根对象。
   - <DataType type="object" name="geometry"/>：定义方块在物品栏中和手持时使用的模型。可写入的内容详见[`minecraft:geometry`](#minecraftgeometry)组件。
   - <DataType type="object" name="material_instance"/>：定义方块在物品栏中和手持时使用的材质贴图实例。可写入的内容详见[`minecraft:material_instance`](#minecraftmaterial_instance)组件。
 </treeview>
@@ -563,20 +599,6 @@ import Image from "/src/components/image/standard"
     "material_instances": { "*": { "texture": "dirt" } }
 }
 ```
-
-</TabItem></Tabs>
-
----
-
-### `minecraft:random_offset`
-
-<Version version="1.21.100" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_random_offset?view=minecraft-bedrock-stable"/>
-
-定义方块的贴图如何随机产生偏移。
-
-<Tabs><TabItem value="参数" label="参数" default>
-
-</TabItem><TabItem value="示例" label="示例">
 
 </TabItem></Tabs>
 
@@ -641,7 +663,21 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:connection_rule"/>：根数组。
+  - <DataType type="string" name="accepts_connections_from"/>：允许何种方块连接到此方块。可选值为`none`（禁止其他方块连接到此方块）、`only_fence`（只允许栅栏连接到此方块）、`all`（默认值，允许栅栏、墙、玻璃板等连接到此方块）。
+  - <DataType type="array" name="enabled_directions"/>：若允许其他方块连接此方块，允许从何方向连接此方块。默认为`["north", "south", "west", "east"]`。
+    - <DataType type="string"/>：可选值为`east`、`west`、`south`、`north`。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:connection_rule": {
+    "accepts_connections_from": "only_fence",
+    "enabled_directions": ["north", "south", "west", "east"]
+}
+```
 
 </TabItem></Tabs>
 
@@ -736,11 +772,26 @@ import Image from "/src/components/image/standard"
 
 <Version version="1.21.120" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_flower_pottable?view=minecraft-bedrock-stable"/>
 
-定义方块为一种花盆。
+定义方块可种植在花盆内。
+
+:::warning[注意]
+
+1. 此组件不可定义在方块置换<DataType type="object" name="permutations"/>内。
+2. 要更改方块在花盆内的显示效果，见组件[`minecraft:embedded_visual`](#minecraftembedded_visual)。
+
+:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:flower_pottable"/>：根对象，不含任何参数。定义方块可种植在花盆内。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:flower_pottable": { }
+```
 
 </TabItem></Tabs>
 
@@ -799,11 +850,26 @@ import Image from "/src/components/image/standard"
 
 <Version version="1.26.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_leashable?view=minecraft-bedrock-stable"/>
 
-定义方块可用拴绳拴上。
+定义方块可用拴绳连接，类似于栅栏。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:leashable"/>：根对象。
+  - <DataType type="array" name="offset"/>：定义拴绳的绑定位置相对方块底部中心处的偏移。应为一个<DataType type="float"/>的三元数组。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:leashable": {
+    "offset": [ 0, 12, 0 ]
+}
+```
+
+</TabItem><TabItem value="效果图" label="效果图">
+
+<Image src="/img/docs/docs/blocks/components/leashable_1.png" text="offset 的效果，左[0, 12, 0]，右[0, 0, 0]" />
 
 </TabItem></Tabs>
 
@@ -818,7 +884,7 @@ import Image from "/src/components/image/standard"
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
-- <DataType type="int" name="minecraft:light_emission"/>：定义方块减弱的光照强度。应在`0`-`15`之间（含）。
+- <DataType type="int" name="minecraft:light_dampening"/>：定义方块减弱的光照强度。应在`0`-`15`之间（含）。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -868,9 +934,10 @@ import Image from "/src/components/image/standard"
       - <DataType type="string" name="liquid_type"/>：方块检查何种液体的行为。可选值为`water`（水）。默认值为`water`。
       - <DataType type="string" name="can_contain_liquid"/>：方块是否可以容纳该液体。默认值为`false`。若为`true`则代表方块可含水。
       - <DataType type="string" name="on_liquid_touches"/>：方块在接触到该液体时触发何种行为。可选值为`blocking`（默认值，阻挡水流过）、`broken`（打破该方块）、`no_reaction`（水正常流过）、`popped`（打破该方块并掉落物品）。
-      - <DataType type="array" name="stops_liquid_flowing_from_direction"/>
-        - <DataType type="string"/>
-      - <DataType type="boolean" name="use_liquid_clipping"/>
+      - <DataType type="array" name="stops_liquid_flowing_from_direction"/>：阻止液体从方块的何种方向流出。若<DataType type="string" name="on_liquid_touches"/>指定为`no_reaction`，则还阻止液体从方块的何种方向流入。
+        - <DataType type="string"/>：可指定为`east`、`west`、`north`、`south`、`up`、`down`六面。
+      - <DataType type="boolean" name="use_liquid_clipping"/>：（1.26.0+）根据碰撞箱裁剪液体的实际渲染效果。默认为`false`，但对于格式版本`1.26.0`之前的版本默认为`true`。  
+        > 在实践中未能成功验证参数`use_liquid_clipping`的效果，需要更多信息。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -883,9 +950,21 @@ import Image from "/src/components/image/standard"
 }
 ```
 
+```json showLineNumbers
+"minecraft:liquid_detection": {
+    "detection_rules": [
+        {
+            "can_contain_liquid": true,
+            "stops_liquid_flowing_from_direction": [ "up" ]
+        }
+    ]
+}
+```
+
 </TabItem><TabItem value="效果图" label="效果图">
 
 <Image src="/img/docs/docs/blocks/components/liquid_detection_1.png" text="on_liquid_touches 各参数的效果"/>
+<Image src="/img/docs/docs/blocks/components/liquid_detection_2.png" text="stops_liquid_flowing_from_direction 各参数的效果 ①：可含水且阻止水从侧面流出，②：可含水且阻止水从底面流出（可见图中方块下方没有水），③：可含水且阻止水从上面流出（可见图中方块下方没有水），④：水可流过方块且阻止水从侧面流出（可见下方的方块被水穿过）"/>
 
 </TabItem></Tabs>
 
@@ -940,7 +1019,19 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:movable"/>：根对象
+  - <DataType type="string" name="movement_type" isRequired/>：定义方块被试图推动后的行为。可选值为`immovable`（无法推动）、`popped`（被破坏）、`push`（只可推动）或`push_pull`（可推动且可拉回，默认值）。
+  - <DataType type="string" name="sticky"/>：是否具有粘性，类似于粘液块或蜂蜜块。仅当<DataType type="string" name="movement_type" isRequired/>指定为`push_pull`时可用。可选值为`same`。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:movable": {
+    "movement_type": "push"
+}
+```
 
 </TabItem></Tabs>
 
@@ -1001,6 +1092,43 @@ import Image from "/src/components/image/standard"
 
 ---
 
+### `minecraft:random_offset`
+
+<Version version="1.21.100" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_random_offset?view=minecraft-bedrock-stable"/>
+
+定义方块的碰撞箱、选择箱和模型如何随机产生偏移。类似于原版的草。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:random_offset"/>：根对象。
+  - <DataType type="object" name="(坐标轴)"/>：方块在何坐标轴上产生偏移。`(坐标轴)`可指定为`x`、`y`、`z`。
+    - <DataType type="object" name="range"/>：偏移范围。
+      - <DataType type="int" name="min"/>：最小的偏移值。
+      - <DataType type="int" name="max"/>：最大的偏移值。
+    - <DataType type="int" name="steps"/>：随机值的步长，设置为`0`时则可以取到<DataType type="object" name="range"/>的任意一个随机数。  
+      > 例如，设置`range`为`-8`~`8`且`steps`为`2`时，则随机值只可能为 -8, -6, -4, ..., 6, 8。
+
+</treeview>
+
+> **注意**：设定的偏移值不能够超出方块模型的限制——即方块必须限定在 30×30×30 像素的范围内。这意味着偏移值不能设定为无限大的，必须限定在原位置附近。
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:random_offset": {
+    "x": { "range": { "min": -1, "max": 1 }, "steps": 0 }
+}
+```
+
+</TabItem><TabItem value="效果图" label="效果图">
+
+<Image src="/img/docs/docs/blocks/components/random_offset_1.png" text="random_offset 的效果" size="75%"/>
+
+</TabItem></Tabs>
+
+---
+
 ### `minecraft:redstone_conductivity`
 
 <Version version="1.21.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_conductivity?view=minecraft-bedrock-stable"/>
@@ -1034,11 +1162,34 @@ import Image from "/src/components/image/standard"
 
 <Version version="1.26.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_consumer?view=minecraft-bedrock-stable"/>
 
-定义方块为一种用电器，并将自己获得的红石信号强度传递给脚本。
+定义方块为一种用电器，并并触发 ScriptAPI 中自定义方块组件定义的[`onRedstoneUpdate`事件](./custom_components#onredstoneupdate属性)，将自己获得的红石信号强度传递给脚本。
+
+:::warning[注意]
+
+此组件不可定义在方块置换<DataType type="object" name="permutations"/>内。
+
+:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:redstone_consumer"/>：根对象。
+  - <DataType type="int" name="min_power"/>：至少为多少信号才能触发[`onRedstoneUpdate`事件](./custom_components#onredstoneupdate属性)。
+  - <DataType type="boolean" name="propagates_power"/>：是否能够继续传播红石信号。默认为`false`。不受<DataType type="int" name="min_power"/>的影响。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:redstone_consumer": {
+    "min_power": 15,
+    "propagates_power": true
+}
+```
+
+</TabItem><TabItem value="效果图" label="效果图">
+
+<Image src="/img/docs/docs/blocks/components/redstone_consumer_1.png" text="propagates_power 的效果，上 true 下 false"/>
 
 </TabItem></Tabs>
 
@@ -1052,7 +1203,30 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:redstone_producer"/>：根对象。
+  - <DataType type="int" name="power" isRequired/>：方块产生的红石信号强度。必须在`0`-`15`之间（含）。
+  - <DataType type="string" name="strongly_powered_face" isRequired/>：方块对何面产生强充能。可选值为`east`、`west`、`south`、`north`、`up`、`down`。
+  - <DataType type="array" name="connected_faces"/>：方块可以从哪些方向引出红石信号。默认从所有方向均可引出红石信号。
+    - <DataType type="string"/>：可选值为`east`、`west`、`south`、`north`、`up`、`down`。
+  - <DataType type="boolean" name="transform_relative"/>：方块的强充能面和引出红石信号面是否会随着[`minecraft:transformation`](#minecrafttransformation)组件而旋转。默认值为`false`。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:redstone_producer": {
+    "power": 15,
+    "strongly_powered_face": "up",
+    "connected_faces": [ "east", "west" ]
+}
+```
+
+</TabItem><TabItem value="效果图" label="效果图">
+
+<Image src="/img/docs/docs/blocks/components/redstone_producer_1.png" text="将 strongly_powered_face 设置为 up 的效果，可见上方的方块被强充能"/>
+
+<Image src="/img/docs/docs/blocks/components/redstone_producer_2.png" text="将 connected_faces 设置为 ['east', 'west'] 的效果，可见只有东西向的红石线路被充能"/>
 
 </TabItem></Tabs>
 
@@ -1066,7 +1240,15 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:replaceable"/>：根对象，不含任何参数。定义方块可被另一种方块在原位替代。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:replaceable": { }
+```
 
 </TabItem></Tabs>
 
@@ -1080,7 +1262,25 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:support"/>：根对象。
+  - <DataType type="string" name="shape"/>：可选值为`fence`或`stair`。  
+    `fence`形状类似于栅栏，规定侧面不可支撑，而顶面底面可以支撑（例如灯笼）。  
+    `stair`形状类似于楼梯或台阶，规定底面可支撑（但必须使用[`minecraft:placement_position`](./traits#minecraftplacement_position)方块特征的`minecraft:vertical_half`方块状态）和侧面可支撑（但必须使用[`minecraft:placement_direction`](./traits#minecraftplacement_direction)方块特征的`minecraft:cardinal_direction`方块状态或`minecraft:facing_direction`方块状态）。未指定对应方块特征时则不能支撑。  
+    在未指定此组件时，自定义方块默认被视作完整方块，所有面均可支撑。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:support": {
+    "shape": "fence"
+}
+```
+
+</TabItem><TabItem value="效果图" label="效果图">
+
+<Image src="/img/docs/docs/blocks/components/support_1.png" text="shape 的效果"/>
 
 </TabItem></Tabs>
 
