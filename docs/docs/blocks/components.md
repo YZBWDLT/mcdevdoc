@@ -338,13 +338,36 @@ import Image from "/src/components/image/standard"
 
 ### `minecraft:tags`
 
-<Version version="1.26.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tag?view=minecraft-bedrock-stable"/>
+<Version version="1.26.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tags?view=minecraft-bedrock-stable" isBeta/>
 
 定义方块的标签。
 
+:::warning[警告]
+
+该组件仍处于实验性玩法，必须开启「即将推出的创作者功能」才可使用。在 26.20 更新后，该组件正式可用。
+
+:::
+
+:::warning[版本适用性警告]
+
+该组件仅限 26.20+ 版本可用。要在 26.10- 版本使用此组件，请使用已弃用的组件[`tag:(标签)`](#tag标签)。
+
+:::
+
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="array" name="minecraft:tags"/>：根数组。
+  - <DataType type="string"/>：方块具有的标签。必须指定命名空间。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:tags": [
+    "minecraft:crop"
+]
+```
 
 </TabItem></Tabs>
 
@@ -441,13 +464,14 @@ import Image from "/src/components/image/standard"
     - <DataType type="string" name="render_method"/>：定义方块的材质。所有材质实例应使用相同的材质。可选值见下表，默认值为`opaque`。
     - <DataType type="string" name="tint_method"/>：（1.21.80+）定义对方块进行特殊着色。通常在雨天或特定温度的生物群系下使用特殊的着色方法。可选值为`none`（默认值）、`default_foliage`、`birch_foliage`、`evergreen_foliage`、`dry_foliage`、`grass`或`water`。
     - <DataType type="boolean" name="alpha_masked_tint"/>：（1.26.0+）定义是否在 alpha 通道上对方块进行<DataType type="string" name="tint_method"/>定义的特殊着色。默认值为`false`。
-    - <DataType type="string"/><DataType type="float" name="ambient_occlusion"/>：定义方块是否启用环境光遮蔽，这会影响方块的平滑光照效果。对于发光方块默认为`false`，不发光方块默认为`true`。  
-    （1.21.60+）指定为浮点数时即指定环境光遮蔽强度，可指定为`0.0`-`10.0`（含），`false`对应`0.0`，`true`对应`1.0`。  
-    可见「部分渲染参数对比图」。
+    - <DataType type="boolean"/><DataType type="float" name="ambient_occlusion"/>：定义方块的环境光遮蔽强度，这会影响方块的平滑光照效果。对于发光方块默认为`0.0`（`false`），不发光方块默认为`1.0`（`true`）。  
+    （1.21.60+）指定为浮点数时即指定环境光遮蔽强度，可指定为`0.0`-`10.0`（含）。  
+    （1.26.20+）不再允许指定为布尔值。
+    可见「效果图」。
     - <DataType type="boolean" name="face_dimming"/>：定义是否调暗方块面。对于发光方块默认为`false`，不发光方块默认值为`true`。  
-    可见「部分渲染参数对比图」。
+    可见「效果图」。
     - <DataType type="boolean" name="isotropic"/>：（1.21.80+）定义是否设置方块贴图为各向同性。这会根据方块所处的位置随机地旋转贴图。默认值为`false`。  
-    可见「部分渲染参数对比图」。
+    可见「效果图」。
 </treeview>
 
 `render_method`的可用值有（可点击背面剔除 / 远距剔除查看相关概念）：
@@ -496,7 +520,7 @@ import Image from "/src/components/image/standard"
 }
 ```
 
-</TabItem><TabItem value="部分渲染参数对比图" label="部分渲染参数对比图">
+</TabItem><TabItem value="效果图" label="效果图">
 
 <Image src="/img/docs/docs/blocks/components/ambient_occlusion_1.png" text="环境光遮蔽（ambient occlusion），左侧为开，右侧为关，可见右侧的方块似乎禁用了平滑光照，这可以提升性能"/>
 
@@ -611,18 +635,51 @@ import Image from "/src/components/image/standard"
 
 | 常见方块类型 | 常用组件 | 最低适用版本 |
 | :---: | :--- | --- |
+| 带方向的方块 | | |
+| 光源方块 | | |
+| 台阶 | | |
+| 楼梯 | | |
+| 栅栏 | | |
+| 栅栏门 | | |
+| 活板门 | | |
+| 门 | | |
+| 工作台 | | |
+| 粘液块类方块 | | |
+| 花 | | |
+| 红石电源 | | |
+| 红石机械元件 | | |
+| 红石导体 | | |
+| 冰 | | |
 
 ---
 
 ### `minecraft:chest_obstruction`
 
-<Version version="1.26.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_chest_obstruction?view=minecraft-bedrock-stable"/>
+<Version version="1.26.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_chest_obstruction?view=minecraft-bedrock-stable" isBeta/>
 
 定义方块是否可阻挡箱子打开。
 
+:::warning[警告]
+
+该组件仍处于实验性玩法，必须开启「即将推出的创作者功能」才可使用。在 26.20 更新后，该组件才正式可用。
+
+:::
+
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:chest_obstruction"/>：根对象。
+  - <DataType type="string" name="obstruction_rule"/>：在箱子上方有该方块时的行为。可选值为`always`（始终阻止箱子打开）、`never`（始终允许箱子打开）、`shape`（默认值，根据方块碰撞箱决定是否可打开）。  
+    对于`shape`，目前的判定标准是判断下半砖区域内有无碰撞箱，若有则阻止打开，类似于下半砖。这和楼梯类型方块的表现不符，因此若该方块为楼梯类型的方块，请使用`always`以和原版匹配。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:chest_obstruction": {
+    "obstruction_rule": "never"
+}
+```
 
 </TabItem></Tabs>
 
@@ -1086,7 +1143,23 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="minecraft:precipitation_interactions"/>：根对象。
+  - <DataType type="string" name="precipitation_behavior"/>：方块在雨雪天气下的行为。可选值如下表，若挡雨则会使雨打在方块上并溅起水花，否则穿过方块；若积雪则会在方块上方形成雪层，否则穿过方块。
+    | 可选值 | 是否挡雨 | 是否积雪 |
+    | --- | --- | --- |
+    | `none` | ❌ | ❌ |
+    | `obstruct_rain` | ✔️ | ❌ |
+    | `obstruct_rain_accumulate_snow`（默认值） | ✔️ | ✔️ |
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:precipitation_interactions": {
+    "precipitation_behavior": "obstruct_rain"
+}
+```
 
 </TabItem></Tabs>
 
@@ -1162,7 +1235,7 @@ import Image from "/src/components/image/standard"
 
 <Version version="1.26.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_consumer?view=minecraft-bedrock-stable"/>
 
-定义方块为一种用电器，并并触发 ScriptAPI 中自定义方块组件定义的[`onRedstoneUpdate`事件](./custom_components#onredstoneupdate属性)，将自己获得的红石信号强度传递给脚本。
+定义方块为一种用电器，并触发 ScriptAPI 中自定义方块组件定义的[`onRedstoneUpdate`事件](./custom_components#onredstoneupdate属性)，将自己获得的红石信号强度传递给脚本。
 
 :::warning[注意]
 
@@ -1201,12 +1274,18 @@ import Image from "/src/components/image/standard"
 
 定义方块产生红石信号。
 
+:::warning[注意]
+
+在高于`1.26.20`的格式版本中，要在方块置换<DataType type="object" name="permutations"/>内使用该组件，必须在<DataType type="object" name="components"/>内一并定义。
+
+:::
+
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="minecraft:redstone_producer"/>：根对象。
   - <DataType type="int" name="power" isRequired/>：方块产生的红石信号强度。必须在`0`-`15`之间（含）。
-  - <DataType type="string" name="strongly_powered_face" isRequired/>：方块对何面产生强充能。可选值为`east`、`west`、`south`、`north`、`up`、`down`。
+  - <DataType type="string" name="strongly_powered_face"/>：方块对何面产生强充能。可选值为`east`、`west`、`south`、`north`、`up`、`down`。
   - <DataType type="array" name="connected_faces"/>：方块可以从哪些方向引出红石信号。默认从所有方向均可引出红石信号。
     - <DataType type="string"/>：可选值为`east`、`west`、`south`、`north`、`up`、`down`。
   - <DataType type="boolean" name="transform_relative"/>：方块的强充能面和引出红石信号面是否会随着[`minecraft:transformation`](#minecrafttransformation)组件而旋转。默认值为`false`。
@@ -2203,7 +2282,13 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+- <DataType type="object" name="tag:(标签)"/>：定义方块具有方块标签`(标签)`。
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"tag:dirt": {}
+```
 
 </TabItem></Tabs>
 

@@ -126,7 +126,7 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 <Version version="1.21.130"/>
 
-玩家放置方块前执行事件。适用脚本`@minecraft/server`版本`2.4.0`或更高。
+方块被破坏时执行事件。适用脚本`@minecraft/server`版本`2.4.0`或更高。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -136,7 +136,7 @@ onBreak?: (arg0: BlockComponentBlockBreakEvent, arg1: CustomComponentParameters)
 
 **参数**：
 
-- `arg0`：[`BlockComponentBlockBreakEvent`](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcomponentblockbreakevent?view=minecraft-bedrock-stable)类型，返回放置方块前的事件，包含方块、维度、方块破坏者等信息。
+- `arg0`：[`BlockComponentBlockBreakEvent`](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcomponentblockbreakevent?view=minecraft-bedrock-stable)类型，返回破坏方块的事件，包含方块、维度、方块破坏者等信息。
 - `arg1`：[`CustomComponentParameters`](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/customcomponentparameters?view=minecraft-bedrock-stable)类型，返回自定义组件中的参数。
 
 </TabItem><TabItem value="示例" label="示例">
