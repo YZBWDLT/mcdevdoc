@@ -1439,6 +1439,7 @@ import Image from "/src/components/image/standard"
 | 中国版组件 | 国际版可用的平替组件 | 国际版组件需求的最低格式版本 |
 | :--- | :--- | --- |
 | `minecraft:block_light_absorption` | [`minecraft:light_dampening`](#minecraftlight_dampening) | 1.19.10 |
+| `netease:aabb` | [`minecraft:collision_box`](#minecraftcollision_box)、[`minecraft:selection_box`](#minecraftselection_box) | 1.19.60 |
 
 ### `minecraft:block_light_absorption`
 
@@ -1448,14 +1449,14 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
-**格式版本 1.16.0 以前**：
+**对象型**：
 
 <treeview>
 - <DataType type="object" name="minecraft:block_light_absorption"/>：根对象
   - <DataType type="int" name="value"/>：定义方块会吸收多少光照等级（也可以代表其透光度）。应在`0`-`15`之间（含），如不指定该组件则指定该方块不透光。
 </treeview>
 
-**格式版本 1.16.X**：
+**整型（1.16.0+）**：
 
 <treeview>
 - <DataType type="int" name="minecraft:block_light_absorption"/>：定义方块会吸收多少光照等级（也可以代表其透光度）。应在`0`-`15`之间（含），如不指定该组件则指定该方块不透光。
@@ -1463,23 +1464,17 @@ import Image from "/src/components/image/standard"
 
 </TabItem><TabItem value="示例" label="示例">
 
-**格式版本 1.16.0 以前**：
-
 ```json showLineNumbers
 "minecraft:block_light_absorption": {
     "value": 3
 }
 ```
 
-**格式版本 1.16.X**：
-
 ```json showLineNumbers
 "minecraft:block_light_absorption": 3
 ```
 
 </TabItem></Tabs>
-
----
 
 ---
 
@@ -1491,7 +1486,15 @@ import Image from "/src/components/image/standard"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="int" name="minecraft:max_stack_size"/>：定义方块的最大堆叠数。应在`0`-`64`之间（含）。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:max_stack_size": 16
+```
 
 </TabItem></Tabs>
 
@@ -1501,11 +1504,60 @@ import Image from "/src/components/image/standard"
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-aabb" isChinaVersion />
 
-定义方块的碰撞箱。
+定义方块的碰撞箱和选择箱。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="netease:aabb"/>：根对象
+  - <DataType type="object" name="collision"/>/<DataType type="object" name="clip"/>：（写法 1）定义方块的碰撞箱/选择箱，使用此写法将定义一个单一的碰撞箱/选择箱。
+    - <DataType type="array" name="min"/>：代表碰撞箱的起点，应为<DataType type="float"/>的三元数组，应大于等于`[-1, -1, -1]`，小于等于<DataType type="array" name="max"/>的对应值。
+    - <DataType type="array" name="max"/>：代表碰撞箱的大小，应为<DataType type="float"/>的三元数组，应小于等于`[2, 2, 2]`。
+  - <DataType type="array" name="collision"/>/<DataType type="array" name="clip"/>：（写法 2）定义方块的碰撞箱/选择箱，使用此写法将定义一个复合的碰撞箱/选择箱。
+    - <DataType type="object"/>：子碰撞箱/选择箱，每个子碰撞箱/选择箱都允许<DataType type="array" name="max"/>和<DataType type="array" name="min"/>（详见上文），还额外允许以下的参数。
+      - <DataType type="string" name="enable"/>：是否启用该碰撞箱/选择箱，应指定为[检查连接状态的 Molang（`query.is_connect()`）](../blocks/molang#其他)。详见[`netease:connection`](#neteaseconnection)。
+</treeview>
+
+> **注意**：
+>
+> 1. 这里的碰撞箱和选择箱和国际版的[`minecraft:collision_box`](#minecraftcollision_box)、[`minecraft:selection_box`](#minecraftselection_box)不同，国际版的每个值代表像素高度，而中国版的每个值代表格数高度。例如，对于半砖，国际版的高度应设置为`8`，而中国版的高度应设置为`0.5`。
+> 2. 选择箱的大小应小于等于碰撞箱的大小。
+
 </TabItem><TabItem value="示例" label="示例">
+
+中国版自定义花（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义方块的`customblocks_model_flower`）：
+
+```json showLineNumbers
+"netease:aabb": {
+    "collision": { "min": [0.0, 0.0, 0.0], "max": [0.0, 0.0, 0.0] },
+    "clip": { "min": [0.3, 0.0, 0.3], "max": [0.7, 0.63, 0.7] }
+}
+```
+
+中国版自定义线路（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义方块的`customblocks_model_wire`）：
+
+```json showLineNumbers
+"netease:aabb": {
+    "collision": [
+        { "min": [0.375, 0.375, 0.375], "max": [0.625, 0.625, 0.625] },
+        { "enable": "query.is_connect(0)", "min": [0.375, 0.0, 0.375], "max": [0.625, 0.375, 0.625] },
+        { "enable": "query.is_connect(1)", "min": [0.375, 0.625, 0.375], "max": [0.625, 1.0, 0.625] },
+        { "enable": "query.is_connect(2)", "min": [0.375, 0.375, 0.0], "max": [0.625, 0.625, 0.375] },
+        { "enable": "query.is_connect(3)", "min": [0.375, 0.375, 0.625], "max": [0.625, 0.625, 1.0] },
+        { "enable": "query.is_connect(4)", "min": [0.0, 0.375, 0.375], "max": [0.375, 0.625, 0.625] },
+        { "enable": "query.is_connect(5)", "min": [0.625, 0.375, 0.375], "max": [1.0, 0.625, 0.625] }
+    ],
+    "clip": [
+        { "min": [0.375, 0.375, 0.375], "max": [0.625, 0.625, 0.625] },
+        { "enable": "query.is_connect(0)", "min": [0.375, 0.0, 0.375], "max": [0.625, 0.375, 0.625] },
+        { "enable": "query.is_connect(1)", "min": [0.375, 0.625, 0.375], "max": [0.625, 1.0, 0.625] },
+        { "enable": "query.is_connect(2)", "min": [0.375, 0.375, 0.0], "max": [0.625, 0.625, 0.375] },
+        { "enable": "query.is_connect(3)", "min": [0.375, 0.375, 0.625], "max": [0.625, 0.625, 1.0] },
+        { "enable": "query.is_connect(4)", "min": [0.0, 0.375, 0.375], "max": [0.375, 0.625, 0.625] },
+        { "enable": "query.is_connect(5)", "min": [0.625, 0.375, 0.375], "max": [1.0, 0.625, 0.625] }
+    ]
+}
+```
 
 </TabItem></Tabs>
 
@@ -1515,11 +1567,34 @@ import Image from "/src/components/image/standard"
 
 <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-animate-random-tick" isChinaVersion />
 
-定义方块会高频率随机更新，并触发 ModAPI 的`BlockAnimateRandomTickEvent`。
+定义方块会高频率随机更新，并触发 ModAPI 的[`BlockAnimateRandomTickEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html#blockanimaterandomtickevent)。
+
+该组件可用于实现类似樱花树叶或其他落叶的方块特效。
+
+:::warning[注意]
+
+**不建议在事件里将数据传给服务端**，因为每个玩家的客户端的随机更新都不一定相同。
+
+:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="netease:block_animate_random_tick"/>：根对象
+  - <DataType type="float" name="trigger_rate"/>：定义随机更新的触发频率，应为`0.0`-`1.0`（含），默认值为`0.1`。  
+  应注意，方块离玩家越近，触发频率越大。当方块距离玩家 16 个方块以内时，如果设置`trigger_rate`为`1`，则几乎每秒都能触发。原版樱花树叶的触发率为`0.1`，即 10% 的概率触发落叶。随着方块离玩家越远，触发几率也会递减。最大触发距离为 32-40 格， 32 是玩家静止不动时的值，玩家移动时，最多可能有 8 个方块距离的偏移。  
+  此外，设备性能越好，触发频率越大。游戏引擎会记录帧耗时，超时的 tick 不会触发 Python 事件，避免大量方块同时 tick 导致卡顿。
+  - <DataType type="boolean" name="send_event"/>：定义是否触发 ModAPI 的[`BlockAnimateRandomTickEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html#blockanimaterandomtickevent)。默认值为`true`。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"netease:block_animate_random_tick": {
+    "trigger_rate": 0.2,
+    "send_event": true
+}
+```
 
 </TabItem></Tabs>
 
@@ -1531,9 +1606,38 @@ import Image from "/src/components/image/standard"
 
 定义方块的箱子功能。
 
+:::warning[注意]
+
+1. 该组件会创建一个方块实体，与其他类似逻辑存在冲突。并且，该组件会覆盖带有`base_block`及相关组件的功能。
+2. 要使用该组件，不可定义[`netease:face_directional`](#neteaseface_directional)组件。
+3. 在使用[`SetBlockNew`](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E6%8E%A5%E5%8F%A3/%E4%B8%96%E7%95%8C/%E6%96%B9%E5%9D%97%E7%AE%A1%E7%90%86.html?key=setblocknew&docindex=1&type=0)接口时，应先将对应位置的方块设置为空气后再延时放置自定义箱子。
+
+:::
+
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="netease:block_chest"/>：根对象
+  - <DataType type="int" name="chest_capacity" isRequired/>：箱子的容量。这里定义箱子的行数，应在`1`-`8`之间（含）。  
+    若<DataType type="boolean" name="can_pair"/>为`true`且该值大于`4`，则该值将自动改为`4`（即合成大箱子后最多不超过 8 行）。
+  - <DataType type="string" name="custom_description"/>：箱子的 UI 文本。
+  - <DataType type="boolean" name="can_pair"/>：是否可以和临近的箱子组合为一个大箱子。默认为`false`。
+  - <DataType type="boolean" name="is_shulker_box"/>：是否在被破坏后保留其中的内容物。默认为`false`。  
+    设置为`true`后无法与临近的箱子组合为一个大箱子。
+  - <DataType type="boolean" name="mute"/>：是否禁用箱子开启与关闭的音效。默认值为`true`。
+  - <DataType type="boolean" name="can_be_blocked"/>：是否在箱子上方有可阻挡的方块时被防止打开。默认值为`false`。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"netease:block_chest": {
+    "custom_description": "Copper Chest",
+    "chest_capacity": 4,
+    "mute": false,
+    "can_be_blocked": true
+}
+```
 
 </TabItem></Tabs>
 
@@ -1545,9 +1649,29 @@ import Image from "/src/components/image/standard"
 
 定义方块为一种自定义容器。
 
+:::warning[注意]
+
+要使用该组件，必须将<DataType type="object" name="description"/>的`base_block`设置为`netease_container`。
+
+:::
+
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
+- <DataType type="object" name="netease:block_container"/>：根对象
+  - <DataType type="string" name="custom_description"/>：容器 UI 文本（复用原版 UI 时生效）。
+  - <DataType type="string" name="screen_name"/>：与方块交互时打开的 UI，应为`namespace.screenName`的形式。
+  - <DataType type="int" name="container_size"/>：方块容器能够存放的物品槽位数量，应在`1`-`108`之间（含），需与UI 槽位匹配。
+</treeview>
+
 </TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"netease:block_container": {
+    "screen_name": "my_ui.backpack",
+    "container_size": 81
+}
+```
 
 </TabItem></Tabs>
 
