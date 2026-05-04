@@ -250,12 +250,6 @@ import DataType from "/src/components/type/data"
 
 **使用物品标签筛选**：
 
-:::warning[注意]
-
-物品标签筛选功能仅限 1.21.70 或更高版本可用。详见[基岩版 1.21.70 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E5%9F%BA%E5%B2%A9%E7%89%881.21.70#%E6%8A%80%E6%9C%AF%E6%80%A7)。
-
-:::
-
 <treeview>
 - <DataType type="object"/>：根对象。
   - <DataType type="string" name="condition"/>：指定为`match_tool`。

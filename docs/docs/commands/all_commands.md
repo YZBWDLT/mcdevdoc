@@ -2402,12 +2402,6 @@ in <维度: Dimension> -> execute
 
 `来源`确定调用的战利品表。可用的子命令如下表所示：
 
-:::warning[版本适用性警告]
-
-`mine`子命令仅限 1.21.60+ 版本可用。
-
-:::
-
 | 子命令 | 含义 |
 | --- | --- |
 | `kill <实体: target> [<tool>\|mainhand\|offhand: string]` | 模拟使用指定工具杀死`实体`后的战利品表 |
@@ -2863,6 +2857,167 @@ in <维度: Dimension> -> execute
 设置生物生成的`事件`为`值`。
 
 `值`为空时，改为查询事件。会受到游戏规则`sendCommandFeedBack`的影响。
+
+---
+
+### `/aimassist`
+
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/aimassist" backgroundColor="#1977E3" />
+
+设置玩家的瞄准辅助。
+
+**瞄准辅助（Aim Assist）** 是用于非第一人称时的瞄准功能。瞄准辅助会尝试以玩家的眼睛为顶点，向外以一定的角度发散一个锥形的区域，并按照特定规则选取方块和实体。
+
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
+
+<Tabs><TabItem value="set" label="set" default>
+
+```text
+/aimassist <玩家: target> set [x角度: float] [y角度: float] [最远距离: float] [瞄准模式: AimAssistTargetMode] [预设ID: string]
+```
+
+当玩家使用非第一人称视角时，设置`玩家`的瞄准辅助。
+
+使用`x角度`来指定玩家视角水平方向的锥底面轴长，`y角度`来指定玩家视角垂直方向的锥底面轴长，而`最远距离`指定玩家视角锥面的母线长。这三个变量所组成的锥面如下图所示：
+
+<Image src="/img/docs/commands/all_commands/aim_assist.png" text="x 角度、y 角度和最远距离组成的锥面图"/>
+
+`瞄准模式`的默认值为`angle`，可选值为：
+
+- `angle`：在上图锥面中瞄准与锥底中心最近的实体或方块。这和第三人称的一般情况类似。
+- `distance`：在上图锥面中瞄准与玩家眼睛距离最近的实体或方块。
+
+`预设ID`须指定为行为包中<FileType type="folder" name="cameras"/> - <FileType type="folder" name="presets"/> - <FileType type="file" name="aim_assist_preset.json"/>的有效预设 ID，详见[瞄准辅助预设 - Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/documents/camerasystem/aimassistpresets?view=minecraft-bedrock-stable)。
+
+</TabItem><TabItem value="clear" label="clear">
+
+```text
+/aimassist <玩家: target> clear
+```
+
+移除`玩家`的瞄准辅助。
+
+</TabItem></Tabs>
+
+---
+
+### `/place`
+
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/place" backgroundColor="#1977E3" />
+
+:::warning[权限等级适用性警告]
+
+该命令需要至少`2`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
+
+但是，在 SAPI 中有`Dimension.placeFeature()`、`StructureManager.placeJigsaw()`等对应方法可用。
+
+:::
+
+放置地物、结构、拼图等。
+
+- **权限等级**：2
+- **使用频率**：★★☆☆☆
+
+<Tabs>
+
+<TabItem value="feature" label="feature" default>
+
+```text
+/place feature <地物: features> [位置: x y z]
+```
+
+在`位置`放置`地物`。
+
+放置地物必须要符合其放置条件，否则无法放置。
+
+</TabItem>
+
+<TabItem value="featurerule" label="featurerule">
+
+```text
+/place featurerule <地物规则: featureRules> [位置: x y z]
+```
+
+在`位置`按照`地物规则`放置地物。
+
+放置地物规则必须要符合其放置条件，否则无法放置。
+
+</TabItem>
+
+<TabItem value="jigsaw" label="jigsaw">
+
+```text
+/place jigsaw <pool: filepath> <jigsawTarget: string> <maxDepth: int> [pos: x y z] [keepJigsaws: Boolean] [liquidSettings: LiquidSettings]
+```
+
+放置结构池并展开指定深度[^needTest]。
+
+</TabItem>
+
+<TabItem value="structure" label="structure">
+
+```text
+/place structure <structure: string> [pos: x y z] [ignoreStartHeight: Boolean] [keepJigsaws: Boolean] [liquidSettings: LiquidSettings]
+```
+
+放置结构地物[^needTest]。
+
+</TabItem>
+
+</Tabs>
+
+---
+
+### `/controlscheme`
+
+<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/controlscheme" backgroundColor="#1977E3" />
+
+修改相机预设的控制方案。此命令需要结合`/camera`使用。
+
+- **权限等级**：1
+- **使用频率**：★★☆☆☆
+
+<Tabs>
+
+<TabItem value="set" label="set" default>
+
+```text
+/controlscheme <玩家: target> set <控制方案: controlscheme>
+```
+
+设定`玩家`的控制方案为`控制方案`。
+
+`控制方案`的默认值为`locked_player_relative_strafe`，可选值为：
+
+| 可选值 | 移动方向 | 朝向 | 是否显示鼠标指针 | 是否锁定水平方向 |
+| --- | --- | --- | --- | --- |
+| `camera_relative` | 相机方向 | 由移动方向决定，立刻变为移动方向 | ❌ | ✔️ |
+| `camera_relative_strafe` | 相机方向 | 由鼠标指针决定，立刻面向鼠标指针 | ✔️ | ✔️ |
+| `locked_player_relative_strafe` | 由玩家朝向决定 | 随鼠标滑动方向改变 | ❌ | ❌ |
+| `player_relative` | 由玩家朝向决定 | 按<kbd>A</kbd>、<kbd>D</kbd>分别使玩家向左、向右看 | ❌ | ✔️ |
+| `player_relative_strafe` | 由玩家朝向决定 | 由鼠标指针决定，立刻面向鼠标指针 | ✔️ | ✔️ |
+
+备注：
+
+1. 移动方向为相机方向时，按<kbd>W</kbd>、<kbd>A</kbd>、<kbd>S</kbd>、<kbd>D</kbd>将分别使玩家按**相机**的面向向前、向左、向后、向右走。
+2. 移动方向由玩家朝向决定时，按<kbd>W</kbd>、<kbd>S</kbd>将分别使玩家按**玩家**的面向向前、向后走。除了`player_relative`之外，按<kbd>A</kbd>、<kbd>D</kbd>使玩家按**玩家**的面向向左、向右走。
+
+</TabItem>
+
+<TabItem value="clear" label="clear">
+
+```text
+/controlscheme <玩家: target> clear
+```
+
+清除`玩家`的控制方案。
+
+</TabItem>
+
+</Tabs>
+
+---
 
 ## 零频命令
 
@@ -3381,180 +3536,6 @@ allowlist reload
 ## 新版命令
 
 定义当前中国版到目前最新国际正式版中间的这些版本可用的命令，称为新版命令，均为稳定玩法。
-
-### `/aimassist`
-
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/aimassist" backgroundColor="#1977E3" />
-
-:::warning[版本适用性警告]
-
-该命令仅限 1.21.70+ 版本可用。
-
-:::
-
-设置玩家的瞄准辅助。
-
-**瞄准辅助（Aim Assist）** 是用于非第一人称时的瞄准功能。瞄准辅助会尝试以玩家的眼睛为顶点，向外以一定的角度发散一个锥形的区域，并按照特定规则选取方块和实体。
-
-- **权限等级**：1
-
-<Tabs><TabItem value="set" label="set" default>
-
-```text
-/aimassist <玩家: target> set [x角度: float] [y角度: float] [最远距离: float] [瞄准模式: AimAssistTargetMode] [预设ID: string]
-```
-
-当玩家使用非第一人称视角时，设置`玩家`的瞄准辅助。
-
-使用`x角度`来指定玩家视角水平方向的锥底面轴长，`y角度`来指定玩家视角垂直方向的锥底面轴长，而`最远距离`指定玩家视角锥面的母线长。这三个变量所组成的锥面如下图所示：
-
-<Image src="/img/docs/commands/all_commands/aim_assist.png" text="x 角度、y 角度和最远距离组成的锥面图"/>
-
-`瞄准模式`的默认值为`angle`，可选值为：
-
-- `angle`：在上图锥面中瞄准与锥底中心最近的实体或方块。这和第三人称的一般情况类似。
-- `distance`：在上图锥面中瞄准与玩家眼睛距离最近的实体或方块。
-
-`预设ID`须指定为行为包中<FileType type="folder" name="cameras"/> - <FileType type="folder" name="presets"/> - <FileType type="file" name="aim_assist_preset.json"/>的有效预设 ID，详见[瞄准辅助预设 - Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/documents/camerasystem/aimassistpresets?view=minecraft-bedrock-stable)。
-
-</TabItem><TabItem value="clear" label="clear">
-
-```text
-/aimassist <玩家: target> clear
-```
-
-移除`玩家`的瞄准辅助。
-
-</TabItem></Tabs>
-
----
-
-### `/place`
-
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/place" backgroundColor="#1977E3" />
-
-:::warning[版本适用性警告]
-
-该命令仅限 1.21.70+ 版本可用。其中，`jigsaw`和`structure`用法仅限 1.21.80+ 版本可用。`[liquidSettings: LiquidSettings]`参数仅限 1.21.90+ 版本可用。
-
-:::
-
-:::warning[权限等级适用性警告]
-
-该命令需要至少`2`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
-
-但是，在 SAPI 中有`Dimension.placeFeature()`、`StructureManager.placeJigsaw()`等对应方法可用。
-
-:::
-
-放置地物、结构、拼图等。
-
-- **权限等级**：2
-
-<Tabs>
-
-<TabItem value="feature" label="feature" default>
-
-```text
-/place feature <地物: features> [位置: x y z]
-```
-
-在`位置`放置`地物`。
-
-放置地物必须要符合其放置条件，否则无法放置。
-
-</TabItem>
-
-<TabItem value="featurerule" label="featurerule">
-
-```text
-/place featurerule <地物规则: featureRules> [位置: x y z]
-```
-
-在`位置`按照`地物规则`放置地物。
-
-放置地物规则必须要符合其放置条件，否则无法放置。
-
-</TabItem>
-
-<TabItem value="jigsaw" label="jigsaw">
-
-```text
-/place jigsaw <pool: filepath> <jigsawTarget: string> <maxDepth: int> [pos: x y z] [keepJigsaws: Boolean] [liquidSettings: LiquidSettings]
-```
-
-放置结构池并展开指定深度[^needTest]。
-
-</TabItem>
-
-<TabItem value="structure" label="structure">
-
-```text
-/place structure <structure: string> [pos: x y z] [ignoreStartHeight: Boolean] [keepJigsaws: Boolean] [liquidSettings: LiquidSettings]
-```
-
-放置结构地物[^needTest]。
-
-</TabItem>
-
-</Tabs>
-
----
-
-### `/controlscheme`
-
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/controlscheme" backgroundColor="#1977E3" />
-
-修改相机预设的控制方案。此命令需要结合`/camera`使用。
-
-:::warning[版本适用性警告]
-
-该命令仅限 1.21.90+ 版本可用。
-
-:::
-
-- **权限等级**：1
-
-<Tabs>
-
-<TabItem value="set" label="set" default>
-
-```text
-/controlscheme <玩家: target> set <控制方案: controlscheme>
-```
-
-设定`玩家`的控制方案为`控制方案`。
-
-`控制方案`的默认值为`locked_player_relative_strafe`，可选值为：
-
-| 可选值 | 移动方向 | 朝向 | 是否显示鼠标指针 | 是否锁定水平方向 |
-| --- | --- | --- | --- | --- |
-| `camera_relative` | 相机方向 | 由移动方向决定，立刻变为移动方向 | ❌ | ✔️ |
-| `camera_relative_strafe` | 相机方向 | 由鼠标指针决定，立刻面向鼠标指针 | ✔️ | ✔️ |
-| `locked_player_relative_strafe` | 由玩家朝向决定 | 随鼠标滑动方向改变 | ❌ | ❌ |
-| `player_relative` | 由玩家朝向决定 | 按<kbd>A</kbd>、<kbd>D</kbd>分别使玩家向左、向右看 | ❌ | ✔️ |
-| `player_relative_strafe` | 由玩家朝向决定 | 由鼠标指针决定，立刻面向鼠标指针 | ✔️ | ✔️ |
-
-备注：
-
-1. 移动方向为相机方向时，按<kbd>W</kbd>、<kbd>A</kbd>、<kbd>S</kbd>、<kbd>D</kbd>将分别使玩家按**相机**的面向向前、向左、向后、向右走。
-2. 移动方向由玩家朝向决定时，按<kbd>W</kbd>、<kbd>S</kbd>将分别使玩家按**玩家**的面向向前、向后走。除了`player_relative`之外，按<kbd>A</kbd>、<kbd>D</kbd>使玩家按**玩家**的面向向左、向右走。
-
-</TabItem>
-
-<TabItem value="clear" label="clear">
-
-```text
-/controlscheme <玩家: target> clear
-```
-
-清除`玩家`的控制方案。
-
-</TabItem>
-
-</Tabs>
-
----
 
 ### `/packstack`
 

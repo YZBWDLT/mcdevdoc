@@ -2199,11 +2199,12 @@ import DataType from "/src/components/type/data"
 | :--- | :--- | --- |
 | `netease:allow_offhand` | [`minecraft:allow_off_hand`](#minecraftallow_off_hand) | 1.20.20 |
 | `netease:armor` | [`minecraft:wearable`](#minecraftwearable)、[`minecraft:enchantable`](#minecraftenchantable)（**可平替部分功能**） | 1.20.30 |
-| `netease:compostable` | [`minecraft:compostable`](#minecraftcompostable) | 1.21.60（**中国版版本低**） |
+| `netease:compostable` | [`minecraft:compostable`](#minecraftcompostable) | 1.21.60 |
 | `netease:cooldown` | [`minecraft:cooldown`](#minecraftcooldown) | 1.20.10 |
 | `netease:egg` | [`minecraft:entity_placer`](#minecraftentity_placer) | 1.20.0 |
 | `netease:fire_resistance` | [`minecraft:fire_resistance`](#minecraftfire_resistance) | 1.21.110（**中国版版本低**） |
 | `netease:fuel` | [`minecraft:fuel`](#minecraftfuel) | 1.20.0 |
+| `netease:liquid_clipped` | [`minecraft:liquid_clipped`](#minecraftliquid_clipped) | 1.20.20 |
 | `netease:projectile` | [`minecraft:projectile`](#minecraftprojectile) | 1.20.10 |
 | `netease:weapon` | [`minecraft:damage`](#minecraftdamage)、[`minecraft:enchantable`](#minecraftenchantable)、[`minecraft:digger`](#minecraftdigger)（**可平替部分功能**） | 1.20.30 |
 
@@ -2457,6 +2458,47 @@ import DataType from "/src/components/type/data"
 
 ---
 
+### `netease:fishing_hook`
+
+<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/1-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%A9%E5%93%81/9-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%B1%BC%E7%AB%BF.html" isChinaVersion/>
+
+定义物品是一种钓鱼竿。
+
+:::warning[注意]
+
+要使用该组件，需在物品描述中将`custom_item_type`设置为`fishing_rod`。
+
+:::
+
+:::tip[版本适用性警告]
+
+该组件仅限中国版 3.8 或更高版本可用。
+
+:::
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="netease:fishing_hook"/>：根对象。
+  - <DataType type="string" name="hook_entity" isRequired/>：浮漂使用的实体 ID。
+  - <DataType type="int" name="line_max"/>：鱼线的最大释放长度。默认为`32`。
+  - <DataType type="array" name="line_color"/>：鱼线的颜色。应为<DataType type="float"/>的四元数组，4 个数依次对应`RGBA`，应在`0.0`-`1.0`间（含）。默认值为`[0.0, 0.0, 0.0, 1.0]`（黑色）。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"netease:fishing_hook": {
+    "line_max": 12.0,
+    "line_color": [0.6, 0.5, 0.3, 1.0],
+    "hook_entity": "minecraft:cat"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
 ### `netease:frame_anim_in_scene`
 
 <Version isRP docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-anim-in-scene" isChinaVersion/>
@@ -2590,6 +2632,34 @@ import DataType from "/src/components/type/data"
     "minecraft:keep_on_death": true,
     "ModAttackDamage": 20
 }
+```
+
+</TabItem></Tabs>
+
+---
+
+### `netease:liquid_clipped`
+
+<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%81%E4%BD%93.html?catalog=1" isChinaVersion />
+
+定义是否可以和流体交互并触发对应的脚本事件。
+
+:::tip[版本适用性警告]
+
+该组件仅限中国版 3.8 或更高版本可用。
+
+:::
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="boolean" name="netease:liquid_clipped"/>：是否可以和流体交互。默认为`false`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"netease:liquid_clipped": true
 ```
 
 </TabItem></Tabs>
