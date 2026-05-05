@@ -12,7 +12,7 @@ import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
 
-> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.20，中国版 3.8（1.21.90）。
 
 数据驱动方块组件（Data-Driven Block Components）用于规定方块的功能。将不同的方块组件组合在一起可以实现多种复杂的功能。方块组件可以指定到<DataType type="object" name="components" isRequired/>中，以使得方块在所有情况下都使用相关功能；也可以指定到方块置换<DataType type="array" name="permutations"/> - <DataType type="object"/> - <DataType type="object" name="components" isRequired/>中，使得方块在使用特定方块置换时使用特定的功能。
 
@@ -338,15 +338,9 @@ import Image from "/src/components/image/standard"
 
 ### `minecraft:tags`
 
-<Version version="1.26.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tags?view=minecraft-bedrock-stable" isBeta/>
+<Version version="1.26.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tags?view=minecraft-bedrock-stable"/>
 
 定义方块的标签。
-
-:::warning[警告]
-
-该组件仍处于实验性玩法，必须开启「即将推出的创作者功能」才可使用。在 26.20 更新后，该组件正式可用。
-
-:::
 
 :::warning[版本适用性警告]
 
@@ -655,15 +649,9 @@ import Image from "/src/components/image/standard"
 
 ### `minecraft:chest_obstruction`
 
-<Version version="1.26.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_chest_obstruction?view=minecraft-bedrock-stable" isBeta/>
+<Version version="1.26.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_chest_obstruction?view=minecraft-bedrock-stable"/>
 
 定义方块是否可阻挡箱子打开。
-
-:::warning[警告]
-
-该组件仍处于实验性玩法，必须开启「即将推出的创作者功能」才可使用。在 26.20 更新后，该组件才正式可用。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2558,7 +2546,7 @@ import Image from "/src/components/image/standard"
 
 ```json showLineNumbers
 "netease:redstone_property": {
-    
+    "value": "break_on_push"
 }
 ```
 

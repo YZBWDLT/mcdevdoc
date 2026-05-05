@@ -120,7 +120,26 @@ import DataType from "/src/components/type/data"
 
 ### `terrain_texture.json`
 
+以下为 <FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="textures"/> - <FileType type="file" name="terrain_texture.json"/> 的结构。
+
+<treeview>
+
+- <DataType type="object"/>：根对象。
+  - <DataType type="string" name="resource_pack_name"/>：资源包的包名。原版使用`vanilla`。[^3]
+  - <DataType type="string" name="texture_name"/>：贴图名。原版使用`atlas.terrain`。[^3]
+  - <DataType type="int" name="padding"/>：填充，指纹理周围的拉伸区域，可以防止纹理因不精确的渲染而相互渗进。默认值为`8`。参见[Bedrock Wiki](https://wiki.bedrock.dev/concepts/texture-atlases#padding)。
+  - <DataType type="int" name="num_mip_levels"/>：多级渐远纹理等级，通过降低远处方块的分辨率，以提升性能和视觉效果。默认值为`4`。参见[Bedrock Wiki](https://wiki.bedrock.dev/concepts/texture-atlases#mipmapping)。
+  - <DataType type="object" name="texture_data" isRequired/>：贴图数据。
+    - <DataType type="object" name="(短 ID)"/>：`短 ID`对应的实际贴图。`短 ID`由方块定义的[`minecraft:material_instances`组件](./components#minecraftmaterial_instances)或资源包方块定义[`blocks.json`](#blocksjson)指定。
+      - <DataType type="string" name="textures"/>：贴图路径，从`textures/`开始，不带后缀，例如`textures/blocks/barrel_top`。
+
+</treeview>
+
+[^3]: 目前该参数的实际意义不明。
+
 ### `sounds.json`
+
+以下为<FileType type="folder" name="resource_packs"/> - <FileType type="file" name="sounds.json"/>的结构。
 
 ---
 

@@ -636,7 +636,7 @@ import DataType from "/src/components/type/data"
     - <DataType type="object"/>
       - <DataType type="string" name="block"/>：方块 ID。
       - <DataType type="object" name="block"/>（替代）：方块标签。
-        - <DataType type="string" name="tags"/>：一个 Molang 表达式。通常使用`query.any_tag()`来代表拥有特定标签的方块。
+        - <DataType type="string" name="tags"/>：一个 [Molang 表达式](../blocks/molang)。通常使用`query.any_tag()`来代表拥有特定标签的方块。
       - <DataType type="int" name="speed"/>：破坏方块的速度。若为负数则代表无法破坏。更多信息参见[挖掘 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E6%8C%96%E6%8E%98#%E6%8C%96%E6%8E%98%E9%80%9F%E5%BA%A6)，但请格外注意此值不支持浮点数。
   - <DataType type="boolean" name="use_efficiency"/>：定义有效率附魔的物品是否影响挖掘速度。
 </treeview>

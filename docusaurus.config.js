@@ -140,7 +140,7 @@ const config = {
                             { label: '祉语的个人主页', href: 'https://xiaozhiyuqwq.top' },
                             { label: '小飞侠的博客', href: 'https://wstd.pages.dev/' },
                             { label: 'Xero的个人主页', href: 'https://projectxero.top' },
-                            { label: '萝卜的ModSAPI项目', href: 'https://modsapi.pages.dev/' },
+                            { label: '萝卜的ModSAPI项目', href: 'https://modsapi.nekoawa.com/' },
                         ],
                     },
                     {
