@@ -332,3 +332,269 @@ tile.test:black_block.name=黑色方块
 现在，我们就得到了一把真正的镐了，它在破坏任何该加速的方块的时候都能够得心应手！
 
 ## 中国版方块
+
+中国版方块和中国版物品类似，它们都要定义在中国版提供的特定的文件夹下，并且可以使用网易提供的独有的中国版组件。
+
+中国版方块的定义流程和国际版也是高度类似的，只是行为包定义方面，要放在<FileType type="folder" name="netease_blocks"/>里面，而不是<FileType type="folder" name="blocks"/>：
+
+<treeview>
+
+- <FileType type="folder" name="BP_test"/>：行为包
+  - **<FileType type="folder" name="netease_blocks"/>：方块定义**
+    - <FileType type="file" name="xxx.block.json"/>：方块的定义文件
+- <FileType type="folder" name="RP_test"/>：资源包
+  - ……
+
+</treeview>
+
+定义文件内部结构上和国际版也是类似的，都是「格式版本 - 描述 - 组件」的三段式定义。
+
+中国版方块在描述方面支持几个独有的参数，最重要的当属<DataType type="string" name="base_block"/>，它直接决定方块采用会何种底层代码，配合对应的组件就可以写出对应功能的方块。**目前中国版支持自定义的特殊方块类型包括刷怪笼、传送门、农作物、流体、重力方块、容器**，读者可以阅读[网易提供的文档](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/0-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97%E6%A6%82%E8%BF%B0.html?catalog=1)了解更多。
+
+至于组件，和中国版物品不同，实测中国版物品并不能使用更高版本的国际版物品组件，而**中国版方块却能够完美继承国际版高版本的方块组件**，包括高版本的方块状态、方块置换、方块特征等特性都能使用，这意味着中国版方块的可拓展性就要比中国版物品来的更强。
+
+使用 MCS 定义中国版方块的过程我们就不再赘述了，毕竟过程都是类似的，毕竟网易提供了一套高度可视化无代码的编辑器，在了解了物品的定义方法后，定义方块应当也可以快速上手。
+
+---
+
+## 总结
+
+本节我们介绍了如何自定义一个数据驱动方块。**和物品的定义逻辑类似，我们需要分为行为包和资源包两部分去定义**。
+
+**在行为包部分，我们定义方块的存在及其功能**。需要在<FileType type="folder" name="blocks"/>（中国版使用<FileType type="folder" name="netease_blocks"/>）文件夹下创建方块定义。定义遵循「格式版本 - 描述 - 组件」三段式定义，格式版本通常使用较高版本以保证多数功能可用（比如设置为`1.21.90`），描述定义方块的 ID 等信息，而组件定义方块的功能。这个逻辑和我们定义数据驱动物品时是很类似的。
+
+**在资源包部分，我们则定义方块的渲染和特效表现**。一般，我们将方块贴图置于<FileType type="folder" name="textures"/> - <FileType type="folder" name="blocks"/>下，并用<FileType type="file" name="terrain_texture.json"/>定义所有的方块贴图，形成一个方块贴图的 ID 表，最后通过资源包方块定义文件<FileType type="file" name="blocks.json"/>来决定方块选取哪些贴图和音效。方块的贴图可以用六面全同定义、顶底侧面定义和顶底东西南北面定义 3 种写法调用。最后，确定方块翻译即可。
+
+<treeview>
+
+- <FileType type="folder" name="BP_test"/>：行为包
+  - ……
+  - <FileType type="folder" name="blocks"/>：方块定义
+    - <FileType type="folder" name="test"/>：以 test 作为方块的命名空间
+      - <FileType type="file" name="black_block.block.json"/>：黑色方块的定义文件
+- <FileType type="folder" name="RP_test"/>：资源包
+  - ……
+  - <FileType type="folder" name="texts"/>：翻译文本
+    - **<FileType type="file" name="en_US.lang"/>：英语（美国）的翻译文本**
+    - **<FileType type="file" name="zh_CN.lang"/>：简体中文（中国）的翻译文本**
+  - <FileType type="folder" name="textures"/>：贴图
+    - <FileType type="folder" name="blocks"/>：方块贴图
+      - **<FileType type="image" name="black_block.png"/>：黑色方块的贴图**
+    - **<FileType type="file" name="terrain_texture.json"/>：方块贴图注册**
+  - **<FileType type="file" name="blocks.json"/>：方块定义**
+
+</treeview>
+
+有关这些文件的更具体的信息，请查阅[数据驱动方块](/docs/docs/blocks/description)及相关文档。在后面的教程中，我们将给出多个方块的实例。
+
+## 练习
+
+:::info[练习 5.1]
+
+激动人心的练习时刻来了！请读者查阅[数据驱动方块组件](/docs/docs/blocks/components)，先了解一下数驱方块大约都能实现哪些功能，然后再做下面的练习。同样地，要在游戏里实践哦，我们以后的教程还会用到它们的！
+
+1. 和本篇教程类似地，定义一个白色方块`test:white_block`，并且在地图上也要显示为白色。要用什么组件？自己找啊。>:) 这我们就不给参考贴图了，纯白色贴图读者应该可以自己解决的 >:)
+2. 定义一个六面均不相同的骰子方块`test:die`。下面是参考贴图（读者也可以自己画一个更好看的）：  
+   ![die_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/die_1.png) ![die_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/die_2.png) ![die_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/die_3.png) ![die_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/die_4.png) ![die_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/die_5.png) ![die_6](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/die_6.png)
+3. 定义一种新的防爆玻璃`test:blast_proof_glass`，使其不会被爆炸破坏。我们先不要求透明和自然的面剔除，那是我们后续要介绍的内容。我们目前的要求是：在资源包定义中调用玻璃的贴图和玻璃的音效。你问我玻璃的贴图是什么？在原版的<FileType type="file" name="blocks.json"/>找找看吧！
+4. 定义一种新的工作台`test:crafting_table`。贴图就用原版的工作台就行。读者若有兴趣，可以添加几个用新工作台才能合成的配方。我们甚至可以用这个方法还原旧版本的切石机！
+5. 定义一种新的黑色发光方块`test:black_light_block`，光照等级 15。
+6. 定义一种绝对光滑的方块`test:smooth_block`，贴图自备。在这种方块上走一走，尝试光滑方块的效果。
+
+:::
+
+<details>
+
+<summary>练习题答案</summary>
+
+在下面的练习题答案中，仅第 1 个问题我们会给出详细的行为包和资源包的定义，其他问题非必要情况下我们会省略资源包的定义。**在读者添加新的贴图的时候，请注意大退重进以应用更改**。
+
+1. ```json title="BP_test/blocks/test/white_block.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:white_block",
+                "menu_category": {
+                    "category": "construction"
+                }
+            },
+            "components": {
+                "minecraft:map_color": "#ffffff",
+                "tag:test:colorful_block": {}
+            }
+        }
+    }
+    ```
+
+    ```json title="RP_test/blocks.json 方块资源包定义" showLineNumbers {4}
+    {
+        "format_version": "1.21.90",
+        "test:black_block": { "textures": "black_block" },
+        "test:white_block": { "textures": "white_block" }
+    }
+    ```
+
+    ```json title="RP_test/textures/terrain_texture.json 方块贴图定义" showLineNumbers {5}
+    {
+        "resource_pack_name": "test",
+        "texture_data": {
+            "black_block": { "textures": "textures/blocks/black_block" },
+            "white_block": { "textures": "textures/blocks/white_block" }
+        }
+    }
+    ```
+
+    ```json title="en_US.lang"
+    tile.test:white_block.name=White Block
+    ```
+
+    ```json title="zh_CN.lang"
+    tile.test:white_block.name=白色方块
+    ```
+
+    白色方块的贴图（`textures/blocks/white_block.png`）：![white_block](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/white_block.png)（← 在这里）
+
+    最终效果：  
+    ![practice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_1.png)
+
+2. ```json title="BP_test/blocks/test/die.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:die",
+                "menu_category": {
+                    "category": "construction"
+                }
+            },
+            "components": { }
+        }
+    }
+    ```
+
+    ```json title="RP_test/blocks.json 方块资源包定义" showLineNumbers {4}
+    {
+        "format_version": "1.21.90",
+        ...,
+        "test:die": { "textures": { "up": "die_1", "down": "die_2", "east": "die_3", "west": "die_4", "south": "die_5", "north": "die_6" } }
+    }
+    ```
+
+    最终效果：  
+    ![practice_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_2.png)
+
+3. ```json title="BP_test/blocks/test/blast_proof_glass.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:blast_proof_glass",
+                "menu_category": {
+                    "category": "construction"
+                }
+            },
+            "components": {
+                "minecraft:destructible_by_explosion": false
+            }
+        }
+    }
+    ```
+
+    ```json title="RP_test/blocks.json 方块资源包定义" showLineNumbers {4}
+    {
+        "format_version": "1.21.90",
+        ...,
+        "test:blast_proof_glass": { "textures": "glass", "sound": "glass" }
+    }
+    ```
+
+    最终效果（为 TNT 炸过一次的效果，左侧防爆玻璃耐炸但不透明，之后我们会介绍如何使其透明）：  
+    ![practice_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_3.png)
+
+4. ```json title="BP_test/blocks/test/custom_crafting_table.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:crafting_table",
+                "menu_category": {
+                    "category": "construction"
+                }
+            },
+            "components": {
+                "minecraft:crafting_table": {
+                    "crafting_tags": [ "test_crafting_table" ],
+                    "table_name": "试试看啊~"
+                }
+            }
+        }
+    }
+    ```
+
+    ```json title="RP_test/blocks.json 方块资源包定义" showLineNumbers {4-14}
+    {
+        "format_version": "1.21.90",
+        ...,
+        "test:crafting_table": {
+            "sound": "wood",
+            "textures": {
+                "down": "crafting_table_bottom",
+                "east": "crafting_table_side",
+                "north": "crafting_table_front",
+                "south": "crafting_table_front",
+                "up": "crafting_table_top",
+                "west": "crafting_table_side"
+            }
+        }
+    }
+    ```
+
+    最终效果：  
+    ![practice_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_4.png)
+
+5. ```json title="BP_test/blocks/test/custom_crafting_table.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:black_light_block",
+                "menu_category": {
+                    "category": "construction"
+                }
+            },
+            "components": {
+                "minecraft:light_emission": 15,
+                "tag:test:colorful_block": {}
+            }
+        }
+    }
+    ```
+
+    最终效果：  
+    ![practice_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_5.png)
+
+6. ```json title="BP_test/blocks/test/custom_crafting_table.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:smooth_block",
+                "menu_category": {
+                    "category": "construction"
+                }
+            },
+            "components": {
+                "minecraft:friction": 0
+            }
+        }
+    }
+    ```
+
+    在这种方块走动，会发现效果类似于蓝冰，但在玩家不再主动前进的情况下，最终玩家仍然会停下。
+
+</details>
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>

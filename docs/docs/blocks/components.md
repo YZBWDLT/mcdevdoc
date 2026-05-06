@@ -627,13 +627,13 @@ import Image from "/src/components/image/standard"
 
 特定类型的方块可用的组件。
 
-| 常见方块类型 | 常用组件 | 最低适用版本 |
+| 常见方块类型 | 常用组件或特征 | 最低适用版本 |
 | :---: | :--- | --- |
-| 带方向的方块 | | |
-| 光源方块 | | |
-| 台阶 | | |
-| 楼梯 | | |
-| 栅栏 | | |
+| 带方向的方块 | [`minecraft:placement_direction`](./traits#minecraftplacement_direction)特征、[`minecraft:transformation`](#minecrafttransformation) | 1.20.20 |
+| 光源方块 | [`minecraft:light_emission`](#minecraftlight_emission) | 1.19.20 |
+| 台阶 | [`minecraft:placement_position`](./traits#minecraftplacement_position)特征、[`minecraft:collision_box`](#minecraftcollision_box)、[`minecraft:selection_box`](#minecraftselection_box)、[`minecraft:geometry`](#minecraftgeometry)、[`minecraft:material_instances`](#minecraftmaterial_instances) | 1.20.20 |
+| 楼梯 | [`minecraft:placement_direction`](./traits#minecraftplacement_direction)特征、[`minecraft:placement_position`](./traits#minecraftplacement_position)特征、[`minecraft:collision_box`](#minecraftcollision_box)、[`minecraft:selection_box`](#minecraftselection_box)、[`minecraft:geometry`](#minecraftgeometry)、[`minecraft:material_instances`](#minecraftmaterial_instances) | 1.20.20 |
+| 栅栏 | [`minecraft:connection`](./traits#minecraftconnection)特征、[`minecraft:connection_rule`](#minecraftconnection_rule) | 1.26.0 |
 | 栅栏门 | | |
 | 活板门 | | |
 | 门 | | |
