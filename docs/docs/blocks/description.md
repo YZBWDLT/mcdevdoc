@@ -63,7 +63,7 @@ import DataType from "/src/components/type/data"
         在格式版本为`1.21.50`或更低时，不能添加命名空间；在格式版本为`1.21.60`或更高时，必须添加命名空间。
         - <DataType type="boolean" name="is_hidden_in_commands"/>：（**1.19.40+**）定义方块是否隐藏在命令中。
       - <DataType type="object" name="states"/>[^1] [^2]：（**1.20.10+**）定义方块状态。
-        - <DataType type="array" name="(方块状态 ID)"/>：方块状态，需注意每种方块状态允许的状态值不能超过 16 种
+        - <DataType type="array" name="(方块状态 ID)"/>：方块状态，需注意每种方块状态允许的状态值不能超过 16 种，第一个值会作为方块状态的默认值。
           - <DataType type="string"/><DataType type="boolean"/><DataType type="int"/>：方块状态枚举
       - <DataType type="object" name="traits"/>：（**1.20.20+**）定义方块特征，以引用原版的方块特征并应用原版的方块状态。
         - <DataType type="object" name="minecraft:(traits)"/>：方块特征，可用的方块特征详见[方块特征](./traits)。
@@ -94,7 +94,7 @@ import DataType from "/src/components/type/data"
 <treeview>
 
 - <DataType type="object"/>：根对象。
-  - <DataType type="string" name="format_version" isRequired/>：格式版本，默认为`1.1.0`。不填写此字段时会报错（警告）。
+  - <DataType type="string" name="format_version" isRequired/>：格式版本，默认为`1.1.0`。最高为`1.21.40`。不填写此字段时会报错（警告）。
   - <DataType type="object" name="(方块 ID)" isRequired/>：定义方块使用的资源。`方块 ID`应是带命名空间的 ID。
     - <DataType type="string" name="textures"/>：定义方块使用的贴图（写法 1），使方块六面全部使用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。
     - <DataType type="object" name="textures"/>：定义方块使用的贴图（写法 2）。使用此写法时将定义方块顶底侧面各采用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。

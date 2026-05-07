@@ -92,11 +92,11 @@ import FileType from "/src/components/type/file"
 
 ![black_block](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/black_block.png)
 
-**在资源包定义方块贴图和音效的工作就由<FileType type="file" name="blocks.json"/>来进行**。所以，现在我们来定义<FileType type="file" name="blocks.json"/>。首先我们先确定一个对象，然后输入格式版本：
+**在资源包定义方块贴图和音效的工作就由<FileType type="file" name="blocks.json"/>来进行**。所以，现在我们来定义<FileType type="file" name="blocks.json"/>。首先我们先确定一个对象，然后输入格式版本（这里允许的格式版本最高为`1.21.40`）：
 
 ```json showLineNumbers title="blocks.json"
 {
-    "format_version": "1.21.90"
+    "format_version": "1.21.40"
 }
 ```
 
@@ -104,7 +104,7 @@ import FileType from "/src/components/type/file"
 
 ```json showLineNumbers title="blocks.json" {3}
 {
-    "format_version": "1.21.90",
+    "format_version": "1.21.40",
     "test:black_block": { "textures": "black_block" }
 }
 ```
@@ -164,7 +164,7 @@ tile.test:black_block.name=黑色方块
 
 ```json showLineNumbers title="blocks.json" {3}
 {
-    "format_version": "1.21.90",
+    "format_version": "1.21.40",
     "test:black_block": { "textures": "black_block", "sound": "glass" }
 }
 ```
@@ -353,7 +353,7 @@ tile.test:black_block.name=黑色方块
 
 至于组件，和中国版物品不同，实测中国版物品并不能使用更高版本的国际版物品组件，而**中国版方块却能够完美继承国际版高版本的方块组件**，包括高版本的方块状态、方块置换、方块特征等特性都能使用，这意味着中国版方块的可拓展性就要比中国版物品来的更强。
 
-使用 MCS 定义中国版方块的过程我们就不再赘述了，毕竟过程都是类似的，毕竟网易提供了一套高度可视化无代码的编辑器，在了解了物品的定义方法后，定义方块应当也可以快速上手。
+使用 MCS 定义中国版方块的过程我们就不再赘述了，毕竟过程都是类似的，毕竟网易提供了一套高度可视化无代码的编辑器，在了解了物品的定义方法后，定义方块应当也可以快速上手。然而，因为 MCS 对高版本组件适配不佳，在自行使用高版本组件编写后请慎用 MCS 的编辑功能。
 
 ---
 
@@ -429,7 +429,7 @@ tile.test:black_block.name=黑色方块
 
     ```json title="RP_test/blocks.json 方块资源包定义" showLineNumbers {4}
     {
-        "format_version": "1.21.90",
+        "format_version": "1.21.40",
         "test:black_block": { "textures": "black_block" },
         "test:white_block": { "textures": "white_block" }
     }
@@ -475,7 +475,7 @@ tile.test:black_block.name=黑色方块
 
     ```json title="RP_test/blocks.json 方块资源包定义" showLineNumbers {4}
     {
-        "format_version": "1.21.90",
+        "format_version": "1.21.40",
         ...,
         "test:die": { "textures": { "up": "die_1", "down": "die_2", "east": "die_3", "west": "die_4", "south": "die_5", "north": "die_6" } }
     }
@@ -503,7 +503,7 @@ tile.test:black_block.name=黑色方块
 
     ```json title="RP_test/blocks.json 方块资源包定义" showLineNumbers {4}
     {
-        "format_version": "1.21.90",
+        "format_version": "1.21.40",
         ...,
         "test:blast_proof_glass": { "textures": "glass", "sound": "glass" }
     }
@@ -534,7 +534,7 @@ tile.test:black_block.name=黑色方块
 
     ```json title="RP_test/blocks.json 方块资源包定义" showLineNumbers {4-14}
     {
-        "format_version": "1.21.90",
+        "format_version": "1.21.40",
         ...,
         "test:crafting_table": {
             "sound": "wood",
