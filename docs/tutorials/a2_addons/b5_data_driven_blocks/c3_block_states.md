@@ -166,8 +166,6 @@ import FileType from "/src/components/type/file"
 
 <summary>练习题答案</summary>
 
-在下面的练习题答案中，仅第 1 个问题我们会给出详细的行为包和资源包的定义，其他问题非必要情况下我们会省略资源包的定义。**在读者添加新的贴图的时候，请注意大退重进以应用更改**。
-
 1. ```json title="BP_test/blocks/test/friction_block.block.json 行为包定义" showLineNumbers
     {
         "format_version": "1.21.90",

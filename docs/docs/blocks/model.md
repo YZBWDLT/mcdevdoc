@@ -14,17 +14,17 @@ import Image from "/src/components/image/standard"
 
 > 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
 
-方块模型（Block Model）是用于方块的模型，决定方块在世界中以何种形状渲染并呈现出来。方块模型需要在<FileType type="folder" name="models"/> - <FileType type="folder" name="block"/>的 json 文件中定义。
+方块模型（Block Model）是用于方块的模型，决定方块在世界中以何种形状渲染并呈现出来。方块模型需要在<FileType type="folder" name="models"/> - <FileType type="folder" name="blocks"/>的 json 文件中定义。
 
-通常，方块模型都使用 [BlockBench](https://www.blockbench.net/) 编写，这是一个可视化模型的软件，专门用于 Minecraft 的模型制作。因此，**在条件允许的情况下，我们并不推荐读者手写方块模型，而应在 BlockBench 中进行模型制作，这能够大幅节省您的时间**。
+通常，方块模型都使用 [Blockbench](https://www.blockbench.net/) 编写，这是一个可视化模型的软件，专门用于 Minecraft 的模型制作。因此，**在条件允许的情况下，我们并不推荐读者手写方块模型，而应在 Blockbench 中进行模型制作，这能够大幅节省您的时间**。
 
 ## 方块模型文件格式
 
-以下为<FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="models"/> - <FileType type="folder" name="block"/> - <FileType type="file" name="*.json"/>的结构。
+以下为<FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="models"/> - <FileType type="folder" name="blocks"/> - <FileType type="file" name="*.json"/>的结构。
 
 :::warning[注意]
 
-因为目前各大文档都强调使用 BlockBench 制作方块模型，没有明确的参数文档，故下文给出的参数可能会不全面。
+因为目前各大文档都强调使用 Blockbench 制作方块模型，没有明确的参数文档，故下文给出的参数可能会不全面。
 
 :::
 
@@ -78,9 +78,9 @@ import Image from "/src/components/image/standard"
 
 <summary>实例：完整方块模型</summary>
 
-该模型使用了 BlockBench 生成。
+该模型使用了 Blockbench 生成。
 
-```json title="models/block/full_block.geo.json" showLineNumbers
+```json title="models/blocks/full_block.geo.json" showLineNumbers
 {
     "format_version": "1.12.0",
     "minecraft:geometry": [

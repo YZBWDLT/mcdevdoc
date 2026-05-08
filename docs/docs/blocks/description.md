@@ -30,7 +30,7 @@ import DataType from "/src/components/type/data"
   - <FileType type="folder" name="block_culling"/>
     - **<FileType type="file" name="*.json"/>：定义方块面剔除规则**
   - <FileType type="folder" name="models"/>
-    - <FileType type="folder" name="block"/>
+    - <FileType type="folder" name="blocks"/>
       - **<FileType type="file" name="*.geo.json"/>：定义方块模型**
   - <FileType type="folder" name="texts"/>
     - **<FileType type="file" name="en_US.lang"/>：定义方块的英文译名**

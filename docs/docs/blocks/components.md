@@ -1403,7 +1403,7 @@ import Image from "/src/components/image/standard"
   - <DataType type="array" name="rotation"/>：相对于旋转枢轴的旋转值。应为一个<DataType type="float"/>的三元数组。
   - <DataType type="array" name="scale_pivot"/>：（**1.21.0+**）尺寸枢轴，默认的`[0, 0, 0]`为方块底部中心位置。应为一个<DataType type="float"/>的三元数组。
   - <DataType type="array" name="scale"/>：相对于尺寸枢轴调整的尺寸值。应为一个<DataType type="float"/>的三元数组。
-  - <DataType type="array" name="translation"/>：偏移值。应为一个<DataType type="float"/>的三元数组。
+  - <DataType type="array" name="translation"/>：偏移值，以一个方块的大小为单位。应为一个<DataType type="float"/>的三元数组。例如`[0, 0.5, 0]`将把一个方块向上偏移半格。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
