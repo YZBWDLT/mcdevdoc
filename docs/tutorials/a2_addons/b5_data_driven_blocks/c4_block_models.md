@@ -529,6 +529,7 @@ import Image from "/src/components/image/standard"
 4. 之前我们定义的假石头，读者不难发现存在一个问题：在进入假石头后会将底部的方块面剔除，连带自己的方块面也被一并剔除。请使用合适的材质，使得这些面能够被渲染出来。
 ![practice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_1.png)
 5. 将我们之前定义的所有方块的贴图全部改用[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件表达，而非<FileType type="file" name="blocks.json"/>。对于完整方块而言，可以采用原版的完整方块模型`minecraft:geometry.full_block`。
+6. 为我们在练习 5.1 定义的骰子添加一个方块状态`test:point`，允许值为从`1`到`6`，分别代表骰子最上面的点数。
 
 :::
 
@@ -646,9 +647,9 @@ import Image from "/src/components/image/standard"
                 "tag:wood": {}
             },
             "permutations": [
-                { "condition": "q.block_state('test:cardinal_direction') == 'south'", "components": { "minecraft:transformation": { "rotation": [ 0, 90, 0 ] } } },
-                { "condition": "q.block_state('test:cardinal_direction') == 'east'", "components": { "minecraft:transformation": { "rotation": [ 0, 180, 0 ] } } },
-                { "condition": "q.block_state('test:cardinal_direction') == 'north'", "components": { "minecraft:transformation": { "rotation": [ 0, 270, 0 ] } } }
+                { "condition": "q.block_state('test:cardinal_direction') == 'north'", "components": { "minecraft:transformation": { "rotation": [ 0, 90, 0 ] } } },
+                { "condition": "q.block_state('test:cardinal_direction') == 'west'", "components": { "minecraft:transformation": { "rotation": [ 0, 180, 0 ] } } },
+                { "condition": "q.block_state('test:cardinal_direction') == 'south'", "components": { "minecraft:transformation": { "rotation": [ 0, 270, 0 ] } } }
             ]
         }
     }
@@ -762,6 +763,56 @@ import Image from "/src/components/image/standard"
     相比于以前，我们还移除了一个`!q.block_state('test:is_lit')`的判断，因为默认情况下方块就是不发光的。
 
     其他方块如法炮制，添加[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件和[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件，这里不再赘述。
+
+6. ```json title="BP_test/blocks/test/dice.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:dice",
+                "menu_category": { "category": "construction" },
+                "states": {
+                    "test:point": [ 1, 2, 3, 4, 5, 6 ]
+                }
+            },
+            "components": {
+                "minecraft:geometry": "minecraft:geometry.full_block",
+                "minecraft:material_instances": {
+                    "*": { "texture": "dice_1" },
+                    "down": { "texture": "dice_2" },
+                    "east": { "texture": "dice_3" },
+                    "west": { "texture": "dice_4" },
+                    "south": { "texture": "dice_5" },
+                    "north": { "texture": "dice_6" }
+                }
+            },
+            "permutations": [
+                {
+                    "condition": "q.block_state('test:point') == 2",
+                    "components": { "minecraft:transformation": { "rotation": [180, 0, 0] } }
+                },
+                {
+                    "condition": "q.block_state('test:point') == 3",
+                    "components": { "minecraft:transformation": { "rotation": [0, 0, 90] } }
+                },
+                {
+                    "condition": "q.block_state('test:point') == 4",
+                    "components": { "minecraft:transformation": { "rotation": [0, 0, -90] } }
+                },
+                {
+                    "condition": "q.block_state('test:point') == 5",
+                    "components": { "minecraft:transformation": { "rotation": [-90, 0, 0] } }
+                },
+                {
+                    "condition": "q.block_state('test:point') == 6",
+                    "components": { "minecraft:transformation": { "rotation": [90, 0, 0] } }
+                }
+            ]
+        }
+    }
+    ```
+
+    ![practice_10](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_10.png)
 
 </details>
 

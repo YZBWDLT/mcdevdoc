@@ -394,8 +394,8 @@ tile.test:black_block.name=黑色方块
 激动人心的练习时刻来了！请读者查阅[数据驱动方块组件](/docs/docs/blocks/components)，先了解一下数驱方块大约都能实现哪些功能，然后再做下面的练习。同样地，要在游戏里实践哦，我们以后的教程还会用到它们的！
 
 1. 和本篇教程类似地，定义一个白色方块`test:white_block`，并且在地图上也要显示为白色。要用什么组件？自己找啊。>:) 这我们就不给参考贴图了，纯白色贴图读者应该可以自己解决的 >:)
-2. 定义一个六面均不相同的骰子方块`test:die`。下面是参考贴图（读者也可以自己画一个更好看的）：  
-   ![die_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/die_1.png) ![die_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/die_2.png) ![die_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/die_3.png) ![die_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/die_4.png) ![die_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/die_5.png) ![die_6](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/die_6.png)
+2. 定义一个六面均不相同的骰子方块`test:dice`。下面是参考贴图（读者也可以自己画一个更好看的）：  
+   ![dice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_1.png) ![dice_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_2.png) ![dice_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_3.png) ![dice_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_4.png) ![dice_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_5.png) ![dice_6](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_6.png)
 3. 定义一种新的防爆玻璃`test:blast_proof_glass`，使其不会被爆炸破坏。我们先不要求透明和自然的面剔除，那是我们后续要介绍的内容。我们目前的要求是：在资源包定义中调用玻璃的贴图和玻璃的音效。你问我玻璃的贴图是什么？在原版的<FileType type="file" name="blocks.json"/>找找看吧！
 4. 定义一种新的工作台`test:crafting_table`。贴图就用原版的工作台就行。读者若有兴趣，可以添加几个用新工作台才能合成的配方。我们甚至可以用这个方法还原旧版本的切石机！
 5. 定义一种新的黑色发光方块`test:black_light_block`，光照等级 15。
@@ -458,12 +458,12 @@ tile.test:black_block.name=黑色方块
     最终效果：  
     ![practice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_1.png)
 
-2. ```json title="BP_test/blocks/test/die.block.json 行为包定义" showLineNumbers
+2. ```json title="BP_test/blocks/test/dice.block.json 行为包定义" showLineNumbers
     {
         "format_version": "1.21.90",
         "minecraft:block": {
             "description": {
-                "identifier": "test:die",
+                "identifier": "test:dice",
                 "menu_category": {
                     "category": "construction"
                 }
@@ -477,7 +477,7 @@ tile.test:black_block.name=黑色方块
     {
         "format_version": "1.21.40",
         ...,
-        "test:die": { "textures": { "up": "die_1", "down": "die_2", "east": "die_3", "west": "die_4", "south": "die_5", "north": "die_6" } }
+        "test:dice": { "textures": { "up": "dice_1", "down": "dice_2", "east": "dice_3", "west": "dice_4", "south": "dice_5", "north": "dice_6" } }
     }
     ```
 
