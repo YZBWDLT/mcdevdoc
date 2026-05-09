@@ -24,7 +24,7 @@ import Image from "/src/components/image/standard"
 
 物品组（Item Group）可以在创造模式物品栏中将少量相似功能的物品、方块折叠到一起。例如下图：
 
-<Image src="/img/docs/docs/items/item_category_and_group/item_group_1.png" text="物品组"/>
+<Image src="/img/docs/items/item_category_and_group/item_group_1.png" text="物品组"/>
 
 ### 自定义物品组
 
@@ -182,7 +182,7 @@ import Image from "/src/components/image/standard"
 
 物品分类（Item Category）则将大量物品囊括到一个大分类中。例如下图：
 
-<Image src="/img/docs/docs/items/item_category_and_group/item_category_1.png" text="物品分类"/>
+<Image src="/img/docs/items/item_category_and_group/item_category_1.png" text="物品分类"/>
 
 原版拥有 4 个物品分类：建筑（`construction`）、装备（`equipment`）、物品（`items`）和自然（`nature`）。
 

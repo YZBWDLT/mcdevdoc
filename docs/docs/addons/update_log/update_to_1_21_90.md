@@ -320,7 +320,7 @@ world.afterEvents.worldLoad.subscribe(event => {
 
 总体而言，`2.0.0`版本的脚本在世界加载时的变化如下图所示
 
-<Image src="/img/docs/docs/addons/update_log/update_to_1_21_90/script_v2.png" text="2.0.0 版本的脚本在世界加载时的变化，图源来自脚本 V2 概述 - Microsoft Learn" size="85%"/>
+<Image src="/img/docs/addons/update_log/update_to_1_21_90/script_v2.png" text="2.0.0 版本的脚本在世界加载时的变化，图源来自脚本 V2 概述 - Microsoft Learn" size="85%"/>
 
 以下为`2.0.0`的版本中的功能变化：
 
@@ -410,7 +410,7 @@ world.afterEvents.worldLoad.subscribe(event => {
 
 脚本 UI 的动作表单 UI 和模态表单 UI 现在都支持添加大标题、分割线和普通文本了，并且模态表单 UI 的元素还支持添加新的提示框。
 
-<Image src="/img/docs/docs/addons/update_log/update_to_1_21_90/script_ui_v2.png" text="新版脚本 UI 演示，包括大标题和分割线，图片来自 xKingDark（取自 JaylyMC 的 SAPI 文档）"/>
+<Image src="/img/docs/addons/update_log/update_to_1_21_90/script_ui_v2.png" text="新版脚本 UI 演示，包括大标题和分割线，图片来自 xKingDark（取自 JaylyMC 的 SAPI 文档）"/>
 
 - **动作表单 UI**：
   - 开放了`ActionFormUI.divider()`方法，以在 UI 内添加分割线。

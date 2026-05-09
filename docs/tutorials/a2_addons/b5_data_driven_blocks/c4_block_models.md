@@ -280,14 +280,14 @@ import Image from "/src/components/image/standard"
 
 当然，`blend`材质还有一个特别的点，就是存在**背面剔除（Backface Culling）**。我们都知道，对于一个立方体，以我们的视角只能看到它的 3 个面，而另外 3 个面则是不可见的。这样，我们就可以想方设法，不要让这些不可见的面渲染出来，毕竟渲染一个面是需要消耗性能的，更何况游戏内往往存在无穷无尽的方块，这就意味着无穷无尽的面要渲染，会大幅度提升渲染压力，降低客户端的性能。这种**只渲染前面，而背面的方块面全部剔除掉，以提升性能的剔除方法**，就叫做背面剔除。
 
-<Image src="/img/docs/docs/blocks/culling/backface_culling_1.png" text="面剔除示例"/>
+<Image src="/img/docs/blocks/culling/backface_culling_1.png" text="面剔除示例"/>
 
 对于不透明的完整方块，这么做是不存在什么问题的，但对于透明方块来讲，情况就不是这样了。因为**背面剔除是建立在玩家不可见背面的基础上的，但是透明方块却使得玩家可以看到背面**！这样，是否存在背面剔除就会影响方块的渲染效果。有一个比较好的例子是玻璃和刷怪笼的渲染方法并不相同。读者可以看到：
 
 - 对于玻璃来说，它使用的是`blend`材质，存在背面剔除，故而我们看不到它的背面。
 - 而刷怪笼使用的是`alpha_test`材质（我们一会儿就会细说），而`alpha_test`材质是不会进行背面剔除的，所以刷怪笼的背面是清晰可见的。
 
-<Image src="/img/docs/docs/blocks/culling/backface_culling_2.png" text="背面剔除（左）与背面不剔除（右）的对比" size="75%"/>
+<Image src="/img/docs/blocks/culling/backface_culling_2.png" text="背面剔除（左）与背面不剔除（右）的对比" size="75%"/>
 
 现在我们定义了方块的材质和贴图，但不要忘记方块模型！**不要忘记，`minecraft:material_instances`组件是必须配套`minecraft:geometry`组件的**。但是我们这时候不希望引用特殊的方块模型该怎么办呢？这时候我们就可以使用官方为我们内置的模型了：
 

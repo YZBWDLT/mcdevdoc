@@ -516,13 +516,13 @@ import Image from "/src/components/image/standard"
 
 </TabItem><TabItem value="效果图" label="效果图">
 
-<Image src="/img/docs/docs/blocks/components/ambient_occlusion_1.png" text="环境光遮蔽（ambient occlusion），左侧为开，右侧为关，可见右侧的方块似乎禁用了平滑光照，这可以提升性能"/>
+<Image src="/img/docs/blocks/components/ambient_occlusion_1.png" text="环境光遮蔽（ambient occlusion），左侧为开，右侧为关，可见右侧的方块似乎禁用了平滑光照，这可以提升性能"/>
 
-<Image src="/img/docs/docs/blocks/components/ambient_occlusion_2.png" text="环境光遮蔽（ambient occlusion），左侧为 0.0，右侧为 7.5，可见很强烈的遮蔽现象"/>
+<Image src="/img/docs/blocks/components/ambient_occlusion_2.png" text="环境光遮蔽（ambient occlusion），左侧为 0.0，右侧为 7.5，可见很强烈的遮蔽现象"/>
 
-<Image src="/img/docs/docs/blocks/components/face_dimming_1.png" text="方块面调暗（face dimming），左侧为关，右侧为开，可见左侧的方块面显然更亮"/>
+<Image src="/img/docs/blocks/components/face_dimming_1.png" text="方块面调暗（face dimming），左侧为关，右侧为开，可见左侧的方块面显然更亮"/>
 
-<Image src="/img/docs/docs/blocks/components/isotropic_1.png" text="各向同性（isotropic），左侧为关，右侧为开，可见右侧的方块面被随机旋转"/>
+<Image src="/img/docs/blocks/components/isotropic_1.png" text="各向同性（isotropic），左侧为关，右侧为开，可见右侧的方块面被随机旋转"/>
 
 </TabItem></Tabs>
 
@@ -915,7 +915,7 @@ import Image from "/src/components/image/standard"
 
 </TabItem><TabItem value="效果图" label="效果图">
 
-<Image src="/img/docs/docs/blocks/components/leashable_1.png" text="offset 的效果，左[0, 12, 0]，右[0, 0, 0]" />
+<Image src="/img/docs/blocks/components/leashable_1.png" text="offset 的效果，左[0, 12, 0]，右[0, 0, 0]" />
 
 </TabItem></Tabs>
 
@@ -1009,8 +1009,8 @@ import Image from "/src/components/image/standard"
 
 </TabItem><TabItem value="效果图" label="效果图">
 
-<Image src="/img/docs/docs/blocks/components/liquid_detection_1.png" text="on_liquid_touches 各参数的效果"/>
-<Image src="/img/docs/docs/blocks/components/liquid_detection_2.png" text="stops_liquid_flowing_from_direction 各参数的效果 ①：可含水且阻止水从侧面流出，②：可含水且阻止水从底面流出（可见图中方块下方没有水），③：可含水且阻止水从上面流出（可见图中方块下方没有水），④：水可流过方块且阻止水从侧面流出（可见下方的方块被水穿过）"/>
+<Image src="/img/docs/blocks/components/liquid_detection_1.png" text="on_liquid_touches 各参数的效果"/>
+<Image src="/img/docs/blocks/components/liquid_detection_2.png" text="stops_liquid_flowing_from_direction 各参数的效果 ①：可含水且阻止水从侧面流出，②：可含水且阻止水从底面流出（可见图中方块下方没有水），③：可含水且阻止水从上面流出（可见图中方块下方没有水），④：水可流过方块且阻止水从侧面流出（可见下方的方块被水穿过）"/>
 
 </TabItem></Tabs>
 
@@ -1185,7 +1185,7 @@ import Image from "/src/components/image/standard"
 
 </TabItem><TabItem value="效果图" label="效果图">
 
-<Image src="/img/docs/docs/blocks/components/random_offset_1.png" text="random_offset 的效果" size="75%"/>
+<Image src="/img/docs/blocks/components/random_offset_1.png" text="random_offset 的效果" size="75%"/>
 
 </TabItem></Tabs>
 
@@ -1251,7 +1251,7 @@ import Image from "/src/components/image/standard"
 
 </TabItem><TabItem value="效果图" label="效果图">
 
-<Image src="/img/docs/docs/blocks/components/redstone_consumer_1.png" text="propagates_power 的效果，上 true 下 false"/>
+<Image src="/img/docs/blocks/components/redstone_consumer_1.png" text="propagates_power 的效果，上 true 下 false"/>
 
 </TabItem></Tabs>
 
@@ -1292,9 +1292,9 @@ import Image from "/src/components/image/standard"
 
 </TabItem><TabItem value="效果图" label="效果图">
 
-<Image src="/img/docs/docs/blocks/components/redstone_producer_1.png" text="将 strongly_powered_face 设置为 up 的效果，可见上方的方块被强充能"/>
+<Image src="/img/docs/blocks/components/redstone_producer_1.png" text="将 strongly_powered_face 设置为 up 的效果，可见上方的方块被强充能"/>
 
-<Image src="/img/docs/docs/blocks/components/redstone_producer_2.png" text="将 connected_faces 设置为 ['east', 'west'] 的效果，可见只有东西向的红石线路被充能"/>
+<Image src="/img/docs/blocks/components/redstone_producer_2.png" text="将 connected_faces 设置为 ['east', 'west'] 的效果，可见只有东西向的红石线路被充能"/>
 
 </TabItem></Tabs>
 
@@ -1348,7 +1348,7 @@ import Image from "/src/components/image/standard"
 
 </TabItem><TabItem value="效果图" label="效果图">
 
-<Image src="/img/docs/docs/blocks/components/support_1.png" text="shape 的效果"/>
+<Image src="/img/docs/blocks/components/support_1.png" text="shape 的效果"/>
 
 </TabItem></Tabs>
 
@@ -2070,7 +2070,7 @@ import Image from "/src/components/image/standard"
 
 </TabItem><TabItem value="效果图" label="效果图">
 
-<Image src="/img/docs/docs/blocks/components/netease_liquid_1.png" text="不同的液体效果（图片来自网易官网）" size="75%"/>
+<Image src="/img/docs/blocks/components/netease_liquid_1.png" text="不同的液体效果（图片来自网易官网）" size="75%"/>
 
 </TabItem></Tabs>
 
@@ -2463,7 +2463,7 @@ import Image from "/src/components/image/standard"
 
 </TabItem><TabItem value="效果图" label="效果图">
 
-<Image src="/img/docs/docs/blocks/components/netease_portal_1.png" text="不同方向传送门的粒子效果（图片来自网易官网）" size="75%"/>
+<Image src="/img/docs/blocks/components/netease_portal_1.png" text="不同方向传送门的粒子效果（图片来自网易官网）" size="75%"/>
 
 </TabItem></Tabs>
 

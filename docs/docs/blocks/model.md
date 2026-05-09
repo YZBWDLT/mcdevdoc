@@ -124,8 +124,8 @@ import Image from "/src/components/image/standard"
 
 | 模型 ID | 描述 | 示例 |
 | --- | --- | --- |
-| `minecraft:geometry.full_block` | 完整的 16×16×16 方块模型 | <Image src="/img/docs/docs/blocks/model/model_full_block_1.png" text="完整方块模型" showText={false}/> |
-| `minecraft:geometry.cross` | 类似于花、草一样的贴图交叉模型 | <Image src="/img/docs/docs/blocks/model/model_cross_1.png" text="交叉模型" showText={false}/> |
+| `minecraft:geometry.full_block` | 完整的 16×16×16 方块模型 | <Image src="/img/docs/blocks/model/model_full_block_1.png" text="完整方块模型" showText={false}/> |
+| `minecraft:geometry.cross` | 类似于花、草一样的贴图交叉模型 | <Image src="/img/docs/blocks/model/model_cross_1.png" text="交叉模型" showText={false}/> |
 
 > 图片取自中文 Minecraft Wiki。
 

@@ -96,8 +96,8 @@ import Image from "/src/components/image/standard"
 }
 ```
 
-<Image src="/img/docs/docs/blocks/culling/glass_1.png" text="面剔除前"/>
-<Image src="/img/docs/docs/blocks/culling/glass_2.png" text="面剔除后"/>
+<Image src="/img/docs/blocks/culling/glass_1.png" text="面剔除前"/>
+<Image src="/img/docs/blocks/culling/glass_2.png" text="面剔除后"/>
 
 </details>
 
@@ -136,7 +136,7 @@ import Image from "/src/components/image/standard"
 
 然后，在[`minecraft:geometry`组件](./components#minecraftgeometry)中的`culling_shape`选定此体素，当其他临近方块和该方块指定的体素完全重叠后就会被剔除面，如下图所示：
 
-![voxel_1](/img/docs/docs/blocks/culling/voxel_1.png)
+![voxel_1](/img/docs/blocks/culling/voxel_1.png)
 
 ---
 
@@ -144,11 +144,11 @@ import Image from "/src/components/image/standard"
 
 背面剔除（Backface Culling）是一项用于提升性能的渲染技术。众所周知，我们在现实生活中看一个立方体只能看到 3 个面，故而没有看到的 3 个面就可以防止渲染，这可以提升程序性能。对于非透明方块来讲，是否渲染这 3 个面就没有任何的影响了。
 
-<Image src="/img/docs/docs/blocks/culling/backface_culling_1.png" text="面剔除示例"/>
+<Image src="/img/docs/blocks/culling/backface_culling_1.png" text="面剔除示例"/>
 
 然而，对于透明方块，背面剔除技术却是有影响的。例如玻璃就是背面剔除的，而刷怪笼则是背面不剔除。
 
-<Image src="/img/docs/docs/blocks/culling/backface_culling_2.png" text="背面剔除（左）与背面不剔除（右）的对比" size="75%"/>
+<Image src="/img/docs/blocks/culling/backface_culling_2.png" text="背面剔除（左）与背面不剔除（右）的对比" size="75%"/>
 
 在[`minecraft:material_instance`组件](./components#minecraftmaterial_instance)中，指定不同的材质（`render_method`）会有不同的背面剔除效果。
 
@@ -156,7 +156,7 @@ import Image from "/src/components/image/standard"
 
 远距剔除（Distant Culling）则是另一项用于提升性能的渲染技术。当距离过远时，方块会停止继续渲染，如下图所示。
 
-<Image src="/img/docs/docs/blocks/culling/distant_culling_1.png" text="远距不剔除（玻璃，左）与远距剔除（刷怪笼，右）的对比" size="75%"/>
+<Image src="/img/docs/blocks/culling/distant_culling_1.png" text="远距不剔除（玻璃，左）与远距剔除（刷怪笼，右）的对比" size="75%"/>
 
 和背面剔除类似，在[`minecraft:material_instance`组件](./components#minecraftmaterial_instance)中，指定不同的材质（`render_method`）会有不同的远距剔除效果。
 
