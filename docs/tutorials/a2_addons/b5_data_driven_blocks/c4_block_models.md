@@ -207,7 +207,7 @@ import Image from "/src/components/image/standard"
 
 这里，`"*"`代表应用到所有的面，也就是所有的面都引用相同的贴图 ID。如果要对特定面使用特定的贴图，就可以把`"*"`改为`"east"`、`"west"`等特定的面。
 
-这里的贴图 ID 是直接从<FileType type="file" name="terrain_texture.json"/>找的，就不再需要<FileType type="file" name="blocks.json"/>这个“中间商”定义了。在使用了`minecraft:material_instances`组件定义了贴图的情况下，就没有必要再使用<FileType type="file" name="blocks.json"/>定义贴图了，否则游戏会报错。
+这里的贴图 ID 是直接从<FileType type="file" name="terrain_texture.json"/>找的，就不再需要<FileType type="file" name="blocks.json"/>这个“中间商”定义了。**在使用了`minecraft:material_instances`组件定义了贴图的情况下，就没有必要再使用<FileType type="file" name="blocks.json"/>定义贴图了，否则游戏会报错**。
 
 这里我们引用了在<FileType type="file" name="terrain_texture.json"/>中定义的`flattened_dirt`。如果读者有做过上一节的练习，应该清楚为什么我们不引用`dirt`贴图。
 
@@ -518,3 +518,253 @@ import Image from "/src/components/image/standard"
 最后，我们还介绍了[`minecraft:transformation`](/docs/docs/blocks/components#minecrafttransformation)组件，可以对方块进行平移、旋转、缩放等操作，适合类似于台阶、楼梯的方块。
 
 ## 练习
+
+:::info[练习 5.3]
+
+从这一节开始，读者便应当能够开始编写不完整方块和透明方块了！这一节其实并没有讲很多新的内容，主要还是[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件和[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件的应用。这两个组件往往需要混合使用。还是同样地，请读者积极完成本节的练习，我们后面的教程将会用得到它们！
+
+1. 我们在教程中实现了泥土台阶，请读者更进一步——实现玻璃台阶！并且注意使用玻璃的防爆和挖掘数据，详见[玻璃 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E7%8E%BB%E7%92%83)。
+2. 实现每个 MC 玩家都梦寐以求的——竖半砖（先做出木制的`test:oak_vertical_slab`）！哇咔咔！定义`test:cardinal_direction`方块状态，可选值为`north`、`south`、`west`、`east`，分别对应玩家在面向北方、南方、西方、东方时放置的方块。注意灵活使用[`minecraft:transformation`](/docs/docs/blocks/components#minecrafttransformation)组件。我们在下一节就会介绍如何不依赖`/setblock`自动放置它们。
+3. 试阅读[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件的文档，探究如何使得我们定义的防爆玻璃相比于原版玻璃不会偏暗。
+4. 之前我们定义的假石头，读者不难发现存在一个问题：在进入假石头后会将底部的方块面剔除，连带自己的方块面也被一并剔除。请使用合适的材质，使得这些面能够被渲染出来。
+![practice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_1.png)
+5. 将我们之前定义的所有方块的贴图全部改用[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件表达，而非<FileType type="file" name="blocks.json"/>。对于完整方块而言，可以采用原版的完整方块模型`minecraft:geometry.full_block`。
+
+:::
+
+<details>
+
+<summary>练习题答案</summary>
+
+1. ```json title="BP_test/blocks/test/glass_slab.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:glass_slab",
+                "menu_category": { "category": "construction" },
+                "states": {
+                    "test:vertical_half": [ "bottom", "top" ]
+                }
+            },
+            "components": {
+                "minecraft:destructible_by_mining": { "seconds_to_destroy": 0.3 },
+                "minecraft:destructible_by_explosion": { "explosion_resistance": 0.3 },
+                "minecraft:collision_box": { "origin": [ -8, 0, -8 ], "size": [ 16, 8, 16 ] },
+                "minecraft:selection_box": { "origin": [ -8, 0, -8 ], "size": [ 16, 8, 16 ] },
+                "minecraft:geometry": "geometry.slab",
+                "minecraft:material_instances": { "*": { "texture": "glass", "render_method": "blend", "face_dimming": false } }
+            },
+            "permutations": [
+                {
+                    "condition": "query.block_state('test:vertical_half') == 'top'",
+                    "components": {
+                        "minecraft:transformation": { "translation": [ 0, 0.5, 0 ] }
+                    }
+                }
+            ]
+        }
+    }
+    ```
+
+    （这里我们禁用了方块面调暗的效果）
+
+    ![practice_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_2.png)
+
+    我们可以注意到侧面的方块面不太自然，在这里我们可以做进一步的处理。根据[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件的文档我们知道，我们可以定义模型时给特定的面分组。我们右键模型文件打开文件管理器，打开 bb，再将模型文件拖动到 bb 上即可打开模型：
+
+    ![practice_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_3.png)  
+    ![practice_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_4.png)
+
+    因为我们要编辑的是侧面的贴图，我们对台阶做进一步的材质贴图实例编辑，将东西南北面均定义为`side`，这样我们就可以在[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件中直接定义为`side`面，确认后按下<kbd>Ctrl</kbd> + <kbd>S</kbd>保存模型：
+
+    ![practice_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_5.png)  
+    ![practice_6](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_6.png)
+
+    我们来根据玻璃的贴图绘制一个新的贴图（参考贴图在这里 ![glass_slab_side](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/glass_slab_side.png)），在<FileType type="file" name="terrain_texture.json"/>定义为`glass_slab_side`后，更改行为包定义如下，再大退重进即可：
+
+    ```json title="BP_test/blocks/test/glass_slab.block.json 行为包定义" showLineNumbers {17-20}
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:glass_slab",
+                "menu_category": { "category": "construction" },
+                "states": {
+                    "test:vertical_half": [ "bottom", "top" ]
+                }
+            },
+            "components": {
+                "minecraft:destructible_by_mining": { "seconds_to_destroy": 0.3 },
+                "minecraft:destructible_by_explosion": { "explosion_resistance": 0.3 },
+                "minecraft:collision_box": { "origin": [ -8, 0, -8 ], "size": [ 16, 8, 16 ] },
+                "minecraft:selection_box": { "origin": [ -8, 0, -8 ], "size": [ 16, 8, 16 ] },
+                "minecraft:geometry": "geometry.slab",
+                "minecraft:material_instances": {
+                    "*": { "texture": "glass", "render_method": "blend", "face_dimming": false },
+                    "side": { "texture": "glass_slab_side", "render_method": "blend", "face_dimming": false }
+                }
+            },
+            "permutations": [
+                {
+                    "condition": "query.block_state('test:vertical_half') == 'top'",
+                    "components": {
+                        "minecraft:transformation": { "translation": [ 0, 0.5, 0 ] }
+                    }
+                }
+            ]
+        }
+    }
+    ```
+
+    ![practice_7](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_7.png)
+
+    这回，我们就有了一个比较满意的效果了。
+
+2. 这个问题难度稍微有点高，读者需要多加尝试。这里同时给出竖半砖的行为包定义和模型定义。
+
+    ```json title="BP_test/blocks/test/oak_vertical_slab.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:oak_vertical_slab",
+                "menu_category": { "category": "construction" },
+                "states": {
+                    "test:cardinal_direction": [ "west", "south", "east", "north" ]
+                }
+            },
+            "components": {
+                "minecraft:collision_box": { "origin": [ -8, 0, -8 ], "size": [ 8, 16, 16 ] },
+                "minecraft:selection_box": { "origin": [ -8, 0, -8 ], "size": [ 8, 16, 16 ] },
+                "minecraft:geometry": "geometry.vertical_slab",
+                "minecraft:material_instances": { "*": { "texture": "oak_planks" } },
+                "minecraft:map_color": "#8F7748",
+                "minecraft:destructible_by_mining": { "seconds_to_destroy": 2 },
+                "minecraft:destructible_by_explosion": { "explosion_resistance": 3 },
+                "tag:minecraft:is_axe_item_destructible": {},
+                "tag:wood": {}
+            },
+            "permutations": [
+                { "condition": "q.block_state('test:cardinal_direction') == 'south'", "components": { "minecraft:transformation": { "rotation": [ 0, 90, 0 ] } } },
+                { "condition": "q.block_state('test:cardinal_direction') == 'east'", "components": { "minecraft:transformation": { "rotation": [ 0, 180, 0 ] } } },
+                { "condition": "q.block_state('test:cardinal_direction') == 'north'", "components": { "minecraft:transformation": { "rotation": [ 0, 270, 0 ] } } }
+            ]
+        }
+    }
+    ```
+
+    注意：`query.xxx`的简写为`q.xxx`。
+
+    ```json title="RP_test/models/blocks/oak_vertical_slab.geo.json 模型文件" showLineNumbers
+    {
+        "format_version": "1.12.0",
+        "minecraft:geometry": [
+            {
+                "description": {
+                    "identifier": "geometry.vertical_slab",
+                    "texture_width": 16,
+                    "texture_height": 16,
+                    "visible_bounds_width": 3,
+                    "visible_bounds_height": 2.5,
+                    "visible_bounds_offset": [0, 0.75, 0]
+                },
+                "bones": [
+                    {
+                        "name": "block",
+                        "pivot": [0, 0, 0],
+                        "cubes": [
+                            {
+                                "origin": [-8, 0, -8],
+                                "size": [8, 16, 16],
+                                "uv": {
+                                    "north": {"uv": [0, 0], "uv_size": [8, 16]},
+                                    "east": {"uv": [0, 0], "uv_size": [16, 16]},
+                                    "south": {"uv": [0, 0], "uv_size": [8, 16]},
+                                    "west": {"uv": [0, 0], "uv_size": [16, 16]},
+                                    "up": {"uv": [8, 16], "uv_size": [-8, -16]},
+                                    "down": {"uv": [8, 16], "uv_size": [-8, -16]}
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+    ```
+
+    ![practice_8](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_8.png)
+
+3. 实测关闭环境光遮蔽（`ambient_ocllusion`为`0.0`）即可解决，使得防爆玻璃的渲染效果和原版玻璃效果相同。
+
+    ```json title="BP_test/blocks/test/blast_proof_glass.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:blast_proof_glass",
+                "menu_category": { "category": "construction" }
+            },
+            "components": {
+                "minecraft:destructible_by_explosion": false,
+                "minecraft:material_instances": { "*": { "texture": "glass", "render_method": "blend", "ambient_occlusion": 0.0 } },
+                "minecraft:geometry": "geometry.full_block"
+            }
+        }
+    }
+    ```
+
+4. 这里移除掉假方块的方块置换，默认无碰撞箱。应用`double_sided`材质以防止背面剔除。之后，我们还要学习方块面剔除，以剔除方块与方块之间的交界面。
+
+    ```json title="BP_test/blocks/test/blast_proof_glass.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:fake_stone",
+                "menu_category": { "category": "construction" }
+            },
+            "components": {
+                "minecraft:collision_box": false,
+                "minecraft:geometry": "minecraft:geometry.full_block",
+                "minecraft:material_instances": { "*": { "texture": "stone", "render_method": "double_sided" } }
+            }
+        }
+    }
+    ```
+
+    ![practice_9](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_9.png)
+
+5. 我们以曾经写过的黑色方块为例：
+
+    ```json title="BP_test/blocks/test/black_block.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:black_block",
+                "menu_category": { "category": "construction" },
+                "states": { "test:is_lit": [false, true] }
+            },
+            "components": {
+                "tag:test:colorful_block": {},
+                "minecraft:geometry": "minecraft:geometry.full_block",
+                "minecraft:material_instances": { "*": { "texture": "black_block" } }
+            },
+            "permutations": [
+                { "condition": "q.block_state('test:is_lit')", "components": { "minecraft:light_emission": 15 } }
+            ]
+        }
+    }
+    ```
+
+    相比于以前，我们还移除了一个`!q.block_state('test:is_lit')`的判断，因为默认情况下方块就是不发光的。
+
+    其他方块如法炮制，添加[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件和[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件，这里不再赘述。
+
+</details>
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>
