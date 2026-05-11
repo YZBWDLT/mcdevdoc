@@ -72,8 +72,8 @@ sidebar_position: 5
 
 1. 将我们上一节练习做的竖半砖“方块特征”化。
 2. 将我们上一节练习做的玻璃台阶“方块特征”化。
-3. 基于[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件的`bone_visibility`参数，试定义一种防爆玻璃板！
-4. 定义一种玻璃楼梯。~*对，字越少事越大！*~
+3. （难度高，选做）基于[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件的`bone_visibility`参数，试定义一种防爆玻璃板！
+4. （难度高，选做）定义一种玻璃楼梯。~*对，字越少事越大！*~
 
 版本适用性警告：其中第 3 题和第 4 题可能需要更高版本的组件或特征，但这些功能在中国版均存在平替，读者若需要中国版的相关功能可按需查阅。
 
@@ -147,6 +147,8 @@ sidebar_position: 5
         }
     }
     ```
+
+3. 见[附录：如何制作玻璃板](./how_to_make_glass_pane)。
 
 </details>
 
