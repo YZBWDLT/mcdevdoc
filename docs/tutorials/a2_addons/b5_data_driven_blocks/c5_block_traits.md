@@ -149,6 +149,7 @@ sidebar_position: 5
     ```
 
 3. 见[附录：如何制作玻璃板](./how_to_make_glass_pane)。
+4. 见[附录：如何制作玻璃楼梯](./how_to_make_glass_stairs)。
 
 </details>
 
