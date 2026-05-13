@@ -41,6 +41,7 @@ import FileType from "/src/components/type/file"
       - <FileType type="image" name="（文件名）.png"/>或<FileType type="image" name="（文件名）.tga"/>：贴图，仅限`.png`或`.tga`格式。备注：严禁直接改文件后缀，需要格式转换请使用专业工具。
     - <FileType type="file" name="item_texture.json"/>：物品贴图注册
     - <FileType type="file" name="terrain_texture.json"/>：方块贴图注册
+    - <FileType type="file" name="flipbook_textures.json"/>：翻书动画注册
   - <FileType type="file" name="blocks.json"/>：资源包方块定义
   - [<FileType type="file" name="manifest.json"/>](./manifest)：清单文件
   - <FileType type="image" name="pack_icon.png"/>：图标文件

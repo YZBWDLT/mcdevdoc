@@ -39,6 +39,7 @@ import DataType from "/src/components/type/data"
     - <FileType type="folder" name="blocks"/>
       - **<FileType type="image" name="*.png"/>：定义方块的贴图，通常建议命名为和方块 ID 有关的文件名**
     - **<FileType type="file" name="terrain_texture.json"/>：方块贴图注册**
+    - **<FileType type="file" name="flipbook_textures.json"/>：翻书动画注册，使特定方块贴图使用动画**
   - **<FileType type="file" name="blocks.json"/>：资源包方块定义**
   - **<FileType type="file" name="sounds.json"/>：音效定义，定义方块的音效**
 
@@ -131,11 +132,31 @@ import DataType from "/src/components/type/data"
   - <DataType type="int" name="num_mip_levels"/>：多级渐远纹理等级，通过降低远处方块的分辨率，以提升性能和视觉效果。默认值为`4`。参见[Bedrock Wiki](https://wiki.bedrock.dev/concepts/texture-atlases#mipmapping)。
   - <DataType type="object" name="texture_data" isRequired/>：贴图数据。
     - <DataType type="object" name="(短 ID)"/>：`短 ID`对应的实际贴图。`短 ID`由方块定义的[`minecraft:material_instances`组件](./components#minecraftmaterial_instances)或资源包方块定义[`blocks.json`](#blocksjson)指定。
-      - <DataType type="string" name="textures"/>：贴图路径，从`textures/`开始，不带后缀，例如`textures/blocks/barrel_top`。
+      - <DataType type="array"/><DataType type="string" name="textures"/>：贴图路径，从`textures/`开始，不带后缀，例如`textures/blocks/barrel_top`。  
+        使用数组类型时代表该贴图 ID 可能存在多个贴图对应，具体使用何种贴图由方块状态的索引决定。
 
 </treeview>
 
 [^3]: 目前该参数的实际意义不明。
+
+### `flipbook_textures.json`
+
+以下为 <FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="textures"/> - <FileType type="file" name="flipbook_textures.json"/> 的结构。
+
+<treeview>
+
+- <DataType type="array"/>：根数组。
+  - <DataType type="object"/>：翻书动画。
+    - <DataType type="string" name="flipbook_texture" isRequired/>：翻书动画使用的贴图。
+    - <DataType type="string" name="atlas_tile" isRequired/>：翻书动画使用的方块贴图 ID。见[`terrain_texture.json`](#terrain_texturejson)。
+    - <DataType type="string" name="atlas_index"/>：翻书动画使用的方块贴图 ID 下的纹理数组索引。见[`terrain_texture.json`](#terrain_texturejson)。
+    - <DataType type="string" name="atlas_tile_variant"/>：翻书动画使用的方块贴图 ID 下的纹理变种数组索引。见[`terrain_texture.json`](#terrain_texturejson)。
+    - <DataType type="int" name="ticks_per_frame"/>：每一帧维持多久，单位：游戏刻。
+    - <DataType type="array"/><DataType type="int" name="frames"/>：指定图片中各帧的索引（数组形式，应为<DataType type="int"/>的数组）或帧总数（整数形式）。
+    - <DataType type="int" name="replicate"/>：每帧使用的像素大小，设置为`n`时则每帧取原本像素的 1/`n`²。默认值为`1`。
+    - <DataType type="boolean" name="blend_frames"/>：每帧是否平滑过渡。默认值为`true`。
+
+</treeview>
 
 ### `sounds.json`
 
