@@ -355,7 +355,7 @@ import Image from "/src/components/image/standard"
 
 也就是说，现在我们所见的所有的玻璃面都被认为是前面而不是背面。背面确实已经被剔除掉了，但我们期望的效果是内部的面也应该要剔除掉。这就涉及到我们之后要介绍的**方块面剔除（Block Culling）** 了。
 
-### `alpha_test`：透明材质 远距剔除
+### `alpha_test`：透明材质 远距面剔除
 
 现在让我们进一步深挖材质的奥秘。观察[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件的文档，我们发现`alpha_test`应该是一种和`blend`很像的材质。
 
@@ -393,7 +393,7 @@ import Image from "/src/components/image/standard"
 
 ![alpha_test_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/alpha_test_1.png)
 
-在查阅过文档后，我们还会发现`alpha_test`存在**远距剔除（Distant Culling）**。所谓远距剔除，其实就是指**在距离过远时，是否还要渲染这个方块**。对于`alpha_test`材质，在距离过远时就不再渲染这个方块了，这可以通过望远镜来观察：
+在查阅过文档后，我们还会发现`alpha_test`存在**远距面剔除（Distant Culling）**。所谓远距面剔除，其实就是指**在距离过远时，是否还要渲染这个方块**。对于`alpha_test`材质，在距离过远时就不再渲染这个方块了，这可以通过望远镜来观察：
 
 ![alpha_test_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/alpha_test_2.png)
 
@@ -405,7 +405,7 @@ import Image from "/src/components/image/standard"
 
 可以看到，`blend`能够正确地渲染半透明的部分，而`alpha_test`就只能够将半透明的部分渲染为全透明。
 
-在了解了透明度、背面剔除和远距剔除这些概念后，相信读者应当就可以理解文档中剩下的那几种材质的含义了。
+在了解了透明度、背面剔除和远距面剔除这些概念后，相信读者应当就可以理解文档中剩下的那几种材质的含义了。
 
 ## 变换组件
 
@@ -513,7 +513,7 @@ import Image from "/src/components/image/standard"
 
 模型通常使用 Blockbench 制作。都 2026 年了，手写模型早已成为非主流中的非主流。写好的模型可以导出为`xxx.geo.json`的格式，放在资源包的<FileType type="folder" name="models"/> - <FileType type="folder" name="blocks"/>文件夹中。通过[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件调用我们定义的模型，也可以用[原版自带的模型](/docs/docs/blocks/model#原版使用的方块模型)，但通常来说我们还是更推荐读者自建模型。
 
-使用[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件来把方块模型实例化，对方块使用特定的材质和贴图（*最后再强调一次！材质和贴图不是一个概念！*）。材质有透明（最常用的是`blend`和`alpha_test`）和不透明（`opaque`）之分。两种透明材质的表现有所不同，主要体现在全透明/半透明、背面剔除和远距剔除几方面。
+使用[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件来把方块模型实例化，对方块使用特定的材质和贴图（*最后再强调一次！材质和贴图不是一个概念！*）。材质有透明（最常用的是`blend`和`alpha_test`）和不透明（`opaque`）之分。两种透明材质的表现有所不同，主要体现在全透明/半透明、背面剔除和远距面剔除几方面。
 
 最后，我们还介绍了[`minecraft:transformation`](/docs/docs/blocks/components#minecrafttransformation)组件，可以对方块进行平移、旋转、缩放等操作，适合类似于台阶、楼梯的方块。
 

@@ -27,6 +27,9 @@ import FileType from "/src/components/type/file"
 <treeview>
 
 - <FileType type="folder" name="BP"/>：行为包根目录
+  - <FileType type="folder" name="blocks"/> / <FileType type="folder" name="netease_blocks"/>：数据驱动方块定义（netease_前缀的仅适用于中国版）
+    - <FileType type="folder" name="（文件夹名）"/>：习惯上命名为命名空间或用途（例如`glass`、`stairs`）
+      - <FileType type="file" name="（文件名）.json"/>：方块定义文件，可以直接放在<FileType type="folder" name="blocks"/>下，也可以放在嵌套文件夹下，效果等同。习惯上命名为`（方块 ID）.item.json`。
   - <FileType type="folder" name="functions"/>：函数
     - <FileType type="file" name="（文件名）.mcfunction"/>：函数文件，通过`/function (文件名)`执行该函数
     - <FileType type="folder" name="（文件夹名）"/>

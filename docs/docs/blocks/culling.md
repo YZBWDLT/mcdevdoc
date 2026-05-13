@@ -152,13 +152,13 @@ import Image from "/src/components/image/standard"
 
 在[`minecraft:material_instance`组件](./components#minecraftmaterial_instance)中，指定不同的材质（`render_method`）会有不同的背面剔除效果。
 
-## 远距剔除
+## 远距面剔除
 
-远距剔除（Distant Culling）则是另一项用于提升性能的渲染技术。当距离过远时，方块会停止继续渲染，如下图所示。
+远距面剔除（Distant Culling）则是另一项用于提升性能的渲染技术。当距离过远时，方块会停止继续渲染，如下图所示。
 
-<Image src="/img/docs/blocks/culling/distant_culling_1.png" text="远距不剔除（玻璃，左）与远距剔除（刷怪笼，右）的对比" size="75%"/>
+<Image src="/img/docs/blocks/culling/distant_culling_1.png" text="远距不剔除（玻璃，左）与远距面剔除（刷怪笼，右）的对比" size="75%"/>
 
-和背面剔除类似，在[`minecraft:material_instance`组件](./components#minecraftmaterial_instance)中，指定不同的材质（`render_method`）会有不同的远距剔除效果。
+和背面剔除类似，在[`minecraft:material_instance`组件](./components#minecraftmaterial_instance)中，指定不同的材质（`render_method`）会有不同的远距面剔除效果。
 
 ---
 
