@@ -124,7 +124,7 @@ import DataType from "/src/components/type/data"
 
 :::danger[重要组件]
 
-对于任何自定义物品，都必须定义该组件。否则，物品将无法正确展示贴图。
+除了使用[`minecraft:block_placer`](#minecraftblock_placer)的`replace_block_item`绑定方块的自定义物品之外，所有自定义物品都必须定义该组件。否则，物品将无法正确展示贴图。
 
 :::
 
@@ -353,7 +353,8 @@ import DataType from "/src/components/type/data"
 <treeview>
 - <DataType type="object" name="minecraft:block_placer"/>：根对象
   - <DataType type="string" name="block" isRequired/>：将放置为何种方块。
-  - <DataType type="boolean" name="replace_block_item"/>：（1.21.60+）是否将此物品与对应方块绑定，若绑定则当方块被破坏后将掉落该物品。备注：物品 ID 必须与对应的方块 ID 保持一致。
+  - <DataType type="boolean" name="replace_block_item"/>：（1.21.60+）是否将此物品与对应方块绑定，若绑定则当方块被破坏后将掉落该物品。备注：物品 ID 必须与对应的方块 ID 保持一致。  
+    若不定义[`minecraft:icon`](#minecrafticon)组件，将显示为原本的 3D 方块模型。使用[`minecraft:icon`](#minecrafticon)组件可以覆写为特定的 2D 贴图。
   - <DataType type="array" name="use_on"/>：可放置于的方块列表。如果留空，则默认为可放置于所有方块上。
     - <DataType type="string"/>：方块 ID。
   - <DataType type="boolean" name="aligned_placement"/>：（26.10+）是否对齐放置。当指定为`true`时，在玩家移动时将允许方块按照玩家移动的方向放置，默认为`false`。

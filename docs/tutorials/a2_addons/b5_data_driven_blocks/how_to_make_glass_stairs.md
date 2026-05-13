@@ -2,7 +2,7 @@
 sidebar_position: 101
 ---
 
-# 附录：如何制作玻璃楼梯
+# *附录：如何制作玻璃楼梯
 
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
@@ -63,7 +63,7 @@ import ImageGroup from "/src/components/image/group"
 
 <Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/no_corner_3.png" text="纠正楼梯在 GUI 中的显示效果" size="100%"/>
 
-注意：**这必须使用`1.21.110`或更高格式版本的方块模型才可实现**！如果你现在正在使用中国版或更低版本，也可以通过复制该模型，并把方块模型整体翻转 180° 来解决问题。
+注意：**这必须使用`1.21.110`或更高格式版本的方块模型才可实现**！如果你现在正在使用中国版或更低版本，也可以通过复制该模型，并把方块模型整体翻转 180° 来解决问题。读者也可以利用这个方法纠正台阶的模型在物品栏中的问题（如果不调整，台阶在物品栏中是居中的）。
 
 <details>
 

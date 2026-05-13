@@ -200,11 +200,11 @@ import Image from "/src/components/image/standard"
       - <DataType type="string" name="item"/>：（写法 1）定义该物品的 ID。
       - <DataType type="object" name="item"/>：（写法 2）定义符合特定标签的物品。
         - <DataType type="string" name="tags"/>：检查物品是否具有特殊的标签。应指定为[检查标签的 Molang](../items/molang#物品标签)。原版可用的物品标签详见[物品标签](../items/tags#原版使用的标签)。
-      - <DataType type="float" name="destroy_speed"/>：定义方块的*破坏时长*。
+      - <DataType type="float" name="destroy_speed"/>：定义方块在使用此工具时的*破坏时长*。
 
 </treeview>
 
-> **注意**：这里的*破坏时长*实际上为[**硬度**](https://zh.minecraft.wiki/w/挖掘#方块硬度)的概念。在一般情况下，破坏时长（秒）是硬度的 1.5 倍，比如硬度为 1 时，需要 1.5 秒破坏。
+> **注意**：这里的*破坏时长*实际上为[**硬度**](https://zh.minecraft.wiki/w/挖掘#方块硬度)的概念，并不是指字面意义上的破坏秒数和挖掘速度（这里的起名实际上是相当糟糕的，具有很强的误导性）。在一般情况下，破坏时长（秒）是硬度的 1.5 倍，比如硬度为 1 时，需要 1.5 秒破坏。
 
 **布尔型**：
 

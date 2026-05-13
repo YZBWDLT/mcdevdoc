@@ -62,7 +62,7 @@ sidebar_position: 4
 
 [^1]: 在微软文档中记载，而 Bedrock Wiki 中未记载。
 [^2]: 在Bedrock Wiki 中记载，而微软文档中未记载。
-[^3]: 在Bedrock Wiki 中记载的是`minecraft:is_axe_item_destructible`，而微软文档中记载的是`minecraft:is_axe_item_destructible`，实际在用何种标签有待验证。
+[^3]: 在Bedrock Wiki 中记载的是`minecraft:is_axe_item_destructible`，而微软文档中记载的是`minecraft:is_hatchet_item_destructible`，实际在用何种标签有待验证。
 
 ---
 
@@ -70,3 +70,4 @@ sidebar_position: 4
 
 - [方块标签 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-tags)
 - [原版方块标签 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/vanilla-block-tags)
+- [原版方块标签 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/vanillablocktags?view=minecraft-bedrock-stable)

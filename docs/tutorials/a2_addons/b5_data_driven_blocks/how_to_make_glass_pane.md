@@ -2,7 +2,7 @@
 sidebar_position: 101
 ---
 
-# 附录：如何制作玻璃板
+# *附录：如何制作玻璃板
 
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"

@@ -72,8 +72,9 @@ sidebar_position: 5
 
 1. 将我们上一节练习做的竖半砖“方块特征”化。
 2. 将我们上一节练习做的玻璃台阶“方块特征”化。
-3. （难度高，选做）基于[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件的`bone_visibility`参数，试定义一种防爆玻璃板！
-4. （难度高，选做）定义一种玻璃楼梯。~*对，字越少事越大！*~
+3. 试还原原版的南瓜灯`test:jack_o_lantern`，记得和原版对比看看，暂时不用还原可生成铁傀儡雪傀儡的特性。提示：使用方块标签还原斧子和剑可加速破坏的特性。
+4. （难度高，选做）基于[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件的`bone_visibility`参数，试定义一种防爆玻璃板！
+5. （难度高，选做）定义一种玻璃楼梯。~*对，字越少事越大！*~
 
 版本适用性警告：其中第 3 题和第 4 题可能需要更高版本的组件或特征，但这些功能在中国版均存在平替，读者若需要中国版的相关功能可按需查阅。
 
@@ -148,8 +149,58 @@ sidebar_position: 5
     }
     ```
 
-3. 见[附录：如何制作玻璃板](./how_to_make_glass_pane)。
-4. 见[附录：如何制作玻璃楼梯](./how_to_make_glass_stairs)。
+3. 答案中给出的贴图都是重新定义的，没有沿用原版的贴图。这里需要对`minecraft:cardinal_direction`特征 y 轴旋转 180°，以和原版匹配，因为原版的南瓜头是方块面向南方时为`south`，而方块特征则为玩家放置时面向南方则为`south`，可见刚好相差 180°。
+
+    ```json title="BP_test/blocks/test/glass_slab.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:jack_o_lantern",
+                "menu_category": {
+                    "category": "nature"
+                },
+                "traits": {
+                    "minecraft:placement_direction": {
+                        "enabled_states": [ "minecraft:cardinal_direction" ],
+                        "y_rotation_offset": 180
+                    }
+                }
+            },
+            "components": {
+                "minecraft:geometry": "minecraft:geometry.full_block",
+                "minecraft:material_instances": {
+                    "*": { "texture": "jack_o_lantern_side", "face_dimming": false, "ambient_occlusion": 0.0 },
+                    "up": { "texture": "jack_o_lantern_top", "face_dimming": false, "ambient_occlusion": 0.0 },
+                    "down": { "texture": "jack_o_lantern_top", "face_dimming": false, "ambient_occlusion": 0.0 },
+                    "south": { "texture": "jack_o_lantern_face", "face_dimming": false, "ambient_occlusion": 0.0 }
+                },
+                "minecraft:light_emission": 15,
+                "minecraft:destructible_by_explosion": { "explosion_resistance": 1 },
+                "minecraft:destructible_by_mining": { "seconds_to_destroy": 1 },
+                "tag:minecraft:is_sword_item_destructible": {},
+                "tag:minecraft:is_axe_item_destructible": {}
+            },
+            "permutations": [
+                {
+                    "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+                    "components": { "minecraft:transformation": { "rotation": [ 0, 90, 0 ] } }
+                },
+                {
+                    "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+                    "components": { "minecraft:transformation": { "rotation": [ 0, 180, 0 ] } }
+                },
+                {
+                    "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+                    "components": { "minecraft:transformation": { "rotation": [ 0, 270, 0 ] } }
+                }
+            ]
+        }
+    }
+    ```
+
+4. 见[附录：如何制作玻璃板](./how_to_make_glass_pane)。
+5. 见[附录：如何制作玻璃楼梯](./how_to_make_glass_stairs)。
 
 </details>
 

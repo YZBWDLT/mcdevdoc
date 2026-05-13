@@ -530,6 +530,7 @@ import Image from "/src/components/image/standard"
 ![practice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_1.png)
 5. 将我们之前定义的所有方块的贴图全部改用[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件表达，而非<FileType type="file" name="blocks.json"/>。对于完整方块而言，可以采用原版的完整方块模型`minecraft:geometry.full_block`。
 6. 为我们在练习 5.1 定义的骰子添加一个方块状态`test:point`，允许值为从`1`到`6`，分别代表骰子最上面的点数。
+7. 定义一种隐形基岩`test:invisible_bedrock`，具有无法选中、耐爆炸、耐挖掘、贴图透明的性质，在物品栏中显示为屏障的贴图。贴图自备。提示：可定义一个同名的物品，并使用`minecraft:block_placer`组件中的`replace_block_item`解决。使用此思路也可以修改方块在物品栏中的性质。
 
 :::
 
@@ -813,6 +814,48 @@ import Image from "/src/components/image/standard"
     ```
 
     ![practice_10](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_10.png)
+
+7. 这个方块需要同时定义方块和对应物品。注意物品中使用的`barrier`贴图必须单独在`item_texture.json`定义。
+
+    ```json title="BP_test/blocks/test/invisible_bedrock.block.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:block": {
+            "description": {
+                "identifier": "test:invisible_bedrock",
+                "menu_category": {
+                    "category": "construction"
+                }
+            },
+            "components": {
+                "minecraft:selection_box": false,
+                "minecraft:destructible_by_explosion": false,
+                "minecraft:destructible_by_mining": false,
+                "minecraft:geometry": "geometry.full_block",
+                "minecraft:material_instances": { "*": { "texture": "empty", "render_method": "alpha_test" } }
+            }
+        }
+    }
+    ```
+
+    ```json title="BP_test/blocks/test/invisible_bedrock.item.json 行为包定义（物品）" showLineNumbers
+    {
+        "format_version": "1.21.90",
+        "minecraft:item": {
+            "description": {
+                "identifier": "test:invisible_bedrock",
+                "menu_category": {
+                    "category": "construction"
+                }
+            },
+            "components": {
+                "minecraft:block_placer": { "block": "test:invisible_bedrock", "replace_block_item": true },
+                "minecraft:icon": "barrier",
+                "minecraft:display_name": { "value": "tile.test:invisible_bedrock.name" }
+            }
+        }
+    }
+    ```
 
 </details>
 

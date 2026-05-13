@@ -105,7 +105,36 @@ import FileType from "/src/components/type/file"
 
 除此之外，方块面剔除还支持**面剔除层（Culling Layer）**，这里本文就不再展开了。感兴趣的读者可以查阅[方块面剔除文档](/docs/docs/blocks/culling)。
 
-本节不设置习题。
+## 练习
+
+:::info[练习 5.5]
+
+将我们之前定义的假石头应用面剔除效果。
+
+:::
+
+<details>
+
+<summary>练习题答案</summary>
+
+```json showLineNumbers title="fake_stone.block.json" {10}
+{
+    "format_version": "1.21.90",
+    "minecraft:block": {
+        "description": {
+            "identifier": "test:fake_stone",
+            "menu_category": { "category": "construction" }
+        },
+        "components": {
+            "minecraft:collision_box": false,
+            "minecraft:geometry": { "identifier": "geometry.full_block", "culling": "test:culling.glass" },
+            "minecraft:material_instances": { "*": { "texture": "stone", "render_method": "double_sided" } }
+        }
+    }
+}
+```
+
+</details>
 
 import GiscusComment from "/src/components/comment/giscus.js"
 
