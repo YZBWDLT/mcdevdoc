@@ -18,6 +18,8 @@ import Image from "/src/components/image/standard"
 
 本文档收录所有已开放或即将开放的命名空间为`minecraft`和`netease`的方块组件信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
 
+也可以在[常见的方块实例](./examples)中查找是否有你需要的实例。
+
 :::note[组件可用性提示]
 
 1. 标签记号说明：
@@ -626,24 +628,6 @@ import Image from "/src/components/image/standard"
 ## 功能性组件
 
 特定类型的方块可用的组件。
-
-| 常见方块类型 | 常用组件或特征 | 最低适用版本 |
-| :---: | :--- | --- |
-| 带方向的方块 | [`minecraft:placement_direction`](./traits#minecraftplacement_direction)特征、[`minecraft:transformation`](#minecrafttransformation) | 1.20.20 |
-| 光源方块 | [`minecraft:light_emission`](#minecraftlight_emission) | 1.19.20 |
-| 台阶 | [`minecraft:placement_position`](./traits#minecraftplacement_position)特征、[`minecraft:collision_box`](#minecraftcollision_box)、[`minecraft:selection_box`](#minecraftselection_box)、[`minecraft:geometry`](#minecraftgeometry)、[`minecraft:material_instances`](#minecraftmaterial_instances) | 1.20.20 |
-| 楼梯 | [`minecraft:placement_direction`](./traits#minecraftplacement_direction)特征、[`minecraft:placement_position`](./traits#minecraftplacement_position)特征、[`minecraft:collision_box`](#minecraftcollision_box)、[`minecraft:selection_box`](#minecraftselection_box)、[`minecraft:geometry`](#minecraftgeometry)、[`minecraft:material_instances`](#minecraftmaterial_instances) | 1.20.20 |
-| 栅栏 | [`minecraft:connection`](./traits#minecraftconnection)特征、[`minecraft:connection_rule`](#minecraftconnection_rule) | 1.26.0 |
-| 栅栏门 | | |
-| 活板门 | | |
-| 门 | | |
-| 工作台 | | |
-| 粘液块类方块 | | |
-| 花 | | |
-| 红石电源 | | |
-| 红石机械元件 | | |
-| 红石导体 | | |
-| 冰 | | |
 
 ---
 

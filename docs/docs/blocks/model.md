@@ -134,6 +134,191 @@ import Image from "/src/components/image/standard"
 1. **原版方块模型不是数据驱动的**，因此对这些模型的骨骼操作（例如`culling`、`bone_visibility`等）是无效的。
 2. 在 26.0 更新前，使用完整方块模型`minecraft:geometry.full_block`的底面不会旋转 180°，这和原版方块的表现并不相符。26.0 更新后，Mojang 更新了这个模型，但使用格式版本`1.26.0`之前版本的方块仍然保持原来的表现（即底面不会旋转）。26.0 后，若想使用底面不旋转的完整方块模型，请使用`minecraft:geometry.full_block_v1`。
 
+## 常用模型
+
+以下给出部分常用数据驱动模型，供读者参考。
+
+### 完整方块
+
+用于替换原版的完整方块模型，适用于需要隐藏骨骼或需要面剔除的情况。
+
+- ID：`geometry.full_block`
+- 可用骨骼：`block`
+- 可用面：`side`
+
+<details>
+
+<summary>方块模型</summary>
+
+```json showLineNumbers title="full_block.geo.json"
+{
+    "format_version": "1.21.0",
+    "minecraft:geometry": [
+        {
+            "description": {
+                "identifier": "geometry.full_block",
+                "texture_width": 16,
+                "texture_height": 16,
+                "visible_bounds_width": 2,
+                "visible_bounds_height": 2.5,
+                "visible_bounds_offset": [0, 0.75, 0]
+            },
+            "bones": [
+                {
+                    "name": "block",
+                    "pivot": [0, 0, 0],
+                    "cubes": [
+                        {
+                            "origin": [-8, 0, -8],
+                            "size": [16, 16, 16],
+                            "uv": {
+                                "north": {"uv": [0, 0], "uv_size": [16, 16], "material_instance": "side"},
+                                "east": {"uv": [0, 0], "uv_size": [16, 16], "material_instance": "side"},
+                                "south": {"uv": [0, 0], "uv_size": [16, 16], "material_instance": "side"},
+                                "west": {"uv": [0, 0], "uv_size": [16, 16], "material_instance": "side"},
+                                "up": {"uv": [16, 16], "uv_size": [-16, -16]},
+                                "down": {"uv": [16, 16], "uv_size": [-16, -16]}
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+</details>
+
+### 台阶
+
+完整方块的一半大小。
+
+- ID：`geometry.slab`
+- 可用骨骼：`block`
+- 可用面：`side`
+
+<details>
+
+<summary>新版模型（1.21.110+）</summary>
+
+```json showLineNumbers title="slab.geo.json"
+{
+    "format_version": "1.21.110",
+    "minecraft:geometry": [
+        {
+            "description": {
+                "identifier": "geometry.slab",
+                "texture_width": 16,
+                "texture_height": 16,
+                "visible_bounds_width": 2,
+                "visible_bounds_height": 1.5,
+                "visible_bounds_offset": [0, 0.25, 0]
+            },
+            "bones": [
+                {
+                    "name": "block",
+                    "pivot": [0, 0, 0],
+                    "cubes": [
+                        {
+                            "origin": [-8, 0, -8],
+                            "size": [16, 8, 16],
+                            "uv": {
+                                "north": {"uv": [0, 0], "uv_size": [16, 8], "material_instance": "side"},
+                                "east": {"uv": [0, 0], "uv_size": [16, 8], "material_instance": "side"},
+                                "south": {"uv": [0, 0], "uv_size": [16, 8], "material_instance": "side"},
+                                "west": {"uv": [0, 0], "uv_size": [16, 8], "material_instance": "side"},
+                                "up": {"uv": [16, 16], "uv_size": [-16, -16]},
+                                "down": {"uv": [16, 16], "uv_size": [-16, -16]}
+                            }
+                        }
+                    ]
+                }
+            ],
+            "item_display_transforms": {
+                "gui": {
+                    "rotation": [30, 45, 0],
+                    "translation": [0, 0, 0],
+                    "scale": [0.625, 0.625, 0.625],
+                    "rotation_pivot": [0, 0, 0],
+                    "scale_pivot": [0, 0, 0],
+                    "fit_to_frame": false
+                }
+            }
+        }
+    ]
+}
+```
+
+</details>
+
+<details>
+
+<summary>旧版模型</summary>
+
+注意：旧版模型会在物品栏中显示在居中位置，而原版的所有台阶在物品栏中都是更靠下的位置。
+
+```json showLineNumbers title="slab.geo.json"
+{
+    "format_version": "1.21.0",
+    "minecraft:geometry": [
+        {
+            "description": {
+                "identifier": "geometry.slab",
+                "texture_width": 16,
+                "texture_height": 16,
+                "visible_bounds_width": 2,
+                "visible_bounds_height": 1.5,
+                "visible_bounds_offset": [0, 0.25, 0]
+            },
+            "bones": [
+                {
+                    "name": "block",
+                    "pivot": [0, 0, 0],
+                    "cubes": [
+                        {
+                            "origin": [-8, 0, -8],
+                            "size": [16, 8, 16],
+                            "uv": {
+                                "north": {"uv": [0, 0], "uv_size": [16, 8], "material_instance": "side"},
+                                "east": {"uv": [0, 0], "uv_size": [16, 8], "material_instance": "side"},
+                                "south": {"uv": [0, 0], "uv_size": [16, 8], "material_instance": "side"},
+                                "west": {"uv": [0, 0], "uv_size": [16, 8], "material_instance": "side"},
+                                "up": {"uv": [16, 16], "uv_size": [-16, -16]},
+                                "down": {"uv": [16, 16], "uv_size": [-16, -16]}
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+</details>
+
+<!--
+
+### 模板
+
+模型简介。
+
+- ID：`geometry.(???)`
+- 可用骨骼：`block`
+- 可用面：无
+
+<details>
+
+<summary>方块模型</summary>
+
+```json showLineNumbers title="(???).geo.json"
+```
+
+</details>
+
+-->
+
 ---
 
 ## 参考文档

@@ -160,7 +160,31 @@ import DataType from "/src/components/type/data"
 
 ### `sounds.json`
 
-以下为<FileType type="folder" name="resource_packs"/> - <FileType type="file" name="sounds.json"/>的结构。
+以下为<FileType type="folder" name="resource_packs"/> - <FileType type="file" name="sounds.json"/>的结构。只记录有关方块的部分。
+
+<treeview>
+
+- <DataType type="object"/>：根对象。
+  - <DataType type="object" name="block_sounds"/>：全部方块基本事件的音效注册
+    - <DataType type="object" name="(方块音效 ID)"/>：在[`blocks.json`](#blocksjson)中指定使用的方块音效。
+      - <DataType type="float" name="pitch"/>：音效音调。应大于等于`0.0`。
+      - <DataType type="float" name="volume"/>：音效音量。应大于等于`0.0`。
+      - <DataType type="object" name="events"/>：音效事件，当方块触发对应事件时播放音效。每个事件都应指定为<FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="sounds"/> - <FileType type="file" name="sound_definitions.json"/>中定义的音效 ID。
+        - <DataType type="string" name="break"/>：当方块被破坏后播放音效。
+        - <DataType type="string" name="hit"/>：当方块被击打或正在破坏时播放的音效。
+        - <DataType type="string" name="place"/>：当方块被放置后播放音效。
+  - <DataType type="object" name="interactive_sounds"/>：交互事件的音效注册
+    - <DataType type="object" name="block_sounds"/>：全部方块交互事件的音效注册
+      - <DataType type="object" name="(方块音效 ID)"/>：在[`blocks.json`](#blocksjson)中指定使用的方块音效。
+        - <DataType type="float" name="pitch"/>：音效音调。应大于等于`0.0`。
+        - <DataType type="float" name="volume"/>：音效音量。应大于等于`0.0`。
+        - <DataType type="object" name="events"/>：音效事件，当方块触发对应事件时播放音效。每个事件都应指定为<FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="sounds"/> - <FileType type="file" name="sound_definitions.json"/>中定义的音效 ID。
+          - <DataType type="string" name="fall"/>：当有实体落到此方块后播放音效（从 3 格或更高的高度落下）。
+          - <DataType type="string" name="jump"/>：当有实体在此方块上跳跃时播放音效。
+          - <DataType type="string" name="land"/>：当有实体落到此方块后播放音效（从 3 格或更低的高度落下）。
+          - <DataType type="string" name="step"/>：当有实体在此方块上走动时播放音效。
+
+</treeview>
 
 ---
 

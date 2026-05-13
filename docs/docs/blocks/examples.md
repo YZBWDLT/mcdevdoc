@@ -15,11 +15,100 @@ import Highlight from '/src/components/highlight/standard';
 
 > 适用版本：国际版 26.20，中国版 3.8（1.21.90）。
 
-本文给出一些常见的方块实例。
+本文给出一些常见的方块实例。**注意：代码中高亮部分是需要读者自行修改的**。
 
----
+:::warning[注意]
 
-## 楼梯（不考虑拐角）
+初学者请勿直接参考。
+
+:::
+
+:::warning[注意]
+
+本文正在编写中，内容仅供参考。
+
+:::
+
+## 一般方块
+
+### 无功能的完整不透明方块
+
+<Highlight text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block" />
+
+Minecraft 中多数方块都是这种完整不透明方块，例如石头、混凝土等。
+
+- **难度**：★☆☆☆☆
+- **最低格式版本要求**：`1.19.40`/`1.21.40`（若使用[`minecraft:redstone_conductivity`](./components#minecraftredstone_conductivity)组件）
+- **模型**：[完整方块](./model#完整方块)
+
+<details>
+
+<summary>方块行为包定义（旧版本）</summary>
+
+```json showLineNumbers title=(方块 ID).block.json {5,7,11,13,14}
+{
+    "format_version": "1.19.40",
+    "minecraft:block": {
+        "description": {
+            "identifier": "(namespace):(example)",
+            "menu_category": {
+                "category": "construction"
+            }
+        },
+        "components": {
+            "minecraft:map_color": "#ffffff",
+            "minecraft:geometry": "geometry.full_block",
+            "minecraft:material_instances": { "*": { "texture": "white_block" } },
+            "tag:example": {}
+        }
+    }
+}
+```
+
+</details>
+
+<details>
+
+<summary>方块行为包定义</summary>
+
+```json showLineNumbers title=(方块 ID).block.json {5,7,11,13,15}
+{
+    "format_version": "1.21.40",
+    "minecraft:block": {
+        "description": {
+            "identifier": "(namespace):(example)",
+            "menu_category": {
+                "category": "construction"
+            }
+        },
+        "components": {
+            "minecraft:map_color": "#ffffff",
+            "minecraft:geometry": "geometry.full_block",
+            "minecraft:material_instances": { "*": { "texture": "white_block" } },
+            "minecraft:redstone_conductivity": { "redstone_conductor": true },
+            "tag:example": {}
+        }
+    }
+}
+```
+
+</details>
+
+### 木头
+
+### 木板
+
+### 可旋转方块
+
+## 特殊形状方块
+
+### 隐形基岩
+
+### 可穿墙方块
+
+### 台阶
+
+### 楼梯（不考虑拐角）
 
 <Highlight text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs" />
 
@@ -198,15 +287,13 @@ import Highlight from '/src/components/highlight/standard';
 
 </details>
 
----
-
-## 楼梯（考虑拐角）
+### 楼梯（考虑拐角）
 
 <Highlight text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs" />
 
 **难度**：★★★★☆
 
-楼梯（不考虑拐角）是一种复杂的复合碰撞箱的方块，且会和相邻的楼梯形成拐角，需要定义一个非常复杂的模型。考虑到楼梯存在 4 个方向，有倒置状态和拐角状态，因此楼梯必须使用至少 11 个方块置换才能将其完全定义。
+楼梯（考虑拐角）是一种复杂的复合碰撞箱的方块，且会和相邻的楼梯形成拐角，需要定义一个非常复杂的模型。考虑到楼梯存在 4 个方向，有倒置状态和拐角状态，因此楼梯必须使用至少 11 个方块置换才能将其完全定义。
 
 :::warning[注意]
 
@@ -622,9 +709,33 @@ import Highlight from '/src/components/highlight/standard';
 
 </details>
 
----
+### 栅栏
 
-## 玻璃板
+### 不阻碍箱子的方块
+
+## 门
+
+### 普通门
+
+### 栅栏门
+
+### 活板门
+
+## 红石
+
+### 电源
+
+### 传输元件
+
+### 机械元件
+
+## 玻璃制品
+
+### 玻璃
+
+### 染色玻璃
+
+### 玻璃板
 
 <Highlight text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane" />
 
@@ -1082,6 +1193,58 @@ import Highlight from '/src/components/highlight/standard';
 ```
 
 </details>
+
+## 灯
+
+### 普通发光方块
+
+### 红石控制
+
+### 交互控制
+
+## 功能性方块
+
+### 工作台
+
+### 冰
+
+## 花草
+
+<!--
+
+## 模板
+
+<Highlight text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane" />
+
+模板简介。
+
+- **难度**：★☆☆☆☆
+- **最低格式版本要求**：`1.19.40`
+- **模型**：[完整方块](./model#完整方块)
+
+<details>
+
+<summary>方块行为包定义</summary>
+
+```json showLineNumbers title=(方块 ID).block.json {5,7}
+{
+    "format_version": "1.19.40",
+    "minecraft:block": {
+        "description": {
+            "identifier": "(namespace):(example)",
+            "menu_category": {
+                "category": "construction"
+            }
+        },
+        "components": {
+        }
+    }
+}
+```
+
+</details>
+
+-->
 
 ---
 
