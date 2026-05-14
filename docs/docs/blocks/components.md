@@ -53,13 +53,13 @@ import Image from "/src/components/image/standard"
 <treeview>
 - <DataType type="object" name="minecraft:collision_box"/>：根对象。
   - <DataType type="array" name="origin"/>：定义方块碰撞箱源坐标，`[0, 0, 0]`为底面中心点的坐标。默认值为`[-8, 0, -8]`。
-    - <DataType type="int" name="0"/>：基于源坐标的 X 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
-    - <DataType type="int" name="1"/>：基于源坐标的 Y 坐标（像素）偏移值。必须在`0`~`16`之间（含）。
-    - <DataType type="int" name="2"/>：基于源坐标的 Z 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
+    - <DataType type="float" name="0"/>：基于源坐标的 X 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
+    - <DataType type="float" name="1"/>：基于源坐标的 Y 坐标（像素）偏移值。必须在`0`~`16`之间（含）。
+    - <DataType type="float" name="2"/>：基于源坐标的 Z 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
   - <DataType type="array" name="size"/>：定义方块碰撞箱基于源坐标的大小。默认值为`[16, 16, 16]`。
-    - <DataType type="int" name="0"/>：X 方向的方块大小。与`origin`的 X 坐标相加后必须在`-8`~`8`之间（含）。
-    - <DataType type="int" name="1"/>：Y 方向的方块大小。与`origin`的 Y 坐标相加后必须在`0`\~`24`之间（含）。格式版本低于`1.26.0`时范围缩小到`0`\~`16`之间。
-    - <DataType type="int" name="2"/>：Z 方向的方块大小。与`origin`的 Z 坐标相加后必须在`-8`~`8`之间（含）。
+    - <DataType type="float" name="0"/>：X 方向的方块大小。与`origin`的 X 坐标相加后必须在`-8`~`8`之间（含）。
+    - <DataType type="float" name="1"/>：Y 方向的方块大小。与`origin`的 Y 坐标相加后必须在`0`\~`24`之间（含）。格式版本低于`1.26.0`时范围缩小到`0`\~`16`之间。
+    - <DataType type="float" name="2"/>：Z 方向的方块大小。与`origin`的 Z 坐标相加后必须在`-8`~`8`之间（含）。
 </treeview>
 
 **数组型**（**1.26.0+**）：
@@ -70,13 +70,13 @@ import Image from "/src/components/image/standard"
 - <DataType type="array" name="minecraft:collision_box"/>：根对象。
   - <DataType type="object"/>
     - <DataType type="array" name="origin"/>：定义方块碰撞箱源坐标，`[0, 0, 0]`为底面中心点的坐标。默认值为`[-8, 0, -8]`。
-      - <DataType type="int" name="0"/>：基于源坐标的 X 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
-      - <DataType type="int" name="1"/>：基于源坐标的 Y 坐标（像素）偏移值。必须在`0`~`16`之间（含）。
-      - <DataType type="int" name="2"/>：基于源坐标的 Z 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
+      - <DataType type="float" name="0"/>：基于源坐标的 X 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
+      - <DataType type="float" name="1"/>：基于源坐标的 Y 坐标（像素）偏移值。必须在`0`~`16`之间（含）。
+      - <DataType type="float" name="2"/>：基于源坐标的 Z 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
     - <DataType type="array" name="size"/>：定义方块碰撞箱基于源坐标的大小。默认值为`[16, 16, 16]`。
-      - <DataType type="int" name="0"/>：X 方向的方块大小。与`origin`的 X 坐标相加后必须在`-8`~`8`之间（含）。
-      - <DataType type="int" name="1"/>：Y 方向的方块大小。与`origin`的 Y 坐标相加后必须在`0`\~`24`之间（含）。格式版本低于`1.26.0`时范围缩小到`0`\~`16`之间（含）。
-      - <DataType type="int" name="2"/>：Z 方向的方块大小。与`origin`的 Z 坐标相加后必须在`-8`~`8`之间（含）。
+      - <DataType type="float" name="0"/>：X 方向的方块大小。与`origin`的 X 坐标相加后必须在`-8`~`8`之间（含）。
+      - <DataType type="float" name="1"/>：Y 方向的方块大小。与`origin`的 Y 坐标相加后必须在`0`\~`24`之间（含）。格式版本低于`1.26.0`时范围缩小到`0`\~`16`之间（含）。
+      - <DataType type="float" name="2"/>：Z 方向的方块大小。与`origin`的 Z 坐标相加后必须在`-8`~`8`之间（含）。
 </treeview>
 
 **布尔型**：
@@ -302,13 +302,13 @@ import Image from "/src/components/image/standard"
 <treeview>
 - <DataType type="object" name="minecraft:selection_box"/>：根对象。
   - <DataType type="array" name="origin"/>：定义方块选择箱源坐标，`[0, 0, 0]`为底面中心点的坐标。默认值为`[-8, 0, -8]`。
-    - <DataType type="int" name="0"/>：基于源坐标的 X 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
-    - <DataType type="int" name="1"/>：基于源坐标的 Y 坐标（像素）偏移值。必须在`0`~`16`之间（含）。
-    - <DataType type="int" name="2"/>：基于源坐标的 Z 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
+    - <DataType type="float" name="0"/>：基于源坐标的 X 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
+    - <DataType type="float" name="1"/>：基于源坐标的 Y 坐标（像素）偏移值。必须在`0`~`16`之间（含）。
+    - <DataType type="float" name="2"/>：基于源坐标的 Z 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
   - <DataType type="array" name="size"/>：定义方块选择箱基于源坐标的大小。默认值为`[16, 16, 16]`。
-    - <DataType type="int" name="0"/>：X 方向的方块大小。与`origin`的 X 坐标相加后必须在`-8`~`8`之间（含）。
-    - <DataType type="int" name="1"/>：Y 方向的方块大小。与`origin`的 Y 坐标相加后必须在`0`~`16`之间（含）。
-    - <DataType type="int" name="2"/>：Z 方向的方块大小。与`origin`的 Z 坐标相加后必须在`-8`~`8`之间（含）。
+    - <DataType type="float" name="0"/>：X 方向的方块大小。与`origin`的 X 坐标相加后必须在`-8`~`8`之间（含）。
+    - <DataType type="float" name="1"/>：Y 方向的方块大小。与`origin`的 Y 坐标相加后必须在`0`~`16`之间（含）。
+    - <DataType type="float" name="2"/>：Z 方向的方块大小。与`origin`的 Z 坐标相加后必须在`-8`~`8`之间（含）。
 </treeview>
 
 **布尔型**：
