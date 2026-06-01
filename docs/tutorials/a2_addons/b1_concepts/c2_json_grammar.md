@@ -755,7 +755,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
     "minecraft:persistent": {
     },
     "minecraft:physics": {
-    },
+    }
 ]
 ```
 
@@ -922,7 +922,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
     "minecraft:persistent": {
     },
     "minecraft:physics": {
-    },
+    }
 ]
 ```
 

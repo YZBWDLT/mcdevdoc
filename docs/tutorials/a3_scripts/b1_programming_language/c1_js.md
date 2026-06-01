@@ -8,11 +8,11 @@ import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
 
-> 上次更新：2026 年 3 月 13 日
-
-:::warning[注意]
+:::tip[注意]
 
 本文仅限国际版的 ScriptAPI 可用。
+
+然而，随着[网易宣布 3.9 版本引入 ScriptAPI](https://www.bilibili.com/opus/1208160569399443608?spm_id_from=333.1387.0.0)，本文的内容不久后也将适用于中国版。
 
 :::
 

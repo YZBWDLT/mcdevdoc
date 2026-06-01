@@ -96,7 +96,7 @@ import Highlight from '/src/components/highlight/standard';
       - <DataType type="string" name="version" isRequired/>：（替代写法）包的版本。应为 [SemVer](https://semver.org/) 约定的版本格式的字符串。
     - <DataType type="object"/>：指代要依赖的脚本模块。依赖脚本模块时接受以下参数。
       - <DataType type="string" name="module_name" isRequired/>：调用的脚本模块。例如：`@minecraft/server`。
-      - <DataType type="string" name="version" isRequired/>：调用的脚本模块所使用的版本，应为 [SemVer](https://semver.org/) 约定的版本格式的字符串。
+      - <DataType type="string" name="version" isRequired/>：调用的脚本模块所使用的版本，应为 [SemVer](https://semver.org/) 约定的版本格式的字符串，或`"beta"`。
   - <DataType type="object" name="metadata"/>：包有关的元数据（例如作者、许可信息等）。
     - <DataType type="array" name="authors"/>：本包的作者。
       - <DataType type="string" isRequired/>：作者昵称。
