@@ -26,6 +26,7 @@ const config = {
     projectName: 'mcdevdoc', // Usually your repo name.
 
     onBrokenLinks: 'ignore',
+    onBrokenAnchors: 'ignore',
     markdown: {
         hooks: {
             onBrokenMarkdownLinks: "warn",
