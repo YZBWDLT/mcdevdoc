@@ -516,7 +516,326 @@ system.runInterval(() => {
 
 ## 总结
 
+在本节，我们介绍了如何使用 SAPI。
+
+我们首先介绍了如何安装自动补全，通过安装 Node.js 后，在 cmd 中执行两条命令：
+
+```bat
+npm i @minecraft/server
+npm i @minecraft/server-ui
+```
+
+就可以在我们的电脑安装自动补全了，十分简单。
+
+然后，我们介绍了如何编写脚本：
+
+1. 在清单文件声明好自己需要使用脚本。
+2. 在入口文件导入 Minecraft 的脚本模块即可！
+
+我们还引入了脚本的两个基本概念：事件和运行。
+
+- **事件（Events）**，包括**前事件（Before Events）** 和**后事件（After Events）**，前事件是在事件实际发生之前执行的代码，而后事件是在事件发生之后执行的代码。多数前事件是可以取消事件的发生的，而后事件则不行。几乎每个事件都会返回大量的信息。
+- **运行（Run）**，我们这节主要讲了**延迟执行**`system.run()`和**间隔执行**`system.runInterval()`，但其实`system`下还有许多`run*`方法，比如`runJob()`是运行生成器；`runTimeout()`也是延迟执行，但可以规定游戏刻；`waitTicks()`则用于异步，等等……
+
+在讲到事件的时候，我们还介绍过脚本运行存在**执行权限（Execution Privilege）**，主要包括三种：
+
+1. **默认执行（Default Execution）**：一切代码都可以正常执行的权限。
+2. **受限执行（Restricted Execution）**：**一切可能对世界造成更改的操作都会被拦截的权限**。这个权限通常**是前事件使用的**，这是为了前事件的执行稳定。
+3. **早期执行（Early Execution）**：**一切需要访问世界信息的操作都会被拦截的权限**。这个权限则**是在世界完全加载前使用的**。为代码正常运行，需要使用世界加载后事件`world.afterEvents.worldLoad`来执行早期执行阶段无法执行的代码。
+
+除此之外，我们还很零散地提到了一些小概念：
+
+- **私有（Private）**：是指类内部可访问，外部不可访问的特性。这意味着我们是不能够随意实例化原版的类的，只有少量的原版的类可供我们实例化。
+  - 遗憾的是，我们自己写代码时，只有 TypeScript 脚本才能用`private`字段。例如，在 JS 中我们不能这么写，只有在 TS 中我们才能这么做：
+
+    ```js title="main.js" {2}
+    class TestClass {
+        private constructor() { // 会报错
+            this.myVar = "awa";
+        }
+    }
+    ```
+
+- **回调函数（Callback Function）**：是指作为另一个函数的参数的函数。通常为函数传入一个函数是为了实现一些相对复杂的逻辑。
+- **只读（Read Only）**：是指只可访问，但不可修改的属性。尝试修改原版的只读属性会导致报错。
+  - 同样，只有 TypeScript 脚本才能用`readonly`字段：
+
+    ```js title="main.js" {2}
+    class TestClass {
+        readonly myVar = "awa"; // 会报错
+    }
+    ```
+
+我们还介绍了一个获取所有玩家的方法，也就是使用`World.getPlayers(): Player[]`。
+
+最后，我们介绍了三个常用的文档，各有千秋，读者可以按需查阅。学习 SAPI 一定要学会看文档，否则是难以学会 SAPI 的！
+
+- [JaylyMC 的 SAPI 文档](https://jaylydev.github.io/scriptapi-docs/)
+- [ProjectXero 的 SAPI 文档](https://projectxero.top/sapi/index.html)
+- [微软官方文档](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/minecraft-server?view=minecraft-bedrock-stable)
+
 ## 练习
+
+:::info[练习 2.1]
+
+哎呀……激动人心的练习时刻！想必读者已经发现了，脚本系统实际上就是超级进阶版的命令系统！它主要是为了实现更加复杂的逻辑的。在下面的练习题中，请读者打开上面 3 个文档中的一个，多加进行查阅和学习，我们也会给读者一些提示的。
+
+在初学时，**读者应该格外关注几个重要的大类的学习，大体了解它们都拥有什么属性、什么方法，以掌握实际我们可以用脚本系统做什么**。它们分别是：`World`类（世界）、`System`类（系统）、`Dimension`类（维度）、`Block`类（方块）、`Entity`类（实体）、`Player`类（玩家）、`ItemStack`类（物品）。其实就是物品方块实体三件套！除此之外，**读者还应该格外关注我们都有哪些世界前事件和世界后事件可用，因为它们的性能好，功能强，我们在很多情况下就是用它们解决问题的**。
+
+现在我们正式开始练习吧。越到后面的题目，我们越会面对更加复杂的需求！
+
+1. 实现**玩家**死亡执行命令`function events/player_die`——但是注意，这回不要用循环代码！读者可以尝试使用实体死亡后事件，并且注意`Entity`类有`runCommand`方法。
+2. 让 TNT 除了能炸掉玻璃之外，其他一切方块都炸不掉！读者可以考虑使用爆炸前事件。
+3. 让玩家在吃掉苹果之后，增加 1 级的经验。读者可以考虑使用完成使用物品后事件。
+4. 让玩家在拥有标签`red`时，把自己的名字改为红色。读者可以修改`Player`类的`nameTag`属性——这个属性可不是只读的！
+5. 阻止冒险模式的玩家拿走花盆里的花。读者可以考虑使用玩家与方块交互前事件。
+6. 最激动人心的时刻来了——当玩家和钻石块交互时，为玩家手中的物品添加备注：「拥有钻石块幸运加成的物品」，并设置为死亡不掉落。这个需求命令和纯附加包都是无法实现的——但脚本可以轻易实现！考虑`ItemStack`类的`clone()`方法、`setLore()`方法和`keepOnDeath`属性，此外使用玩家与方块交互前事件。读者也可以试试看如果使用后事件可不可行，并总结玩家与方块交互前事件和后事件的区别。
+7. 当玩家试图和酿造台交互时，检查它下方的方块。如果是红色染色玻璃则阻止玩家和酿造台交互，然后给予玩家一瓶瞬间治疗药水（`potion`，数据值为`21`），并播放酿造台酿造的音效。暂时先不考虑`Block`的`below()`方法（虽然这个方法在这里更好用）。
+8. 当玩家在拥有`removeImmediately`标签时，不论它们攻击何种实体（玩家除外），都立刻移除这个实体。读者可以考虑使用实体受伤后事件。注意实体有`remove()`方法，可以直接移除实体而没有任何动画。
+9. 当玩家使用火药和方块交互时，阻止玩家——然后在玩家交互的方块的位置直接创造一次爆炸！读者可以使用`Dimension`类的`createExplosion`方法直接导致一次爆炸，位置可以设定为通过事件获取的方块位置。
+10. 当玩家手持音符和和牛交互时，对玩家发送消息「你在对牛弹琴吗？你在开玩笑。」。使用玩家与实体交互后事件。
+11. 尝试实现 Java 版的`minecraft:killed.minecraft:zombie`准则，这是一种当玩家击杀僵尸就会自加分数的准则。现在我们定义`killedZombie`记分板，让这个记分板具有这个功能。使用实体死亡后事件。不要用`scoreboard`命令！命令的效率很低。使用`world`的`scoreboard`记分板管理器。
+12. 一旦玩家受到来自虚空的伤害，立刻追加 200 点虚空伤害！使用实体受伤后事件。
+13. 当玩家进入游戏时，令该玩家执行命令`function events/player_join`。可以考虑使用玩家生成事件，不使用玩家加入事件主要是因为目前还得不到玩家的完整`Player`对象。
+14. 当按下金块上的石按钮时，给予随机一名玩家金锭。使用按下按钮后事件。注意：这里你可能需要额外定义一个生成随机整数的函数`randomInt(min: number, max: number): number`。可以考虑把它放到一个工具类里，并将它设置为静态方法。举例：
+    <!--markdownlint-disable MD031-->
+    ```js
+    class JSUtil {
+        /** 生成在[min, max]之间的整数（含）
+         * @param {number} min
+         * @param {number} max
+         */
+        static randomInt(min, max) {}
+    }
+    ```
+    这里使用了 JSDoc，是为了声明这些变量的类型，防止`@ts-check`报错，并且有助于我们后续做相关处理和提供自动补全。
+15. 现在给定一个对象：
+    ```js
+    /** @type {Record<string, import("@minecraft/server").Vector3>} */
+    const teamChest = {
+        red: { x: 0, y: 60, z: 60 },
+        blue: { x: 60, y: 60, z: 0 },
+        green: { x: 0, y: 60, z: -60 },
+        yellow: { x: -60, y: 60, z: 0 },
+    };
+    ```
+    这里先对第一行做一个解释，这是声明`teamChest`的类型为一个键为`string`，值为`Vector3`的对象。现在我们假定这是 4 个队伍的箱子位置，要求在其他队伍的玩家（分别具有对应的标签，例如红队玩家拥有标签`red`，蓝队玩家拥有标签`blue`，以此类推）开箱时禁止打开其他队伍的箱子。从本题开始，我们就不再给出需要使用什么事件了，现在试试自行判断需要使用什么事件！
+16. 当玩家投掷雪球砸到木板的侧面时，传送玩家到木板的侧面 0.5 格远的位置。如果雪球砸中底面则传送到木板下方 2 格的位置，砸中顶面则传送到木板上方 1 格的位置。同样地，我们不告诉你要用什么事件了！
+17. 当玩家使用木剑时，在玩家上方 5 格的位置生成 1 颗钻石，名为「§e木剑生成的钻石」。对，是直接生成掉落物！提示：`ItemStack`对象是可以实例化的。考虑使用`Dimension`的`spawnItem`方法。
+18. 现在给出一个坐标工具类`Vector3Util`，定义一个双参数的静态方法`distance(location1: Vector3, location2: Vector3)`，返回两坐标点的距离。提示：数学上定义两点间距离 d=√(Δx²+Δy²+Δz²)。编程领域，数学很重要哦！
+19. 将玩家的 xyz 位置分别*实时*打印到记分板`playerData`的`x`、`y`、`z`假名上，向下取整。例如当玩家位于(0.5, -60.5, 35)的时候，记载`playerData.x`为`0`，`playerData.y`为`-61`，`playerData.z`为`35`。现在可以和二分法取坐标说再见了！
+20. 第二十道题！！哈哈哈，SAPI 当然值得这个待遇啦！现在我们给小木棍升个级，当小木棍对一个方块使用后，当方块具有`minecraft:vertical_half`方块状态时，把该方块状态的值换成另一个，比如如果是下半砖，就在小木棍对其交互后改成上半砖；如果是上半砖就改成下半砖！这就是一个很简易的调试棒功能了。提示：可以使用`Block`类的`permutation`属性获取方块状态，然后用`withState()`方法定义一个新的`BlockPermutation`，再用`Block.setPermutation()`方法应用新`BlockPermutation`。别忘了再加个快捷栏标题，比如「已选择“minecraft:vertical_half”（"top"）」，这就更像了。
+
+:::
+
+<details>
+
+<summary>练习题答案（1-5题）</summary>
+
+1. 注意，题里强调了是玩家执行命令，这样我们就需要筛选是不是玩家死亡了。筛选的办法是检查死亡实体的类型。
+    ```js showLineNumbers
+    world.afterEvents.entityDie.subscribe(event => {
+        // 判断是否为玩家死亡
+        const player = event.deadEntity;
+        if (player.typeId !== "minecraft:player") return;
+        // 执行命令
+        player.runCommand(`function events/player_die`);
+    });
+    ```
+    这个问题还有另一个解法。注意到这个事件的订阅方法实际上是一个双参数方法，接收第二个参数`options?: EntityEventOptions`，我们可以在这里事先确定究竟监听哪些实体死亡。查阅文档，跟随自动补全的写法，就可以很快给出解法二：
+    ```js showLineNumbers
+    world.afterEvents.entityDie.subscribe(
+        event => {
+            event.deadEntity.runCommand(`function events/player_die`);
+        },
+        {
+            entityTypes: ["minecraft:player"],
+        },
+    );
+    ```
+    不是所有事件的订阅方法都支持筛选选项的，但如果真的支持，可以充分利用。
+2. 这里使用爆炸前事件。观察事件属性，我们可以通过`setImpactedBlocks(blocks: Block[])`方法设定将被影响的方块。实现思路是，首先判断爆炸源是不是 TNT，然后获取将被影响的方块，筛选出玻璃，最后设定影响玻璃就可以了。
+    ```js showLineNumbers
+    world.beforeEvents.explosion.subscribe(event => {
+        // 检查爆炸源是否是 TNT
+        const tnt = event.source;
+        if (!tnt) return; // <- 这里，因为event.source可能返回undefined，即爆炸不来自于实体时，必须要进行判断
+        if (tnt.typeId !== "minecraft:tnt") return;
+        // 筛选将被影响的方块
+        const blocks = event.getImpactedBlocks().filter(block => block.typeId === "minecraft:glass");
+        // 设定刚筛选出来的方块
+        event.setImpactedBlocks(blocks);
+    });
+    ```
+    ![practice_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_2.png)
+3. 这里使用完成使用物品后事件。和我们上面的使用物品后事件相比，这里更强调 **Complete**，也就是**完成**使用，典例就是吃掉食物。思路很简单，检查玩家吃掉的是不是苹果，是的话就给 1 级。
+    ```js showLineNumbers {2}
+    world.afterEvents.itemCompleteUse.subscribe(event => {
+        const { source: player, itemStack: apple } = event;
+        if (apple.typeId !== "minecraft:apple") return;
+        player.addLevels(1);
+    });
+    ```
+    注意，这里第 2 行我们用了一个 JS 的**解构（Destructuring）** 的写法。解构可以快速地把对象、数组中的元素提取出来赋给对应的值。在这个例子中，我们知道`event`具有 3 个属性：`source`、`itemStack`、`useDuration`。我们在左侧也定义一个带有`source`和`itemStack`属性的对象，值分别是`player`和`apple`，这样的话这两个值就会分别被对应赋值。因此，
+    ```js showLineNumbers
+    const { source: player, itemStack: apple } = event;
+    ```
+    是等效于
+    ```js showLineNumbers
+    const player = event.source;
+    const apple = event.itemStack;
+    ```
+    的。类似地，数组也可以这么做，例如
+    ```js showLineNumbers
+    const [command, player, itemId] = ["/give", "YZBWDLT", "apple"];
+    console.log(command); // '/give'
+    console.log(player); // 'YZBWDLT'
+    console.log(itemId); // 'apple'
+    ```
+    也等效于
+    ```js showLineNumbers
+    const commandArray = ["/give", "YZBWDLT", "apple"];
+    const command = commandArray[0];
+    const player = commandArray[1];
+    const itemId = commandArray[2];
+    console.log(command); // '/give'
+    console.log(player); // 'YZBWDLT'
+    console.log(itemId); // 'apple'
+    ```
+    解构的写法是很常见的，解构也不止这一种写法。我们后面也会经常使用这个写法。
+    ![practice_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_3.png)
+4. 思路很简单，用`hasTag`方法筛选就可以了。因为需要实时更改，所以循环执行。
+    ```js showLineNumbers
+    system.runInterval(() => {
+        world.getPlayers().forEach(player => {
+            if (player.hasTag("red")) player.nameTag = `§c${player.name}`;
+        });
+    });
+    ```
+5. 思路很简单，首先检查玩家的游戏模式是不是冒险模式，其次检查交互的方块是不是花盆。这两个条件都符合之后再阻止交互。
+    ```js showLineNumbers
+    import { world, system, GameMode } from "@minecraft/server";
+
+    world.beforeEvents.playerInteractWithBlock.subscribe(event => {
+        // 如果不为冒险模式玩家，则终止代码
+        const player = event.player;
+        if (player.getGameMode() !== GameMode.Adventure) return;
+        // 如果不为花盆，则终止代码
+        const flowerPot = event.block;
+        if (flowerPot.typeId !== "minecraft:flower_pot") return;
+        // 其余情况，阻止玩家对花盆的交互
+        event.cancel = true;
+    });
+    ```
+    这里我们引入了一个`GameMode`，这是一个枚举，事实上`GameMode.Adventure`就是`"Adventure"`。读者也可以直接写为`player.getGameMode() !== "Adventure"`。引用原版给出的枚举会让人更安心一些 =P
+
+</details>
+
+<details>
+
+<summary>练习题答案（6-10题）</summary>
+
+6. 思路是，先检查玩家是否有交互物品，然后对物品做更改。然而，这里我们可以发现，如果直接按照下面这么写是没有效果的：
+    ```js showLineNumbers
+    world.beforeEvents.playerInteractWithBlock.subscribe(event => {
+        const { itemStack: item, isFirstEvent, block: diamondBlock, player } = event;
+        // 若不是首次交互，终止运行
+        if (!isFirstEvent) return;
+        // 若交互时没有物品，终止运行
+        if (!item) return;
+        // 若方块不是钻石块，终止运行
+        if (diamondBlock.typeId !== "minecraft:diamond_block") return;
+        // 判断结束后，添加lore和死亡不掉落
+        system.run(() => {
+            item.keepOnDeath = true;
+            item.setLore(["拥有钻石块幸运加成的物品§r"]);
+        });
+    });
+    ```
+    这是因为，**我们现在手上的物品已经是被实例化的物品，而已经被实例化的物品的属性是固定死的，不能更改**。虽然这确实很令人困惑，但好在我们还有一个略微绕弯子的方法，就是复制物品信息后，清除该物品并重新给予一个更改过的物品。因此，我们要做一些改进：
+    ```js showLineNumbers {11-15}
+    world.beforeEvents.playerInteractWithBlock.subscribe(event => {
+        const { itemStack: item, isFirstEvent, block: diamondBlock, player } = event;
+        // 若不是首次交互，终止运行
+        if (!isFirstEvent) return;
+        // 若交互时没有物品，终止运行
+        if (!item) return;
+        // 若方块不是钻石块，终止运行
+        if (diamondBlock.typeId !== "minecraft:diamond_block") return;
+        // 判断结束后，添加lore和死亡不掉落
+        system.run(() => {
+            const newItem = item.clone();
+            newItem.keepOnDeath = true;
+            newItem.setLore(["拥有钻石块幸运加成的物品§r"]);
+            player.runCommand(`replaceitem entity @s slot.weapon.mainhand 0 air`);
+            player.addItem(newItem);
+        });
+    });
+    ```
+    现在我们就得到了一个同时拥有 lore 和死亡不掉落标签的物品了！
+    ![practice_6](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_6.png)
+    对代码部分做一些解释：
+    - 因为玩家在交互时，事实上可能是连续按下鼠标右键的（即在一段时间内一直处于交互状态），这样就会导致事件会始终触发。我们这里使用`isFirstEvent`就是判断这是不是玩家首次进行交互。
+    - 这里我们清空物品使用了命令`/replaceitem`，在学习组件之后我们会得到一个性能更高的写法。
+    - 需要再次强调：**每当读者需要修改玩家的物品时，都应当先移除该物品之后再给予此物品，不能在原有物品的基础之上进行更改**。
+7. 思路是，先检查是否为酿造台，然后检查酿造台下方的方块是否为红色染色玻璃。
+    ```js showLineNumbers
+    world.beforeEvents.playerInteractWithBlock.subscribe(event => {
+        const { isFirstEvent, block: brewingStand, player } = event;
+        // 若不是首次交互，终止运行
+        if (!isFirstEvent) return;
+        // 若方块不是酿造台，终止运行
+        if (brewingStand.typeId !== "minecraft:brewing_stand") return;
+        // 若方块下方不是红色染色玻璃，终止运行
+        const { location, dimension } = brewingStand;
+        const redStainedGlass = dimension.getBlock({ ...location, y: location.y - 1 });
+        if (redStainedGlass?.typeId !== "minecraft:red_stained_glass") return;
+        // 阻止玩家打开 UI，并进行后续操作
+        event.cancel = true;
+        system.run(() => {
+            player.runCommand("give @s potion 1 21");
+            player.playSound("random.potion.brewed");
+        });
+    });
+    ```
+    对代码做一些解释：
+    - 我们看这里的第 9 行，这叫做**展开语法（Spread Syntax）**。展开语法可以将对象、数组中的元素快速展开为多个值。例如
+      ```js
+      const location = { x: 0, y: 0, z: 0 };
+      const locationWithDimension = { ...location, dimension: "overworld" };
+      ```
+      就等效于
+      ```js
+      const location = { x: 0, y: 0, z: 0 };
+      const locationWithDimension = { x: location.x, y: location.y, z: location.z, dimension: "overworld" };
+      ```
+      对于数组也是类似的，可以快速展开其中的元素：
+      ```js
+      const numberList1 = [1, 2, 3];
+      const numberList2 = [...numberList1, 4, 5, 6]; // [1, 2, 3, 4, 5, 6]
+      const numberList3 = [4, 5, ...numberList1, 6]; // [4, 5, 1, 2, 3, 6]
+      ```
+      和解构类似，展开语法也很实用。我们这里写的`{ ...location, y: location.y - 1 }`就代表继承原来`location`的属性，然后把`y`改为`location.y - 1`。
+    - 第 10 行的`redStainedGlass?.typeId`就用到了我们以前介绍过的可选链。因为`getBlock()`可能返回`undefined`，这是一种保护代码的措施。如果读者仍在使用`// @ts-check`，这个可选链是会由 VSC 帮你自动补全的，很方便。
+    ![practice_7](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_7.png)
+8. 思路是，当玩家攻击其他实体时，先进行条件判断，成功后直接`remove()`即可：
+    ```js showLineNumbers
+    world.afterEvents.entityHurt.subscribe(event => {
+        const { hurtEntity, damageSource } = event;
+        const sourcePlayer = damageSource.damagingEntity;
+        // 如果伤害玩家是无效的，或不是玩家，或没有removeImmediately标签，终止运行
+        if (!sourcePlayer) return;
+        if (sourcePlayer.typeId !== "minecraft:player") return;
+        if (!sourcePlayer.hasTag("removeImmediately")) return;
+        // 如果受伤实体是玩家，终止运行
+        if (hurtEntity.typeId === "minecraft:player") return;
+        // 移除实体
+        hurtEntity.remove();
+    });
+    ```
+    ![practice_8](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_8.gif)
+
+</details>
 
 import GiscusComment from "/src/components/comment/giscus.js"
 
