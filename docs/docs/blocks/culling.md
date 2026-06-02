@@ -150,7 +150,7 @@ import Image from "/src/components/image/standard"
 
 <Image src="/img/docs/blocks/culling/backface_culling_2.png" text="背面剔除（左）与背面不剔除（右）的对比" size="75%"/>
 
-在[`minecraft:material_instance`组件](./components#minecraftmaterial_instance)中，指定不同的材质（`render_method`）会有不同的背面剔除效果。
+在[`minecraft:material_instances`组件](./components#minecraftmaterial_instances)中，指定不同的材质（`render_method`）会有不同的背面剔除效果。
 
 ## 远距面剔除
 
@@ -158,7 +158,7 @@ import Image from "/src/components/image/standard"
 
 <Image src="/img/docs/blocks/culling/distant_culling_1.png" text="远距不剔除（玻璃，左）与远距面剔除（刷怪笼，右）的对比" size="75%"/>
 
-和背面剔除类似，在[`minecraft:material_instance`组件](./components#minecraftmaterial_instance)中，指定不同的材质（`render_method`）会有不同的远距面剔除效果。
+和背面剔除类似，在[`minecraft:material_instances`组件](./components#minecraftmaterial_instances)中，指定不同的材质（`render_method`）会有不同的远距面剔除效果。
 
 ---
 

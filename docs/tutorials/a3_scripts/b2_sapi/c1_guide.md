@@ -833,7 +833,6 @@ npm i @minecraft/server-ui
         hurtEntity.remove();
     });
     ```
-    ![practice_8](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_8.gif)
 
 </details>
 

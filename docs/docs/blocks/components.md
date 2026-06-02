@@ -581,7 +581,7 @@ import Image from "/src/components/image/standard"
 <treeview>
 - <DataType type="object" name="minecraft:embedded_visual"/>：根对象。
   - <DataType type="object" name="geometry"/>：定义方块在其他方块内使用的模型。可写入的内容详见[`minecraft:geometry`](#minecraftgeometry)组件。
-  - <DataType type="object" name="material_instance"/>：定义方块在其他方块内使用的材质贴图实例。可写入的内容详见[`minecraft:material_instance`](#minecraftmaterial_instance)组件。
+  - <DataType type="object" name="material_instance"/>：定义方块在其他方块内使用的材质贴图实例。可写入的内容详见[`minecraft:material_instances`](#minecraftmaterial_instances)组件。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -608,7 +608,7 @@ import Image from "/src/components/image/standard"
 <treeview>
 - <DataType type="object" name="minecraft:item_visual"/>：根对象。
   - <DataType type="object" name="geometry"/>：定义方块在物品栏中和手持时使用的模型。可写入的内容详见[`minecraft:geometry`](#minecraftgeometry)组件。
-  - <DataType type="object" name="material_instance"/>：定义方块在物品栏中和手持时使用的材质贴图实例。可写入的内容详见[`minecraft:material_instance`](#minecraftmaterial_instance)组件。
+  - <DataType type="object" name="material_instance"/>：定义方块在物品栏中和手持时使用的材质贴图实例。可写入的内容详见[`minecraft:material_instances`](#minecraftmaterial_instances)组件。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
