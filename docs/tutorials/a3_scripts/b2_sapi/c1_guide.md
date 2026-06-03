@@ -584,6 +584,7 @@ npm i @minecraft/server-ui
 
 现在我们正式开始练习吧。越到后面的题目，我们越会面对更加复杂的需求！
 
+<!--markdownlint-disable MD031-->
 1. 实现**玩家**死亡执行命令`function events/player_die`——但是注意，这回不要用循环代码！读者可以尝试使用实体死亡后事件，并且注意`Entity`类有`runCommand`方法。
 2. 让 TNT 除了能炸掉玻璃之外，其他一切方块都炸不掉！读者可以考虑使用爆炸前事件。
 3. 让玩家在吃掉苹果之后，增加 1 级的经验。读者可以考虑使用完成使用物品后事件。
@@ -592,13 +593,13 @@ npm i @minecraft/server-ui
 6. 最激动人心的时刻来了——当玩家和钻石块交互时，为玩家手中的物品添加备注：「拥有钻石块幸运加成的物品」，并设置为死亡不掉落。这个需求命令和纯附加包都是无法实现的——但脚本可以轻易实现！考虑`ItemStack`类的`clone()`方法、`setLore()`方法和`keepOnDeath`属性，此外使用玩家与方块交互前事件。读者也可以试试看如果使用后事件可不可行，并总结玩家与方块交互前事件和后事件的区别。
 7. 当玩家试图和酿造台交互时，检查它下方的方块。如果是红色染色玻璃则阻止玩家和酿造台交互，然后给予玩家一瓶瞬间治疗药水（`potion`，数据值为`21`），并播放酿造台酿造的音效。暂时先不考虑`Block`的`below()`方法（虽然这个方法在这里更好用）。
 8. 当玩家在拥有`removeImmediately`标签时，不论它们攻击何种实体（玩家除外），都立刻移除这个实体。读者可以考虑使用实体受伤后事件。注意实体有`remove()`方法，可以直接移除实体而没有任何动画。
-9. 当玩家使用火药和方块交互时，阻止玩家——然后在玩家交互的方块的位置直接创造一次爆炸！读者可以使用`Dimension`类的`createExplosion`方法直接导致一次爆炸，位置可以设定为通过事件获取的方块位置。
-10. 当玩家手持音符和和牛交互时，对玩家发送消息「你在对牛弹琴吗？你在开玩笑。」。使用玩家与实体交互后事件。
+9. 当玩家使用火药和方块交互时，在玩家交互的方块的位置直接创造一次爆炸！读者可以使用`Dimension`类的`createExplosion`方法直接导致一次爆炸，位置可以设定为通过事件获取的方块位置。
+10. 当玩家手持音符盒和牛交互时，对玩家发送消息「你在对牛弹琴吗？你在开玩笑。」。使用玩家与实体交互前事件。
 11. 尝试实现 Java 版的`minecraft:killed.minecraft:zombie`准则，这是一种当玩家击杀僵尸就会自加分数的准则。现在我们定义`killedZombie`记分板，让这个记分板具有这个功能。使用实体死亡后事件。不要用`scoreboard`命令！命令的效率很低。使用`world`的`scoreboard`记分板管理器。
 12. 一旦玩家受到来自虚空的伤害，立刻追加 200 点虚空伤害！使用实体受伤后事件。
 13. 当玩家进入游戏时，令该玩家执行命令`function events/player_join`。可以考虑使用玩家生成事件，不使用玩家加入事件主要是因为目前还得不到玩家的完整`Player`对象。
-14. 当按下金块上的石按钮时，给予随机一名玩家金锭。使用按下按钮后事件。注意：这里你可能需要额外定义一个生成随机整数的函数`randomInt(min: number, max: number): number`。可以考虑把它放到一个工具类里，并将它设置为静态方法。举例：
-    <!--markdownlint-disable MD031-->
+14. 当按下金块上的石按钮时，给予随机一名玩家金锭。使用按下按钮后事件。  
+    注意：这里你可能需要额外定义一个生成随机整数的函数`randomInt(min: number, max: number): number`。可以考虑把它放到一个工具类里，并将它设置为静态方法。举例：
     ```js
     class JSUtil {
         /** 生成在[min, max]之间的整数（含）
@@ -608,7 +609,8 @@ npm i @minecraft/server-ui
         static randomInt(min, max) {}
     }
     ```
-    这里使用了 JSDoc，是为了声明这些变量的类型，防止`@ts-check`报错，并且有助于我们后续做相关处理和提供自动补全。
+    这里使用了 JSDoc，是为了声明这些变量的类型，防止`@ts-check`报错，并且有助于我们后续做相关处理和提供自动补全。  
+    你会需要使用数学库`Math`的两个静态方法。你也可以用 AI 直接生成类似算法。
 15. 现在给定一个对象：
     ```js
     /** @type {Record<string, import("@minecraft/server").Vector3>} */
@@ -623,16 +625,17 @@ npm i @minecraft/server-ui
 16. 当玩家投掷雪球砸到木板的侧面时，传送玩家到木板的侧面 0.5 格远的位置。如果雪球砸中底面则传送到木板下方 2 格的位置，砸中顶面则传送到木板上方 1 格的位置。同样地，我们不告诉你要用什么事件了！
 17. 当玩家使用木剑时，在玩家上方 5 格的位置生成 1 颗钻石，名为「§e木剑生成的钻石」。对，是直接生成掉落物！提示：`ItemStack`对象是可以实例化的。考虑使用`Dimension`的`spawnItem`方法。
 18. 现在给出一个坐标工具类`Vector3Util`，定义一个双参数的静态方法`distance(location1: Vector3, location2: Vector3)`，返回两坐标点的距离。提示：数学上定义两点间距离 d=√(Δx²+Δy²+Δz²)。编程领域，数学很重要哦！
-19. 将玩家的 xyz 位置分别*实时*打印到记分板`playerData`的`x`、`y`、`z`假名上，向下取整。例如当玩家位于(0.5, -60.5, 35)的时候，记载`playerData.x`为`0`，`playerData.y`为`-61`，`playerData.z`为`35`。现在可以和二分法取坐标说再见了！
+19. 只考虑单人游戏的情况下，将玩家的 xyz 位置分别*实时*打印到记分板`playerData`的`x`、`y`、`z`假名上，向下取整。例如当玩家位于(0.5, -60.5, 35)的时候，记载`playerData.x`为`0`，`playerData.y`为`-61`，`playerData.z`为`35`。现在可以和二分法取坐标说再见了！
 20. 第二十道题！！哈哈哈，SAPI 当然值得这个待遇啦！现在我们给小木棍升个级，当小木棍对一个方块使用后，当方块具有`minecraft:vertical_half`方块状态时，把该方块状态的值换成另一个，比如如果是下半砖，就在小木棍对其交互后改成上半砖；如果是上半砖就改成下半砖！这就是一个很简易的调试棒功能了。提示：可以使用`Block`类的`permutation`属性获取方块状态，然后用`withState()`方法定义一个新的`BlockPermutation`，再用`Block.setPermutation()`方法应用新`BlockPermutation`。别忘了再加个快捷栏标题，比如「已选择“minecraft:vertical_half”（"top"）」，这就更像了。
 
 :::
 
 <details>
 
-<summary>练习题答案（1-5题）</summary>
+<summary>练习题答案（1-5 题）</summary>
 
 1. 注意，题里强调了是玩家执行命令，这样我们就需要筛选是不是玩家死亡了。筛选的办法是检查死亡实体的类型。
+
     ```js showLineNumbers
     world.afterEvents.entityDie.subscribe(event => {
         // 判断是否为玩家死亡
@@ -642,7 +645,9 @@ npm i @minecraft/server-ui
         player.runCommand(`function events/player_die`);
     });
     ```
+
     这个问题还有另一个解法。注意到这个事件的订阅方法实际上是一个双参数方法，接收第二个参数`options?: EntityEventOptions`，我们可以在这里事先确定究竟监听哪些实体死亡。查阅文档，跟随自动补全的写法，就可以很快给出解法二：
+
     ```js showLineNumbers
     world.afterEvents.entityDie.subscribe(
         event => {
@@ -653,8 +658,11 @@ npm i @minecraft/server-ui
         },
     );
     ```
+
     不是所有事件的订阅方法都支持筛选选项的，但如果真的支持，可以充分利用。
+
 2. 这里使用爆炸前事件。观察事件属性，我们可以通过`setImpactedBlocks(blocks: Block[])`方法设定将被影响的方块。实现思路是，首先判断爆炸源是不是 TNT，然后获取将被影响的方块，筛选出玻璃，最后设定影响玻璃就可以了。
+
     ```js showLineNumbers
     world.beforeEvents.explosion.subscribe(event => {
         // 检查爆炸源是否是 TNT
@@ -667,8 +675,11 @@ npm i @minecraft/server-ui
         event.setImpactedBlocks(blocks);
     });
     ```
+
     ![practice_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_2.png)
+
 3. 这里使用完成使用物品后事件。和我们上面的使用物品后事件相比，这里更强调 **Complete**，也就是**完成**使用，典例就是吃掉食物。思路很简单，检查玩家吃掉的是不是苹果，是的话就给 1 级。
+
     ```js showLineNumbers {2}
     world.afterEvents.itemCompleteUse.subscribe(event => {
         const { source: player, itemStack: apple } = event;
@@ -676,23 +687,31 @@ npm i @minecraft/server-ui
         player.addLevels(1);
     });
     ```
+
     注意，这里第 2 行我们用了一个 JS 的**解构（Destructuring）** 的写法。解构可以快速地把对象、数组中的元素提取出来赋给对应的值。在这个例子中，我们知道`event`具有 3 个属性：`source`、`itemStack`、`useDuration`。我们在左侧也定义一个带有`source`和`itemStack`属性的对象，值分别是`player`和`apple`，这样的话这两个值就会分别被对应赋值。因此，
+
     ```js showLineNumbers
     const { source: player, itemStack: apple } = event;
     ```
+
     是等效于
+
     ```js showLineNumbers
     const player = event.source;
     const apple = event.itemStack;
     ```
+
     的。类似地，数组也可以这么做，例如
+
     ```js showLineNumbers
     const [command, player, itemId] = ["/give", "YZBWDLT", "apple"];
     console.log(command); // '/give'
     console.log(player); // 'YZBWDLT'
     console.log(itemId); // 'apple'
     ```
+
     也等效于
+
     ```js showLineNumbers
     const commandArray = ["/give", "YZBWDLT", "apple"];
     const command = commandArray[0];
@@ -702,9 +721,13 @@ npm i @minecraft/server-ui
     console.log(player); // 'YZBWDLT'
     console.log(itemId); // 'apple'
     ```
+
     解构的写法是很常见的，解构也不止这一种写法。我们后面也会经常使用这个写法。
+
     ![practice_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_3.png)
+
 4. 思路很简单，用`hasTag`方法筛选就可以了。因为需要实时更改，所以循环执行。
+
     ```js showLineNumbers
     system.runInterval(() => {
         world.getPlayers().forEach(player => {
@@ -712,7 +735,9 @@ npm i @minecraft/server-ui
         });
     });
     ```
+
 5. 思路很简单，首先检查玩家的游戏模式是不是冒险模式，其次检查交互的方块是不是花盆。这两个条件都符合之后再阻止交互。
+
     ```js showLineNumbers
     import { world, system, GameMode } from "@minecraft/server";
 
@@ -727,15 +752,17 @@ npm i @minecraft/server-ui
         event.cancel = true;
     });
     ```
+
     这里我们引入了一个`GameMode`，这是一个枚举，事实上`GameMode.Adventure`就是`"Adventure"`。读者也可以直接写为`player.getGameMode() !== "Adventure"`。引用原版给出的枚举会让人更安心一些 =P
 
 </details>
 
 <details>
 
-<summary>练习题答案（6-10题）</summary>
+<summary>练习题答案（6-10 题）</summary>
 
 6. 思路是，先检查玩家是否有交互物品，然后对物品做更改。然而，这里我们可以发现，如果直接按照下面这么写是没有效果的：
+
     ```js showLineNumbers
     world.beforeEvents.playerInteractWithBlock.subscribe(event => {
         const { itemStack: item, isFirstEvent, block: diamondBlock, player } = event;
@@ -752,7 +779,9 @@ npm i @minecraft/server-ui
         });
     });
     ```
+
     这是因为，**我们现在手上的物品已经是被实例化的物品，而已经被实例化的物品的属性是固定死的，不能更改**。虽然这确实很令人困惑，但好在我们还有一个略微绕弯子的方法，就是复制物品信息后，清除该物品并重新给予一个更改过的物品。因此，我们要做一些改进：
+
     ```js showLineNumbers {11-15}
     world.beforeEvents.playerInteractWithBlock.subscribe(event => {
         const { itemStack: item, isFirstEvent, block: diamondBlock, player } = event;
@@ -772,13 +801,44 @@ npm i @minecraft/server-ui
         });
     });
     ```
+
     现在我们就得到了一个同时拥有 lore 和死亡不掉落标签的物品了！
+
     ![practice_6](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_6.png)
+
     对代码部分做一些解释：
+
     - 因为玩家在交互时，事实上可能是连续按下鼠标右键的（即在一段时间内一直处于交互状态），这样就会导致事件会始终触发。我们这里使用`isFirstEvent`就是判断这是不是玩家首次进行交互。
     - 这里我们清空物品使用了命令`/replaceitem`，在学习组件之后我们会得到一个性能更高的写法。
     - 需要再次强调：**每当读者需要修改玩家的物品时，都应当先移除该物品之后再给予此物品，不能在原有物品的基础之上进行更改**。
+
+    读者可以尝试把前事件`beforeEvents`改成后事件`afterEvents`，会发现这段代码未能执行。**这里有一个常见的调试方法：读者可以在待适配的地方写一个断点（例如`world.sendMessage("Test");`或`console.log("Test");`），检查在什么地方未能执行**。可以发现，我们就算写到第一句上也是没有用的：
+
+    ```js showLineNumbers {2}
+    world.afterEvents.playerInteractWithBlock.subscribe(event => {
+        world.sendMessage("Test");
+        const { itemStack: item, isFirstEvent, block: diamondBlock, player } = event;
+        // 若不是首次交互，终止运行
+        if (!isFirstEvent) return;
+        // 若交互时没有物品，终止运行
+        if (!item) return;
+        // 若方块不是钻石块，终止运行
+        if (diamondBlock.typeId !== "minecraft:diamond_block") return;
+        // 判断结束后，添加lore和死亡不掉落
+        system.run(() => {
+            const newItem = item.clone();
+            newItem.keepOnDeath = true;
+            newItem.setLore(["拥有钻石块幸运加成的物品§r"]);
+            player.runCommand(`replaceitem entity @s slot.weapon.mainhand 0 air`);
+            player.addItem(newItem);
+        });
+    });
+    ```
+
+    这就意味着，这个事件是未能触发的。而如果开箱、和酿造台等交互就会正常触发。这就是交互前事件和后事件的区别——像钻石块这种一般方块是不具有交互属性的，**而后事件是检查玩家成功与可交互方块交互**，因此使用后事件是没有用的。
+
 7. 思路是，先检查是否为酿造台，然后检查酿造台下方的方块是否为红色染色玻璃。
+
     ```js showLineNumbers
     world.beforeEvents.playerInteractWithBlock.subscribe(event => {
         const { isFirstEvent, block: brewingStand, player } = event;
@@ -798,27 +858,39 @@ npm i @minecraft/server-ui
         });
     });
     ```
+
     对代码做一些解释：
+
     - 我们看这里的第 9 行，这叫做**展开语法（Spread Syntax）**。展开语法可以将对象、数组中的元素快速展开为多个值。例如
+
       ```js
       const location = { x: 0, y: 0, z: 0 };
       const locationWithDimension = { ...location, dimension: "overworld" };
       ```
+
       就等效于
+
       ```js
       const location = { x: 0, y: 0, z: 0 };
       const locationWithDimension = { x: location.x, y: location.y, z: location.z, dimension: "overworld" };
       ```
+
       对于数组也是类似的，可以快速展开其中的元素：
+
       ```js
       const numberList1 = [1, 2, 3];
       const numberList2 = [...numberList1, 4, 5, 6]; // [1, 2, 3, 4, 5, 6]
       const numberList3 = [4, 5, ...numberList1, 6]; // [4, 5, 1, 2, 3, 6]
       ```
+
       和解构类似，展开语法也很实用。我们这里写的`{ ...location, y: location.y - 1 }`就代表继承原来`location`的属性，然后把`y`改为`location.y - 1`。
+
     - 第 10 行的`redStainedGlass?.typeId`就用到了我们以前介绍过的可选链。因为`getBlock()`可能返回`undefined`，这是一种保护代码的措施。如果读者仍在使用`// @ts-check`，这个可选链是会由 VSC 帮你自动补全的，很方便。
+
     ![practice_7](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_7.png)
+
 8. 思路是，当玩家攻击其他实体时，先进行条件判断，成功后直接`remove()`即可：
+
     ```js showLineNumbers
     world.afterEvents.entityHurt.subscribe(event => {
         const { hurtEntity, damageSource } = event;
@@ -833,6 +905,273 @@ npm i @minecraft/server-ui
         hurtEntity.remove();
     });
     ```
+
+9. 注意这里同样需要使用玩家与方块交互前事件。
+
+    ```js showLineNumbers
+    world.beforeEvents.playerInteractWithBlock.subscribe(event => {
+        const { isFirstEvent, itemStack: gunpowder, block } = event;
+        // 条件判断，不符合条件的情况终止运行
+        if (!isFirstEvent) return;
+        if (!gunpowder) return;
+        if (gunpowder.typeId !== "minecraft:gunpowder") return;
+        // 创造爆炸
+        const { dimension, location } = block;
+        system.run(() => dimension.createExplosion(location, 2));
+    });
+    ```
+
+    ![practice_9](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_9.png)
+
+10. 这里需要使用玩家与实体交互前事件，因为正常情况下牛也不是可交互的实体。
+
+    ```js showLineNumbers
+    world.beforeEvents.playerInteractWithEntity.subscribe(event => {
+        const { itemStack: noteblock, player, target: cow } = event;
+        // 判断条件
+        if (!noteblock) return;
+        if (noteblock.typeId !== "minecraft:noteblock") return;
+        if (cow.typeId !== "minecraft:cow") return;
+        // 发送消息
+        system.run(() => player.sendMessage("你在对牛弹琴吗？你在开玩笑。"));
+    });
+    ```
+
+    ![practice_10](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_10.png)
+
+</details>
+
+<details>
+
+<summary>练习题答案（11-15 题）</summary>
+
+11. 需要注意这里我们在获取记分项的时候可能返回`undefined`，如果该记分板未定义就直接终止运行即可。
+
+    ```js showLineNumbers
+    world.afterEvents.entityDie.subscribe(
+        event => {
+            const player = event.damageSource.damagingEntity;
+            if (!player) return;
+
+            // 为玩家加分
+            const killedZombieObj = world.scoreboard.getObjective("killedZombie");
+            if (!killedZombieObj) return;
+            killedZombieObj.addScore(player, 1);
+        },
+        {
+            entityTypes: ["minecraft:zombie"],
+        },
+    );
+    ```
+
+    ![practice_11](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_11.png)
+
+12. 这里我们使用了`EntityDamageCause`枚举，`EntityDamageCause.void`等效于`"void"`。
+
+    ```js showLineNumbers
+    world.afterEvents.entityHurt.subscribe(
+        event => {
+            const { damageSource, hurtEntity: player } = event;
+            const cause = damageSource.cause;
+            if (cause !== EntityDamageCause.void) return;
+            player.applyDamage(200, { cause: cause });
+        },
+        {
+            entityTypes: ["minecraft:player"],
+        },
+    );
+    ```
+
+13. 代码如下。
+
+    ```js showLineNumbers
+    world.afterEvents.playerSpawn.subscribe(event => {
+        const { initialSpawn, player } = event;
+        // 如果不是进入游戏的生成（例如玩家重生后也会触发事件），终止代码
+        if (!initialSpawn) return;
+        player.runCommand("function events/player_join");
+    });
+    ```
+
+14. 代码如下。
+
+    ```js showLineNumbers
+    class JSUtil {
+        /** 生成在[min, max]之间的整数（含）
+         * @param {number} min
+        * @param {number} max
+        */
+        static randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+    }
+
+    world.afterEvents.buttonPush.subscribe(event => {
+        const stoneButton = event.block;
+        // 判断条件
+        if (stoneButton.typeId !== "minecraft:stone_button") return;
+        const goldBlock = stoneButton.below(); // 这里我们使用 below()，可以直接获取方块下方的方块的信息
+        if (!goldBlock || goldBlock.typeId !== "minecraft:gold_block") return;
+        // 给予金锭
+        const players = world.getPlayers();
+        const randomPlayer = players[JSUtil.randomInt(0, players.length - 1)];
+        randomPlayer.runCommand("give @s gold_ingot");
+    });
+    ```
+
+    ![practice_14](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_14.png)
+
+15. 因为要尝试阻止玩家打开箱子，故而使用玩家与方块交互*前*事件。
+
+    ```js showLineNumbers
+    class Vector3Util {
+        /** 两坐标是否为同一个坐标
+        * @param {import("@minecraft/server").Vector3} location1
+        * @param {import("@minecraft/server").Vector3} location2
+        */
+        static isSame(location1, location2) {
+            const { x: x1, y: y1, z: z1 } = location1;
+            const { x: x2, y: y2, z: z2 } = location2;
+            return x1 === x2 && y1 === y2 && z1 === z2;
+        }
+    }
+
+    world.beforeEvents.playerInteractWithBlock.subscribe(event => {
+        const { block: chest, isFirstEvent, player } = event;
+        // 判断基本条件，如果不是首次交互或不是箱子则终止运行
+        if (!isFirstEvent) return;
+        if (chest.typeId !== "minecraft:chest") return;
+        // 判断玩家打开的箱子是哪个队伍的箱子，如果不是队伍箱子或同队玩家打开箱子则终止运行
+        const chestLocation = chest.location;
+        const chestTeam = Object.keys(teamChest).find(team =>
+            Vector3Util.isSame(chestLocation, teamChest[team]),
+        );
+        if (!chestTeam) return;
+        if (player.hasTag(chestTeam)) return;
+        // 阻止玩家打开箱子并警告玩家
+        event.cancel = true;
+        system.run(() => {
+            player.sendMessage("§c你不能打开非本队的箱子！");
+            player.playSound("mob.villager.no");
+        });
+    });
+    ```
+
+    做一些解释。
+
+    - 这里我们创建了一个有关坐标的工具类`Vector3Util`，之后里面的方法也可以用得到，循环利用。同时，避免将函数定义在事件内，防止每次触发事件都需要定义函数，降低性能，这也是一个优化性能的方法。
+    - `chestTeam`可能相对复杂一些，这里做的是对所有队伍名遍历，一旦找到相同坐标的队伍就返回，如果找不到则为`undefined`。
+
+    ![practice_15](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_15.png)
+
+</details>
+
+<details>
+
+<summary>练习题答案（16-20 题）</summary>
+
+16. 这里需要使用投掷物击中方块后事件。
+
+    ```js showLineNumbers
+    world.afterEvents.projectileHitBlock.subscribe(event => {
+        const { projectile: snowball, source: player } = event;
+        if (snowball.typeId !== "minecraft:snowball") return;
+        const { block: planks, face } = event.getBlockHit();
+        const location = planks.center();
+        if (!planks.typeId.includes("planks")) return; // 这里是为了适配多种木板，如果其他模组的 ID 起名规范，就也可以适用于其他模组
+        /** @type {Record<Direction, import("@minecraft/server").Vector3>} */
+        const teleportLocations = {
+            Up: { ...location, y: location.y + 1 },
+            Down: { ...location, y: location.y - 2.5 },
+            South: { ...location, z: location.z + 1 },
+            North: { ...location, z: location.z - 1 },
+            East: { ...location, x: location.x + 1 },
+            West: { ...location, x: location.x - 1 },
+        };
+        player?.teleport(teleportLocations[face]);
+    });
+    ```
+
+    同样要做一些解释：
+
+    - 这里我们使用`teleportLocations`，是为了防止多层`if else`嵌套。过多的`if else`不仅会降低可读性，也容易降低性能，而对象查询的效率却是比较高的。
+    - 我们还需要使用`@type`的 JSDoc 来声明`teleportLocations`的类型，防止`// @ts-check`在`teleportLocations[face]`报错隐式的 any 类型。不要忘记导入`Direction`枚举！
+
+17. 这里使用使用物品后事件。前面已用过多次，这题没有什么要额外解释的了。
+
+    ```js showLineNumbers
+    world.afterEvents.itemUse.subscribe(event => {
+        const { itemStack: woodenSword, source: player } = event;
+        // 检查是不是木剑
+        if (woodenSword.typeId !== "minecraft:wooden_sword") return;
+        // 生成钻石
+        const { dimension, location } = player;
+        const diamond = new ItemStack("minecraft:diamond");
+        diamond.nameTag = "§e木剑生成的钻石";
+        dimension.spawnItem(diamond, { ...location, y: location.y + 5 });
+    });
+    ```
+
+    ![practice_17](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_17.png)
+
+18. 代码如下。这就是一个很简单的数学运算了。
+
+    ```js showLineNumbers
+    class Vector3Util {
+        /** 获取两坐标间的距离
+        * @param {import("@minecraft/server").Vector3} location1
+        * @param {import("@minecraft/server").Vector3} location2
+        */
+        static distance(location1, location2) {
+            const { x: x1, y: y1, z: z1 } = location1;
+            const { x: x2, y: y2, z: z2 } = location2;
+            return ((x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2) ** 0.5;
+        }
+    }
+    ```
+
+19. 这里需要循环执行代码。当然了，如果我们使用脚本系统的话，其实也很少使用记分板了。
+
+    ```js showLineNumbers
+    system.runInterval(() => {
+        const player = world.getPlayers()[0];
+        const { x, y, z } = player.location;
+        const playerDataObj = world.scoreboard.getObjective("playerData");
+        if (!playerDataObj) return;
+        playerDataObj.setScore("x", Math.floor(x));
+        playerDataObj.setScore("y", Math.floor(y));
+        playerDataObj.setScore("z", Math.floor(z));
+    });
+    ```
+
+    ![practice_19](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_19.png)
+
+20. 注意使用玩家与方块交互前事件，因为台阶几乎都不具有交互属性。
+
+    ```js showLineNumbers
+    world.beforeEvents.playerInteractWithBlock.subscribe(event => {
+        const { block, isFirstEvent, itemStack: stick, player } = event;
+        // 检查条件
+        if (!isFirstEvent) return;
+        if (!stick) return;
+        if (stick.typeId !== "minecraft:stick") return;
+        // 如果方块没有对应方块状态，终止运行
+        const blockState = block.permutation.getState("minecraft:vertical_half");
+        if (!blockState) return;
+        // 更改方块状态
+        event.cancel = true;
+        system.run(() => {
+            const nextState = { bottom: "top", top: "bottom" }[blockState];
+            const newPermutation = block.permutation.withState("minecraft:vertical_half", nextState);
+            block.setPermutation(newPermutation);
+            player.onScreenDisplay.setActionBar(`已选择“minecraft:vertical_half”（"${nextState}"）`);
+        });
+    });
+    ```
+
+    基于类似的逻辑，做推广处理后便可以开发调试棒的模组了！
+
+    ![practice_20](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_20.png)
 
 </details>
 
