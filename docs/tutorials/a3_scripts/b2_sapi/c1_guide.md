@@ -422,9 +422,7 @@ system.runInterval(() => {
 
 ![loop_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/loop_1.png)
 
-看，这就是脚本相比于命令的优势，获取玩家的相关属性就是如此简单粗暴！`isSneaking`属性是一个类型为`boolean`的**只读（Read Only）属性**，注意它是不允许修改的，SAPI 中有很多属性都是这种只读属性，一旦试图更改就会报错。
-
-那么，我们可以用最简单粗暴的`if - else`语句来判断玩家是否潜行：
+看，这就是脚本相比于命令的优势，获取玩家的相关属性就是如此简单粗暴！那么，我们可以用最简单粗暴的`if - else`语句来判断玩家是否潜行：
 
 ```js showLineNumbers title="main.js" {3-7}
 system.runInterval(() => {
@@ -557,7 +555,7 @@ npm i @minecraft/server-ui
     ```
 
 - **回调函数（Callback Function）**：是指作为另一个函数的参数的函数。通常为函数传入一个函数是为了实现一些相对复杂的逻辑。
-- **只读（Read Only）**：是指只可访问，但不可修改的属性。尝试修改原版的只读属性会导致报错。
+- 还有一个是**只读（Read Only）**：是指只可访问，但不可修改的属性。尝试修改原版的只读属性会导致报错。SAPI 中有很多属性都是这种只读属性。
   - 同样，只有 TypeScript 脚本才能用`readonly`字段：
 
     ```js title="main.js" {2}
