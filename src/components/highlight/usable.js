@@ -27,5 +27,5 @@ export default function UsableHighlight({ type = "all", tooltip = "" }) {
         onlyInternational: `该特性仅在国际版可用。${tooltip}`,
         onlyChina: `该特性仅在中国版可用。${tooltip}`,
     }[type];
-    return <BaseHighlight text={text} color={color} size="large" tooltip={newTooltip} />;
+    return <BaseHighlight text={text} color={color} tooltip={newTooltip} />;
 }

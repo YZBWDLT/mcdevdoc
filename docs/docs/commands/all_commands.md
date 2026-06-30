@@ -19,13 +19,13 @@ import Highlight from '/src/components/highlight/base';
 
 本文档收录所有正式版或预览版中可用的命令，并给出对应课时。其中，部分内容并未在模块 1 介绍，请阅读本篇文档的初学者注意甄别，如果需要，请学习相关知识。
 
-**未特别指明的命令的权限等级均为 1。每个命令条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。" size="large"/>。
+**未特别指明的命令的权限等级均为 1。每个命令条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。"/>。
 
 ## 帮助命令
 
 ### `/help`（或`/?`）
 
-<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。" size="large"/><br/>
+<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c1_command" color="green"/> <WikiButton item="命令/help"/>
 
@@ -744,7 +744,7 @@ in <维度: Dimension> -> execute
 
 ### `/scriptevent`
 
-<Highlight text="SAPI" tooltip="中国版移除了SAPI的功能。因此，该命令在中国版的执行结果无论如何都是无效。这个警告会在中国版更新3.9后失效。" size="large"/><br/>
+<Highlight text="SAPI" tooltip="中国版移除了SAPI的功能。因此，该命令在中国版的执行结果无论如何都是无效。这个警告会在中国版更新3.9后失效。"/><br/>
 
 <WikiButton item="命令/scriptevent"/>
 
@@ -998,7 +998,7 @@ in <维度: Dimension> -> execute
 
 ### `/camera`
 
-<Highlight text="高版本" tooltip="视场角语法仅限 1.21.110+ 版本可用。附着相机语法和样条语法仅限 26.10+ 版本可用。" size="large"/><br/>
+<Highlight text="高版本" tooltip="视场角语法仅限 1.21.110+ 版本可用。附着相机语法和样条语法仅限 26.10+ 版本可用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机命令camera" color="green"/>
 <WikiButton item="命令/camera"/>
@@ -1917,7 +1917,7 @@ in <维度: Dimension> -> execute
 
 ### `/dialogue`
 
-<Highlight text="NPC" tooltip="中国版移除了 NPC 的功能，包括实体定义的 minecraft:npc 组件。因此，该命令在中国版的执行结果无论如何都是无效。" size="large"/><br/>
+<Highlight text="NPC" tooltip="中国版移除了 NPC 的功能，包括实体定义的 minecraft:npc 组件。因此，该命令在中国版的执行结果无论如何都是无效。"/><br/>
 
 <WikiButton item="命令/dialogue"/>
 
@@ -1975,7 +1975,7 @@ in <维度: Dimension> -> execute
 
 ### `/say`
 
-<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。" size="large"/><br/>
+<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#发送消息的命令say" color="green"/>
 <WikiButton item="命令/say"/>
@@ -2098,7 +2098,7 @@ in <维度: Dimension> -> execute
 
 ### `/tell`（或`/msg`、`/w`）
 
-<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。" size="large"/><br/>
+<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#私聊玩家tellwmsg" color="green"/>
 <WikiButton item="命令/tell"/>
@@ -2714,7 +2714,7 @@ in <维度: Dimension> -> execute
 
 ### `/place`
 
-<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。但是，在SAPI中有Dimension.placeFeature()、StructureManager.placeJigsaw()等对应方法可用。" size="large"/><br/>
+<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。但是，在SAPI中有Dimension.placeFeature()、StructureManager.placeJigsaw()等对应方法可用。"/><br/>
 
 <WikiButton item="命令/place"/>
 
@@ -2856,7 +2856,7 @@ in <维度: Dimension> -> execute
 
 ### `/gametest`
 
-<Highlight text="实验性玩法" color="red" tooltip="该命令使用的脚本@minecraft/gametest仍然处于beta阶段，必须开启实验性玩法。" size="large"/><br/>
+<Highlight text="实验性玩法" color="red" tooltip="该命令使用的脚本@minecraft/gametest仍然处于beta阶段，必须开启实验性玩法。"/><br/>
 
 <WikiButton item="命令/gametest"/>
 
@@ -2903,7 +2903,7 @@ in <维度: Dimension> -> execute
 
 ### `/me`
 
-<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。" size="large"/><br/>
+<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#聊天栏宣告状态me" color="green"/>
 <WikiButton item="命令/me"/>
@@ -2959,7 +2959,7 @@ in <维度: Dimension> -> execute
 
 ### `/script`
 
-<Highlight text="实验性玩法" color="red" tooltip="该命令使用的脚本@minecraft/gametest仍然处于beta阶段，必须开启实验性玩法。" size="large"/><br/>
+<Highlight text="实验性玩法" color="red" tooltip="该命令使用的脚本@minecraft/gametest仍然处于beta阶段，必须开启实验性玩法。"/><br/>
 
 <WikiButton item="命令/script"/>
 
@@ -3061,7 +3061,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/op`
 
-<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" color="green"/>
 <WikiButton item="命令/op"/>
@@ -3080,7 +3080,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/deop`
 
-<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" color="green"/>
 <WikiButton item="命令/deop"/>
@@ -3097,7 +3097,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/kick`
 
-<Highlight text="权限等级 1" color="yellowgreen" tooltip="该命令无需作弊即可使用。" size="large"/><br/>
+<Highlight text="权限等级 1" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#移出玩家命令kick" color="green"/>
 <WikiButton item="命令/kick"/>
@@ -3116,7 +3116,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/list`
 
-<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。" size="large"/><br/>
+<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#玩家列表命令list" color="green"/>
 <WikiButton item="命令/list"/>
@@ -3133,7 +3133,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/connect`（或`/wsserver`）
 
-<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/connect"/>
 
@@ -3151,7 +3151,7 @@ connect <服务器URI: text>
 
 ### `/reload`
 
-<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#重载函数文件的命令reload" color="green"/>
 <WikiButton item="命令/reload"/>
@@ -3168,7 +3168,7 @@ connect <服务器URI: text>
 
 ### `/stop`
 
-<Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+<Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" color="green"/>
 <WikiButton item="命令/stop"/>
@@ -3185,7 +3185,7 @@ stop
 
 ### `/setmaxplayers`
 
-<Highlight text="权限等级 3" tooltip="该命令的权限等级为房主，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+<Highlight text="权限等级 3" tooltip="该命令的权限等级为房主，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#设置最大玩家数setmaxplayers" color="green"/>
 <WikiButton item="命令/setmaxplayers" length="large"/>
@@ -3202,7 +3202,7 @@ stop
 
 ### `/allowlist`
 
-<Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+<Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" color="green"/>
 <WikiButton item="命令/allowlist"/>
@@ -3259,7 +3259,7 @@ allowlist reload
 
 ### `/packstack`
 
-<Highlight text="高版本" tooltip="该命令仅限 26.0+ 版本可用。" size="large"/><br/>
+<Highlight text="高版本" tooltip="该命令仅限 26.0+ 版本可用。"/><br/>
 
 <WikiButton item="命令/packstack"/>
 
@@ -3284,7 +3284,7 @@ allowlist reload
 
 ### `/enableedunpc`
 
-<Highlight text="中国版独有" tooltip="该命令仅限中国版可用。" size="large"/><br/>
+<Highlight text="中国版独有" tooltip="该命令仅限中国版可用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c11_china_edition" color="green"/>
 <WikiButton item="命令/enableedunpc" length="large"/>
@@ -3303,7 +3303,7 @@ allowlist reload
 
 ### `/removeedunpc`
 
-<Highlight text="中国版独有" tooltip="该命令仅限中国版可用。" size="large"/><br/>
+<Highlight text="中国版独有" tooltip="该命令仅限中国版可用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c11_china_edition" color="green"/>
 <WikiButton item="命令/removeedunpc" length="large"/>

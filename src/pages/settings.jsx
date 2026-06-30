@@ -15,7 +15,8 @@ import styles from "./settings.module.css";
 /** 字体选项数组：value 对应 data-font 属性值，label 为显示文本 */
 const FONT_OPTIONS = [
     { value: "official", label: "Minecraft 官网" },
-    { value: "pixel", label: "Minecraft 游戏内" },
+    { value: "pixel", label: "OreUI" },
+    { value: "unifont", label: "Minecraft 游戏内" },
     { value: "misans", label: "MiSans" },
 ];
 

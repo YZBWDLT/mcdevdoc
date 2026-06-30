@@ -24,7 +24,7 @@ import Button from '/src/components/button/base';
 
 也可以在[常见的方块实例](./examples)中查找是否有你需要的实例。
 
-**每个组件条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。" size="large"/>。
+**每个组件条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。"/>。
 
 ---
 

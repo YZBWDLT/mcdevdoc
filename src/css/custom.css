@@ -137,6 +137,11 @@
 [data-font="official"] {
     --oreui-font-body: "NotoSans Bold", "Segoe UI", Tahoma, sans-serif;
 }
+[data-font="unifont"] {
+    --oreui-font-title: "Minecraft Ten", "Unifont", "Segoe UI", sans-serif;
+    --oreui-font-subtitle: "Minecraft Ten", "Unifont", "Segoe UI", sans-serif;
+    --oreui-font-body: "Minecraft Seven", "Unifont", "Segoe UI", Tahoma, sans-serif;
+}
 
 /* ===================================================================
  * 亮色语义变量

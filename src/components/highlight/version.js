@@ -37,5 +37,5 @@ export default function VersionHighlight({
     let newTooltip = `该特性在格式版本${text}下可用${experimentalTooltip}${deprecatedTooltip}。${tooltip}`;
     if (removed) newTooltip = `该特性已被移除，无法使用。${tooltip}`;
     // 返回高亮组件
-    return <BaseHighlight text={text} color={color} size="large" tooltip={newTooltip} />;
+    return <BaseHighlight text={text} color={color} tooltip={newTooltip} />;
 }
