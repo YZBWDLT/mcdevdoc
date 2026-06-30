@@ -1,5 +1,3 @@
-// 纯高亮文本组件，支持自定义背景色、字体大小。
-// 如需 Tooltip，可自行包裹 <Tooltip>。
 import React from "react";
 import MinecraftStyleTooltip from "../tooltip/minecraftStyle";
 
@@ -90,12 +88,13 @@ function getContrastColor(color) {
 }
 
 /** 基础高亮组件。
- * @param {BaseHighlightOptions} param0 
- * @returns 
+ * @param {BaseHighlightOptions} param0
+ * @returns
  */
 export default function BaseHighlight({ text, color = "gold", size = "medium", tooltip = "" }) {
     const fontSize = SIZE_MAP[size] || size;
     const textColor = getContrastColor(color);
+    /** @type {React.CSSProperties} */
     const highlightStyle = {
         backgroundColor: color,
         color: textColor,
@@ -106,6 +105,7 @@ export default function BaseHighlight({ text, color = "gold", size = "medium", t
         lineHeight: "1.6",
         boxDecorationBreak: "clone",
         cursor: tooltip ? "help" : "default",
+        marginRight: "6px",
     };
     const content = <span style={highlightStyle}>{text}</span>;
     if (tooltip) {

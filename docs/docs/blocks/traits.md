@@ -7,7 +7,7 @@ sidebar_position: 4
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import '/src/css/treeview.css';
-import Version from "/src/components/highlight/version"
+import OldVer from "/src/components/highlight/oldversion"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
@@ -21,7 +21,7 @@ import DataType from "/src/components/type/data"
 
 :::note[温馨提示]
 
-文档中的标签<Version version="版本号"/>代表至少需要使用此格式版本才可生效，并且将会链接到官方文档，读者可点击以查看对应文档。
+文档中的标签<OldVer version="版本号"/>代表至少需要使用此格式版本才可生效，并且将会链接到官方文档，读者可点击以查看对应文档。
 
 :::
 
@@ -30,7 +30,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:placement_direction`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/placement_direction?view=minecraft-bedrock-stable" />
+<OldVer version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/placement_direction?view=minecraft-bedrock-stable" />
 
 使方块按特定朝向放置时具有特定的方块状态。
 
@@ -92,7 +92,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:placement_position`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/placement_position?view=minecraft-bedrock-stable" />
+<OldVer version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/placement_position?view=minecraft-bedrock-stable" />
 
 使方块按特定位置放置时具有特定的方块状态。
 
@@ -132,7 +132,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:connection`
 
-<Version version="1.26.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/connection?view=minecraft-bedrock-stable" />
+<OldVer version="1.26.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/connection?view=minecraft-bedrock-stable" />
 
 使方块与其他方块连接时具有特定的方块状态。
 
@@ -161,7 +161,7 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:multi_block`
 
-<Version version="1.26.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/multi_block?view=minecraft-bedrock-stable" isBeta/>
+<OldVer version="1.26.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/multi_block?view=minecraft-bedrock-stable" isBeta/>
 
 定义方块为多部分方块。
 

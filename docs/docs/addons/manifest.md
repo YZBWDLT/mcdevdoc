@@ -6,39 +6,15 @@ sidebar_position: 1
 
 import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
-import Highlight from '/src/components/highlight/standard';
+import Button from '/src/components/button/base';
+
+> 适用版本：国际版 1.21.80，中国版 3.7（1.21.50）。
+
+<Button color="green" text="教程" url="/docs/tutorials/a2_addons/b1_concepts/c3_addon_framework/d2_manifest_json" />
 
 清单文件为附加包根目录中的`manifest.json`，它描述附加包的基本信息，决定 Minecraft 如何识别这个附加包的功能。
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b1_concepts/c3_addon_framework/d2_manifest_json" />
-
-:::info[本文更新时间]
-
-本文于 2025 年 5 月 23 日更新，中国版最新版本为 1.20.50，国际版最新版本为 1.21.80。
-
-:::
-
 ## 参数
-
-:::info[标记示意]
-
-参数左侧的图案决定该参数的数据类型。这个图案机制在 Minecraft Wiki 中也广泛应用。分别如下：
-
-- <DataType type="object"/>：代表一个对象。例如：<DataType type="object" name="param"/>代表`"param"`的值是一个对象`{...}`。
-- <DataType type="array"/>：代表一个数组。例如：<DataType type="array" name="param"/>代表`"param"`的值是一个数组`[...]`。
-  - 若在数组中声明了数字，则代表对应索引的类型。例如<DataType type="array" name="0"/>，代表索引`0`的类型是数组。
-- <DataType type="int"/>：代表一个整数。例如：<DataType type="int" name="param"/>代表`"param"`的值是整数。
-- <DataType type="float"/>：代表一个浮点数。例如：<DataType type="float" name="param"/>代表`"param"`的值是浮点数。
-- <DataType type="string"/>：代表一个字符串。例如：<DataType type="string" name="param"/>代表`"param"`的值是字符串。
-- <DataType type="boolean"/>：代表一个布尔值。例如：<DataType type="boolean" name="param"/>代表`"param"`的值是布尔值。
-
-关于可选参数和必选参数：
-
-- 参数右上角标星号的，且参数本身被粗体表示的，代表该参数为必选参数。例如：<DataType type="object" name="param" isRequired/>。
-- 参数右上角不标星号的，代表该参数为可选参数。例如：<DataType type="object" name="param"/>。
-  - 若可选参数下存在必选参数，则代表在指定该可选参数后必须指定这个（些）必选参数。
-
-:::
 
 <treeview>
 

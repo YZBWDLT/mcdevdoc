@@ -602,9 +602,6 @@ in <维度: Dimension> -> execute
 
 传送实体到特定位置。
 
-- **权限等级**：1
-- **使用频率**：★★★★☆
-
 <Tabs>
 
 <TabItem value="tp_executor" label="传送执行者">

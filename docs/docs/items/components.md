@@ -7,28 +7,20 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import '/src/css/treeview.css';
-import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
+import Highlight from '/src/components/highlight/base';
+import Usable from "/src/components/highlight/usable"
+import Version from "/src/components/highlight/version"
+import Button from '/src/components/button/base';
 
-> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.30，中国版 3.8（1.21.90）。
 
 数据驱动物品组件（Data-Driven Item Components）用于规定物品的功能。将不同的物品组件组合在一起可以实现多种复杂的功能。
 
 本文档收录所有已开放（包括旧版本）或即将开放的命名空间为`minecraft`和`netease`的物品组件信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
 
-:::note[组件可用性提示]
-
-1. 标签记号说明：
-    - 标注了<Version isLowVersion/>的组件，代表其为**旧版国际版组件**，可应用于**国际版物品定义**。`format_version`必须指定`1.10.0`~`1.16.0`以内时才可使用。
-    - 标注了<Version version="版本号"/>的组件，代表其为**新版国际版组件**，可应用于**国际版物品定义**。其中，`（版本号）`代表物品定义的`format_version`必须指定为该版本号或更高才可使用。
-    - 标注了<Version isChinaVersion/>的组件，代表其为**中国版组件**，可应用于**中国版物品定义**。
-    - 标注了<Version version="版本号" isBeta/>的组件，代表其为**实验性玩法组件**，可应用于**国际版物品定义**。本文档不记载已被移除的实验性玩法组件（尤其是假日创作者功能的组件）。开发者在使用这些组件的时候应当万分小心，因为它们随时可能会被移除，这会导致你的资源的关键功能失效。
-    - 标注了<Version version="版本号" toVersion="弃用版本号"/>的组件，代表其为**已弃用组件**，可应用于**国际版物品定义**。虽然微软对它们进行了低版本适配，但在高版本下，开发者不宜再使用这些组件。
-2. 标注了<Version isRP isLowVersion/>或<Version isRP isChinaVersion/>的组件，需要在其资源包定义中使用，未特殊标注的组件为行为包组件。
-3. 如果官方文档中有记载，以上这些标签将会链接到官方文档，读者可点击以查看对应文档。
-
-:::
+**每个组件条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。" size="large"/>。
 
 ---
 ---
@@ -39,7 +31,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:display_name`
 
-<Version version="1.20.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_display_name?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.0"/><br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_display_name?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#display-name" color="green"/>
 
 定义物品的显示名称。
 
@@ -74,7 +69,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:durability`
 
-<Version version="1.20.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_durability?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.0"/><br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_durability?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#durability" color="green"/>
 
 定义物品的耐久度。
 
@@ -118,7 +116,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:icon`
 
-<Version version="1.20.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_icon?view=minecraft-bedrock-stable"/>
+<Usable type="all"/> <Version from="1.20.0"/><br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_icon?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#icon" color="green"/>
 
 定义物品的图标。
 
@@ -176,7 +177,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:max_stack_size`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_max_stack_size?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.20"/><br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_max_stack_size?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#max-stack-size" color="green"/>
 
 定义物品的最大堆叠数。
 
@@ -217,7 +221,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:stacked_by_data`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_stacked_by_data?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.20"/><br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_stacked_by_data?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#stacked-by-data" color="green"/>
 
 定义是否允许不同数据值的同种物品堆叠。
 
@@ -258,7 +265,11 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:tags`
 
-<Version version="1.20.50" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_tags?view=minecraft-bedrock-stable"/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-tags" isChinaVersion/>
+<Usable type="all"/> <Version from="1.20.50"/><br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_tags?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-tags" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#tags" color="green"/>
 
 定义物品标签。
 
@@ -303,7 +314,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:allow_off_hand`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_allow_off_hand?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.20"/><br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_allow_off_hand?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#allow-off-hand" color="green"/>
 
 允许玩家将物品放在副手。
 
@@ -344,7 +358,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:block_placer`
 
-<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_block_placer?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.10"/><br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_block_placer?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#block-placer" color="green"/>
 
 可以在特定方块上放置特定方块。
 
@@ -385,7 +402,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:bundle_interaction`
 
-<Version version="1.21.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_bundle_interaction?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.21.40"/> <Highlight text="需要前置组件" size="large" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_bundle_interaction?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#bundle-interaction" color="green"/>
 
 为物品启用收纳袋的交互模式和物品提示。
 
@@ -416,7 +436,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:can_destroy_in_creative`
 
-<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_can_destroy_in_creative?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.10"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_can_destroy_in_creative?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#can-destroy-in-creative" color="green"/>
 
 允许玩家在创造模式下手持该物品时可以破坏方块。如果设置为`false`，该物品就会像剑一样手持时无法破坏方块。
 
@@ -457,7 +480,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:compostable`
 
-<Version version="1.21.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_compostable?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.21.60"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_compostable?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#compostable" color="green"/>
 
 定义物品可在堆肥桶中用于堆肥。
 
@@ -482,7 +508,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:cooldown`
 
-<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_cooldown?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.10"/> <Highlight text="需要前置组件" size="large" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_cooldown?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#cooldown" color="green"/>
 
 定义物品使用后的冷却。
 
@@ -520,16 +549,11 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:custom_components`
 
-<Version version="1.21.20" toVersion="1.21.90" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_custom_components?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为该组件必须配合 ScriptAPI 使用。"/> <Version from="1.21.20" to="1.21.90" tooltip="弃用原因：1.21.90 推出了自定义组件 V2。在 1.21.90 或更高版本下的物品定义中不应再使用该组件。" deprecated/><br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_custom_components?view=minecraft-bedrock-stable" color="blue"/>
 
 定义物品的自定义组件。自定义组件的行为需要在世界初始化前事件`WorldInitializeBeforeEvent`中定义。
-
-:::danger[警告]
-
-1. 该组件必须配合 ScriptAPI 使用，因此该组件在现在或未来的中国版也是无效的。
-2. 该组件随着 1.21.90 的自定义组件 V2 的推出，已被弃用。在`1.21.90`或更高版本下的物品定义中不应再使用该组件。
-
-:::
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -552,7 +576,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:damage`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_damage?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_damage?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#damage" color="green"/>
 
 定义物品的攻击伤害，类似剑。
 
@@ -593,7 +620,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:damage_absorption`
 
-<Version version="1.21.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_damage_absorption?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.21.20"/> <Highlight text="需要前置组件" size="large" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_damage_absorption?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#damage-absorption" color="green"/>
 
 定义该物品在穿戴时可吸收何种类型的伤害，类似狼铠。
 
@@ -625,7 +655,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:digger`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_digger?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_digger?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#digger" color="green"/>
 
 定义物品破坏特定方块的速度。
 
@@ -662,7 +695,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:durability_sensor`
 
-<Version version="1.21.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_durability_sensor?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.21.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_durability_sensor?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#durability-sensor" color="green"/>
 
 定义物品在降低耐久度后触发的事件。
 
@@ -701,7 +737,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:dyeable`
 
-<Version version="1.21.30" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_dyeable?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.21.30"/> <Highlight text="需要前置组件" size="large" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_dyeable?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#dyeable" color="green"/>
 
 定义物品在炼药锅中可染色。
 
@@ -734,7 +773,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:enchantable`
 
-<Version version="1.20.30" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_enchantable?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.30"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_enchantable?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#enchantable" color="green"/>
 
 定义物品为可附魔。
 
@@ -768,7 +810,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:entity_placer`
 
-<Version version="1.20.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_entity_placer?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_entity_placer?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#entity-placer" color="green"/>
 
 定义物品可生成实体。
 
@@ -805,23 +850,26 @@ import DataType from "/src/components/type/data"
 
 ---
 
-### `minecraft:fire_resistance`
+### `minecraft:fire_resistant`
 
-<Version version="1.21.110" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_fire_resistance?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.21.110"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_fire_resistant?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#fire-resistant" color="green"/>
 
 定义物品防火，类似于下界合金物品。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-- <DataType type="object" name="minecraft:fire_resistance"/>：根对象。
+- <DataType type="object" name="minecraft:fire_resistant"/>：根对象。
   - <DataType type="boolean" name="value"/>：物品是否防火，默认为`false`。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
-"minecraft:fire_resistance": {
+"minecraft:fire_resistant": {
     "value": true
 }
 ```
@@ -832,7 +880,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:food`
 
-<Version version="1.20.30" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_food?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.30"/> <Highlight text="需要前置组件" size="large" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_food?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#food" color="green"/>
 
 定义物品为食物。
 
@@ -880,7 +931,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:fuel`
 
-<Version version="1.20.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_fuel?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_fuel?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#fuel" color="green"/>
 
 定义该物品为燃料。
 
@@ -905,7 +959,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:glint`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_glint?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_glint?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#glint" color="green"/>
 
 定义该物品会像附魔书一样产生附魔光泽。
 
@@ -946,7 +1003,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:hand_equipped`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_hand_equipped?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_hand_equipped?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#hand-equipped" color="green"/>
 
 定义该物品像工具一样直立展示在玩家手中。
 
@@ -987,7 +1047,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:hover_text_color`
 
-<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_hover_text_color?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.10"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_hover_text_color?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#hover-text-color" color="green"/>
 
 定义物品悬浮文本的颜色。
 
@@ -1028,7 +1091,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:interact_button`
 
-<Version version="1.20.30" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_interact_button?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.30"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_interact_button?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#interact-button" color="green"/>
 
 在触控设备中，为物品添加交互按钮。
 
@@ -1058,7 +1124,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:kinetic_weapon`
 
-<Version version="1.21.130" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_kinetic_weapon?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.21.130"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_kinetic_weapon?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#kinetic-weapon" color="green"/>
 
 定义物品可造成动能伤害，类似于矛。
 
@@ -1130,7 +1199,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:liquid_clipped`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_liquid_clipped?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_liquid_clipped?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#liquid-clipped" color="green"/>
 
 定义物品是否可与流体交互。
 
@@ -1171,7 +1243,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:piercing_weapon`
 
-<Version version="1.21.130" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_piercing_weapon?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.21.130"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_piercing_weapon?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#piercing-weapon" color="green"/>
 
 定义物品可造成戳刺伤害，类似于矛。
 
@@ -1211,7 +1286,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:projectile`
 
-<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_projectile?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.10"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_projectile?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#projectile" color="green"/>
 
 定义物品为弹射物，例如箭。
 
@@ -1238,7 +1316,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:rarity`
 
-<Version version="1.21.30" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_rarity?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.21.30"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_rarity?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#rarity" color="green"/>
 
 定义物品的稀有度。
 
@@ -1281,7 +1362,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:record`
 
-<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_record?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.10"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_record?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#record" color="green"/>
 
 定义物品为唱片。
 
@@ -1312,7 +1396,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:repairable`
 
-<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_repairable?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.10"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_repairable?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#repairable" color="green"/>
 
 定义物品为可修复的。默认情况下，允许此物品和另一个同种类的物品在一起修复（例如两把损坏铁镐合成一把较新的铁镐），此时恢复的耐久度为二者相加。
 
@@ -1372,7 +1459,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:shooter`
 
-<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_shooter?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.10"/> <Highlight text="需要前置组件" size="large" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_shooter?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#shooter" color="green"/>
 
 定义物品为某种弹射物的发射物，类似于弓或弩。
 
@@ -1430,7 +1520,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:should_despawn`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_should_despawn?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_should_despawn?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#should-despawn" color="green"/>
 
 定义该物品对应的掉落物是否会在一段时间后消失。
 
@@ -1471,7 +1564,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:storage_item`
 
-<Version version="1.21.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_item?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.21.40"/> <Highlight text="需要前置组件" size="large" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_item?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#storage-item" color="green"/>
 
 定义该物品为可存储物品，可以存储其他物品，类似于收纳袋。
 
@@ -1514,7 +1610,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:storage_weight_limit`
 
-<Version version="1.21.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_limit?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.21.60"/> <Highlight text="需要前置组件" size="large" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_limit?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#storage-weight-limit" color="green"/>
 
 定义该可存储物品最多可以存储多少物品。
 
@@ -1545,7 +1644,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:storage_weight_modifier`
 
-<Version version="1.21.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_modifier?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.21.60"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_modifier?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#storage-weight-modifier" color="green"/>
 
 定义该物品在存储到一个可存储物品时需要占用多大空间。
 
@@ -1570,7 +1672,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:swing_duration`
 
-<Version version="1.21.120" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_swing_duration?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.21.120"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_swing_duration?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#swing-duration" color="green"/>
 
 定义该物品的挥舞动画（例如攻击、挖掘时）所需时间。仅决定视觉效果，不会影响其他底层机制（例如攻击时间等）。
 
@@ -1595,7 +1700,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:swing_sounds`
 
-<Version version="1.21.130" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_swing_sounds?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.21.130"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_swing_sounds?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#swing-sounds" color="green"/>
 
 定义该物品的挥舞音效。
 
@@ -1622,7 +1730,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:throwable`
 
-<Version version="1.20.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_throwable?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.10"/> <Highlight text="需要前置组件" size="large" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_throwable?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#throwable" color="green"/>
 
 定义该物品可掷出，类似于雪球或鸡蛋。
 
@@ -1660,7 +1771,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:use_animation`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_animation?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_animation?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#use-animation" color="green"/>
 
 定义物品的使用动画。
 
@@ -1701,7 +1815,9 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:use_duration`
 
-<Version version="1.20.20" toVersion="1.20.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_duration?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.20" to="1.20.40" deprecated tooltip="在高版本下使用minecraft:use_modifiers组件代替之。"/> <Highlight text="需要前置组件" size="large" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_duration?view=minecraft-bedrock-stable" color="blue"/>
 
 定义该物品的使用时长。
 
@@ -1712,12 +1828,6 @@ import DataType from "/src/components/type/data"
 - [`minecraft:food`](#minecraftfood)
 - [`minecraft:shooter`](#minecraftshooter)
 - [`minecraft:throwable`](#minecraftthrowable)
-
-:::
-
-:::danger[警告]
-
-该组件在高于`1.20.50`的格式版本下已被弃用。在高版本下，使用[`minecraft:use_modifiers`](#minecraftuse_modifiers)代替之。
 
 :::
 
@@ -1739,19 +1849,12 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:use_modifiers`
 
-<Version version="1.20.50" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_modifiers?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.50"/> <br/>
 
-定义该物品的使用时长。
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_modifiers?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#use-modifiers" color="green"/>
 
-:::warning[注意]
-
-要使用该组件，必须同时定义下列组件中的 1 个：
-
-- [`minecraft:food`](#minecraftfood)
-- [`minecraft:shooter`](#minecraftshooter)
-- [`minecraft:throwable`](#minecraftthrowable)
-
-:::
+定义物品使用修饰器。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -1761,7 +1864,7 @@ import DataType from "/src/components/type/data"
   - <DataType type="float" name="movement_modifier"/>：定义玩家使用物品时的速度倍率，必须小于等于`1`。例如苹果的该值为`0.35`。
   - <DataType type="boolean" name="emit_vibrations"/>：（1.21.120+）定义玩家使用物品时是否发出振动。
   - <DataType type="string" name="start_sound"/>：（1.21.130+）定义玩家在使用物品后播放何种音效。
-  - <DataType type="string" name="start_using"/>[^1]：（1.26.30+，实验性玩法「即将推出的创作者功能」）
+  - <DataType type="string" name="start_using"/>：（1.26.30+）判定何时，可选值为`eat`、
 </treeview>
 [^1]: 有待验证。
 
@@ -1788,7 +1891,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:wearable`
 
-<Version version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_wearable?view=minecraft-bedrock-stable"/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version from="1.20.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_wearable?view=minecraft-bedrock-stable" color="blue"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#wearable" color="green"/>
 
 定义该物品为可穿戴物品，例如盔甲。
 
@@ -1824,7 +1930,7 @@ import DataType from "/src/components/type/data"
 
 ## 旧版本组件
 
-本部分为 1.16.X 或以前的物品格式版本可用的组件。其中，下述几乎所有物品组件都有新版本的平替。读者可以在这里的[旧版文档](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item)中查看这些组件接受的参数。
+本部分为 1.16.X 或以前的物品格式版本可用的组件。其中，下述几乎所有物品组件都有新版本的平替。
 
 备注：`minecraft:food`的新版本平替组件无法完全平替旧版功能，需要脚本补充其功能。
 
@@ -1847,7 +1953,9 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:block`
 
-<Version isLowVersion/>
+<Usable type="onlyInternational"/> <Version from="1.10" to="1.16.0"/> <br/>
+
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item" color="green"/>
 
 定义物品可以放置为方块。
 
@@ -1869,7 +1977,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:foil`
 
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-foil" isChinaVersion/>
+<Usable type="all"/> <Version from="1.10" to="1.16.0"/> <br/>
+
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item" color="green"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-foil" color="blue"/>
 
 定义该物品会像附魔书一样产生附魔光泽。
 
@@ -1891,7 +2002,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:food`
 
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-food" isChinaVersion/>
+<Usable type="all"/> <Version from="1.10" to="1.16.0"/> <Highlight text="需要前置组件" size="large" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item" color="green"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-food" color="blue"/>
 
 定义物品为食物。
 
@@ -1977,7 +2091,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:hand_equipped`
 
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-hand-equipped" isChinaVersion/>
+<Usable type="all"/> <Version from="1.10" to="1.16.0"/> <br/>
+
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item" color="green"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-hand-equipped" color="blue"/>
 
 定义该物品像工具一样直立展示在玩家手中。
 
@@ -1999,7 +2116,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:hover_text_color`
 
-<Version isRP isLowVersion/> <Version isRP docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-hover-text-color" isChinaVersion/>
+<Usable type="all"/> <Version from="1.10" to="1.16.0"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" size="large" color="lightblue"/> <br/>
+
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item" color="green"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-hover-text-color" color="blue"/>
 
 定义物品悬浮文本的颜色。
 
@@ -2021,7 +2141,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:icon`
 
-<Version isRP isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-icon" isChinaVersion isRP/>
+<Usable type="all"/> <Version from="1.10" to="1.16.0"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" size="large" color="lightblue"/> <br/>
+
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item" color="green"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-icon" color="blue" isRP/>
 
 定义物品的图标。
 
@@ -2049,7 +2172,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:max_damage`
 
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-max-damage" isChinaVersion/>
+<Usable type="all"/> <Version from="1.10" to="1.16.0"/> <br/>
+
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item" color="green"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-max-damage" color="blue"/>
 
 定义物品的耐久度。
 
@@ -2071,7 +2197,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:max_stack_size`
 
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-max-stack-size" isChinaVersion/>
+<Usable type="all"/> <Version from="1.10" to="1.16.0"/> <br/>
+
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item" color="green"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-max-stack-size" color="blue"/>
 
 定义物品的最大堆叠数。
 
@@ -2093,7 +2222,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:seed`
 
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-seed" isChinaVersion/>
+<Usable type="all"/> <Version from="1.10" to="1.16.0"/> <br/>
+
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item" color="green"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-seed" color="blue"/>
 
 定义物品为种子。
 
@@ -2121,7 +2253,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:stacked_by_data`
 
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-stacked-by-data" isChinaVersion/>
+<Usable type="all"/> <Version from="1.10" to="1.16.0"/> <br/>
+
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item" color="green"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-stacked-by-data" color="blue"/>
 
 定义是否允许不同数据值的同种物品堆叠。
 
@@ -2143,7 +2278,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:use_animation`
 
-<Version isRP isLowVersion/> <Version isRP docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-use-duration" isChinaVersion/>
+<Usable type="all"/> <Version from="1.10" to="1.16.0"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" size="large" color="lightblue"/> <br/>
+
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item" color="green"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-use-animation" color="blue"/>
 
 定义物品的使用动画。
 
@@ -2165,7 +2303,10 @@ import DataType from "/src/components/type/data"
 
 ### `minecraft:use_duration`
 
-<Version isLowVersion/> <Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-use-duration" isChinaVersion/>
+<Usable type="all"/> <Version from="1.10" to="1.16.0"/> <Highlight text="需要前置组件" size="large" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item" color="green"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-use-duration" color="blue"/>
 
 定义该物品的使用时长。
 
@@ -2203,7 +2344,7 @@ import DataType from "/src/components/type/data"
 | `netease:compostable` | [`minecraft:compostable`](#minecraftcompostable) | 1.21.60 |
 | `netease:cooldown` | [`minecraft:cooldown`](#minecraftcooldown) | 1.20.10 |
 | `netease:egg` | [`minecraft:entity_placer`](#minecraftentity_placer) | 1.20.0 |
-| `netease:fire_resistance` | [`minecraft:fire_resistance`](#minecraftfire_resistance) | 1.21.110（**中国版版本低**） |
+| `netease:fire_resistant` | [`minecraft:fire_resistant`](#minecraftfire_resistant) | 1.21.110（**中国版版本低**） |
 | `netease:fuel` | [`minecraft:fuel`](#minecraftfuel) | 1.20.0 |
 | `netease:liquid_clipped` | [`minecraft:liquid_clipped`](#minecraftliquid_clipped) | 1.20.20 |
 | `netease:projectile` | [`minecraft:projectile`](#minecraftprojectile) | 1.20.10 |
@@ -2213,7 +2354,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:allow_offhand`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-allow-offhand" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-allow-offhand" color="blue"/>
 
 允许玩家将物品放在副手。
 
@@ -2244,7 +2387,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:armor`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-armor" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-armor" color="blue"/>
 
 定义物品为盔甲。
 
@@ -2275,15 +2420,11 @@ import DataType from "/src/components/type/data"
 
 ### `netease:bucket`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-bucket" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为bucket。" size="large"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-bucket" color="blue"/>
 
 定义该物品为桶。
-
-:::warning[注意]
-
-要使用该组件，需在物品描述中将`custom_item_type`设置为`bucket`。
-
-:::
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2306,7 +2447,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:compostable`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-compostable" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-compostable" color="blue"/>
 
 定义物品可在堆肥桶中用于堆肥。
 
@@ -2328,7 +2471,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:cooldown`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-cooldown" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-cooldown" color="blue"/>
 
 定义物品使用后的冷却。
 
@@ -2361,7 +2506,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:customtips`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-customtips" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-customtips" color="blue"/>
 
 定义物品的描述信息。
 
@@ -2386,7 +2533,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:egg`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-egg" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为egg。" size="large"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-egg" color="blue"/>
 
 定义物品可生成实体。
 
@@ -2411,7 +2560,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:enchant_material`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-enchant-material" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-enchant-material" color="blue"/>
 
 定义物品为附魔材料，类似于青金石。
 
@@ -2436,7 +2587,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:fire_resistant`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-fire-resistant" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-fire-resistant" color="blue"/>
 
 定义物品防火，类似于下界合金物品。
 
@@ -2461,21 +2614,11 @@ import DataType from "/src/components/type/data"
 
 ### `netease:fishing_hook`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/1-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%A9%E5%93%81/9-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%B1%BC%E7%AB%BF.html" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为fishing_rod。" size="large"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/1-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%A9%E5%93%81/9-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%B1%BC%E7%AB%BF.html" color="blue"/>
 
 定义物品是一种钓鱼竿。
-
-:::warning[注意]
-
-要使用该组件，需在物品描述中将`custom_item_type`设置为`fishing_rod`。
-
-:::
-
-:::tip[版本适用性警告]
-
-该组件仅限中国版 3.8 或更高版本可用。
-
-:::
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2502,7 +2645,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:frame_anim_in_scene`
 
-<Version isRP docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-anim-in-scene" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_res/下的中国版物品。"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" size="large" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-anim-in-scene" color="blue"/>
 
 定义物品的序列帧。
 
@@ -2531,7 +2676,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:frame_animation`
 
-<Version isRP docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-animation" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_res/下的中国版物品。"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" size="large" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-animation" color="blue"/>
 
 定义蓄力物品的序列帧。
 
@@ -2560,7 +2707,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:fuel`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-fuel" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-fuel" color="blue"/>
 
 定义该物品为燃料。
 
@@ -2585,7 +2734,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:initial_user_data`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-initial-user-data" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-initial-user-data" color="blue"/>
 
 定义物品的初始属性。
 
@@ -2641,15 +2792,11 @@ import DataType from "/src/components/type/data"
 
 ### `netease:liquid_clipped`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%81%E4%BD%93.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%81%E4%BD%93.html?catalog=1" color="blue" />
 
 定义是否可以和流体交互并触发对应的脚本事件。
-
-:::tip[版本适用性警告]
-
-该组件仅限中国版 3.8 或更高版本可用。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2669,7 +2816,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:projectile`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-projectile" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-projectile" color="blue"/>
 
 定义物品为弹射物。
 
@@ -2691,7 +2840,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:render_offsets`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-render-offsets" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-render-offsets" color="blue"/>
 
 定义该物品在右手时的渲染偏移。
 
@@ -2727,15 +2878,11 @@ import DataType from "/src/components/type/data"
 
 ### `netease:shield`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-shield" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为shield。" size="large"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-shield" color="blue"/>
 
 定义该物品为盾。
-
-:::warning[注意]
-
-要使用该组件，需在物品描述中将`custom_item_type`设置为`shield`。
-
-:::
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2764,7 +2911,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:show_in_hand`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-show-in-hand" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-show-in-hand" color="blue"/>
 
 手持时是否显示该物品。
 
@@ -2789,7 +2938,9 @@ import DataType from "/src/components/type/data"
 
 ### `netease:weapon`
 
-<Version docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-weapon" isChinaVersion/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-weapon" color="blue"/>
 
 定义该物品为武器。
 

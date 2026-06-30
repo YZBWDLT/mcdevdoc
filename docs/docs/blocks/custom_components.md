@@ -7,7 +7,7 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import '/src/css/treeview.css';
-import Version from "/src/components/highlight/version"
+import OldVer from "/src/components/highlight/oldversion"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 
@@ -31,7 +31,7 @@ registerCustomComponent(name: string, customComponent: BlockCustomComponent): vo
 
 ## `beforeOnPlayerPlace`属性
 
-<Version version="1.21.20"/>
+<OldVer version="1.21.20"/>
 
 玩家放置方块前执行事件。适用脚本`@minecraft/server`版本`1.12.0`或更高。
 
@@ -74,7 +74,7 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 ## `onBlockStateChange`属性
 
-<Version version="26.20" isBeta/>
+<OldVer version="26.20" isBeta/>
 
 :::danger[警告]
 
@@ -124,7 +124,7 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 ## `onBreak`属性
 
-<Version version="1.21.130"/>
+<OldVer version="1.21.130"/>
 
 方块被破坏时执行事件。适用脚本`@minecraft/server`版本`2.4.0`或更高。
 
@@ -173,7 +173,7 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 <!--
 
-<Version version="26.10"/>
+<OldVer version="26.10"/>
 
 当实体触发`execute_event_on_home_block`事件时执行事件。适用脚本`@minecraft/server`版本`2.6.0`或更高。
 
@@ -207,7 +207,7 @@ onEntity?: (arg0: BlockComponentEntityEvent, arg1: CustomComponentParameters) =>
 
 ## `onEntityFallOn`属性
 
-<Version version="1.21.20"/>
+<OldVer version="1.21.20"/>
 
 实体掉落到此方块后执行事件。适用脚本`@minecraft/server`版本`1.12.0`或更高。
 
@@ -266,7 +266,7 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 ## `onRedstoneUpdate`属性
 
-<Version version="1.26.0"/>
+<OldVer version="1.26.0"/>
 
 此方块接收的红石信号更新后执行事件。适用脚本`@minecraft/server`版本`2.5.0`或更高。
 
@@ -366,7 +366,7 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 ## `onTick`属性
 
-<Version version="1.21.20"/>
+<OldVer version="1.21.20"/>
 
 令方块循环执行代码。适用脚本`@minecraft/server`版本`1.12.0`或更高。
 

@@ -8,6 +8,8 @@ import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
 
+> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
+
 本文档记载资源包所允许的文件结构。
 
 :::warning

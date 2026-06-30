@@ -8,6 +8,12 @@
 - 新增 Minecraft 样式的 ToolTip
 - 新增 OreUI 风格的高亮
 - 更新 命令文档：全部命令汇总 的按钮样式和标签样式
+- 更新 为`DataType`和`FileType`新增了 Minecraft 样式的 ToolTip
+- 更新 将原来的`Version`组件命名为`OldVer`，以便后续迁移
+- 更新 物品文档：数据驱动物品组件
+  - 为每个组件都新增了 Bedrock Wiki 对应的链接（如果有的话）
+  - 修正了错误将`minecraft:fire_resistant`组件记作`minecraft:fire_resistance`的问题
+  - 修正了`minecraft:use_modifiers`组件的依赖项问题
 
 ## 过往更新日志
 

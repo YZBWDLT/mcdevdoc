@@ -1,27 +1,21 @@
 # 常用功能与算法
 
-import Highlight from '/src/components/highlight/standard';
 import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
+import Button from '/src/components/button/base';
+
+> 适用版本：国际版 26.0，中国版 3.8（1.21.50）。
 
 本文档收录命令领域常用的部分算法。如果你有更好的建议，欢迎在评论区进行补充。
 
-:::info[本文更新时间]
-
-本文于 2026 年 3 月 13 日更新，中国版最新版本为 1.21.50，国际版最新版本为 26.0。
-
-:::
-
 :::info[注意]
 
-在下文中，以函数系统为基础。我们建议读者学习[函数系统](/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function)，但不学习函数系统依然可以阅读本文。
+在下文中，以函数系统为基础。我们建议读者学习[函数](/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function)，但不学习函数系统依然可以阅读本文。
 
 - **`system/main`函数为始终执行的函数**。对于未学习过函数的读者而言，可以将这里的命令认定为循环命令方块链。
 - 其他函数为普通函数。对于未学习过函数的读者而言，可以将这里的命令认定为脉冲命令方块链。
 - 若读者需要采用命令方块构建命令系统，可以自行优化算法，恕本文不提供具体解决思路。
-
-各功能或算法下，<Highlight text="教程"/>是可点击的，点击该按钮将链接到本网站的教程。
 
 :::
 
@@ -31,7 +25,7 @@ import FileType from "/src/components/type/file"
 
 ### 玩家进入时
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#处理多人游戏下退出重进的玩家的问题" />
+<Button color="green" text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#处理多人游戏下退出重进的玩家的问题" />
 
 当玩家进入时，执行`events/player_join`函数。
 
@@ -106,7 +100,7 @@ function lib/get_data/player_amount
 
 ### 玩家死亡时
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#补偿准则缺憾的实例死亡榜的实现" />
+<Button color="green" text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#补偿准则缺憾的实例死亡榜的实现" />
 
 当玩家死亡时，执行`events/player_die`函数。这需要你事先创建`deathState`记分项。
 
@@ -275,7 +269,7 @@ function lib/get_data/player_dimension
 
 ### 计时器
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#计时器" />
+<Button color="green" text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#计时器" />
 
 实现全局的计时器。这需要你事先声明`time`记分项。
 
@@ -305,7 +299,7 @@ execute if score playedSecond time matches 60.. run scoreboard players remove pl
 
 ### 获取实体数量
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#获取实体数目" />
+<Button color="green" text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#获取实体数目" />
 
 调用`lib/get_data/entity_amount`以获取实体数量，结果保存在`data.entityAmount`。这需要你事先声明`data`记分项。
 
@@ -361,7 +355,7 @@ scoreboard players reset 肏 data
 
 ### 获取玩家存活状态
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d1_tag#运用标签的实例" />
+<Button color="green" text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d1_tag#运用标签的实例" />
 
 调用`lib/get_data/player_is_alive`以获取玩家使用的客户端信息，结果保存在标签`isAlive`里，有标签为存活，无标签为死亡。
 
@@ -389,7 +383,7 @@ tag @e[type=player] add isAlive
 
 ### 获取玩家站立状态
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#检测站立潜行爬行和睡觉的玩家" />
+<Button color="green" text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d5_applications#检测站立潜行爬行和睡觉的玩家" />
 
 调用`lib/get_data/player_state`以获取玩家状态，结果保存在标签`state.@s`里，`0`为站立，`1`为潜行，`2`为爬行，`3`为睡觉。这需要你事先声明`state`记分项。调用此方法时，需修饰执行者为玩家，执行位置为玩家位置（`execute as @a[...] at @s`）。
 

@@ -8,13 +8,9 @@ import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
 
+> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
+
 本文档记载行为包所允许的文件结构。
-
-:::info[本文更新时间]
-
-本文于 2026 年 4 月 18 日更新，中国版最新版本为 1.21.90，国际版最新版本为 26.10。
-
-:::
 
 :::warning
 

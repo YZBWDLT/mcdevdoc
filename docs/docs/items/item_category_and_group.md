@@ -8,7 +8,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Highlight from '/src/components/highlight/standard';
 import '/src/css/treeview.css';
-import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"

@@ -7,9 +7,10 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import '/src/css/treeview.css';
-import Version from "/src/components/highlight/version"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
+import Usable from "/src/components/highlight/usable"
+import Version from "/src/components/highlight/version"
 
 > 适用版本：国际版 1.21.130，中国版 3.7（1.21.50）。
 
@@ -23,9 +24,7 @@ import DataType from "/src/components/type/data"
 
 <Tabs><TabItem value="国际版" label="国际版" default>
 
-| 可用性 | 可用版本 | 组件可用性 | 物品格式版本 |
-| ----- | ------- | -------- | ---------- |
-| 中国版和国际版均可用 | 1.20.0+ | <Version/> | `1.20.0`或更高 |
+<Usable type="all"/> <Version from="1.20.0"/>
 
 <treeview>
 
@@ -49,9 +48,7 @@ import DataType from "/src/components/type/data"
 
 </TabItem><TabItem value="国际版（旧版）" label="国际版（旧版）" default>
 
-| 可用性 | 可用版本 | 组件可用性 | 物品格式版本 |
-| ----- | ------- | -------- | ---------- |
-| 中国版和国际版均可用 | 1.11.0+ | <Version isLowVersion/> | `1.10`~`1.16.0` |
+<Usable type="all"/> <Version from="1.10" to="1.16.0"/>
 
 <treeview>
 
@@ -75,9 +72,7 @@ import DataType from "/src/components/type/data"
 
 </TabItem><TabItem value="中国版" label="中国版" default>
 
-| 可用性 | 可用版本 | 组件可用性 | 物品格式版本 |
-| ----- | ------- | -------- | ---------- |
-| 中国版可用 | —— | <Version isChinaVersion/> | `1.10` |
+<Usable type="onlyChina"/> <Version from="1.10"/>
 
 <treeview>
 
