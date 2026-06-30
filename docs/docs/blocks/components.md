@@ -16,7 +16,7 @@ import Usable from "/src/components/highlight/usable"
 import Version from "/src/components/highlight/version"
 import Button from '/src/components/button/base';
 
-> 适用版本：国际版 26.20，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.30，中国版 3.8（1.21.90）。
 
 数据驱动方块组件（Data-Driven Block Components）用于规定方块的功能。将不同的方块组件组合在一起可以实现多种复杂的功能。方块组件可以指定到<DataType type="object" name="components" isRequired/>中，以使得方块在所有情况下都使用相关功能；也可以指定到方块置换<DataType type="array" name="permutations"/> - <DataType type="object"/> - <DataType type="object" name="components" isRequired/>中，使得方块在使用特定方块置换时使用特定的功能。
 
@@ -36,7 +36,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:collision_box`
 
-<OldVer version="1.19.50" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_collision_box?view=minecraft-bedrock-stable"/> <OldVer version="1.19.50" isChinaVersion/>
+<Usable type="all"/> <Version from="1.19.50"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_collision_box?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#collision-box"/>
 
 定义方块的碰撞箱。
 
@@ -117,7 +120,11 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:display_name`
 
-<OldVer version="1.19.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_display_name?view=minecraft-bedrock-stable"/> <OldVer version="1.19.60" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-display-name" isChinaVersion />
+<Usable type="all"/> <Version from="1.19.60"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_display_name?view=minecraft-bedrock-stable"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-display-name"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#display-name"/>
 
 定义方块在物品栏的悬浮文本。
 
@@ -139,7 +146,11 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:destructible_by_explosion`
 
-<OldVer version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_destructible_by_explosion?view=minecraft-bedrock-stable"/> <OldVer version="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-destructible-by-explosion" isChinaVersion />
+<Usable type="all"/> <Version from="1.19.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_destructible_by_explosion?view=minecraft-bedrock-stable"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-destructible-by-explosion"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#destructible-by-explosion"/>
 
 定义方块是否可被爆炸破坏，及其爆炸抗性。
 
@@ -180,7 +191,11 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:destructible_by_mining`
 
-<OldVer version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_destructible_by_mining?view=minecraft-bedrock-stable"/> <OldVer version="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-destructible-by-mining" isChinaVersion />
+<Usable type="all"/> <Version from="1.19.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_destructible_by_mining?view=minecraft-bedrock-stable"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-destructible-by-mining"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#destructible-by-mining"/>
 
 定义方块是否可被挖掘，及其挖掘时长。
 
@@ -246,7 +261,11 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:map_color`
 
-<OldVer version="1.12.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_map_color?view=minecraft-bedrock-stable"/> <OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-map-color" isChinaVersion />
+<Usable type="all"/> <Version from="1.12.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_map_color?view=minecraft-bedrock-stable"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-map-color"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#map-color"/>
 
 定义方块在地图（物品）上显示的颜色。
 
@@ -285,7 +304,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:selection_box`
 
-<OldVer version="1.19.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_selection_box?view=minecraft-bedrock-stable"/> <OldVer version="1.19.60" isChinaVersion/>
+<Usable type="all"/> <Version from="1.19.60"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_selection_box?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#selection-box"/>
 
 定义方块的选择箱。
 
@@ -334,15 +356,12 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:tags`
 
-<OldVer version="1.26.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tags?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。要在低版本使用此组件，请使用已弃用的组件tag:(标签)。"/> <Version from="1.26.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tags?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#tags"/>
 
 定义方块的标签。
-
-:::warning[版本适用性警告]
-
-该组件仅限 26.20+ 版本可用。要在 26.10- 版本使用此组件，请使用已弃用的组件[`tag:(标签)`](#tag标签)。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -372,7 +391,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:geometry`
 
-<OldVer version="1.19.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_geometry?view=minecraft-bedrock-stable"/> <OldVer version="1.19.40" isChinaVersion/>
+<Usable type="all"/> <Version from="1.19.40"/> <Highlight text="需要前置组件" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_geometry?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#geometry"/>
 
 定义方块的模型和使用的方块面剔除规则。
 
@@ -434,7 +456,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:material_instances`
 
-<OldVer version="1.19.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_material_instances?view=minecraft-bedrock-stable"/> <OldVer version="1.19.40" isChinaVersion/>
+<Usable type="all"/> <Version from="1.19.40"/> <Highlight text="需要前置组件" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_material_instances?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#material-instances"/>
 
 定义方块的材质和贴图实例。这个组件可以按照给定的方块模型的要求，将特定的材质和贴图应用到给定的模型上，并控制其他的渲染参数。
 
@@ -526,7 +551,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:destruction_particles`
 
-<OldVer version="1.21.80" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_destruction_particles?view=minecraft-bedrock-stable"/> <OldVer version="1.21.80" isChinaVersion/>
+<Usable type="all"/> <Version from="1.21.80"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_destruction_particles?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#destruction-particles"/>
 
 定义方块被破坏后掉落的粒子。
 
@@ -554,15 +582,12 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:embedded_visual`
 
-<OldVer version="1.21.120" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_embedded_visual?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.21.120"/> <Highlight text="禁止定义置换" tooltip="此组件不可定义在方块置换permutations内。" color="red"/> <Highlight text="需要前置组件" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_embedded_visual?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#embedded-visual"/>
 
 定义了方块嵌入另一方块（如花盆）时需要使用的`geometry`和`​material_instances`。
-
-:::warning[注意]
-
-此组件不可定义在方块置换<DataType type="object" name="permutations"/>内。
-
-:::
 
 :::tip[提示]
 
@@ -593,7 +618,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:item_visual`
 
-<OldVer version="1.21.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_item_visual?view=minecraft-bedrock-stable"/> <OldVer version="1.21.60" isChinaVersion/>
+<Usable type="all"/> <Version from="1.21.60"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_item_visual?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#item-visual"/>
 
 定义方块在物品栏中和手持时需要使用的`geometry`和`​material_instances`。
 
@@ -627,7 +655,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:chest_obstruction`
 
-<OldVer version="1.26.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_chest_obstruction?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.26.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_chest_obstruction?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#chest-obstruction"/>
 
 定义方块是否可阻挡箱子打开。
 
@@ -653,7 +684,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:crafting_table`
 
-<OldVer version="1.19.50" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_crafting_table?view=minecraft-bedrock-stable"/> <OldVer version="1.19.50" isChinaVersion/>
+<Usable type="all"/> <Version from="1.19.50"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_crafting_table?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#crafting-table"/>
 
 定义方块为一种工作台。
 
@@ -681,7 +715,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:connection_rule`
 
-<OldVer version="1.26.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_connection_rule?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.26.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_connection_rule?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#connection-rule"/>
 
 定义方块和其他方块的连接规则。
 
@@ -709,15 +746,12 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:entity_fall_on`
 
-<OldVer version="1.21.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_entity_fall_on?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version from="1.21.10"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_entity_fall_on?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#entity-fall-on"/>
 
 定义实体在多高处落到该方块上之后，才能触发 ScriptAPI 中自定义方块组件定义的[`onEntityFallOn`事件](./custom_components#onentityfallon属性)。
-
-:::warning[注意]
-
-该组件必须配合 ScriptAPI 使用，因此该组件在现在或未来的中国版也是无效的。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -742,7 +776,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:flammable`
 
-<OldVer version="1.12.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_flammable?view=minecraft-bedrock-stable"/> <OldVer version="1.12.0" isChinaVersion/>
+<Usable type="all"/> <Version from="1.12.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_flammable?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#flammable"/>
 
 定义方块为可燃方块。
 
@@ -794,14 +831,16 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:flower_pottable`
 
-<OldVer version="1.21.120" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_flower_pottable?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.21.120"/> <Highlight text="禁止定义置换" tooltip="此组件不可定义在方块置换permutations内。" color="red"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_flower_pottable?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#flower-pottable"/>
 
 定义方块可种植在花盆内。
 
 :::warning[注意]
 
-1. 此组件不可定义在方块置换<DataType type="object" name="permutations"/>内。
-2. 要更改方块在花盆内的显示效果，见组件[`minecraft:embedded_visual`](#minecraftembedded_visual)。
+要更改方块在花盆内的显示效果，见组件[`minecraft:embedded_visual`](#minecraftembedded_visual)。
 
 :::
 
@@ -823,7 +862,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:friction`
 
-<OldVer version="1.12.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_friction?view=minecraft-bedrock-stable"/> <OldVer isChinaVersion/>
+<Usable type="all"/> <Version from="1.12.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_friction?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#friction"/>
 
 定义方块的摩擦系数。
 
@@ -872,7 +914,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:leashable`
 
-<OldVer version="1.26.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_leashable?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.26.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_leashable?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#leashable"/>
 
 定义方块可用拴绳连接，类似于栅栏。
 
@@ -901,7 +946,11 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:light_dampening`
 
-<OldVer version="1.19.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_light_dampening?view=minecraft-bedrock-stable"/> <OldVer version="1.19.10" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-light-dampening" isChinaVersion />
+<Usable type="all"/> <Version from="1.19.10"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_light_dampening?view=minecraft-bedrock-stable"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-light-dampening"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#light-dampening"/>
 
 定义方块会吸收光，降低光照等级。
 
@@ -923,7 +972,11 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:light_emission`
 
-<OldVer version="1.19.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_light_emission?view=minecraft-bedrock-stable"/> <OldVer version="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-light-emission" isChinaVersion />
+<Usable type="all"/> <Version from="1.19.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_light_emission?view=minecraft-bedrock-stable"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-light-emission"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#light-emission"/>
 
 定义方块会发出光，提供光照等级。
 
@@ -945,7 +998,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:liquid_detection`
 
-<OldVer version="1.21.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_liquid_detection?view=minecraft-bedrock-stable"/> <OldVer version="1.21.60" isChinaVersion/>
+<Usable type="all"/> <Version from="1.21.60"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_liquid_detection?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#liquid-detection"/>
 
 定义方块在接触到液体后的行为。
 
@@ -996,7 +1052,11 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:loot`
 
-<OldVer version="1.12.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_loot?view=minecraft-bedrock-stable"/> <OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-loot" isChinaVersion />
+<Usable type="all"/> <Version from="1.12.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_loot?view=minecraft-bedrock-stable"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-loot"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#loot"/>
 
 定义方块被破坏后的战利品表。
 
@@ -1037,7 +1097,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:movable`
 
-<OldVer version="1.21.100" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_movable?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.21.100"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_movable?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#movable"/>
 
 定义方块是否可被活塞推动，及其属性。
 
@@ -1063,7 +1126,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:placement_filter`
 
-<OldVer version="1.19.60" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_placement_filter?view=minecraft-bedrock-stable"/> <OldVer version="1.19.60" isChinaVersion/>
+<Usable type="all"/> <Version from="1.19.60"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_placement_filter?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#placement-filter"/>
 
 定义方块允许被放置或允许存在的条件。
 
@@ -1104,7 +1170,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:precipitation_interactions`
 
-<OldVer version="1.21.130" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_precipitation_interactions?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.21.130"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_precipitation_interactions?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#precipitation-interactions"/>
 
 定义方块在雨雪天气下如何和环境交互。
 
@@ -1134,7 +1203,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:random_offset`
 
-<OldVer version="1.21.100" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_random_offset?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.21.100"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_random_offset?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#random-offset"/>
 
 定义方块的碰撞箱、选择箱和模型如何随机产生偏移。类似于原版的草。
 
@@ -1171,7 +1243,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:redstone_conductivity`
 
-<OldVer version="1.21.40" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_conductivity?view=minecraft-bedrock-stable"/> <OldVer version="1.21.40" isChinaVersion/>
+<Usable type="all"/> <Version from="1.21.40"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_conductivity?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#redstone-conductivity"/>
 
 定义方块的红石导体属性。
 
@@ -1200,15 +1275,12 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:redstone_consumer`
 
-<OldVer version="1.26.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_consumer?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件，并且该组件必须配合ScriptAPI使用。"/> <Version from="1.26.0"/> <Highlight text="禁止定义置换" tooltip="此组件不可定义在方块置换permutations内。" color="red"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_consumer?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#redstone-consumer"/>
 
 定义方块为一种机械元件，并触发 ScriptAPI 中自定义方块组件定义的[`onRedstoneUpdate`事件](./custom_components#onredstoneupdate属性)，将自己获得的红石信号强度传递给脚本。
-
-:::warning[注意]
-
-此组件不可定义在方块置换<DataType type="object" name="permutations"/>内。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -1237,15 +1309,12 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:redstone_producer`
 
-<OldVer version="1.21.120" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_producer?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.21.120"/> <Highlight text="限制定义置换" tooltip="在高于1.26.20的格式版本中，要在方块置换permutations内使用该组件，必须在components内一并定义。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_producer?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#redstone-producer"/>
 
 定义方块产生红石信号。
-
-:::warning[注意]
-
-在高于`1.26.20`的格式版本中，要在方块置换<DataType type="object" name="permutations"/>内使用该组件，必须在<DataType type="object" name="components"/>内一并定义。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -1280,7 +1349,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:replaceable`
 
-<OldVer version="1.21.70" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_replaceable?view=minecraft-bedrock-stable"/> <OldVer version="1.21.70" isChinaVersion/>
+<Usable type="all"/> <Version from="1.21.70"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_replaceable?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#replaceable"/>
 
 定义方块是否可被另一种方块在原位替代（类似于水、草丛或空气）。
 
@@ -1302,7 +1374,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:support`
 
-<OldVer version="1.26.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_support?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version from="1.26.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_support?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#support"/>
 
 定义方块为可支撑方块，例如可用于悬吊灯笼等。
 
@@ -1334,15 +1409,12 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:tick`
 
-<OldVer version="1.21.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tick?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version from="1.21.10"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tick?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#tick"/>
 
 定义方块的更新频率，并触发 ScriptAPI 中自定义方块组件定义的[`onTick`事件](./custom_components#ontick属性)。
-
-:::warning[注意]
-
-该组件必须配合 ScriptAPI 使用，因此该组件在现在或未来的中国版也是无效的。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -1369,7 +1441,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:transformation`
 
-<OldVer version="1.19.80" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_transformation?view=minecraft-bedrock-stable"/> <OldVer version="1.19.80" isChinaVersion/>
+<Usable type="all"/> <Version from="1.19.80"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_transformation?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#transformation"/>
 
 定义方块模型与碰撞箱的平移、旋转与缩放变换。
 
@@ -1401,29 +1476,13 @@ import Button from '/src/components/button/base';
 
 中国版组件只适用于定义在<FileType type="folder" name="netease_blocks"/>中的方块（即中国版方块）。
 
-其中，下述部分方块组件有国际版组件或方块特征的平替，或组件的部分功能有国际版组件或方块特征的平替。**因为中国版方块可以直接使用高版本的国际版组件或方块特征，因此请在存在平替的情况下优先考虑平替**。
-
-| 中国版组件 | 国际版可用的平替组件或特征 | 国际版组件或特征需求的最低格式版本 |
-| :--- | :--- | --- |
-| `netease:aabb` | [`minecraft:collision_box`](#minecraftcollision_box)、[`minecraft:selection_box`](#minecraftselection_box)（**可平替部分功能**） | 1.19.60 |
-| `netease:block_crafting_table` | [`minecraft:crafting_table`](#minecraftcrafting_table) | 1.19.50 |
-| `netease:block_properties` | [`minecraft:movable`](#minecraftmovable)（**可平替部分功能**） | 1.21.100（**中国版版本低**） |
-| `netease:block_random_offset` | [`minecraft:random_offset`](#minecraftrandom_offset) | 1.21.100（**中国版版本低**） |
-| `netease:can_built_over` | [`minecraft:replaceable`](#minecraftreplaceable) | 1.21.70 |
-| `netease:connection` | [`minecraft:connection`](./traits#minecraftconnection)方块特征 | 1.26.0（**中国版版本低**） |
-| `netease:face_directional` | [`minecraft:placement_direction`](./traits#minecraftplacement_direction)方块特征、[`minecraft:transformation`](#minecrafttransformation) | 1.20.20 |
-| `netease:may_place_on` | [`minecraft:placement_filter`](#minecraftplacement_filter) | 1.20.20 |
-| `netease:redstone` | [`minecraft:redstone_producer`](#minecraftredstone_producer)、[`minecraft:redstone_consumer`](#minecraftredstone_consumer) | 1.26.0（**中国版版本低**） |
-| `netease:redstone_property` | [`minecraft:movable`](#minecraftmovable) | 1.21.100（**中国版版本低**） |
-| `netease:render_layer` | [`minecraft:material_instances`](#minecraftmaterial_instances) | 1.21.80 |
-| `netease:solid` | [`minecraft:collision_box`](#minecraftcollision_box)、[`minecraft:material_instances`](#minecraftmaterial_instances) | 1.19.50 |
-| `netease:water_flow_source` | [`minecraft:liquid_detection`](#minecraftliquid_detection) | 1.21.60 |
-| `netease:water_destroy` | [`minecraft:liquid_detection`](#minecraftliquid_detection) | 1.21.60 |
-| `netease:water_source` | [`minecraft:liquid_detection`](#minecraftliquid_detection) | 1.21.60 |
+其中，部分方块组件有国际版组件或方块特征的平替，或组件的部分功能有国际版组件或方块特征的平替。**因为中国版方块可以直接使用高版本的国际版组件或方块特征，因此请在存在平替的情况下优先考虑平替**。
 
 ### `minecraft:max_stack_size`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-max-stack-size" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-max-stack-size"/>
 
 定义方块物品最大堆叠数量。
 
@@ -1445,7 +1504,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:aabb`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-aabb" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:collision_box组件和minecraft:selection_box组件平替，需求格式版本为1.19.60。但在当前中国版版本下，暂时不支持复合碰撞箱和复合选择箱。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-aabb"/>
 
 定义方块的碰撞箱和选择箱。
 
@@ -1508,7 +1569,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_animate_random_tick`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-animate-random-tick" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-animate-random-tick"/>
 
 定义方块会高频率随机更新，并触发 ModAPI 的[`BlockAnimateRandomTickEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html#blockanimaterandomtickevent)。
 
@@ -1545,7 +1608,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_chest`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-chest" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="组件冲突" tooltip="此组件和其他多个组件存在冲突。" color="red"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-chest"/>
 
 定义方块的箱子功能。
 
@@ -1589,15 +1654,11 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_container`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-container" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为netease_container。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-container"/>
 
 定义方块为一种自定义容器。
-
-:::warning[注意]
-
-要使用该组件，必须将<DataType type="object" name="description"/>的`base_block`设置为`netease_container`。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -1647,7 +1708,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_crafting_table`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/10-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E4%BD%9C%E5%8F%B0.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:crafting_table组件平替，需求格式版本为1.19.50。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/10-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E4%BD%9C%E5%8F%B0.html?catalog=1"/>
 
 定义方块为一种自定义工作台。
 
@@ -1675,7 +1738,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_entity`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-entity" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-entity"/>
 
 定义方块的方块实体属性。有关自定义方块实体的更多信息，读者可见[自定义方块实体 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/4-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97%E5%AE%9E%E4%BD%93.html)。
 
@@ -1703,19 +1768,15 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_properties`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-properties" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="碰撞箱限制" tooltip="要使用该组件，方块的碰撞箱边长至少需要大于0.4格，否则该组件可能无法触发。" color="red"/> <Highlight text="存在平替" tooltip="该组件的piston_block_grabber功能可由minecraft:movable组件平替，需求格式版本为1.21.100。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-properties"/>
 
 定义方块的属性。
 
 :::note[编者注]
 
 这里的方块属性不等于方块状态、方块置换、方块特征等概念，请注意在这里不要混淆概念。
-
-:::
-
-:::warning[注意]
-
-如果方块碰撞箱使用碰撞箱相关组件改小后，可能会导致无法触发（目前可参考范围是边长 0.4 以下不会触发）。
 
 :::
 
@@ -1741,16 +1802,11 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_random_offset`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-random-offset" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="材质限制" tooltip="该组件会将方块的材质设置为透明材质，不可设置方块为不透明材质。" color="red"/> <Highlight text="模型限制" tooltip="该组件会在临近存在不透明方块时剔除对应的方块面，并且在物品栏的渲染贴图可能也会存在问题，因此请尽量使用自定义模型的方块。" color="red"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:random_offset组件平替，需求格式版本为1.21.100。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-random-offset"/>
 
 定义方块的偏移。类似于原版的草。
-
-:::warning[注意]
-
-1. 该组件会将方块的材质设置为透明材质。因此，不可与[`netease:render_layer`](#neteaserender_layer)的不透明材质共用。
-2. 该组件会在临近存在不透明方块时剔除对应的方块面，并且在物品栏的渲染贴图可能也会存在问题，因此请尽量使用自定义模型的方块。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -1775,7 +1831,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:can_built_over`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/9-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E9%9B%AA%E6%96%B9%E5%9D%97.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:replaceable组件平替，需求格式版本为1.21.70。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/9-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E9%9B%AA%E6%96%B9%E5%9D%97.html?catalog=1"/>
 
 定义方块是否可被另一种方块在原位替代（类似于水、草丛或空气）。
 
@@ -1800,7 +1858,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:connection`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-connection" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:connection方块特征平替，需求格式版本为1.26.0。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-connection"/>
 
 定义方块的连接属性。启用了连接属性的方块可使用[`query.is_connect()`](./molang#其他)查询连接状态。
 
@@ -1828,7 +1888,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:custom_tips`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-custom-tips" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-custom-tips"/>
 
 定义方块物品的物品信息描述（类似于物品的[`netease:customtips`](../items/components#neteasecustomtips)组件）。
 
@@ -1853,7 +1915,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:face_directional`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-face-directional" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:placement_direction方块特征、minecraft:transformation组件平替，需求格式版本为1.20.20。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-face-directional"/>
 
 定义方块的多面向功能。带有多面向的方块将始终保持方块的北面贴图面向放置此方块的玩家。
 
@@ -1878,15 +1942,11 @@ import Button from '/src/components/button/base';
 
 ### `netease:fall`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/6-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E5%8A%9B%E6%96%B9%E5%9D%97.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为custom_heavy_block。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/6-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E5%8A%9B%E6%96%B9%E5%9D%97.html?catalog=1"/>
 
 定义方块为重力方块，会受到重力的影响（类似于沙子）。
-
-:::warning[注意]
-
-要使用该组件，必须将<DataType type="object" name="description"/>的`base_block`设置为`custom_heavy_block`。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -1927,7 +1987,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:fire_resistant`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-fire-resistant" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-fire-resistant"/>
 
 定义方块所对应的物品的防火属性。
 
@@ -1952,7 +2014,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:fuel`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-fuel" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-fuel"/>
 
 定义方块对应物品的燃料属性。
 
@@ -1977,15 +2041,11 @@ import Button from '/src/components/button/base';
 
 ### `netease:liquid`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%81%E4%BD%93.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为liquid（静态流体）或flowing_liquid（动态流体）。"/> <br/>
 
-定义方块为一种自定义流体。
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%81%E4%BD%93.html?catalog=1"/>
 
-:::warning[注意]
-
-要使用该组件，必须将<DataType type="object" name="description"/>的`base_block`设置为`liquid`（静态流体）或`flowing_liquid`（流动流体）。详见[自定义流体 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%81%E4%BD%93.html?catalog=1)。
-
-:::
+定义方块为一种自定义流体。详见[自定义流体 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%81%E4%BD%93.html?catalog=1)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2056,7 +2116,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:listen_block_remove`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-listen-block-remove" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-listen-block-remove"/>
 
 定义方块在被移除后会触发 ModAPI 的[`BlockRemoveServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html#blockremoveserverevent)。
 
@@ -2081,7 +2143,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:may_place_on`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-may-place-on" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:placement_filter组件平替，需求格式版本为1.20.20。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-may-place-on"/>
 
 定义方块允许被放置或允许存在的条件。
 
@@ -2126,15 +2190,11 @@ import Button from '/src/components/button/base';
 
 ### `netease:mob_spawner`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/1-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%B7%E6%80%AA%E7%AE%B1.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为mob_spawner。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/1-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%B7%E6%80%AA%E7%AE%B1.html?catalog=1"/>
 
 定义方块为一种自定义刷怪笼。
-
-:::warning[注意]
-
-要使用该组件，必须将<DataType type="object" name="description"/>的`base_block`设置为`mob_spawner`。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2157,7 +2217,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:neighborchanged_sendto_script`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-neighborchanged-sendto-script" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-neighborchanged-sendto-script"/>
 
 定义方块在周围环境变化时，触发 ModAPI 的[`BlockNeighborChangedServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#blockneighborchangedserverevent)。
 
@@ -2184,7 +2246,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:no_crop_face_block`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-no-crop-face-block" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="需要前置组件" tooltip="该组件需要定义其他组件才能正常运行。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-no-crop-face-block"/>
 
 定义方块与其他方块的相邻面能够正常渲染（类似于树叶）。
 
@@ -2215,17 +2279,13 @@ import Button from '/src/components/button/base';
 
 ### `netease:on_after_fall_on`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-after-fall-on" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="碰撞箱限制" tooltip="要使用该组件，方块的碰撞箱边长至少需要大于0.4格，否则该组件可能无法触发。" color="red"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-after-fall-on"/>
 
 定义实体刚掉落到该方块上的时候是否触发 ModAPI 的[`OnAfterFallOnBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onafterfallonblockclientevent)和[`OnAfterFallOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onafterfallonblockserverevent)。
 
 基于这两个事件可实现类似于粘液块一样的效果。
-
-:::warning[注意]
-
-如果方块碰撞箱使用碰撞箱相关组件改小后，可能会导致无法触发（目前可参考范围是边长 0.4 以下不会触发）。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2248,17 +2308,13 @@ import Button from '/src/components/button/base';
 
 ### `netease:on_before_fall_on`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-before-fall-on" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="碰撞箱限制" tooltip="要使用该组件，方块的碰撞箱边长至少需要大于0.4格，否则该组件可能无法触发。" color="red"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-before-fall-on"/>
 
 定义实体刚掉落到该方块上的时候是否触发 ModAPI 的[`OnBeforeFallOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onbeforefallonblockserverevent)。
 
 基于这两个事件可实现类似于粘液块一样的效果。
-
-:::warning[注意]
-
-如果方块碰撞箱使用碰撞箱相关组件改小后，可能会导致无法触发（目前可参考范围是边长 0.4 以下不会触发）。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2281,7 +2337,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:on_entity_inside`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-entity-inside" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-entity-inside"/>
 
 定义方块碰撞箱内有实体的时候是否触发 ModAPI 的[`OnEntityInsideBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onentityinsideblockclientevent)和[`OnEntityInsideBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onentityinsideblockserverevent)。
 
@@ -2308,7 +2366,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:on_stand_on`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-stand-on" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-stand-on"/>
 
 定义当实体站在该方块后是否触发 ModAPI 的[`OnStandOnBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onstandonblockclientevent)和[`OnStandOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onstandonblockserverevent)。
 
@@ -2333,7 +2393,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:on_step_off`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-step-off" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-step-off"/>
 
 定义当实体离开该方块上后是否触发 ModAPI 的[`StepOffBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#stepoffblockclientevent)和[`StepOffBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#stepoffblockserverevent)。
 
@@ -2358,7 +2420,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:on_step_on`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-step-on" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-step-on"/>
 
 定义当实体踏上该方块上后是否触发 ModAPI 的[`StepOnBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#steponblockclientevent)和[`StepOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#steponblockserverevent)。
 
@@ -2383,7 +2447,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:pathable`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-pathable" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-pathable"/>
 
 定义方块在实体 AI 寻路时是否可走过此方块。
 
@@ -2408,15 +2474,11 @@ import Button from '/src/components/button/base';
 
 ### `netease:portal`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BC%A0%E9%80%81%E9%97%A8%E6%96%B9%E5%9D%97.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为portal。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BC%A0%E9%80%81%E9%97%A8%E6%96%B9%E5%9D%97.html?catalog=1"/>
 
 定义方块为一种自定义传送门。
-
-:::warning[注意]
-
-要使用该组件，必须将<DataType type="object" name="description"/>的`base_block`设置为`portal`。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2449,7 +2511,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:random_tick`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-random-tick" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-random-tick"/>
 
 定义方块会随机更新，并触发 ModAPI 的[`BlockRandomTickServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#blockrandomtickserverevent)。
 
@@ -2476,7 +2540,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:redstone`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-redstone" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:redstone_producer组件、minecraft:redstone_consumer组件平替，需求格式版本为1.26.0。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-redstone"/>
 
 定义方块的红石电源元件或红石机械元件属性。
 
@@ -2509,7 +2575,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:redstone_property`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-redstone-property" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:movable组件平替，需求格式版本为1.21.100。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-redstone-property"/>
 
 定义方块的红石属性。
 
@@ -2534,7 +2602,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:render_layer`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-render-layer" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:material_instances组件平替，要实现完全平替，需求格式版本为1.21.80。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-render-layer"/>
 
 定义方块渲染材质。
 
@@ -2563,7 +2633,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:snow_recover_able`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/9-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E9%9B%AA%E6%96%B9%E5%9D%97.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/9-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E9%9B%AA%E6%96%B9%E5%9D%97.html?catalog=1"/>
 
 定义方块是否可含雪（类似矮草丛、花等）。
 
@@ -2588,7 +2660,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:solid`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-solid" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:collision_box组件、minecraft:material_instances组件平替，需求格式版本为1.19.50。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-solid"/>
 
 定义方块是否实心。
 
@@ -2615,7 +2689,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:tier`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-tier" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件的最佳挖掘工具功能可由minecraft:digger组件平替，需求格式版本为1.21.50。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-tier"/>
 
 定义方块的挖掘等级和挖掘相关属性。
 
@@ -2646,15 +2722,11 @@ import Button from '/src/components/button/base';
 
 ### `netease:transform`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/3-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%9C%E4%BD%9C%E7%89%A9%E6%96%B9%E5%9D%97.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为custom_crop_block。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/3-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%9C%E4%BD%9C%E7%89%A9%E6%96%B9%E5%9D%97.html?catalog=1"/>
 
 定义方块的转换条件。用于自定义农作物。
-
-:::warning[注意]
-
-要使用该组件，必须将<DataType type="object" name="description"/>的`base_block`设置为`custom_crop_block`。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2693,7 +2765,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:water_flow_source`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:liquid_detection组件平替，需求格式版本为1.21.60。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1"/>
 
 定义方块在水源或水流中表现为含水方块。
 
@@ -2718,7 +2792,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:water_destroy`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:liquid_detection组件平替，需求格式版本为1.21.60。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1"/>
 
 定义方块会被水流摧毁，且无法放置在水中（类似红石粉、火把等）。
 
@@ -2743,7 +2819,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:water_only`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1"/>
 
 定义方块只能放置在水中（类似海带、海草等）。
 
@@ -2768,7 +2846,9 @@ import Button from '/src/components/button/base';
 
 ### `netease:water_source`
 
-<OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1" isChinaVersion />
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:liquid_detection组件平替，需求格式版本为1.21.60。" color="lightblue"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1"/>
 
 定义方块在水源中表现为含水方块（类似台阶、楼梯等）。
 
@@ -2796,18 +2876,12 @@ import Button from '/src/components/button/base';
 
 以下组件仅限旧版本的方块适用，因这些组件曾在非实验性方块中可用，故本文档也一并列出，但强烈不推荐使用。这些方块组件均有高版本组件的平替。读者可以在这里的[旧版文档](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks)中查看这些组件接受的参数。
 
-| 弃用组件 | 可平替组件 | 平替组件需求的最低格式版本 |
-| :--- | :--- | --- |
-| `minecraft:block_light_absorption` | [`minecraft:light_dampening`](#minecraftlight_dampening) | 1.19.10 |
-| `minecraft:block_light_filter` | [`minecraft:light_dampening`](#minecraftlight_dampening) | 1.19.10 |
-| `minecraft:block_light_emission` | [`minecraft:light_emission`](#minecraftlight_emission) | 1.19.20 |
-| `minecraft:destroy_time` | [`minecraft:destructible_by_mining`](#minecraftdestructible_by_mining) | 1.19.20 |
-| `minecraft:explosion_resistance` | [`minecraft:destructible_by_explosion`](#minecraftdestructible_by_explosion) | 1.19.20 |
-| `minecraft:custom_components` | 自定义组件 V2（详见[自定义组件](./custom_components)） | 1.21.90 |
-
 ### `minecraft:block_light_absorption`
 
-<OldVer version="1.12.0" toVersion="1.18.0"/> <OldVer docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-block-light-absorption" isChinaVersion />
+<Usable type="all"/> <Version from="1.12.0" to="1.18.0" deprecated tooltip="在高版本使用minecraft:light_dampening组件代替之。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-block-light-absorption"/>
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks"/>
 
 定义方块会吸收光，降低光照等级。
 
@@ -2844,7 +2918,9 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:block_light_filter`
 
-<OldVer version="1.18.10" toVersion="1.19.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_light_filter?view=minecraft-bedrock-stable"/>
+<Usable type="all"/> <Version from="1.18.10" to="1.19.10" deprecated tooltip="在高版本使用minecraft:light_dampening组件代替之。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_light_filter?view=minecraft-bedrock-stable"/>
 
 定义方块会吸收光，降低光照等级。
 
@@ -2868,7 +2944,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:block_light_emission`
 
-<OldVer version="1.12.0" toVersion="1.19.20"/> <OldVer version="1.12.0" toVersion="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-block-light-emission" isChinaVersion />
+<Usable type="all"/> <Version from="1.12.0" to="1.19.20" deprecated tooltip="在高版本使用minecraft:light_emission组件代替之。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-block-light-emission"/>
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks"/>
 
 定义方块会发出光，提供光照等级。
 
@@ -2911,7 +2990,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:destroy_time`
 
-<OldVer version="1.12.0" toVersion="1.19.20"/> <OldVer version="1.12.0" toVersion="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-destroy-time" isChinaVersion />
+<Usable type="all"/> <Version from="1.12.0" to="1.19.20" deprecated tooltip="在高版本使用minecraft:destructible_by_mining组件代替之。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-destroy-time"/>
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks"/>
 
 定义方块的挖掘时长。
 
@@ -2954,7 +3036,10 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:explosion_resistance`
 
-<OldVer version="1.12.0" toVersion="1.19.20"/> <OldVer version="1.12.0" toVersion="1.19.20" docUrl="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-explosion-resistance" isChinaVersion />
+<Usable type="all"/> <Version from="1.12.0" to="1.19.20" deprecated tooltip="在高版本使用minecraft:destructible_by_explosion组件代替之。"/> <br/>
+
+<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-explosion-resistance"/>
+<Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks"/>
 
 定义方块的爆炸抗性。
 
@@ -2996,16 +3081,11 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:custom_components`
 
-<OldVer version="1.21.20" toVersion="1.21.90" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_custom_components?view=minecraft-bedrock-stable"/>
+<Usable type="onlyInternational" tooltip="因为该组件必须配合 ScriptAPI 使用。"/> <Version from="1.21.20" to="1.21.90" deprecated tooltip="弃用原因：1.21.90 推出了自定义组件 V2。在 1.21.90 或更高版本下的物品定义中不应再使用该组件。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_custom_components?view=minecraft-bedrock-stable"/>
 
 定义方块的自定义组件。自定义组件的行为需要在世界初始化前事件`WorldInitializeBeforeEvent`中定义。
-
-:::danger[警告]
-
-1. 该组件必须配合 ScriptAPI 使用，因此该组件在现在或未来的中国版也是无效的。
-2. 该组件随着 1.21.90 的自定义组件 V2 的推出，已被弃用。在`1.21.90`或更高版本下的物品定义中不应再使用该组件。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -3028,7 +3108,9 @@ import Button from '/src/components/button/base';
 
 ### `tag:(标签)`
 
-<OldVer version="?" toVersion="1.26.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tag?view=minecraft-bedrock-stable"/>
+<Usable type="all"/> <Version from="?" to="1.26.20" deprecated tooltip="在高版本使用minecraft:tags组件代替之。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tag?view=minecraft-bedrock-stable"/>
 
 定义方块的标签。
 

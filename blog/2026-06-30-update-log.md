@@ -14,6 +14,8 @@
   - 为每个组件都新增了 Bedrock Wiki 对应的链接（如果有的话）
   - 修正了错误将`minecraft:fire_resistant`组件记作`minecraft:fire_resistance`的问题
   - 修正了`minecraft:use_modifiers`组件的依赖项问题
+- 更新 方块文档：数据驱动方块组件
+  - 为每个组件都新增了 Bedrock Wiki 对应的链接（如果有的话）
 
 ## 过往更新日志
 
