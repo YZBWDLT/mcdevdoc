@@ -6,9 +6,9 @@ sidebar_position: 1
 
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
-import Download from "/src/components/highlight/download"
+import DownloadButton from "/src/components/button/download"
 
-<Download url="https://app.nekodrive.net/s/K0Qu0"/>
+<DownloadButton url="https://app.nekodrive.net/s/K0Qu0"/>
 
 本包用于**创建一个可右键使用的物品**。
 
@@ -373,7 +373,7 @@ execute if entity @s[hasitem={item=stick,quantity=4..}] run clear @s stick -1 4
 
 您可以在这里下载到过往版本。然而，我们已不再推荐使用这些旧版本。
 
-<Download text="下载 v1 版本" url="https://app.nekodrive.net/s/y0Bsg" isInline/>
+<DownloadButton text="v1 版本" url="https://app.nekodrive.net/s/y0Bsg"/>
 
 import GiscusComment from "/src/components/comment/giscus.js"
 

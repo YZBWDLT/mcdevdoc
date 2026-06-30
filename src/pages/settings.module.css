@@ -1,0 +1,53 @@
+/* src/pages/settings.module.css */
+
+/* ===== 页面容器（全屏宽度） ==================================== */
+.container {
+  padding: 2rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== 页面标题（左上角） ====================================== */
+.title {
+  font-family: var(--oreui-font-subtitle);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--oreui-line);
+  padding-bottom: 0.5rem;
+  text-align: left;
+}
+
+/* ===== 卡片网格（2 列） ======================================== */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* ===== 单个卡片 ================================================ */
+.card {
+  background-color: var(--oreui-surface);
+  border: 2px solid var(--oreui-border-dark);
+  border-top-color: var(--oreui-border-light);
+  padding: 1.5rem 1.8rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  font-family: var(--oreui-font-subtitle);
+  margin-top: 0;
+}
+
+.card p {
+  color: var(--oreui-text-dim);
+}
+
+/* ===== 响应式：手机单列 ======================================== */
+@media (max-width: 768px) {
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+  .container {
+    padding: 1rem;
+  }
+}

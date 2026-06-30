@@ -4,9 +4,9 @@ sidebar_position: 5
 
 # 无限虚空
 
-import Download from "/src/components/highlight/download"
+import DownloadButton from "/src/components/button/download"
 
-<Download url="https://app.nekodrive.net/s/3XVI2"/>
+<DownloadButton url="https://app.nekodrive.net/s/3XVI2"/>
 
 本包用于**生成一个无限虚空的世界**。
 

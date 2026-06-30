@@ -6,32 +6,23 @@ sidebar_position: 1
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Highlight from '/src/components/highlight/standard';
 import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
 import Image from "/src/components/image/standard"
+import Button from '/src/components/button/base';
+import WikiButton from '/src/components/button/wiki';
+
+> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
 
 本文档收录所有正式版或预览版中可用的命令，并给出对应课时。其中，部分内容并未在模块 1 介绍，请阅读本篇文档的初学者注意甄别，如果需要，请学习相关知识。
-
-:::info[本文更新时间]
-
-本文于 2026 年 3 月 13 日更新，中国版最新版本为 1.21.50，国际版最新版本为 26.0。
-
-:::
-
-:::note[标签记号说明]
-
-各命令下，<Highlight text="教程"/>是可点击的，点击该按钮将链接到本网站的教程；<Highlight text="Wiki" backgroundColor="#1977E3"/>也是可点击的，点击该按钮将链接到该命令对应的中文 Minecraft Wiki 网页。
-
-:::
 
 ## 帮助命令
 
 ### `/help`（或`/?`）
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c1_command" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/help" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c1_command" color="green"/>
+<WikiButton item="命令/help"/>
 
 显示帮助文档。
 
@@ -71,8 +62,8 @@ import Image from "/src/components/image/standard"
 
 ### `/execute`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d1_cmd_context" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/execute" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d1_cmd_context"  color="green"/>
+<WikiButton item="命令/execute"/>
 
 按照特定的命令上下文执行命令，并检测条件。
 
@@ -273,8 +264,8 @@ in <维度: Dimension> -> execute
 
 ### `/function`
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#直接执行函数文件的命令function" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/function" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#直接执行函数文件的命令function" color="green"/>
+<WikiButton item="命令/function"/>
 
 执行函数。
 
@@ -293,8 +284,8 @@ in <维度: Dimension> -> execute
 
 ### `/scoreboard`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d2_scoreboard" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/scoreboard" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d2_scoreboard"  color="green"/>
+<WikiButton item="命令/scoreboard"/>
 
 管理记分项和追踪对象。其中，`玩家: target`可以是不存在的玩家，可以指定为`*`以代表所有追踪对象。
 
@@ -489,8 +480,8 @@ in <维度: Dimension> -> execute
 
 ### `/summon`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d1_add_and_remove_entity" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/summon" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d1_add_and_remove_entity" color="green"/>
+<WikiButton item="命令/summon"/>
 
 在特定位置生成特定名称、特定生成事件的实体。
 
@@ -553,8 +544,8 @@ in <维度: Dimension> -> execute
 
 ### `/tellraw`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/tellraw" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" color="green"/>
+<WikiButton item="命令/tellraw"/>
 
 对特定玩家的聊天栏发送原始 JSON 文本。
 
@@ -573,8 +564,8 @@ in <维度: Dimension> -> execute
 
 ### `/tag`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d1_tag" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/tag" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d1_tag" color="green"/>
+<WikiButton item="命令/tag"/>
 
 对实体的标签进行操作。
 
@@ -621,8 +612,8 @@ in <维度: Dimension> -> execute
 
 ### `/tp`（或`/teleport`）
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#传送玩家的命令tp或teleport" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/teleport" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#传送玩家的命令tp或teleport" color="green"/>
+<WikiButton item="命令/teleport"/>
 
 传送实体到特定位置。
 
@@ -771,7 +762,7 @@ in <维度: Dimension> -> execute
 
 ### `/scriptevent`
 
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/scriptevent" backgroundColor="#1977E3" />
+<WikiButton item="命令/scriptevent"/>
 
 配合 ScriptAPI 使用，对`system`类发送一个`scriptEventReceive`的后事件。
 
@@ -796,8 +787,8 @@ in <维度: Dimension> -> execute
 
 ### `/titleraw`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/titleraw" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" color="green"/>
+<WikiButton item="命令/titleraw"/>
 
 对特定玩家发送原始 JSON 文本的标题。
 
@@ -864,8 +855,8 @@ in <维度: Dimension> -> execute
 
 ### `/playsound`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/playsound" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle" color="green"/>
+<WikiButton item="命令/playsound"/>
 
 对玩家播放音效。
 
@@ -886,8 +877,8 @@ in <维度: Dimension> -> execute
 
 ### `/setblock`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#放置方块的命令setblock" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/setblock" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#放置方块的命令setblock" color="green"/>
+<WikiButton item="命令/setblock"/>
 
 在一个特定位置放置方块。
 
@@ -934,8 +925,8 @@ in <维度: Dimension> -> execute
 
 ### `/event`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#触发生成事件event" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/event" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#触发生成事件event" color="green"/>
+<WikiButton item="命令/event"/>
 
 触发一个实体的生成事件。
 
@@ -954,8 +945,8 @@ in <维度: Dimension> -> execute
 
 ### `/particle`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/particle" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle" color="green"/>
+<WikiButton item="命令/particle"/>
 
 释放粒子。
 
@@ -976,8 +967,8 @@ in <维度: Dimension> -> execute
 
 ### `/clear`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除物品的命令clear" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/clear" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除物品的命令clear" color="green"/>
+<WikiButton item="命令/clear"/>
 
 清除玩家的物品。
 
@@ -998,8 +989,8 @@ in <维度: Dimension> -> execute
 
 ### `/clone`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#复制一片区域的命令clone" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/clone" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#复制一片区域的命令clone" color="green"/>
+<WikiButton item="命令/clone"/>
 
 将一个区域的方块复制到另一个区域。
 
@@ -1053,8 +1044,8 @@ in <维度: Dimension> -> execute
 
 ### `/camera`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机命令camera" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/camera" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机命令camera" color="green"/>
+<WikiButton item="命令/camera"/>
 
 对玩家的相机填充颜色，或设置玩家的相机视角。
 
@@ -1284,8 +1275,8 @@ in <维度: Dimension> -> execute
 
 ### `/structure`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b3_command_systems/c3_structure_block#结构命令structure" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/structure" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b3_command_systems/c3_structure_block#结构命令structure" color="green"/>
+<WikiButton item="命令/structure"/>
 
 保存、加载或删除一个结构。
 
@@ -1417,8 +1408,8 @@ in <维度: Dimension> -> execute
 
 ### `/gamerule`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改游戏规则的命令gamerule" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/gamerule" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改游戏规则的命令gamerule" color="green"/>
+<WikiButton item="命令/gamerule"/>
 
 查询或更改游戏规则。
 
@@ -1460,8 +1451,8 @@ in <维度: Dimension> -> execute
 
 ### `/effect`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#添加状态效果effect" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/effect" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#添加状态效果effect" color="green"/>
+<WikiButton item="命令/effect"/>
 
 对实体施加或移除状态效果。
 
@@ -1526,8 +1517,8 @@ in <维度: Dimension> -> execute
 
 ### `/replaceitem`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#改物品更改物品栏物品的命令replaceitem" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/replaceitem" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#改物品更改物品栏物品的命令replaceitem" color="green"/>
+<WikiButton item="命令/replaceitem"/>
 
 替换实体的物品栏为特定物品。
 
@@ -1620,8 +1611,8 @@ in <维度: Dimension> -> execute
 
 ### `/kill`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除实体的命令kill" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/kill" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除实体的命令kill" color="green"/>
+<WikiButton item="命令/kill"/>
 
 清除实体。
 
@@ -1638,8 +1629,8 @@ in <维度: Dimension> -> execute
 
 ### `/give`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#give的扩展语法" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/give" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#give的扩展语法" color="green"/>
+<WikiButton item="命令/give"/>
 
 给予玩家物品。
 
@@ -1658,8 +1649,8 @@ in <维度: Dimension> -> execute
 
 ### `/spawnpoint`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置重生点spawnpoint" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/spawnpoint" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置重生点spawnpoint" color="green"/>
+<WikiButton item="命令/spawnpoint"/>
 
 设置玩家的重生点。
 
@@ -1680,8 +1671,8 @@ in <维度: Dimension> -> execute
 
 ### `/inputpermission`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#变更权限inputpermission" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/inputpermission" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#变更权限inputpermission" color="green"/>
+<WikiButton item="命令/inputpermission" length="large"/>
 
 设置玩家的权限。
 
@@ -1718,8 +1709,8 @@ in <维度: Dimension> -> execute
 
 ### `/fill`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#批量填充方块的命令fill" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/fill" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#批量填充方块的命令fill" color="green"/>
+<WikiButton item="命令/fill"/>
 
 填充一片区域为特定方块。
 
@@ -1810,8 +1801,8 @@ in <维度: Dimension> -> execute
 
 ### `/gamemode`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#更改玩家游戏模式的命令gamemode" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/gamemode" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#更改玩家游戏模式的命令gamemode" color="green"/>
+<WikiButton item="命令/gamemode"/>
 
 调整玩家的游戏模式。
 
@@ -1839,8 +1830,8 @@ in <维度: Dimension> -> execute
 
 ### `/music`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#播放音乐的命令music" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/music" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#播放音乐的命令music" color="green"/>
+<WikiButton item="命令/music"/>
 
 对玩家播放或停止音乐。
 
@@ -1917,8 +1908,8 @@ in <维度: Dimension> -> execute
 
 ### `/title`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#标题命令title" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/title" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#标题命令title" color="green"/>
+<WikiButton item="命令/title"/>
 
 对特定玩家发送标题。
 
@@ -1985,8 +1976,8 @@ in <维度: Dimension> -> execute
 
 ### `/fog`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#迷雾命令fog" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/fog" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#迷雾命令fog" color="green"/>
+<WikiButton item="命令/fog"/>
 
 设置对玩家显示的迷雾。
 
@@ -2026,8 +2017,8 @@ in <维度: Dimension> -> execute
 
 ### `/hud`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#hud-显示命令hud" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/hud" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#hud-显示命令hud" color="green"/>
+<WikiButton item="命令/hud"/>
 
 隐藏或恢复 HUD 的可用性。
 
@@ -2050,7 +2041,7 @@ in <维度: Dimension> -> execute
 
 ### `/dialogue`
 
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/dialogue" backgroundColor="#1977E3" />
+<WikiButton item="命令/dialogue"/>
 
 调用 NPC 的对话框。
 
@@ -2101,7 +2092,7 @@ in <维度: Dimension> -> execute
 
 ### `/playanimation`
 
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/playanimation" backgroundColor="#1977E3" />
+<WikiButton item="命令/playanimation"/>
 
 令实体运行动画。
 
@@ -2118,8 +2109,8 @@ in <维度: Dimension> -> execute
 
 ### `/say`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#发送消息的命令say" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/say" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#发送消息的命令say" color="green"/>
+<WikiButton item="命令/say"/>
 
 在服务器公告消息。
 
@@ -2138,8 +2129,8 @@ in <维度: Dimension> -> execute
 
 ### `/setworldspawn`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置出生点setworldspawn" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/setworldspawn" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置出生点setworldspawn" color="green"/>
+<WikiButton item="命令/setworldspawn" length="large"/>
 
 设置世界的出生点。
 
@@ -2158,8 +2149,8 @@ in <维度: Dimension> -> execute
 
 ### `/tickingarea`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界常加载区域的命令tickingarea" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/tickingarea" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界常加载区域的命令tickingarea" color="green"/>
+<WikiButton item="命令/tickingarea"/>
 
 添加常加载区域。
 
@@ -2248,8 +2239,8 @@ in <维度: Dimension> -> execute
 
 ### `/tell`（或`/msg`、`/w`）
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#私聊玩家tellwmsg" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/tell" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#私聊玩家tellwmsg" color="green"/>
+<WikiButton item="命令/tell"/>
 
 私聊玩家。
 
@@ -2270,8 +2261,8 @@ in <维度: Dimension> -> execute
 
 ### `/time`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整时间的命令time" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/time" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整时间的命令time" color="green"/>
+<WikiButton item="命令/time"/>
 
 控制或查询世界时间。
 
@@ -2331,8 +2322,8 @@ in <维度: Dimension> -> execute
 
 ### `/xp`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#添加或夺走经验xp" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/xp" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#添加或夺走经验xp" color="green"/>
+<WikiButton item="命令/xp"/>
 
 增加或移除玩家的经验。
 
@@ -2375,7 +2366,7 @@ in <维度: Dimension> -> execute
 
 ### `/loot`
 
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/loot" backgroundColor="#1977E3" />
+<WikiButton item="命令/loot"/>
 
 生成、给予、插入、替换战利品。
 
@@ -2412,8 +2403,8 @@ in <维度: Dimension> -> execute
 
 ### `/difficulty`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界难度的命令difficulty" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/difficulty" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界难度的命令difficulty" color="green"/>
+<WikiButton item="命令/difficulty"/>
 
 设置游戏难度。
 
@@ -2438,8 +2429,8 @@ in <维度: Dimension> -> execute
 
 ### `/weather`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整天气的命令weather" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/weather" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整天气的命令weather" color="green"/>
+<WikiButton item="命令/weather"/>
 
 调整或查询天气状态。
 
@@ -2478,8 +2469,8 @@ in <维度: Dimension> -> execute
 
 ### `/enchant`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#为物品附魔的命令enchant" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/enchant" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#为物品附魔的命令enchant" color="green"/>
+<WikiButton item="命令/enchant"/>
 
 附魔玩家手里的物品。
 
@@ -2501,8 +2492,8 @@ in <维度: Dimension> -> execute
 
 ### `/schedule`
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#队列执行函数文件的命令schedule" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/schedule" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#队列执行函数文件的命令schedule" color="green"/>
+<WikiButton item="命令/schedule"/>
 
 队列执行函数。当玩家满足特定条件后，执行函数。
 
@@ -2649,8 +2640,8 @@ in <维度: Dimension> -> execute
 
 ### `/ride`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#改变骑乘关系ride" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/ride" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#改变骑乘关系ride" color="green"/>
+<WikiButton item="命令/ride"/>
 
 建立骑乘关系。
 
@@ -2741,8 +2732,8 @@ in <维度: Dimension> -> execute
 
 ### `/stopsound`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#停止音效的命令stopsound" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/stopsound" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#停止音效的命令stopsound" color="green"/>
+<WikiButton item="命令/stopsound"/>
 
 停止播放音效。
 
@@ -2761,8 +2752,8 @@ in <维度: Dimension> -> execute
 
 ### `/damage`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#施加特定伤害damage" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/damage" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#施加特定伤害damage" color="green"/>
+<WikiButton item="命令/damage"/>
 
 对实体造成伤害。
 
@@ -2797,8 +2788,8 @@ in <维度: Dimension> -> execute
 
 ### `/camerashake`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机摇晃命令camerashake" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/camerashake" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机摇晃命令camerashake" color="green"/>
+<WikiButton item="命令/camerashake"/>
 
 摇晃玩家的相机。
 
@@ -2842,8 +2833,8 @@ in <维度: Dimension> -> execute
 
 ### `/mobevent`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界生物生成事件的命令mobevent" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/mobevent" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界生物生成事件的命令mobevent" color="green"/>
+<WikiButton item="命令/mobevent"/>
 
 更改世界生物生成事件。
 
@@ -2862,7 +2853,7 @@ in <维度: Dimension> -> execute
 
 ### `/aimassist`
 
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/aimassist" backgroundColor="#1977E3" />
+<WikiButton item="命令/aimassist"/>
 
 设置玩家的瞄准辅助。
 
@@ -2904,7 +2895,7 @@ in <维度: Dimension> -> execute
 
 ### `/place`
 
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/place" backgroundColor="#1977E3" />
+<WikiButton item="命令/place"/>
 
 :::warning[权限等级适用性警告]
 
@@ -2971,7 +2962,7 @@ in <维度: Dimension> -> execute
 
 ### `/controlscheme`
 
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/controlscheme" backgroundColor="#1977E3" />
+<WikiButton item="命令/controlscheme" length="large"/>
 
 修改相机预设的控制方案。此命令需要结合`/camera`使用。
 
@@ -3023,8 +3014,8 @@ in <维度: Dimension> -> execute
 
 ### `/alwaysday`（或`/daylock`）
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#设置终为白日alwaysday" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/alwaysday" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#设置终为白日alwaysday" color="green"/>
+<WikiButton item="命令/alwaysday"/>
 
 设置终为白日。
 
@@ -3044,8 +3035,8 @@ in <维度: Dimension> -> execute
 
 ### `/clearspawnpoint`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#清除重生点clearspawnpoint" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/clearspawnpoint" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#清除重生点clearspawnpoint" color="green"/>
+<WikiButton item="命令/clearspawnpoint" length="large"/>
 
 清除玩家的重生点。
 
@@ -3064,7 +3055,7 @@ in <维度: Dimension> -> execute
 
 ### `/gametest`
 
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/gametest" backgroundColor="#1977E3" />
+<WikiButton item="命令/gametest"/>
 
 触发 Gametest。
 
@@ -3081,8 +3072,8 @@ in <维度: Dimension> -> execute
 
 ### `/locate`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#定位命令locate" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/locate" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#定位命令locate" color="green"/>
+<WikiButton item="命令/locate"/>
 
 定位结构或生物群系。
 
@@ -3121,8 +3112,8 @@ in <维度: Dimension> -> execute
 
 ### `/me`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#聊天栏宣告状态me" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/me" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#聊天栏宣告状态me" color="green"/>
+<WikiButton item="命令/me"/>
 
 公告自身状态。
 
@@ -3141,8 +3132,8 @@ in <维度: Dimension> -> execute
 
 ### `/recipe`
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b4_data_driven_items/c3_recipes#配方命令recipe" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/recipe" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a2_addons/b4_data_driven_items/c3_recipes#配方命令recipe" color="green"/>
+<WikiButton item="命令/recipe"/>
 
 为玩家添加或移除配方。
 
@@ -3181,7 +3172,7 @@ in <维度: Dimension> -> execute
 
 ### `/script`
 
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/script" backgroundColor="#1977E3" />
+<WikiButton item="命令/script"/>
 
 调试 Gametest。
 
@@ -3198,8 +3189,8 @@ in <维度: Dimension> -> execute
 
 ### `/spreadplayers`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#随机传送玩家spreadplayers" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/spreadplayers" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#随机传送玩家spreadplayers" color="green"/>
+<WikiButton item="命令/spreadplayers" length="large"/>
 
 随机扩散实体到地表。
 
@@ -3220,8 +3211,8 @@ spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: floa
 
 ### `/testfor`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c6_target_selector#命令testfor检测实体的命令" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/testfor" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c6_target_selector#命令testfor检测实体的命令" color="green"/>
+<WikiButton item="命令/testfor"/>
 
 检查实体是否存在。
 
@@ -3240,8 +3231,8 @@ spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: floa
 
 ### `/testforblock`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d3_subcommands_2#检测方块的子命令ifunless-block" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/testforblock" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d3_subcommands_2#检测方块的子命令ifunless-block" color="green"/>
+<WikiButton item="命令/testforblock"/>
 
 检查方块是否存在。
 
@@ -3262,8 +3253,8 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/testforblocks`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d3_subcommands_2#检测区域的子命令ifunless-blocks" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/testforblocks" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d3_subcommands_2#检测区域的子命令ifunless-blocks" color="green"/>
+<WikiButton item="命令/testforblocks" length="large"/>
 
 检查一个区域是否和另一个区域一致。
 
@@ -3287,8 +3278,8 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/toggledownfall`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#切换天气toggledownfall" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/toggledownfall" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#切换天气toggledownfall" color="green"/>
+<WikiButton item="命令/toggledownfall" length="large"/>
 
 切换天气。
 
@@ -3305,8 +3296,8 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/op`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/op" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" color="green"/>
+<WikiButton item="命令/op"/>
 
 将玩家设置为管理员。
 
@@ -3330,8 +3321,8 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/deop`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/deop" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" color="green"/>
+<WikiButton item="命令/deop"/>
 
 夺走玩家的管理员权限。
 
@@ -3353,8 +3344,8 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/kick`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#移出玩家命令kick" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/kick" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#移出玩家命令kick" color="green"/>
+<WikiButton item="命令/kick"/>
 
 移出玩家。
 
@@ -3372,8 +3363,8 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/list`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#玩家列表命令list" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/list" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#玩家列表命令list" color="green"/>
+<WikiButton item="命令/list"/>
 
 列出玩家列表。
 
@@ -3389,7 +3380,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/connect`（或`/wsserver`）
 
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/connect" backgroundColor="#1977E3" />
+<WikiButton item="命令/connect"/>
 
 连接到 WebSocket 服务器。
 
@@ -3413,8 +3404,8 @@ connect <服务器URI: text>
 
 ### `/reload`
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#重载函数文件的命令reload" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/reload" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#重载函数文件的命令reload" color="green"/>
+<WikiButton item="命令/reload"/>
 
 重新加载函数和脚本（仅限Script API）。
 
@@ -3430,8 +3421,8 @@ connect <服务器URI: text>
 
 ### `/stop`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/stop" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" color="green"/>
+<WikiButton item="命令/stop"/>
 
 关闭服务器。
 
@@ -3453,8 +3444,8 @@ stop
 
 ### `/setmaxplayers`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#设置最大玩家数setmaxplayers" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/setmaxplayers" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#设置最大玩家数setmaxplayers" color="green"/>
+<WikiButton item="命令/setmaxplayers" length="large"/>
 
 设置房间内允许的最大玩家数。
 
@@ -3476,8 +3467,8 @@ stop
 
 ### `/allowlist`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/allowlist" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" color="green"/>
+<WikiButton item="命令/allowlist"/>
 
 添加或移除玩家的白名单。
 
@@ -3539,7 +3530,7 @@ allowlist reload
 
 ### `/packstack`
 
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/packstack" backgroundColor="#1977E3" />
+<WikiButton item="命令/packstack"/>
 
 :::warning[版本适用性警告]
 
@@ -3570,8 +3561,8 @@ allowlist reload
 
 ### `/enableedunpc`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c11_china_edition" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/enableedunpc" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c11_china_edition" color="green"/>
+<WikiButton item="命令/enableedunpc" length="large"/>
 
 启用 NPC。
 
@@ -3595,8 +3586,8 @@ allowlist reload
 
 ### `/removeedunpc`
 
-<Highlight text="教程" url="/docs/tutorials/a1_commands/b2_commands/c11_china_edition" />
-<Highlight text="Wiki" url="https://zh.minecraft.wiki/命令/removeedunpc" backgroundColor="#1977E3" />
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c11_china_edition" color="green"/>
+<WikiButton item="命令/removeedunpc" length="large"/>
 
 移除全部 NPC。
 

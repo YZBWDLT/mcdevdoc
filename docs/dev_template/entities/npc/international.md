@@ -6,4 +6,4 @@ sidebar_position: 5
 
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
-import Download from "/src/components/highlight/download"
+import DownloadButton from "/src/components/button/download"

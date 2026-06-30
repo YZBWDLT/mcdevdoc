@@ -1,7 +1,9 @@
 /**
- * OreUI 风格主页 hero（亮 / 暗双模式，引用 custom.css 的语义变量）
+ * OreUI 风格主页 hero + 特性卡片（亮 / 暗双模式）
+ * 引用 custom.css 的语义变量
  */
 
+/* ===== Hero 区域 ===== */
 .heroBanner {
   padding: 4rem 1rem 3rem;
   text-align: center;
@@ -41,5 +43,91 @@
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2.5rem 1rem;
+  }
+}
+
+/* ===== 特性卡片区域（原 HomepageFeatures 样式） ===== */
+.features {
+  padding: 1rem 0 3rem;
+}
+
+.featuresRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* 单个卡片：OreUI 立体面板（上边亮、其余暗），hover 时边框变绿 */
+.featureWrapper {
+  background-color: var(--oreui-surface);
+  border: 2px solid var(--oreui-border-dark);
+  border-top-color: var(--oreui-border-light);
+  padding: 1.25rem;
+  flex: 0 0 calc(33.333% - 0.667rem);
+  box-sizing: border-box;
+  transition: border-color 0.12s ease;
+}
+
+.featureWrapper:hover {
+  border-color: var(--oreui-accent);
+  border-top-color: var(--oreui-accent);
+}
+
+.featureContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.imageContainer {
+  flex: 0 0 auto;
+}
+
+.featureImage {
+  width: 88px;
+  height: 88px;
+  image-rendering: pixelated; /* 保持 Minecraft 贴图的像素清晰 */
+}
+
+.textContainer {
+  flex: 1 1 auto;
+}
+
+.textContainer h2 {
+  color: var(--oreui-text);
+  font-family: var(--oreui-font-subtitle);
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.textContainer p {
+  color: var(--oreui-text-dim);
+  margin-bottom: 0;
+}
+
+.textContainer a {
+  color: var(--oreui-link);
+  text-decoration: none;
+}
+
+.textContainer a:hover {
+  text-decoration: underline;
+}
+
+.noLink {
+  color: var(--oreui-text);
+}
+
+@media (max-width: 996px) {
+  .featureWrapper {
+    flex: 0 0 calc(50% - 0.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .featureWrapper {
+    flex: 0 0 100%;
   }
 }

@@ -6,9 +6,9 @@ sidebar_position: 2
 
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
-import Download from "/src/components/highlight/download"
+import DownloadButton from "/src/components/button/download"
 
-<Download url="https://app.nekodrive.net/s/8r3f1"/>
+<DownloadButton url="https://app.nekodrive.net/s/8r3f1"/>
 
 **本包用于为 NPC 主包中引入的 NPC 添加更多更生动的动作**。
 

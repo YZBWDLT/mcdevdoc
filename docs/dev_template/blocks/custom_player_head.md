@@ -6,9 +6,9 @@ sidebar_position: 1
 
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
-import Download from "/src/components/highlight/download"
+import DownloadButton from "/src/components/button/download"
 
-<Download url="https://app.nekodrive.net/s/dNACZ"/>
+<DownloadButton url="https://app.nekodrive.net/s/dNACZ"/>
 
 **本包用于创建更多自定义头颅**。
 

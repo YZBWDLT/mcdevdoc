@@ -6,9 +6,9 @@ sidebar_position: 3
 
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
-import Download from "/src/components/highlight/download"
+import DownloadButton from "/src/components/button/download"
 
-<Download url="https://app.nekodrive.net/s/VZMid"/>
+<DownloadButton url="https://app.nekodrive.net/s/VZMid"/>
 
 **本包用于创建 Java 版中的辅助实体：[文本展示实体](https://zh.minecraft.wiki/w/展示实体)**。
 
@@ -134,7 +134,7 @@ summon template:text_display "§b点击按钮以开始游戏" 10 10 10
 
 您可以在这里下载到过往版本。然而，我们已不再推荐使用这些旧版本。
 
-<Download text="下载 v1 版本" url="https://app.nekodrive.net/s/zgGi4" isInline/>
+<DownloadButton text="v1 版本" url="https://app.nekodrive.net/s/zgGi4"/>
 
 *备注：v1 版本将同时下载标记和文本展示实体*。
 

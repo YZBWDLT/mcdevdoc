@@ -6,9 +6,9 @@ sidebar_position: 1
 
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
-import Download from "/src/components/highlight/download"
+import DownloadButton from "/src/components/button/download"
 
-<Download url="https://app.nekodrive.net/s/qw1tO"/>
+<DownloadButton url="https://app.nekodrive.net/s/qw1tO"/>
 
 本包已经搭建了一套**较为完善的计时函数命令系统**，以便您基于此底层系统编写命令。
 
@@ -314,7 +314,7 @@ execute if score timeline time matches 101 run function lib/modify_data/states/t
 
 ## 过往版本下载
 
-<Download text="下载 v2 版本" url="https://app.nekodrive.net/s/77Yf5" isInline/> <Download text="下载 v1 版本" url="https://app.nekodrive.net/s/D5Jcm" isInline/>
+<DownloadButton text="v2 版本" url="https://app.nekodrive.net/s/77Yf5"/> <DownloadButton text="v1 版本" url="https://app.nekodrive.net/s/D5Jcm"/>
 
 import GiscusComment from "/src/components/comment/giscus.js"
 

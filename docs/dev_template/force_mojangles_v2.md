@@ -4,10 +4,10 @@ sidebar_position: 5
 
 # 强制 Mojangles 字体 v2
 
-import Download from "/src/components/highlight/download"
 import Image from "/src/components/image/standard"
+import DownloadButton from "/src/components/button/download"
 
-<Download url="https://app.nekodrive.net/s/0PnSG"/>
+<DownloadButton url="https://app.nekodrive.net/s/0PnSG"/>
 
 本包将**常用的英文和数字字体强制更改为了 Mojangles 字体**，以保证在有其他 GNU Unifont 字体（例如中文）出现时能够和纯英文字段保持一致。
 

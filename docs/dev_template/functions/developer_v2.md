@@ -4,9 +4,9 @@ sidebar_position: 5
 
 # 开发者系统 v2
 
-import Download from "/src/components/highlight/download"
+import DownloadButton from "/src/components/button/download"
 
-<Download url="https://app.nekodrive.net/s/XM0fY"/>
+<DownloadButton url="https://app.nekodrive.net/s/XM0fY"/>
 
 本包已经搭建了一套较为初步的开发者系统，**以便您基于此编写一些您在开发时所独有的功能，便于您的开发**。
 
@@ -324,7 +324,7 @@ execute @s[scores={temp=1}] ~~~ function levels/open/before_opening/start
 
 您可以在这里下载到过往版本。然而，我们已不再推荐使用这些旧版本。
 
-<Download text="下载 v1 版本" url="https://app.nekodrive.net/s/vg2ue" isInline/>
+<DownloadButton text="v1 版本" url="https://app.nekodrive.net/s/vg2ue"/>
 
 import GiscusComment from "/src/components/comment/giscus.js"
 

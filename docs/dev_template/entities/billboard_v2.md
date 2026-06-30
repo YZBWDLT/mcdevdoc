@@ -6,10 +6,10 @@ sidebar_position: 5
 
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
-import Download from "/src/components/highlight/download"
+import DownloadButton from "/src/components/button/download"
 import Image from "/src/components/image/standard"
 
-<Download url="https://app.nekodrive.net/s/gvdck"/>
+<DownloadButton url="https://app.nekodrive.net/s/gvdck"/>
 
 本包用于创建一个公告板实体。
 
@@ -154,7 +154,7 @@ execute as @e[type=template:billboard,rym=-92,ry=-88] at @s positioned ~~~-2 run
 
 您可以在这里下载到过往版本。然而，我们已不再推荐使用这些旧版本。
 
-<Download text="下载 v1 版本" url="https://app.nekodrive.net/s/lXPSl" isInline/>
+<DownloadButton text="v1 版本" url="https://app.nekodrive.net/s/lXPSl"/>
 
 import GiscusComment from "/src/components/comment/giscus.js"
 
