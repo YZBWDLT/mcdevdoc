@@ -10,23 +10,26 @@ import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
 import Image from "/src/components/image/standard"
+
 import Button from '/src/components/button/base';
 import WikiButton from '/src/components/button/wiki';
+import Highlight from '/src/components/highlight/base';
 
 > 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
 
 本文档收录所有正式版或预览版中可用的命令，并给出对应课时。其中，部分内容并未在模块 1 介绍，请阅读本篇文档的初学者注意甄别，如果需要，请学习相关知识。
 
+**未特别指明的命令的权限等级均为 1。每个命令条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。" size="large"/>。
+
 ## 帮助命令
 
 ### `/help`（或`/?`）
 
-<Button text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c1_command" color="green"/>
-<WikiButton item="命令/help"/>
+<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。" size="large"/><br/>
+
+<Button text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c1_command" color="green"/> <WikiButton item="命令/help"/>
 
 显示帮助文档。
-
-- **权限等级**：0（无需作弊）
 
 <Tabs>
 
@@ -68,9 +71,6 @@ import WikiButton from '/src/components/button/wiki';
 按照特定的命令上下文执行命令，并检测条件。
 
 `/execute`除了`run`子命令之外，通用语法为`/execute <子命令> -> execute`，其中`-> execute`表示下一个子命令的起点。从左到右解析。修饰子命令的`-> execute`是必选参数。
-
-- **权限等级**：1
-- **使用频率**：★★★★★
 
 <Tabs>
 
@@ -269,9 +269,6 @@ in <维度: Dimension> -> execute
 
 执行函数。
 
-- **权限等级**：1
-- **使用频率**：★★★★★
-
 ```text
 /function <路径: filepath>
 ```
@@ -288,9 +285,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/scoreboard"/>
 
 管理记分项和追踪对象。其中，`玩家: target`可以是不存在的玩家，可以指定为`*`以代表所有追踪对象。
-
-- **权限等级**：1
-- **使用频率**：★★★★★
 
 <Tabs>
 
@@ -485,9 +479,6 @@ in <维度: Dimension> -> execute
 
 在特定位置生成特定名称、特定生成事件的实体。
 
-- **权限等级**：1
-- **使用频率**：★★★★★
-
 <Tabs>
 
 <TabItem value="summon_1" label="仅命名" default>
@@ -549,9 +540,6 @@ in <维度: Dimension> -> execute
 
 对特定玩家的聊天栏发送原始 JSON 文本。
 
-- **权限等级**：1
-- **使用频率**：★★★★★
-
 ```text
 /tellraw <玩家: target> <原始JSON文本: json>
 ```
@@ -568,9 +556,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/tag"/>
 
 对实体的标签进行操作。
-
-- **权限等级**：1
-- **使用频率**：★★★★★
 
 <Tabs>
 
@@ -762,18 +747,11 @@ in <维度: Dimension> -> execute
 
 ### `/scriptevent`
 
+<Highlight text="SAPI" tooltip="中国版移除了SAPI的功能。因此，该命令在中国版的执行结果无论如何都是无效。这个警告会在中国版更新3.9后失效。" size="large"/><br/>
+
 <WikiButton item="命令/scriptevent"/>
 
-配合 ScriptAPI 使用，对`system`类发送一个`scriptEventReceive`的后事件。
-
-- **权限等级**：1
-- **使用频率**：★★★★☆
-
-:::warning[版本适用性警告]
-
-中国版移除了 SAPI 的功能。因此，该命令在中国版的执行结果无论如何都是无效。
-
-:::
+对`system`类发送一个`scriptEventReceive`的后事件。
 
 ```text
 /scriptevent <消息ID: string> <消息: message>
@@ -791,9 +769,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/titleraw"/>
 
 对特定玩家发送原始 JSON 文本的标题。
-
-- **权限等级**：1
-- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -860,9 +835,6 @@ in <维度: Dimension> -> execute
 
 对玩家播放音效。
 
-- **权限等级**：1
-- **使用频率**：★★★★☆
-
 ```text
 /playsound <音效: string> [玩家: target] [位置: x y z] [音量: float] [音调: float] [最低音量: float]
 ```
@@ -881,9 +853,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/setblock"/>
 
 在一个特定位置放置方块。
-
-- **权限等级**：1
-- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -930,9 +899,6 @@ in <维度: Dimension> -> execute
 
 触发一个实体的生成事件。
 
-- **权限等级**：1
-- **使用频率**：★★★★☆
-
 ```text
 /event entity <目标: target> <生成事件: string>
 ```
@@ -949,9 +915,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/particle"/>
 
 释放粒子。
-
-- **权限等级**：1
-- **使用频率**：★★★★☆
 
 ```text
 /particle <粒子效果: string> [位置: x y z]
@@ -972,9 +935,6 @@ in <维度: Dimension> -> execute
 
 清除玩家的物品。
 
-- **权限等级**：1
-- **使用频率**：★★★★☆
-
 ```text
 /clear <玩家: target> <物品: Item> [数据值: int] [最大数量: int]
 ```
@@ -993,9 +953,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/clone"/>
 
 将一个区域的方块复制到另一个区域。
-
-- **权限等级**：1
-- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -1044,13 +1001,12 @@ in <维度: Dimension> -> execute
 
 ### `/camera`
 
+<Highlight text="高版本" tooltip="视场角语法仅限 1.21.110+ 版本可用。附着相机语法和样条语法仅限 26.10+ 版本可用。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机命令camera" color="green"/>
 <WikiButton item="命令/camera"/>
 
 对玩家的相机填充颜色，或设置玩家的相机视角。
-
-- **权限等级**：1
-- **使用频率**：★★★★☆
 
 <Tabs><TabItem value="camera_clear" label="clear" default>
 
@@ -1091,12 +1047,6 @@ in <维度: Dimension> -> execute
 /camera <玩家: target> set <预设: string>
 ```
 
-:::warning[版本适用性警告]
-
-`minecraft:fixed_boom`预设仅限 1.21.70+ 版本可用。
-
-:::
-
 设置`玩家`的自定义相机为`预设`。可用预设为：
 
 - `minecraft:first_person`：第一人称
@@ -1132,12 +1082,6 @@ in <维度: Dimension> -> execute
 /camera <玩家: target> set <预设: string> [缓动] [朝向] [视角偏移] [实体偏移]
 ```
 
-:::warning[版本适用性警告]
-
-`minecraft:fixed_boom`预设仅限 1.21.70+ 版本可用，`[缓动]`子命令仅限 1.21.80+ 版本可用。
-
-:::
-
 将玩家的轨道相机按照特定的`缓动`动画设置为特定`朝向`，同时设置相机相对玩家位置的偏移为`实体偏移`，相对玩家视角的偏移为`视角偏移`。
 
 `预设`仅限设置为`minecraft:follow_orbit`或`minecraft:fixed_boom`时有效。
@@ -1158,12 +1102,6 @@ in <维度: Dimension> -> execute
 </TabItem><TabItem value="target" label="target">
 
 聚焦实体语法，可令玩家的相机焦点始终对准某个实体。包括`target_entity`和`remove_target`。
-
-:::warning[版本适用性警告]
-
-聚焦实体语法仅限 1.21.60+ 版本可用。
-
-:::
 
 <Tabs><TabItem value="target_entity" label="target_entity">
 
@@ -1197,12 +1135,6 @@ in <维度: Dimension> -> execute
 
 视场角语法，控制玩家相机的视场角。包括`fov_clear`和`fov_set`。
 
-:::warning[版本适用性警告]
-
-视场角语法仅限 1.21.110+ 版本可用。
-
-:::
-
 <Tabs><TabItem value="fov_clear" label="fov_clear">
 
 ```text
@@ -1229,12 +1161,6 @@ in <维度: Dimension> -> execute
 
 附着相机语法，将相机固定到特定实体上。包括`attach_to_entity`和`detach_from_entity`。
 
-:::warning[版本适用性警告]
-
-附着相机语法仅限 26.10+ 版本可用。
-
-:::
-
 <Tabs><TabItem value="attach_to_entity" label="attach_to_entity">
 
 ```text
@@ -1257,12 +1183,6 @@ in <维度: Dimension> -> execute
 
 样条语法，按照特定样条路径播放相机。
 
-:::warning[版本适用性警告]
-
-样条语法仅限 26.10+ 版本可用。
-
-:::
-
 ```text
 /camera <玩家: target> play_spline <名称: string>
 ```
@@ -1279,9 +1199,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/structure"/>
 
 保存、加载或删除一个结构。
-
-- **权限等级**：1
-- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -1413,9 +1330,6 @@ in <维度: Dimension> -> execute
 
 查询或更改游戏规则。
 
-- **权限等级**：1
-- **使用频率**：★★★★☆
-
 <Tabs>
 
 <TabItem value="gamerule_1" label="查询" default>
@@ -1455,9 +1369,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/effect"/>
 
 对实体施加或移除状态效果。
-
-- **权限等级**：1
-- **使用频率**：★★★★☆
 
 <Tabs>
 
@@ -1521,9 +1432,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/replaceitem"/>
 
 替换实体的物品栏为特定物品。
-
-- **权限等级**：1
-- **使用频率**：★★★☆☆
 
 <Tabs>
 
@@ -1616,9 +1524,6 @@ in <维度: Dimension> -> execute
 
 清除实体。
 
-- **权限等级**：1
-- **使用频率**：★★★☆☆
-
 ```text
 /kill <实体: target>
 ```
@@ -1633,9 +1538,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/give"/>
 
 给予玩家物品。
-
-- **权限等级**：1
-- **使用频率**：★★★☆☆
 
 ```text
 /give <玩家: target> <物品: Item> [数量: int] [数据值: int] [组件: json]
@@ -1653,9 +1555,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/spawnpoint"/>
 
 设置玩家的重生点。
-
-- **权限等级**：1
-- **使用频率**：★★★☆☆
 
 ```text
 /spawnpoint [玩家: target] [重生点: x y z]
@@ -1675,9 +1574,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/inputpermission" length="large"/>
 
 设置玩家的权限。
-
-- **权限等级**：1
-- **使用频率**：★★★☆☆
 
 <Tabs>
 
@@ -1713,9 +1609,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/fill"/>
 
 填充一片区域为特定方块。
-
-- **权限等级**：1
-- **使用频率**：★★★☆☆
 
 <Tabs>
 
@@ -1806,9 +1699,6 @@ in <维度: Dimension> -> execute
 
 调整玩家的游戏模式。
 
-- **权限等级**：1
-- **使用频率**：★★★☆☆
-
 ```text
 /gamemode <游戏模式: GameMode> [玩家: target]
 /gamemode <游戏模式: int> [玩家: target]
@@ -1834,9 +1724,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/music"/>
 
 对玩家播放或停止音乐。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -1913,9 +1800,6 @@ in <维度: Dimension> -> execute
 
 对特定玩家发送标题。
 
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
 <Tabs>
 
 <TabItem value="title_pos" label="title | subtitle | actionbar" default>
@@ -1981,9 +1865,6 @@ in <维度: Dimension> -> execute
 
 设置对玩家显示的迷雾。
 
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
-
 <Tabs>
 
 <TabItem value="push" label="push" default>
@@ -2022,8 +1903,6 @@ in <维度: Dimension> -> execute
 
 隐藏或恢复 HUD 的可用性。
 
-- **权限等级**：1
-
 ```text
 /hud <玩家: target> <可见性: HudVisibility> [HUD元素: HudElement]
 ```
@@ -2041,18 +1920,11 @@ in <维度: Dimension> -> execute
 
 ### `/dialogue`
 
+<Highlight text="NPC" tooltip="中国版移除了 NPC 的功能，包括实体定义的 minecraft:npc 组件。因此，该命令在中国版的执行结果无论如何都是无效。" size="large"/><br/>
+
 <WikiButton item="命令/dialogue"/>
 
 调用 NPC 的对话框。
-
-- **权限等级**：1
-- **使用频率**：★★★☆☆
-
-:::warning[版本适用性警告]
-
-中国版移除了 NPC 的功能，包括实体定义的`minecraft:npc`组件。因此，该命令在中国版的执行结果无论如何都是无效。
-
-:::
 
 <Tabs>
 
@@ -2096,9 +1968,6 @@ in <维度: Dimension> -> execute
 
 令实体运行动画。
 
-- **权限等级**：1
-- **使用频率**：★★★☆☆
-
 ```text
 /playanimation <实体: target> <动画: string> [下个状态: string] [淡出时间: float] [终止表达式: string] [控制器: string]
 ```
@@ -2109,13 +1978,12 @@ in <维度: Dimension> -> execute
 
 ### `/say`
 
+<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#发送消息的命令say" color="green"/>
 <WikiButton item="命令/say"/>
 
 在服务器公告消息。
-
-- **权限等级**：0（无需作弊）
-- **使用频率**：★★★☆☆
 
 ```text
 /say <消息: message>
@@ -2134,9 +2002,6 @@ in <维度: Dimension> -> execute
 
 设置世界的出生点。
 
-- **权限等级**：1
-- **使用频率**：★★★☆☆
-
 ```text
 /setworldspawn [出生点: x y z]
 ```
@@ -2153,9 +2018,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/tickingarea"/>
 
 添加常加载区域。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2239,13 +2101,12 @@ in <维度: Dimension> -> execute
 
 ### `/tell`（或`/msg`、`/w`）
 
+<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#私聊玩家tellwmsg" color="green"/>
 <WikiButton item="命令/tell"/>
 
 私聊玩家。
-
-- **权限等级**：0（无需作弊）
-- **使用频率**：★★★☆☆
 
 ```text
 /tell <玩家: target> <消息: message>
@@ -2265,9 +2126,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/time"/>
 
 控制或查询世界时间。
-
-- **权限等级**：1
-- **使用频率**：★★★☆☆
 
 <Tabs>
 
@@ -2327,9 +2185,6 @@ in <维度: Dimension> -> execute
 
 增加或移除玩家的经验。
 
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
 <Tabs>
 
 <TabItem value="1" label="经验点数" default>
@@ -2370,9 +2225,6 @@ in <维度: Dimension> -> execute
 
 生成、给予、插入、替换战利品。
 
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
 ---
 
 ```text
@@ -2408,9 +2260,6 @@ in <维度: Dimension> -> execute
 
 设置游戏难度。
 
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
 ```text
 /difficulty <难度: Difficulty>
 /difficulty <难度: int>
@@ -2433,9 +2282,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/weather"/>
 
 调整或查询天气状态。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2474,9 +2320,6 @@ in <维度: Dimension> -> execute
 
 附魔玩家手里的物品。
 
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
 ```text
 /enchant <玩家: target> <附魔: int> [等级: int]
 /enchant <玩家: target> <附魔: Enchant> [等级: int]
@@ -2496,9 +2339,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/schedule"/>
 
 队列执行函数。当玩家满足特定条件后，执行函数。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2645,9 +2485,6 @@ in <维度: Dimension> -> execute
 
 建立骑乘关系。
 
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
 <Tabs>
 
 <TabItem value="start_riding" label="start_riding" default>
@@ -2737,9 +2574,6 @@ in <维度: Dimension> -> execute
 
 停止播放音效。
 
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
 ```text
 /stopsound <玩家: target> [音效: string]
 ```
@@ -2756,9 +2590,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/damage"/>
 
 对实体造成伤害。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2792,9 +2623,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/camerashake"/>
 
 摇晃玩家的相机。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2838,9 +2666,6 @@ in <维度: Dimension> -> execute
 
 更改世界生物生成事件。
 
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
 ```text
 /mobevent <事件: MobEvent> [值: Boolean]
 ```
@@ -2858,9 +2683,6 @@ in <维度: Dimension> -> execute
 设置玩家的瞄准辅助。
 
 **瞄准辅助（Aim Assist）** 是用于非第一人称时的瞄准功能。瞄准辅助会尝试以玩家的眼睛为顶点，向外以一定的角度发散一个锥形的区域，并按照特定规则选取方块和实体。
-
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
 
 <Tabs><TabItem value="set" label="set" default>
 
@@ -2895,20 +2717,11 @@ in <维度: Dimension> -> execute
 
 ### `/place`
 
+<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。但是，在SAPI中有Dimension.placeFeature()、StructureManager.placeJigsaw()等对应方法可用。" size="large"/><br/>
+
 <WikiButton item="命令/place"/>
 
-:::warning[权限等级适用性警告]
-
-该命令需要至少`2`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
-
-但是，在 SAPI 中有`Dimension.placeFeature()`、`StructureManager.placeJigsaw()`等对应方法可用。
-
-:::
-
 放置地物、结构、拼图等。
-
-- **权限等级**：2
-- **使用频率**：★★☆☆☆
 
 <Tabs>
 
@@ -2966,9 +2779,6 @@ in <维度: Dimension> -> execute
 
 修改相机预设的控制方案。此命令需要结合`/camera`使用。
 
-- **权限等级**：1
-- **使用频率**：★★☆☆☆
-
 <Tabs>
 
 <TabItem value="set" label="set" default>
@@ -3019,9 +2829,6 @@ in <维度: Dimension> -> execute
 
 设置终为白日。
 
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
-
 ```text
 /alwaysday [锁定: Boolean]
 /daylock [锁定: Boolean]
@@ -3040,9 +2847,6 @@ in <维度: Dimension> -> execute
 
 清除玩家的重生点。
 
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
-
 ```text
 /clearspawnpoint [玩家: target]
 ```
@@ -3055,18 +2859,11 @@ in <维度: Dimension> -> execute
 
 ### `/gametest`
 
+<Highlight text="实验性玩法" color="red" tooltip="该命令使用的脚本@minecraft/gametest仍然处于beta阶段，必须开启实验性玩法。" size="large"/><br/>
+
 <WikiButton item="命令/gametest"/>
 
 触发 Gametest。
-
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
-
-:::danger[实验性玩法警告]
-
-因为当前该命令使用的脚本`@minecraft/gametest`仍然处于`beta`阶段，因此本教程不会介绍相关脚本及该命令。
-
-:::
 
 ---
 
@@ -3076,9 +2873,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/locate"/>
 
 定位结构或生物群系。
-
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
 
 <Tabs>
 
@@ -3112,13 +2906,12 @@ in <维度: Dimension> -> execute
 
 ### `/me`
 
+<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#聊天栏宣告状态me" color="green"/>
 <WikiButton item="命令/me"/>
 
 公告自身状态。
-
-- **权限等级**：0（无需作弊）
-- **使用频率**：★☆☆☆☆
 
 ```text
 /me <消息: message>
@@ -3136,9 +2929,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/recipe"/>
 
 为玩家添加或移除配方。
-
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
 
 <Tabs>
 
@@ -3172,18 +2962,11 @@ in <维度: Dimension> -> execute
 
 ### `/script`
 
+<Highlight text="实验性玩法" color="red" tooltip="该命令使用的脚本@minecraft/gametest仍然处于beta阶段，必须开启实验性玩法。" size="large"/><br/>
+
 <WikiButton item="命令/script"/>
 
 调试 Gametest。
-
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
-
-:::danger[实验性玩法警告]
-
-因为当前该命令使用的脚本`@minecraft/gametest`仍然处于`beta`阶段，因此本教程不会介绍相关脚本及该命令。
-
-:::
 
 ---
 
@@ -3193,9 +2976,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/spreadplayers" length="large"/>
 
 随机扩散实体到地表。
-
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
 
 ```text
 spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: float> <实体: target> [最高高度: value]
@@ -3216,9 +2996,6 @@ spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: floa
 
 检查实体是否存在。
 
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
-
 ```text
 /testfor <实体: target>
 ```
@@ -3235,9 +3012,6 @@ spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: floa
 <WikiButton item="命令/testforblock"/>
 
 检查方块是否存在。
-
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
 
 ```text
 testforblock <位置: x y z> <方块: Block> [方块状态: block states]
@@ -3257,9 +3031,6 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 <WikiButton item="命令/testforblocks" length="large"/>
 
 检查一个区域是否和另一个区域一致。
-
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
 
 ```text
 /testforblocks <起点: x y z> <终点: x y z> <目标点: x y z> [all|masked]
@@ -3283,9 +3054,6 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 切换天气。
 
-- **权限等级**：1
-- **使用频率**：★☆☆☆☆
-
 ```text
 /toggledownfall
 ```
@@ -3296,18 +3064,12 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/op`
 
+<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" color="green"/>
 <WikiButton item="命令/op"/>
 
 将玩家设置为管理员。
-
-- **权限等级**：2
-
-:::warning[权限等级适用性警告]
-
-该命令需要至少`2`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
-
-:::
 
 ```text
 /op <玩家: target>
@@ -3321,18 +3083,12 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/deop`
 
+<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" color="green"/>
 <WikiButton item="命令/deop"/>
 
 夺走玩家的管理员权限。
-
-- **权限等级**：2
-
-:::warning[权限等级适用性警告]
-
-该命令需要至少`2`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
-
-:::
 
 ```text
 /deop <玩家: target>
@@ -3344,12 +3100,12 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/kick`
 
+<Highlight text="权限等级 1" color="yellowgreen" tooltip="该命令无需作弊即可使用。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#移出玩家命令kick" color="green"/>
 <WikiButton item="命令/kick"/>
 
 移出玩家。
-
-- **权限等级**：1（无需作弊）
 
 ```text
 /kick <玩家: target> <理由: message>
@@ -3363,12 +3119,12 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/list`
 
+<Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#玩家列表命令list" color="green"/>
 <WikiButton item="命令/list"/>
 
 列出玩家列表。
-
-- **权限等级**：0（无需作弊）
 
 ```text
 /list
@@ -3380,17 +3136,11 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/connect`（或`/wsserver`）
 
+<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+
 <WikiButton item="命令/connect"/>
 
 连接到 WebSocket 服务器。
-
-- **权限等级**：2
-
-:::warning[权限等级适用性警告]
-
-该命令需要至少`2`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
-
-:::
 
 ```text
 connect <服务器URI: text>
@@ -3404,12 +3154,12 @@ connect <服务器URI: text>
 
 ### `/reload`
 
+<Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#重载函数文件的命令reload" color="green"/>
 <WikiButton item="命令/reload"/>
 
 重新加载函数和脚本（仅限Script API）。
-
-- **权限等级**：2
 
 ```text
 /reload [全部: reload_all]
@@ -3421,18 +3171,12 @@ connect <服务器URI: text>
 
 ### `/stop`
 
+<Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" color="green"/>
 <WikiButton item="命令/stop"/>
 
 关闭服务器。
-
-- **权限等级**：4
-
-:::warning[权限等级适用性警告]
-
-该命令需要至少`4`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
-
-:::
 
 ```text
 stop
@@ -3444,18 +3188,12 @@ stop
 
 ### `/setmaxplayers`
 
+<Highlight text="权限等级 3" tooltip="该命令的权限等级为房主，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#设置最大玩家数setmaxplayers" color="green"/>
 <WikiButton item="命令/setmaxplayers" length="large"/>
 
 设置房间内允许的最大玩家数。
-
-- **权限等级**：3
-
-:::warning[权限等级适用性警告]
-
-该命令需要至少`3`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
-
-:::
 
 ```text
 /setmaxplayers <最大玩家数: int>
@@ -3467,18 +3205,12 @@ stop
 
 ### `/allowlist`
 
+<Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" color="green"/>
 <WikiButton item="命令/allowlist"/>
 
 添加或移除玩家的白名单。
-
-- **权限等级**：4
-
-:::warning[权限等级适用性警告]
-
-该命令需要至少`4`的权限等级运行，因此不能使用命令方块、函数或脚本等自动化程序执行。
-
-:::
 
 <Tabs>
 
@@ -3530,17 +3262,11 @@ allowlist reload
 
 ### `/packstack`
 
+<Highlight text="高版本" tooltip="该命令仅限 26.0+ 版本可用。" size="large"/><br/>
+
 <WikiButton item="命令/packstack"/>
 
-:::warning[版本适用性警告]
-
-该命令仅限 26.0+ 版本可用。
-
-:::
-
 输出当前附加包的数据。
-
-- **权限等级**：0
 
 ```text
 /packstack <包类型: stackType> [详细输出: verbose] [是否排除原版包: exclude-vanilla]
@@ -3561,18 +3287,12 @@ allowlist reload
 
 ### `/enableedunpc`
 
+<Highlight text="中国版独有" tooltip="该命令仅限中国版可用。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c11_china_edition" color="green"/>
 <WikiButton item="命令/enableedunpc" length="large"/>
 
 启用 NPC。
-
-- **权限等级**：1
-
-:::warning[版本适用性警告]
-
-该命令仅限中国版可用。
-
-:::
 
 ```text
 /enableedunpc <启用NPC: Boolean>
@@ -3586,18 +3306,12 @@ allowlist reload
 
 ### `/removeedunpc`
 
+<Highlight text="中国版独有" tooltip="该命令仅限中国版可用。" size="large"/><br/>
+
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c11_china_edition" color="green"/>
 <WikiButton item="命令/removeedunpc" length="large"/>
 
 移除全部 NPC。
-
-- **权限等级**：1
-
-:::warning[版本适用性警告]
-
-该命令仅限中国版可用。
-
-:::
 
 ```text
 /removeedunpc

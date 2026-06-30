@@ -42,6 +42,15 @@
     font-display: swap;
 }
 
+/* 该文件取自中文 Minecraft Wiki：
+ * https://zh.minecraft.wiki/w/File:Unifont.woff2
+ */
+@font-face {
+    font-family: "Unifont";
+    src: url("/fonts/Unifont.woff2") format("woff2");
+    font-display: swap;
+}
+
 /* ===================================================================
  * 通用 token + Infima 变量映射（引用语义变量，随主题切换）
  * =================================================================== */
@@ -126,7 +135,7 @@
     --oreui-font-body: "MiSans", "NotoSans Bold", "Segoe UI", Tahoma, sans-serif;
 }
 [data-font="official"] {
-  --oreui-font-body: 'NotoSans Bold', 'Segoe UI', Tahoma, sans-serif;
+    --oreui-font-body: "NotoSans Bold", "Segoe UI", Tahoma, sans-serif;
 }
 
 /* ===================================================================
@@ -164,7 +173,7 @@
     --oreui-text-dim: #c5c6c9;
     --oreui-border-light: #5a5b5c;
     --oreui-border-dark: #1e1e1f;
-    --oreui-line: #1e1e1f;
+    --oreui-line: #dbdbe2;
     --oreui-code-inline-bg: #1f1f1f;
     --oreui-panel-bg: rgba(0, 0, 0, 0.13);
     --oreui-scroll-track: #313233;
@@ -188,7 +197,7 @@
     display: inline-flex;
     font-family: var(--oreui-font-body);
     justify-content: center;
-    margin: 6px;
+    margin: 0;
     text-decoration: none;
     transition: none;
     user-select: none;
@@ -692,4 +701,68 @@ kbd {
 .thin-scrollbar::-webkit-scrollbar-thumb,
 .thin-scrollbar::-webkit-scrollbar-track {
     border-radius: 0;
+}
+
+/* ================================================================
+   Minecraft 风格 Tooltip（用于 BaseHighlight）
+   代码来源于中文 Minecraft Wiki，有删改：
+   https://zh.minecraft.wiki/w/MediaWiki:Common.css
+   ================================================================ */
+
+.minetip-tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #100010;
+    padding: 0.375em;
+    font-family: "Minecraft Seven", Unifont, sans-serif;
+    font-size: 16px;
+    word-spacing: 4px;
+    white-space: nowrap;
+    line-height: 1.25em;
+    margin: 0.125em 0.25em;
+    pointer-events: none;
+    z-index: 9999;
+    color: #fff;
+    /* 以下由 JS 控制位置和可见性 */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease;
+    /* 默认不显示 */
+}
+
+.minetip-tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.minetip-tooltip::before {
+    content: "";
+    position: absolute;
+    top: 0.125em;
+    right: -0.125em;
+    bottom: 0.125em;
+    left: -0.125em;
+    border: 0.15em solid #100010;
+    border-style: none solid;
+    border-color: rgba(16, 0, 16, 0.94);
+}
+
+.minetip-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 0.125em;
+    right: 0;
+    bottom: 0.125em;
+    left: 0;
+    border: 0.125em solid #2d0a63;
+    border-image: -webkit-linear-gradient(rgba(80, 0, 255, 0.31), rgba(40, 0, 127, 0.31)) 1;
+    border-image: linear-gradient(rgba(80, 0, 255, 0.31), rgba(40, 0, 127, 0.31)) 1;
+}
+
+/* 可选：支持描述段落（如需多行） */
+.minetip-tooltip > .description,
+.minetip-tooltip > .minetip-description {
+    display: block;
+    margin-top: 0.25em;
 }
