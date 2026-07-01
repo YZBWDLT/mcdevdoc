@@ -24,7 +24,7 @@ import Version from "/src/components/highlight/version"
 
 <Tabs><TabItem value="国际版" label="国际版" default>
 
-<Usable type="all"/> <Version from="1.20.0"/>
+<Usable type="all"/> <Version add="1.20.0"/>
 
 <treeview>
 
@@ -48,7 +48,7 @@ import Version from "/src/components/highlight/version"
 
 </TabItem><TabItem value="国际版（旧版）" label="国际版（旧版）" default>
 
-<Usable type="all"/> <Version from="1.10" to="1.16.0"/>
+<Usable type="all"/> <Version add="1.10" deprecated="1.16.0"/>
 
 <treeview>
 
@@ -72,7 +72,7 @@ import Version from "/src/components/highlight/version"
 
 </TabItem><TabItem value="中国版" label="中国版" default>
 
-<Usable type="onlyChina"/> <Version from="1.10"/>
+<Usable type="onlyChina"/> <Version add="1.10"/>
 
 <treeview>
 
@@ -152,7 +152,7 @@ import Version from "/src/components/highlight/version"
     - <DataType type="object" name="description" isRequired/>：物品描述，定义物品的基本属性。
       - <DataType type="string" name="identifier" isRequired/>：定义物品的命名空间和物品 ID。
     - <DataType type="object" name="components" isRequired/>：物品组件，定义物品的功能。
-      - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件（旧版）](./components#旧版本组件)。
+      - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件（弃用组件）](./components#弃用组件)。
 
 </treeview>
 
@@ -194,7 +194,7 @@ import Version from "/src/components/highlight/version"
       - <DataType type="string" name="identifier" isRequired/>：定义物品的命名空间和物品 ID。
       - <DataType type="string" name="category"/>：定义物品在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）。
     - <DataType type="object" name="components" isRequired/>：物品组件，定义物品的功能。
-      - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件（旧版）](./components#旧版本组件)。
+      - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件（弃用组件）](./components#弃用组件)。
 
 </treeview>
 

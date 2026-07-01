@@ -58,7 +58,7 @@ export default function BaseButton(buttonOptions) {
       className={`btn ${color}_btn ${length}_btn btn_height_${height} ${fontSizeClass}`}
       target={target}
       rel={rel}
-      style={{marginTop: "3px", marginBottom: "3px"}}
+      style={{marginTop: "10px", marginBottom: "10px"}}
     >
       {logo && <img src={logo} alt="" style={logoStyle} />}
       {text}

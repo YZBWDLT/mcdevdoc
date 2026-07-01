@@ -1,21 +1,13 @@
 # 文档更新日志
 
-- 新增 设置页面
-- 新增 字体设置
-- 新增 多个 OreUI 风格的按钮组件
-- 更新 多个文档的下载按钮、链接按钮
-- 更新 文档 url
-- 新增 Minecraft 样式的 ToolTip
-- 新增 OreUI 风格的高亮
-- 更新 命令文档：全部命令汇总 的按钮样式和标签样式
-- 更新 为`DataType`和`FileType`新增了 Minecraft 样式的 ToolTip
-- 更新 将原来的`Version`组件命名为`OldVer`，以便后续迁移
-- 更新 物品文档：数据驱动物品组件
-  - 为每个组件都新增了 Bedrock Wiki 对应的链接（如果有的话）
-  - 修正了错误将`minecraft:fire_resistant`组件记作`minecraft:fire_resistance`的问题
-  - 修正了`minecraft:use_modifiers`组件的依赖项问题
-- 更新 方块文档：数据驱动方块组件
-  - 为每个组件都新增了 Bedrock Wiki 对应的链接（如果有的话）
+- 更改 同步方块组件文档、方块特征文档和物品文档到最新的 26.30 版本
+- 更改 物品组件文档新增弃用组件部分，将以前的旧版组件全部移动至弃用组件
+- 更改 更新了`Version`组件，
+  - 现在在高于中国版版本时显示为黄色，其余显示为红色
+  - 实验性玩法、已弃用和已移除均为红色，分别拥有各自的提示和文本
+  - 更改`from`→`add`、`to`和`deprecated`→`deprecated`
+- 更改 增加了按钮的上下间隔
+- 更改 增加了高亮的上下间隔，并添加了`inline`参数代表行间高亮，上下间隔改为 0
 
 ## 过往更新日志
 
@@ -354,6 +346,25 @@
 ### 2026 年 6 月 29 日
 
 - 更新了文档为 OreUI 风格。感谢萝卜！
+
+### 2026 年 6 月 30 日
+
+- 新增 设置页面
+- 新增 字体设置
+- 新增 多个 OreUI 风格的按钮组件
+- 更新 多个文档的下载按钮、链接按钮
+- 更新 文档 url
+- 新增 Minecraft 样式的 ToolTip
+- 新增 OreUI 风格的高亮
+- 更新 命令文档：全部命令汇总 的按钮样式和标签样式
+- 更新 为`DataType`和`FileType`新增了 Minecraft 样式的 ToolTip
+- 更新 将原来的`Version`组件命名为`OldVer`，以便后续迁移
+- 更新 物品文档：数据驱动物品组件
+  - 为每个组件都新增了 Bedrock Wiki 对应的链接（如果有的话）
+  - 修正了错误将`minecraft:fire_resistant`组件记作`minecraft:fire_resistance`的问题
+  - 修正了`minecraft:use_modifiers`组件的依赖项问题
+- 更新 方块文档：数据驱动方块组件
+  - 为每个组件都新增了 Bedrock Wiki 对应的链接（如果有的话）
 
 </details>
 

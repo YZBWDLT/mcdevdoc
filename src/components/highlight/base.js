@@ -7,6 +7,7 @@ import MinecraftStyleTooltip from "../tooltip/minecraftStyle";
  * @property {string} [color] 高亮背景色。默认 `"gold"`。
  * @property {string} [size] 字体大小。预设值：`extra_small` | `small` | `medium` | `large` | `extra_large`，也支持直接写尺寸。默认 `"medium"`。
  * @property {string} [tooltip] 鼠标悬浮/点击提示文本。为空则不显示提示。
+ * @property {boolean} [inline] 是否为行内高亮文本。若是则取消文本附近的间隔。
  */
 
 const SIZE_MAP = {
@@ -91,18 +92,17 @@ function getContrastColor(color) {
  * @param {BaseHighlightOptions} param0
  * @returns
  */
-export default function BaseHighlight({ text, color = "gold", size = "medium", tooltip = "" }) {
+export default function BaseHighlight({ text, color = "gold", size = "medium", tooltip = "", inline = false }) {
     const fontSize = SIZE_MAP[size] || size;
     const textColor = getContrastColor(color);
+    const padding = inline ? "0" : "0.3em 0.3em"
     /** @type {React.CSSProperties} */
     const highlightStyle = {
         backgroundColor: color,
         color: textColor,
-        padding: "0.1em 0.3em",
-        borderRadius: "0",
+        padding: padding,
         fontSize: fontSize,
         display: "inline",
-        lineHeight: "1.6",
         boxDecorationBreak: "clone",
         cursor: tooltip ? "help" : "default",
         marginRight: "6px",

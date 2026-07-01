@@ -6,15 +6,14 @@ sidebar_position: 5
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Highlight from '/src/components/highlight/standard';
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
+import Button from "/src/components/button/base"
 
 > 适用版本：国际版 1.21.130，中国版 3.7（1.21.50）。  
-> 本文档配备教程，您可以点击下面的「教程」按钮查看我们提供的教程。
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b4_data_driven_items/c3_recipes" />
+<Button text="教程" url="/docs/tutorials/a2_addons/b4_data_driven_items/c3_recipes" color="green"/>
 
 ---
 

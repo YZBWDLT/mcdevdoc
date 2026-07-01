@@ -10,8 +10,12 @@ import '/src/css/treeview.css';
 import OldVer from "/src/components/highlight/oldversion"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
+import Highlight from '/src/components/highlight/base';
+import Usable from "/src/components/highlight/usable"
+import Version from "/src/components/highlight/version"
+import Button from '/src/components/button/base';
 
-> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.30，中国版 3.8（1.21.90）。
 
 方块特征（Block Traits）[^1]可以用来启用原版的方块状态和方块功能。
 
@@ -19,18 +23,14 @@ import DataType from "/src/components/type/data"
 
 本文档收录方块特征的相关信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
 
-:::note[温馨提示]
-
-文档中的标签<OldVer version="版本号"/>代表至少需要使用此格式版本才可生效，并且将会链接到官方文档，读者可点击以查看对应文档。
-
-:::
-
 ---
 ---
 
 ## `minecraft:placement_direction`
 
-<OldVer version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/placement_direction?view=minecraft-bedrock-stable" />
+<Usable type="all"/> <Version add="1.20.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/placement_direction?view=minecraft-bedrock-stable"/>
 
 使方块按特定朝向放置时具有特定的方块状态。
 
@@ -44,9 +44,10 @@ import DataType from "/src/components/type/data"
       | --- | --- | --- |
       | `minecraft:cardinal_direction` | 基础朝向 | `north`、`south`（默认）、`west`、`east` |
       | `minecraft:facing_direction` | 面向朝向 | `north`、`south`、`west`、`east`、`up`、`down`（默认） |
-      | `minecraft:corner_and_cardinal_direction` | （1.26.0+）角落和基础朝向<br/>同时启用两个方块状态：`minecraft:cardinal_direction`、`minecraft:corner` | `minecraft:corner`的可能值：`inner_left`、`inner_right`、`outer_left`、`outer_right`、`none`（默认） |
+      | `minecraft:corner_and_cardinal_direction` | <Version add="1.26.0" inline/>角落和基础朝向<br/>同时启用两个方块状态：`minecraft:cardinal_direction`、`minecraft:corner` | `minecraft:corner`的可能值：`inner_left`、`inner_right`、`outer_left`、`outer_right`、`none`（默认） |
+      | `minecraft:sixteen_way_rotation` | <Version add="1.26.30" experimental="即将推出的创作者功能" inline/> 十六旋转朝向 | `0`-`15`间的整数 |
   - <DataType type="float" name="y_rotation_offset"/>：定义方块以玩家面向朝向为基准，在按逆时针添加多少旋转偏移值后放置方块。默认值为`0.0`。
-  - <DataType type="array" name="blocks_to_corner_with"/>：（1.26.0+）仅当启用了`minecraft:corner_and_cardinal_direction`时可用。指定可形成拐角的方块列表。不指定时，默认指定为和该方块相同 ID 的方块。
+  - <DataType type="array" name="blocks_to_corner_with"/>：<Version add="1.26.0" inline/>仅当启用了`minecraft:corner_and_cardinal_direction`时可用。指定可形成拐角的方块列表。不指定时，默认指定为和该方块相同 ID 的方块。
     - <DataType type="object"/>：指定方块标签。
       - <DataType type="string" name="tags"/>：符合特定方块标签要求的方块。
     - <DataType type="object"/>：指定符合特定方块 ID 和状态的方块。
@@ -92,7 +93,9 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:placement_position`
 
-<OldVer version="1.20.20" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/placement_position?view=minecraft-bedrock-stable" />
+<Usable type="all"/> <Version add="1.20.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/placement_position?view=minecraft-bedrock-stable"/>
 
 使方块按特定位置放置时具有特定的方块状态。
 
@@ -132,7 +135,9 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:connection`
 
-<OldVer version="1.26.0" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/connection?view=minecraft-bedrock-stable" />
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.26.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/connection?view=minecraft-bedrock-stable"/>
 
 使方块与其他方块连接时具有特定的方块状态。
 
@@ -161,24 +166,15 @@ import DataType from "/src/components/type/data"
 
 ## `minecraft:multi_block`
 
-<OldVer version="1.26.10" docUrl="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/multi_block?view=minecraft-bedrock-stable" isBeta/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.26.10" experimental="即将推出的创作者功能"/> <Highlight text="需要前置组件" tooltip="要使用此特征，请事先定义minecraft:movable组件，且movement_type必须指定为popped或immovable中的一个。"/> <Highlight text="禁用组件" tooltip="使用此方块特征后，不可定义带有n_way_visual_rotation属性的minecraft:geometry组件和minecraft:block_entity组件。" color="red"/> <Highlight text="禁用置换组件" tooltip="使用此方块特征后，不可在方块置换中定义minecraft:movable组件、minecraft:placement_filter组件、minecraft:random_offset组件、minecraft:replaceable组件和minecraft:precipitation_interactions组件。" color="red"/> <Highlight text="禁用方块特征" tooltip="使用此方块特征后，只能定义minecraft:placement_direction方块特征，且该方块特征的enabled_states属性只能定义minecraft:cardinal_direction方块状态。" color="red"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/multi_block?view=minecraft-bedrock-stable" isBeta/>
 
 定义方块为多部分方块。
 
-:::danger[警告]
+另见：*[`minecraft:moveable`](components#minecraftmoveable)组件*（`movement_type`必须指定为`popped`或`immovable`中的一个）、*[`minecraft:placement_filter`](components#minecraftplacement_filter)组件*、*[`minecraft:random_offset`](components#minecraftrandom_offset)组件*、*[`minecraft:replaceable`](components#minecraftreplaceable)组件*、*[`minecraft:precipitation_interactions`](components#minecraftprecipitation_interactions)组件* 和 *[`minecraft:geometry`](components#minecraftgeometry)组件*。
 
-该方块特征仍处于实验性玩法，必须开启「即将推出的创作者功能」才可使用。在实验性玩法中，该特征存在功能不稳定、功能更改甚至未来被移除的风险。
-
-:::
-
-:::warning[注意]
-
-要使用该特征，必须：
-
-- 定义组件[`minecraft:movable`](components#minecraftmovable)，且不可在方块置换中定义，且`movement_type`必须指定为`popped`或`immovable`中的一个。
-- 不可在方块置换中定义组件[`minecraft:placement_filter`](components#minecraftplacement_filter)
-
-:::
+另见：*[`minecraft:placement_direction`](#minecraftplacement_direction)方块特征*。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
