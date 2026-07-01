@@ -95,9 +95,9 @@
     color-scheme: dark; /* 告知浏览器此页面为暗色模式 */
 
     /* ---- 2.2 字体家族 ---- */
-    --oreui-font-title: "Minecraft Ten", "NotoSans Bold", "MiSans", "Segoe UI", sans-serif;
-    --oreui-font-subtitle: "Minecraft Seven", "NotoSans Bold", "MiSans", "Segoe UI", sans-serif;
-    --oreui-font-body: "Minecraft Seven", "NotoSans Bold", "Segoe UI", Tahoma, sans-serif;
+    --oreui-font-title: "Minecraft Ten", "NotoSans Bold", "MiSans Bold", "Segoe UI", sans-serif;
+    --oreui-font-subtitle: "Minecraft Seven", "NotoSans Bold", "MiSans Bold", "Segoe UI", sans-serif;
+    --oreui-font-body: "Minecraft Seven", "NotoSans Bold", "MiSans", "Segoe UI", Tahoma, sans-serif;
 
     /* ---- 2.3 主题色（绿色系） ---- */
     --oreui-accent: #3c8527; /* 主色 */
