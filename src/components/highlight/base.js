@@ -95,12 +95,11 @@ function getContrastColor(color) {
 export default function BaseHighlight({ text, color = "gold", size = "medium", tooltip = "", inline = false }) {
     const fontSize = SIZE_MAP[size] || size;
     const textColor = getContrastColor(color);
-    const padding = inline ? "0" : "0.3em 0.3em"
     /** @type {React.CSSProperties} */
     const highlightStyle = {
         backgroundColor: color,
         color: textColor,
-        padding: padding,
+        padding: inline ? "0" : "0.2em 0.3em",
         fontSize: fontSize,
         display: "inline",
         boxDecorationBreak: "clone",

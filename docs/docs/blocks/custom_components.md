@@ -19,13 +19,13 @@ import DataType from "/src/components/type/data"
 
 :::
 
-自定义方块组件可通过世界启动前事件（`StartupEvent`）的`blockComponentRegistry`属性中的`registerCustomComponent()`方法注册。其中，`name`属性注册为自定义组件的名称，而`customComponent`是一个接口`BlockCustomComponent`。
+自定义方块组件可通过世界启动前事件中的`StartupEvent.blockComponentRegistry.registerCustomComponent()`方法注册。
 
 ```TypeScript
 registerCustomComponent(name: string, customComponent: BlockCustomComponent): void
 ```
 
-下面给出接口`BlockCustomComponent`允许的所有属性，每个属性都接收一个两参数的函数，第一个参数返回对应事件，第二个参数返回自定义组件中的参数。
+其中，`name`属性注册为自定义组件的名称，而`customComponent`是一个接口`BlockCustomComponent`。下面给出接口`BlockCustomComponent`允许的所有属性，每个属性都接收一个两参数的函数，第一个参数返回对应事件，第二个参数返回自定义组件中的参数。
 
 ---
 

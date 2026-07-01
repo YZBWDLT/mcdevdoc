@@ -30,19 +30,19 @@ import Version from "/src/components/highlight/version"
 
 - <FileType type="folder" name="behavior_packs"/>
   - <FileType type="folder" name="items"/>
-    - **[<FileType type="file" name="(物品 ID).item.json"/>](#行为包定义格式)：定义物品的行为和渲染表现**
+    - [<FileType type="file" name="(物品 ID).item.json"/>](#行为包定义格式)：定义物品的行为和渲染表现
   - <FileType type="folder" name="item_catalog"/>
-    - **[<FileType type="file" name="crafting_item_catalog.json"/>](./item_category_and_group#自定义物品组)：物品在创造模式物品栏和配方书中的分类信息（1.21.60+）**
+    - [<FileType type="file" name="crafting_item_catalog.json"/>](./item_category_and_group#自定义物品组)：<Version add="1.21.60"/>物品在创造模式物品栏和配方书中的分类信息
   - <FileType type="folder" name="recipes"/>
-    - **[<FileType type="file" name="(物品 ID).recipe.json"/>](recipes)：定义物品的配方表**，亦可用于原版物品
+    - [<FileType type="file" name="(物品 ID).recipe.json"/>](recipes)：定义物品的配方表，亦可用于原版物品
 - <FileType type="folder" name="resource_packs"/>
   - <FileType type="folder" name="texts"/>
-    - **[<FileType type="file" name="en_US.lang"/>](#语言文件键名)：定义物品的英文译名**
-    - **[<FileType type="file" name="zh_CN.lang"/>](#语言文件键名)：定义物品的中文译名**
+    - [<FileType type="file" name="en_US.lang"/>](#语言文件键名)：定义物品的英文译名
+    - [<FileType type="file" name="zh_CN.lang"/>](#语言文件键名)：定义物品的中文译名
   - <FileType type="folder" name="textures"/>
     - <FileType type="folder" name="items"/>
-      - **<FileType type="image" name="(物品 ID).png"/>：定义物品的贴图**
-    - **[<FileType type="file" name="item_texture.json"/>](#item_texturejson)：物品贴图注册**
+      - <FileType type="image" name="(物品 ID).png"/>：定义物品的贴图
+    - [<FileType type="file" name="item_texture.json"/>](#item_texturejson)：物品贴图注册
 
 </treeview>
 
@@ -54,19 +54,19 @@ import Version from "/src/components/highlight/version"
 
 - <FileType type="folder" name="behavior_packs"/>
   - <FileType type="folder" name="items"/>
-    - **[<FileType type="file" name="(物品 ID).item.json"/>](#行为包定义格式)：定义物品的行为**
+    - [<FileType type="file" name="(物品 ID).item.json"/>](#行为包定义格式)：定义物品的行为
   - <FileType type="folder" name="recipes"/>
-    - **[<FileType type="file" name="(物品 ID).recipe.json"/>](recipes)：定义物品的配方表**，亦可用于原版物品
+    - [<FileType type="file" name="(物品 ID).recipe.json"/>](recipes)：定义物品的配方表，亦可用于原版物品
 - <FileType type="folder" name="resource_packs"/>
   - <FileType type="folder" name="items"/>
-    - **[<FileType type="file" name="(物品 ID).json"/>](#资源包定义格式)：定义物品的渲染表现**
+    - [<FileType type="file" name="(物品 ID).json"/>](#资源包定义格式)：定义物品的渲染表现
   - <FileType type="folder" name="texts"/>
-    - **[<FileType type="file" name="en_US.lang"/>](#语言文件键名)：定义物品的英文译名**
-    - **[<FileType type="file" name="zh_CN.lang"/>](#语言文件键名)：定义物品的中文译名**
+    - [<FileType type="file" name="en_US.lang"/>](#语言文件键名)：定义物品的英文译名
+    - [<FileType type="file" name="zh_CN.lang"/>](#语言文件键名)：定义物品的中文译名
   - <FileType type="folder" name="textures"/>
     - <FileType type="folder" name="items"/>
-      - **<FileType type="image" name="(物品 ID).png"/>：定义物品的贴图**
-    - **[<FileType type="file" name="item_texture.json"/>](#item_texturejson)：物品贴图注册**
+      - <FileType type="image" name="(物品 ID).png"/>：定义物品的贴图
+    - [<FileType type="file" name="item_texture.json"/>](#item_texturejson)：物品贴图注册
 
 </treeview>
 
@@ -78,23 +78,23 @@ import Version from "/src/components/highlight/version"
 
 - <FileType type="folder" name="behavior_packs"/>
   - <FileType type="folder" name="netease_items_beh"/>
-    - **[<FileType type="file" name="(物品 ID).json"/>](#行为包定义格式)：定义物品的行为**
+    - [<FileType type="file" name="(物品 ID).json"/>](#行为包定义格式)：定义物品的行为
   - <FileType type="folder" name="netease_group"/>
-    - **[<FileType type="file" name="*.json"/>](./item_category_and_group#自定义物品组)：定义物品组，名称可任意指定（例如 crafting_item_catalog.json 或 group_config.json）**
+    - [<FileType type="file" name="*.json"/>](./item_category_and_group#自定义物品组)：定义物品组，名称可任意指定（例如 crafting_item_catalog.json 或 group_config.json）
   - <FileType type="folder" name="netease_tab"/>
-    - **[<FileType type="file" name="*.json"/>](./item_category_and_group#自定义物品分类)：定义物品分类，名称可任意指定（例如  crafting_item_catalog.json 或 category_config.json）**
+    - [<FileType type="file" name="*.json"/>](./item_category_and_group#自定义物品分类)：定义物品分类，名称可任意指定（例如  crafting_item_catalog.json 或 category_config.json）
   - <FileType type="folder" name="netease_recipes"/>
-    - **[<FileType type="file" name="(物品 ID).json"/>](recipes)：定义物品的配方表**，亦可用于原版物品
+    - [<FileType type="file" name="(物品 ID).json"/>](recipes)：定义物品的配方表，亦可用于原版物品
 - <FileType type="folder" name="resource_packs"/>
   - <FileType type="folder" name="netease_items_res"/>
-    - **[<FileType type="file" name="(物品 ID).json"/>](#资源包定义格式)：定义物品的渲染表现**
+    - [<FileType type="file" name="(物品 ID).json"/>](#资源包定义格式)：定义物品的渲染表现
   - <FileType type="folder" name="texts"/>
-    - **[<FileType type="file" name="en_US.lang"/>](#语言文件键名)：定义物品的英文译名**
-    - **[<FileType type="file" name="zh_CN.lang"/>](#语言文件键名)：定义物品的中文译名**
+    - [<FileType type="file" name="en_US.lang"/>](#语言文件键名)：定义物品的英文译名
+    - [<FileType type="file" name="zh_CN.lang"/>](#语言文件键名)：定义物品的中文译名
   - <FileType type="folder" name="textures"/>
     - <FileType type="folder" name="items"/>
-      - **<FileType type="image" name="(物品 ID).png"/>：定义物品的贴图**
-    - **[<FileType type="file" name="item_texture.json"/>](#item_texturejson)：物品贴图注册**
+      - <FileType type="image" name="(物品 ID).png"/>：定义物品的贴图
+    - [<FileType type="file" name="item_texture.json"/>](#item_texturejson)：物品贴图注册
 
 </treeview>
 

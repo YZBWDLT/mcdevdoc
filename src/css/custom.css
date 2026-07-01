@@ -1,49 +1,62 @@
-/**
- * OreUI 主题 —— 亮 / 暗双模式
- *
- * 架构：定义一套语义变量 (--oreui-*)，在 light / dark 下各赋一套值；
- * 所有 Infima 变量与组件样式只引用语义变量，切换主题即自动适配。
- * 代码块背景交给 prism 主题处理（亮 = github 浅、暗 = dracula 深），
- * 本文件只负责代码块的 OreUI 立体边框，避免与 prism 打架。
- */
+/* ================================================================
+   OreUI 暗色主题 —— 适用于 Docusaurus
+   ================================================================
+   设计理念：
+   1. 所有颜色使用 CSS 自定义属性（变量），便于统一调整。
+   2. 样式基于 Minecraft / OreUI 风格：直角、立体感、像素字体。
+   3. 支持多种字体切换（通过 data-font 属性）。
+   4. 已强制启用暗色模式，无亮色主题。
+   ================================================================ */
 
-/* ===================================================================
- * 字体（Minecraft 像素字体 + 中文回退 MiSans / NotoSans）
- * =================================================================== */
+/* ================================================================
+   第一部分：字体加载（@font-face）
+   ================================================================
+   这些字体用于实现 Minecraft 风格的文字显示。
+   其中 Minecraft Ten/Seven 是像素风格字体。
+   Unifont 用于支持 CJK 字符（中文、日文等）。
+   ================================================================ */
+
+/* Minecraft 标题字体（粗像素） */
 @font-face {
     font-family: "Minecraft Ten";
     src: url("/fonts/Minecraft-Ten.otf") format("opentype");
     font-display: swap;
-    size-adjust: 120%; /* 将英文放大到原来的 120%，可根据视觉调整 */
+    size-adjust: 120%; /* 适当放大，使英文与中文视觉大小协调 */
 }
 
+/* Minecraft 正文字体（标准像素） */
 @font-face {
     font-family: "Minecraft Seven";
     src: url("/fonts/Minecraft-Seven.otf") format("opentype");
     font-display: swap;
-    size-adjust: 120%; /* 将英文放大到原来的 120%，可根据视觉调整 */
+    size-adjust: 120%;
 }
 
+/* NotoSans 粗体（用于中文回退及部分标题） */
 @font-face {
     font-family: "NotoSans Bold";
     src: url("/fonts/NotoSans-Bold.ttf") format("truetype");
     font-display: swap;
 }
 
+/* MiSans 常规体（小米字体，适合现代中文显示） */
 @font-face {
     font-family: "MiSans";
     src: url("/fonts/misans_normal.woff2") format("woff2");
     font-display: swap;
 }
 
+/* MiSans 粗体 */
 @font-face {
     font-family: "MiSans Bold";
     src: url("/fonts/misans_bold.woff2") format("woff2");
     font-display: swap;
 }
 
-/* 该文件取自中文 Minecraft Wiki：
- * https://zh.minecraft.wiki/w/File:Unifont.woff2
+/*
+ * Unifont —— 源自中文 Minecraft Wiki
+ * 来源：https://zh.minecraft.wiki/w/File:Unifont.woff2
+ * 该字体全面支持 CJK 字符，用于 Minecraft 风格中文显示。
  */
 @font-face {
     font-family: "Unifont";
@@ -51,20 +64,49 @@
     font-display: swap;
 }
 
-/* ===================================================================
- * 通用 token + Infima 变量映射（引用语义变量，随主题切换）
- * =================================================================== */
+/* ================================================================
+   第二部分：全局 CSS 变量（语义化颜色与字体配置）
+   ================================================================
+   --oreui-*      ：语义变量，定义颜色、字体等
+   --ifm-*        ：Docusaurus / Infima 官方变量，引用 --oreui-*
+   这样设计使主题变量集中管理，便于维护。
+   ================================================================ */
+
 :root {
+    /* ---- 2.1 基础颜色（暗色主题） ---- */
+    --oreui-bg: #48494a; /* 页面主背景 */
+    --oreui-surface: #3b3c3d; /* 卡片、面板等次级背景 */
+    --oreui-surface-2: #313233; /* 更深一级背景（如导航栏、侧边栏） */
+    --oreui-text: #ffffff; /* 主文字颜色 */
+    --oreui-text-dim: #c5c6c9; /* 次级文字（较暗） */
+    --oreui-code-text: #ffffff; /* 行内代码文字颜色 */
+    --oreui-border-light: #5a5b5c; /* 边框亮色（用于立体感上边缘） */
+    --oreui-border-dark: #323334; /* 边框暗色（用于立体感下边缘） */
+    --oreui-border-dark2: #1e1e1f; /* 边框暗色（用于立体感下边缘） */
+    --oreui-line: #dbdbe2; /* 分割线颜色 */
+    --oreui-code-inline-bg: #1f1f1f; /* 行内代码背景 */
+    --oreui-panel-bg: rgba(0, 0, 0, 0.13); /* 面板半透明背景（用于悬浮效果） */
+    --oreui-scroll-track: #313233; /* 滚动条轨道 */
+    --oreui-scroll-thumb: #6d6d6e; /* 滚动条滑块 */
+    --oreui-link: #6cc349; /* 链接颜色（绿色） */
+    --oreui-link-hover: #8fd673; /* 链接悬停颜色（亮绿） */
+    --oreui-navbar-background: #e6e8eb; /* 导航栏背景 */
+    --oreui-navbar-border-bottom: #b1b2b5; /* 导航栏底部颜色 */
+    color-scheme: dark; /* 告知浏览器此页面为暗色模式 */
+
+    /* ---- 2.2 字体家族 ---- */
     --oreui-font-title: "Minecraft Ten", "NotoSans Bold", "MiSans", "Segoe UI", sans-serif;
     --oreui-font-subtitle: "Minecraft Seven", "NotoSans Bold", "MiSans", "Segoe UI", sans-serif;
     --oreui-font-body: "Minecraft Seven", "NotoSans Bold", "Segoe UI", Tahoma, sans-serif;
 
-    --oreui-accent: #3c8527;
+    /* ---- 2.3 主题色（绿色系） ---- */
+    --oreui-accent: #3c8527; /* 主色 */
     --oreui-accent-dark: #2a641c;
     --oreui-accent-darker: #1d4d13;
     --oreui-accent-bright: #57b539;
 
-    /* 主色（绿，两模式通用） */
+    /* ---- 2.4 Docusaurus / Infima 变量映射 ---- */
+    /* 主色 */
     --ifm-color-primary: #3c8527;
     --ifm-color-primary-dark: #357623;
     --ifm-color-primary-darker: #2a641c;
@@ -90,10 +132,10 @@
     --ifm-link-hover-color: var(--oreui-link-hover);
 
     /* 导航栏 */
-    --ifm-navbar-background-color: var(--oreui-header-bg);
-    --ifm-navbar-link-color: var(--oreui-text);
+    --ifm-navbar-background-color: var(--oreui-navbar-background);
+    --ifm-navbar-link-color: var(--oreui-border-dark2);
     --ifm-navbar-link-hover-color: var(--oreui-accent);
-    --ifm-navbar-search-input-background-color: var(--oreui-code-inline-bg);
+    --ifm-navbar-search-input-background-color: var(--oreui-border-dark2);
 
     /* 侧边栏菜单 */
     --ifm-menu-color: var(--oreui-text-dim);
@@ -101,11 +143,11 @@
     --ifm-menu-color-background-active: transparent;
     --ifm-menu-color-background-hover: transparent;
 
-    /* 右侧目录 TOC */
-    --ifm-toc-border-color: var(--oreui-line);
+    /* 右侧目录（TOC） */
+    --ifm-toc-border-color: var(--oreui-border-dark2);
     --ifm-toc-link-color: var(--oreui-text-dim);
 
-    /* 行内代码（代码块背景交给 prism 主题） */
+    /* 行内代码 */
     --ifm-code-background: var(--oreui-code-inline-bg);
 
     /* 表格 */
@@ -113,87 +155,57 @@
     --ifm-table-stripe-background: var(--oreui-panel-bg);
     --ifm-table-head-background: var(--oreui-surface-2);
 
-    /* 引用 / 分割线 / 页脚 */
+    /* 引用 / 分割线 */
     --ifm-blockquote-color: var(--oreui-text-dim);
     --ifm-blockquote-border-color: var(--oreui-accent);
     --ifm-hr-background-color: var(--oreui-line);
 
-    /* 去圆角，贴合 OreUI 像素风 */
+    /* 强制直角（OreUI 风格） */
     --ifm-global-radius: 0px;
     --ifm-button-border-radius: 0px;
 
+    /* Docusaurus 代码高亮背景（透明绿色） */
     --docusaurus-highlighted-code-line-bg: rgba(60, 133, 39, 0.16);
 }
 
-/* ===================================================================
- * 字体切换：多种字体模式。
- * 用法：在 <html> 上添加 data-font="misans" 属性
- * =================================================================== */
+/* ================================================================
+   第三部分：字体切换模式（通过 data-font 属性）
+   ================================================================
+   用法：在 <html> 上设置 data-font="misans" 或 "official" 或 "unifont"
+   即可切换全局字体配置，无需重新加载页面。
+   ================================================================ */
+
+/* 模式1：MiSans 现代风（全站使用 MiSans 字体） */
 [data-font="misans"] {
     --oreui-font-title: "MiSans Bold", "NotoSans Bold", "Segoe UI", sans-serif;
     --oreui-font-subtitle: "MiSans Bold", "NotoSans Bold", "Segoe UI", sans-serif;
     --oreui-font-body: "MiSans", "NotoSans Bold", "Segoe UI", Tahoma, sans-serif;
 }
+
+/* 模式2：官网风格（标题保留像素，正文使用 NotoSans） */
 [data-font="official"] {
     --oreui-font-body: "NotoSans Bold", "Segoe UI", Tahoma, sans-serif;
+    --oreui-code-text: #c736ff; /* 行内代码变为紫色（官网特色） */
 }
+
+/* 模式3：Unifont 风格（全站使用像素字体 + Unifont 中文） */
 [data-font="unifont"] {
     --oreui-font-title: "Minecraft Ten", "Unifont", "Segoe UI", sans-serif;
     --oreui-font-subtitle: "Minecraft Ten", "Unifont", "Segoe UI", sans-serif;
     --oreui-font-body: "Minecraft Seven", "Unifont", "Segoe UI", Tahoma, sans-serif;
 }
 
-/* ===================================================================
- * 亮色语义变量
- * =================================================================== */
-:root,
-[data-theme="light"] {
-    --oreui-bg: #e6e8eb;
-    --oreui-surface: #f4f6f9;
-    --oreui-surface-2: #ffffff;
-    --oreui-header-bg: #d0d1d4;
-    --oreui-text: #1e1e1f;
-    --oreui-text-dim: #48494a;
-    --oreui-border-light: #ffffff;
-    --oreui-border-dark: #8c8d90;
-    --oreui-line: #b1b2b5;
-    --oreui-code-inline-bg: #dcdee1;
-    --oreui-panel-bg: rgba(0, 0, 0, 0.04);
-    --oreui-scroll-track: #d0d1d4;
-    --oreui-scroll-thumb: #a8a9ac;
-    --oreui-link: #357623;
-    --oreui-link-hover: #2a641c;
-    color-scheme: light;
-}
+/* ================================================================
+   第四部分：OreUI 按钮系统
+   ================================================================
+   设计特点：
+   - 使用内阴影模拟立体凸起效果
+   - 直角边框（无圆角）
+   - 支持多种尺寸和颜色变体
+   - 按下状态有 4px 下移效果
+   ================================================================ */
 
-/* ===================================================================
- * 暗色语义变量
- * =================================================================== */
-[data-theme="dark"] {
-    --oreui-bg: #48494a;
-    --oreui-surface: #3b3c3d;
-    --oreui-surface-2: #313233;
-    --oreui-header-bg: #313233;
-    --oreui-text: #f4f6f9;
-    --oreui-text-dim: #c5c6c9;
-    --oreui-border-light: #5a5b5c;
-    --oreui-border-dark: #1e1e1f;
-    --oreui-line: #dbdbe2;
-    --oreui-code-inline-bg: #1f1f1f;
-    --oreui-panel-bg: rgba(0, 0, 0, 0.13);
-    --oreui-scroll-track: #313233;
-    --oreui-scroll-thumb: #6d6d6e;
-    --oreui-link: #6cc349;
-    --oreui-link-hover: #8fd673;
-    color-scheme: dark;
-}
-
-/* ===================================================================
- * OreUI 按钮（移植自 Spectrollay-OreUI/OreUI，两模式通用）
- * 用法：<a class="btn (color)_btn large_btn">
- * =================================================================== */
-
-/* 基础按钮 */
+/* ---- 4.1 基础按钮 ---- */
 .btn {
     align-items: center;
     border-radius: 0;
@@ -204,19 +216,17 @@
     justify-content: center;
     margin: 0;
     text-decoration: none;
-    transition: none;
+    transition: none; /* 无过渡，瞬间响应 */
     user-select: none;
 }
-
 .btn:hover {
     text-decoration: none;
 }
-
 .btn:active:not(.disabled_btn) {
-    transform: translateY(4px);
+    transform: translateY(4px); /* 按下时下移 4px */
 }
 
-/* 按钮长度 */
+/* ---- 4.2 按钮宽度（长度） ---- */
 .extra_small_btn {
     width: 100px;
 }
@@ -233,7 +243,7 @@
     width: 300px;
 }
 
-/* 按钮高度尺寸 */
+/* ---- 4.3 按钮高度 ---- */
 .btn_height_extra_small {
     height: 20px;
 }
@@ -250,7 +260,7 @@
     height: 100px;
 }
 
-/* 字体尺寸 */
+/* ---- 4.4 文字大小 ---- */
 .font_size_extra_small {
     font-size: 12px;
 }
@@ -267,105 +277,86 @@
     font-size: 24px;
 }
 
-/* 按钮颜色 */
+/* ---- 4.5 按钮颜色主题 ---- */
+
+/* 白色按钮（默认） */
 .white_btn {
     background-color: #d0d1d4;
     border: 2px solid #1e1e1f;
-    box-shadow:
-        inset 0 -4px #58585a,
-        inset 3px 3px rgba(255, 255, 255, 0.6),
+    box-shadow: inset 0 -4px #58585a, inset 3px 3px rgba(255, 255, 255, 0.6),
         inset -3px -7px rgba(255, 255, 255, 0.4);
     color: #000000;
     padding-bottom: 6px;
 }
-
 .white_btn:hover {
     background-color: #b1b2b5;
-    box-shadow:
-        inset 0 -4px #58585a,
-        inset 3px 3px rgba(255, 255, 255, 0.8),
+    box-shadow: inset 0 -4px #58585a, inset 3px 3px rgba(255, 255, 255, 0.8),
         inset -3px -7px rgba(255, 255, 255, 0.6);
     color: #000000;
 }
-
 .white_btn:active {
     background-color: #b1b2b5;
-    box-shadow:
-        inset 3px 3px rgba(255, 255, 255, 0.8),
+    box-shadow: inset 3px 3px rgba(255, 255, 255, 0.8),
         inset -3px -3px rgba(255, 255, 255, 0.6);
     color: #000000;
 }
 
+/* 绿色按钮（主要操作） */
 .green_btn {
     background-color: #3c8527;
     border: 2px solid #1e1e1f;
-    box-shadow:
-        inset 0 -4px #1d4d13,
-        inset 3px 3px rgba(255, 255, 255, 0.2),
+    box-shadow: inset 0 -4px #1d4d13, inset 3px 3px rgba(255, 255, 255, 0.2),
         inset -3px -7px rgba(255, 255, 255, 0.1);
     color: #ffffff;
     padding-bottom: 6px;
 }
-
 .green_btn:hover {
     background-color: #2a641c;
-    box-shadow:
-        inset 0 -4px #1d4d13,
-        inset 3px 3px rgba(255, 255, 255, 0.4),
+    box-shadow: inset 0 -4px #1d4d13, inset 3px 3px rgba(255, 255, 255, 0.4),
         inset -3px -7px rgba(255, 255, 255, 0.3);
     color: #ffffff;
 }
-
 .green_btn:active {
     background-color: #1d4d13;
-    box-shadow:
-        inset 3px 3px rgba(255, 255, 255, 0.4),
+    box-shadow: inset 3px 3px rgba(255, 255, 255, 0.4),
         inset -3px -3px rgba(255, 255, 255, 0.3);
     color: #ffffff;
 }
 
+/* 蓝色按钮（次要操作） */
 .blue_btn {
     background-color: #1a56db;
     border: 2px solid #1e1e1f;
-    box-shadow:
-        inset 0 -4px #0f3a8a,
-        inset 3px 3px rgba(255, 255, 255, 0.25),
+    box-shadow: inset 0 -4px #0f3a8a, inset 3px 3px rgba(255, 255, 255, 0.25),
         inset -3px -7px rgba(255, 255, 255, 0.15);
     color: #ffffff;
     padding-bottom: 6px;
 }
-
 .blue_btn:hover {
     background-color: #1e4fd0;
-    box-shadow:
-        inset 0 -4px #0f3a8a,
-        inset 3px 3px rgba(255, 255, 255, 0.45),
+    box-shadow: inset 0 -4px #0f3a8a, inset 3px 3px rgba(255, 255, 255, 0.45),
         inset -3px -7px rgba(255, 255, 255, 0.35);
     color: #ffffff;
 }
-
 .blue_btn:active {
     background-color: #0f3a8a;
-    box-shadow:
-        inset 3px 3px rgba(255, 255, 255, 0.45),
+    box-shadow: inset 3px 3px rgba(255, 255, 255, 0.45),
         inset -3px -3px rgba(255, 255, 255, 0.35);
     color: #ffffff;
 }
 
-/* 按下状态的绿色按钮 */
+/* ---- 4.6 按下状态的绿色按钮（用于设置页面选中状态） ---- */
 .green_btn_pressed {
     background-color: #3c8527;
     border: 2px solid #1e1e1f;
-    box-shadow:
-        inset 3px 3px rgba(255, 255, 255, 0.2),
+    box-shadow: inset 3px 3px rgba(255, 255, 255, 0.2),
         inset -3px -3px rgba(255, 255, 255, 0.3);
     color: #ffffff;
     padding-bottom: 0;
     cursor: default;
-    pointer-events: none;
+    pointer-events: none; /* 禁止交互 */
     position: relative;
 }
-
 .green_btn_pressed::after {
     content: "";
     position: absolute;
@@ -376,94 +367,172 @@
     background-color: #ffffff;
 }
 
+/* 按下状态各高度版本（减去 4px 厚度，并用 transform 下移 4px 保持底部对齐） */
 .green_btn_pressed_extra_small {
-    height: 16px; /* 20 - 4 */
+    height: 16px;
     transform: translateY(4px);
 }
 .green_btn_pressed_small {
-    height: 36px; /* 40 - 4 */
+    height: 36px;
     transform: translateY(4px);
 }
 .green_btn_pressed_middle {
-    height: 56px; /* 60 - 4 */
+    height: 56px;
     transform: translateY(4px);
 }
 .green_btn_pressed_large {
-    height: 76px; /* 80 - 4 */
+    height: 76px;
     transform: translateY(4px);
 }
 .green_btn_pressed_extra_large {
-    height: 96px; /* 100 - 4 */
+    height: 96px;
     transform: translateY(4px);
 }
 
-/* ===================================================================
- * 组件（全部引用语义变量，自动双模式）
- * =================================================================== */
+/* ================================================================
+   第五部分：全局组件样式（Docusaurus 组件覆盖）
+   ================================================================
+   所有样式都引用语义变量，便于统一调整。
+   ================================================================ */
 
-/* 导航栏：OreUI header，底部亮/暗双线立体边 */
-.navbar {
-    border-bottom: 2px solid var(--oreui-border-dark);
-    box-shadow:
-        inset 0 -3px var(--oreui-border-light),
-        0 2px 6px rgba(0, 0, 0, 0.2);
+/* ---- 5.1 强制背景色 ---- */
+html {
+    background-color: var(--oreui-bg);
+}
+body {
+    background-color: var(--oreui-bg);
 }
 
+/* ---- 5.2 导航栏 ---- */
+
+/* 基础导航栏样式 */
+.navbar {
+    border-bottom: 2px solid var(--oreui-border-dark);
+    box-shadow: inset 0 -3px var(--oreui-border-light), 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 标题和品牌名称 */
 .navbar__title,
 .navbar__brand {
     font-family: var(--oreui-font-subtitle);
     letter-spacing: 0.5px;
 }
 
-/* 选中：文字不变色，在文字下方显示一条绿色横方块 */
-.navbar__link--active {
-    color: var(--ifm-navbar-link-color);
-    position: relative;
+/* ------ 桌面端（> 996px）------ */
+@media (min-width: 997px) {
+    /* 使导航栏内部 flex 居中布局 */
+    .navbar__inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    /* 品牌（logo + 标题）绝对居中 */
+    .navbar__brand {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        color: #000000 !important;
+    }
+
+    /* 标题文字强制黑色 */
+    .navbar__title {
+        color: #000000 !important;
+    }
+
+    /* 左右两侧占满剩余空间，避免内容覆盖标题 */
+    .navbar__items--left,
+    .navbar__items--right {
+        flex: 1;
+        z-index: 2; /* 确保搜索按钮等位于标题之上 */
+    }
+    .navbar__items--left {
+        justify-content: flex-start;
+    }
+    .navbar__items--right {
+        justify-content: flex-end;
+    }
 }
 
-.navbar__link--active::after {
-    content: "";
-    position: absolute;
-    left: 0.5rem;
-    right: 0.5rem;
-    bottom: 0.1rem;
-    height: 4px;
-    background-color: var(--oreui-accent);
+/* ------ 移动端（≤ 996px）------ */
+/* 移动端侧边栏菜单中的标题文字为白色 */
+.navbar-sidebar .navbar__brand,
+.navbar-sidebar .navbar__title {
+    color: #ffffff !important;
 }
 
-/* 下拉菜单：OreUI 面板 */
+/* 如果侧边栏内也包含 SVG logo，一并改为白色 */
+.navbar-sidebar .navbar__brand {
+    display: none !important;
+}
+
+@media (max-width: 996px) {
+    /* 品牌回到左侧正常流 */
+    .navbar__brand {
+        position: static !important;
+        transform: none !important;
+        display: flex !important;
+        color: #000000 !important; /* 默认黑色 */
+    }
+
+    /* 汉堡菜单图标黑色 */
+    .navbar__toggle {
+        color: #000000 !important;
+    }
+    .navbar__toggle svg {
+        fill: #000000 !important;
+        color: #000000 !important;
+    }
+
+    /* 侧边菜单背景 */
+    .navbar-sidebar {
+        background-color: var(--oreui-surface-2) !important;
+    }
+
+    /* 当菜单打开时，品牌文字变为白色（因为背景深色） */
+    .navbar-sidebar--open .navbar__brand {
+        color: #ffffff !important;
+    }
+
+    .navbar__title {
+        font-size: clamp(0.75rem, 2.8vw, 1rem) !important;
+        white-space: nowrap;
+        max-width: 60vw; /* 防止溢出 */
+        overflow: hidden;
+        text-overflow: ellipsis; /* 太长显示省略号 */
+    }
+}
+
+/* ---- 5.3 下拉菜单 ---- */
 .dropdown__menu {
-    border: 2px solid var(--oreui-border-dark);
+    border: 2px solid var(--oreui-border-dark2);
     border-top-color: var(--oreui-border-light);
     border-radius: 0;
     background-color: var(--oreui-surface-2);
 }
-
 .dropdown__link {
     border-radius: 0;
 }
-
 .dropdown__link:hover {
     background-color: var(--oreui-panel-bg);
     color: var(--oreui-link);
 }
 
-/* 侧边栏：OreUI 面板，选中/悬浮在左侧显示绿色竖条 */
+/* ---- 5.4 侧边栏 ---- */
 .theme-doc-sidebar-container {
-    border-right: 2px solid var(--oreui-border-dark);
-    background-color: var(--oreui-surface);
+    background-color: var(--oreui-surface-2);
 }
-
 .menu {
     font-family: var(--oreui-font-body);
+    border-right: 2px solid var(--oreui-border-dark2);
 }
-
 .menu__link,
 .menu__caret,
 .menu__list-item-collapsible {
     border-radius: 0;
 }
-
 .menu__link:hover,
 .menu__link--active:not(.menu__link--sublist),
 .menu__list-item-collapsible:hover {
@@ -471,17 +540,18 @@
     box-shadow: inset 4px 0 0 var(--oreui-accent);
 }
 
-/* 右侧目录 */
+/* ---- 5.5 右侧目录（TOC） ---- */
 .table-of-contents {
     font-family: var(--oreui-font-body);
+    border-left: 2px solid var(--oreui-line);
 }
-
 .table-of-contents__link--active,
 .table-of-contents__link:hover {
     color: var(--oreui-link);
 }
 
-/* 文档标题用像素副标题字体 */
+/* ---- 5.6 文档内容 ---- */
+/* 标题使用像素字体 */
 .markdown h1,
 .markdown h2 {
     font-family: var(--oreui-font-title);
@@ -495,14 +565,14 @@
     letter-spacing: 0.5px;
 }
 
-/* 行内代码（代码块内 token 不受影响） */
+/* 行内代码 */
 :not(pre) > code {
-    background-color: var(--oreui-code-inline-bg);
-    border: 1px solid var(--oreui-border-dark);
-    color: var(--oreui-text);
+    background-color: transparent;
+    border: transparent;
+    color: var(--oreui-code-text);
 }
 
-/* 代码块：OreUI 立体边框，背景由 prism 主题决定 */
+/* 代码块 */
 .theme-code-block,
 div[class*="codeBlockContainer"],
 pre[class*="language-"] {
@@ -511,148 +581,141 @@ pre[class*="language-"] {
     border-radius: 0;
 }
 
-/* 表格表头像素字体 */
+/* 表格表头 */
 .markdown table thead {
     font-family: var(--oreui-font-subtitle);
 }
 
-/* 分页按钮：OreUI 立体面板 */
+/* 链接内的行内代码：颜色继承链接色 */
+.markdown a > code {
+    color: var(--ifm-link-color);
+}
+.markdown a:hover > code {
+    color: var(--ifm-link-hover-color);
+}
+
+/* ---- 5.7 分页按钮 ---- */
 .pagination-nav__link {
-    border: 2px solid var(--oreui-border-dark);
+    border: 2px solid var(--oreui-border-dark2);
     border-top-color: var(--oreui-border-light);
     border-radius: 0;
     background-color: var(--oreui-panel-bg);
 }
-
 .pagination-nav__link:hover {
     border-color: var(--oreui-accent);
 }
 
-/* 卡片 / 面包屑 / 标签 */
+/* ---- 5.8 卡片 / 面包屑 / 标签 ---- */
 .card {
-    border: 2px solid var(--oreui-border-dark);
+    border: 2px solid var(--oreui-border-dark2);
     border-top-color: var(--oreui-border-light);
     background-color: var(--oreui-surface);
 }
-
 .breadcrumbs__link {
     border-radius: 0;
     background: var(--oreui-panel-bg);
 }
-
 .badge {
     border-radius: 0;
 }
 
-/* 搜索框 */
+/* ---- 5.9 搜索框 ---- */
 .DocSearch-Button {
-    border: 2px solid var(--oreui-border-dark) !important;
+    border: 2px solid var(--oreui-border-dark2) !important;
     border-radius: 0 !important;
     background: var(--oreui-code-inline-bg) !important;
 }
 
-/* 提示框 admonition：OreUI 面板 + 绿色左边条（双模式） */
+/* ---- 5.10 提示框（Admonition） ---- */
 .theme-admonition,
 .alert {
-    background-color: var(--oreui-surface-2) !important;
-    border-top: 2px solid var(--oreui-border-light);
-    border-right: 2px solid var(--oreui-border-dark);
-    border-bottom: 2px solid var(--oreui-border-dark);
+    background-color: var(--oreui-bg) !important;
+    border-top: 5px solid var(--oreui-border-light);
+    border-right: 5px solid var(--oreui-border-dark);
+    border-bottom: 5px solid var(--oreui-border-dark);
     border-left: 5px solid var(--ifm-alert-border-color, var(--oreui-accent));
     border-radius: 0;
     color: var(--oreui-text);
 }
-
 .alert summary::before {
     border-color: transparent transparent transparent var(--oreui-accent-bright);
 }
-
 .collapsibleContent_i85q {
     border-top: 2px solid var(--oreui-accent-darker);
 }
-
 em {
     text-decoration: underline var(--oreui-accent-bright);
 }
-
 .theme-admonition a {
     color: var(--oreui-link);
 }
 
-/* 标签页 / 详情折叠 / 键盘按键统一方正 */
+/* ---- 5.11 杂项 ---- */
 .tabs__item,
 details {
     border-radius: 0;
 }
-
 kbd {
     background-color: var(--oreui-code-inline-bg);
-    border: 2px solid var(--oreui-border-dark);
+    border: 2px solid var(--oreui-border-dark2);
     border-top-color: var(--oreui-border-light);
     border-radius: 0;
     color: var(--oreui-text);
     box-shadow: none;
 }
 
-/* 页脚：OreUI 深色面板（两模式统一深色，作为页面收尾） */
+/* ---- 5.12 页脚 ---- */
 .footer {
     background-color: #313233;
     border-top: 2px solid #1e1e1f;
     box-shadow: inset 0 3px #5a5b5c;
     color: #c5c6c9;
 }
-
 .footer__title,
 .footer__copyright,
 .footer__link-item {
     color: #c5c6c9;
 }
-
 .footer__link-item:hover {
     color: #6cc349;
 }
 
-/* OreUI 风格滚动条：thumb 采用 white_btn 的浅灰立体像素块（两模式通用） */
+/* ================================================================
+   第六部分：滚动条（OreUI 风格）
+   ================================================================
+   使用 webkit 伪元素定制滚动条样式，使其与按钮风格一致。
+   Firefox 使用 @supports 隔离回退方案。
+   ================================================================ */
+
+/* ---- 6.1 全局滚动条 ---- */
 ::-webkit-scrollbar {
     width: 14px;
     height: 14px;
 }
-
 ::-webkit-scrollbar-track {
     background: var(--oreui-line);
 }
-
 ::-webkit-scrollbar-corner {
     background: var(--oreui-line);
 }
-
 ::-webkit-scrollbar-thumb {
     background-color: #d0d1d4;
     border: 2px solid #1e1e1f;
-    box-shadow:
-        inset 0 -3px #58585a,
-        inset 2px 2px rgba(255, 255, 255, 0.6),
+    box-shadow: inset 0 -3px #58585a, inset 2px 2px rgba(255, 255, 255, 0.6),
         inset -2px -4px rgba(255, 255, 255, 0.4);
 }
-
 ::-webkit-scrollbar-thumb:hover {
     background-color: #b1b2b5;
-    box-shadow:
-        inset 0 -3px #58585a,
-        inset 2px 2px rgba(255, 255, 255, 0.8),
+    box-shadow: inset 0 -3px #58585a, inset 2px 2px rgba(255, 255, 255, 0.8),
         inset -2px -4px rgba(255, 255, 255, 0.6);
 }
-
 ::-webkit-scrollbar-thumb:active {
     background-color: #b1b2b5;
-    box-shadow:
-        inset 2px 2px rgba(255, 255, 255, 0.8),
+    box-shadow: inset 2px 2px rgba(255, 255, 255, 0.8),
         inset -2px -2px rgba(255, 255, 255, 0.6);
 }
 
-/* 仅在不支持 webkit 滚动条伪元素的浏览器（Firefox）回退到标准滚动条配色。
-   注意：若无条件设置 scrollbar-color，Chrome/Edge 会忽略上面的
-   ::-webkit-scrollbar 立体样式而回退成默认细滚动条，所以必须用 @supports 隔离。 */
+/* ---- 6.2 Firefox 回退 ---- */
 @supports not selector(::-webkit-scrollbar-thumb) {
     html {
         scrollbar-width: thin;
@@ -660,47 +723,35 @@ kbd {
     }
 }
 
-/* Docusaurus 侧边栏 / TOC / 代码块用 .thin-scrollbar，自带 scrollbar-width: thin，
-   会让 Chrome 忽略全局 ::-webkit-scrollbar，且其 ::-webkit 规则特异性更高；
-   这里取消 scrollbar-width 并显式套用 OreUI 立体块（white_btn 风格）。 */
+/* ---- 6.3 Docusaurus .thin-scrollbar 覆盖 ---- */
 .thin-scrollbar {
     scrollbar-width: auto;
 }
-
 .thin-scrollbar::-webkit-scrollbar {
     width: 14px;
     height: 14px;
 }
-
 .thin-scrollbar::-webkit-scrollbar-track {
     background: var(--oreui-line);
 }
-
 .thin-scrollbar::-webkit-scrollbar-thumb {
     background-color: #d0d1d4;
     border: 2px solid #1e1e1f;
-    box-shadow:
-        inset 0 -3px #58585a,
-        inset 2px 2px rgba(255, 255, 255, 0.6),
+    box-shadow: inset 0 -3px #58585a, inset 2px 2px rgba(255, 255, 255, 0.6),
         inset -2px -4px rgba(255, 255, 255, 0.4);
 }
-
 .thin-scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: #b1b2b5;
-    box-shadow:
-        inset 0 -3px #58585a,
-        inset 2px 2px rgba(255, 255, 255, 0.8),
+    box-shadow: inset 0 -3px #58585a, inset 2px 2px rgba(255, 255, 255, 0.8),
         inset -2px -4px rgba(255, 255, 255, 0.6);
 }
-
 .thin-scrollbar::-webkit-scrollbar-thumb:active {
     background-color: #b1b2b5;
-    box-shadow:
-        inset 2px 2px rgba(255, 255, 255, 0.8),
+    box-shadow: inset 2px 2px rgba(255, 255, 255, 0.8),
         inset -2px -2px rgba(255, 255, 255, 0.6);
 }
 
-/* OreUI 滚动条保持方角（覆盖 Docusaurus thin-scrollbar 的圆角） */
+/* 强制所有滚动条保持直角（无圆角） */
 ::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-track,
 .thin-scrollbar::-webkit-scrollbar-thumb,
@@ -709,9 +760,11 @@ kbd {
 }
 
 /* ================================================================
-   Minecraft 风格 Tooltip（用于 BaseHighlight）
-   代码来源于中文 Minecraft Wiki，有删改：
+   第七部分：Minecraft 风格 Tooltip
+   ================================================================
+   来源：中文 Minecraft Wiki
    https://zh.minecraft.wiki/w/MediaWiki:Common.css
+   特点：深紫色半透明背景 + 渐变边框 + 像素字体
    ================================================================ */
 
 .minetip-tooltip {
@@ -729,18 +782,17 @@ kbd {
     pointer-events: none;
     z-index: 9999;
     color: #fff;
-    /* 以下由 JS 控制位置和可见性 */
+    /* 可见性由 JS 控制 */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.15s ease;
-    /* 默认不显示 */
 }
-
 .minetip-tooltip.visible {
     opacity: 1;
     visibility: visible;
 }
 
+/* 外边框（左右挤压效果） */
 .minetip-tooltip::before {
     content: "";
     position: absolute;
@@ -753,6 +805,7 @@ kbd {
     border-color: rgba(16, 0, 16, 0.94);
 }
 
+/* 内边框（紫色渐变） */
 .minetip-tooltip::after {
     content: "";
     position: absolute;
@@ -765,9 +818,13 @@ kbd {
     border-image: linear-gradient(rgba(80, 0, 255, 0.31), rgba(40, 0, 127, 0.31)) 1;
 }
 
-/* 可选：支持描述段落（如需多行） */
+/* 支持描述段落（如多行提示） */
 .minetip-tooltip > .description,
 .minetip-tooltip > .minetip-description {
     display: block;
     margin-top: 0.25em;
+}
+
+[data-theme="dark"] {
+    --ifm-pre-background: var(--oreui-bg) !important;
 }

@@ -191,6 +191,10 @@ const config = {
                 theme: prismThemes.github,
                 darkTheme: prismThemes.dracula,
             },
+            colorMode: {
+                defaultMode: "dark",
+                disableSwitch: true
+            }
         }),
 
     themes: ["@docusaurus/theme-live-codeblock"],
