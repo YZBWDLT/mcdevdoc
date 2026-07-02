@@ -10,6 +10,7 @@ import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
+import Button from "/src/components/button/base";
 
 > 适用版本：国际版 26.20，中国版 3.8（1.21.90）。
 
@@ -31,7 +32,7 @@ import Image from "/src/components/image/standard"
 
 ### 无功能的完整不透明方块
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block" />
+<Button text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block" color="green"/>
 
 Minecraft 中多数方块都是这种完整不透明方块，例如石头、混凝土等。
 
@@ -108,7 +109,7 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 
 ### 楼梯（不考虑拐角）
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs" />
+<Button text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs" color="green"/>
 
 **难度**：★★★☆☆
 
@@ -287,7 +288,7 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 
 ### 楼梯（考虑拐角）
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs" />
+<Button text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs" color="green"/>
 
 **难度**：★★★★☆
 
@@ -735,7 +736,7 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 
 ### 玻璃板
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane" />
+<Button text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane" color="green"/>
 
 **难度**：★★★★☆
 
@@ -1212,7 +1213,7 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 
 ## 模板
 
-<Highlight text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane" />
+<Button text="教程" url="/docs/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane" color="green"/>
 
 模板简介。
 
