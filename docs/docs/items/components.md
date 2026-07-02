@@ -1673,7 +1673,7 @@ import Button from '/src/components/button/base';
   - <DataType type="boolean" name="do_swing_animation"/>：物品掷出后是否播放摆手动画。
   - <DataType type="float" name="launch_power_scale"/>：随着蓄力时间增长而增加的弹射物威力比例。默认值为`1.0`（即蓄力时间增长，弹射物威力不增加）。设置负值将导致弹射物以反方向掷出。
   - <DataType type="float" name="max_draw_duration"/>：最长蓄力时间，单位秒。默认为`0.0`。
-  - <DataType type="float" name="min_draw_duration"/>：最段蓄力时间，单位秒。默认为`0.0`。
+  - <DataType type="float" name="min_draw_duration"/>：最短蓄力时间，单位秒。默认为`0.0`。
   - <DataType type="float" name="max_launch_power"/>：弹射物的最大威力（以保证弹射物的威力不会无限增大）。
   - <DataType type="boolean" name="scale_power_by_draw_duration"/>：是否随着蓄力时间的增长而增加弹射物掷出时的威力，默认值为`false`。
 </treeview>
