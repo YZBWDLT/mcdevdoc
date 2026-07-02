@@ -2,38 +2,43 @@
 sidebar_position: 3
 ---
 
-# 自定义方块组件
+# 方块自定义组件
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import '/src/css/treeview.css';
-import OldVer from "/src/components/highlight/oldversion"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
+import Highlight from '/src/components/highlight/base';
+import Usable from "/src/components/highlight/usable"
+import Version from "/src/components/highlight/gameVersion"
+import Button from '/src/components/button/base';
 
-> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.30，中国版 3.8（1.21.90）。
 
-:::warning[注意]
+方块自定义组件（Block Custom Component）允许开发者在数据驱动方块中使用自己规定的格式的组件。
 
-自定义方块组件仅限国际版的 ScriptAPI 可用。
-
-:::
-
-自定义方块组件可通过世界启动前事件中的`StartupEvent.blockComponentRegistry.registerCustomComponent()`方法注册。
+方块自定义组件可通过 ScriptAPI 中世界启动前事件中的`StartupEvent.blockComponentRegistry.registerCustomComponent()`方法注册。
 
 ```TypeScript
 registerCustomComponent(name: string, customComponent: BlockCustomComponent): void
 ```
 
-其中，`name`属性注册为自定义组件的名称，而`customComponent`是一个接口`BlockCustomComponent`。下面给出接口`BlockCustomComponent`允许的所有属性，每个属性都接收一个两参数的函数，第一个参数返回对应事件，第二个参数返回自定义组件中的参数。
+其中，`name`属性注册为自定义组件的名称，而`customComponent`是一个接口[`BlockCustomComponent`](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable)。下面给出接口`BlockCustomComponent`允许的所有属性，每个属性都接收一个两参数的函数，第一个参数返回对应事件，第二个参数返回自定义组件中的参数。
+
+**每个组件条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。"/>。
 
 ---
 
 ## `beforeOnPlayerPlace`属性
 
-<OldVer version="1.21.20"/>
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" tooltip="在server模块脚本版本1.12.0+下可用。"/> <br/>
 
-玩家放置方块前执行事件。适用脚本`@minecraft/server`版本`1.12.0`或更高。
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#beforeonplayerplace"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#beforeonplayerplace"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#beforeonplayerplace"/>
+
+玩家放置方块前执行事件。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -74,15 +79,13 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 ## `onBlockStateChange`属性
 
-<OldVer version="26.20" isBeta/>
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="26.30" tooltip="在server模块脚本版本2.8.0+下可用。"/> <br/>
 
-:::danger[警告]
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#onblockstatechange"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#onblockstatechange"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#onblockstatechange"/>
 
-该属性仍处于实验性玩法，必须开启「测试版 API」才可使用。在实验性玩法中，该属性存在功能不稳定、功能更改甚至未来被移除的风险。
-
-:::
-
-方块状态被更改时执行事件。适用脚本`@minecraft/server`版本`beta`。
+方块状态被更改时执行事件。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -124,9 +127,13 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 ## `onBreak`属性
 
-<OldVer version="1.21.130"/>
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.130" tooltip="在server模块脚本版本2.4.0+下可用。"/> <br/>
 
-方块被破坏时执行事件。适用脚本`@minecraft/server`版本`2.4.0`或更高。
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#onbreakblock"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#onbreakblock"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#onbreakblock"/>
+
+方块被破坏时执行事件。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -171,9 +178,13 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 ## `onEntity`属性
 
-<!--
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="26.10" tooltip="在server模块脚本版本2.6.0+下可用。"/> <br/>
 
-<OldVer version="26.10"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#onentity"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#onentity"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#onentity"/>
+
+<!--
 
 当实体触发`execute_event_on_home_block`事件时执行事件。适用脚本`@minecraft/server`版本`2.6.0`或更高。
 
@@ -207,9 +218,11 @@ onEntity?: (arg0: BlockComponentEntityEvent, arg1: CustomComponentParameters) =>
 
 ## `onEntityFallOn`属性
 
-<OldVer version="1.21.20"/>
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" tooltip="在server模块脚本版本1.12.0+下可用。"/> <br/>
 
-实体掉落到此方块后执行事件。适用脚本`@minecraft/server`版本`1.12.0`或更高。
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#onentityfallon"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#onentityfallon"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#onentityfallon"/>
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -250,31 +263,59 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 ## `onPlace`属性
 
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" tooltip="在server模块脚本版本1.12.0+下可用。"/>  <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#onplace"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#onplace"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#onplace"/>
+
 ---
 
 ## `onPlayerBreak`属性
+
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" tooltip="在server模块脚本版本1.12.0+下可用。"/> <Highlight text="更名" tooltip="在server模块脚本版本1.12.0-1.19.0，请使用onPlayerDestroy。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#onplayerbreak"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#onplayerbreak"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#onplayerbreak"/>
+
+对于曾用名`onPlayerDestroy`，另见：
+
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/1.21.80/interfaces/_minecraft_server.BlockCustomComponent.html#onplayerdestroy"/>
 
 ---
 
 ## `onPlayerInteract`属性
 
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" tooltip="在server模块脚本版本1.12.0+下可用。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#onplayerinteract"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#onplayerinteract"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#onplayerinteract"/>
+
 ---
 
 ## `onRandomTick`属性
+
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" tooltip="在server模块脚本版本1.12.0+下可用。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#onrandomtick"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#onrandomtick"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#onrandomtick"/>
 
 ---
 
 ## `onRedstoneUpdate`属性
 
-<OldVer version="1.26.0"/>
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="26.0" tooltip="在server模块脚本版本2.0.0+下可用。"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:redstone_consumer组件。"/> <br/>
 
-此方块接收的红石信号更新后执行事件。适用脚本`@minecraft/server`版本`2.5.0`或更高。
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#onredstoneupdate"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#onredstoneupdate"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#onredstoneupdate"/>
 
-:::warning[注意]
+此方块接收的红石信号更新后执行事件。
 
-要使用此事件，必须规定[`minecraft:redstone_consumer`](./components#minecraftredstone_consumer)组件。
-
-:::
+另见：*[`minecraft:redstone_consumer`](./components#minecraftredstone_consumer)组件*。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -358,17 +399,31 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 
 ## `onStepOff`属性
 
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" tooltip="在server模块脚本版本1.12.0+下可用。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#onstepoff"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#onstepoff"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#onstepoff"/>
+
 ---
 
 ## `onStepOn`属性
+
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" tooltip="在server模块脚本版本1.12.0+下可用。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#onstepon"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#onstepon"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#onstepon"/>
 
 ---
 
 ## `onTick`属性
 
-<OldVer version="1.21.20"/>
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" tooltip="在server模块脚本版本1.12.0+下可用。"/> <br/>
 
-令方块循环执行代码。适用脚本`@minecraft/server`版本`1.12.0`或更高。
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable#ontick"/>
+<Button text="JaylyMC" url="https://jaylydev.github.io/scriptapi-docs/latest/interfaces/_minecraft_server.BlockCustomComponent.html#ontick"/>
+<Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.BlockCustomComponent.html#ontick"/>
 
 <Tabs><TabItem value="参数" label="参数" default>
 

@@ -7,7 +7,6 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import '/src/css/treeview.css';
-import OldVer from "/src/components/highlight/oldversion"
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
@@ -769,13 +768,13 @@ import Button from '/src/components/button/base';
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_entity_fall_on?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#entity-fall-on"/>
 
-定义实体在多高处落到该方块上之后，才能触发 ScriptAPI 中自定义方块组件定义的[`onEntityFallOn`事件](./custom_components#onentityfallon属性)。
+定义实体在多高处落到该方块上之后，才能触发 ScriptAPI 中方块自定义组件定义的[`onEntityFallOn`事件](./custom_components#onentityfallon属性)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="minecraft:entity_fall_on"/>：根数组。
-  - <DataType type="float" name="min_fall_distance"/>：在从多高的高度掉落到该方块上后，才能触发 ScriptAPI 中自定义方块组件定义的[`onEntityFallOn`事件](./custom_components#onentityfallon属性)。默认值为`1`。
+  - <DataType type="float" name="min_fall_distance"/>：在从多高的高度掉落到该方块上后，才能触发 ScriptAPI 中方块自定义组件定义的[`onEntityFallOn`事件](./custom_components#onentityfallon属性)。默认值为`1`。
 </treeview>
 
 > **注意**：经过实测，Microsoft Learn 给出的`minimum_fall_distance`是错误写法，请使用本文档给出的写法。参见[Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-components#entity-fall-on)。
@@ -1340,7 +1339,7 @@ import Button from '/src/components/button/base';
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_consumer?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#redstone-consumer"/>
 
-定义方块为一种机械元件，并触发 ScriptAPI 中自定义方块组件定义的[`onRedstoneUpdate`事件](./custom_components#onredstoneupdate属性)，将自己获得的红石信号强度传递给脚本。
+定义方块为一种机械元件，并触发 ScriptAPI 中方块自定义组件定义的[`onRedstoneUpdate`事件](./custom_components#onredstoneupdate属性)，将自己获得的红石信号强度传递给脚本。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -1474,7 +1473,7 @@ import Button from '/src/components/button/base';
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tick?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#tick"/>
 
-定义方块的更新频率，并触发 ScriptAPI 中自定义方块组件定义的[`onTick`事件](./custom_components#ontick属性)。
+定义方块的更新频率，并触发 ScriptAPI 中方块自定义组件定义的[`onTick`事件](./custom_components#ontick属性)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 

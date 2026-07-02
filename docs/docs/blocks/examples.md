@@ -10,7 +10,6 @@ import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
-import Highlight from '/src/components/highlight/standard';
 
 > 适用版本：国际版 26.20，中国版 3.8（1.21.90）。
 
