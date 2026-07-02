@@ -99,7 +99,7 @@ export default function BaseHighlight({ text, color = "gold", size = "medium", t
     const highlightStyle = {
         backgroundColor: color,
         color: textColor,
-        padding: inline ? "0" : "0.2em 0.3em",
+        padding: inline ? "0em 0.1em" : "0.2em 0.3em",
         fontSize: fontSize,
         display: "inline",
         boxDecorationBreak: "clone",

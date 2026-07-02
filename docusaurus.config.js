@@ -108,6 +108,7 @@ const config = {
                             { label: "附加包", type: "docSidebar", sidebarId: "docAddons" },
                             { label: "物品", type: "docSidebar", sidebarId: "docItems" },
                             { label: "方块", type: "docSidebar", sidebarId: "docBlocks" },
+                            { label: "实体", type: "docSidebar", sidebarId: "docEntities" },
                             { label: "脚本", type: "docSidebar", sidebarId: "docScripts" },
                         ],
                     },

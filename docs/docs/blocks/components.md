@@ -356,7 +356,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:tags`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。要在低版本使用此组件，请使用已弃用的组件tag:(标签)。"/> <Version add="1.26.20"/> <br/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.26.20" tooltip="在更旧的版本下使用tag:(标签)组件。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tags?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#tags"/>
