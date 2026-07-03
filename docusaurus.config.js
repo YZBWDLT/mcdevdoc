@@ -113,6 +113,7 @@ const config = {
                         ],
                     },
                     { label: "预设模板", type: "docSidebar", sidebarId: "devTemplate", position: "left" },
+                    { label: "更新前瞻", type: "docSidebar", sidebarId: "updateLog", position: "left" },
                     { label: "个人博客", to: "/blog", position: "left" },
                     { type: "search", position: "right" },
                     {
@@ -194,8 +195,8 @@ const config = {
             },
             colorMode: {
                 defaultMode: "dark",
-                disableSwitch: true
-            }
+                disableSwitch: true,
+            },
         }),
 
     themes: ["@docusaurus/theme-live-codeblock"],

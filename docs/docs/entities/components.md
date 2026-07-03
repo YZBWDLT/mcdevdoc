@@ -9,7 +9,6 @@ import TabItem from '@theme/TabItem';
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
-import Image from "/src/components/image/standard"
 import Highlight from '/src/components/highlight/base';
 import Usable from "/src/components/highlight/usable"
 import Version from "/src/components/highlight/version"
@@ -29,9 +28,56 @@ import Button from '/src/components/button/base';
 
 **每个组件条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。"/>。
 
+:::note[备注]
+
+因为数据驱动实体自从 Mojang 在 0.16 正式公布附加包以来就已具有应用，因此其中众多组件可用的格式版本十分之早。现如今，收集古早时期的相关资料已十分困难。本文档将以 [bedrock.dev 的 1.2.0](https://bedrock.dev/docs/1.2.0.0/1.2.9.1/Addons) 版本为可用格式版本的最早版本，但这些组件可能在更早就可以应用。
+
+:::
+
 ## 基础属性组件
 
 全体实体通用的组件。在定义实体的时候，多数情况下都需要这些组件。
+
+### `minecraft:collision_box`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_collision_box?view=minecraft-bedrock-stable"/>
+
+定义实体的碰撞箱。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:collision_box"/>：根对象。
+  - <DataType type="float" name="height"/>：实体的碰撞箱高度。默认值为`1`。
+  - <DataType type="float" name="width"/>：实体的碰撞箱宽度。默认值为`1`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+箭（<FileType type="file" name="arrow.json"/>）：
+
+```json showLineNumbers
+"minecraft:collision_box": {
+    "height": 0.25,
+    "width": 0.25
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:physics`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_physics?view=minecraft-bedrock-stable"/>
+
+定义实体的物理属性。
+
+---
 
 ### `minecraft:pushable_by_block`
 
@@ -185,13 +231,57 @@ import Button from '/src/components/button/base';
 ---
 ---
 
+## 功能性组件
+
+### `minecraft:conditional_bandwidth_optimization`
+
+<Usable type="all"/> <Version add="1.16.100"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_conditional_bandwidth_optimization?view=minecraft-bedrock-stable"/>
+
+定义实体的条件空间更新带宽优化。
+
+---
+
+### `minecraft:dimension_bound`
+
+<Usable type="all"/> <Version add="1.21.40"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_dimension_bound?view=minecraft-bedrock-stable"/>
+
+定义实体不可通过传送门切换维度。
+
+---
+
+### `minecraft:hurt_on_condition`
+
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_hurt_on_condition?view=minecraft-bedrock-stable"/>
+
+定义实体在何种条件下会受伤。
+
+---
+
+### `minecraft:projectile`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_projectile?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/entities/projectiles"/>
+
+定义实体为弹射物。
+
+---
+---
+
 ## 弃用组件
 
 以下组件仅限旧版本的实体适用，故本文档也一并列出，但若条件允许，请尽可能使用更高版本的格式版本和组件。
 
 ### `minecraft:pushable`
 
-<Usable type="all"/> <Version add="?" deprecated="1.26.10" tooltip="在高版本使用minecraft:pushable_by_block组件和minecraft:pushable_by_entity组件代替之。"/> <br/>
+<Usable type="all"/> <Version add="1.13.0" deprecated="1.26.10" tooltip="在高版本使用minecraft:pushable_by_block组件和minecraft:pushable_by_entity组件代替之。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_pushable?view=minecraft-bedrock-stable"/>
 
