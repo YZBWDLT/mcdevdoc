@@ -44,7 +44,7 @@ import Button from '/src/components/button/base';
 
 <Tabs><TabItem value="参数" label="参数" default>
 
-**对象型**：
+对象型：
 
 <treeview>
 - <DataType type="object" name="minecraft:collision_box"/>：根对象。
@@ -75,7 +75,7 @@ import Button from '/src/components/button/base';
       - <DataType type="float" name="2"/>：Z 方向的方块大小。与`origin`的 Z 坐标相加后必须在`-8`~`8`之间（含）。
 </treeview>
 
-**布尔型**：
+布尔型：
 
 <treeview>
 - <DataType type="boolean" name="minecraft:collision_box"/>：定义方块是否具有碰撞箱。默认为`true`，且使用 16×16×16 像素的碰撞箱大小。
@@ -155,14 +155,14 @@ import Button from '/src/components/button/base';
 
 <Tabs><TabItem value="参数" label="参数" default>
 
-**对象型**：
+对象型：
 
 <treeview>
 - <DataType type="object" name="minecraft:destructible_by_explosion"/>：根对象。
   - <DataType type="float" name="explosion_resistance"/>：定义方块的爆炸抗性。默认值为`0`。
 </treeview>
 
-**布尔型**：
+布尔型：
 
 <treeview>
 - <DataType type="boolean" name="minecraft:destructible_by_explosion"/>：定义方块是否可被爆炸破坏。
@@ -170,7 +170,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**对象型**：
+对象型：
 
 ```json showLineNumbers
 "minecraft:destructible_by_explosion": {
@@ -178,7 +178,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-**布尔型**：
+布尔型：
 
 ```json showLineNumbers
 "minecraft:destructible_by_explosion": false
@@ -200,7 +200,7 @@ import Button from '/src/components/button/base';
 
 <Tabs><TabItem value="参数" label="参数" default>
 
-**对象型**：
+对象型：
 
 <treeview>
 - <DataType type="object" name="minecraft:destructible_by_mining"/>：根对象。
@@ -216,7 +216,7 @@ import Button from '/src/components/button/base';
 
 > **注意**：这里的*破坏时长*实际上为[**硬度**](https://zh.minecraft.wiki/w/挖掘#方块硬度)的概念，并不是指字面意义上的破坏秒数和挖掘速度（这里的起名实际上是相当糟糕的，具有很强的误导性）。在一般情况下，破坏时长（秒）是硬度的 1.5 倍，比如硬度为 1 时，需要 1.5 秒破坏。
 
-**布尔型**：
+布尔型：
 
 <treeview>
 - <DataType type="boolean" name="minecraft:destructible_by_mining"/>：定义方块是否可被挖掘破坏。
@@ -224,7 +224,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**对象型**：
+对象型：
 
 ```json showLineNumbers
 "minecraft:destructible_by_mining": {
@@ -248,7 +248,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-**布尔型**：
+布尔型：
 
 ```json showLineNumbers
 "minecraft:destructible_by_mining": false
@@ -270,7 +270,7 @@ import Button from '/src/components/button/base';
 
 <Tabs><TabItem value="参数" label="参数" default>
 
-**对象型**：
+对象型：
 
 <treeview>
 - <DataType type="object" name="minecraft:map_color"/>：根对象
@@ -278,7 +278,7 @@ import Button from '/src/components/button/base';
   - <DataType type="string" name="tint_method"/>：<Version add="1.21.80" inline/>定义方块的着色方法，将方块颜色与预定义的色调相乘，可选值为`none`、`​default_foliage`、`​birch_foliage`、`​evergreen_foliage`、`​grass`和​`water`。默认值为`none`。
 </treeview>
 
-**字符串型（1.16.0+）**：
+<Version add="1.16.0"/> 字符串型：
 
 <treeview>
 - <DataType type="string" name="minecraft:map_color"/>：定义方块在地图物品上显示的颜色，应为颜色代码`#RRGGBB`。
@@ -312,7 +312,7 @@ import Button from '/src/components/button/base';
 
 <Tabs><TabItem value="参数" label="参数" default>
 
-**对象型**：
+对象型：
 
 <treeview>
 - <DataType type="object" name="minecraft:selection_box"/>：根对象。
@@ -326,7 +326,7 @@ import Button from '/src/components/button/base';
     - <DataType type="float" name="2"/>：Z 方向的方块大小。与`origin`的 Z 坐标相加后必须在`-8`~`8`之间（含）。
 </treeview>
 
-**布尔型**：
+布尔型：
 
 <treeview>
 - <DataType type="boolean" name="minecraft:selection_box"/>：定义方块是否具有选择箱。默认为`true`，且使用 16×16×16 像素的选择箱大小。
@@ -425,7 +425,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**对象型**：
+对象型：
 
 ```json showLineNumbers
 "minecraft:geometry": {
@@ -812,7 +812,7 @@ import Button from '/src/components/button/base';
 
 <Version add="1.19.10"/>
 
-**对象型**：
+对象型：
 
 <treeview>
 - <DataType type="object" name="minecraft:flammable"/>：根对象
@@ -821,7 +821,7 @@ import Button from '/src/components/button/base';
   - <DataType type="string" name="lava_flammable"/>：<Version add="1.26.30" inline/>定义方块是否会因附近的熔岩着火。可选值为`always`或`never`。默认值为`never`。
 </treeview>
 
-**布尔型**：
+布尔型：
 
 <treeview>
 - <DataType type="boolean" name="minecraft:flammable"/>：定义方块是否可燃。指定为`true`时将使用默认值。
@@ -866,11 +866,7 @@ import Button from '/src/components/button/base';
 
 定义方块可种植在花盆内。
 
-:::warning[注意]
-
-要更改方块在花盆内的显示效果，见组件[`minecraft:embedded_visual`](#minecraftembedded_visual)。
-
-:::
+另见：*[`minecraft:embedded_visual`](#minecraftembedded_visual)组件*（更改方块在花盆内的显示效果）。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -890,18 +886,12 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:friction`
 
-<Usable type="all"/> <Version add="1.12.0"/> <br/>
+<Usable type="all"/> <Version add="1.12.0"/> <Highlight text="疑似损坏" tooltip="实测更高的摩擦因数反而会导致除船、掉落物外的其他实体加速。不建议使用过高的摩擦因数。" color="red"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_friction?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#friction"/>
 
 定义方块的摩擦系数。
-
-:::warning[注意]
-
-该组件疑似已损坏，实测更高的摩擦因数反而会导致除船、掉落物外的其他实体加速。不建议使用过高的摩擦因数。
-
-:::
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2941,7 +2931,7 @@ import Button from '/src/components/button/base';
 
 <Tabs><TabItem value="参数" label="参数" default>
 
-**对象型**：
+对象型：
 
 <treeview>
 - <DataType type="object" name="minecraft:block_light_absorption"/>：根对象

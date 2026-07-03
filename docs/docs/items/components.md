@@ -1672,10 +1672,10 @@ import Button from '/src/components/button/base';
 - <DataType type="object" name="minecraft:throwable"/>：根对象。
   - <DataType type="boolean" name="do_swing_animation"/>：物品掷出后是否播放摆手动画。
   - <DataType type="float" name="launch_power_scale"/>：随着蓄力时间增长而增加的弹射物威力比例。默认值为`1.0`（即蓄力时间增长，弹射物威力不增加）。设置负值将导致弹射物以反方向掷出。
-  - <DataType type="float" name="max_draw_duration"/>：最长蓄力时间，单位秒。默认为`0.0`。
-  - <DataType type="float" name="min_draw_duration"/>：最短蓄力时间，单位秒。默认为`0.0`。
+  - <DataType type="float" name="min_draw_duration"/>：最短蓄力时间，单位秒。蓄力未达到最短蓄力时间则无法掷出弹射物。默认为`0.0`。
   - <DataType type="float" name="max_launch_power"/>：弹射物的最大威力（以保证弹射物的威力不会无限增大）。
   - <DataType type="boolean" name="scale_power_by_draw_duration"/>：是否随着蓄力时间的增长而增加弹射物掷出时的威力，默认值为`false`。
+  - <DataType type="float" name="max_draw_duration"/> <Highlight text="限定参数" tooltip="该参数需要配合scale_power_by_draw_duration=true使用。" inline/> 最长蓄力时间，单位秒。通过该参数以限制弹射物掷出的最大威力。应小于等于[`minecraft:use_modifiers`](#minecraftuse_modifiers)或[`minecraft:use_duration`](#minecraftuse_duration)组件定义的使用时长，默认值为`0`。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -1751,9 +1751,9 @@ import Button from '/src/components/button/base';
 - <DataType type="object" name="minecraft:use_modifiers"/>：根对象。
   - <DataType type="float" name="use_duration" isRequired/>：使用时长。例如苹果的该值为`1.6`。
   - <DataType type="float" name="movement_modifier"/>：定义玩家使用物品时的速度倍率，必须小于等于`1`。例如苹果的该值为`0.35`。
-  - <DataType type="boolean" name="emit_vibrations"/>：（1.21.120+）定义玩家使用物品时是否发出振动。
-  - <DataType type="string" name="start_sound"/>：（1.21.130+）定义玩家在使用物品后播放何种音效。
-  - <DataType type="string" name="start_using"/>：（1.26.30+）判定何时，可选值为`eat`、
+  - <DataType type="boolean" name="emit_vibrations"/>：<Version add="1.21.120" inline/>定义玩家使用物品时是否发出振动。
+  - <DataType type="string" name="start_sound"/>：<Version add="1.21.130" inline/>定义玩家在使用物品后播放何种音效。
+  - <DataType type="string" name="start_using"/>：<Version add="1.26.30" inline/>判定何时触发使用修饰器，可选值为`always`（只要触发使用操作就被触发）和`if_first`（只有没有其他使用相关组件时才触发）。
 </treeview>
 [^1]: 有待验证。
 
@@ -2817,9 +2817,16 @@ import Button from '/src/components/button/base';
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
+<Version add="1.10" deprecated="1.16.0"/>：
+
 <treeview>
-- <DataType type="int" name="minecraft:use_duration"/>：（1.10-1.16.0）该物品的使用时长。单位为游戏刻，默认值为`32`。  
-- <DataType type="float" name="minecraft:use_duration"/>：（1.20.20-1.20.40）该物品的使用时长。单位为秒，默认值为`1.6`。  
+- <DataType type="int" name="minecraft:use_duration"/>：该物品的使用时长。单位为游戏刻，默认值为`32`。  
+</treeview>
+
+<Version add="1.20.20" deprecated="1.20.40"/>
+
+<treeview>
+- <DataType type="float" name="minecraft:use_duration"/>：该物品的使用时长。单位为秒，默认值为`1.6`。  
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -2843,7 +2850,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:custom_components`
 
-<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" deprecated="1.21.90" tooltip="弃用原因：1.21.90 推出了自定义组件 V2。在 1.21.90 或更高版本下的物品定义中不应再使用该组件。" deprecated/><br/>
+<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" deprecated="1.21.90" tooltip="弃用原因：1.21.90 推出了自定义组件 V2。在 1.21.90 或更高版本下的物品定义中不应再使用该组件。"/><br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_custom_components?view=minecraft-bedrock-stable"/>
 
