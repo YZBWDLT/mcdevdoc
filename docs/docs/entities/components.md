@@ -18,11 +18,13 @@ import Button from '/src/components/button/base';
 
 :::warning[注意]
 
-本文正在编辑中，缺少大量信息，仅供参考。若需要，请查阅[实体组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/componentlist?view=minecraft-bedrock-stable)。
+本文正在编辑中，缺少大量信息，仅供参考。若需要，请查阅[实体组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/componentlist?view=minecraft-bedrock-stable)和[实体 AI 意向组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/aigoallist?view=minecraft-bedrock-stable)。
 
 :::
 
-数据驱动实体组件（Data-Driven Entity Components）用于规定实体的功能。将不同的实体组件组合在一起可以实现多种复杂的功能。实体组件可以指定到<DataType type="object" name="components" isRequired/>中，以使得实体在所有情况下都使用相关功能；也可以指定到实体组件组<DataType type="object" name="component_groups"/> - <DataType type="object" name="*"/>中，使得实体在使用特定事件时使用特定的功能。
+数据驱动实体组件（Data-Driven Entity Components）用于规定实体的功能。将不同的实体组件组合在一起可以实现多种复杂的功能。
+
+实体组件可以指定到<DataType type="object" name="components" isRequired/>中，以使得实体在所有情况下都使用相关功能；也可以指定到实体组件组<DataType type="object" name="component_groups"/> - <DataType type="object" name="*"/>中，使得实体在使用特定事件时使用特定的功能。
 
 本文档收录所有已开放或即将开放的命名空间为`minecraft`的实体组件信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
 
@@ -253,6 +255,42 @@ import Button from '/src/components/button/base';
 
 ---
 
+### `minecraft:equip_item`
+
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_equip_item?view=minecraft-bedrock-stable"/>
+
+定义实体会穿上想穿上的装备。类似于原版的猪灵、骷髅、僵尸等。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:equip_item"/>：根对象。
+  - <DataType type="array" name="exclude_items"/>：实体不会拾取的物品。
+    - <DataType type="object"/>
+      - <DataType type="string" name="item"/>：物品 ID。
+  - <DataType type="boolean" name="can_wear_armor"/>：<Version add="1.21.100" inline/> 若设定为`true`，实体就可以从地上捡起盔甲类物品并穿上。默认值为`false`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:equip_item": {}
+```
+
+```json showLineNumbers
+"minecraft:equip_item": {
+    "excluded_items": [
+        { "item": "minecraft:banner:15" }
+    ]
+}
+```
+
+</TabItem></Tabs>
+
+---
+
 ### `minecraft:hurt_on_condition`
 
 <Usable type="all"/> <Version add="1.13.0"/> <br/>
@@ -275,9 +313,95 @@ import Button from '/src/components/button/base';
 ---
 ---
 
+### `minecraft:rotation_axis_aligned`
+
+<Usable type="all"/> <Version add="1.21.100" tooltip="在更旧的版本下使用minecraft:body_rotation_axis_aligned组件。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_rotation_axis_aligned?view=minecraft-bedrock-stable"/>
+
+定义实体会根据自身朝向旋转身体并对齐坐标轴。类似于快乐恶魂。
+
+---
+
+### `minecraft:tick_world`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_tick_world?view=minecraft-bedrock-stable"/>
+
+定义实体高频运行世界[^1]。目前没有任何原版实体使用此组件。
+
+[^1]: 有待验证。
+
+---
+
+## 寻路与运动组件
+
+寻路与运动组件规定了实体在拥有一个目标后，会尝试以何种路径到达预定地点。
+
+### `minecraft:navigation.walk`
+
+<Usable type="all"/> <Version add="1.21.100"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.walk?view=minecraft-bedrock-stable"/>
+
+定义实体会以行走的方式寻路并到达预定地点。
+
+---
+---
+
+## AI 意向组件
+
+AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可以使得实体拥有“想要做什么事情”的能力。
+
+### `minecraft:behavior.take_block`
+
+<Usable type="all"/> <Version add="1.21.100" tooltip="在更旧的版本下使用minecraft:behavior.enderman_take_block组件。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_take_block?view=minecraft-bedrock-stable"/>
+
+定义实体会拿走方块。类似于末影人。
+
+---
+
+### `minecraft:behavior.transport_items`
+
+<Usable type="all"/> <Version add="1.21.100"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:navigation.*组件以进行寻路。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_transport_items?view=minecraft-bedrock-stable"/>
+
+定义实体会从容器中运输物品，或将物品运输到容器中。类似于铜傀儡。
+
+另见：*[`minecraft:navigation.walk`](#minecraftnavigationwalk)组件*等寻路组件。
+
+---
+
+### `minecraft:behavior.place_block`
+
+<Usable type="all"/> <Version add="1.21.100" tooltip="在更旧的版本下使用minecraft:behavior.enderman_leave_block组件。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_place_block?view=minecraft-bedrock-stable"/>
+
+定义实体会放下方块。类似于末影人。
+
+---
+---
+
 ## 弃用组件
 
 以下组件仅限旧版本的实体适用，故本文档也一并列出，但若条件允许，请尽可能使用更高版本的格式版本和组件。
+
+### `minecraft:body_rotation_axis_aligned`
+
+<Usable type="all"/> <Version add="1.21.70" deprecated="1.21.100" tooltip="在高版本使用minecraft:rotation_axis_aligned组件代替之。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_body_rotation_axis_aligned?view=minecraft-bedrock-stable"/>
+
+定义实体可被其他实体或方块推动。
+
+另见：*[`minecraft:rotation_axis_aligned`](#minecraftrotation_axis_aligned)组件*。
+
+---
 
 ### `minecraft:pushable`
 
@@ -316,8 +440,34 @@ import Button from '/src/components/button/base';
 
 ---
 
+### `minecraft:behavior.enderman_leave_block`
+
+<Usable type="all"/> <Version add="1.2.0" deprecated="1.21.100" tooltip="在高版本使用minecraft:behavior.place_block组件代替之。"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影人可用。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_enderman_leave_block?view=minecraft-bedrock-stable"/>
+
+定义末影人会放下方块。
+
+另见：*[`minecraft:behavior.place_block`](#minecraftbehaviorplace_block)组件*。
+
+---
+
+### `minecraft:behavior.enderman_take_block`
+
+<Usable type="all"/> <Version add="1.2.0" deprecated="1.21.100" tooltip="在高版本使用minecraft:behavior.take_block组件代替之。"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影人可用。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_enderman_take_block?view=minecraft-bedrock-stable"/>
+
+定义末影人会拿走方块。
+
+另见：*[`minecraft:behavior.take_block`](#minecraftbehaviortake_block)组件*。
+
+---
+---
+
 ## 参考文档
 
 本文主要参考文档如下，读者可以在这些文档获得更多信息。
 
 - [实体组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/componentlist?view=minecraft-bedrock-stable)
+- [实体 AI 意向组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/aigoallist?view=minecraft-bedrock-stable)
