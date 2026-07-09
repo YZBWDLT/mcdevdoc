@@ -889,7 +889,7 @@ execute if score tick time matches 20.. run scoreboard players remove tick time 
     ```mcfunction showLineNumbers title="system/player_join"
     # 系统 | 退出重进系统检测
     scoreboard players add @a isOnline 0
-    execute as @a[scores={isOnline=0}] at @s run function aw/lib/events/player_join
+    execute as @a[scores={isOnline=0}] at @s run function lib/events/player_join
     scoreboard objectives remove isOnline
     scoreboard objectives add isOnline dummy "在线数据"
     scoreboard players set @a isOnline 1
