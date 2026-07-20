@@ -4,15 +4,11 @@ sidebar_position: 5
 
 # 自定义命令
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import '/src/css/treeview.css';
-import FileType from "/src/components/type/file"
-import DataType from "/src/components/type/data"
 import Highlight from '/src/components/highlight/base';
-import Usable from "/src/components/highlight/usable"
-import Version from "/src/components/highlight/scriptVersion"
 import Button from '/src/components/button/base';
+import Version from "/src/components/highlight/scriptVersion"
+import ReadOnly from "/src/components/highlight/readonly"
+import Optional from "/src/components/highlight/optional"
 
 本文主要记录自定义命令相关接口。
 
@@ -87,10 +83,10 @@ interface CustomCommand {
 
 - name: string，命令名称。
 - description: string，命令描述，显示在自动补全页面中命令条目的右侧。
-- <Highlight text="可选" color="yellowgreen" inline/>mandatoryParameters: [CustomCommandParameter[]](#customcommandparameter-接口)，命令的必选参数。
-- <Highlight text="可选" color="yellowgreen" inline/>optionalParameters: [CustomCommandParameter[]](#customcommandparameter-接口)，命令的可选参数。
+- <Optional/> mandatoryParameters: [CustomCommandParameter[]](#customcommandparameter-接口)，命令的必选参数。
+- <Optional/> optionalParameters: [CustomCommandParameter[]](#customcommandparameter-接口)，命令的可选参数。
 - permissionLevel: [CommandPermissionLevel](#commandpermissionlevel-枚举)，命令的权限等级。
-- <Highlight text="可选" color="yellowgreen" inline/>cheatsRequired: boolean，命令是否需要作弊。默认值: true。
+- <Optional/> cheatsRequired: boolean，命令是否需要作弊。默认值: true。
 
 ---
 
@@ -110,7 +106,7 @@ interface CustomCommandParameter {
 
 - name: string，命令参数名称。
 - type: [CustomCommandParamType](#customcommandparamtype-枚举)，命令参数类型。
-- <Highlight text="可选" color="yellowgreen" inline/>enumName: string，如果type指定为CustomCommandParamType.Enum，使用何种枚举。见[CustomCommandRegistry.registerEnum方法](#registerenum-方法)。
+- <Optional/> enumName: string，如果type指定为CustomCommandParamType.Enum，使用何种枚举。见[CustomCommandRegistry.registerEnum方法](#registerenum-方法)。
 
 ---
 
@@ -177,10 +173,10 @@ export class CustomCommandOrigin {
 
 #### 属性
 
-- <Highlight text="只读" inline/> <Highlight text="可选" color="yellowgreen" inline/> sourceEntity: [Entity](./entity_and_player/entity#entity-类)，若该命令由实体执行，返回该实体的信息。
-- <Highlight text="只读" inline/> <Highlight text="可选" color="yellowgreen" inline/> initiator: [Entity](./entity_and_player/entity#entity-类)，若该命令由 NPC 执行，返回该 NPC 的信息。
-- <Highlight text="只读" inline/> <Highlight text="可选" color="yellowgreen" inline/> sourceBlock: [Block](block#block类)，若该命令由方块执行，返回该方块的信息。
-- <Highlight text="只读" inline/> sourceType: [CustomCommandSource](#customcommandsource-枚举)，该命令由何种来源执行。
+- <ReadOnly/> <Optional/> sourceEntity: [Entity](./entity_and_player/entity#entity-类)，若该命令由实体执行，返回该实体的信息。
+- <ReadOnly/> <Optional/> initiator: [Entity](./entity_and_player/entity#entity-类)，若该命令由 NPC 执行，返回该 NPC 的信息。
+- <ReadOnly/> <Optional/> sourceBlock: [Block](block#block类)，若该命令由方块执行，返回该方块的信息。
+- <ReadOnly/> sourceType: [CustomCommandSource](#customcommandsource-枚举)，该命令由何种来源执行。
 
 ---
 
@@ -215,7 +211,7 @@ interface CustomCommandResult {
 ```
 
 - status: [CustomCommandStatus](#customcommandstatus-枚举)，命令返回的状态。
-- <Highlight text="可选" color="yellowgreen" inline/> message: string，命令返回的消息。
+- <Optional/> message: string，命令返回的消息。
 
 ---
 
@@ -255,7 +251,7 @@ export class CustomCommandError extends Error {
 
 - name: string，错误名称。继承自 Error 类。
 - message: string，错误消息。继承自 Error 类。
-- <Highlight text="只读" inline/> reason: [CustomCommandErrorReason](#customcommanderrorreason-枚举)，错误原因。
+- <ReadOnly/> reason: [CustomCommandErrorReason](#customcommanderrorreason-枚举)，错误原因。
 
 > 该类有更多的属性和方法，见[类 CustomCommandError](https://projectxero.top/sapi/classes/server.CustomCommandError.html)。
 

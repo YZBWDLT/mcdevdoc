@@ -245,6 +245,16 @@ import Button from '/src/components/button/base';
 
 ---
 
+### `minecraft:dash_action`
+
+<Usable type="all"/> <Version add="1.21.110" tooltip="在更旧的版本下使用minecraft:dash组件。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_dash_action?view=minecraft-bedrock-stable"/>
+
+定义可骑乘实体的冲刺行为。类似于骆驼。
+
+---
+
 ### `minecraft:dimension_bound`
 
 <Usable type="all"/> <Version add="1.21.40"/> <br/>
@@ -291,6 +301,26 @@ import Button from '/src/components/button/base';
 
 ---
 
+### `minecraft:experience_reward`
+
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_experience_reward?view=minecraft-bedrock-stable"/>
+
+定义实体会掉落经验球。
+
+---
+
+### `minecraft:free_camera_controlled`
+
+<Usable type="all"/> <Version add="1.21.110" tooltip="在更旧的版本下使用minecraft:input_air_controlled组件。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_free_camera_controlled?view=minecraft-bedrock-stable"/>
+
+当用[`minecraft:rideable`](#minecraftrideable)组件设定为可骑乘实体后，该实体将可由 WASD 和鼠标控制运动。类似于快乐恶魂。
+
+---
+
 ### `minecraft:hurt_on_condition`
 
 <Usable type="all"/> <Version add="1.13.0"/> <br/>
@@ -298,6 +328,34 @@ import Button from '/src/components/button/base';
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_hurt_on_condition?view=minecraft-bedrock-stable"/>
 
 定义实体在何种条件下会受伤。
+
+---
+
+### `minecraft:interact`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_interact?view=minecraft-bedrock-stable"/>
+
+定义实体可交互。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:interact"/>：根对象。
+  - <DataType type="string" name="equip_item_slot"/>：成功交互后，该实体可装备物品的槽位（如有）。  
+  指定为整数字符串（例如`"0"`、`"1"`）时，代表装备到物品栏的特定槽位。  
+  指定为下列字符串时，代表装备到特定的装备槽位：  
+  `"slot.armor.head"`、`"slot.armor.chest"`、`"slot.armor.legs"`、`"slot.armor.feet"`、`"slot.armor.body"`、`"slot.weapon.mainhand"`（<Version add="1.21.110" inline/>）和`"slot.weapon.offhand"`（<Version add="1.21.110" inline/>）。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:interact": {}
+```
+
+</TabItem></Tabs>
 
 ---
 
@@ -311,6 +369,15 @@ import Button from '/src/components/button/base';
 定义实体为弹射物。
 
 ---
+
+### `minecraft:rideable`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_rideable?view=minecraft-bedrock-stable"/>
+
+定义实体为可骑乘的实体。
+
 ---
 
 ### `minecraft:rotation_axis_aligned`
@@ -332,6 +399,16 @@ import Button from '/src/components/button/base';
 定义实体高频运行世界[^1]。目前没有任何原版实体使用此组件。
 
 [^1]: 有待验证。
+
+---
+
+### `minecraft:vertical_movement_action`
+
+<Usable type="all"/> <Version add="1.21.110"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_vertical_movement.action?view=minecraft-bedrock-stable"/>
+
+当用[`minecraft:rideable`](#minecraftrideable)组件设定为可骑乘实体后，该实体将可由玩家的跳跃行为控制竖直方向上的运动。类似于快乐恶魂。
 
 ---
 
@@ -385,6 +462,102 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 定义实体会放下方块。类似于末影人。
 
 ---
+
+### `minecraft:behavior.roar`
+
+<Usable type="all"/> <Version add="1.19.0"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_roar?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.slime_attack`
+
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_slime_attack?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.slime_float`
+
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_slime_float?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.slime_keep_on_jumping`
+
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_slime_keep_on_jumping?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.slime_random_direction`
+
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_slime_random_direction?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.sniff`
+
+<Usable type="all"/> <Version add="1.19.40"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_sniff?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.sonic_boom`
+
+<Usable type="all"/> <Version add="1.19.40"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_sonic_boom?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.stay_near_noteblock`
+
+<Usable type="all"/> <Version add="1.19.40"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_stay_near_noteblock?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.swim_idle`
+
+<Usable type="all"/> <Version add="1.18.30"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swim_idle?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.swim_up_for_breath`
+
+<Usable type="all"/> <Version add="1.21.20"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swim_up_for_breath?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.swim_wander`
+
+<Usable type="all"/> <Version add="1.18.30"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swim_wander?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.swoop_attack`
+
+<Usable type="all"/> <Version add="1.18.30"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swoop_attack?view=minecraft-bedrock-stable"/>
+
+---
 ---
 
 ## 弃用组件
@@ -400,6 +573,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 定义实体可被其他实体或方块推动。
 
 另见：*[`minecraft:rotation_axis_aligned`](#minecraftrotation_axis_aligned)组件*。
+
+---
+
+### `minecraft:dash`
+
+<Usable type="all"/> <Version add="1.20.40" deprecated="1.21.110" tooltip="在高版本使用minecraft:dash_action组件代替之。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_dash?view=minecraft-bedrock-stable"/>
+
+定义可骑乘实体的冲刺行为。类似于骆驼。
+
+另见：*[`minecraft:dash_action`](#minecraftdash_action)组件*。
+
+---
+
+### `minecraft:input_air_controlled`
+
+<Usable type="all"/> <Version add="1.21.90" deprecated="1.21.110" tooltip="在高版本使用minecraft:rotation_axis_aligned组件代替之。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_input_air_controlled?view=minecraft-bedrock-stable"/>
+
+当用[`minecraft:rideable`](#minecraftrideable)组件设定为可骑乘实体后，该实体将可由 WASD 和鼠标控制运动。类似于快乐恶魂。
+
+另见：*[`minecraft:free_camera_controlled`](#minecraftfree_camera_controlled)组件*。
 
 ---
 

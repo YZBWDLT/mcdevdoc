@@ -4,15 +4,9 @@ sidebar_position: 2
 
 # 方块
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import '/src/css/treeview.css';
-import FileType from "/src/components/type/file"
-import DataType from "/src/components/type/data"
-import Highlight from '/src/components/highlight/base';
-import Usable from "/src/components/highlight/usable"
-import Version from "/src/components/highlight/scriptVersion"
 import Button from '/src/components/button/base';
+import Version from "/src/components/highlight/scriptVersion"
+import ReadOnly from "/src/components/highlight/readonly"
 
 本文主要记录方块相关接口。
 
@@ -32,7 +26,7 @@ import Button from '/src/components/button/base';
 
 #### 属性
 
-- <Highlight text="只读" inline/> <Version add="2.1.0" inline/> localizationKey: string，方块在语言文件中的键名。
+- <ReadOnly/> <Version add="2.1.0" inline/> localizationKey: string，方块在语言文件中的键名。
 
 ---
 

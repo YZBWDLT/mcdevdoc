@@ -1,12 +1,12 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # 实体组件
 
-import Version from "/src/components/highlight/scriptVersion"
 import Button from '/src/components/button/base';
-import Highlight from '/src/components/highlight/base';
+import Version from "/src/components/highlight/scriptVersion"
+import ReadOnly from "/src/components/highlight/readonly"
 
 本文主要记录实体组件相关接口。
 
@@ -30,8 +30,8 @@ import Highlight from '/src/components/highlight/base';
 
 #### 属性
 
-- <Highlight text="只读" inline/> <Version add="2.1.0" inline/> totalArmor: number，实体的总盔甲值。
-- <Highlight text="只读" inline/> <Version add="2.1.0" inline/> totalToughness: number，实体的总盔甲韧性值。
+- <ReadOnly/> <Version add="2.1.0" inline/> totalArmor: number，实体的总盔甲值。
+- <ReadOnly/> <Version add="2.1.0" inline/> totalToughness: number，实体的总盔甲韧性值。
 
 ---
 

@@ -4,9 +4,9 @@ sidebar_position: 1
 
 # 实体
 
-import Version from "/src/components/highlight/scriptVersion"
 import Button from '/src/components/button/base';
-import Highlight from '/src/components/highlight/base';
+import Version from "/src/components/highlight/scriptVersion"
+import ReadOnly from "/src/components/highlight/readonly"
 
 本文主要记录实体相关接口。
 
@@ -26,7 +26,11 @@ import Highlight from '/src/components/highlight/base';
 
 #### 属性
 
-- <Highlight text="只读" inline/> <Version add="2.1.0" inline/> localizationKey: string，实体在语言文件中的键名。
+- <ReadOnly/> <Version add="2.1.0" inline/> localizationKey: string，实体在语言文件中的键名。
+
+#### applyImpulse 方法
+
+#### clearVelocity 方法
 
 ---
 ---
