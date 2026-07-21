@@ -174,6 +174,8 @@ class ContainerRulesError extends Error {
 }
 ```
 
+**继承自**：Error。
+
 #### 属性
 
 - <ReadOnly/> reason: ContainerRulesErrorReason, the specific reason the error was thrown.

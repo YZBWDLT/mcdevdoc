@@ -175,7 +175,7 @@ class CustomCommandOrigin {
 
 - <ReadOnly/> <Optional/> sourceEntity: [Entity](./entity_and_player/entity#entity-类)，若该命令由实体执行，返回该实体的信息。
 - <ReadOnly/> <Optional/> initiator: [Entity](./entity_and_player/entity#entity-类)，若该命令由 NPC 执行，返回该 NPC 的信息。
-- <ReadOnly/> <Optional/> sourceBlock: [Block](block#block类)，若该命令由方块执行，返回该方块的信息。
+- <ReadOnly/> <Optional/> sourceBlock: [Block](./block/main#block-类)，若该命令由方块执行，返回该方块的信息。
 - <ReadOnly/> sourceType: [CustomCommandSource](#customcommandsource-枚举)，该命令由何种来源执行。
 
 ---
