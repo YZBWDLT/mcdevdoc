@@ -7,7 +7,7 @@ sidebar_position: 3
 import Button from '/src/components/button/base';
 import Version from "/src/components/highlight/scriptVersion"
 import Optional from "/src/components/highlight/optional"
-import ReadOnly from "/src/components/highlight/readOnly"
+import ReadOnly from "/src/components/highlight/readonly"
 
 本文主要记录容器相关接口。
 
