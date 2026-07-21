@@ -22,7 +22,7 @@ import Button from '/src/components/button/base';
 
 :::
 
-数据驱动实体事件（Data-Driven Entity Events）用于规定实体的特定事件。触发实体事件能够更改实体的组件组、实体属性等，从而更加灵活地控制实体的功能。
+实体事件（Entity Events），又称实体生成事件（Entity Spawn Events），用于规定实体的特定事件。触发实体事件能够更改实体的组件组、实体属性等，从而更加灵活地控制实体的功能。
 
 实体事件可以指定到<DataType type="object" name="events"/>中。
 
@@ -207,5 +207,6 @@ import Button from '/src/components/button/base';
 本文主要参考文档如下，读者可以在这些文档获得更多信息。
 
 - [中文 Minecraft Wiki](https://zh.minecraft.wiki/)
+- [生成事件 | 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E7%94%9F%E6%88%90%E4%BA%8B%E4%BB%B6)
 - [实体事件 | Bedrock Wiki](https://wiki.bedrock.dev/entities/entity-events)
 - [内置事件 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/eventlist?view=minecraft-bedrock-stable)

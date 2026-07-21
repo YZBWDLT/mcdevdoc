@@ -1710,7 +1710,7 @@ Object.values(player); // ['YZBWDLT', 20, 20, ["minecraft:stick"]]
 **js 文件也是可以用 VSC 打开的，并且拥有十分完备的自动补全和纠错机制**。我们在<FileType type="file" name="lib.js" />里面写一些有用的东西进去，比如还是这个生成随机数：
 
 ```js showLineNumbers {1}
-export class JSUtil {
+class JSUtil {
 
     /** 在[a, b]取随机整数
      * @param {number} min 最小值

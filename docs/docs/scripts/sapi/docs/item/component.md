@@ -60,6 +60,18 @@ import Version from "/src/components/highlight/scriptVersion"
 另见：*[`minecraft:dyeable`](/docs/docs/items/components#minecraftdyeable)物品组件*。
 
 ---
+
+## 物品栏组件
+
+### ItemInventoryComponent 类
+
+<Version add="2.3.0"/> <br/>
+
+<Button text="projectxero.top" url="https://projectxero.top/sapi/classes/server.ItemInventoryComponent.html"/>
+
+物品的物品栏组件。
+
+---
 ---
 
 ## 参考文档

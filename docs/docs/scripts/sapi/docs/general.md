@@ -18,11 +18,39 @@ import ReadOnly from "/src/components/highlight/readonly"
 
 ---
 
+## 坐标
+
+### Vector3 接口
+
+表示一个向量。
+
+```typescript
+interface Vector3 {
+    x: number;
+    y: number;
+    z: number;
+}
+```
+
+- x: number，向量的 X 坐标。
+- y: number，向量的 Y 坐标。
+- z: number，向量的 Z 坐标。
+
+---
+
 ## 原始消息
 
 ### RawMessage 接口
 
 <Button text="projectxero.top" url="https://projectxero.top/sapi/interfaces/server.RawMessage.html"/>
+
+---
+
+## 组件
+
+### Component 类
+
+<Button text="projectxero.top" url="https://projectxero.top/sapi/classes/server.Component.html"/>
 
 ---
 ---

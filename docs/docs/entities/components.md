@@ -368,6 +368,23 @@ import Button from '/src/components/button/base';
 
 定义实体为弹射物。
 
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:projectile"/>：根对象。
+  - <DataType type="object" name="on_hit"/>：当该弹射物击中后，实体的表现。
+    - <DataType type="object" name="impact_damage"/>：击中其他实体后，施加伤害。也可以指定为`null`，代表不施加伤害。
+      - <DataType type="boolean" name="apply_knockback_to_blocking_targets"/>：<Version add="1.21.120" inline/> 是否对阻挡的目标实施击退[^1]。默认值为`false`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:projectile": {}
+```
+
+</TabItem></Tabs>
+
 ---
 
 ### `minecraft:rideable`
@@ -397,8 +414,6 @@ import Button from '/src/components/button/base';
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_tick_world?view=minecraft-bedrock-stable"/>
 
 定义实体高频运行世界[^1]。目前没有任何原版实体使用此组件。
-
-[^1]: 有待验证。
 
 ---
 
@@ -430,6 +445,38 @@ import Button from '/src/components/button/base';
 ## AI 意向组件
 
 AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可以使得实体拥有“想要做什么事情”的能力。
+
+### `minecraft:behavior.avoid_block`
+
+<Usable type="all"/> <Version add="1.18.30"/> <Highlight text="严格解析" tooltip="在1.21.120及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_avoid_block?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.avoid_mob_type`
+
+<Usable type="all"/> <Version add="1.18.30"/> <Highlight text="严格解析" tooltip="在1.21.120及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_avoid_mob_type?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.dig`
+
+<Usable type="all"/> <Version add="1.19.40"/> <Highlight text="严格解析" tooltip="在1.21.120及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dig?view=minecraft-bedrock-stable"/>
+
+---
+
+### `minecraft:behavior.drink_milk`
+
+<Usable type="all"/> <Version add="1.19.10"/> <Highlight text="严格解析" tooltip="在1.21.120及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_drink_milk?view=minecraft-bedrock-stable"/>
+
+---
 
 ### `minecraft:behavior.take_block`
 
@@ -668,3 +715,5 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 - [实体组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/componentlist?view=minecraft-bedrock-stable)
 - [实体 AI 意向组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/aigoallist?view=minecraft-bedrock-stable)
+
+[^1]: 有待验证。

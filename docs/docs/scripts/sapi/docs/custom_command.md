@@ -162,7 +162,7 @@ enum CommandPermissionLevel {
 /**
  * Details about the origins of the command.
  */
-export class CustomCommandOrigin {
+class CustomCommandOrigin {
     private constructor();
     readonly initiator?: Entity;
     readonly sourceBlock?: Block;
@@ -241,7 +241,7 @@ export enum CustomCommandStatus {
 注册自定义命令时若遇到错误，抛出此类。
 
 ```typescript
-export class CustomCommandError extends Error {
+class CustomCommandError extends Error {
     private constructor();
     readonly reason: CustomCommandErrorReason;
 }
