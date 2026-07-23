@@ -38,7 +38,7 @@ import Button from '/src/components/button/base';
 
 ## 基础属性组件
 
-全体实体通用的组件。在定义实体的时候，多数情况下都需要这些组件。
+全体实体通用的组件。在定义实体的时候，多数情况下都需要这些组件，并且在编写实体时应当优先考虑这些组件。
 
 ### `minecraft:collision_box`
 
@@ -71,13 +71,86 @@ import Button from '/src/components/button/base';
 
 ---
 
+### `minecraft:health`
+
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_health?view=minecraft-bedrock-stable"/>
+
+定义实体的血量。请注意：1 颗心 = 2 点血量。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:health"/>：根对象。
+  - <DataType type="int" name="value"/>：（写法 1）实体的血量。默认值为`20`。
+  - <DataType type="object" name="value"/>：（写法 2）实体的血量范围。
+    - <DataType type="int" name="range_min"/>：血量的最小值。
+    - <DataType type="int" name="range_max"/>：血量的最大值。
+  - <DataType type="int" name="max"/>：实体的最大血量。默认值为`20`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+猪（<FileType type="file" name="pig.json"/>）：
+
+```json showLineNumbers
+"minecraft:health": {
+    "value": 10,
+    "max": 10
+}
+```
+
+羊驼（<FileType type="file" name="llama.json"/>）：
+
+```json showLineNumbers
+"minecraft:health": {
+    "value": {
+        "range_min": 15,
+        "range_max": 30
+    }
+}
+```
+
+</TabItem></Tabs>
+
+---
+
 ### `minecraft:physics`
 
 <Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_physics?view=minecraft-bedrock-stable"/>
 
-定义实体的物理属性。
+定义实体的物理属性，是否应该具有碰撞或重力。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:physics"/>：根对象。
+  - <DataType type="boolean" name="has_collision"/>：实体是否和世界中的其他方块/实体有碰撞。默认值为`true`。
+  - <DataType type="boolean" name="has_gravity"/>：实体是否有重力。默认值为`true`。
+  - <DataType type="boolean" name="push_towards_closest_space"/>：<Version add="1.19.60" inline/> 在被方块卡住后，实体是否应该被挤压到最近的开放区域。默认值为`false`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+恼鬼（<FileType type="file" name="vex.json"/>）：
+
+```json showLineNumbers
+"minecraft:physics": {
+    "has_collision": false,
+    "has_gravity": false
+}
+```
+
+盔甲架（<FileType type="file" name="armor_stand.json"/>）：
+
+```json showLineNumbers
+"minecraft:physics": {}
+```
+
+</TabItem></Tabs>
 
 ---
 
@@ -92,7 +165,7 @@ import Button from '/src/components/button/base';
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
-- <DataType type="object" name="minecraft:pushable_by_block"/>：根对象，不含任何参数。定义实体可被活塞或潜影盒推动。
+- <DataType type="object" name="minecraft:pushable_by_block"/>：根对象，不含任何参数。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -233,415 +306,50 @@ import Button from '/src/components/button/base';
 ---
 ---
 
-## 功能性组件
+## 传感器组件
 
-### `minecraft:addrider`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_addrider?view=minecraft-bedrock-stable"/>
-
-Adds a rider to the entity.
-
----
-
-### `minecraft:admire_item`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_admire_item?view=minecraft-bedrock-stable"/>
-
-Allows an entity to ignore attackable targets for a given duration
-
----
-
-### `minecraft:ageable`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_ageable?view=minecraft-bedrock-stable"/>
-
-Adds a timer for the entity to grow up.
-
----
-
-### `minecraft:ambient_sound_interval`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_ambient_sound_interval?view=minecraft-bedrock-stable"/>
-
-Delay for an entity playing its sound
-
----
-
-### `minecraft:anger_level`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_anger_level?view=minecraft-bedrock-stable"/>
-
-Compels the entity to track anger towards a set of nuisances.
-
----
-
-### `minecraft:angry`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_angry?view=minecraft-bedrock-stable"/>
-
-Defines an entity's 'angry' state using a timer.
-
----
-
-### `minecraft:annotation.break_door`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_annotation.break_door?view=minecraft-bedrock-stable"/>
-
-Allows an entity to break doors, assuming that that flags set up for the component to use in navigation.
-
----
-
-### `minecraft:annotation.open_door`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_annotation.open_door?view=minecraft-bedrock-stable"/>
-
-Allows the entity to open doors.
-
----
-
-### `minecraft:apply_knockback_rules`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_apply_knockback_rules?view=minecraft-bedrock-stable"/>
-
-Defines how an entity applies knockback.
-
----
-
-### `minecraft:apply_knockback_rules_instance`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_apply_knockback_rules_instance?view=minecraft-bedrock-stable"/>
-
-Intance of rules definition.
-
----
-
-### `minecraft:area_attack`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_area_attack?view=minecraft-bedrock-stable"/>
-
-A component that does damage to entities that get within range.
-
----
-
-### `minecraft:attack`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_attack?view=minecraft-bedrock-stable"/>
-
-Defines an entity's melee attack damage and any additional status effects applied on hit.
-
----
-
-### `minecraft:attack_cooldown`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_attack_cooldown?view=minecraft-bedrock-stable"/>
-
-Adds a cooldown to an entity.
-
----
-
-### `minecraft:attack_damage`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_attack_damage?view=minecraft-bedrock-stable"/>
-
-Specifies how much damage is dealt by the entity when it attacks.
-
----
-
-### `minecraft:balloonable`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_balloonable?view=minecraft-bedrock-stable"/>
-
-Allows this entity to have a balloon attached and defines the conditions and events for this entity when is ballooned.
-
----
-
-### `minecraft:barter`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_barter?view=minecraft-bedrock-stable"/>
-
-Enables the component to drop an item as a barter exchange.
-
----
-
-### `minecraft:block_climber`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_block_climber?view=minecraft-bedrock-stable"/>
-
-Allows the player to detect and manuever on the scaffolding block.
-
----
+传感器组件检查实体是否满足特定条件，例如周围是否有生物、是否受到伤害、附近是否存在方块等，并在符合条件后触发[实体事件](./events)。
 
 ### `minecraft:block_sensor`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_block_sensor?view=minecraft-bedrock-stable"/>
 
-Fires off a specified event when a block in the block list is broken within the sensor range.
-
----
-
-### `minecraft:body_rotation_always_follows_head`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_body_rotation_always_follows_head?view=minecraft-bedrock-stable"/>
-
-Causes the entity's body rotation to match the one of their head. Does not override the "`minecraft:body_rotation_blocked`" component.
-
----
-
-### `minecraft:body_rotation_blocked`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_body_rotation_blocked?view=minecraft-bedrock-stable"/>
-
-When set, the entity will no longer visually rotate their body to match their facing direction.
-
----
-
-### `minecraft:body_rotation_locked_to_vehicle`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_body_rotation_locked_to_vehicle?view=minecraft-bedrock-stable"/>
-
-Causes the entity's body rotation to match their vehicle's facing direction.
-
----
-
-### `minecraft:boostable`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_boostable?view=minecraft-bedrock-stable"/>
-
-Defines the conditions and behavior of a rideable entity's boost.
-
----
-
-### `minecraft:boss`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_boss?view=minecraft-bedrock-stable"/>
-
-Defines the current state of the boss for updating the boss HUD.
-
----
-
-### `minecraft:break_blocks`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_break_blocks?view=minecraft-bedrock-stable"/>
-
-Specifies the blocks that the entity can break as it moves around.
-
----
-
-### `minecraft:breathable`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_breathable?view=minecraft-bedrock-stable"/>
-
-Defines what blocks this entity can breathe in and gives them the ability to suffocate.
-
----
-
-### `minecraft:breedable`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_breedable?view=minecraft-bedrock-stable"/>
-
-Allows an entity to establish a way to get into the love state used for breeding.
-
----
-
-### `minecraft:bribeable`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_bribeable?view=minecraft-bedrock-stable"/>
-
-Defines the way an entity can get into the 'bribed' state.
-
----
-
-### `minecraft:buoyant`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_buoyant?view=minecraft-bedrock-stable"/>
-
-Enables an entity to float on the specified liquid blocks.
-
----
-
-### `minecraft:burns_in_daylight`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_burns_in_daylight?view=minecraft-bedrock-stable"/>
-
-Specifies that this entity takes fire damage when exposed to direct sunlight.
-
----
-
-### `minecraft:cannot_be_attacked`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_cannot_be_attacked?view=minecraft-bedrock-stable"/>
-
-When set, blocks entities from attacking the owner entity unless they have the "`minecraft:ignore_cannot_be_attacked" component.`
-
----
-
-### `minecraft:can_climb`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_can_climb?view=minecraft-bedrock-stable"/>
-
-Allows an entity to climb ladders.
-
----
-
-### `minecraft:can_fly`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_can_fly?view=minecraft-bedrock-stable"/>
-
-Marks the entity as being able to fly, the pathfinder won't be restricted to paths where a solid block is required underneath it.
-
----
-
-### `minecraft:can_join_raid`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_can_join_raid?view=minecraft-bedrock-stable"/>
-
-Specifies if an entity can join a raid.
-
----
-
-### `minecraft:can_power_jump`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_can_power_jump?view=minecraft-bedrock-stable"/>
-
-Allows the entity to power jump like the Horse does in Vanilla.
-
----
-
-### `minecraft:celebrate_hunt`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_celebrate_hunt?view=minecraft-bedrock-stable"/>
-
-Specifies hunt celebration behaviour.
-
----
-
-### `minecraft:color`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_color?view=minecraft-bedrock-stable"/>
-
-Defines the entity's main color.
-
----
-
-### `minecraft:color2`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_color2?view=minecraft-bedrock-stable"/>
-
-Defines the entity's second texture color.
-
----
-
-### `minecraft:combat_regeneration`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_combat_regeneration?view=minecraft-bedrock-stable"/>
-
-Gives Regeneration I and removes Mining Fatigue from the mob that kills the entity's attack target.
-
----
-
-### `minecraft:conditional_bandwidth_optimization`
-
-<Usable type="all"/> <Version add="1.16.100"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_conditional_bandwidth_optimization?view=minecraft-bedrock-stable"/>
-
-定义实体的条件空间更新带宽优化。
-
----
-
-### `minecraft:custom_hit_test`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_custom_hit_test?view=minecraft-bedrock-stable"/>
-
-List of hitboxes for melee and ranged hits against the entity.
-
----
-
-### `minecraft:damage_over_time`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_damage_over_time?view=minecraft-bedrock-stable"/>
-
-Applies defined amount of damage to the entity at specified intervals.
+定义实体如果有指定方块在指定范围附近被破坏时触发事件。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:block_sensor"/>：根对象。
+  - <DataType type="array" name="on_break" isRequired/>：待检查的可能被破坏的方块列表，一旦方块被破坏则触发事件。特别地，如果同一个方块在下面的多个列表中，则这些列表的事件将同时触发。
+    - <DataType type="object"/>
+      - <DataType type="array" name="block_list"/>：待检查的方块列表。
+        - <DataType type="string"/>：方块 ID。
+      - <DataType type="string" name="on_block_broken"/>：方块列表的方块被破坏后，触发的事件。见[实体事件](./events)。
+  - <DataType type="float" name="sensor_radius"/>：检查的方块的半径。应小于等于`32`。默认值为`16`。
+  - <DataType type="array" name="sources"/>：<Version add="1.18.30" inline/> 检查破坏方块的实体。实体必须满足规定条件才能继续检查方块是否被破坏并触发事件。
+    - <DataType type="object"/>：代表一个实体的过滤器。见[过滤器](./filters)。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+蜜蜂（<FileType type="file" name="bee.json"/>）：
+
+```json showLineNumbers
+"minecraft:block_sensor": {
+    "sensor_radius": 16,
+    "sources": [{ "test": "has_silk_touch", "subject": "other", "value": false }],
+    "on_break": [
+        {
+            "block_list": ["minecraft:beehive", "minecraft:bee_nest"],
+            "on_block_broken": "hive_destroyed"
+        }
+    ]
+}
+```
+
+</TabItem></Tabs>
 
 ---
 
@@ -651,97 +359,115 @@ Applies defined amount of damage to the entity at specified intervals.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_damage_sensor?view=minecraft-bedrock-stable"/>
 
-Defines what events to call when this entity is damaged by specific entities or items.
+定义实体受伤时触发事件。
 
----
+<Tabs><TabItem value="参数" label="参数" default>
 
-### `minecraft:dash_action`
+<treeview>
+- <DataType type="object" name="minecraft:damage_sensor"/>：根对象。
+  - <DataType type="array"/><DataType type="object" name="trigger"/>：代表多个伤害传感器。如果只有一个伤害传感器，也可以直接写成`"trigger": {...}`的对象结构。
+    - <DataType type="object"/>：伤害传感器。
+      - <DataType type="boolean" name="deals_damage"/>：<Version add="1.2.0" deprecated="1.21.40" inline/> 定义实体在满足条件时是否执行伤害。默认值为`false`。
+      - <DataType type="string" name="deals_damage"/>：<Version add="1.21.40" inline/>定义实体在满足条件时是否执行伤害。可选值如下表所示：
+        | 可选值 | 描述 |
+        | --- | --- |
+        | `yes` | 正常施加伤害。 |
+        | `no` | 默认值[^1]。不施加伤害。 |
+        | `no_but_side_effects_apply` | 不施加伤害，但应用攻击的其他效果。例如，攻击者的武器的耐久值会下降，应用魔咒效果等。类似于嘎枝。 |
+        | `no_but_entity_effects_apply` | <Version add="1.26.20" inline/> 不施加伤害，但应用击退和攻击的其他效果。例如，攻击者的武器的耐久值会下降，应用魔咒效果等。类似于硫方怪。 |
+      - <DataType type="string" name="cause"/>：实体受到伤害的类型。只有实体受到规定伤害类型时才能触发该伤害传感器。可选值见[伤害类型 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/伤害类型#基岩版)。默认值为`none`。
+      - <DataType type="object" name="on_damage"/>：当实体受到伤害时，仅当其中的过滤器条件通过后才能执行伤害，并触发事件。
+        - <DataType type="string" name="event"/>：实体受到伤害后触发的事件。
+        - <DataType type="object" name="filters"/>：代表一个实体的过滤器。见[过滤器](./filters)。
+      - <DataType type="float" name="damage_modifier"/>：<Version add="1.16.200" inline/> 实体受到伤害的加和值，在原有伤害的基础上增加该伤害。默认值为`0`。
+      - <DataType type="float" name="damage_multiplier"/>：<Version add="1.13.0" inline/> 实体受到伤害的乘积值，在原有伤害的基础上倍乘该伤害。默认值为`1`。
+      - <DataType type="string" name="on_damage_sound_event"/>：<Version add="1.14.0" inline/> 实体受伤后播放的音效。
+</treeview>
 
-<Usable type="all"/> <Version add="1.21.110" tooltip="在更旧的版本下使用minecraft:dash组件。"/> <br/>
+</TabItem><TabItem value="示例" label="示例">
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_dash_action?view=minecraft-bedrock-stable"/>
+美西螈（<FileType type="file" name="axolotl.json"/>）：
 
-定义可骑乘实体的冲刺行为。类似于骆驼。
+```json showLineNumbers
+"minecraft:damage_sensor": {
+    "triggers": {
+        "cause": "lightning",
+        "deals_damage": "yes",
+        "damage_multiplier": 2000.0
+    }
+}
+```
 
----
+哞菇（<FileType type="file" name="mooshroom.json"/>）：
 
-### `minecraft:default_look_angle`
+```json showLineNumbers
+"minecraft:damage_sensor": {
+    "triggers": [
+        {
+            "on_damage": {
+                "filters": {
+                    "all_of": [
+                        { "test": "is_family", "subject": "other", "value": "lightning" },
+                        { "test": "is_variant", "subject": "self", "operator": "==", "value": 0 }
+                    ]
+                },
+                "event": "minecraft:become_brown"
+            },
+            "deals_damage": "no",
+            "on_damage_sound_event": "convert_mooshroom"
+        },
+        {
+            "on_damage": {
+                "filters": {
+                    "all_of": [
+                        { "test": "is_family", "subject": "other", "value": "lightning" },
+                        { "test": "is_variant", "subject": "self", "operator": "==", "value": 1 }
+                    ]
+                },
+                "event": "minecraft:become_red"
+            },
+            "deals_damage": "no",
+            "on_damage_sound_event": "convert_mooshroom"
+        }
+    ]
+}
+```
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_default_look_angle?view=minecraft-bedrock-stable"/>
-
-Sets this entity's default head rotation angle.
-
----
-
-### `minecraft:despawn`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_despawn?view=minecraft-bedrock-stable"/>
-
-Despawns the Actor when the despawn rules or optional filters evaluate to true.
-
----
-
-### `minecraft:dimension_bound`
-
-<Usable type="all"/> <Version add="1.21.40"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_dimension_bound?view=minecraft-bedrock-stable"/>
-
-定义实体不可通过传送门切换维度。
-
----
-
-### `minecraft:drying_out_timer`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_drying_out_timer?view=minecraft-bedrock-stable"/>
-
-Adds a timer for drying out that will count down and fire 'dried_out_event' or will stop as soon as the entity will get under rain or water and fire 'stopped_drying_out_event'
-
----
-
-### `minecraft:dweller`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_dweller?view=minecraft-bedrock-stable"/>
-
-Compels an entity to join and migrate between villages and other dwellings.
-
----
-
-### `minecraft:economy_trade_table`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_economy_trade_table?view=minecraft-bedrock-stable"/>
-
-Defines this entity's ability to trade with players.
-
----
-
-### `minecraft:entity_armor_equipment_slot_mapping`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_entity_armor_equipment_slot_mapping?view=minecraft-bedrock-stable"/>
-
-It defines to which armor slot an item equipped to '`minecraft:equippable`''s second slot should be equipped to.
+</TabItem></Tabs>
 
 ---
 
 ### `minecraft:entity_sensor`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_entity_sensor?view=minecraft-bedrock-stable"/>
 
 A component that owns multiple subsensors, each one firing an event when a set of conditions are met by other entities within the defined range.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -753,6 +479,1675 @@ A component that owns multiple subsensors, each one firing an event when a set o
 
 Creates a trigger based on environment conditions.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:rail_sensor`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_rail_sensor?view=minecraft-bedrock-stable"/>
+
+Enables minecart-type entities to detect powered rails and respond to activation state changes.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:target_nearby_sensor`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_target_nearby_sensor?view=minecraft-bedrock-stable"/>
+
+Defines the entity's range within which it can see or sense other entities to target them.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:timer`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_timer?view=minecraft-bedrock-stable"/>
+
+Adds a timer after which an event will fire.
+
+---
+---
+
+## 功能性组件
+
+### `minecraft:addrider`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_addrider?view=minecraft-bedrock-stable"/>
+
+Adds a rider to the entity.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:admire_item`
+
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_admire_item?view=minecraft-bedrock-stable"/>
+
+Allows an entity to ignore attackable targets for a given duration
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:ageable`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_ageable?view=minecraft-bedrock-stable"/>
+
+Adds a timer for the entity to grow up.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:ambient_sound_interval`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_ambient_sound_interval?view=minecraft-bedrock-stable"/>
+
+Delay for an entity playing its sound
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:anger_level`
+
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_anger_level?view=minecraft-bedrock-stable"/>
+
+Compels the entity to track anger towards a set of nuisances.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:angry`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_angry?view=minecraft-bedrock-stable"/>
+
+Defines an entity's 'angry' state using a timer.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:annotation.break_door`
+
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_annotation.break_door?view=minecraft-bedrock-stable"/>
+
+Allows an entity to break doors, assuming that that flags set up for the component to use in navigation.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:annotation.open_door`
+
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_annotation.open_door?view=minecraft-bedrock-stable"/>
+
+Allows the entity to open doors.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:apply_knockback_rules`
+
+<Usable type="all"/> <Version add="1.26.30"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_apply_knockback_rules?view=minecraft-bedrock-stable"/>
+
+Defines how an entity applies knockback.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:area_attack`
+
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_area_attack?view=minecraft-bedrock-stable"/>
+
+A component that does damage to entities that get within range.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:attack`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_attack?view=minecraft-bedrock-stable"/>
+
+Defines an entity's melee attack damage and any additional status effects applied on hit.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:attack_cooldown`
+
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_attack_cooldown?view=minecraft-bedrock-stable"/>
+
+Adds a cooldown to an entity.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:attack_damage`
+
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_attack_damage?view=minecraft-bedrock-stable"/>
+
+Specifies how much damage is dealt by the entity when it attacks.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:balloonable`
+
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_balloonable?view=minecraft-bedrock-stable"/>
+
+Allows this entity to have a balloon attached and defines the conditions and events for this entity when is ballooned.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:barter`
+
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_barter?view=minecraft-bedrock-stable"/>
+
+Enables the component to drop an item as a barter exchange.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:block_climber`
+
+<Usable type="all"/> <Version add="1.17.10"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_block_climber?view=minecraft-bedrock-stable"/>
+
+Allows the player to detect and manuever on the scaffolding block.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:body_rotation_always_follows_head`
+
+<Usable type="all"/> <Version add="1.21.90"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_body_rotation_always_follows_head?view=minecraft-bedrock-stable"/>
+
+Causes the entity's body rotation to match the one of their head. Does not override the "`minecraft:body_rotation_blocked`" component.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:body_rotation_blocked`
+
+<Usable type="all"/> <Version add="1.20.80"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_body_rotation_blocked?view=minecraft-bedrock-stable"/>
+
+When set, the entity will no longer visually rotate their body to match their facing direction.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:boostable`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_boostable?view=minecraft-bedrock-stable"/>
+
+Defines the conditions and behavior of a rideable entity's boost.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:boss`
+
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_boss?view=minecraft-bedrock-stable"/>
+
+Defines the current state of the boss for updating the boss HUD.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:break_blocks`
+
+<Usable type="all"/> <Version add="1.11.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_break_blocks?view=minecraft-bedrock-stable"/>
+
+Specifies the blocks that the entity can break as it moves around.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:breathable`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_breathable?view=minecraft-bedrock-stable"/>
+
+Defines what blocks this entity can breathe in and gives them the ability to suffocate.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:breedable`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_breedable?view=minecraft-bedrock-stable"/>
+
+Allows an entity to establish a way to get into the love state used for breeding.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:bribeable`
+
+<Usable type="all"/> <Version add="1.5.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_bribeable?view=minecraft-bedrock-stable"/>
+
+Defines the way an entity can get into the 'bribed' state.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:buoyant`
+
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_buoyant?view=minecraft-bedrock-stable"/>
+
+Enables an entity to float on the specified liquid blocks.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:burns_in_daylight`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_burns_in_daylight?view=minecraft-bedrock-stable"/>
+
+Specifies that this entity takes fire damage when exposed to direct sunlight.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:cannot_be_attacked`
+
+<Usable type="all"/> <Version add="1.21.50"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_cannot_be_attacked?view=minecraft-bedrock-stable"/>
+
+When set, blocks entities from attacking the owner entity unless they have the "`minecraft:ignore_cannot_be_attacked" component.`
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:can_climb`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_can_climb?view=minecraft-bedrock-stable"/>
+
+Allows an entity to climb ladders.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:can_fly`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_can_fly?view=minecraft-bedrock-stable"/>
+
+Marks the entity as being able to fly, the pathfinder won't be restricted to paths where a solid block is required underneath it.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:can_join_raid`
+
+<Usable type="all"/> <Version add="1.20.50"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_can_join_raid?view=minecraft-bedrock-stable"/>
+
+Specifies if an entity can join a raid.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:can_power_jump`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_can_power_jump?view=minecraft-bedrock-stable"/>
+
+Allows the entity to power jump like the Horse does in Vanilla.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:celebrate_hunt`
+
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_celebrate_hunt?view=minecraft-bedrock-stable"/>
+
+Specifies hunt celebration behaviour.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:color`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_color?view=minecraft-bedrock-stable"/>
+
+Defines the entity's main color.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:color2`
+
+<Usable type="all"/> <Version add="1.4.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_color2?view=minecraft-bedrock-stable"/>
+
+Defines the entity's second texture color.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:combat_regeneration`
+
+<Usable type="all"/> <Version add="1.17.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_combat_regeneration?view=minecraft-bedrock-stable"/>
+
+Gives Regeneration I and removes Mining Fatigue from the mob that kills the entity's attack target.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:conditional_bandwidth_optimization`
+
+<Usable type="all"/> <Version add="1.16.100"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_conditional_bandwidth_optimization?view=minecraft-bedrock-stable"/>
+
+定义实体的条件空间更新带宽优化。
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:custom_hit_test`
+
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_custom_hit_test?view=minecraft-bedrock-stable"/>
+
+List of hitboxes for melee and ranged hits against the entity.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:damage_over_time`
+
+<Usable type="all"/> <Version add="1.4.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_damage_over_time?view=minecraft-bedrock-stable"/>
+
+Applies defined amount of damage to the entity at specified intervals.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:dash_action`
+
+<Usable type="all"/> <Version add="1.21.110" tooltip="在更旧的版本下使用minecraft:dash组件。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_dash_action?view=minecraft-bedrock-stable"/>
+
+定义可骑乘实体的冲刺行为。类似于骆驼。
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:default_look_angle`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_default_look_angle?view=minecraft-bedrock-stable"/>
+
+Sets this entity's default head rotation angle.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:despawn`
+
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_despawn?view=minecraft-bedrock-stable"/>
+
+Despawns the Actor when the despawn rules or optional filters evaluate to true.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:dimension_bound`
+
+<Usable type="all"/> <Version add="1.21.40"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_dimension_bound?view=minecraft-bedrock-stable"/>
+
+定义实体不可通过传送门切换维度。
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:drying_out_timer`
+
+<Usable type="all"/> <Version add="1.17.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_drying_out_timer?view=minecraft-bedrock-stable"/>
+
+Adds a timer for drying out that will count down and fire 'dried_out_event' or will stop as soon as the entity will get under rain or water and fire 'stopped_drying_out_event'
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:dweller`
+
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_dweller?view=minecraft-bedrock-stable"/>
+
+Compels an entity to join and migrate between villages and other dwellings.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:economy_trade_table`
+
+<Usable type="all"/> <Version add="1.11.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_economy_trade_table?view=minecraft-bedrock-stable"/>
+
+Defines this entity's ability to trade with players.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:entity_armor_equipment_slot_mapping`
+
+<Usable type="all"/> <Version add="1.21.20"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_entity_armor_equipment_slot_mapping?view=minecraft-bedrock-stable"/>
+
+It defines to which armor slot an item equipped to '`minecraft:equippable`''s second slot should be equipped to.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:equipment`
@@ -763,6 +2158,30 @@ Creates a trigger based on environment conditions.
 
 Sets the Equipment table to use for this Entity.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:equippable`
@@ -772,6 +2191,30 @@ Sets the Equipment table to use for this Entity.
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_equippable?view=minecraft-bedrock-stable"/>
 
 Defines an entity's behavior for having items equipped to it.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -809,15 +2252,63 @@ Defines an entity's behavior for having items equipped to it.
 
 </TabItem></Tabs>
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:exhaustion_values`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.18.30"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_exhaustion_values?view=minecraft-bedrock-stable"/>
 
 Defines how much exhaustion each player action should take.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -829,6 +2320,30 @@ Defines how much exhaustion each player action should take.
 
 定义实体会掉落经验球。
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:explode`
@@ -838,6 +2353,30 @@ Defines how much exhaustion each player action should take.
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_explode?view=minecraft-bedrock-stable"/>
 
 Defines how the entity explodes.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -849,6 +2388,30 @@ Defines how the entity explodes.
 
 Sets that this entity doesn't take damage from fire.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:floats_in_liquid`
@@ -859,15 +2422,63 @@ Sets that this entity doesn't take damage from fire.
 
 Sets that this entity can float in liquid blocks.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:flocking`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_flocking?view=minecraft-bedrock-stable"/>
 
 Allows entities to flock in groups in water or not.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -879,15 +2490,63 @@ Allows entities to flock in groups in water or not.
 
 Speed in Blocks that this entity flies at.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:follow_range`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_follow_range?view=minecraft-bedrock-stable"/>
 
 Defines the maximum range, in blocks, that a mob will pursue a target.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -899,6 +2558,30 @@ Defines the maximum range, in blocks, that a mob will pursue a target.
 
 当用[`minecraft:rideable`](#minecraftrideable)组件设定为可骑乘实体后，该实体将可由 WASD 和鼠标控制运动。类似于快乐恶魂。
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:friction_modifier`
@@ -909,35 +2592,131 @@ Defines the maximum range, in blocks, that a mob will pursue a target.
 
 Defines how much friction affects this entity.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:game_event_movement_tracking`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.19.20"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_game_event_movement_tracking?view=minecraft-bedrock-stable"/>
 
 Allows an entity to emit entityMove, swim and flap game events, depending on the block the entity is moving through.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:genetics`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.8.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_genetics?view=minecraft-bedrock-stable"/>
 
 Defines the way a mob's genes and alleles are passed on to its offspring, and how those traits manifest in the child.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:giveable`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.9.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_giveable?view=minecraft-bedrock-stable"/>
 
 Defines sets of items that can be used to trigger events when used on this entity.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -949,25 +2728,97 @@ Defines sets of items that can be used to trigger events when used on this entit
 
 Sets the offset from the ground that the entity is actually at.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:group_size`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_group_size?view=minecraft-bedrock-stable"/>
 
 Keeps track of entity group size in the given radius.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:grows_crop`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_grows_crop?view=minecraft-bedrock-stable"/>
 
 Could increase crop growth when entity walks over crop
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -979,55 +2830,165 @@ Could increase crop growth when entity walks over crop
 
 How entities heal
 
----
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
 
-### `minecraft:health`
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+</TabItem><TabItem value="示例" label="示例">
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_health?view=minecraft-bedrock-stable"/>
+原版某实体（<FileType type="file" name="???.json"/>）：
 
-Defines the health pool for an entity, measured in health points (1 point = half a heart).
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
 ### `minecraft:heartbeat`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.19.40"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_heartbeat?view=minecraft-bedrock-stable"/>
 
 Defines the entity's heartbeat.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:hide`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_hide?view=minecraft-bedrock-stable"/>
 
 Moves to and hides at their owned POI or the closest nearby.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:home`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_home?view=minecraft-bedrock-stable"/>
 
 Saves a home position for when the entity is spawned.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:horse.jump_strength`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_horse.jump_strength?view=minecraft-bedrock-stable"/>
 
 Determines the jump height for a horse or similar entity, like a donkey.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1039,15 +3000,63 @@ Determines the jump height for a horse or similar entity, like a donkey.
 
 定义实体在何种条件下会受伤。
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:ignore_cannot_be_attacked`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.21.50"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_ignore_cannot_be_attacked?view=minecraft-bedrock-stable"/>
 
 When set, blocks entities from attacking the owner entity unless they have the "`minecraft:ignore_cannot_be_attacked" component.`
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1059,35 +3068,131 @@ When set, blocks entities from attacking the owner entity unless they have the "
 
 When configured as a rideable entity, the entity will be controlled using WASD controls.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:inside_block_notifier`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.16.100"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_inside_block_notifier?view=minecraft-bedrock-stable"/>
 
 Verifies whether the entity is inside any of the listed blocks.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:insomnia`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.6.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_insomnia?view=minecraft-bedrock-stable"/>
 
 Adds a timer since last rested to see if phantoms should spawn.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:instant_despawn`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_instant_despawn?view=minecraft-bedrock-stable"/>
 
 Despawns the Actor immediately.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1119,6 +3224,30 @@ Despawns the Actor immediately.
 
 ---
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:inventory`
@@ -1129,45 +3258,63 @@ Despawns the Actor immediately.
 
 Defines this entity's inventory properties.
 
----
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
 
-### `minecraft:is_baby`
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+</TabItem><TabItem value="示例" label="示例">
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_baby?view=minecraft-bedrock-stable"/>
+原版某实体（<FileType type="file" name="???.json"/>）：
 
-Sets that this entity is a baby.
+```json showLineNumbers
+"minecraft:xxx": {}
+```
 
----
-
-### `minecraft:is_charged`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_charged?view=minecraft-bedrock-stable"/>
-
-Sets that this entity is charged.
-
----
-
-### `minecraft:is_chested`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_chested?view=minecraft-bedrock-stable"/>
-
-Sets that this entity is currently carrying a chest.
+</TabItem></Tabs>
+-->
 
 ---
 
 ### `minecraft:is_collidable`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.21.70"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_collidable?view=minecraft-bedrock-stable"/>
 
 Allows other mobs to have vertical and horizontal collisions with this mob.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1179,75 +3326,97 @@ Allows other mobs to have vertical and horizontal collisions with this mob.
 
 Allows dyes to be used on this entity to change its color.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:is_hidden_when_invisible`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_hidden_when_invisible?view=minecraft-bedrock-stable"/>
 
 The entity can hide from hostile mobs while invisible.
 
----
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
 
-### `minecraft:is_ignited`
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+</TabItem><TabItem value="示例" label="示例">
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_ignited?view=minecraft-bedrock-stable"/>
+原版某实体（<FileType type="file" name="???.json"/>）：
 
-Sets that this entity is currently on fire.
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
 ### `minecraft:is_illager_captain`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.11.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_illager_captain?view=minecraft-bedrock-stable"/>
 
 Sets that this entity is an Illager Captain.
 
----
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
 
-### `minecraft:is_pregnant`
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+</TabItem><TabItem value="示例" label="示例">
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_pregnant?view=minecraft-bedrock-stable"/>
+原版某实体（<FileType type="file" name="???.json"/>）：
 
-Sets that this entity is currently pregnant.
+```json showLineNumbers
+"minecraft:xxx": {}
+```
 
----
-
-### `minecraft:is_saddled`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_saddled?view=minecraft-bedrock-stable"/>
-
-Sets that this entity is currently saddled.
-
----
-
-### `minecraft:is_shaking`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_shaking?view=minecraft-bedrock-stable"/>
-
-Sets that this entity is currently shaking.
-
----
-
-### `minecraft:is_sheared`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_sheared?view=minecraft-bedrock-stable"/>
-
-Sets that this entity is currently sheared.
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1259,25 +3428,29 @@ Sets that this entity is currently sheared.
 
 Allows instances of this entity to have vertical and horizontal collisions with each other.
 
----
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
 
-### `minecraft:is_stunned`
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+</TabItem><TabItem value="示例" label="示例">
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_stunned?view=minecraft-bedrock-stable"/>
+原版某实体（<FileType type="file" name="???.json"/>）：
 
-Sets that this entity is currently stunned.
+```json showLineNumbers
+"minecraft:xxx": {}
+```
 
----
-
-### `minecraft:is_tamed`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_tamed?view=minecraft-bedrock-stable"/>
-
-Sets that this entity is currently tamed.
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1289,6 +3462,30 @@ Sets that this entity is currently tamed.
 
 Defines what items can be used to control this entity while ridden.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:item_hopper`
@@ -1298,6 +3495,30 @@ Defines what items can be used to control this entity while ridden.
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_item_hopper?view=minecraft-bedrock-stable"/>
 
 Determines that this entity is an item hopper.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1309,6 +3530,30 @@ Determines that this entity is an item hopper.
 
 Defines a dynamic type jump control that will change jump properties based on the speed modifier of the mob.Requires `minecraft:movement.skip to be used.`
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:jump.static`
@@ -1319,25 +3564,97 @@ Defines a dynamic type jump control that will change jump properties based on th
 
 Gives the entity the ability to jump.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:knockback_resistance`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_knockback_resistance?view=minecraft-bedrock-stable"/>
 
 Determines an entity's resistance to knockback from melee attacks.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:lava_movement`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_lava_movement?view=minecraft-bedrock-stable"/>
 
 Allows a custom movement speed across lava blocks.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1349,25 +3666,97 @@ Allows a custom movement speed across lava blocks.
 
 Describes how this mob can be leashed to other items
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:leashable_to`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.21.90"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_leashable_to?view=minecraft-bedrock-stable"/>
 
 Allows players to leash entities to this entity, retrieve entities already leashed to it, or free them using shears.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:looked_at`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.21.40" tooltip="在更旧的版本下使用minecraft:lookat组件。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_looked_at?view=minecraft-bedrock-stable"/>
 
 Defines the behavior when another entity looks at the owner entity.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1379,55 +3768,165 @@ Defines the behavior when another entity looks at the owner entity.
 
 Specifies the loot table that determines what items this entity drops upon death.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:managed_wandering_trader`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_managed_wandering_trader?view=minecraft-bedrock-stable"/>
 
 Manages the entity's ability to trade.
 
----
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
 
-### `minecraft:mark_variant`
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+</TabItem><TabItem value="示例" label="示例">
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_mark_variant?view=minecraft-bedrock-stable"/>
+原版某实体（<FileType type="file" name="???.json"/>）：
 
-Mark Variant is typically used as an additional per-type way (besides variant) to express a different visual form of the same mob.
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
 ### `minecraft:mob_effect`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_mob_effect?view=minecraft-bedrock-stable"/>
 
 A component that applies a mob effect to entities that get within range.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:mob_effect_immunity`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.21.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_mob_effect_immunity?view=minecraft-bedrock-stable"/>
 
 Entities with this component will have an immunity to the provided mob effects.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:movement_sound_distance_offset`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.21.60"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement_sound_distance_offset?view=minecraft-bedrock-stable"/>
 
 Sets the offset used to determine the next step distance for playing a movement sound.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1437,25 +3936,131 @@ Sets the offset used to determine the next step distance for playing a movement 
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_nameable?view=minecraft-bedrock-stable"/>
 
-Allows this entity to be named (e.g.
+Allows this entity to be named (e.g. using a name tag).
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:npc`
+
+<Usable type="onlyInternational" tooltip="中国版移除了NPC的功能，该组件在中国版无法解析。"/> <Version add="1.16.0"/> <br/>
+
+定义一个实体为 NPC，并具有 NPC 的功能。在和该实体交互时，会弹出 NPC 的窗口。
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
 
 ### `minecraft:offspring`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.26.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_offspring?view=minecraft-bedrock-stable"/>
 
 Defines the way an entity can create a born offspring.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:out_of_control`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.16.100"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_out_of_control?view=minecraft-bedrock-stable"/>
 
 Defines the entity's 'out of control' state.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1467,65 +4072,233 @@ Defines the entity's 'out of control' state.
 
 Defines the entity's 'peek' behavior, defining the events that should be called during it.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:persistent`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_persistent?view=minecraft-bedrock-stable"/>
 
 Defines whether an entity should be persistent in the game world.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:player.exhaustion`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_player.exhaustion?view=minecraft-bedrock-stable"/>
 
 Defines the player's exhaustion level.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:player.experience`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_player.experience?view=minecraft-bedrock-stable"/>
 
 Defines how much experience each player action should take.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:player.level`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_player.level?view=minecraft-bedrock-stable"/>
 
 Defines the player's level.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:player.saturation`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_player.saturation?view=minecraft-bedrock-stable"/>
 
 Defines the player's need for food.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:preferred_path`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_preferred_path?view=minecraft-bedrock-stable"/>
 
 Specifies costing information for mobs that prefer to walk on preferred paths.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1555,6 +4328,30 @@ Specifies costing information for mobs that prefer to walk on preferred paths.
 
 </TabItem></Tabs>
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:push_through`
@@ -1565,15 +4362,63 @@ Specifies costing information for mobs that prefer to walk on preferred paths.
 
 Sets the distance through which the entity can push through.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:raid_trigger`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_raid_trigger?view=minecraft-bedrock-stable"/>
 
 Attempts to trigger a raid at the entity's location.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1585,55 +4430,165 @@ Attempts to trigger a raid at the entity's location.
 
 Defines the entity's movement on the rails.
 
----
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
 
-### `minecraft:rail_sensor`
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+</TabItem><TabItem value="示例" label="示例">
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_rail_sensor?view=minecraft-bedrock-stable"/>
+原版某实体（<FileType type="file" name="???.json"/>）：
 
-Enables minecart-type entities to detect powered rails and respond to activation state changes.
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
 ### `minecraft:ravager_blocked`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.11.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_ravager_blocked?view=minecraft-bedrock-stable"/>
 
 Defines the ravager's response to their melee attack being blocked.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:reflect_projectiles`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.26.30" experimental="即将推出的创作者功能"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_reflect_projectiles?view=minecraft-bedrock-stable"/>
 
 [EXPERIMENTAL] Allows an entity to reflect projectiles.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:remove_in_peaceful`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.21.90"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_remove_in_peaceful?view=minecraft-bedrock-stable"/>
 
 Denotes entities that are not allowed to exist in "Peaceful" difficulty.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:renders_when_invisible`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.21.60"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_renders_when_invisible?view=minecraft-bedrock-stable"/>
 
 When set, the entity will render even when invisible.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1645,6 +4600,30 @@ When set, the entity will render even when invisible.
 
 定义实体为可骑乘的实体。
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:rotation_axis_aligned`
@@ -1655,15 +4634,63 @@ When set, the entity will render even when invisible.
 
 定义实体会根据自身朝向旋转身体并对齐坐标轴。类似于快乐恶魂。
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:rotation_locked_to_vehicle`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.21.130"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_rotation_locked_to_vehicle?view=minecraft-bedrock-stable"/>
 
 Causes the entity's rotation to match their vehicle's facing direction.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1675,6 +4702,30 @@ Causes the entity's rotation to match their vehicle's facing direction.
 
 Sets the entity's visual size multiplier.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:scale_by_age`
@@ -1685,15 +4736,63 @@ Sets the entity's visual size multiplier.
 
 Defines the entity's size interpolation based on the entity's age.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:scheduler`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_scheduler?view=minecraft-bedrock-stable"/>
 
 Fires off scheduled mob events at time of day events.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1705,6 +4804,30 @@ Fires off scheduled mob events at time of day events.
 
 Defines a list of items the mob wants to share or pick up.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:shooter`
@@ -1714,6 +4837,30 @@ Defines a list of items the mob wants to share or pick up.
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_shooter?view=minecraft-bedrock-stable"/>
 
 Defines the entity's ranged attack behavior.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1725,15 +4872,29 @@ Defines the entity's ranged attack behavior.
 
 Defines the entity's 'sit' state.
 
----
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
 
-### `minecraft:skin_id`
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+</TabItem><TabItem value="示例" label="示例">
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_skin_id?view=minecraft-bedrock-stable"/>
+原版某实体（<FileType type="file" name="???.json"/>）：
 
-Skin ID value.
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1745,15 +4906,63 @@ Skin ID value.
 
 Sets the entity's base volume for sound effects.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:spawn_egg_interaction`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.26.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_spawn_egg_interaction?view=minecraft-bedrock-stable"/>
 
 Enables interacting with this entity using its own spawn egg to spawn a born child.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1765,15 +4974,63 @@ Enables interacting with this entity using its own spawn egg to spawn a born chi
 
 Adds a timer after which this entity will spawn another entity or item (similar to vanilla's chicken's egg-laying behavior).
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:spawn_on_death`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.26.20"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_spawn_on_death?view=minecraft-bedrock-stable"/>
 
 Component for spawning entities when an entity perishes.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1785,6 +5042,30 @@ Component for spawning entities when an entity perishes.
 
 Allows an entity to add or remove status effects from itself.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:strength`
@@ -1795,15 +5076,63 @@ Allows an entity to add or remove status effects from itself.
 
 Defines the entity's strength to carry items.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:suspect_tracking`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_suspect_tracking?view=minecraft-bedrock-stable"/>
 
 Allows this entity to remember suspicious locations.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1815,6 +5144,30 @@ Allows this entity to remember suspicious locations.
 
 This entity can be tamed
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:tamemount`
@@ -1825,15 +5178,29 @@ This entity can be tamed
 
 Allows the Entity to be tamed by mounting it.
 
----
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
 
-### `minecraft:target_nearby_sensor`
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+</TabItem><TabItem value="示例" label="示例">
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_target_nearby_sensor?view=minecraft-bedrock-stable"/>
+原版某实体（<FileType type="file" name="???.json"/>）：
 
-Defines the entity's range within which it can see or sense other entities to target them.
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1845,6 +5212,30 @@ Defines the entity's range within which it can see or sense other entities to ta
 
 Defines an entity's teleporting behavior.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:tick_world`
@@ -1855,25 +5246,63 @@ Defines an entity's teleporting behavior.
 
 定义实体高频运行世界[^1]。目前没有任何原版实体使用此组件。
 
----
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
 
-### `minecraft:timer`
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+</TabItem><TabItem value="示例" label="示例">
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_timer?view=minecraft-bedrock-stable"/>
+原版某实体（<FileType type="file" name="???.json"/>）：
 
-Adds a timer after which an event will fire.
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
 ### `minecraft:trade_resupply`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_trade_resupply?view=minecraft-bedrock-stable"/>
 
 Resupplies an entity's trade.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1885,15 +5314,63 @@ Resupplies an entity's trade.
 
 Defines this entity's ability to trade with players.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:trail`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_trail?view=minecraft-bedrock-stable"/>
 
 Causes an entity to leave a trail of blocks as it moves about the world.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1905,35 +5382,131 @@ Causes an entity to leave a trail of blocks as it moves about the world.
 
 Defines an entity's transformation from the current definition into another
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:transient`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.21.40"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_transient?view=minecraft-bedrock-stable"/>
 
 An entity with this component will NEVER persist, and forever disappear when unloaded.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:trust`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_trust?view=minecraft-bedrock-stable"/>
 
 Allows this entity to trust multiple players.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:trusting`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.8.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_trusting?view=minecraft-bedrock-stable"/>
 
 Defines the rules for a mob to trust players.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -1945,55 +5518,165 @@ Defines the rules for a mob to trust players.
 
 Defines the family categories this entity belongs to.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:underwater_mount_breathing`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.21.130"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_underwater_mount_breathing?view=minecraft-bedrock-stable"/>
 
 Pauses this entity's breathing under water.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:underwater_movement`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_underwater_movement?view=minecraft-bedrock-stable"/>
 
 Defines the speed with which an entity can move through water.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:uses_legacy_friction`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.26.20"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_uses_legacy_friction?view=minecraft-bedrock-stable"/>
 
 When set, legacy calculations are used when applying "`minecraft:friction_modifier".`
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:variable_max_auto_step`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.19.50"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_variable_max_auto_step?view=minecraft-bedrock-stable"/>
 
 Entities with this component will have a maximum auto step height that is different depending on whether they are on a block that prevents jumping.
 
----
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
 
-### `minecraft:variant`
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+</TabItem><TabItem value="示例" label="示例">
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_variant?view=minecraft-bedrock-stable"/>
+原版某实体（<FileType type="file" name="???.json"/>）：
 
-Variant is typically used as a per-type way to express a different visual form of the same mob.
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -2005,25 +5688,97 @@ Variant is typically used as a per-type way to express a different visual form o
 
 当用[`minecraft:rideable`](#minecraftrideable)组件设定为可骑乘实体后，该实体将可由玩家的跳跃行为控制竖直方向上的运动。类似于快乐恶魂。
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:vibration_damper`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_vibration_damper?view=minecraft-bedrock-stable"/>
 
 Vibrations emitted by an entity with this component will be ignored.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:vibration_listener`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_vibration_listener?view=minecraft-bedrock-stable"/>
 
 Allows the entity to listen to vibration events.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -2035,6 +5790,30 @@ Allows the entity to listen to vibration events.
 
 Sets the speed multiplier for this entity's walk animation speed.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:wants_jockey`
@@ -2045,21 +5824,69 @@ Sets the speed multiplier for this entity's walk animation speed.
 
 Sets that this entity wants to become a jockey.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:water_movement`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_water_movement?view=minecraft-bedrock-stable"/>
 
 Customizes how the entity moves through water by adjusting drag coefficient.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:wither_target_highest_damage`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_wither_target_highest_damage?view=minecraft-bedrock-stable"/>
 
@@ -2074,107 +5901,347 @@ Allows the wither to focus its attacks on whichever mob has dealt the most damag
 
 ### `minecraft:movement`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement?view=minecraft-bedrock-stable"/>
 
 Defines the base movement speed of an entity.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:movement.amphibious`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.amphibious?view=minecraft-bedrock-stable"/>
 
 This move control allows the mob to swim in water and walk on land.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:movement.basic`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.basic?view=minecraft-bedrock-stable"/>
 
 This component accents the movement of an entity.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:movement.dolphin`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.dolphin?view=minecraft-bedrock-stable"/>
 
 This component can control how dolphins move, in a dolphin-esque style.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:movement.fly`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.fly?view=minecraft-bedrock-stable"/>
 
 This move control causes the mob to fly.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:movement.generic`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.generic?view=minecraft-bedrock-stable"/>
 
 This move control allows a mob to fly, swim, climb, etc.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:movement.glide`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.glide?view=minecraft-bedrock-stable"/>
 
 This move control causes the mob to glide.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:movement.hover`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.hover?view=minecraft-bedrock-stable"/>
 
 This move control causes the mob to hover.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:movement.jump`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.jump?view=minecraft-bedrock-stable"/>
 
 Move control that causes the mob to jump as it moves with a specified delay between jumps.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:movement.skip`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.skip?view=minecraft-bedrock-stable"/>
 
 This move control causes the mob to hop as it moves.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:movement.sway`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.sway?view=minecraft-bedrock-stable"/>
 
@@ -2182,71 +6249,239 @@ This move control causes the mob to sway side to side giving the impression it i
 
 ---
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:navigation.climb`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.climb?view=minecraft-bedrock-stable"/>
 
 Allows this entity to generate paths that include vertical walls like the vanilla Spiders do.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:navigation.float`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.float?view=minecraft-bedrock-stable"/>
 
 Allows this entity to generate paths by flying around the air like the regular Ghast.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:navigation.fly`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.fly?view=minecraft-bedrock-stable"/>
 
 Allows this entity to generate paths in the air like the vanilla Parrots do.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:navigation.generic`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.generic?view=minecraft-bedrock-stable"/>
 
 Allows this entity to generate paths by walking, swimming, flying and/or climbing around and jumping up and down a block.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:navigation.hover`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.hover?view=minecraft-bedrock-stable"/>
 
 Allows this entity to generate paths in the air like the vanilla Bees do.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:navigation.swim`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.swim?view=minecraft-bedrock-stable"/>
 
 Allows this entity to generate paths that include water.
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:navigation.walk`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="?"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.walk?view=minecraft-bedrock-stable"/>
 
@@ -2265,6 +6500,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_avoid_block?view=minecraft-bedrock-stable"/>
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:behavior.avoid_mob_type`
@@ -2272,6 +6531,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 <Usable type="all"/> <Version add="1.18.30"/> <Highlight text="严格解析" tooltip="在1.21.120及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_avoid_mob_type?view=minecraft-bedrock-stable"/>
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -2281,6 +6564,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dig?view=minecraft-bedrock-stable"/>
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:behavior.drink_milk`
@@ -2288,6 +6595,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 <Usable type="all"/> <Version add="1.19.10"/> <Highlight text="严格解析" tooltip="在1.21.120及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_drink_milk?view=minecraft-bedrock-stable"/>
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -2298,6 +6629,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_take_block?view=minecraft-bedrock-stable"/>
 
 定义实体会拿走方块。类似于末影人。
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -2311,6 +6666,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 另见：*[`minecraft:navigation.walk`](#minecraftnavigationwalk)组件*等寻路组件。
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:behavior.place_block`
@@ -2321,6 +6700,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 定义实体会放下方块。类似于末影人。
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:behavior.roar`
@@ -2329,37 +6732,157 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_roar?view=minecraft-bedrock-stable"/>
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:behavior.slime_attack`
 
-<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_slime_attack?view=minecraft-bedrock-stable"/>
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
 ### `minecraft:behavior.slime_float`
 
-<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_slime_float?view=minecraft-bedrock-stable"/>
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
 ### `minecraft:behavior.slime_keep_on_jumping`
 
-<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_slime_keep_on_jumping?view=minecraft-bedrock-stable"/>
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
 ### `minecraft:behavior.slime_random_direction`
 
-<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_slime_random_direction?view=minecraft-bedrock-stable"/>
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -2369,6 +6892,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_sniff?view=minecraft-bedrock-stable"/>
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:behavior.sonic_boom`
@@ -2376,6 +6923,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 <Usable type="all"/> <Version add="1.19.40"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_sonic_boom?view=minecraft-bedrock-stable"/>
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -2385,6 +6956,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_stay_near_noteblock?view=minecraft-bedrock-stable"/>
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:behavior.swim_idle`
@@ -2392,6 +6987,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 <Usable type="all"/> <Version add="1.18.30"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swim_idle?view=minecraft-bedrock-stable"/>
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -2401,6 +7020,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swim_up_for_breath?view=minecraft-bedrock-stable"/>
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:behavior.swim_wander`
@@ -2409,6 +7052,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swim_wander?view=minecraft-bedrock-stable"/>
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:behavior.swoop_attack`
@@ -2416,6 +7083,429 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 <Usable type="all"/> <Version add="1.18.30"/> <Highlight text="严格解析" tooltip="在1.21.110及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swoop_attack?view=minecraft-bedrock-stable"/>
+
+---
+---
+
+## 标记组件
+
+标记组件是用于标记实体状态的组件，它们并不具有任何功能，只能在相关 Molang 中读取其状态。在旧版本中，常常使用这些标记组件记录实体的状态，但 1.19.50 开放的[实体属性](./property)完全可以完全替代下文的标记组件，因此现在这些组件已不常使用。
+
+### `minecraft:is_baby`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_baby?view=minecraft-bedrock-stable"/>
+
+Sets that this entity is a baby.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:is_charged`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_charged?view=minecraft-bedrock-stable"/>
+
+Sets that this entity is charged.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:is_chested`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_chested?view=minecraft-bedrock-stable"/>
+
+Sets that this entity is currently carrying a chest.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:is_ignited`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_ignited?view=minecraft-bedrock-stable"/>
+
+Sets that this entity is currently on fire.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:is_pregnant`
+
+<Usable type="all"/> <Version add="1.20.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_pregnant?view=minecraft-bedrock-stable"/>
+
+Sets that this entity is currently pregnant.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:is_shaking`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_shaking?view=minecraft-bedrock-stable"/>
+
+Sets that this entity is currently shaking.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:is_saddled`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_saddled?view=minecraft-bedrock-stable"/>
+
+Sets that this entity is currently saddled.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:is_sheared`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_sheared?view=minecraft-bedrock-stable"/>
+
+Sets that this entity is currently sheared.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:is_stunned`
+
+<Usable type="all"/> <Version add="1.11.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_stunned?view=minecraft-bedrock-stable"/>
+
+Sets that this entity is currently stunned.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:is_tamed`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_tamed?view=minecraft-bedrock-stable"/>
+
+Sets that this entity is currently tamed.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:mark_variant`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_mark_variant?view=minecraft-bedrock-stable"/>
+
+Mark Variant is typically used as an additional per-type way (besides variant) to express a different visual form of the same mob.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:skin_id`
+
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_skin_id?view=minecraft-bedrock-stable"/>
+
+Skin ID value.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:variant`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_variant?view=minecraft-bedrock-stable"/>
+
+Variant is typically used as a per-type way to express a different visual form of the same mob.
 
 ---
 ---
@@ -2434,6 +7524,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 另见：*[`minecraft:rotation_axis_aligned`](#minecraftrotation_axis_aligned)组件*。
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:dash`
@@ -2446,6 +7560,103 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 另见：*[`minecraft:dash_action`](#minecraftdash_action)组件*。
 
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:foot_size`
+
+<Usable type="all"/> <Version add="1.2.0" deprecated="1.16.100"/> <br/>
+
+定义实体行走一步的距离。
+
+<treeview>
+- <DataType type="object" name="minecraft:foot_size"/>：根对象。
+  - <DataType type="float" name="value"/>：实体行走一步的距离。默认值为`0.5`。
+</treeview>
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:hurt_when_wet`
+
+<Usable type="all"/> <Version add="1.2.0" deprecated="?"/> <br/>
+
+定义实体被打湿后受伤。
+
+<treeview>
+- <DataType type="object" name="minecraft:hurt_when_wet"/>：根对象。不含任何参数。
+</treeview>
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
 ---
 
 ### `minecraft:input_air_controlled`
@@ -2457,6 +7668,67 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 当用[`minecraft:rideable`](#minecraftrideable)组件设定为可骑乘实体后，该实体将可由 WASD 和鼠标控制运动。类似于快乐恶魂。
 
 另见：*[`minecraft:free_camera_controlled`](#minecraftfree_camera_controlled)组件*。
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:lookat`
+
+<Usable type="all"/> <Version add="1.2.0" deprecated="1.21.40" tooltip="在高版本使用minecraft:looked_at组件代替之。"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_pushable?view=minecraft-bedrock-stable"/>
+
+定义实体可被其他实体或方块推动。
+
+另见：*[`minecraft:looked_at`](#minecraftlooked_at)组件*。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:pushable"/>：根对象。
+  - <DataType type="boolean" name="is_pushable"/>：该实体是否能被其他实体推动。
+  - <DataType type="boolean" name="is_pushable_by_piston"/>：该实体是否能被活塞安全推动。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:pushable": {}
+```
+
+箭（<FileType type="file" name="arrow.json"/>）：
+
+```json showLineNumbers
+"minecraft:pushable": {
+    "is_pushable": false,
+    "is_pushable_by_piston": true
+}
+```
+
+</TabItem></Tabs>
 
 ---
 
@@ -2497,6 +7769,18 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ---
 
+### `minecraft:scaffolding_climber`
+
+<Usable type="all"/> <Version add="1.8.0" deprecated="1.17.10"/> <br/>
+
+定义玩家可以检测到脚手架并在其上移动。
+
+<treeview>
+- <DataType type="object" name="minecraft:scaffolding_climber"/>：根对象。不含任何参数。
+</treeview>
+
+---
+
 ### `minecraft:behavior.enderman_leave_block`
 
 <Usable type="all"/> <Version add="1.2.0" deprecated="1.21.100" tooltip="在高版本使用minecraft:behavior.place_block组件代替之。"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影人可用。"/> <br/>
@@ -2506,6 +7790,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 定义末影人会放下方块。
 
 另见：*[`minecraft:behavior.place_block`](#minecraftbehaviorplace_block)组件*。
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 
@@ -2518,6 +7826,30 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 定义末影人会拿走方块。
 
 另见：*[`minecraft:behavior.take_block`](#minecraftbehaviortake_block)组件*。
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
 
 ---
 ---
