@@ -688,6 +688,40 @@ Adds a timer for the entity to grow up.
 
 ---
 
+### `minecraft:air_drag_modifier`
+
+<Usable type="all"/> <Version add="1.26.30"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_air_drag_modifier?view=minecraft-bedrock-stable"/>
+
+Defines how much does air drag affects this entity.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
 ### `minecraft:ambient_sound_interval`
 
 <Usable type="all"/> <Version add="1.2.0"/> <br/>
@@ -1239,6 +1273,40 @@ Defines the conditions and behavior of a rideable entity's boost.
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_boss?view=minecraft-bedrock-stable"/>
 
 Defines the current state of the boss for updating the boss HUD.
+
+<!--
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+原版某实体（<FileType type="file" name="???.json"/>）：
+
+```json showLineNumbers
+"minecraft:xxx": {}
+```
+
+</TabItem></Tabs>
+-->
+
+---
+
+### `minecraft:bounciness`
+
+<Usable type="all"/> <Version add="1.26.30"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_bounciness?view=minecraft-bedrock-stable"/>
+
+Controls how an entity bounces when colliding with surfaces.
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5886,7 +5954,7 @@ Customizes how the entity moves through water by adjusting drag coefficient.
 
 ### `minecraft:wither_target_highest_damage`
 
-<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_wither_target_highest_damage?view=minecraft-bedrock-stable"/>
 
@@ -6700,7 +6768,7 @@ Allows this mob to look at and follow the player that holds food they like.
 
 ### `minecraft:behavior.break_door`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_break_door?view=minecraft-bedrock-stable"/>
 
@@ -6972,7 +7040,7 @@ Allows the entity to be controlled by the player using an item in the item_contr
 
 ### `minecraft:behavior.croak`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavicroakme)?view=minecraft-bedrock-stable"/>
 
@@ -7006,7 +7074,7 @@ Allows the entity to croak at a random time interval with configurable condition
 
 ### `minecraft:behavior.defend_trusted_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_defend_trusted_target?view=minecraft-bedrock-stable"/>
 
@@ -7142,7 +7210,7 @@ Allows this entity to dig into the ground before despawning.
 
 ### `minecraft:behavior.door_interact`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_door_interact?view=minecraft-bedrock-stable"/>
 
@@ -7210,7 +7278,7 @@ Allows this entity to attack a player by charging at them.
 
 ### `minecraft:behavior.dragondeath`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragondeath?view=minecraft-bedrock-stable"/>
 
@@ -7278,7 +7346,7 @@ Allows this entity to use a flame-breath attack.
 
 ### `minecraft:behavior.dragonholdingpattern`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragonholdingpattern?view=minecraft-bedrock-stable"/>
 
@@ -7312,7 +7380,7 @@ Allows the Dragon to fly around in a circle around the center podium.
 
 ### `minecraft:behavior.dragonlanding`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragonlanding?view=minecraft-bedrock-stable"/>
 
@@ -7346,7 +7414,7 @@ Allows the Dragon to stop flying and transition into perching mode.
 
 ### `minecraft:behavior.dragonscanning`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragonscanning?view=minecraft-bedrock-stable"/>
 
@@ -7414,7 +7482,7 @@ Allows this entity to fly around looking for a player to shoot fireballs at.
 
 ### `minecraft:behavior.dragontakeoff`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragontakeoff?view=minecraft-bedrock-stable"/>
 
@@ -7650,7 +7718,7 @@ Allows the entity to eat a specified Mob.
 
 ### `minecraft:behavior.emerge`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavioemergee)?view=minecraft-bedrock-stable"/>
 
@@ -7888,7 +7956,7 @@ Allows the mob to move towards the nearest underwater ruin or shipwreck.
 
 ### `minecraft:behavior.fire_at_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_fire_at_target?view=minecraft-bedrock-stable"/>
 
@@ -8058,7 +8126,7 @@ Allows the mob to float around like the Ghast.
 
 ### `minecraft:behavior.follow_caravan`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_follow_caravan?view=minecraft-bedrock-stable"/>
 
@@ -8228,7 +8296,7 @@ Allows mob to move towards its current target captain.
 
 ### `minecraft:behavior.follow_target_leader`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_follow_target_leader?view=minecraft-bedrock-stable"/>
 
@@ -8534,7 +8602,7 @@ Allows the mob to hover in place.
 
 ### `minecraft:behavior.hurt_by_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_hurt_by_target?view=minecraft-bedrock-stable"/>
 
@@ -8976,7 +9044,7 @@ Compels an entity to look at the player that is currently trading with the entit
 
 ### `minecraft:behavior.make_love`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_make_love?view=minecraft-bedrock-stable"/>
 
@@ -9724,7 +9792,7 @@ Allows an entity to attack the closest target within a given subset of specific 
 
 ### `minecraft:behavior.nearest_prioritized_attackable_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_nearest_prioritized_attackable_target?view=minecraft-bedrock-stable"/>
 
@@ -9860,7 +9928,7 @@ Allows the mob to offer a flower to another mob with the minecraft:take_flower b
 
 ### `minecraft:behavior.open_door`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_open_door?view=minecraft-bedrock-stable"/>
 
@@ -9894,7 +9962,7 @@ Allows the mob to open doors.
 
 ### `minecraft:behavior.owner_hurt_by_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_owner_hurt_by_target?view=minecraft-bedrock-stable"/>
 
@@ -9928,7 +9996,7 @@ Allows the mob to target another mob that hurts their owner.
 
 ### `minecraft:behavior.owner_hurt_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_owner_hurt_target?view=minecraft-bedrock-stable"/>
 
@@ -10064,7 +10132,7 @@ Allows the mob to pick up items on the ground.
 
 ### `minecraft:behavior.place_block`
 
-<Usable type="all"/> <Version add="1.21.100" tooltip="在更旧的版本下使用minecraft:behavior.enderman_leave_block组件。"/> <br/>
+<Usable type="all"/> <Version add="1.21.100" tooltip="在更旧的版本下使用minecraft:behavior.enderman_leave_block组件。"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_place_block?view=minecraft-bedrock-stable"/>
 
@@ -10268,7 +10336,7 @@ Allows this entity to damage a target by using a running attack.
 
 ### `minecraft:behavior.random_breach`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_breach?view=minecraft-bedrock-stable"/>
 
@@ -10302,7 +10370,7 @@ Allows the mob to randomly break surface of the water.
 
 ### `minecraft:behavior.random_fly`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_fly?view=minecraft-bedrock-stable"/>
 
@@ -10370,7 +10438,7 @@ Allows the mob to hover around randomly, close to the surface.
 
 ### `minecraft:behavior.random_look_around`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_look_around?view=minecraft-bedrock-stable"/>
 
@@ -10404,7 +10472,7 @@ Allows the mob to randomly look around.
 
 ### `minecraft:behavior.random_look_around_and_sit`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_look_around_and_sit?view=minecraft-bedrock-stable"/>
 
@@ -10540,7 +10608,7 @@ Allows a mob to randomly stroll around.
 
 ### `minecraft:behavior.random_swim`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_swim?view=minecraft-bedrock-stable"/>
 
@@ -10608,7 +10676,7 @@ Allows an entity to attack by using ranged shots.
 
 ### `minecraft:behavior.receive_love`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_receive_love?view=minecraft-bedrock-stable"/>
 
@@ -10642,7 +10710,7 @@ Allows the villager to stop so another villager can breed with it.
 
 ### `minecraft:behavior.restrict_open_door`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_restrict_open_door?view=minecraft-bedrock-stable"/>
 
@@ -10676,7 +10744,7 @@ Allows the mob to stay indoors during night time.
 
 ### `minecraft:behavior.restrict_sun`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_restrict_sun?view=minecraft-bedrock-stable"/>
 
@@ -10710,7 +10778,7 @@ Allows the mob to automatically start avoiding the sun when its a clear day out.
 
 ### `minecraft:behavior.rise_to_liquid_level`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_rise_to_liquid_level?view=minecraft-bedrock-stable"/>
 
@@ -10778,7 +10846,7 @@ Allows this entity to roar at another entity based on data in minecraft:anger_le
 
 ### `minecraft:behavior.roll`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavrollame)?view=minecraft-bedrock-stable"/>
 
@@ -10812,7 +10880,7 @@ This allows the mob to roll forward.
 
 ### `minecraft:behavior.run_around_like_crazy`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_run_around_like_crazy?view=minecraft-bedrock-stable"/>
 
@@ -10846,7 +10914,7 @@ Allows the mob to run around aimlessly.
 
 ### `minecraft:behavior.scared`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavioscarede)?view=minecraft-bedrock-stable"/>
 
@@ -10914,7 +10982,7 @@ Allows the mob to send an event to another mob.
 
 ### `minecraft:behavior.share_items`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_share_items?view=minecraft-bedrock-stable"/>
 
@@ -11016,7 +11084,7 @@ Allows the mob to alert mobs in nearby blocks to come out.
 
 ### `minecraft:behavior.skeleton_horse_trap`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_skeleton_horse_trap?view=minecraft-bedrock-stable"/>
 
@@ -11254,7 +11322,7 @@ Allows the mob to take a load off and snack on food that it found nearby.
 
 ### `minecraft:behavior.sneeze`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviosneezee)?view=minecraft-bedrock-stable"/>
 
@@ -11594,7 +11662,7 @@ The entity will attempt to toss the items from its inventory to a nearby recentl
 
 ### `minecraft:behavior.stay_while_sitting`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_stay_while_sitting?view=minecraft-bedrock-stable"/>
 
@@ -11764,7 +11832,7 @@ Allows the mob to attack the player by summoning other entities.
 
 ### `minecraft:behavior.swell`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviswellme)?view=minecraft-bedrock-stable"/>
 
@@ -11968,7 +12036,7 @@ Allows an entity to attack using swoop attack behavior; Ideal for use with flyin
 
 ### `minecraft:behavior.take_block`
 
-<Usable type="all"/> <Version add="1.21.100" tooltip="在更旧的版本下使用minecraft:behavior.enderman_take_block组件。"/> <br/>
+<Usable type="all"/> <Version add="1.21.100" tooltip="在更旧的版本下使用minecraft:behavior.enderman_take_block组件。"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_take_block?view=minecraft-bedrock-stable"/>
 
@@ -12036,7 +12104,7 @@ Allows the mob to accept flowers from another mob with the minecraft:offer_flowe
 
 ### `minecraft:behavior.target_when_pushed`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_target_when_pushed?view=minecraft-bedrock-stable"/>
 
@@ -12240,7 +12308,7 @@ Fires an event when this behavior starts, then waits for a duration before stopp
 
 ### `minecraft:behavior.trade_interest`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_trade_interest?view=minecraft-bedrock-stable"/>
 
@@ -12446,7 +12514,7 @@ Allows the mob to move around randomly like the Vex.
 
 ### `minecraft:behavior.wither_random_attack_pos_goal`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_wither_random_attack_pos_goal?view=minecraft-bedrock-stable"/>
 
@@ -12480,7 +12548,7 @@ Allows the wither to launch random attacks.
 
 ### `minecraft:behavior.wither_target_highest_damage`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_wither_target_highest_damage?view=minecraft-bedrock-stable"/>
 
