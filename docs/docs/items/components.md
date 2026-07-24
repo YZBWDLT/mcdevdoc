@@ -1755,7 +1755,7 @@ import Button from '/src/components/button/base';
   - <DataType type="float" name="movement_modifier"/>：定义玩家使用物品时的速度倍率，必须小于等于`1`。例如苹果的该值为`0.35`。
   - <DataType type="boolean" name="emit_vibrations"/>：<Version add="1.21.120" inline/>定义玩家使用物品时是否发出振动。
   - <DataType type="string" name="start_sound"/>：<Version add="1.21.130" inline/>定义玩家在使用物品后播放何种音效。
-  - <DataType type="string" name="start_using"/>：<Version add="1.26.30" inline/>判定何时触发使用修饰器，可选值为`always`（只要触发使用操作就被触发）和`if_first`（只有没有其他使用相关组件时才触发）。
+  - <DataType type="string" name="start_using"/>：<Version add="1.26.30" inline/>判定何时触发使用修饰器，可选值为`always`（只要触发使用操作就尝试开始使用该物品）和`if_first`（仅在没有其他组件尝试使用该物品时尝试开始使用该物品）[^1]。
 </treeview>
 [^1]: 有待验证。
 

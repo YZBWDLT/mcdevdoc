@@ -9,6 +9,7 @@ import TabItem from '@theme/TabItem';
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
+import Version from "/src/components/highlight/version"
 
 > 适用版本：国际版 1.21.110，中国版 3.6（1.21.0）。
 
@@ -41,9 +42,38 @@ import DataType from "/src/components/type/data"
 
 ## 战利品表条件
 
+### `biome_has_tag`
+
+<Version add="1.26.30"/>
+
+生物群系是否拥有给定标签。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object"/>：根对象。
+  - <DataType type="string" name="condition"/>：指定为`has_biome_tag`。
+  - <DataType type="string" name="tag"/>：待检查的标签值。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+废弃矿井的箱子矿车的战利品表（<FileType type="file" name="abandoned_mineshaft.json"/>）：
+
+```json showLineNumbers
+{
+    "condition": "biome_has_tag",
+    "tag": "sulfur_caves"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
 ### `has_mark_variant`
 
-战利品来源实体拥有特定的[`minecraft:mark_variant`](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_mark_variant?view=minecraft-bedrock-stable)组件值时触发的战利品表。
+战利品来源实体是否拥有给定的[`minecraft:mark_variant`](../entities/components#minecraftmark_variant)组件值。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -68,7 +98,7 @@ import DataType from "/src/components/type/data"
 
 ### `has_variant`
 
-战利品来源实体拥有特定的[`minecraft:variant`](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_variant?view=minecraft-bedrock-stable)组件值时触发的战利品表。
+战利品来源实体拥有给定的[`minecraft:variant`](../entities/components#minecraftvariant)组件值。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -93,7 +123,7 @@ import DataType from "/src/components/type/data"
 
 ### `killed_by_player_or_pets`
 
-战利品来源实体被玩家或玩家的宠物（如狼）杀死后触发的战利品表。
+战利品来源实体是否被玩家或玩家的宠物（如狼）杀死。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -224,7 +254,7 @@ import DataType from "/src/components/type/data"
 
 ### `match_tool`
 
-调用战利品表的实体在使用特定工具时触发的战利品表。
+调用战利品表的实体是否使用特定工具。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
