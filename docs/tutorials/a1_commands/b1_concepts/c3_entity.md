@@ -113,7 +113,7 @@ sidebar_position: 3
 :::info[练习 1.3]
 
 1. 已知闪电束的英文名（Lightning Bolt），请按照实体 ID 命名的一般规律总结出闪电束的实体 ID，并执行生成闪电束的命令。
-2. 已知末地水晶的英文名（End Crystal），请按照实体 ID 命名的一般规律总结出闪电束的实体 ID，并执行生成末地水晶的命令。
+2. 已知末地水晶的英文名（Ender Crystal），请按照实体 ID 命名的一般规律总结出末地水晶的实体 ID，并执行生成末地水晶的命令。
 3. 已知命令方块矿车的 ID 为`command_block_minecart`，请试图生成之。如果你不了解什么是命令方块，先不要紧，把它扔在那里就行。
 
 :::
@@ -122,8 +122,8 @@ sidebar_position: 3
 
 <summary>练习题答案</summary>
 
-1. ID 为`lightning_bolt`，生成闪电束为`/summon ligtning_bolt`
-2. ID 为`end_crystal`，生成末地水晶为`/summon end_crystal`
+1. ID 为`lightning_bolt`，生成闪电束为`/summon lightning_bolt`
+2. ID 为`ender_crystal`，生成末地水晶为`/summon ender_crystal`
 3. `/summon command_block_minecart`
 
 </details>
