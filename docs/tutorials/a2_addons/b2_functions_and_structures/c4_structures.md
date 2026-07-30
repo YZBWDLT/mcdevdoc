@@ -37,7 +37,7 @@ import FileType from "/src/components/type/file"
   - <FileType type="folder" name="functions" />
     - ……
   - **<FileType type="folder" name="structures" />：结构**
-    - **<FileType type="file" name="my_house.mcfunction" />：我们保存的结构文件**
+    - **<FileType type="file" name="my_house.mcstructure" />：我们保存的结构文件**
   - <FileType type="file" name="manifest.json" />
   - <FileType type="image" name="pack_icon.png" />
 
@@ -68,7 +68,7 @@ import FileType from "/src/components/type/file"
     - ……
   - <FileType type="folder" name="structures" />：结构
     - **<FileType type="folder" name="my_namespace" />：命名空间**
-      - <FileType type="file" name="my_house.mcfunction" />：我们保存的结构文件
+      - <FileType type="file" name="my_house.mcstructure" />：我们保存的结构文件
   - <FileType type="file" name="manifest.json" />
   - <FileType type="image" name="pack_icon.png" />
 
