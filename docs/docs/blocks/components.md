@@ -15,7 +15,7 @@ import Usable from "/src/components/highlight/usable"
 import Version from "/src/components/highlight/version"
 import Button from '/src/components/button/base';
 
-> 适用版本：国际版 26.30，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.40，中国版 3.9（1.21.120）。
 
 数据驱动方块组件（Data-Driven Block Components）用于规定方块的功能。将不同的方块组件组合在一起可以实现多种复杂的功能。方块组件可以指定到<DataType type="object" name="components" isRequired/>中，以使得方块在所有情况下都使用相关功能；也可以指定到方块置换<DataType type="array" name="permutations"/> - <DataType type="object"/> - <DataType type="object" name="components" isRequired/>中，使得方块在使用特定方块置换时使用特定的功能。
 
@@ -355,7 +355,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:tags`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.26.20" tooltip="在更旧的版本下使用tag:(标签)组件。"/> <br/>
+<Usable type="all"/> <Version add="1.26.20" tooltip="在更旧的版本下使用tag:(标签)组件。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tags?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#tags"/>
@@ -380,6 +380,7 @@ import Button from '/src/components/button/base';
 </TabItem></Tabs>
 
 ---
+
 ---
 
 ## 外观性组件
@@ -397,7 +398,7 @@ import Button from '/src/components/button/base';
 
 定义方块的模型和使用的方块面剔除规则。
 
-另见：*[`minecraft:material_instances`](#minecraftmaterial_instances)组件*。
+另见：_[`minecraft:material_instances`](#minecraftmaterial_instances)组件_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -413,7 +414,7 @@ import Button from '/src/components/button/base';
   - <DataType type="string" name="culling_shape"/>：<Version add="1.26.30" inline/>定义方块面剔除体素。默认值为`minecraft:empty`。详见[按体素剔除面](./culling#按体素剔除面)。
   - <DataType type="boolean"/><DataType type="array" name="uv_lock"/>：<Version add="1.21.100" inline/>是否锁定 UV 面。若锁定 UV 面，则方块的 UV 不会随着[`minecraft:transformation`](#minecrafttransformation)组件的旋转而旋转。默认值为`false`。
     - <DataType type="string"/>：当指定为数组形式时，可指定为骨骼 ID 的数组，以确保这些骨骼不会随着[`minecraft:transformation`](#minecrafttransformation)组件的旋转而旋转。
-  - <DataType type="object" name="n_way_visual_rotation"/>：<Version add="1.26.30" experimental="即将推出的创作者功能" inline/> <Highlight text="禁止定义置换" tooltip="带有此参数的该组件不可定义在方块置换permutations内。" color="red" inline/> 方块可以根据[方块特征`minecraft:placement_direction`](./traits#minecraftplacement_direction)所对应的方块状态的值进行何种模型旋转。旋转的度数由允许的方块状态总数决定，默认的方块状态总是旋转 0°。
+  - <DataType type="object" name="n_way_visual_rotation"/>：<Version add="1.26.40" inline/> <Highlight text="禁止定义置换" tooltip="带有此参数的该组件不可定义在方块置换permutations内。" color="red" inline/> <Highlight text="疑似损坏" tooltip="实测该参数对非房主客户端不生效。" color="red" inline/> 方块可以根据[方块特征`minecraft:placement_direction`](./traits#minecraftplacement_direction)所对应的方块状态的值进行何种模型旋转。旋转的度数由允许的方块状态总数决定，默认的方块状态总是旋转 0°。
     - <DataType type="string" name="x"/> | <DataType type="string" name="y"/> | <DataType type="string" name="z"/>：使用何种方块状态的值。可选值为`minecraft:cardinal_direction`和`minecraft:sixteen_way_rotation`。
 </treeview>
 
@@ -460,7 +461,7 @@ import Button from '/src/components/button/base';
 
 定义方块的材质和贴图实例。这个组件可以按照给定的方块模型的要求，将特定的材质和贴图应用到给定的模型上，并控制其他的渲染参数。
 
-另见：*[`minecraft:geometry`](#minecraftgeometry)组件*。
+另见：_[`minecraft:geometry`](#minecraftgeometry)组件_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -484,19 +485,19 @@ import Button from '/src/components/button/base';
 
 `render_method`的可用值有（可点击背面剔除 / 远距面剔除查看相关概念）：
 
-| 可选值 | 描述 | 完全透明 | 半透明 | [背面剔除](./culling#背面剔除) | [远距面剔除](./culling#远距面剔除) | 原版实例 |
-| --- | --- | --- | --- | --- | --- | --- |
-| `opaque` | 定义方块不透明。 | ❌ | ❌ | ✔️ | ❌ | 泥土、石头等一般方块 |
-| `double_sided` | 定义方块不透明且前后均可见。 | ❌ | ❌ | ❌ | ❌ | 细雪 |
-| `alpha_test` | 定义方块完全透明。 | ✔️ | ❌ | ❌ | ✔️ | 刷怪笼、梯子等 |
-| `alpha_test_single_sided` | 定义方块完全透明，仅前面可见。 | ✔️ | ❌ | ✔️ | ✔️ | 门、活板门 |
-| `blend` | 定义方块完全透明或半透明。 | ✔️ | ✔️ | ✔️ | ❌ | 玻璃、染色玻璃等 |
+| 可选值                    | 描述                           | 完全透明 | 半透明 | [背面剔除](./culling#背面剔除) | [远距面剔除](./culling#远距面剔除) | 原版实例             |
+| ------------------------- | ------------------------------ | -------- | ------ | ------------------------------ | ---------------------------------- | -------------------- |
+| `opaque`                  | 定义方块不透明。               | ❌       | ❌     | ✔️                             | ❌                                 | 泥土、石头等一般方块 |
+| `double_sided`            | 定义方块不透明且前后均可见。   | ❌       | ❌     | ❌                             | ❌                                 | 细雪                 |
+| `alpha_test`              | 定义方块完全透明。             | ✔️       | ❌     | ❌                             | ✔️                                 | 刷怪笼、梯子等       |
+| `alpha_test_single_sided` | 定义方块完全透明，仅前面可见。 | ✔️       | ❌     | ✔️                             | ✔️                                 | 门、活板门           |
+| `blend`                   | 定义方块完全透明或半透明。     | ✔️       | ✔️     | ✔️                             | ❌                                 | 玻璃、染色玻璃等     |
 
-| 可选值 | 描述 | 原版实例 |
-| --- | --- | --- |
-| `alpha_test_to_opaque` | <Version add="1.21.80" inline/>近距时渲染为`alpha_test`，远距时渲染为`opaque` | 树叶 |
+| 可选值                              | 描述                                                                                       | 原版实例   |
+| ----------------------------------- | ------------------------------------------------------------------------------------------ | ---------- |
+| `alpha_test_to_opaque`              | <Version add="1.21.80" inline/>近距时渲染为`alpha_test`，远距时渲染为`opaque`              | 树叶       |
 | `alpha_test_single_sided_to_opaque` | <Version add="1.21.80" inline/>近距时渲染为`alpha_test_single_sided`，远距时渲染为`opaque` | 海带、甘蔗 |
-| `blend_to_opaque` | <Version add="1.21.80" inline/>近距时渲染为`blend`，远距时渲染为`opaque` | —— |
+| `blend_to_opaque`                   | <Version add="1.21.80" inline/>近距时渲染为`blend`，远距时渲染为`opaque`                   | ——         |
 
 </TabItem><TabItem value="示例" label="示例">
 
@@ -575,14 +576,14 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:embedded_visual`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.21.120"/> <Highlight text="禁止定义置换" tooltip="此组件不可定义在方块置换permutations内。" color="red"/> <Highlight text="需要前置组件" tooltip="目前，该组件只适用于花盆。因此，要使用此组件，请事先定义minecraft:flower_pottable组件。"/> <br/>
+<Usable type="all"/> <Version add="1.21.120"/> <Highlight text="禁止定义置换" tooltip="此组件不可定义在方块置换permutations内。" color="red"/> <Highlight text="需要前置组件" tooltip="目前，该组件只适用于花盆。因此，要使用此组件，请事先定义minecraft:flower_pottable组件。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_embedded_visual?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#embedded-visual"/>
 
 定义了方块嵌入另一方块（如花盆）时需要使用的`geometry`和`​material_instances`。
 
-另见：*[`minecraft:flower_pottable`](#minecraftflower_pottable)组件*。
+另见：_[`minecraft:flower_pottable`](#minecraftflower_pottable)组件_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -634,6 +635,35 @@ import Button from '/src/components/button/base';
 </TabItem></Tabs>
 
 ---
+
+### `minecraft:sound`
+
+<Usable type="all"/> <Version add="1.26.50"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_item_visual?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#item-visual"/>
+
+定义方块的音效。该参数和资源包的 blocks.json 定义的音效等价。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:sound"/>：根对象。
+  - <DataType type="string" name="sound"/>：定义方块使用的音效。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:sound": {
+    "sound": "glass"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
 ---
 
 ## 功能性组件
@@ -644,7 +674,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:block_entity`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件，且该组件需要配合SAPI运行。"/> <Version add="1.26.30" experimental="即将推出的创作者功能"/> <br/>
+<Usable type="all"/> <Version add="1.26.50"/> <Highlight text="禁用组件" tooltip="带有container参数的该组件不能与minecraft:crafting_table组件同时定义。" color="red"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_block_entity?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#block-entity"/>
@@ -656,13 +686,16 @@ import Button from '/src/components/button/base';
 <treeview>
 - <DataType type="object" name="minecraft:block_entity"/>：根对象。
   - <DataType type="boolean" name="dynamic_properties"/>：是否允许方块实体存储动态属性，通过 SAPI 进行读写。默认值为`false`。
+  - <DataType type="object" name="container"/>：允许方块像箱子一样存储方块。
+    - <DataType type="int" name="slot_count"/>：定义槽位数量。可选值为`1`-`54`（含）。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
 
 ```json showLineNumbers
 "minecraft:block_entity": {
-    "dynamic_properties": true
+    "dynamic_properties": true,
+    "container": { "slot_count": 27 }
 }
 ```
 
@@ -672,7 +705,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:chest_obstruction`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.26.20"/> <br/>
+<Usable type="all"/> <Version add="1.26.20"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_chest_obstruction?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#chest-obstruction"/>
@@ -732,7 +765,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:connection_rule`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.26.0"/> <br/>
+<Usable type="all"/> <Version add="1.26.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_connection_rule?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#connection-rule"/>
@@ -763,7 +796,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:entity_fall_on`
 
-<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.10"/> <br/>
+<Usable type="all"/> <Version add="1.21.10"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_entity_fall_on?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#entity-fall-on"/>
@@ -859,14 +892,14 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:flower_pottable`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.21.120"/> <Highlight text="禁止定义置换" tooltip="此组件不可定义在方块置换permutations内。" color="red"/> <br/>
+<Usable type="all"/> <Version add="1.21.120"/> <Highlight text="禁止定义置换" tooltip="此组件不可定义在方块置换permutations内。" color="red"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_flower_pottable?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#flower-pottable"/>
 
 定义方块可种植在花盆内。
 
-另见：*[`minecraft:embedded_visual`](#minecraftembedded_visual)组件*（更改方块在花盆内的显示效果）。
+另见：_[`minecraft:embedded_visual`](#minecraftembedded_visual)组件_（更改方块在花盆内的显示效果）。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -928,7 +961,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:instrument_sound`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.26.30" experimental="即将推出的创作者功能"/> <br/>
+<Usable type="all"/> <Version add="1.26.40"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_instrument_sound?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#instrument-sound"/>
@@ -957,7 +990,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:leashable`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.26.0"/> <br/>
+<Usable type="all"/> <Version add="1.26.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_leashable?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#leashable"/>
@@ -1140,14 +1173,14 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:movable`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.21.100"/> <br/>
+<Usable type="all"/> <Version add="1.21.100"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_movable?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#movable"/>
 
 定义方块是否可被活塞推动，及其属性。
 
-可通过 ScriptAPI 获取该组件的信息。另见：*[BlockMovableComponent 类](/docs/docs/scripts/sapi/docs/block/main#blockmovablecomponent-类)*。
+可通过 ScriptAPI 获取该组件的信息。另见：_[BlockMovableComponent 类](/docs/docs/scripts/sapi/docs/block/main#blockmovablecomponent-类)_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -1215,7 +1248,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:precipitation_interactions`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.21.130"/> <br/>
+<Usable type="all"/> <Version add="1.21.130"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_precipitation_interactions?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#precipitation-interactions"/>
@@ -1227,16 +1260,17 @@ import Button from '/src/components/button/base';
 <treeview>
 
 - <DataType type="object" name="minecraft:precipitation_interactions"/>：根对象。
-  - <DataType type="string" name="precipitation_behavior"/>：方块在雨雪天气下的行为。可选值如下表，若挡雨则会使雨打在方块上并溅起水花，否则穿过方块；若积雪则会在方块上方形成雪层，否则穿过方块。
-    <!-- markdownlint-disable MD058 -->
-    | 可选值 | 是否挡雨 | 是否积雪 |
-    | --- | --- | --- |
-    | `none` | ❌ | ❌ |
-    | `obstruct_rain` | ✔️ | ❌ |
-    | `obstruct_rain_accumulate_snow`（默认值） | ✔️ | ✔️ |
-    | <Version add="1.26.30" inline/>`snowlogging` | ❌ | ✔️ |
+    - <DataType type="string" name="precipitation_behavior"/>：方块在雨雪天气下的行为。可选值如下表，若挡雨则会使雨打在方块上并溅起水花，否则穿过方块；若积雪则会在方块上方形成雪层，否则穿过方块。
+        <!-- markdownlint-disable MD058 -->
 
-    若指定为`snowlogging`则会使方块可含雪，但必须使用[`minecraft:collision_box`](#minecraftcollision_box)组件禁用方块的碰撞箱。
+        | 可选值                                       | 是否挡雨 | 是否积雪 |
+        | -------------------------------------------- | -------- | -------- |
+        | `none`                                       | ❌       | ❌       |
+        | `obstruct_rain`                              | ✔️       | ❌       |
+        | `obstruct_rain_accumulate_snow`（默认值）    | ✔️       | ✔️       |
+        | <Version add="1.26.30" inline/>`snowlogging` | ❌       | ✔️       |
+
+        若指定为`snowlogging`则会使方块可含雪，但必须使用[`minecraft:collision_box`](#minecraftcollision_box)组件禁用方块的碰撞箱。
 
 </treeview>
 
@@ -1254,7 +1288,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:random_offset`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.21.100"/> <br/>
+<Usable type="all"/> <Version add="1.21.100"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_random_offset?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#random-offset"/>
@@ -1326,7 +1360,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:redstone_consumer`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件，并且该组件必须配合ScriptAPI使用。"/> <Version add="1.26.0"/> <Highlight text="禁止定义置换" tooltip="此组件不可定义在方块置换permutations内。" color="red"/> <br/>
+<Usable type="all"/> <Version add="1.26.0"/> <Highlight text="禁止定义置换" tooltip="此组件不可定义在方块置换permutations内。" color="red"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_consumer?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#redstone-consumer"/>
@@ -1360,7 +1394,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:redstone_producer`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.21.120"/> <Highlight text="限制定义置换" tooltip="在高于1.26.20的格式版本中，要在方块置换permutations内使用该组件，必须在components内一并定义。"/> <br/>
+<Usable type="all"/> <Version add="1.21.120"/> <Highlight text="限制定义置换" tooltip="在高于1.26.20的格式版本中，要在方块置换permutations内使用该组件，必须在components内一并定义。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_producer?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#redstone-producer"/>
@@ -1425,7 +1459,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:support`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.26.0"/> <br/>
+<Usable type="all"/> <Version add="1.26.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_support?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#support"/>
@@ -1460,7 +1494,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:tick`
 
-<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.10"/> <br/>
+<Usable type="all"/> <Version add="1.21.10"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tick?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#tick"/>
@@ -1521,6 +1555,7 @@ import Button from '/src/components/button/base';
 </TabItem></Tabs>
 
 ---
+
 ---
 
 ## 中国版组件
@@ -2303,7 +2338,7 @@ import Button from '/src/components/button/base';
 
 定义方块与其他方块的相邻面能够正常渲染（类似于树叶）。
 
-另见：*[`minecraft:light_dampening`](#minecraftlight_dampening)组件* 和 *[`netease:render_layer`](#neteaserender_layer)组件*。
+另见：_[`minecraft:light_dampening`](#minecraftlight_dampening)组件_ 和 _[`netease:render_layer`](#neteaserender_layer)组件_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2914,6 +2949,7 @@ import Button from '/src/components/button/base';
 </TabItem></Tabs>
 
 ---
+
 ---
 
 ## 弃用组件
@@ -2929,7 +2965,7 @@ import Button from '/src/components/button/base';
 
 定义方块会吸收光，降低光照等级。
 
-另见：*[`minecraft:light_dampening`](#minecraftlight_dampening)组件*。
+另见：_[`minecraft:light_dampening`](#minecraftlight_dampening)组件_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2972,7 +3008,7 @@ import Button from '/src/components/button/base';
 
 于 1.18.10 版本由[`minecraft:block_light_absorption`](#minecraftblock_light_absorption)组件更名来，但现已再次被更名。
 
-另见：*[`minecraft:light_dampening`](#minecraftlight_dampening)组件*。
+另见：_[`minecraft:light_dampening`](#minecraftlight_dampening)组件_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2999,7 +3035,7 @@ import Button from '/src/components/button/base';
 
 定义方块会发出光，提供光照等级。
 
-另见：*[`minecraft:light_emission`](#minecraftlight_emission)组件*。
+另见：_[`minecraft:light_emission`](#minecraftlight_emission)组件_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -3045,7 +3081,7 @@ import Button from '/src/components/button/base';
 
 定义方块的挖掘时长。
 
-另见：*[`minecraft:destructible_by_mining`](#minecraftdestructible_by_mining)组件*。
+另见：_[`minecraft:destructible_by_mining`](#minecraftdestructible_by_mining)组件_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -3091,7 +3127,7 @@ import Button from '/src/components/button/base';
 
 定义方块的爆炸抗性。
 
-另见：*[`minecraft:destructible_by_explosion`](#minecraftdestructible_by_explosion)组件*。
+另见：_[`minecraft:destructible_by_explosion`](#minecraftdestructible_by_explosion)组件_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -3125,11 +3161,12 @@ import Button from '/src/components/button/base';
 </TabItem></Tabs>
 
 ---
+
 ---
 
 ### `minecraft:custom_components`
 
-<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" deprecated="1.21.90" tooltip="弃用原因：1.21.90 推出了自定义组件 V2。在 1.21.90 或更高版本下的物品定义中不应再使用该组件。"/> <br/>
+<Usable type="all"/> <Version add="1.21.20" deprecated="1.21.90" tooltip="弃用原因：1.21.90 推出了自定义组件 V2。在 1.21.90 或更高版本下的物品定义中不应再使用该组件。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_custom_components?view=minecraft-bedrock-stable"/>
 
@@ -3162,7 +3199,7 @@ import Button from '/src/components/button/base';
 
 定义方块的标签。
 
-另见：*[`minecraft:tags`](#minecrafttags)组件*。
+另见：_[`minecraft:tags`](#minecrafttags)组件_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 

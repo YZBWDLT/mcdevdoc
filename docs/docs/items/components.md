@@ -23,6 +23,7 @@ import Button from '/src/components/button/base';
 **每个组件条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。"/>。
 
 ---
+
 ---
 
 ## 基础属性组件
@@ -294,21 +295,22 @@ import Button from '/src/components/button/base';
 </TabItem></Tabs>
 
 ---
+
 ---
 
 ## 功能性组件
 
 特定类型物品可用的组件。
 
-| 常见物品类型 | 常用组件 | 最低适用版本 |
-| :---: | :--- | --- |
-| 剑 | [`minecraft:can_destroy_in_creative`](#minecraftcan_destroy_in_creative)、**[`minecraft:damage`](#minecraftdamage)**、[`minecraft:digger`](#minecraftdigger)、[`minecraft:enchantable`](#minecraftenchantable)、[`minecraft:hand_equipped`](#minecrafthand_equipped)、[`minecraft:repairable`](#minecraftrepairable) | 1.20.30 |
-| 工具 | **[`minecraft:digger`](#minecraftdigger)**、[`minecraft:enchantable`](#minecraftenchantable)、[`minecraft:repairable`](#minecraftrepairable) | 1.20.30 |
-| 盔甲 | [`minecraft:enchantable`](#minecraftenchantable)、[`minecraft:repairable`](#minecraftrepairable)、**[`minecraft:wearable`](#minecraftwearable)** | 1.20.30 |
-| 食物 | **[`minecraft:food`](#minecraftfood)**、[`minecraft:use_animation`](#minecraftuse_animation)、[`minecraft:use_modifiers`](#minecraftuse_modifiers) | 1.20.50 |
-| 弹射物（如雪球） | [`minecraft:cooldown`](#minecraftcooldown)、[`minecraft:projectile`](#minecraftprojectile)、**[`minecraft:throwable`](#minecraftthrowable)** | 1.20.10 |
-| 弓类似物 | **[`minecraft:shooter`](#minecraftshooter)**、[`minecraft:use_modifiers`](#minecraftuse_modifiers) | 1.20.50 |
-| 收纳袋 | **[`minecraft:bundle_interaction`](#minecraftbundle_interaction)**、[`minecraft:storage_item`](#minecraftstorage_item)、[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)、[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier) | 1.21.60 |
+|   常见物品类型   | 常用组件                                                                                                                                                                                                                                                                                                             | 最低适用版本 |
+| :--------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+|        剑        | [`minecraft:can_destroy_in_creative`](#minecraftcan_destroy_in_creative)、**[`minecraft:damage`](#minecraftdamage)**、[`minecraft:digger`](#minecraftdigger)、[`minecraft:enchantable`](#minecraftenchantable)、[`minecraft:hand_equipped`](#minecrafthand_equipped)、[`minecraft:repairable`](#minecraftrepairable) | 1.20.30      |
+|       工具       | **[`minecraft:digger`](#minecraftdigger)**、[`minecraft:enchantable`](#minecraftenchantable)、[`minecraft:repairable`](#minecraftrepairable)                                                                                                                                                                         | 1.20.30      |
+|       盔甲       | [`minecraft:enchantable`](#minecraftenchantable)、[`minecraft:repairable`](#minecraftrepairable)、**[`minecraft:wearable`](#minecraftwearable)**                                                                                                                                                                     | 1.20.30      |
+|       食物       | **[`minecraft:food`](#minecraftfood)**、[`minecraft:use_animation`](#minecraftuse_animation)、[`minecraft:use_modifiers`](#minecraftuse_modifiers)                                                                                                                                                                   | 1.20.50      |
+| 弹射物（如雪球） | [`minecraft:cooldown`](#minecraftcooldown)、[`minecraft:projectile`](#minecraftprojectile)、**[`minecraft:throwable`](#minecraftthrowable)**                                                                                                                                                                         | 1.20.10      |
+|     弓类似物     | **[`minecraft:shooter`](#minecraftshooter)**、[`minecraft:use_modifiers`](#minecraftuse_modifiers)                                                                                                                                                                                                                   | 1.20.50      |
+|      收纳袋      | **[`minecraft:bundle_interaction`](#minecraftbundle_interaction)**、[`minecraft:storage_item`](#minecraftstorage_item)、[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)、[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier)                                                 | 1.21.60      |
 
 ---
 
@@ -409,7 +411,7 @@ import Button from '/src/components/button/base';
 
 为物品启用收纳袋的交互模式和物品提示。
 
-另见：*[`minecraft:storage_item`](#minecraftstorage_item)组件*。
+另见：_[`minecraft:storage_item`](#minecraftstorage_item)组件_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -511,7 +513,7 @@ import Button from '/src/components/button/base';
 
 定义物品使用后的冷却。
 
-另见：*[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件*。
+另见：_[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -589,7 +591,7 @@ import Button from '/src/components/button/base';
 
 定义该物品在穿戴时可吸收何种类型的伤害，类似狼铠。
 
-另见：*[`minecraft:durability`](#minecraftdurability)组件*、*[`minecraft:wearable`](#minecraftwearable)组件*。
+另见：_[`minecraft:durability`](#minecraftdurability)组件_、_[`minecraft:wearable`](#minecraftwearable)组件_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -702,9 +704,9 @@ import Button from '/src/components/button/base';
 
 定义物品在炼药锅中可染色。
 
-另见：*[`minecraft:icon`](#minecrafticon)组件*。
+另见：_[`minecraft:icon`](#minecrafticon)组件_。
 
-可通过 ScriptAPI 更改物品的颜色。另见：*[ItemDyeableComponent 类](/docs/docs/scripts/sapi/docs/item/component#itemdyeablecomponent-类)*。
+可通过 ScriptAPI 更改物品的颜色。另见：_[ItemDyeableComponent 类](/docs/docs/scripts/sapi/docs/item/component#itemdyeablecomponent-类)_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -806,7 +808,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:fire_resistant`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.21.110"/> <br/>
+<Usable type="all"/> <Version add="1.21.110"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_fire_resistant?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#fire-resistant"/>
@@ -841,7 +843,7 @@ import Button from '/src/components/button/base';
 
 定义物品为食物。
 
-另见：*[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件*。
+另见：_[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件_。
 
 :::note[编者注]
 
@@ -1071,7 +1073,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:kinetic_weapon`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.21.130"/> <br/>
+<Usable type="all"/> <Version add="1.21.130"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_kinetic_weapon?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#kinetic-weapon"/>
@@ -1190,7 +1192,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:piercing_weapon`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.21.130"/> <br/>
+<Usable type="all"/> <Version add="1.21.130"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_piercing_weapon?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#piercing-weapon"/>
@@ -1385,7 +1387,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-按原版计算公式修复（两物品的剩余耐久度 + 该类物品满耐久度 * 0.05）：
+按原版计算公式修复（两物品的剩余耐久度 + 该类物品满耐久度 \* 0.05）：
 
 ```json showLineNumbers
 "minecraft:repairable":{
@@ -1406,14 +1408,14 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:shooter`
 
-<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.10"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:use_modifiers组件。"/>  <br/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.10"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:use_modifiers组件。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_shooter?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#shooter"/>
 
 定义物品为某种弹射物的发射物，类似于弓或弩。
 
-另见：*[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件*。
+另见：_[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件_。
 
 :::info[提示]
 
@@ -1511,7 +1513,7 @@ import Button from '/src/components/button/base';
 
 定义该物品为可存储物品，可以存储其他物品，类似于收纳袋。
 
-另见：*[`minecraft:max_stack_size`](#minecraftmax_stack_size)组件*（将最大堆叠设置为`1`）、*[`minecraft:bundle_interaction`](#minecraftbundle_interaction)组件*（保证交互功能）。
+另见：_[`minecraft:max_stack_size`](#minecraftmax_stack_size)组件_（将最大堆叠设置为`1`）、_[`minecraft:bundle_interaction`](#minecraftbundle_interaction)组件_（保证交互功能）。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -1550,7 +1552,7 @@ import Button from '/src/components/button/base';
 
 定义该可存储物品最多可以存储多少物品。
 
-另见：*[`minecraft:storage_item`](#minecraftstorage_item)组件*。
+另见：_[`minecraft:storage_item`](#minecraftstorage_item)组件_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -1601,7 +1603,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:swing_duration`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.21.120"/> <br/>
+<Usable type="all"/> <Version add="1.21.120"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_swing_duration?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#swing-duration"/>
@@ -1629,7 +1631,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:swing_sounds`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.21.130"/> <br/>
+<Usable type="all"/> <Version add="1.21.130"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_swing_sounds?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#swing-sounds"/>
@@ -1666,7 +1668,7 @@ import Button from '/src/components/button/base';
 
 定义该物品可掷出，类似于雪球或鸡蛋。
 
-另见：*[`minecraft:projectile`](#minecraftprojectile)组件*。
+另见：_[`minecraft:projectile`](#minecraftprojectile)组件_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -1817,6 +1819,7 @@ import Button from '/src/components/button/base';
 </TabItem></Tabs>
 
 ---
+
 ---
 
 ## 中国版组件
@@ -2448,7 +2451,7 @@ import Button from '/src/components/button/base';
 
 定义物品可以放置为方块。
 
-另见：*[`minecraft:block_placer`](#minecraftblock_placer)组件*。
+另见：_[`minecraft:block_placer`](#minecraftblock_placer)组件_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2475,7 +2478,7 @@ import Button from '/src/components/button/base';
 
 定义该物品会像附魔书一样产生附魔光泽。
 
-另见：*[`minecraft:glint`](#minecraftglint)组件*。
+另见：_[`minecraft:glint`](#minecraftglint)组件_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2502,7 +2505,7 @@ import Button from '/src/components/button/base';
 
 定义物品为食物。
 
-另见：*[`minecraft:food`](#minecraftfood)组件（新版）*、*[`minecraft:use_duration`](#minecraftuse_duration)组件*。
+另见：_[`minecraft:food`](#minecraftfood)组件（新版）_、_[`minecraft:use_duration`](#minecraftuse_duration)组件_。
 
 <Tabs><TabItem value="parameter" label="参数" default>
 
@@ -2587,7 +2590,7 @@ import Button from '/src/components/button/base';
 
 定义该物品像工具一样直立展示在玩家手中。
 
-另见：*[`minecraft:hand_equipped`](#minecrafthand_equipped)组件（新版）*。
+另见：_[`minecraft:hand_equipped`](#minecrafthand_equipped)组件（新版）_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2614,7 +2617,7 @@ import Button from '/src/components/button/base';
 
 定义物品悬浮文本的颜色。
 
-另见：*[`minecraft:hover_text_color`](#minecrafthover_text_color)组件（新版）*。
+另见：_[`minecraft:hover_text_color`](#minecrafthover_text_color)组件（新版）_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2641,7 +2644,7 @@ import Button from '/src/components/button/base';
 
 定义物品的图标。
 
-另见：*[`minecraft:icon`](#minecrafticon)组件（新版）*。
+另见：_[`minecraft:icon`](#minecrafticon)组件（新版）_。
 
 :::danger[重要组件]
 
@@ -2674,7 +2677,7 @@ import Button from '/src/components/button/base';
 
 定义物品的耐久度。
 
-另见：*[`minecraft:durability`](#minecraftdurability)组件*。
+另见：_[`minecraft:durability`](#minecraftdurability)组件_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2701,7 +2704,7 @@ import Button from '/src/components/button/base';
 
 定义物品的最大堆叠数。
 
-另见：*[`minecraft:max_stack_size`](#minecraftmax_stack_size)组件（新版）*。
+另见：_[`minecraft:max_stack_size`](#minecraftmax_stack_size)组件（新版）_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2728,7 +2731,7 @@ import Button from '/src/components/button/base';
 
 定义物品为种子。
 
-另见：*[`minecraft:block_placer`](#minecraftblock_placer)组件*。
+另见：_[`minecraft:block_placer`](#minecraftblock_placer)组件_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2742,8 +2745,8 @@ import Button from '/src/components/button/base';
 </TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
-"minecraft:seed": {                                  
-    "crop_result": "sweet_berry_bush", 
+"minecraft:seed": {
+    "crop_result": "sweet_berry_bush",
     "plant_at": [ "grass", "dirt", "podzol" ]
 }
 ```
@@ -2761,7 +2764,7 @@ import Button from '/src/components/button/base';
 
 定义是否允许不同数据值的同种物品堆叠。
 
-另见：*[`minecraft:stacked_by_data`](#minecraftstacked_by_data)组件（新版）*。
+另见：_[`minecraft:stacked_by_data`](#minecraftstacked_by_data)组件（新版）_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2788,7 +2791,7 @@ import Button from '/src/components/button/base';
 
 定义物品的使用动画。
 
-另见：*[`minecraft:use_animation`](#minecraftuse_animation)组件（新版）*。
+另见：_[`minecraft:use_animation`](#minecraftuse_animation)组件（新版）_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2815,7 +2818,7 @@ import Button from '/src/components/button/base';
 
 定义该物品的使用时长。
 
-另见：*[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件*、*[`minecraft:food`](#minecraftfood-1)组件*。
+另见：_[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件_、_[`minecraft:food`](#minecraftfood-1)组件_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -2848,11 +2851,12 @@ import Button from '/src/components/button/base';
 </TabItem></Tabs>
 
 ---
+
 ---
 
 ### `minecraft:custom_components`
 
-<Usable type="onlyInternational" tooltip="因为该组件必须配合ScriptAPI使用。"/> <Version add="1.21.20" deprecated="1.21.90" tooltip="弃用原因：1.21.90 推出了自定义组件 V2。在 1.21.90 或更高版本下的物品定义中不应再使用该组件。"/><br/>
+<Usable type="all"/> <Version add="1.21.20" deprecated="1.21.90" tooltip="弃用原因：1.21.90 推出了自定义组件 V2。在 1.21.90 或更高版本下的物品定义中不应再使用该组件。"/><br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_custom_components?view=minecraft-bedrock-stable"/>
 
