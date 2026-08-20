@@ -19,9 +19,9 @@ import Button from '/src/components/button/base';
 
 ## 玩家主手物品切换事件
 
-### PlayerHotbarSelectedSlotChangeAfterEventSignal 类
-
 <Version add="2.1.0"/>
+
+### PlayerHotbarSelectedSlotChangeAfterEventSignal 类
 
 当玩家主手持有物品切换后触发该事件信号。
 
@@ -29,15 +29,11 @@ import Button from '/src/components/button/base';
 
 ### PlayerHotbarSelectedSlotChangeAfterEvent 类
 
-<Version add="2.1.0"/>
-
 玩家主手持有物品切换后的事件信息。
 
 <Button text="projectxero.top" url="https://projectxero.top/sapi/classes/server.PlayerHotbarSelectedSlotChangeAfterEvent.html"/>
 
 ### HotbarEventOptions 接口
-
-<Version add="2.1.0"/>
 
 指定主手切换事件的筛选项。
 
@@ -47,9 +43,9 @@ import Button from '/src/components/button/base';
 
 ## 玩家物品栏物品变更事件
 
-### PlayerInventoryItemChangeAfterEventSignal 类
-
 <Version add="2.1.0"/>
+
+### PlayerInventoryItemChangeAfterEventSignal 类
 
 当玩家物品栏变更后触发该事件信号。
 
@@ -57,15 +53,11 @@ import Button from '/src/components/button/base';
 
 ### PlayerInventoryItemChangeAfterEvent 类
 
-<Version add="2.1.0"/>
-
 玩家物品栏变更后的事件信息。
 
 <Button text="projectxero.top" url="https://projectxero.top/sapi/classes/server.PlayerInventoryItemChangeAfterEvent.html"/>
 
 ### InventoryItemEventOptions 接口
-
-<Version add="2.1.0"/>
 
 指定玩家物品栏变更事件的筛选项。
 
@@ -73,11 +65,29 @@ import Button from '/src/components/button/base';
 
 ### PlayerInventoryType 枚举
 
-<Version add="2.1.0"/>
-
 变更的物品栏类型。
 
 <Button text="projectxero.top" url="https://projectxero.top/sapi/enums/server.PlayerInventoryType.html"/>
+
+---
+
+## 实体更新事件
+
+<Version add="2.8.0"/>
+
+实体更新是在实体定义中定义了实体版本所导致的。另见[实体版本](/docs/docs/entities/entity_version)。
+
+### EntityUpgradeAfterEventSignal 类
+
+当实体更新后触发该事件信号。
+
+<Button text="projectxero.top" url="https://projectxero.top/sapi/classes/server.EntityUpgradeAfterEventSignal.html"/>
+
+### EntityUpgradeAfterEvent 类
+
+实体更新后的事件信息。
+
+<Button text="projectxero.top" url="https://projectxero.top/sapi/classes/server.EntityUpgradeAfterEvent.html"/>
 
 ---
 ---

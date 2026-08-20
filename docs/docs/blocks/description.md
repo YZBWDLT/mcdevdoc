@@ -62,7 +62,7 @@ import Version from "/src/components/highlight/version"
       - <DataType type="object" name="menu_category" isRequired/>：<Version add="1.19.30" inline/>定义方块的分类和组别。
         - <DataType type="string" name="category"/>：定义方块在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`none`（空）。
         - <DataType type="string" name="group"/>：定义方块在创造模式物品栏中置于何物品组中，详见[物品组与物品分类](../items/item_category_and_group#物品组)。  
-        在格式版本为`1.21.50`或更低时，不能添加命名空间；在格式版本为`1.21.60`或更高时，必须添加命名空间。
+                  在格式版本为`1.21.50`或更低时，不能添加命名空间；在格式版本为`1.21.60`或更高时，必须添加命名空间。
         - <DataType type="boolean" name="is_hidden_in_commands"/>：<Version add="1.19.40" inline/>定义方块是否隐藏在命令中。
       - <DataType type="object" name="states"/>[^1]：<Version add="1.20.10" inline tooltip="在1.19.70-1.20.0格式版本中，使用properties参数而非states。"/>定义方块状态。
         - <DataType type="array" name="(方块状态 ID)"/>：方块状态，需注意每种方块状态允许的状态值不能超过 16 种，第一个值会作为方块状态的默认值。
@@ -73,12 +73,12 @@ import Version from "/src/components/highlight/version"
       - <DataType type="boolean" name="register_to_create_menu"/>：<Usable type="onlyChina" inline/>是否注册到创造模式物品栏中。
       - <DataType type="string" name="base_block"/>：<Usable type="onlyChina" inline/>定义方块的基础行为，可选值有`mob_spawner`（刷怪笼）、`portal`（传送门）、`custom_crop_block`（农作物）、`custom_heavy_block`（重力方块）、`liquid`（静态流体）、`flowing_liquid`（流动流体）、`netease_container`（容器）。
     - <DataType type="object" name="components" isRequired/>：方块组件，定义方块的功能。
-      - `minecraft:(component)`：方块组件，可用的方块组件见[数据驱动物品组件](./components)。
+      - `minecraft:(component)`：方块组件，可用的方块组件见[数据驱动方块组件](./components)。
     - <DataType type="array" name="permutations"/>：<Version add="1.19.70" inline/>方块置换，定义方块在满足特定条件时使用何种特定功能。
       - <DataType type="object"/>
-        - <DataType type="string" name="condition"/>：使用该方块置换的条件。应填写为一个 [Molang 表达式](./molang)（常用`query.block_state()`）。
-        - <DataType type="object" name="components"/>：使用此置换时使用的方块组件，定义方块的功能。
-          - `minecraft:(component)`：方块组件，可用的方块组件见[数据驱动方块组件](./components)。
+                - <DataType type="string" name="condition"/>：使用该方块置换的条件。应填写为一个 [Molang 表达式](./molang)（常用`query.block_state()`）。
+                - <DataType type="object" name="components"/>：使用此置换时使用的方块组件，定义方块的功能。
+                    - `minecraft:(component)`：方块组件，可用的方块组件见[数据驱动方块组件](./components)。
 
 </treeview>
 
@@ -133,7 +133,7 @@ import Version from "/src/components/highlight/version"
   - <DataType type="object" name="texture_data" isRequired/>：贴图数据。
     - <DataType type="object" name="(短 ID)"/>：`短 ID`对应的实际贴图。`短 ID`由方块定义的[`minecraft:material_instances`组件](./components#minecraftmaterial_instances)或资源包方块定义[`blocks.json`](#blocksjson)指定。
       - <DataType type="array"/><DataType type="string" name="textures"/>：贴图路径，从`textures/`开始，不带后缀，例如`textures/blocks/barrel_top`。  
-        使用数组类型时代表该贴图 ID 可能存在多个贴图对应，具体使用何种贴图由方块状态的索引决定。
+              使用数组类型时代表该贴图 ID 可能存在多个贴图对应，具体使用何种贴图由方块状态的索引决定。
 
 </treeview>
 

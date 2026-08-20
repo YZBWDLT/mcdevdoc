@@ -52,7 +52,7 @@ export default function ScriptVersionHighlight({
     let text = `${add}+`;
     let newTooltip = `该特性在${scriptText}脚本版本${add}+下可用。${tooltip}`;
 
-    if (add && isVersionGreater(add, isui ? CHINA_VERSION_SERVER : CHINA_VERSION_SERVER_UI)) {
+    if (add && isVersionGreater(add, isui ? CHINA_VERSION_SERVER_UI : CHINA_VERSION_SERVER)) {
         color = "gold";
         newTooltip = `该特性在${scriptText}脚本版本${add}+下可用，但该版本对于当前的中国版版本过高。${tooltip}`;
     }
