@@ -5,7 +5,7 @@ tags: [存在中国版无法使用的功能, 有待进一步更新]
 
 # 2.9.2 屏幕控制命令
 
-> 上次更新：2026 年 3 月 14 日
+import Version from '/src/components/highlight/gameVersion';
 
 上一节，我们已经学习了文本操控命令，了解了如何能够“精彩”地把想要呈现的文本呈现到玩家面前。这一节，我们就来学习一下玩家的屏幕控制。
 
@@ -493,12 +493,6 @@ camera <玩家: target> target_entity <实体: target> target_center_offset <x�
 
 ### 控制视场角的相机：`/camera ... fov_set`与`/camera ... fov_clear`
 
-:::warning[版本适用性警告]
-
-本部分涉及 1.21.110 新增的内容。
-
-:::
-
 接下来我们来研究`/camera`的视场角语法：
 
 ```text title="/camera的语法" showLineNumbers
@@ -524,17 +518,42 @@ camera <玩家: target> fov_set <视场角值: float> [视场角缓动时间: fl
 
 ### 附着到实体上的相机：`/camera ... attach_to_entity`与`/camera ... detach_from_entity`
 
-:::warning[版本适用性警告]
+<Version add="26.10"/>
 
-本部分涉及 26.10 新增的内容。这部分内容将会在 26.10 正式发布后补全。
+接下来让我们再来关注一种相机：附着到实体上的相机。我们先来看看语法：
 
-:::
+```text
+/camera <玩家: target> attach_to_entity <实体: target>
+/camera <玩家: target> detach_from_entity
+```
+
+按照语法，我们能看得出来这两条语法的含义。第一条的 attach_to_entity 是附着到特定实体上，而第二条则是解除附着。我们来试一下吧！
 
 :::tip[实验 2.9-17]
 
-这部分是预留的 :) 读者可以接着往下看啦~
+现在请读者先使用一个`minecraft:follow_orbit`轨道相机——道理很简单，**这个附着语法必须使用轨道相机才能运行**！如果你不记得怎么做了，记得看一下前文哦。
+
+现在，我们使用下面这条命令：
+
+```text
+/camera @s attach_to_entity @n[type=sheep]
+```
+
+这条命令可以把轨道相机的焦点从你的身上转移到最近的一只羊身上。记得先生成一只羊哦！
+
+![相机语法：附着到实体 1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_attach_1.png)
+
+然后，使用
+
+```text
+/camera @s detach_from_entity
+```
+
+来解除附着相机。
 
 :::
+
+遗憾的是，这条命令倒并不是像 Java 版旁观模式中的「其他生物视角」的功能，而仅仅只是把焦点给到特定实体而已。如果要实现这个功能，还是需要读者自行调整其他的 /camera 命令语法才行。
 
 ## 相机摇晃命令`/camerashake`
 
@@ -707,7 +726,7 @@ camera <玩家> play_spline <样条>
 
 :::warning[注意]
 
-此外，随着版本更新，还有两条新的命令也随之加入了游戏：[`/aimassist`](/docs/docs/commands/all_commands#aimassist)和[`/controlscheme`](/docs/docs/commands/all_commands#controlscheme)。有关这两条命令，我们会在日后更新文档进行精讲。如果读者需要，可以查阅我们给出的文档自行学习。自学能力是很重要的！
+此外，随着版本更新，还有两条新的命令也随之加入了游戏：[`/aimassist`](/docs/docs/commands/all_commands#aimassist)和[`/controlscheme`](/docs/docs/commands/all_commands#controlscheme)。这两条命令主要是用于在特定相机视角下便于玩家操作的，我们就不再在本教程中详细介绍了。如果读者需要，可以查阅我们给出的文档自行学习。自学能力是很重要的！
 
 :::
 

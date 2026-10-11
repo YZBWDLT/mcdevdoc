@@ -16,7 +16,7 @@ import WikiButton from '/src/components/button/wiki';
 import Highlight from '/src/components/highlight/base';
 import Version from '/src/components/highlight/gameVersion';
 
-> 适用版本：国际版 26.40，中国版 3.9（1.21.120）。
+> 适用版本：国际版 26.60，中国版 3.9（1.21.120）。
 
 本文档收录所有正式版或预览版中可用的命令，并给出对应课时。其中，部分内容并未在模块 1 介绍，请阅读本篇文档的初学者注意甄别，如果需要，请学习相关知识。
 
@@ -189,7 +189,7 @@ rotated as <源目标: target> -> execute
 in <维度: Dimension> -> execute
 ```
 
-更改执行维度为`维度`。
+更改执行维度为`维度`。`维度`目前允许的值为`overworld`、`nether`、`the_end`，以及数据驱动维度所定义的维度 ID。
 
 不同维度的坐标应予以变换。
 
@@ -636,46 +636,54 @@ in <维度: Dimension> -> execute
 </TabItem><TabItem value="tp_1_2" label="常规">
 
 ```text
-/tp <位置: x y z> [检查卡墙: Boolean]
+/tp <位置: x y z> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
 将执行者传送到`位置`。
 
 <Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+
 </TabItem><TabItem value="tp_1_3" label="常规（旋转角度）">
 
 ```text
-/tp <位置: x y z> [y旋转: value] [x旋转: value] [检查卡墙: Boolean]
+/tp <位置: x y z> [y旋转: value] [x旋转: value] [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
 将执行者按特定旋转角度传送到`位置`。
 
 <Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+
 </TabItem><TabItem value="tp_1_4" label="常规（面向实体）">
 
 <Version add="1.2.0"/>
 
 ```text
-/tp <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean]
+/tp <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
 将执行者按面向`面向实体`的朝向传送到`位置`。
 
 <Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+
 </TabItem><TabItem value="tp_1_5" label="常规（面向坐标）">
 
 <Version add="1.2.0"/>
 
 ```text
-/tp <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean]
+/tp <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
 将执行者按面向`面向坐标`的朝向传送到`位置`。
 
 <Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem></Tabs>
 
@@ -684,56 +692,66 @@ in <维度: Dimension> -> execute
 <Tabs><TabItem value="tp_2_1" label="传送到实体" default>
 
 ```text
-/tp <目标: target> <位置: target> [检查卡墙: Boolean]
+/tp <目标: target> <位置: target> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
 将`目标`传送到`位置`。
 
 <Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_2_2" label="常规">
 
 ```text
-/tp <目标: target> <位置: x y z> [检查卡墙: Boolean]
+/tp <目标: target> <位置: x y z> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
 将`目标`传送到`位置`。
 
 <Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+
 </TabItem><TabItem value="tp_2_3" label="常规（旋转角度）">
 
 ```text
-/tp <目标: target> <位置: x y z> [y旋转: value] [x旋转: value] [检查卡墙: Boolean]
+/tp <目标: target> <位置: x y z> [y旋转: value] [x旋转: value] [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
 将`目标`按特定旋转角度传送到`位置`。
 
 <Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+
 </TabItem><TabItem value="tp_2_4" label="常规（面向实体）">
 
 <Version add="1.2.0"/>
 
 ```text
-/tp <目标: target> <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean]
+/tp <目标: target> <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
 将`目标`按面向`面向实体`的朝向传送到`位置`。
 
 <Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+
 </TabItem><TabItem value="tp_2_5" label="常规（面向坐标）">
 
 <Version add="1.2.0"/>
 
 ```text
-/tp <目标: target> <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean]
+/tp <目标: target> <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
 将`目标`按面向`面向坐标`的朝向传送到`位置`。
 
 <Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem></Tabs>
 
@@ -2189,68 +2207,82 @@ in <维度: Dimension> -> execute
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整时间的命令time" color="green"/>
 <WikiButton item="命令/time"/>
 
-控制或查询世界时间。
+控制或查询世界时间或特定时钟。
 
 <Tabs><TabItem value="add" label="add">
 
 ```text
 /time add <数值: int>
+/time of <时钟: string> add <数值: int>
 ```
 
-加快世界时间`数值`游戏刻。
+加快世界时间或特定`时钟`的时间`数值`游戏刻。
 
-</TabItem><TabItem value="of" label="of">
-
-管理世界时钟。[^needTest]
-
-<Version add="26.50"/>
-
-```text
-/time of <clock> add <time>
-/time of <clock> set <time>
-/time of <clock> set <timemarker> (next|previous|stay)
-/time of <clock> pause
-/time of <clock> resume
-/time of <clock> query time
-```
-
-- _add \<time\>_：Adds time to the clock. Cannot result in a negative time
-- _set \<time\>_：Sets the clock to the specified time. Cannot be set to negative.
-- _set \<timemarker\> (next|previous|stay)_：Sets the clock to the occurrence of the time marker. Cannot result in a negative time
-- _pause_：Pauses the clock
-- _resume_：Resumes the clock
-- _query time_：Outputs the clock's current time
+<Version add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
 
 </TabItem><TabItem value="query" label="query">
 
 ```text
-/time query <daytime|gametime|day>
+/time query <daytime|gametime|day|time>
+/time of <时钟: string> query time
 ```
 
-查询世界处于第几天、或时间、或存在总时长。
+查询世界处于第几天、或时间、或存在总时长，或查询特定`时钟`的时间。
+
+<Version add="26.60" inline/>：`query`支持`time`参数。
+
+<Version add="26.60" inline/>：`时钟`，指定要操作的时钟。当选择了特定时钟后，只能查询在该时钟内的时长。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
 
 </TabItem><TabItem value="set" label="set">
 
 ```text
 /time set <数值: int>
+/time of <时钟: string> set <数值: int>
 ```
 
-设置世界的时间为`数值`游戏刻。
+设置世界的时间或特定`时钟`的时间为`数值`游戏刻。
+
+<Version add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
 
 ```text
-/time set <时间: TimeSpec>
+/time set <时间标记: timemarker name> [时间标记出现方式: TimeMarkerOccurrence]
+/time of <时钟: string> set <时间标记: timemarker name> [时间标记出现方式: TimeMarkerOccurrence]
 ```
 
-设置世界的时间为`时间`。
+设置世界的时间或特定`时钟`的时间为`时间标记`。
 
-`时间`可选值为：
+`时间标记`可选值为：`sunrise`（日出）、`day`（早上）、`noon`（中午）、`sunset`（日落）、`night`（晚上）、`midnight`（午夜）。
 
-- `sunrise`：日出
-- `day`：早上
-- `noon`：中午
-- `sunset`：日落
-- `night`：晚上
-- `midnight`：午夜
+<Version add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
+
+<Version add="26.60" inline/>：`时间标记`现在允许添加`minecraft:`命名空间。可通过脚本注册新的时间标记。
+
+<Version add="26.60" inline/>：`时间标记出现方式`，指定寻找时间标记的方式。可选值为：
+- `next`：默认，寻找晚于当前时间的下次标记（今天或明天）
+- `stay`：寻找当天内的标记（今天）
+- `previous`：寻找早于当前时间的上次标记（今天或昨天）
+
+</TabItem><TabItem value="pause" label="pause">
+
+<Version add="26.60"/>
+
+```text
+/time pause
+/time of <时钟: string> pause
+```
+
+暂停世界时钟或特定`时钟`的时间的流逝。
+
+</TabItem><TabItem value="resume" label="resume">
+
+<Version add="26.60"/>
+
+```text
+/time resume
+/time of <时钟: string> resume
+```
+
+让世界时间或特定`时钟`的时间继续流逝。
 
 </TabItem></Tabs>
 
@@ -2996,15 +3028,16 @@ in <维度: Dimension> -> execute
 
 <TabItem value="poi" label="poi">
 
-<Version add="26.50"/>
+<Version add="26.60" experimental="兴趣点（POI）"/>
 
 ```text
-/locate poi <兴趣点>
+/locate poi <兴趣点: poi type>
+/locate poi <兴趣点标签: poi tag>
 ```
 
-定位`兴趣点`并返回该兴趣点对应的坐标。[^needTest]
+定位`兴趣点`（或符合`兴趣点标签`的兴趣点）并返回该兴趣点对应的坐标。
 
-会受到游戏规则`sendCommandFeedBack`的影响。
+会受到游戏规则`sendCommandFeedBack`的影响。注意：该命令的检查范围相比于其他重载可能较小。
 
 </TabItem>
 
@@ -3180,6 +3213,31 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 切换天气。若为晴天，则切换为雨天或雷暴；若为雨天或雷暴，则改回晴天。
 
+---
+
+### `/packstack`
+
+<Version add="26.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+
+<WikiButton item="命令/packstack"/>
+
+输出当前附加包的数据。
+
+```text
+/packstack <包类型: stackType> [详细输出: verbose] [是否排除原版包: exclude-vanilla]
+```
+
+输出当前附加包的数据（包名、UUID、类型、版本等）。
+
+`包类型`可选值为：
+
+- `client`：输出资源包数据
+- `server`：输出行为包数据
+
+`详细输出`可选值为`verbose`。指定此参数时将输出包的包名、UUID、类型、版本信息，否则只显示包名信息。
+
+`是否排除原版包`可选值为`exclude-vanilla`。指定此参数时将不再输出原版包信息。
+
 ## 服务器命令
 
 ### `/op`
@@ -3197,7 +3255,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 给予`玩家`管理权限。
 
-被设置为管理员的玩家，若为房主则权限等级为`3`，否则为`2`。然而，大部分命令还需要开启作弊方可使用。本文档中对于无需开启作弊的命令均已在“权限等级”表格中给出（无需作弊）的字样。
+被设置为管理员的玩家，若为房主则权限等级为`3`，否则为`2`。
 
 ---
 
@@ -3424,32 +3482,21 @@ permission reload
 
 </Tabs>
 
-## 新版命令
+### `/party`
 
-定义当前中国版到目前最新国际正式版中间的这些版本可用的命令，称为新版命令，均为稳定玩法。
+<Version add="26.30" tooltip="正式版不可用。"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/> <Highlight text="仅登录账户可执行" tooltip="该命令不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
-### `/packstack`
+<WikiButton item="命令/party"/>
 
-<Version add="26.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
-
-<WikiButton item="命令/packstack"/>
-
-输出当前附加包的数据。
+在组队中发送消息。
 
 ```text
-/packstack <包类型: stackType> [详细输出: verbose] [是否排除原版包: exclude-vanilla]
+/party <消息: message>
 ```
 
-输出当前附加包的数据（包名、UUID、类型、版本等）。
+在组队中发送`消息`。
 
-`包类型`可选值为：
-
-- `client`：输出资源包数据
-- `server`：输出行为包数据
-
-`详细输出`可选值为`verbose`。指定此参数时将输出包的包名、UUID、类型、版本信息，否则只显示包名信息。
-
-`是否排除原版包`可选值为`exclude-vanilla`。指定此参数时将不再输出原版包信息。
+---
 
 ## 中国版命令
 

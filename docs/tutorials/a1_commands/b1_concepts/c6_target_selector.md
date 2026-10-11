@@ -5,7 +5,7 @@ tags: [存在中国版无法使用的功能]
 
 # 1.6 目标选择器
 
-> 上次更新：2026 年 3 月 14 日
+import Image from "/src/components/image/standard"
 
 本节我们来介绍目标选择器这个基本概念。事实上，在你不知不觉中，就已经在前面见过它了。为什么我们需要目标选择器？还记得我们在 [1.3 实体](./c3_entity)曾说过的：
 
@@ -167,12 +167,6 @@ tags: [存在中国版无法使用的功能]
 
 ### `@n`：选定最近的实体
 
-:::warning[版本适用性警告]
-
-本部分涉及 1.21.100 新增的内容。
-
-:::
-
 `@p`中的`p`代表的是 **N**earest Entity 中的 N，因此，**使用`@n`将选中最近的实体**。`@n`和`@p`是很类似的，只是它选中的是一般的实体，而不再仅限于玩家了。
 
 ---
@@ -193,7 +187,7 @@ tags: [存在中国版无法使用的功能]
 
 在介绍接下来的概念之前，我们首先要介绍一下实体的**碰撞箱（Collision Box）**。在 Minecraft 中，碰撞箱经常用于各种判定。每个实体都拥有一个长宽相等的碰撞箱，例如玩家在站立时的碰撞箱的高度就是 1.8 格，宽度为 0.6 格，因此玩家在站立时，就无法穿过 1.5 格高的洞口。
 
-![碰撞箱](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/collision_box.png)
+<Image src="/img/tutorials/a1_commands/b1_concepts/c6_target_selector/collision_box.png" text="玩家的碰撞箱展示，这里使用了 Java 版演示" size="50%"/>
 
 下文中的`r`、`rm`、`dx`、`dy`、`dz`都是进行区域检测的参数，它们的判定标准是：**只要碰撞箱有和检测区域重叠的部分，就视为检测通过**。
 
@@ -210,9 +204,9 @@ tags: [存在中国版无法使用的功能]
 - `@a[rm=5]`：指代执行者 5 格之外的玩家；
 - 特殊地，`@e[rm=0]`：指代执行者 0 格之外的实体，换言之，选中此维度的所有实体。
 
-在这一小节的一开始，我们说过可以使用多个参数，并采用“和”的逻辑。同样地，`r`和`rm`可以并用，并选中特定区域的实体（图片来自 Minecraft Wiki）：
+在这一小节的一开始，我们说过可以使用多个参数，并采用“和”的逻辑。同样地，`r`和`rm`可以并用，并选中特定区域的实体：
 
-![r与rm并用](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/r_rm.png)
+<Image src="/img/tutorials/a1_commands/b1_concepts/c6_target_selector/r_rm.png" text="r与rm并用时的效果，图片来自 Minecraft Wiki" size="50%"/>
 
 在这张图中，绿色球壳的部分就是检测区域，而蓝色的长方体指代实体的碰撞箱。只要实体的碰撞箱与绿色部分的检测区域有重叠，就认为检测通过。我们同样举几个例子：
 

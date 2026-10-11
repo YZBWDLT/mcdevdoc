@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # 2.2 简单命令
 
+import Version from '/src/components/highlight/gameVersion';
+
 本节，我们将带你来了解 9 条你可能早已听说的命令。这些命令出名到什么地步？甚至连一些不搞开发的 UP 主、普通玩家、生存玩家，都对这些命令有所耳闻。你也很可能听过这些命令的鼎鼎大名。那我们一起来看一看吧！
 
 ---
@@ -387,6 +389,38 @@ m=<游戏模式: int|GameMode>
 ![/time query](/img/tutorials/a1_commands/b2_commands/c2_simple_cmds/time_query.png)
 
 天数和当前时间都是好理解的。而对于游戏时间，依据时间换算原理（1 秒 = 20 游戏刻），你可以将这个值除以 20，就是你这个世界所启动了的秒数。
+
+### 暂停与继续时间
+
+<Version add="26.60"/>
+
+在 26.60 更新之后，`/time`命令经过了大幅度更新（高亮部分）：
+
+```text title="26.60 后的 /time 命令" showLineNumbers {5-14}
+/time add <数值: int>
+/time query <时间: TimeQuery>
+/time set <数值: int>
+/time set <时间: TimeSpec>
+/time of <时钟: string> add <数值: int>
+/time of <时钟: string> pause
+/time of <时钟: string> query time
+/time of <时钟: string> resume
+/time of <时钟: string> set <数值: int>
+/time of <时钟: string> set <时间标记: timemarker name> [时间标记出现方式: TimeMarkerOccurrence]
+/time pause
+/time resume
+/time query <时间: TimeQuery2>
+/time set <时间标记: timemarker name> [时间标记出现方式: TimeMarkerOccurrence]
+```
+
+更新的内容是有点多的，但不需要担心许多——`of <时钟>`目前对于我们而言，只能更改主世界的时间，因此这些命令会等到我们模块 3 的脚本中，在学习到时钟的定义方法之后再谈。我们这里主要关注的语法只有两条：
+
+```text
+/time pause
+/time resume
+```
+
+这两条命令也是非常简单：`/time pause`是暂停时间，`/time resume`是继续时间，就如同字面意思一样，读者若在使用 26.60 或更高的版本，可以试一下！
 
 ---
 

@@ -298,7 +298,7 @@ rotated as <源目标: target> -> execute
 in <维度: Dimension> -> execute
 ```
 
-**`in`更改执行维度到`维度`上**。这是一个新的参数类型`Dimension`，是一个穷举参数，支持`overworld`、`nether`和`the_end` 3 个参数。
+**`in`更改执行维度到`维度`上**。这是一个新的参数类型`Dimension`，是一个穷举参数，支持`overworld`、`nether`和`the_end` 3 个参数。基岩版还支持自定义维度，这就是下一个模块要强调的问题了。
 
 :::tip[实验 2.3-7]
 
