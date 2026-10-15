@@ -864,7 +864,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.10.0"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_annotation.break_door?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_annotation_break_door?view=minecraft-bedrock-stable"/>
 
 允许实体破坏门，前提是已为其导航设置了相应的标志位。
 
@@ -898,7 +898,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.10.0"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_annotation.open_door?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_annotation_open_door?view=minecraft-bedrock-stable"/>
 
 允许实体开门。
 
@@ -6706,7 +6706,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviobartere)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_barter?view=minecraft-bedrock-stable"/>
 
 使生物能够用被配置为交易货币的物品进行以物易物。
 
@@ -6740,7 +6740,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehabegname)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_beg?view=minecraft-bedrock-stable"/>
 
 允许该生物注视并跟随手持其喜爱食物的玩家。
 
@@ -6808,7 +6808,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavibreedme)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_breed?view=minecraft-bedrock-stable"/>
 
 允许该生物与其他生物繁殖。
 
@@ -6878,7 +6878,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_celebrate_survive?view=minecraft-bedrock-stable"/>
 
-允许玩家与该生物交易。
+允许该实体通过发射烟花来庆祝成功抵御袭击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7046,7 +7046,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavicroakme)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_croak?view=minecraft-bedrock-stable"/>
 
 允许实体在可配置的条件下按随机时间间隔鸣叫。
 
@@ -7690,7 +7690,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavioreat_mob)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_eat_mob?view=minecraft-bedrock-stable"/>
 
 允许该实体吃掉指定的生物。
 
@@ -7724,7 +7724,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavioemergee)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_emerge?view=minecraft-bedrock-stable"/>
 
 允许该实体从地下钻出。
 
@@ -8030,7 +8030,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavifloatme)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_float?view=minecraft-bedrock-stable"/>
 
 允许该生物在游泳时保持浮于水面。
 
@@ -8404,7 +8404,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviorgo_home)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_go_home?view=minecraft-bedrock-stable"/>
 
 允许该生物返回其生成位置。
 
@@ -8506,7 +8506,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavhideame)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_hide?view=minecraft-bedrock-stable"/>
 
 允许拥有 `minecraft:hide` 组件的生物尝试移动到其拥有或附近的兴趣点（POI）并躲藏在那里。
 
@@ -8574,7 +8574,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavihoverme)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_hover?view=minecraft-bedrock-stable"/>
 
 允许该生物悬停在原地。
 
@@ -8846,7 +8846,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviorlay_egg)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_lay_egg?view=minecraft-bedrock-stable"/>
 
 若该生物处于怀孕状态，允许其在特定类型的方块上产下卵方块。
 
@@ -9152,7 +9152,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviominglee)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_mingle?view=minecraft-bedrock-stable"/>
 
 允许实体前往村庄钟处与其他实体交流。
 
@@ -9730,7 +9730,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehanapname)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_nap?view=minecraft-bedrock-stable"/>
 
 允许生物在特定条件下偶尔停下小睡。
 
@@ -10036,7 +10036,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavipanicme)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_panic?view=minecraft-bedrock-stable"/>
 
 允许该生物进入恐慌状态，使其四处乱跑并远离造成该状态的伤害来源。
 
@@ -10172,9 +10172,9 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavplayame)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_play?view=minecraft-bedrock-stable"/>
 
-允许该生物向拥有 `minecraft:take_flower` 行为的其他生物献花。
+允许该生物通过互相追逐和随机移动来与其他生物玩耍。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10852,7 +10852,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavrollame)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_roll?view=minecraft-bedrock-stable"/>
 
 允许该生物向前翻滚。
 
@@ -10920,7 +10920,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavioscarede)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_scared?view=minecraft-bedrock-stable"/>
 
 允许该生物在室外雷雨天气时受到惊吓。
 
@@ -11124,7 +11124,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavisleepme)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_sleep?view=minecraft-bedrock-stable"/>
 
 允许在村庄中拥有床的生物移动到床上并睡觉。
 
@@ -11328,7 +11328,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviosneezee)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_sneeze?view=minecraft-bedrock-stable"/>
 
 允许该生物打喷嚏，使其掉落物品并影响附近的生物。
 
@@ -12178,7 +12178,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavitemptme)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_tempt?view=minecraft-bedrock-stable"/>
 
 允许生物被手持特定物品的玩家吸引。
 
@@ -12588,7 +12588,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="?"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavworkame)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_work?view=minecraft-bedrock-stable"/>
 
 允许 NPC 使用兴趣点（POI）。
 
@@ -13088,7 +13088,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_body_rotation_axis_aligned?view=minecraft-bedrock-stable"/>
 
-定义实体可被其他实体或方块推动。
+定义实体的身体会根据其当前朝向自动旋转，以对齐到最近的坐标轴方向。与 `minecraft:body_rotation_blocked` 组件组合使用时，实体会对齐到最近的坐标轴方向并固定在该朝向，不再随其面向方向的变化而改变。
 
 另见：_[`minecraft:rotation_axis_aligned`](#minecraftrotation_axis_aligned)组件_。
 
@@ -13267,9 +13267,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="1.2.0" deprecated="1.21.40" tooltip="在高版本使用minecraft:looked_at组件代替之。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_pushable?view=minecraft-bedrock-stable"/>
-
-定义实体可被其他实体或方块推动。
+定义其他实体注视该实体时的行为。
 
 另见：_[`minecraft:looked_at`](#minecraftlooked_at)组件_。
 
@@ -13340,6 +13338,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ### `minecraft:scaffolding_climber`
 
 <Usable type="all"/> <Version add="1.8.0" deprecated="1.17.10"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_scaffolding_climber?view=minecraft-bedrock-stable"/>
 
 定义玩家可以检测到脚手架并在其上移动。
 
