@@ -304,6 +304,41 @@ import Button from '/src/components/button/base';
 </TabItem></Tabs>
 
 ---
+
+### `minecraft:type_family`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_type_family?view=minecraft-bedrock-stable"/>
+
+定义实体所属的家族类型。家族类型可用于在[过滤器](./filters)中、命令中或其他游戏系统进行分类判断（例如：`mob`、`monster`、`undead`、`zombie`等）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:type_family"/>：根对象。
+  - <DataType type="array" name="family"/>：定义实体的家族类型。
+    - <DataType type="string"/>：家族类型。通常在该数组中会定义一个和实体本身 ID 一致的家族，一些常见的原版家族类型（`mob`、`inanimate`、`aquatic`、`monster`、`undead`、`skeleton`、`arthropod`、`zombie`、`lightweight`、`fish`、`player`），也可以自定义。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+骷髅（<FileType type="file" name="skeleton.json"/>）：
+
+```json showLineNumbers
+"minecraft:type_family": { "family": ["skeleton", "undead", "monster", "mob"] }
+```
+
+盔甲架（<FileType type="file" name="armor_stand.json"/>）：
+
+```json showLineNumbers
+"minecraft:type_family": { "family": ["armor_stand", "inanimate", "mob"] }
+```
+
+</TabItem></Tabs>
+
+---
+
 ---
 
 ## 传感器组件
@@ -443,7 +478,7 @@ import Button from '/src/components/button/base';
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_entity_sensor?view=minecraft-bedrock-stable"/>
 
-A component that owns multiple subsensors, each one firing an event when a set of conditions are met by other entities within the defined range.
+定义一组子传感器：当其他实体在指定范围内满足某组条件时，每个子传感器都会触发事件。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -477,7 +512,7 @@ A component that owns multiple subsensors, each one firing an event when a set o
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_environment_sensor?view=minecraft-bedrock-stable"/>
 
-Creates a trigger based on environment conditions.
+定义基于环境条件的触发器。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -511,7 +546,7 @@ Creates a trigger based on environment conditions.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_rail_sensor?view=minecraft-bedrock-stable"/>
 
-Enables minecart-type entities to detect powered rails and respond to activation state changes.
+使矿车类实体能够检测激活铁轨并响应其激活状态变化。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -545,7 +580,7 @@ Enables minecart-type entities to detect powered rails and respond to activation
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_target_nearby_sensor?view=minecraft-bedrock-stable"/>
 
-Defines the entity's range within which it can see or sense other entities to target them.
+定义实体能够看见或感知到其他实体并将其设为目标的范围。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -579,9 +614,10 @@ Defines the entity's range within which it can see or sense other entities to ta
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_timer?view=minecraft-bedrock-stable"/>
 
-Adds a timer after which an event will fire.
+添加一个计时器，计时结束后触发事件。
 
 ---
+
 ---
 
 ## 功能性组件
@@ -592,7 +628,7 @@ Adds a timer after which an event will fire.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_addrider?view=minecraft-bedrock-stable"/>
 
-Adds a rider to the entity.
+为实体添加一名骑乘者。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -626,7 +662,7 @@ Adds a rider to the entity.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_admire_item?view=minecraft-bedrock-stable"/>
 
-Allows an entity to ignore attackable targets for a given duration
+允许实体在指定时长内忽略可攻击目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -660,7 +696,7 @@ Allows an entity to ignore attackable targets for a given duration
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_ageable?view=minecraft-bedrock-stable"/>
 
-Adds a timer for the entity to grow up.
+为实体添加一个成长计时器。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -694,7 +730,7 @@ Adds a timer for the entity to grow up.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_air_drag_modifier?view=minecraft-bedrock-stable"/>
 
-Defines how much does air drag affects this entity.
+定义空气阻力对实体的影响程度。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -728,7 +764,7 @@ Defines how much does air drag affects this entity.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_ambient_sound_interval?view=minecraft-bedrock-stable"/>
 
-Delay for an entity playing its sound
+定义实体播放环境音效的间隔时间。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -762,7 +798,7 @@ Delay for an entity playing its sound
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_anger_level?view=minecraft-bedrock-stable"/>
 
-Compels the entity to track anger towards a set of nuisances.
+迫使实体追踪对一组滋扰目标（nuisance）的愤怒值。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -796,7 +832,7 @@ Compels the entity to track anger towards a set of nuisances.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_angry?view=minecraft-bedrock-stable"/>
 
-Defines an entity's 'angry' state using a timer.
+定义实体通过计时器进入的“愤怒”状态。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -830,7 +866,7 @@ Defines an entity's 'angry' state using a timer.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_annotation.break_door?view=minecraft-bedrock-stable"/>
 
-Allows an entity to break doors, assuming that that flags set up for the component to use in navigation.
+允许实体破坏门，前提是已为其导航设置了相应的标志位。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -864,7 +900,7 @@ Allows an entity to break doors, assuming that that flags set up for the compone
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_annotation.open_door?view=minecraft-bedrock-stable"/>
 
-Allows the entity to open doors.
+允许实体开门。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -898,7 +934,7 @@ Allows the entity to open doors.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_apply_knockback_rules?view=minecraft-bedrock-stable"/>
 
-Defines how an entity applies knockback.
+定义实体施加击退的方式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -932,7 +968,7 @@ Defines how an entity applies knockback.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_area_attack?view=minecraft-bedrock-stable"/>
 
-A component that does damage to entities that get within range.
+定义对进入范围内的实体造成伤害的攻击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -966,7 +1002,7 @@ A component that does damage to entities that get within range.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_attack?view=minecraft-bedrock-stable"/>
 
-Defines an entity's melee attack damage and any additional status effects applied on hit.
+定义实体的近战攻击伤害，以及命中时施加的额外状态效果。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1000,7 +1036,7 @@ Defines an entity's melee attack damage and any additional status effects applie
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_attack_cooldown?view=minecraft-bedrock-stable"/>
 
-Adds a cooldown to an entity.
+为实体添加攻击冷却。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1034,7 +1070,7 @@ Adds a cooldown to an entity.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_attack_damage?view=minecraft-bedrock-stable"/>
 
-Specifies how much damage is dealt by the entity when it attacks.
+指定实体攻击时造成的伤害值。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1068,7 +1104,7 @@ Specifies how much damage is dealt by the entity when it attacks.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_balloonable?view=minecraft-bedrock-stable"/>
 
-Allows this entity to have a balloon attached and defines the conditions and events for this entity when is ballooned.
+允许为该实体系上气球，并定义实体被气球牵引时的条件与事件。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1102,7 +1138,7 @@ Allows this entity to have a balloon attached and defines the conditions and eve
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_barter?view=minecraft-bedrock-stable"/>
 
-Enables the component to drop an item as a barter exchange.
+使实体能够以物易物，作为交换掉落物品。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1136,7 +1172,7 @@ Enables the component to drop an item as a barter exchange.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_block_climber?view=minecraft-bedrock-stable"/>
 
-Allows the player to detect and manuever on the scaffolding block.
+允许玩家检测到脚手架并在其上移动。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1170,7 +1206,7 @@ Allows the player to detect and manuever on the scaffolding block.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_body_rotation_always_follows_head?view=minecraft-bedrock-stable"/>
 
-Causes the entity's body rotation to match the one of their head. Does not override the "`minecraft:body_rotation_blocked`" component.
+使实体的身体朝向与其头部朝向保持一致。不会覆盖 `minecraft:body_rotation_blocked` 组件。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1204,7 +1240,7 @@ Causes the entity's body rotation to match the one of their head. Does not overr
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_body_rotation_blocked?view=minecraft-bedrock-stable"/>
 
-When set, the entity will no longer visually rotate their body to match their facing direction.
+设置后，实体不再在视觉上旋转身体以匹配其面向的方向。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1238,7 +1274,7 @@ When set, the entity will no longer visually rotate their body to match their fa
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_boostable?view=minecraft-bedrock-stable"/>
 
-Defines the conditions and behavior of a rideable entity's boost.
+定义可骑乘实体冲刺的条件与行为。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1272,7 +1308,7 @@ Defines the conditions and behavior of a rideable entity's boost.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_boss?view=minecraft-bedrock-stable"/>
 
-Defines the current state of the boss for updating the boss HUD.
+定义 Boss 的当前状态，用于更新 Boss 血条界面。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1306,7 +1342,7 @@ Defines the current state of the boss for updating the boss HUD.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_bounciness?view=minecraft-bedrock-stable"/>
 
-Controls how an entity bounces when colliding with surfaces.
+控制实体与表面碰撞时的弹跳方式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1340,7 +1376,7 @@ Controls how an entity bounces when colliding with surfaces.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_break_blocks?view=minecraft-bedrock-stable"/>
 
-Specifies the blocks that the entity can break as it moves around.
+指定实体移动时可破坏的方块。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1374,7 +1410,7 @@ Specifies the blocks that the entity can break as it moves around.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_breathable?view=minecraft-bedrock-stable"/>
 
-Defines what blocks this entity can breathe in and gives them the ability to suffocate.
+定义实体可呼吸的方块，并使其能够窒息。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1408,7 +1444,7 @@ Defines what blocks this entity can breathe in and gives them the ability to suf
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_breedable?view=minecraft-bedrock-stable"/>
 
-Allows an entity to establish a way to get into the love state used for breeding.
+允许实体通过特定方式进入用于繁殖的求爱状态。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1442,7 +1478,7 @@ Allows an entity to establish a way to get into the love state used for breeding
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_bribeable?view=minecraft-bedrock-stable"/>
 
-Defines the way an entity can get into the 'bribed' state.
+定义实体进入“被贿赂”状态的方式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1476,7 +1512,7 @@ Defines the way an entity can get into the 'bribed' state.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_buoyant?view=minecraft-bedrock-stable"/>
 
-Enables an entity to float on the specified liquid blocks.
+使实体能够漂浮在指定的液体方块上。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1510,7 +1546,7 @@ Enables an entity to float on the specified liquid blocks.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_burns_in_daylight?view=minecraft-bedrock-stable"/>
 
-Specifies that this entity takes fire damage when exposed to direct sunlight.
+指定实体暴露在直射阳光下时会受到火焰伤害。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1544,7 +1580,7 @@ Specifies that this entity takes fire damage when exposed to direct sunlight.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_cannot_be_attacked?view=minecraft-bedrock-stable"/>
 
-When set, blocks entities from attacking the owner entity unless they have the "`minecraft:ignore_cannot_be_attacked" component.`
+设置后，阻止实体攻击拥有者实体，除非其拥有 `minecraft:ignore_cannot_be_attacked` 组件。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1578,7 +1614,7 @@ When set, blocks entities from attacking the owner entity unless they have the "
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_can_climb?view=minecraft-bedrock-stable"/>
 
-Allows an entity to climb ladders.
+允许实体攀爬梯子。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1612,7 +1648,7 @@ Allows an entity to climb ladders.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_can_fly?view=minecraft-bedrock-stable"/>
 
-Marks the entity as being able to fly, the pathfinder won't be restricted to paths where a solid block is required underneath it.
+将实体标记为可以飞行；寻路时不再要求路径下方必须有固体方块。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1646,7 +1682,7 @@ Marks the entity as being able to fly, the pathfinder won't be restricted to pat
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_can_join_raid?view=minecraft-bedrock-stable"/>
 
-Specifies if an entity can join a raid.
+指定实体能否加入袭击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1680,7 +1716,7 @@ Specifies if an entity can join a raid.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_can_power_jump?view=minecraft-bedrock-stable"/>
 
-Allows the entity to power jump like the Horse does in Vanilla.
+允许实体像原版的马一样蓄力跳跃。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1714,7 +1750,7 @@ Allows the entity to power jump like the Horse does in Vanilla.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_celebrate_hunt?view=minecraft-bedrock-stable"/>
 
-Specifies hunt celebration behaviour.
+指定狩猎后的庆祝行为。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1748,7 +1784,7 @@ Specifies hunt celebration behaviour.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_color?view=minecraft-bedrock-stable"/>
 
-Defines the entity's main color.
+定义实体的主体颜色。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1782,7 +1818,7 @@ Defines the entity's main color.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_color2?view=minecraft-bedrock-stable"/>
 
-Defines the entity's second texture color.
+定义实体的第二种纹理颜色。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1816,7 +1852,7 @@ Defines the entity's second texture color.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_combat_regeneration?view=minecraft-bedrock-stable"/>
 
-Gives Regeneration I and removes Mining Fatigue from the mob that kills the entity's attack target.
+使杀死该实体攻击目标的生物获得生命恢复 I，并移除其挖掘疲劳。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1884,7 +1920,7 @@ Gives Regeneration I and removes Mining Fatigue from the mob that kills the enti
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_custom_hit_test?view=minecraft-bedrock-stable"/>
 
-List of hitboxes for melee and ranged hits against the entity.
+定义该实体受到近战与远程攻击时的判定箱列表。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1918,7 +1954,7 @@ List of hitboxes for melee and ranged hits against the entity.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_damage_over_time?view=minecraft-bedrock-stable"/>
 
-Applies defined amount of damage to the entity at specified intervals.
+按指定间隔对实体施加指定量的伤害。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1986,7 +2022,7 @@ Applies defined amount of damage to the entity at specified intervals.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_default_look_angle?view=minecraft-bedrock-stable"/>
 
-Sets this entity's default head rotation angle.
+设置实体的默认头部旋转角度。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2020,7 +2056,7 @@ Sets this entity's default head rotation angle.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_despawn?view=minecraft-bedrock-stable"/>
 
-Despawns the Actor when the despawn rules or optional filters evaluate to true.
+当消失规则或可选过滤器判定为真时移除该实体。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2088,7 +2124,7 @@ Despawns the Actor when the despawn rules or optional filters evaluate to true.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_drying_out_timer?view=minecraft-bedrock-stable"/>
 
-Adds a timer for drying out that will count down and fire 'dried_out_event' or will stop as soon as the entity will get under rain or water and fire 'stopped_drying_out_event'
+添加一个风干计时器：倒计时结束后触发 `dried_out_event`；当实体处于雨中或水中时计时停止，并触发 `stopped_drying_out_event`。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2122,7 +2158,7 @@ Adds a timer for drying out that will count down and fire 'dried_out_event' or w
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_dweller?view=minecraft-bedrock-stable"/>
 
-Compels an entity to join and migrate between villages and other dwellings.
+迫使实体加入村庄或其他聚居地，并在其间迁移。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2156,7 +2192,7 @@ Compels an entity to join and migrate between villages and other dwellings.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_economy_trade_table?view=minecraft-bedrock-stable"/>
 
-Defines this entity's ability to trade with players.
+定义实体与玩家交易的能力。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2190,7 +2226,7 @@ Defines this entity's ability to trade with players.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_entity_armor_equipment_slot_mapping?view=minecraft-bedrock-stable"/>
 
-It defines to which armor slot an item equipped to '`minecraft:equippable`''s second slot should be equipped to.
+定义装备在 `minecraft:equippable` 第二个槽位上的物品应对应到哪个盔甲槽位。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2224,7 +2260,7 @@ It defines to which armor slot an item equipped to '`minecraft:equippable`''s se
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_equipment?view=minecraft-bedrock-stable"/>
 
-Sets the Equipment table to use for this Entity.
+设置实体使用的装备表。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2258,7 +2294,7 @@ Sets the Equipment table to use for this Entity.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_equippable?view=minecraft-bedrock-stable"/>
 
-Defines an entity's behavior for having items equipped to it.
+定义实体被装备物品时的行为。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2352,7 +2388,7 @@ Defines an entity's behavior for having items equipped to it.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_exhaustion_values?view=minecraft-bedrock-stable"/>
 
-Defines how much exhaustion each player action should take.
+定义玩家的每种行为所消耗的疲劳值。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2420,7 +2456,7 @@ Defines how much exhaustion each player action should take.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_explode?view=minecraft-bedrock-stable"/>
 
-Defines how the entity explodes.
+定义实体的爆炸方式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2454,7 +2490,7 @@ Defines how the entity explodes.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_fire_immune?view=minecraft-bedrock-stable"/>
 
-Sets that this entity doesn't take damage from fire.
+设置实体免疫火焰伤害。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2488,7 +2524,7 @@ Sets that this entity doesn't take damage from fire.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_floats_in_liquid?view=minecraft-bedrock-stable"/>
 
-Sets that this entity can float in liquid blocks.
+设置实体可以漂浮在液体方块中。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2522,7 +2558,7 @@ Sets that this entity can float in liquid blocks.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_flocking?view=minecraft-bedrock-stable"/>
 
-Allows entities to flock in groups in water or not.
+定义实体是否在水中成群聚集。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2556,7 +2592,7 @@ Allows entities to flock in groups in water or not.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_flying_speed?view=minecraft-bedrock-stable"/>
 
-Speed in Blocks that this entity flies at.
+定义实体的飞行速度，单位为方块。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2590,7 +2626,7 @@ Speed in Blocks that this entity flies at.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_follow_range?view=minecraft-bedrock-stable"/>
 
-Defines the maximum range, in blocks, that a mob will pursue a target.
+定义生物追击目标的最大距离，单位为方块。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2658,7 +2694,7 @@ Defines the maximum range, in blocks, that a mob will pursue a target.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_friction_modifier?view=minecraft-bedrock-stable"/>
 
-Defines how much friction affects this entity.
+定义摩擦力对实体的影响程度。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2692,7 +2728,7 @@ Defines how much friction affects this entity.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_game_event_movement_tracking?view=minecraft-bedrock-stable"/>
 
-Allows an entity to emit entityMove, swim and flap game events, depending on the block the entity is moving through.
+允许实体根据其正在穿过的方块，发出 entityMove、swim 和 flap 游戏事件。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2726,7 +2762,7 @@ Allows an entity to emit entityMove, swim and flap game events, depending on the
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_genetics?view=minecraft-bedrock-stable"/>
 
-Defines the way a mob's genes and alleles are passed on to its offspring, and how those traits manifest in the child.
+定义生物的基因与等位基因如何遗传给后代，以及这些性状在后代身上的表现形式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2760,7 +2796,7 @@ Defines the way a mob's genes and alleles are passed on to its offspring, and ho
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_giveable?view=minecraft-bedrock-stable"/>
 
-Defines sets of items that can be used to trigger events when used on this entity.
+定义一组物品，对该实体使用这些物品时会触发事件。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2794,7 +2830,7 @@ Defines sets of items that can be used to trigger events when used on this entit
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_ground_offset?view=minecraft-bedrock-stable"/>
 
-Sets the offset from the ground that the entity is actually at.
+设置实体实际位置相对地面的偏移量。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2828,7 +2864,7 @@ Sets the offset from the ground that the entity is actually at.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_group_size?view=minecraft-bedrock-stable"/>
 
-Keeps track of entity group size in the given radius.
+记录指定半径内的实体群体规模。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2862,7 +2898,7 @@ Keeps track of entity group size in the given radius.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_grows_crop?view=minecraft-bedrock-stable"/>
 
-Could increase crop growth when entity walks over crop
+实体走过作物时可能会加速作物生长。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2896,7 +2932,7 @@ Could increase crop growth when entity walks over crop
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_healable?view=minecraft-bedrock-stable"/>
 
-How entities heal
+定义实体恢复生命值的方式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2930,7 +2966,7 @@ How entities heal
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_heartbeat?view=minecraft-bedrock-stable"/>
 
-Defines the entity's heartbeat.
+定义实体的心跳。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2964,7 +3000,7 @@ Defines the entity's heartbeat.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_hide?view=minecraft-bedrock-stable"/>
 
-Moves to and hides at their owned POI or the closest nearby.
+使实体移动到并躲藏在其拥有的兴趣点（POI）或最近的兴趣点处。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2998,7 +3034,7 @@ Moves to and hides at their owned POI or the closest nearby.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_home?view=minecraft-bedrock-stable"/>
 
-Saves a home position for when the entity is spawned.
+记录实体生成时的“家”位置。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3032,7 +3068,7 @@ Saves a home position for when the entity is spawned.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_horse.jump_strength?view=minecraft-bedrock-stable"/>
 
-Determines the jump height for a horse or similar entity, like a donkey.
+决定马或类似实体（如驴）的跳跃高度。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3100,7 +3136,7 @@ Determines the jump height for a horse or similar entity, like a donkey.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_ignore_cannot_be_attacked?view=minecraft-bedrock-stable"/>
 
-When set, blocks entities from attacking the owner entity unless they have the "`minecraft:ignore_cannot_be_attacked" component.`
+允许拥有者实体忽略满足过滤器条件的实体身上的 `minecraft:cannot_be_attacked` 组件。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3134,7 +3170,7 @@ When set, blocks entities from attacking the owner entity unless they have the "
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_input_ground_controlled?view=minecraft-bedrock-stable"/>
 
-When configured as a rideable entity, the entity will be controlled using WASD controls.
+当被配置为可骑乘实体时，该实体将使用 WASD 控制。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3168,7 +3204,7 @@ When configured as a rideable entity, the entity will be controlled using WASD c
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_inside_block_notifier?view=minecraft-bedrock-stable"/>
 
-Verifies whether the entity is inside any of the listed blocks.
+检测实体是否位于所列方块之内。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3202,7 +3238,7 @@ Verifies whether the entity is inside any of the listed blocks.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_insomnia?view=minecraft-bedrock-stable"/>
 
-Adds a timer since last rested to see if phantoms should spawn.
+添加一个自上次休息以来的计时器，用于判断是否应生成幻翼。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3236,7 +3272,7 @@ Adds a timer since last rested to see if phantoms should spawn.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_instant_despawn?view=minecraft-bedrock-stable"/>
 
-Despawns the Actor immediately.
+立即移除该实体。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3324,7 +3360,7 @@ Despawns the Actor immediately.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_inventory?view=minecraft-bedrock-stable"/>
 
-Defines this entity's inventory properties.
+定义实体的物品栏属性。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3358,7 +3394,7 @@ Defines this entity's inventory properties.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_collidable?view=minecraft-bedrock-stable"/>
 
-Allows other mobs to have vertical and horizontal collisions with this mob.
+允许其他生物与该生物发生垂直和水平碰撞。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3392,7 +3428,7 @@ Allows other mobs to have vertical and horizontal collisions with this mob.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_dyeable?view=minecraft-bedrock-stable"/>
 
-Allows dyes to be used on this entity to change its color.
+允许对该实体使用染料以改变其颜色。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3426,7 +3462,7 @@ Allows dyes to be used on this entity to change its color.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_hidden_when_invisible?view=minecraft-bedrock-stable"/>
 
-The entity can hide from hostile mobs while invisible.
+实体在隐身状态时可以躲避敌对生物。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3460,7 +3496,7 @@ The entity can hide from hostile mobs while invisible.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_illager_captain?view=minecraft-bedrock-stable"/>
 
-Sets that this entity is an Illager Captain.
+设置该实体为灾厄队长。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3494,7 +3530,7 @@ Sets that this entity is an Illager Captain.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_stackable?view=minecraft-bedrock-stable"/>
 
-Allows instances of this entity to have vertical and horizontal collisions with each other.
+允许该实体的多个实例之间发生垂直和水平碰撞。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3528,7 +3564,7 @@ Allows instances of this entity to have vertical and horizontal collisions with 
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_item_controllable?view=minecraft-bedrock-stable"/>
 
-Defines what items can be used to control this entity while ridden.
+定义骑乘该实体时可用哪些物品进行控制。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3562,7 +3598,7 @@ Defines what items can be used to control this entity while ridden.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_item_hopper?view=minecraft-bedrock-stable"/>
 
-Determines that this entity is an item hopper.
+决定该实体为物品漏斗。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3596,7 +3632,7 @@ Determines that this entity is an item hopper.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_jump.dynamic?view=minecraft-bedrock-stable"/>
 
-Defines a dynamic type jump control that will change jump properties based on the speed modifier of the mob.Requires `minecraft:movement.skip to be used.`
+定义动态跳跃控制，会根据生物的速度修正值改变跳跃属性。需要配合 `minecraft:movement.skip` 使用。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3630,7 +3666,7 @@ Defines a dynamic type jump control that will change jump properties based on th
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_jump.static?view=minecraft-bedrock-stable"/>
 
-Gives the entity the ability to jump.
+给予实体跳跃的能力。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3664,7 +3700,7 @@ Gives the entity the ability to jump.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_knockback_resistance?view=minecraft-bedrock-stable"/>
 
-Determines an entity's resistance to knockback from melee attacks.
+决定实体对近战攻击击退的抗性。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3698,7 +3734,7 @@ Determines an entity's resistance to knockback from melee attacks.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_lava_movement?view=minecraft-bedrock-stable"/>
 
-Allows a custom movement speed across lava blocks.
+允许为实体在熔岩方块上的移动设置自定义速度。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3732,7 +3768,7 @@ Allows a custom movement speed across lava blocks.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_leashable?view=minecraft-bedrock-stable"/>
 
-Describes how this mob can be leashed to other items
+描述该生物如何被拴绳拴到其他物品上。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3766,7 +3802,7 @@ Describes how this mob can be leashed to other items
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_leashable_to?view=minecraft-bedrock-stable"/>
 
-Allows players to leash entities to this entity, retrieve entities already leashed to it, or free them using shears.
+允许玩家将其他实体拴到该实体上、取回已拴在其上的实体，或用剪刀将其解开。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3800,7 +3836,7 @@ Allows players to leash entities to this entity, retrieve entities already leash
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_looked_at?view=minecraft-bedrock-stable"/>
 
-Defines the behavior when another entity looks at the owner entity.
+定义其他实体注视拥有者实体时的行为。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3834,7 +3870,7 @@ Defines the behavior when another entity looks at the owner entity.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_loot?view=minecraft-bedrock-stable"/>
 
-Specifies the loot table that determines what items this entity drops upon death.
+指定决定该实体死亡时掉落何种物品的战利品表。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3868,7 +3904,7 @@ Specifies the loot table that determines what items this entity drops upon death
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_managed_wandering_trader?view=minecraft-bedrock-stable"/>
 
-Manages the entity's ability to trade.
+管理实体的交易能力。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3902,7 +3938,7 @@ Manages the entity's ability to trade.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_mob_effect?view=minecraft-bedrock-stable"/>
 
-A component that applies a mob effect to entities that get within range.
+定义对进入范围内的实体施加状态效果的攻击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3936,7 +3972,7 @@ A component that applies a mob effect to entities that get within range.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_mob_effect_immunity?view=minecraft-bedrock-stable"/>
 
-Entities with this component will have an immunity to the provided mob effects.
+拥有此组件的实体对所列状态效果免疫。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3970,7 +4006,7 @@ Entities with this component will have an immunity to the provided mob effects.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement_sound_distance_offset?view=minecraft-bedrock-stable"/>
 
-Sets the offset used to determine the next step distance for playing a movement sound.
+设置用于确定播放移动音效的下一个脚步距离的偏移量。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4004,7 +4040,7 @@ Sets the offset used to determine the next step distance for playing a movement 
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_nameable?view=minecraft-bedrock-stable"/>
 
-Allows this entity to be named (e.g. using a name tag).
+允许为该实体命名（例如使用命名牌）。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4070,7 +4106,7 @@ Allows this entity to be named (e.g. using a name tag).
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_offspring?view=minecraft-bedrock-stable"/>
 
-Defines the way an entity can create a born offspring.
+定义实体产生后代的方式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4104,7 +4140,7 @@ Defines the way an entity can create a born offspring.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_out_of_control?view=minecraft-bedrock-stable"/>
 
-Defines the entity's 'out of control' state.
+定义实体的“失控”状态。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4138,7 +4174,7 @@ Defines the entity's 'out of control' state.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_peek?view=minecraft-bedrock-stable"/>
 
-Defines the entity's 'peek' behavior, defining the events that should be called during it.
+定义实体的“探头”行为，以及该行为期间应调用的事件。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4172,7 +4208,7 @@ Defines the entity's 'peek' behavior, defining the events that should be called 
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_persistent?view=minecraft-bedrock-stable"/>
 
-Defines whether an entity should be persistent in the game world.
+定义实体是否应在游戏世界中持久保留。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4206,7 +4242,7 @@ Defines whether an entity should be persistent in the game world.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_player.exhaustion?view=minecraft-bedrock-stable"/>
 
-Defines the player's exhaustion level.
+定义玩家的疲劳值。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4240,7 +4276,7 @@ Defines the player's exhaustion level.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_player.experience?view=minecraft-bedrock-stable"/>
 
-Defines how much experience each player action should take.
+定义玩家的每种行为所消耗的经验值。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4274,7 +4310,7 @@ Defines how much experience each player action should take.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_player.level?view=minecraft-bedrock-stable"/>
 
-Defines the player's level.
+定义玩家的等级。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4308,7 +4344,7 @@ Defines the player's level.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_player.saturation?view=minecraft-bedrock-stable"/>
 
-Defines the player's need for food.
+定义玩家对食物的需求。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4342,7 +4378,7 @@ Defines the player's need for food.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_preferred_path?view=minecraft-bedrock-stable"/>
 
-Specifies costing information for mobs that prefer to walk on preferred paths.
+指定偏好走优先路径的生物的寻路代价信息。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4428,7 +4464,7 @@ Specifies costing information for mobs that prefer to walk on preferred paths.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_push_through?view=minecraft-bedrock-stable"/>
 
-Sets the distance through which the entity can push through.
+设置实体能够挤开的距离。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4462,7 +4498,7 @@ Sets the distance through which the entity can push through.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_raid_trigger?view=minecraft-bedrock-stable"/>
 
-Attempts to trigger a raid at the entity's location.
+尝试在实体所在位置触发袭击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4496,7 +4532,7 @@ Attempts to trigger a raid at the entity's location.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_rail_movement?view=minecraft-bedrock-stable"/>
 
-Defines the entity's movement on the rails.
+定义实体在铁轨上的移动方式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4530,7 +4566,7 @@ Defines the entity's movement on the rails.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_ravager_blocked?view=minecraft-bedrock-stable"/>
 
-Defines the ravager's response to their melee attack being blocked.
+定义劫掠兽的近战攻击被格挡时的反应。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4564,7 +4600,7 @@ Defines the ravager's response to their melee attack being blocked.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_reflect_projectiles?view=minecraft-bedrock-stable"/>
 
-[EXPERIMENTAL] Allows an entity to reflect projectiles.
+[实验性] 允许实体反弹弹射物。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4598,7 +4634,7 @@ Defines the ravager's response to their melee attack being blocked.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_remove_in_peaceful?view=minecraft-bedrock-stable"/>
 
-Denotes entities that are not allowed to exist in "Peaceful" difficulty.
+表示该实体不允许在“和平”难度下存在。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4632,7 +4668,7 @@ Denotes entities that are not allowed to exist in "Peaceful" difficulty.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_renders_when_invisible?view=minecraft-bedrock-stable"/>
 
-When set, the entity will render even when invisible.
+设置后，实体即使在隐身状态下也会渲染。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4734,7 +4770,7 @@ When set, the entity will render even when invisible.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_rotation_locked_to_vehicle?view=minecraft-bedrock-stable"/>
 
-Causes the entity's rotation to match their vehicle's facing direction.
+使实体的朝向与其载具的朝向保持一致。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4768,7 +4804,7 @@ Causes the entity's rotation to match their vehicle's facing direction.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_scale?view=minecraft-bedrock-stable"/>
 
-Sets the entity's visual size multiplier.
+设置实体的视觉尺寸倍率。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4802,7 +4838,7 @@ Sets the entity's visual size multiplier.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_scale_by_age?view=minecraft-bedrock-stable"/>
 
-Defines the entity's size interpolation based on the entity's age.
+定义实体根据其年龄进行尺寸插值的方式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4836,7 +4872,7 @@ Defines the entity's size interpolation based on the entity's age.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_scheduler?view=minecraft-bedrock-stable"/>
 
-Fires off scheduled mob events at time of day events.
+在指定的游戏时间点触发预定的生物事件。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4870,7 +4906,7 @@ Fires off scheduled mob events at time of day events.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_shareables?view=minecraft-bedrock-stable"/>
 
-Defines a list of items the mob wants to share or pick up.
+定义生物想要分享或拾取的物品列表。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4904,7 +4940,7 @@ Defines a list of items the mob wants to share or pick up.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_shooter?view=minecraft-bedrock-stable"/>
 
-Defines the entity's ranged attack behavior.
+定义实体的远程攻击行为。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4938,7 +4974,7 @@ Defines the entity's ranged attack behavior.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_sittable?view=minecraft-bedrock-stable"/>
 
-Defines the entity's 'sit' state.
+定义实体的“坐下”状态。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -4972,7 +5008,7 @@ Defines the entity's 'sit' state.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_sound_volume?view=minecraft-bedrock-stable"/>
 
-Sets the entity's base volume for sound effects.
+设置实体音效的基础音量。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5006,7 +5042,7 @@ Sets the entity's base volume for sound effects.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_spawn_egg_interaction?view=minecraft-bedrock-stable"/>
 
-Enables interacting with this entity using its own spawn egg to spawn a born child.
+使玩家可以用该实体自己的刷怪蛋与其交互，从而生成一个幼年后代。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5040,7 +5076,7 @@ Enables interacting with this entity using its own spawn egg to spawn a born chi
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_spawn_entity?view=minecraft-bedrock-stable"/>
 
-Adds a timer after which this entity will spawn another entity or item (similar to vanilla's chicken's egg-laying behavior).
+添加一个计时器，计时结束后该实体将生成另一个实体或物品（类似于原版鸡的下蛋行为）。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5074,7 +5110,7 @@ Adds a timer after which this entity will spawn another entity or item (similar 
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_spawn_on_death?view=minecraft-bedrock-stable"/>
 
-Component for spawning entities when an entity perishes.
+定义实体死亡时生成其他实体的行为。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5108,7 +5144,7 @@ Component for spawning entities when an entity perishes.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_spell_effects?view=minecraft-bedrock-stable"/>
 
-Allows an entity to add or remove status effects from itself.
+允许实体对自身添加或移除状态效果。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5142,7 +5178,7 @@ Allows an entity to add or remove status effects from itself.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_strength?view=minecraft-bedrock-stable"/>
 
-Defines the entity's strength to carry items.
+定义实体搬运物品的力量值。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5176,7 +5212,7 @@ Defines the entity's strength to carry items.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_suspect_tracking?view=minecraft-bedrock-stable"/>
 
-Allows this entity to remember suspicious locations.
+允许该实体记住可疑位置。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5210,7 +5246,7 @@ Allows this entity to remember suspicious locations.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_tameable?view=minecraft-bedrock-stable"/>
 
-This entity can be tamed
+定义该实体可以被驯服。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5244,7 +5280,7 @@ This entity can be tamed
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_tamemount?view=minecraft-bedrock-stable"/>
 
-Allows the Entity to be tamed by mounting it.
+允许通过骑乘来驯服该实体。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5278,7 +5314,7 @@ Allows the Entity to be tamed by mounting it.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_teleport?view=minecraft-bedrock-stable"/>
 
-Defines an entity's teleporting behavior.
+定义实体的传送行为。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5346,7 +5382,7 @@ Defines an entity's teleporting behavior.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_trade_resupply?view=minecraft-bedrock-stable"/>
 
-Resupplies an entity's trade.
+补充实体的交易货物。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5380,7 +5416,7 @@ Resupplies an entity's trade.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_trade_table?view=minecraft-bedrock-stable"/>
 
-Defines this entity's ability to trade with players.
+定义实体与玩家交易的能力。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5414,7 +5450,7 @@ Defines this entity's ability to trade with players.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_trail?view=minecraft-bedrock-stable"/>
 
-Causes an entity to leave a trail of blocks as it moves about the world.
+使实体在世界中移动时留下方块轨迹。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5448,7 +5484,7 @@ Causes an entity to leave a trail of blocks as it moves about the world.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_transformation?view=minecraft-bedrock-stable"/>
 
-Defines an entity's transformation from the current definition into another
+定义实体如何从当前定义转变为另一种定义。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5482,7 +5518,7 @@ Defines an entity's transformation from the current definition into another
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_transient?view=minecraft-bedrock-stable"/>
 
-An entity with this component will NEVER persist, and forever disappear when unloaded.
+拥有此组件的实体绝不会被持久保留，一旦区块卸载便会永久消失。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5516,7 +5552,7 @@ An entity with this component will NEVER persist, and forever disappear when unl
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_trust?view=minecraft-bedrock-stable"/>
 
-Allows this entity to trust multiple players.
+允许该实体信任多名玩家。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5550,41 +5586,7 @@ Allows this entity to trust multiple players.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_trusting?view=minecraft-bedrock-stable"/>
 
-Defines the rules for a mob to trust players.
-
-<!--
-<Tabs><TabItem value="参数" label="参数" default>
-
-<treeview>
-- <DataType type="object" name="minecraft:xxx"/>：根对象。
-  - <DataType type="string" name="???"/>：可选值为。默认值为。
-  - <DataType type="int" name="???"/>：可选值为。默认值为。
-  - <DataType type="float" name="???"/>：可选值为。默认值为。
-  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
-  - <DataType type="array" name="???"/>：可选值为。默认值为。
-  - <DataType type="object" name="???"/>：可选值为。默认值为。
-</treeview>
-
-</TabItem><TabItem value="示例" label="示例">
-
-原版某实体（<FileType type="file" name="???.json"/>）：
-
-```json showLineNumbers
-"minecraft:xxx": {}
-```
-
-</TabItem></Tabs>
--->
-
----
-
-### `minecraft:type_family`
-
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_type_family?view=minecraft-bedrock-stable"/>
-
-Defines the family categories this entity belongs to.
+定义生物信任玩家的规则。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5618,7 +5620,7 @@ Defines the family categories this entity belongs to.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_underwater_mount_breathing?view=minecraft-bedrock-stable"/>
 
-Pauses this entity's breathing under water.
+暂停该实体在水下的呼吸计时。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5652,7 +5654,7 @@ Pauses this entity's breathing under water.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_underwater_movement?view=minecraft-bedrock-stable"/>
 
-Defines the speed with which an entity can move through water.
+定义实体在水中移动的速度。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5686,7 +5688,7 @@ Defines the speed with which an entity can move through water.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_uses_legacy_friction?view=minecraft-bedrock-stable"/>
 
-When set, legacy calculations are used when applying "`minecraft:friction_modifier".`
+设置后，应用 `minecraft:friction_modifier` 时将使用旧版计算方式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5720,7 +5722,7 @@ When set, legacy calculations are used when applying "`minecraft:friction_modifi
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_variable_max_auto_step?view=minecraft-bedrock-stable"/>
 
-Entities with this component will have a maximum auto step height that is different depending on whether they are on a block that prevents jumping.
+拥有此组件的实体，其最大自动跨越高度会根据所处方块是否阻止跳跃而有所不同。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5788,7 +5790,7 @@ Entities with this component will have a maximum auto step height that is differ
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_vibration_damper?view=minecraft-bedrock-stable"/>
 
-Vibrations emitted by an entity with this component will be ignored.
+拥有此组件的实体发出的振动将被忽略。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5822,7 +5824,7 @@ Vibrations emitted by an entity with this component will be ignored.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_vibration_listener?view=minecraft-bedrock-stable"/>
 
-Allows the entity to listen to vibration events.
+允许实体监听振动事件。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5856,7 +5858,7 @@ Allows the entity to listen to vibration events.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_walk_animation_speed?view=minecraft-bedrock-stable"/>
 
-Sets the speed multiplier for this entity's walk animation speed.
+设置实体行走动画速度的倍率。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5890,7 +5892,7 @@ Sets the speed multiplier for this entity's walk animation speed.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_wants_jockey?view=minecraft-bedrock-stable"/>
 
-Sets that this entity wants to become a jockey.
+设置该实体想要成为骑手（jockey）。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5924,7 +5926,7 @@ Sets that this entity wants to become a jockey.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_water_movement?view=minecraft-bedrock-stable"/>
 
-Customizes how the entity moves through water by adjusting drag coefficient.
+通过调整阻力系数自定义实体在水中的移动方式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -5958,9 +5960,10 @@ Customizes how the entity moves through water by adjusting drag coefficient.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_wither_target_highest_damage?view=minecraft-bedrock-stable"/>
 
-Allows the wither to focus its attacks on whichever mob has dealt the most damage to it.
+允许凋灵将攻击集中在对其造成伤害最多的生物上。
 
 ---
+
 ---
 
 ## 寻路与运动组件
@@ -5973,7 +5976,7 @@ Allows the wither to focus its attacks on whichever mob has dealt the most damag
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement?view=minecraft-bedrock-stable"/>
 
-Defines the base movement speed of an entity.
+定义实体的基础移动速度。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6007,7 +6010,7 @@ Defines the base movement speed of an entity.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.amphibious?view=minecraft-bedrock-stable"/>
 
-This move control allows the mob to swim in water and walk on land.
+此移动控制允许生物在水中游泳、在陆地上行走。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6041,7 +6044,7 @@ This move control allows the mob to swim in water and walk on land.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.basic?view=minecraft-bedrock-stable"/>
 
-This component accents the movement of an entity.
+此组件用于实现实体的基础移动。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6075,7 +6078,7 @@ This component accents the movement of an entity.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.dolphin?view=minecraft-bedrock-stable"/>
 
-This component can control how dolphins move, in a dolphin-esque style.
+此组件以类似海豚的风格控制海豚的移动方式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6109,7 +6112,7 @@ This component can control how dolphins move, in a dolphin-esque style.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.fly?view=minecraft-bedrock-stable"/>
 
-This move control causes the mob to fly.
+此移动控制使生物飞行。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6143,7 +6146,7 @@ This move control causes the mob to fly.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.generic?view=minecraft-bedrock-stable"/>
 
-This move control allows a mob to fly, swim, climb, etc.
+此移动控制允许生物飞行、游泳、攀爬等。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6177,7 +6180,7 @@ This move control allows a mob to fly, swim, climb, etc.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.glide?view=minecraft-bedrock-stable"/>
 
-This move control causes the mob to glide.
+此移动控制使生物滑翔。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6211,7 +6214,7 @@ This move control causes the mob to glide.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.hover?view=minecraft-bedrock-stable"/>
 
-This move control causes the mob to hover.
+此移动控制使生物悬停。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6245,7 +6248,7 @@ This move control causes the mob to hover.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.jump?view=minecraft-bedrock-stable"/>
 
-Move control that causes the mob to jump as it moves with a specified delay between jumps.
+使生物在移动时跳跃、且每次跳跃之间有指定延迟的移动控制。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6279,7 +6282,7 @@ Move control that causes the mob to jump as it moves with a specified delay betw
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.skip?view=minecraft-bedrock-stable"/>
 
-This move control causes the mob to hop as it moves.
+此移动控制使生物在移动时蹦跳。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6313,7 +6316,7 @@ This move control causes the mob to hop as it moves.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_movement.sway?view=minecraft-bedrock-stable"/>
 
-This move control causes the mob to sway side to side giving the impression it is swimming.
+此移动控制使生物左右摇摆，营造出正在游泳的效果。
 
 ---
 
@@ -6349,7 +6352,7 @@ This move control causes the mob to sway side to side giving the impression it i
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.climb?view=minecraft-bedrock-stable"/>
 
-Allows this entity to generate paths that include vertical walls like the vanilla Spiders do.
+允许该实体生成包含垂直墙面的路径，类似原版蜘蛛。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6383,7 +6386,7 @@ Allows this entity to generate paths that include vertical walls like the vanill
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.float?view=minecraft-bedrock-stable"/>
 
-Allows this entity to generate paths by flying around the air like the regular Ghast.
+允许该实体像普通恶魂一样在空中飞行并生成路径。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6417,7 +6420,7 @@ Allows this entity to generate paths by flying around the air like the regular G
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.fly?view=minecraft-bedrock-stable"/>
 
-Allows this entity to generate paths in the air like the vanilla Parrots do.
+允许该实体像原版鹦鹉一样在空中生成路径。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6451,7 +6454,7 @@ Allows this entity to generate paths in the air like the vanilla Parrots do.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.generic?view=minecraft-bedrock-stable"/>
 
-Allows this entity to generate paths by walking, swimming, flying and/or climbing around and jumping up and down a block.
+允许该实体通过行走、游泳、飞行和/或攀爬，以及上下跨越方块来生成路径。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6485,7 +6488,7 @@ Allows this entity to generate paths by walking, swimming, flying and/or climbin
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.hover?view=minecraft-bedrock-stable"/>
 
-Allows this entity to generate paths in the air like the vanilla Bees do.
+允许该实体像原版蜜蜂一样在空中生成路径。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6519,7 +6522,7 @@ Allows this entity to generate paths in the air like the vanilla Bees do.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_navigation.swim?view=minecraft-bedrock-stable"/>
 
-Allows this entity to generate paths that include water.
+允许该实体生成包含水域的路径。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6556,6 +6559,7 @@ Allows this entity to generate paths that include water.
 定义实体会以行走的方式寻路并到达预定地点。
 
 ---
+
 ---
 
 ## AI 意向组件
@@ -6568,7 +6572,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_admire_item?view=minecraft-bedrock-stable"/>
 
-Enables the mob to admire items that have been configured as admirable.
+使生物能够欣赏被配置为“可欣赏”的物品。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6602,7 +6606,7 @@ Enables the mob to admire items that have been configured as admirable.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_aquatic_charge_attack?view=minecraft-bedrock-stable"/>
 
-Enables an aquatic mob to dash at its target with knockback; includes overshoot and cooldown settings.
+使水生生物能够冲向目标并造成击退；包含冲过头与冷却设置。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6636,7 +6640,7 @@ Enables an aquatic mob to dash at its target with knockback; includes overshoot 
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_avoid_block?view=minecraft-bedrock-stable"/>
 
-Allows this entity to avoid certain blocks.
+允许该实体躲避特定方块。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6670,7 +6674,7 @@ Allows this entity to avoid certain blocks.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_avoid_mob_type?view=minecraft-bedrock-stable"/>
 
-Allows the entity to run away from other entities that meet the criteria specified.
+允许实体逃离符合指定条件的其他实体。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6704,7 +6708,7 @@ Allows the entity to run away from other entities that meet the criteria specifi
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviobartere)?view=minecraft-bedrock-stable"/>
 
-Enables the mob to barter for items that have been configured as barter currency.
+使生物能够用被配置为交易货币的物品进行以物易物。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6738,7 +6742,7 @@ Enables the mob to barter for items that have been configured as barter currency
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehabegname)?view=minecraft-bedrock-stable"/>
 
-Allows this mob to look at and follow the player that holds food they like.
+允许该生物注视并跟随手持其喜爱食物的玩家。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6772,7 +6776,7 @@ Allows this mob to look at and follow the player that holds food they like.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_break_door?view=minecraft-bedrock-stable"/>
 
-Allows this mob to break doors.
+允许该生物破坏门。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6806,7 +6810,7 @@ Allows this mob to break doors.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavibreedme)?view=minecraft-bedrock-stable"/>
 
-Allows this mob to breed with other mobs.
+允许该生物与其他生物繁殖。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6840,7 +6844,7 @@ Allows this mob to breed with other mobs.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_celebrate?view=minecraft-bedrock-stable"/>
 
-Allows this entity to celebrate surviving a raid by making celebration sounds and jumping.
+允许该实体通过发出庆祝音效和跳跃来庆祝成功抵御袭击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6874,7 +6878,7 @@ Allows this entity to celebrate surviving a raid by making celebration sounds an
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_celebrate_survive?view=minecraft-bedrock-stable"/>
 
-Allows the player to trade with this mob.
+允许玩家与该生物交易。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6908,7 +6912,7 @@ Allows the player to trade with this mob.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_charge_attack?view=minecraft-bedrock-stable"/>
 
-Allows this entity to damage a target by using a running attack.
+允许该实体通过冲锋攻击目标造成伤害。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6942,7 +6946,7 @@ Allows this entity to damage a target by using a running attack.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_charge_held_item?view=minecraft-bedrock-stable"/>
 
-Allows an entity to charge and use their held item.
+允许实体蓄力并使用其手持物品。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -6976,7 +6980,7 @@ Allows an entity to charge and use their held item.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_circle_around_anchor?view=minecraft-bedrock-stable"/>
 
-Causes an entity to circle around an anchor point placed near a point or target.
+使实体绕位于目标点或目标附近的锚点盘旋。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7010,7 +7014,7 @@ Causes an entity to circle around an anchor point placed near a point or target.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_controlled_by_player?view=minecraft-bedrock-stable"/>
 
-Allows the entity to be controlled by the player using an item in the item_controllable property (required).
+允许实体被玩家使用 `item_controllable` 属性中指定的物品控制（必需）。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7044,7 +7048,7 @@ Allows the entity to be controlled by the player using an item in the item_contr
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavicroakme)?view=minecraft-bedrock-stable"/>
 
-Allows the entity to croak at a random time interval with configurable conditions.
+允许实体在可配置的条件下按随机时间间隔鸣叫。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7078,7 +7082,7 @@ Allows the entity to croak at a random time interval with configurable condition
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_defend_trusted_target?view=minecraft-bedrock-stable"/>
 
-Allows the mob to target another mob that hurts an entity it trusts.
+允许该生物将伤害它所信任实体的其他生物设为目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7112,7 +7116,7 @@ Allows the mob to target another mob that hurts an entity it trusts.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_defend_village_target?view=minecraft-bedrock-stable"/>
 
-Allows the entity to stay in a village and defend the village from aggressors.
+允许该实体留在村庄中并抵御入侵者。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7146,7 +7150,7 @@ Allows the entity to stay in a village and defend the village from aggressors.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_delayed_attack?view=minecraft-bedrock-stable"/>
 
-Allows an entity to attack, while also delaying the damage-dealt until a specific time in the attack animation.
+允许实体进行攻击，并将伤害结算延迟到攻击动画中的特定时刻。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7180,7 +7184,7 @@ Allows an entity to attack, while also delaying the damage-dealt until a specifi
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dig?view=minecraft-bedrock-stable"/>
 
-Allows this entity to dig into the ground before despawning.
+允许该实体在消失前钻入地下。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7214,7 +7218,7 @@ Allows this entity to dig into the ground before despawning.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_door_interact?view=minecraft-bedrock-stable"/>
 
-Allows the mob to open and close doors.
+允许该生物开关门。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7248,7 +7252,7 @@ Allows the mob to open and close doors.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragonchargeplayer?view=minecraft-bedrock-stable"/>
 
-Allows this entity to attack a player by charging at them.
+允许该实体通过冲撞玩家进行攻击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7282,7 +7286,7 @@ Allows this entity to attack a player by charging at them.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragondeath?view=minecraft-bedrock-stable"/>
 
-Allows the dragon to go out with glory.
+允许末影龙光荣地退场。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7316,7 +7320,7 @@ Allows the dragon to go out with glory.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragonflaming?view=minecraft-bedrock-stable"/>
 
-Allows this entity to use a flame-breath attack.
+允许该实体使用烈焰吐息攻击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7350,7 +7354,7 @@ Allows this entity to use a flame-breath attack.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragonholdingpattern?view=minecraft-bedrock-stable"/>
 
-Allows the Dragon to fly around in a circle around the center podium.
+允许末影龙围绕中央基座盘旋飞行。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7384,7 +7388,7 @@ Allows the Dragon to fly around in a circle around the center podium.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragonlanding?view=minecraft-bedrock-stable"/>
 
-Allows the Dragon to stop flying and transition into perching mode.
+允许末影龙停止飞行并转入栖息模式。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7418,7 +7422,7 @@ Allows the Dragon to stop flying and transition into perching mode.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragonscanning?view=minecraft-bedrock-stable"/>
 
-Allows the dragon to look around for a player to attack while in perch mode.
+允许末影龙在栖息模式下寻找可攻击的玩家。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7452,7 +7456,7 @@ Allows the dragon to look around for a player to attack while in perch mode.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragonstrafeplayer?view=minecraft-bedrock-stable"/>
 
-Allows this entity to fly around looking for a player to shoot fireballs at.
+允许该实体一边飞行一边寻找可向其发射火球的玩家。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7486,7 +7490,7 @@ Allows this entity to fly around looking for a player to shoot fireballs at.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_dragontakeoff?view=minecraft-bedrock-stable"/>
 
-Allows the dragon to leave perch mode and go back to flying around.
+允许末影龙离开栖息模式并重新盘旋飞行。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7552,7 +7556,7 @@ Allows the dragon to leave perch mode and go back to flying around.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_drink_potion?view=minecraft-bedrock-stable"/>
 
-Allows the mob to drink potions based on specified environment conditions.
+允许该生物基于指定的环境条件饮用药水。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7586,7 +7590,7 @@ Allows the mob to drink potions based on specified environment conditions.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_drop_item_for?view=minecraft-bedrock-stable"/>
 
-Allows the entity to move toward a target, and drop an item near the target.
+允许实体移向目标，并在目标附近掉落物品。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7620,7 +7624,7 @@ Allows the entity to move toward a target, and drop an item near the target.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_eat_block?view=minecraft-bedrock-stable"/>
 
-Allows the entity to consume a block, replace the eaten block with another block, and trigger an event as a result.
+允许实体消耗方块、用另一个方块替换被吃掉的方块，并因此触发事件。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7654,7 +7658,7 @@ Allows the entity to consume a block, replace the eaten block with another block
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_eat_carried_item?view=minecraft-bedrock-stable"/>
 
-If the mob is carrying a food item, the mob will eat it and the effects will be applied to the mob.
+若该生物正携带食物，它会将其吃掉，并将相应效果施加到自身。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7688,7 +7692,7 @@ If the mob is carrying a food item, the mob will eat it and the effects will be 
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavioreat_mob)?view=minecraft-bedrock-stable"/>
 
-Allows the entity to eat a specified Mob.
+允许该实体吃掉指定的生物。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7722,7 +7726,7 @@ Allows the entity to eat a specified Mob.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavioemergee)?view=minecraft-bedrock-stable"/>
 
-Allows this entity to emerge from the ground
+允许该实体从地下钻出。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7756,7 +7760,7 @@ Allows this entity to emerge from the ground
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_equip_item?view=minecraft-bedrock-stable"/>
 
-The entity puts on the desired equipment.
+实体穿上想要的装备。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7790,7 +7794,7 @@ The entity puts on the desired equipment.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_explore_outskirts?view=minecraft-bedrock-stable"/>
 
-Allows the entity to first travel to a random point on the outskirts of the village, and then explore random points within a small distance.
+允许该实体先前往村庄外围的随机点，再在小范围内探索随机点。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7824,7 +7828,7 @@ Allows the entity to first travel to a random point on the outskirts of the vill
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_fertilize_farm_block?view=minecraft-bedrock-stable"/>
 
-Allows the mob to search within an area for a growable crop block.
+允许该生物在指定区域内寻找可生长的作物方块。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7858,7 +7862,7 @@ Allows the mob to search within an area for a growable crop block.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_find_cover?view=minecraft-bedrock-stable"/>
 
-Allows the mob to seek shade.
+允许该生物寻找遮荫处。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7892,7 +7896,7 @@ Allows the mob to seek shade.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_find_mount?view=minecraft-bedrock-stable"/>
 
-Allows the mob to look around for another mob to ride atop it.
+允许该生物寻找其他可供其骑乘的生物。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7926,7 +7930,7 @@ Allows the mob to look around for another mob to ride atop it.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_find_underwater_treasure?view=minecraft-bedrock-stable"/>
 
-Allows the mob to move towards the nearest underwater ruin or shipwreck.
+允许该生物前往最近的海底废墟或沉船。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7960,7 +7964,7 @@ Allows the mob to move towards the nearest underwater ruin or shipwreck.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_fire_at_target?view=minecraft-bedrock-stable"/>
 
-Allows an entity to attack by firing a shot with a delay.
+允许实体延迟一段时间后向目标射击进行攻击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -7994,7 +7998,7 @@ Allows an entity to attack by firing a shot with a delay.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_flee_sun?view=minecraft-bedrock-stable"/>
 
-Allows the mob to run away from direct sunlight and seek shade.
+允许该生物躲开直射阳光并寻找遮荫处。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8028,7 +8032,7 @@ Allows the mob to run away from direct sunlight and seek shade.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavifloatme)?view=minecraft-bedrock-stable"/>
 
-Allows the mob to stay afloat while swimming.
+允许该生物在游泳时保持浮于水面。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8062,7 +8066,7 @@ Allows the mob to stay afloat while swimming.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_float_tempt?view=minecraft-bedrock-stable"/>
 
-Allows a mob to be tempted by a player holding a specific item.
+允许生物被手持特定物品的玩家吸引。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8096,7 +8100,7 @@ Allows a mob to be tempted by a player holding a specific item.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_float_wander?view=minecraft-bedrock-stable"/>
 
-Allows the mob to float around like the Ghast.
+允许该生物像恶魂一样四处漂浮。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8130,7 +8134,7 @@ Allows the mob to float around like the Ghast.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_follow_caravan?view=minecraft-bedrock-stable"/>
 
-Allows the mob to follow mobs that are in a caravan.
+允许该生物跟随同属商队的生物。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8164,7 +8168,7 @@ Allows the mob to follow mobs that are in a caravan.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_follow_mob?view=minecraft-bedrock-stable"/>
 
-Allows the mob to follow other mobs.
+允许该生物跟随其他生物。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8198,7 +8202,7 @@ Allows the mob to follow other mobs.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_follow_owner?view=minecraft-bedrock-stable"/>
 
-Allows a mob to follow the player that owns it.
+允许生物跟随拥有它的玩家。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8232,7 +8236,7 @@ Allows a mob to follow the player that owns it.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_follow_parent?view=minecraft-bedrock-stable"/>
 
-Allows the mob to follow their parent around.
+允许该生物跟随其父母。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8266,7 +8270,7 @@ Allows the mob to follow their parent around.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_follow_target_captain?view=minecraft-bedrock-stable"/>
 
-Allows mob to move towards its current target captain.
+允许生物移向其当前的目标队长。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8300,7 +8304,7 @@ Allows mob to move towards its current target captain.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_follow_target_leader?view=minecraft-bedrock-stable"/>
 
-Allows mob to move towards its target leader.
+允许生物移向其目标领袖。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8334,7 +8338,7 @@ Allows mob to move towards its target leader.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_go_and_give_items_to_noteblock?view=minecraft-bedrock-stable"/>
 
-The entity will attempt to toss the items from its inventory to a nearby recently played noteblock.
+实体会尝试将其物品栏中的物品抛向附近最近演奏过的音符盒。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8368,7 +8372,7 @@ The entity will attempt to toss the items from its inventory to a nearby recentl
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_go_and_give_items_to_owner?view=minecraft-bedrock-stable"/>
 
-The entity will attempt to toss the items from its inventory to its owner.
+实体会尝试将其物品栏中的物品抛给其拥有者。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8402,7 +8406,7 @@ The entity will attempt to toss the items from its inventory to its owner.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviorgo_home)?view=minecraft-bedrock-stable"/>
 
-Allows the mob to move back to the position they were spawned.
+允许该生物返回其生成位置。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8436,7 +8440,7 @@ Allows the mob to move back to the position they were spawned.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_guardian_attack?view=minecraft-bedrock-stable"/>
 
-Allows this entity to use a laser beam attack.
+允许该实体使用激光束攻击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8470,7 +8474,7 @@ Allows this entity to use a laser beam attack.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_harvest_farm_block?view=minecraft-bedrock-stable"/>
 
-Allows the entity to search within an area for farmland with air above it.
+允许该实体在指定区域内寻找上方为空气的耕地。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8504,7 +8508,7 @@ Allows the entity to search within an area for farmland with air above it.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavhideame)?view=minecraft-bedrock-stable"/>
 
-Allows a mob with the hide component to attempt to move to - and hide at - an owned or nearby POI.
+允许拥有 `minecraft:hide` 组件的生物尝试移动到其拥有或附近的兴趣点（POI）并躲藏在那里。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8538,7 +8542,7 @@ Allows a mob with the hide component to attempt to move to - and hide at - an ow
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_hold_ground?view=minecraft-bedrock-stable"/>
 
-Compels an entity to stop at their current location, turn to face a mob they are targeting, and react with an event.
+迫使实体停留在当前位置、转身面向其正在攻击的生物，并触发事件作出反应。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8572,7 +8576,7 @@ Compels an entity to stop at their current location, turn to face a mob they are
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavihoverme)?view=minecraft-bedrock-stable"/>
 
-Allows the mob to hover in place.
+允许该生物悬停在原地。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8606,7 +8610,7 @@ Allows the mob to hover in place.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_hurt_by_target?view=minecraft-bedrock-stable"/>
 
-Allows the mob to target another mob that hurts them.
+允许该生物将伤害它的其他生物设为目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8640,7 +8644,7 @@ Allows the mob to target another mob that hurts them.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_inspect_bookshelf?view=minecraft-bedrock-stable"/>
 
-Allows the mob to inspect bookshelves.
+允许该生物查看书架。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8674,7 +8678,7 @@ Allows the mob to inspect bookshelves.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_investigate_suspicious_location?view=minecraft-bedrock-stable"/>
 
-Allows this entity to move towards a "suspicious" position based on data gathered in minecraft:suspect_tracking.
+允许该实体根据 `minecraft:suspect_tracking` 中收集的数据移向“可疑”位置。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8708,7 +8712,7 @@ Allows this entity to move towards a "suspicious" position based on data gathere
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_jump_around_target?view=minecraft-bedrock-stable"/>
 
-Allows an entity to jump around a target.
+允许实体绕目标跳跃。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8742,7 +8746,7 @@ Allows an entity to jump around a target.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_jump_to_block?view=minecraft-bedrock-stable"/>
 
-Allows an entity to jump to another random block.
+允许实体跳跃到另一个随机方块。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8776,7 +8780,7 @@ Allows an entity to jump to another random block.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_knockback_roar?view=minecraft-bedrock-stable"/>
 
-Allows the mob to perform a damaging knockback that affects all nearby entities.
+允许该生物进行一次造成伤害的击退，影响附近所有实体。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8810,7 +8814,7 @@ Allows the mob to perform a damaging knockback that affects all nearby entities.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_lay_down?view=minecraft-bedrock-stable"/>
 
-Allows mobs to lay down at times
+允许生物在特定时间伏地休息。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8844,7 +8848,7 @@ Allows mobs to lay down at times
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviorlay_egg)?view=minecraft-bedrock-stable"/>
 
-Allows the mob to lay an egg block on certain types of blocks if the mob is pregnant.
+若该生物处于怀孕状态，允许其在特定类型的方块上产下卵方块。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8878,7 +8882,7 @@ Allows the mob to lay an egg block on certain types of blocks if the mob is preg
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_leap_at_target?view=minecraft-bedrock-stable"/>
 
-Allows monsters to jump at and attack their target.
+允许怪物跃向并攻击其目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8912,7 +8916,7 @@ Allows monsters to jump at and attack their target.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_look_at_entity?view=minecraft-bedrock-stable"/>
 
-Compels an entity to look at a specific entity by rotating the head bone pose within a set limit.
+迫使实体在限定范围内旋转头部骨骼姿态以注视特定实体。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8946,7 +8950,7 @@ Compels an entity to look at a specific entity by rotating the head bone pose wi
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_look_at_player?view=minecraft-bedrock-stable"/>
 
-Compels an entity to look at the player by rotating the head bone pose within a set limit.
+迫使实体在限定范围内旋转头部骨骼姿态以注视玩家。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -8980,7 +8984,7 @@ Compels an entity to look at the player by rotating the head bone pose within a 
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_look_at_target?view=minecraft-bedrock-stable"/>
 
-Compels an entity to look at the target by rotating the head bone pose within a set limit.
+迫使实体在限定范围内旋转头部骨骼姿态以注视目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9014,7 +9018,7 @@ Compels an entity to look at the target by rotating the head bone pose within a 
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_look_at_trading_player?view=minecraft-bedrock-stable"/>
 
-Compels an entity to look at the player that is currently trading with the entity.
+迫使实体注视当前正在与其交易的玩家。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9048,7 +9052,7 @@ Compels an entity to look at the player that is currently trading with the entit
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_make_love?view=minecraft-bedrock-stable"/>
 
-Allows the villager to look for a mate to spawn other villagers with.
+允许村民寻找配偶以繁殖出更多村民。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9082,7 +9086,7 @@ Allows the villager to look for a mate to spawn other villagers with.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_melee_attack?view=minecraft-bedrock-stable"/>
 
-Allows an entity to deal damage through a melee attack.
+允许实体通过近战攻击造成伤害。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9116,7 +9120,7 @@ Allows an entity to deal damage through a melee attack.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_melee_box_attack?view=minecraft-bedrock-stable"/>
 
-Allows an entity to deal damage through a melee attack with reach calculations based on bounding boxes.
+允许实体通过近战攻击造成伤害，其攻击距离基于碰撞箱计算。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9150,7 +9154,7 @@ Allows an entity to deal damage through a melee attack with reach calculations b
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviominglee)?view=minecraft-bedrock-stable"/>
 
-Allows an entity to go to the village bell and mingle with other entities
+允许实体前往村庄钟处与其他实体交流。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9184,7 +9188,7 @@ Allows an entity to go to the village bell and mingle with other entities
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_mount_pathing?view=minecraft-bedrock-stable"/>
 
-Allows the mob to move around on its own while mounted seeking a target to attack.
+允许该生物在骑乘状态下自行移动以寻找可攻击的目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9218,7 +9222,7 @@ Allows the mob to move around on its own while mounted seeking a target to attac
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_around_target?view=minecraft-bedrock-stable"/>
 
-Allows an entity to move around a target.If the entity is too close(i.e.closer than destination range min and height difference limit) it will try to move away from its target.If the entity is too far away from its target it will try to move closer to a random position within the destination range.A randomized amount of those positions will be behind the target, and the spread can be tweaked with 'destination_pos_spread_degrees'.
+允许实体在目标周围移动。若实体过近（即近于目标范围下限并超出高度差限制），它会尝试远离目标；若实体离目标过远，它会尝试靠近目标范围内的一处随机位置。这些位置中有一部分会随机分布到目标身后，其分散程度可通过 `destination_pos_spread_degrees` 调整。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9252,7 +9256,7 @@ Allows an entity to move around a target.If the entity is too close(i.e.closer t
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_indoors?view=minecraft-bedrock-stable"/>
 
-Allows this entity to move indoors.
+允许该实体移动到室内。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9286,7 +9290,7 @@ Allows this entity to move indoors.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_outdoors?view=minecraft-bedrock-stable"/>
 
-Allows this entity to move outdoors.
+允许该实体移动到室外。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9320,7 +9324,7 @@ Allows this entity to move outdoors.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_through_village?view=minecraft-bedrock-stable"/>
 
-Can only be used by Villagers.
+仅村民可以使用。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9354,7 +9358,7 @@ Can only be used by Villagers.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_towards_dwelling_restriction?view=minecraft-bedrock-stable"/>
 
-Allows entities with the "minecraft:dweller" component to move toward their village area that the entity should be restricted to.
+允许拥有 `minecraft:dweller` 组件的实体移动向其应受限制的村庄区域。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9388,7 +9392,7 @@ Allows entities with the "minecraft:dweller" component to move toward their vill
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_towards_home_restriction?view=minecraft-bedrock-stable"/>
 
-Allows entities with a minecraft:home component to move towards their home position.
+允许拥有 `minecraft:home` 组件的实体移向其“家”的位置。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9422,7 +9426,7 @@ Allows entities with a minecraft:home component to move towards their home posit
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_towards_restriction?view=minecraft-bedrock-stable"/>
 
-AI goal that drives entities back toward their designated home area when they've wandered too far.
+当实体游荡过远时，将其驱赶回指定活动区域的 AI 意向。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9456,7 +9460,7 @@ AI goal that drives entities back toward their designated home area when they've
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_towards_target?view=minecraft-bedrock-stable"/>
 
-Allows mob to move towards its current target.
+允许该生物移向其当前目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9490,7 +9494,7 @@ Allows mob to move towards its current target.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_to_block?view=minecraft-bedrock-stable"/>
 
-Allows mob to move towards a block.
+允许该生物移向某个方块。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9524,7 +9528,7 @@ Allows mob to move towards a block.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_to_land?view=minecraft-bedrock-stable"/>
 
-Allows the mob to move back onto land when in water.
+允许该生物在水中时移回陆地上。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9558,7 +9562,7 @@ Allows the mob to move back onto land when in water.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_to_liquid?view=minecraft-bedrock-stable"/>
 
-Allows the mob to move into a liquid when on land.
+允许该生物在陆地上时移入液体中。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9592,7 +9596,7 @@ Allows the mob to move into a liquid when on land.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_to_poi?view=minecraft-bedrock-stable"/>
 
-Allows the mob to move to a POI if able to
+允许该生物在可行时移动到兴趣点（POI）。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9626,7 +9630,7 @@ Allows the mob to move to a POI if able to
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_to_random_block?view=minecraft-bedrock-stable"/>
 
-Allows mob to move towards a random block.
+允许该生物移向一个随机方块。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9660,7 +9664,7 @@ Allows mob to move towards a random block.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_to_village?view=minecraft-bedrock-stable"/>
 
-Allows the mob to move into a random location within a village.
+允许该生物移动到村庄内的随机位置。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9694,7 +9698,7 @@ Allows the mob to move into a random location within a village.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_move_to_water?view=minecraft-bedrock-stable"/>
 
-Allows the mob to move back into water when on land.
+允许该生物在陆地上时移回水中。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9728,7 +9732,7 @@ Allows the mob to move back into water when on land.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehanapname)?view=minecraft-bedrock-stable"/>
 
-Allows mobs to occassionally stop and take a nap under certain conditions.
+允许生物在特定条件下偶尔停下小睡。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9762,7 +9766,7 @@ Allows mobs to occassionally stop and take a nap under certain conditions.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_nearest_attackable_target?view=minecraft-bedrock-stable"/>
 
-Allows an entity to attack the closest target within a given subset of specific target types.
+允许实体在给定的特定目标类型子集中攻击最近的目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9796,7 +9800,7 @@ Allows an entity to attack the closest target within a given subset of specific 
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_nearest_prioritized_attackable_target?view=minecraft-bedrock-stable"/>
 
-Allows the mob to check for and pursue the nearest valid target.
+允许该生物检查并追击最近的有效目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9830,7 +9834,7 @@ Allows the mob to check for and pursue the nearest valid target.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_ocelotattack?view=minecraft-bedrock-stable"/>
 
-Controls specific attack behavior for Ocelots.
+控制豹猫的特定攻击行为。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9864,7 +9868,7 @@ Controls specific attack behavior for Ocelots.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_ocelot_sit_on_block?view=minecraft-bedrock-stable"/>
 
-Allows to mob to be able to sit in place like the ocelot.
+允许生物像豹猫一样坐在原地。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9898,7 +9902,7 @@ Allows to mob to be able to sit in place like the ocelot.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_offer_flower?view=minecraft-bedrock-stable"/>
 
-Allows the mob to offer a flower to another mob with the minecraft:take_flower behavior.
+允许该生物向拥有 `minecraft:take_flower` 行为的其他生物献花。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9932,7 +9936,7 @@ Allows the mob to offer a flower to another mob with the minecraft:take_flower b
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_open_door?view=minecraft-bedrock-stable"/>
 
-Allows the mob to open doors.
+允许该生物开门。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -9966,7 +9970,7 @@ Allows the mob to open doors.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_owner_hurt_by_target?view=minecraft-bedrock-stable"/>
 
-Allows the mob to target another mob that hurts their owner.
+允许该生物将伤害其拥有者的其他生物设为目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10000,7 +10004,7 @@ Allows the mob to target another mob that hurts their owner.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_owner_hurt_target?view=minecraft-bedrock-stable"/>
 
-Allows the mob to target a mob that is hurt by their owner.
+允许该生物将受到其拥有者伤害的生物设为目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10034,7 +10038,7 @@ Allows the mob to target a mob that is hurt by their owner.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavipanicme)?view=minecraft-bedrock-stable"/>
 
-Allows the mob to enter the panic state, which makes it run around and away from the damage source that made it enter this state.
+允许该生物进入恐慌状态，使其四处乱跑并远离造成该状态的伤害来源。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10068,7 +10072,7 @@ Allows the mob to enter the panic state, which makes it run around and away from
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_pet_sleep_with_owner?view=minecraft-bedrock-stable"/>
 
-Allows the pet mob to move onto a bed with its owner while sleeping.
+允许宠物生物在其拥有者睡觉时上床同睡。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10102,7 +10106,7 @@ Allows the pet mob to move onto a bed with its owner while sleeping.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_pickup_items?view=minecraft-bedrock-stable"/>
 
-Allows the mob to pick up items on the ground.
+允许该生物拾取地面上的物品。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10170,7 +10174,7 @@ Allows the mob to pick up items on the ground.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavplayame)?view=minecraft-bedrock-stable"/>
 
-Allows the mob to offer a flower to another mob with the minecraft:take_flower behavior.
+允许该生物向拥有 `minecraft:take_flower` 行为的其他生物献花。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10204,7 +10208,7 @@ Allows the mob to offer a flower to another mob with the minecraft:take_flower b
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_player_ride_tamed?view=minecraft-bedrock-stable"/>
 
-Allows the mob to be ridden by the player after being tamed.
+允许该生物在被驯服后由玩家骑乘。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10238,7 +10242,7 @@ Allows the mob to be ridden by the player after being tamed.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_play_dead?view=minecraft-bedrock-stable"/>
 
-Allows this entity to pretend to be dead to avoid being targeted by attackers.
+允许该实体装死，以避免被攻击者锁定为目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10272,7 +10276,7 @@ Allows this entity to pretend to be dead to avoid being targeted by attackers.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_raid_garden?view=minecraft-bedrock-stable"/>
 
-Allows the mob to eat/raid crops out of farms until they are full.
+允许该生物啃食或掠夺农田中的作物，直到吃饱。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10306,7 +10310,7 @@ Allows the mob to eat/raid crops out of farms until they are full.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_ram_attack?view=minecraft-bedrock-stable"/>
 
-Allows this entity to damage a target by using a running attack.
+允许该实体通过冲锋攻击目标造成伤害。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10340,7 +10344,7 @@ Allows this entity to damage a target by using a running attack.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_breach?view=minecraft-bedrock-stable"/>
 
-Allows the mob to randomly break surface of the water.
+允许该生物随机浮出水面。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10374,7 +10378,7 @@ Allows the mob to randomly break surface of the water.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_fly?view=minecraft-bedrock-stable"/>
 
-Allows a mob to randomly fly around.
+允许生物随机飞行。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10408,7 +10412,7 @@ Allows a mob to randomly fly around.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_hover?view=minecraft-bedrock-stable"/>
 
-Allows the mob to hover around randomly, close to the surface.
+允许该生物在靠近水面处随机悬停。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10442,7 +10446,7 @@ Allows the mob to hover around randomly, close to the surface.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_look_around?view=minecraft-bedrock-stable"/>
 
-Allows the mob to randomly look around.
+允许该生物随机四处张望。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10476,7 +10480,7 @@ Allows the mob to randomly look around.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_look_around_and_sit?view=minecraft-bedrock-stable"/>
 
-Allows the mob to randomly sit and look around for a duration.
+允许该生物随机坐下并张望一段时间。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10510,7 +10514,7 @@ Allows the mob to randomly sit and look around for a duration.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_search_and_dig?view=minecraft-bedrock-stable"/>
 
-Allows this entity to locate a random target block that it can path find to.
+允许该实体定位一个可寻路到达的随机目标方块。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10544,7 +10548,7 @@ Allows this entity to locate a random target block that it can path find to.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_sitting?view=minecraft-bedrock-stable"/>
 
-Allows the mob to randomly sit for a duration.
+允许该生物随机坐下持续一段时间。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10578,7 +10582,7 @@ Allows the mob to randomly sit for a duration.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_stroll?view=minecraft-bedrock-stable"/>
 
-Allows a mob to randomly stroll around.
+允许生物随机闲逛。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10612,7 +10616,7 @@ Allows a mob to randomly stroll around.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_random_swim?view=minecraft-bedrock-stable"/>
 
-Allows an entity to randomly move through water
+允许实体在水中随机移动。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10646,7 +10650,7 @@ Allows an entity to randomly move through water
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_ranged_attack?view=minecraft-bedrock-stable"/>
 
-Allows an entity to attack by using ranged shots.
+允许实体通过远程射击进行攻击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10680,7 +10684,7 @@ Allows an entity to attack by using ranged shots.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_receive_love?view=minecraft-bedrock-stable"/>
 
-Allows the villager to stop so another villager can breed with it.
+允许村民停下，以便其他村民与其繁殖。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10714,7 +10718,7 @@ Allows the villager to stop so another villager can breed with it.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_restrict_open_door?view=minecraft-bedrock-stable"/>
 
-Allows the mob to stay indoors during night time.
+允许该生物在夜间留在室内。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10748,7 +10752,7 @@ Allows the mob to stay indoors during night time.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_restrict_sun?view=minecraft-bedrock-stable"/>
 
-Allows the mob to automatically start avoiding the sun when its a clear day out.
+允许该生物在晴天时自动开始躲避阳光。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10782,7 +10786,7 @@ Allows the mob to automatically start avoiding the sun when its a clear day out.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_rise_to_liquid_level?view=minecraft-bedrock-stable"/>
 
-Allows the mob to stay at a certain level when in liquid.
+允许该生物在液体中停留在特定高度。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10816,7 +10820,7 @@ Allows the mob to stay at a certain level when in liquid.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_roar?view=minecraft-bedrock-stable"/>
 
-Allows this entity to roar at another entity based on data in minecraft:anger_level.
+允许该实体根据 `minecraft:anger_level` 中的数据向另一实体咆哮。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10850,7 +10854,7 @@ Allows this entity to roar at another entity based on data in minecraft:anger_le
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavrollame)?view=minecraft-bedrock-stable"/>
 
-This allows the mob to roll forward.
+允许该生物向前翻滚。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10884,7 +10888,7 @@ This allows the mob to roll forward.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_run_around_like_crazy?view=minecraft-bedrock-stable"/>
 
-Allows the mob to run around aimlessly.
+允许该生物漫无目的地四处奔跑。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10918,7 +10922,7 @@ Allows the mob to run around aimlessly.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavioscarede)?view=minecraft-bedrock-stable"/>
 
-Allows the mob to become scared when the weather outside is thundering.
+允许该生物在室外雷雨天气时受到惊吓。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10952,7 +10956,7 @@ Allows the mob to become scared when the weather outside is thundering.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_send_event?view=minecraft-bedrock-stable"/>
 
-Allows the mob to send an event to another mob.
+允许该生物向另一生物发送事件。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -10986,7 +10990,7 @@ Allows the mob to send an event to another mob.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_share_items?view=minecraft-bedrock-stable"/>
 
-Allows the mob to give items it has to others.
+允许该生物将其拥有的物品给予其他生物。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11020,7 +11024,7 @@ Allows the mob to give items it has to others.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_silverfish_merge_with_stone?view=minecraft-bedrock-stable"/>
 
-Allows the mob to go into stone blocks like Silverfish do.
+允许该生物像蠹虫一样钻入石头方块。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11054,7 +11058,7 @@ Allows the mob to go into stone blocks like Silverfish do.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_silverfish_wake_up_friends?view=minecraft-bedrock-stable"/>
 
-Allows the mob to alert mobs in nearby blocks to come out.
+允许该生物唤醒附近方块中的生物，使它们出来。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11088,7 +11092,7 @@ Allows the mob to alert mobs in nearby blocks to come out.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_skeleton_horse_trap?view=minecraft-bedrock-stable"/>
 
-Allows Equine mobs to be Horse Traps and be triggered like them, spawning a lightning bolt and a bunch of horses when a player is nearby.
+允许马类生物成为骷髅马陷阱并像它们一样被触发，在玩家靠近时生成闪电和一群体马。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11122,7 +11126,7 @@ Allows Equine mobs to be Horse Traps and be triggered like them, spawning a ligh
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavisleepme)?view=minecraft-bedrock-stable"/>
 
-Allows mobs that own a bed to in a village to move to and sleep in it.
+允许在村庄中拥有床的生物移动到床上并睡觉。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11156,7 +11160,7 @@ Allows mobs that own a bed to in a village to move to and sleep in it.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_slime_attack?view=minecraft-bedrock-stable"/>
 
-Causes the entity to grow tired every once in a while, while attacking.
+使实体在攻击时不时间歇停顿。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11190,7 +11194,7 @@ Causes the entity to grow tired every once in a while, while attacking.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_slime_float?view=minecraft-bedrock-stable"/>
 
-Allow slimes to float in water / lava.
+允许史莱姆漂浮在水或熔岩中。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11224,7 +11228,7 @@ Allow slimes to float in water / lava.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_slime_keep_on_jumping?view=minecraft-bedrock-stable"/>
 
-Allows the entity to continuously jump around like a slime.
+允许该实体像史莱姆一样持续跳跃。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11258,7 +11262,7 @@ Allows the entity to continuously jump around like a slime.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_slime_random_direction?view=minecraft-bedrock-stable"/>
 
-Allows the entity to move in random directions like a slime.
+允许该实体像史莱姆一样向随机方向移动。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11292,7 +11296,7 @@ Allows the entity to move in random directions like a slime.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_snacking?view=minecraft-bedrock-stable"/>
 
-Allows the mob to take a load off and snack on food that it found nearby.
+允许该生物稍作休息，并啃食其在附近找到的食物。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11326,7 +11330,7 @@ Allows the mob to take a load off and snack on food that it found nearby.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviosneezee)?view=minecraft-bedrock-stable"/>
 
-Allows the mob to sneeze, causing it to drop items and affect nearby mobs.
+允许该生物打喷嚏，使其掉落物品并影响附近的生物。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11360,7 +11364,7 @@ Allows the mob to sneeze, causing it to drop items and affect nearby mobs.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_sniff?view=minecraft-bedrock-stable"/>
 
-Allows this entity to detect the nearest player within "sniffing_radius" and update its "minecraft:suspect_tracking" component state
+允许该实体检测 `sniffing_radius` 范围内最近的玩家，并更新其 `minecraft:suspect_tracking` 组件的状态。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11394,7 +11398,7 @@ Allows this entity to detect the nearest player within "sniffing_radius" and upd
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_sonic_boom?view=minecraft-bedrock-stable"/>
 
-Allows this entity to perform a 'sonic boom' ranged attack
+允许该实体进行“音爆”远程攻击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11428,7 +11432,7 @@ Allows this entity to perform a 'sonic boom' ranged attack
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_squid_dive?view=minecraft-bedrock-stable"/>
 
-Allows the squid to dive down in water.
+允许鱿鱼在水中下潜。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11462,7 +11466,7 @@ Allows the squid to dive down in water.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_squid_flee?view=minecraft-bedrock-stable"/>
 
-Allows the squid to swim away.
+允许鱿鱼游走逃离。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11496,7 +11500,7 @@ Allows the squid to swim away.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_squid_idle?view=minecraft-bedrock-stable"/>
 
-Allows the squid to swim in place idly.
+允许鱿鱼在原地悠闲游动。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11530,7 +11534,7 @@ Allows the squid to swim in place idly.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_squid_move_away_from_ground?view=minecraft-bedrock-stable"/>
 
-Allows the squid to move away from ground blocks and back to water.
+允许鱿鱼离开地面方块并回到水中。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11564,7 +11568,7 @@ Allows the squid to move away from ground blocks and back to water.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_squid_out_of_water?view=minecraft-bedrock-stable"/>
 
-Allows the squid to stick to the ground when outside water.
+允许鱿鱼在离开水面时贴附在地面上。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11598,7 +11602,7 @@ Allows the squid to stick to the ground when outside water.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_stalk_and_pounce_on_target?view=minecraft-bedrock-stable"/>
 
-Allows a mob to stalk a target, then once within range pounce onto a target, on success the target will be attacked dealing damage defined by the attack component.
+允许生物潜近目标，进入范围后扑向目标；成功后将攻击目标，造成由 `minecraft:attack` 组件定义的伤害。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11632,7 +11636,7 @@ Allows a mob to stalk a target, then once within range pounce onto a target, on 
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_stay_near_noteblock?view=minecraft-bedrock-stable"/>
 
-The entity will attempt to toss the items from its inventory to a nearby recently played noteblock.
+实体会尝试将其物品栏中的物品抛向附近最近演奏过的音符盒。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11666,7 +11670,7 @@ The entity will attempt to toss the items from its inventory to a nearby recentl
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_stay_while_sitting?view=minecraft-bedrock-stable"/>
 
-Allows the mob to stay put while it is in a sitting state instead of doing something else.
+允许该生物在处于坐下状态时保持原地不动，而不是去做其他事情。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11700,7 +11704,7 @@ Allows the mob to stay put while it is in a sitting state instead of doing somet
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_stomp_attack?view=minecraft-bedrock-stable"/>
 
-Allows an entity to attack using stomp AoE damage behavior.
+允许实体使用踩踏范围伤害行为进行攻击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11734,7 +11738,7 @@ Allows an entity to attack using stomp AoE damage behavior.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_stomp_turtle_egg?view=minecraft-bedrock-stable"/>
 
-Allows this mob to stomp turtle eggs
+允许该生物踩踏海龟蛋。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11768,7 +11772,7 @@ Allows this mob to stomp turtle eggs
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_stroll_towards_village?view=minecraft-bedrock-stable"/>
 
-Allows the mob to move into a random location within a village within the search range.
+允许该生物在搜索范围内移动到村庄中的随机位置。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11802,7 +11806,7 @@ Allows the mob to move into a random location within a village within the search
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_summon_entity?view=minecraft-bedrock-stable"/>
 
-Allows the mob to attack the player by summoning other entities.
+允许该生物通过召唤其他实体来攻击玩家。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11834,9 +11838,9 @@ Allows the mob to attack the player by summoning other entities.
 
 <Usable type="all"/> <Version add="?"/> <Highlight text="严格解析" tooltip="在1.26.30及更高格式版本版本中将无法加载包含无效数据的实体json。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehaviswellme)?view=minecraft-bedrock-stable"/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swell?view=minecraft-bedrock-stable"/>
 
-Allows the creeper to swell up when a player is nearby.
+允许苦力怕在玩家靠近时膨胀。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11870,7 +11874,7 @@ Allows the creeper to swell up when a player is nearby.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swim_idle?view=minecraft-bedrock-stable"/>
 
-Allows the entity go idle, if swimming.
+允许实体在游泳时进入空闲状态。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11904,7 +11908,7 @@ Allows the entity go idle, if swimming.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swim_up_for_breath?view=minecraft-bedrock-stable"/>
 
-Allows the mob to try to move to air once it is close to running out of its total breathable supply.
+允许该生物在总可呼吸量即将耗尽时尝试移向空气。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11938,7 +11942,7 @@ Allows the mob to try to move to air once it is close to running out of its tota
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swim_wander?view=minecraft-bedrock-stable"/>
 
-Allows the entity to wander around while swimming, when not path-finding.
+允许该实体在游泳时（未进行寻路时）四处游荡。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -11972,7 +11976,7 @@ Allows the entity to wander around while swimming, when not path-finding.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swim_with_entity?view=minecraft-bedrock-stable"/>
 
-Allows the entity follow another entity.
+允许该实体跟随另一实体。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12006,7 +12010,7 @@ Allows the entity follow another entity.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_swoop_attack?view=minecraft-bedrock-stable"/>
 
-Allows an entity to attack using swoop attack behavior; Ideal for use with flying mobs.
+允许实体使用俯冲攻击行为进行攻击；适合与飞行生物搭配使用。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12074,7 +12078,7 @@ Allows an entity to attack using swoop attack behavior; Ideal for use with flyin
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_take_flower?view=minecraft-bedrock-stable"/>
 
-Allows the mob to accept flowers from another mob with the minecraft:offer_flower behavior.
+允许该生物接受拥有 `minecraft:offer_flower` 行为的其他生物献上的花。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12108,7 +12112,7 @@ Allows the mob to accept flowers from another mob with the minecraft:offer_flowe
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_target_when_pushed?view=minecraft-bedrock-stable"/>
 
-Allows the mob to target another mob when it is pushed by that mob.
+允许该生物在被某生物推动时将其设为目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12142,7 +12146,7 @@ Allows the mob to target another mob when it is pushed by that mob.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_teleport_to_owner?view=minecraft-bedrock-stable"/>
 
-Allows an entity to teleport to its owner.
+允许实体传送到其拥有者身边。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12176,7 +12180,7 @@ Allows an entity to teleport to its owner.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavitemptme)?view=minecraft-bedrock-stable"/>
 
-Allows a mob to be tempted by a player holding a specific item.
+允许生物被手持特定物品的玩家吸引。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12210,7 +12214,7 @@ Allows a mob to be tempted by a player holding a specific item.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_timer_flag_1?view=minecraft-bedrock-stable"/>
 
-Fires an event when this behavior starts, then waits for a duration before stopping.
+该行为开始时触发事件，随后等待一段时间再停止。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12244,7 +12248,7 @@ Fires an event when this behavior starts, then waits for a duration before stopp
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_timer_flag_2?view=minecraft-bedrock-stable"/>
 
-Fires an event when this behavior starts, then waits for a duration before stopping.
+该行为开始时触发事件，随后等待一段时间再停止。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12278,7 +12282,7 @@ Fires an event when this behavior starts, then waits for a duration before stopp
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_timer_flag_3?view=minecraft-bedrock-stable"/>
 
-Fires an event when this behavior starts, then waits for a duration before stopping.
+该行为开始时触发事件，随后等待一段时间再停止。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12312,7 +12316,7 @@ Fires an event when this behavior starts, then waits for a duration before stopp
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_trade_interest?view=minecraft-bedrock-stable"/>
 
-Allows the mob to look at a player that is holding a tradable item.
+允许该生物注视手持可交易物品的玩家。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12346,7 +12350,7 @@ Allows the mob to look at a player that is holding a tradable item.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_trade_with_player?view=minecraft-bedrock-stable"/>
 
-Allows the player to trade with this mob.
+允许玩家与该生物进行交易。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12416,7 +12420,7 @@ Allows the player to trade with this mob.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_use_kinetic_weapon?view=minecraft-bedrock-stable"/>
 
-Enables a mob to use kinetic weaponry by intermittently charging at its target and repositioning afterward.
+使生物能够使用动能武器：间歇性地冲向目标，并在之后重新调整位置。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12450,7 +12454,7 @@ Enables a mob to use kinetic weaponry by intermittently charging at its target a
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_vex_copy_owner_target?view=minecraft-bedrock-stable"/>
 
-Allows the mob to target the same entity its owner is targeting.
+允许该生物将其拥有者正在攻击的同一实体设为目标。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12484,7 +12488,7 @@ Allows the mob to target the same entity its owner is targeting.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_vex_random_move?view=minecraft-bedrock-stable"/>
 
-Allows the mob to move around randomly like the Vex.
+允许该生物像恼鬼一样随机移动。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12518,7 +12522,7 @@ Allows the mob to move around randomly like the Vex.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_wither_random_attack_pos_goal?view=minecraft-bedrock-stable"/>
 
-Allows the wither to launch random attacks.
+允许凋灵随机发动攻击。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12552,7 +12556,7 @@ Allows the wither to launch random attacks.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_wither_target_highest_damage?view=minecraft-bedrock-stable"/>
 
-Allows the wither to focus its attacks on whichever mob has dealt the most damage to it.
+允许凋灵将攻击集中在对其造成伤害最多的生物上。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12586,7 +12590,7 @@ Allows the wither to focus its attacks on whichever mob has dealt the most damag
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavworkame)?view=minecraft-bedrock-stable"/>
 
-Allows the NPC to use the POI
+允许 NPC 使用兴趣点（POI）。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12620,7 +12624,7 @@ Allows the NPC to use the POI
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitygoals/minecraftbehavior_work_composter?view=minecraft-bedrock-stable"/>
 
-Allows the NPC to use the composter POI to convert excess seeds into bone meal.
+允许 NPC 使用堆肥桶兴趣点，将多余的种子转化为骨粉。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12647,6 +12651,7 @@ Allows the NPC to use the composter POI to convert excess seeds into bone meal.
 -->
 
 ---
+
 ---
 
 ## 标记组件
@@ -12659,7 +12664,7 @@ Allows the NPC to use the composter POI to convert excess seeds into bone meal.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_baby?view=minecraft-bedrock-stable"/>
 
-Sets that this entity is a baby.
+设置该实体为幼年体。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12693,7 +12698,7 @@ Sets that this entity is a baby.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_charged?view=minecraft-bedrock-stable"/>
 
-Sets that this entity is charged.
+设置该实体为充能状态。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12727,7 +12732,7 @@ Sets that this entity is charged.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_chested?view=minecraft-bedrock-stable"/>
 
-Sets that this entity is currently carrying a chest.
+设置该实体当前携带箱子。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12761,7 +12766,7 @@ Sets that this entity is currently carrying a chest.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_ignited?view=minecraft-bedrock-stable"/>
 
-Sets that this entity is currently on fire.
+设置该实体当前处于着火状态。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12795,7 +12800,7 @@ Sets that this entity is currently on fire.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_pregnant?view=minecraft-bedrock-stable"/>
 
-Sets that this entity is currently pregnant.
+设置该实体当前处于怀孕状态。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12829,7 +12834,7 @@ Sets that this entity is currently pregnant.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_shaking?view=minecraft-bedrock-stable"/>
 
-Sets that this entity is currently shaking.
+设置该实体当前处于颤抖状态。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12863,7 +12868,7 @@ Sets that this entity is currently shaking.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_saddled?view=minecraft-bedrock-stable"/>
 
-Sets that this entity is currently saddled.
+设置该实体当前装备了鞍。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12897,7 +12902,7 @@ Sets that this entity is currently saddled.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_sheared?view=minecraft-bedrock-stable"/>
 
-Sets that this entity is currently sheared.
+设置该实体当前已被剪毛。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12931,7 +12936,7 @@ Sets that this entity is currently sheared.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_stunned?view=minecraft-bedrock-stable"/>
 
-Sets that this entity is currently stunned.
+设置该实体当前处于眩晕状态。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12965,7 +12970,7 @@ Sets that this entity is currently stunned.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_is_tamed?view=minecraft-bedrock-stable"/>
 
-Sets that this entity is currently tamed.
+设置该实体当前已被驯服。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -12999,7 +13004,7 @@ Sets that this entity is currently tamed.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_mark_variant?view=minecraft-bedrock-stable"/>
 
-Mark Variant is typically used as an additional per-type way (besides variant) to express a different visual form of the same mob.
+“Mark Variant”通常用于在 `variant` 之外，以按类型区分同一生物的其他外观形态。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -13033,7 +13038,7 @@ Mark Variant is typically used as an additional per-type way (besides variant) t
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_skin_id?view=minecraft-bedrock-stable"/>
 
-Skin ID value.
+皮肤 ID 值。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -13067,9 +13072,10 @@ Skin ID value.
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/entitycomponents/minecraftcomponent_variant?view=minecraft-bedrock-stable"/>
 
-Variant is typically used as a per-type way to express a different visual form of the same mob.
+“Variant”通常用于按类型区分同一生物的不同外观形态。
 
 ---
+
 ---
 
 ## 弃用组件
@@ -13084,7 +13090,7 @@ Variant is typically used as a per-type way to express a different visual form o
 
 定义实体可被其他实体或方块推动。
 
-另见：*[`minecraft:rotation_axis_aligned`](#minecraftrotation_axis_aligned)组件*。
+另见：_[`minecraft:rotation_axis_aligned`](#minecraftrotation_axis_aligned)组件_。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -13120,7 +13126,7 @@ Variant is typically used as a per-type way to express a different visual form o
 
 定义可骑乘实体的冲刺行为。类似于骆驼。
 
-另见：*[`minecraft:dash_action`](#minecraftdash_action)组件*。
+另见：_[`minecraft:dash_action`](#minecraftdash_action)组件_。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -13229,7 +13235,7 @@ Variant is typically used as a per-type way to express a different visual form o
 
 当用[`minecraft:rideable`](#minecraftrideable)组件设定为可骑乘实体后，该实体将可由 WASD 和鼠标控制运动。类似于快乐恶魂。
 
-另见：*[`minecraft:free_camera_controlled`](#minecraftfree_camera_controlled)组件*。
+另见：_[`minecraft:free_camera_controlled`](#minecraftfree_camera_controlled)组件_。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -13265,7 +13271,7 @@ Variant is typically used as a per-type way to express a different visual form o
 
 定义实体可被其他实体或方块推动。
 
-另见：*[`minecraft:looked_at`](#minecraftlooked_at)组件*。
+另见：_[`minecraft:looked_at`](#minecraftlooked_at)组件_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -13302,7 +13308,7 @@ Variant is typically used as a per-type way to express a different visual form o
 
 定义实体可被其他实体或方块推动。
 
-另见：*[`minecraft:pushable_by_block`](#minecraftpushable_by_block)组件*、*[`minecraft:pushable_by_entity`](#minecraftpushable_by_entity)组件*。
+另见：_[`minecraft:pushable_by_block`](#minecraftpushable_by_block)组件_、_[`minecraft:pushable_by_entity`](#minecraftpushable_by_entity)组件_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -13351,7 +13357,7 @@ Variant is typically used as a per-type way to express a different visual form o
 
 定义末影人会放下方块。
 
-另见：*[`minecraft:behavior.place_block`](#minecraftbehaviorplace_block)组件*。
+另见：_[`minecraft:behavior.place_block`](#minecraftbehaviorplace_block)组件_。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -13387,7 +13393,7 @@ Variant is typically used as a per-type way to express a different visual form o
 
 定义末影人会拿走方块。
 
-另见：*[`minecraft:behavior.take_block`](#minecraftbehaviortake_block)组件*。
+另见：_[`minecraft:behavior.take_block`](#minecraftbehaviortake_block)组件_。
 
 <!--
 <Tabs><TabItem value="参数" label="参数" default>
@@ -13414,6 +13420,7 @@ Variant is typically used as a per-type way to express a different visual form o
 -->
 
 ---
+
 ---
 
 ## 参考文档
