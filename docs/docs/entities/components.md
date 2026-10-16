@@ -13271,30 +13271,29 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 另见：_[`minecraft:looked_at`](#minecraftlooked_at)组件_。
 
+<!--
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
-- <DataType type="object" name="minecraft:pushable"/>：根对象。
-  - <DataType type="boolean" name="is_pushable"/>：该实体是否能被其他实体推动。
-  - <DataType type="boolean" name="is_pushable_by_piston"/>：该实体是否能被活塞安全推动。
+- <DataType type="object" name="minecraft:xxx"/>：根对象。
+  - <DataType type="string" name="???"/>：可选值为。默认值为。
+  - <DataType type="int" name="???"/>：可选值为。默认值为。
+  - <DataType type="float" name="???"/>：可选值为。默认值为。
+  - <DataType type="boolean" name="???"/>：可选值为。默认值为。
+  - <DataType type="array" name="???"/>：可选值为。默认值为。
+  - <DataType type="object" name="???"/>：可选值为。默认值为。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
 
-```json showLineNumbers
-"minecraft:pushable": {}
-```
-
-箭（<FileType type="file" name="arrow.json"/>）：
+原版某实体（<FileType type="file" name="???.json"/>）：
 
 ```json showLineNumbers
-"minecraft:pushable": {
-    "is_pushable": false,
-    "is_pushable_by_piston": true
-}
+"minecraft:xxx": {}
 ```
 
 </TabItem></Tabs>
+-->
 
 ---
 
