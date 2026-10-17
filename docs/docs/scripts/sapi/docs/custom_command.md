@@ -5,7 +5,7 @@ sidebar_position: 5
 # 自定义命令
 
 import Highlight from '/src/components/highlight/base';
-import Version from "/src/components/highlight/scriptVersion"
+import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 import Optional from "/src/components/highlight/optional"
 
@@ -19,7 +19,7 @@ import Optional from "/src/components/highlight/optional"
 
 ### CustomCommandRegistry 类
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 用于注册自定义命令。可通过系统启动前事件获取该注册表。
 
@@ -63,11 +63,9 @@ registerEnum(name: string, values: string[]): void
 - name: string，自定义命令枚举的名称。
 - values: string[]，自定义命令枚举中包含的枚举。
 
----
-
 ### CustomCommand 接口
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 定义自定义命令的信息。
 
@@ -89,11 +87,9 @@ interface CustomCommand {
 - permissionLevel: [CommandPermissionLevel](#commandpermissionlevel-枚举)，命令的权限等级。
 - <Optional/> cheatsRequired: boolean，命令是否需要作弊。默认值：true。
 
----
-
 ### CustomCommandParameter 接口
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 定义自定义命令参数的信息。
 
@@ -107,13 +103,11 @@ interface CustomCommandParameter {
 
 - name: string，命令参数名称。
 - type: [CustomCommandParamType](#customcommandparamtype-枚举)，命令参数类型。
-- <Version experimental="测试版API" inline/> <Optional/> enumName: string，如果type指定为CustomCommandParamType.Enum，使用何种枚举。见[CustomCommandRegistry.registerEnum方法](#registerenum-方法)。
-
----
+- <Version type="script" experimental="测试版API" inline/> <Optional/> enumName: string，如果type指定为CustomCommandParamType.Enum，使用何种枚举。见[CustomCommandRegistry.registerEnum方法](#registerenum-方法)。
 
 ### CustomCommandParamType 枚举
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 定义自定义命令参数接受的类型。
 
@@ -133,11 +127,9 @@ enum CustomCommandParamType {
 }
 ```
 
----
-
 ### CommandPermissionLevel 枚举
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 定义自定义命令的权限等级。
 
@@ -151,11 +143,9 @@ enum CommandPermissionLevel {
 }
 ```
 
----
-
 ### CustomCommandOrigin 类
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 命令的来源信息。
 
@@ -176,11 +166,9 @@ class CustomCommandOrigin {
 - <ReadOnly/> <Optional/> sourceBlock: [Block](./block/main#block-类)，若该命令由方块执行，返回该方块的信息。
 - <ReadOnly/> sourceType: [CustomCommandSource](#customcommandsource-枚举)，该命令由何种来源执行。
 
----
-
 ### CustomCommandSource 枚举
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 自定义命令的执行者是何种来源。
 
@@ -193,11 +181,9 @@ enum CustomCommandSource {
 }
 ```
 
----
-
 ### CustomCommandResult 接口
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 定义自定义命令返回的结果信息。
 
@@ -211,11 +197,9 @@ interface CustomCommandResult {
 - status: [CustomCommandStatus](#customcommandstatus-枚举)，命令返回的状态。
 - <Optional/> message: string，命令返回的消息。
 
----
-
 ### CustomCommandStatus 枚举
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 自定义命令的返回状态。
 
@@ -234,7 +218,7 @@ enum CustomCommandStatus {
 
 ### CustomCommandError 类
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 注册自定义命令时若遇到错误，抛出此类。
 
@@ -253,11 +237,9 @@ class CustomCommandError extends Error {
 
 > 该类有更多的属性和方法，见[类 CustomCommandError](https://projectxero.top/sapi/classes/server.CustomCommandError.html)。
 
----
-
 ### CustomCommandErrorReason 枚举
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 自定义命令的错误原因。
 

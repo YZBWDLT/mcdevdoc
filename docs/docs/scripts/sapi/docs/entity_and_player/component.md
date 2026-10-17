@@ -5,7 +5,7 @@ sidebar_position: 3
 # 实体组件
 
 import Button from '/src/components/button/base';
-import Version from "/src/components/highlight/scriptVersion"
+import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 
 本文主要记录实体组件相关接口。
@@ -22,7 +22,7 @@ import ReadOnly from "/src/components/highlight/readonly"
 
 ### ​EntityEquippableComponent 类
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 实体的装备栏组件。
 
@@ -30,8 +30,8 @@ import ReadOnly from "/src/components/highlight/readonly"
 
 #### 属性
 
-- <ReadOnly/> <Version add="2.1.0" inline/> totalArmor: number，实体的总盔甲值。
-- <ReadOnly/> <Version add="2.1.0" inline/> totalToughness: number，实体的总盔甲韧性值。
+- <ReadOnly/> <Version type="script" add="2.1.0" inline/> totalArmor: number，实体的总盔甲值。
+- <ReadOnly/> <Version type="script" add="2.1.0" inline/> totalToughness: number，实体的总盔甲韧性值。
 
 ---
 
@@ -39,7 +39,7 @@ import ReadOnly from "/src/components/highlight/readonly"
 
 ### ​EntityExhaustionComponent 类
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 实体的疲劳度信息。
 
@@ -51,7 +51,7 @@ import ReadOnly from "/src/components/highlight/readonly"
 
 ### EntityHungerComponent 类
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 实体的饥饿值信息。
 
@@ -63,13 +63,14 @@ import ReadOnly from "/src/components/highlight/readonly"
 
 ### ​EntitySaturationComponent 类
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 实体的饱和度信息。
 
 <Button text="projectxero.top" url="https://projectxero.top/sapi/classes/server.EntitySaturationComponent.html"/>
 
 ---
+
 ---
 
 ## 参考文档

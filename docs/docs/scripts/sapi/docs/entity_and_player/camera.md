@@ -5,7 +5,7 @@ sidebar_position: 5
 # 相机
 
 import Button from '/src/components/button/base';
-import Version from "/src/components/highlight/scriptVersion"
+import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 import Static from "/src/components/highlight/static"
 
@@ -27,9 +27,10 @@ import Static from "/src/components/highlight/static"
 
 #### setFov 方法
 
-- <Version add="2.2.0"/>
+- <Version type="script" add="2.2.0"/>
 
 ---
+
 ---
 
 ## 参考文档

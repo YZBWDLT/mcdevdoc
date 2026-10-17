@@ -1180,7 +1180,7 @@ import Button from '/src/components/button/base';
 
 定义方块是否可被活塞推动，及其属性。
 
-可通过 ScriptAPI 获取该组件的信息。另见：_[BlockMovableComponent 类](/docs/docs/scripts/sapi/docs/block/main#blockmovablecomponent-类)_。
+可通过 ScriptAPI 获取该组件的信息。另见：_[BlockMovableComponent 类](/docs/docs/scripts/sapi/docs/block/component#blockmovablecomponent-类)_。
 
 <Tabs><TabItem value="参数" label="参数" default>
 

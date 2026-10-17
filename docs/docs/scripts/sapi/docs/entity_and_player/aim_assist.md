@@ -5,7 +5,6 @@ sidebar_position: 4
 # 玩家瞄准辅助
 
 import Button from '/src/components/button/base';
-import Version from "/src/components/highlight/scriptVersion"
 import ReadOnly from "/src/components/highlight/readonly"
 import Static from "/src/components/highlight/static"
 

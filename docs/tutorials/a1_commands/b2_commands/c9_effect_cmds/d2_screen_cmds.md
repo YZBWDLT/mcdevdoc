@@ -5,7 +5,7 @@ tags: [存在中国版无法使用的功能, 有待进一步更新]
 
 # 2.9.2 屏幕控制命令
 
-import Version from '/src/components/highlight/gameVersion';
+import Version from '/src/components/highlight/version';
 
 上一节，我们已经学习了文本操控命令，了解了如何能够“精彩”地把想要呈现的文本呈现到玩家面前。这一节，我们就来学习一下玩家的屏幕控制。
 
@@ -106,10 +106,10 @@ camera <玩家: target> fade time <淡入秒数: float> <持续秒数: float> <�
 
 现在我们来看这些语法。虽然看起来比较长，但是我们可以立刻找到有两段共同点：
 
-| 完整语法 | 简写语法 | 描述 |
-| --- | :---: | --- |
-| `color <红: int> <绿: int> <蓝: int>` | `<颜色>` | 很显然，这些参数能够修改玩家的屏幕颜色，并遵循 RGB 颜色的组合方法 |
-| `time <淡入秒数: float> <持续秒数: float> <淡出秒数: float>` | `<渐变时间>` | 这些参数能够修改相机淡入淡出和持续的时间，类似于`/title` |
+| 完整语法                                                     |   简写语法   | 描述                                                              |
+| ------------------------------------------------------------ | :----------: | ----------------------------------------------------------------- |
+| `color <红: int> <绿: int> <蓝: int>`                        |   `<颜色>`   | 很显然，这些参数能够修改玩家的屏幕颜色，并遵循 RGB 颜色的组合方法 |
+| `time <淡入秒数: float> <持续秒数: float> <淡出秒数: float>` | `<渐变时间>` | 这些参数能够修改相机淡入淡出和持续的时间，类似于`/title`          |
 
 所以，这些渐变命令实际上可以简化为下面的命令：
 
@@ -204,11 +204,11 @@ camera <玩家: target> set <预设: string> view_offset <x视角偏移: float> 
 
 以上的预设均不能通过<kbd>F5</kbd>调整视角。相信你现在可能除了三个熟悉的第一和第三人称视角之外，剩下三个都看不懂。这很正常，因为另外三个都需要额外搭配参数才能真正发挥其威力。接下来我们像`fade`那样来看看这里面都支持哪些参数吧。
 
-| 完整语法 | 简写语法 | 描述 |
-| --- | :---: | --- |
-| `ease <缓动时间: float> <缓动类型: Easing>` | `<缓动>` | 设置相机缓动，稍后我们会介绍更多有关缓动的东西，但总之先知道它是控制相机缓动的 |
+| 完整语法                                                                                     | 简写语法 | 描述                                                                             |
+| -------------------------------------------------------------------------------------------- | :------: | -------------------------------------------------------------------------------- |
+| `ease <缓动时间: float> <缓动类型: Easing>`                                                  | `<缓动>` | 设置相机缓动，稍后我们会介绍更多有关缓动的东西，但总之先知道它是控制相机缓动的   |
 | `facing <面向实体: target>`或`facing <面向坐标: x y z>`或`rot <x旋转: value> <y旋转: value>` | `<朝向>` | 设置相机朝向。这三位朋友可都是很眼熟了，见过不止一次了，应该不用再多说什么了吧？ |
-| `pos <位置: x y z>` | `<位置>` | 设置相机位置 |
+| `pos <位置: x y z>`                                                                          | `<位置>` | 设置相机位置                                                                     |
 
 现在我们先不看带`view_offset`和`entity_offset`的命令，后面再讲。如果我们只看由上面 3 种子命令（`缓动`、`朝向`、`位置`）组成的语法，就已经差不多要占了这条命令的半壁江山了。一共有这些语法：
 
@@ -269,9 +269,9 @@ camera <玩家> set <预设> [缓动] [位置] [朝向]
 :::tip[实验 2.9-10]
 
 - `/camera @s set minecraft:first_person`：强制第一人称视角
-  - 虽然看起来没什么变化，你可以试一下按 F5，或是在设置里调控一下视角，然后你就会发现它们都不起作用。
+    - 虽然看起来没什么变化，你可以试一下按 F5，或是在设置里调控一下视角，然后你就会发现它们都不起作用。
 - `/camera @s set minecraft:free`：自由相机（默认）。
-  - 此时你会发现，你的相机和你操控的玩家之间已经没有任何必然联系。
+    - 此时你会发现，你的相机和你操控的玩家之间已经没有任何必然联系。
 - `/camera @s set minecraft:free pos 5 -30 5 facing 5 -60 5`：从(5,-30,5)面向(5,-60,5)的相机视角。  
   ![camera_set_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_set_1.png)
 - `/camera @s set minecraft:free pos ^-2^2^-4 facing ^^^5`：这是 Wiki 给出的示例，实现越肩视角！
@@ -338,12 +338,12 @@ camera <玩家> set <预设> [缓动] [位置] [朝向]
 
 通过大量的实验证实，在`set`中的另外两条子命令`view_offset`和`entity_offset`对自由相机视角无效；而所有的子命令对默认的第一、第三人称全部无效。也就是说：
 
-| | `ease` | `facing` | `rot` | `pos` | `view_offset` | `entity_offset` |
-| --- | :---: | :---: | :---: | :---: | :---: | :---: |
-| `minecraft:first_person` | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `minecraft:third_person` | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `minecraft:third_person_front` | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `minecraft:free` | ✔️ | ✔️ | ✔️ | ✔️ | ❌ | ❌ |
+|                                | `ease` | `facing` | `rot` | `pos` | `view_offset` | `entity_offset` |
+| ------------------------------ | :----: | :------: | :---: | :---: | :-----------: | :-------------: |
+| `minecraft:first_person`       |   ❌   |    ❌    |  ❌   |  ❌   |      ❌       |       ❌        |
+| `minecraft:third_person`       |   ❌   |    ❌    |  ❌   |  ❌   |      ❌       |       ❌        |
+| `minecraft:third_person_front` |   ❌   |    ❌    |  ❌   |  ❌   |      ❌       |       ❌        |
+| `minecraft:free`               |   ✔️   |    ✔️    |  ✔️   |  ✔️   |      ❌       |       ❌        |
 
 那`view_offset`和`entity_offset`有什么用？我们继续看……
 
@@ -375,17 +375,17 @@ camera <玩家: target> set minecraft:follow_orbit view_offset <x视角偏移: f
 
 这里，我们把`<预设: string>`写为了`minecraft:follow_orbit`。类似地，我们分别把其中重复的子命令提取出来：
 
-| 完整语法 | 简写语法 | 描述 |
-| --- | :---: | --- |
-| `ease <缓动时间: float> <缓动类型: Easing>` | `<缓动>` | 设置相机缓动 |
-| `rot <x旋转: value> <y旋转: value>` | `<rot朝向>` | 相机旋转角度 |
+| 完整语法                                                                 |   简写语法   | 描述                         |
+| ------------------------------------------------------------------------ | :----------: | ---------------------------- |
+| `ease <缓动时间: float> <缓动类型: Easing>`                              |   `<缓动>`   | 设置相机缓动                 |
+| `rot <x旋转: value> <y旋转: value>`                                      | `<rot朝向>`  | 相机旋转角度                 |
 | `entity_offset <x实体偏移: float> <y实体偏移: float> <z实体偏移: float>` | `<实体偏移>` | 相机焦点相对于玩家位置的偏移 |
-| `view_offset <x视角偏移: float> <y视角偏移: float>` | `<视角偏移>` | 相机焦点相对于玩家视角的偏移 |
+| `view_offset <x视角偏移: float> <y视角偏移: float>`                      | `<视角偏移>` | 相机焦点相对于玩家视角的偏移 |
 
-| | `ease` | `facing` | `rot` | `pos` | `view_offset` | `entity_offset` |
-| --- | :---: | :---: | :---: | :---: | :---: | :---: |
-| `minecraft:follow_orbit` | ✔️ | ❌ | ✔️ | ❌ | ✔️ | ✔️ |
-| `minecraft:fixed_boom` | ✔️ | ❌ | ✔️ | ❌ | ✔️ | ✔️ |
+|                          | `ease` | `facing` | `rot` | `pos` | `view_offset` | `entity_offset` |
+| ------------------------ | :----: | :------: | :---: | :---: | :-----------: | :-------------: |
+| `minecraft:follow_orbit` |   ✔️   |    ❌    |  ✔️   |  ❌   |      ✔️       |       ✔️        |
+| `minecraft:fixed_boom`   |   ✔️   |    ❌    |  ✔️   |  ❌   |      ✔️       |       ✔️        |
 
 等下，不知道你发现没有：`facing`去哪儿了？其实，经过实验，这个子命令并不适用于这个预设。然后，我们把上面的子命令提取出来得到：
 
@@ -417,9 +417,9 @@ camera <玩家: target> set minecraft:follow_orbit <rot朝向> <视角偏移> <�
 camera @s set minecraft:follow_orbit
 camera @s set minecraft:follow_orbit rot 0 0
 camera @s set minecraft:follow_orbit rot 90 0
-camera @s set minecraft:follow_orbit entity_offset 1 0 0 
-camera @s set minecraft:follow_orbit entity_offset 0 1 0 
-camera @s set minecraft:follow_orbit entity_offset 0 0 1 
+camera @s set minecraft:follow_orbit entity_offset 1 0 0
+camera @s set minecraft:follow_orbit entity_offset 0 1 0
+camera @s set minecraft:follow_orbit entity_offset 0 0 1
 camera @s set minecraft:follow_orbit view_offset 1 0
 camera @s set minecraft:follow_orbit view_offset 0 1
 ```
@@ -518,7 +518,7 @@ camera <玩家: target> fov_set <视场角值: float> [视场角缓动时间: fl
 
 ### 附着到实体上的相机：`/camera ... attach_to_entity`与`/camera ... detach_from_entity`
 
-<Version add="26.10"/>
+<Version type="game" add="26.10"/>
 
 接下来让我们再来关注一种相机：附着到实体上的相机。我们先来看看语法：
 
@@ -623,7 +623,7 @@ hud <玩家: target> <hide|reset> [HUD元素: HudElement]
   ![hud_2](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/hud_2.png)
 - 执行命令`/hud @s hide all`，隐藏所有 HUD。  
   ![hud_3](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/hud_3.png)
-  - 其实，还是可以看到有一些内容并没有隐藏，这是因为`/hud`只能隐藏自己支持的项目，不能把 UI 中的每一个元素都隐藏。
+    - 其实，还是可以看到有一些内容并没有隐藏，这是因为`/hud`只能隐藏自己支持的项目，不能把 UI 中的每一个元素都隐藏。
 - 最后，执行命令`/hud @s reset all`，复原所有 HUD。
   ![hud_4](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/hud_4.png)
 
@@ -631,7 +631,7 @@ hud <玩家: target> <hide|reset> [HUD元素: HudElement]
 
 关于`/hud`支持哪些项目，你可以在自动补全中查看，或者在[命令/hud - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/命令/hud) 中查看。
 
-## *迷雾命令`/fog`
+## \*迷雾命令`/fog`
 
 迷雾是一种能够影响玩家视野的机制。关于迷雾的机制，我们目前暂时不会多说什么，在模块 2 你就会看到迷雾的基本运行原理。你只需要知道的是，迷雾可以有效地降低玩家面向远处的能见度，例如在下界的绯红森林中会显示红色的迷雾，阻止玩家看到更远处的地形。
 
@@ -662,17 +662,17 @@ fog <玩家: target> <pop|remove> <用户提供ID: string>
 
 `/camera`一共有 41 条语法，然而其中大部分的内容都是重复出现的字段，不难发现这些结构是类似于`/execute`的子命令，所以我们同样定义其为`/camera`的子命令。为简单起见，下面把`/camera`涉及的所有子命令按照下面的方式简写：
 
-| 完整语法 | 简写语法 | 可用用法 | 备注 |
-| --- | :---: | :---: | --- |
-| `color <红: int> <绿: int> <蓝: int>` | `<颜色>` | `fade` | |
-| `time <淡入秒数: float> <持续秒数: float> <淡出秒数: float>` | `<渐变时间>` | `fade` | |
-| `ease <缓动时间: float> <缓动类型: Easing>` | `<缓动>` | `set` | 应用到轨道相机仅 1.21.80+ |
-| `facing <面向实体: target>`或`facing <面向坐标: x y z>` | `<facing朝向>` | `set` | |
-| `rot <x旋转: value> <y旋转: value>` | `<rot朝向>` | `set` | |
-| `pos <位置: x y z>` | `<位置>` | `set` | |
-| `entity_offset <x实体偏移: float> <y实体偏移: float> <z实体偏移: float>` | `<实体偏移>` | `set` | 仅 1.21.40+ |
-| `view_offset <x视角偏移: float> <y视角偏移: float>` | `<视角偏移>` | `set` | 仅 1.21.50+ |
-| `target_center_offset <x目标中心偏移: float> <y目标中心偏移: float> <z目标中心偏移: float>` | `<目标中心偏移>` | `target_entity` | 仅 1.21.60+ |
+| 完整语法                                                                                    |     简写语法     |    可用用法     | 备注                      |
+| ------------------------------------------------------------------------------------------- | :--------------: | :-------------: | ------------------------- |
+| `color <红: int> <绿: int> <蓝: int>`                                                       |     `<颜色>`     |     `fade`      |                           |
+| `time <淡入秒数: float> <持续秒数: float> <淡出秒数: float>`                                |   `<渐变时间>`   |     `fade`      |                           |
+| `ease <缓动时间: float> <缓动类型: Easing>`                                                 |     `<缓动>`     |      `set`      | 应用到轨道相机仅 1.21.80+ |
+| `facing <面向实体: target>`或`facing <面向坐标: x y z>`                                     |  `<facing朝向>`  |      `set`      |                           |
+| `rot <x旋转: value> <y旋转: value>`                                                         |   `<rot朝向>`    |      `set`      |                           |
+| `pos <位置: x y z>`                                                                         |     `<位置>`     |      `set`      |                           |
+| `entity_offset <x实体偏移: float> <y实体偏移: float> <z实体偏移: float>`                    |   `<实体偏移>`   |      `set`      | 仅 1.21.40+               |
+| `view_offset <x视角偏移: float> <y视角偏移: float>`                                         |   `<视角偏移>`   |      `set`      | 仅 1.21.50+               |
+| `target_center_offset <x目标中心偏移: float> <y目标中心偏移: float> <z目标中心偏移: float>` | `<目标中心偏移>` | `target_entity` | 仅 1.21.60+               |
 
 按照最简写法来表示的话，这 41 条语法可以简化为
 
@@ -715,14 +715,14 @@ camera <玩家> play_spline <样条>
 
 上面涉及到的所有子命令，并不都适用于所有的预设。经过大量的实验，所有预设可用的（有效的）子命令如下表所示。
 
-| | `缓动` | `facing` | `rot` | `位置` | `实体偏移` | `视角偏移` |
-| --- | :---: | :---: | :---: | :---: | :---: | :---: |
-| `minecraft:first_person` | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `minecraft:third_person` | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `minecraft:third_person_front` | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `minecraft:follow_orbit` | ✔️ | ❌ | ✔️ | ❌ | ✔️ | ✔️ |
-| `minecraft:fixed_boom` | ✔️ | ❌ | ✔️ | ❌ | ✔️ | ✔️ |
-| `minecraft:free` | ✔️ | ✔️ | ✔️ | ✔️ | ❌ | ❌ |
+|                                | `缓动` | `facing` | `rot` | `位置` | `实体偏移` | `视角偏移` |
+| ------------------------------ | :----: | :------: | :---: | :----: | :--------: | :--------: |
+| `minecraft:first_person`       |   ❌   |    ❌    |  ❌   |   ❌   |     ❌     |     ❌     |
+| `minecraft:third_person`       |   ❌   |    ❌    |  ❌   |   ❌   |     ❌     |     ❌     |
+| `minecraft:third_person_front` |   ❌   |    ❌    |  ❌   |   ❌   |     ❌     |     ❌     |
+| `minecraft:follow_orbit`       |   ✔️   |    ❌    |  ✔️   |   ❌   |     ✔️     |     ✔️     |
+| `minecraft:fixed_boom`         |   ✔️   |    ❌    |  ✔️   |   ❌   |     ✔️     |     ✔️     |
+| `minecraft:free`               |   ✔️   |    ✔️    |  ✔️   |   ✔️   |     ❌     |     ❌     |
 
 :::warning[注意]
 
@@ -732,11 +732,11 @@ camera <玩家> play_spline <样条>
 
 ### 其他命令
 
-| 命令 | 含义 | 备注 |
-| --- | --- | --- |
-| `/camerashake add <玩家: target> [强度: float] [秒数: float] [摇晃类型: CameraShakeType]` | 对`玩家`施加`秒数`秒的、强度为`强度`的`摇晃类型`视角摇晃 | |
-| `/camerashake stop [玩家: target]` | 立刻停止`玩家`的视角摇晃 | |
-| `/hud <玩家: target> <hide\|reset> [HUD元素: HudElement]` | 隐藏或恢复`玩家`的`HUD元素` | |
+| 命令                                                                                      | 含义                                                     | 备注 |
+| ----------------------------------------------------------------------------------------- | -------------------------------------------------------- | ---- |
+| `/camerashake add <玩家: target> [强度: float] [秒数: float] [摇晃类型: CameraShakeType]` | 对`玩家`施加`秒数`秒的、强度为`强度`的`摇晃类型`视角摇晃 |      |
+| `/camerashake stop [玩家: target]`                                                        | 立刻停止`玩家`的视角摇晃                                 |      |
+| `/hud <玩家: target> <hide\|reset> [HUD元素: HudElement]`                                 | 隐藏或恢复`玩家`的`HUD元素`                              |      |
 
 ## 练习
 
@@ -750,7 +750,7 @@ camera <玩家> play_spline <样条>
 6. 施加一个时长为 6 秒、强度为 1 的角度式（`rotational`）相机摇晃。
 7. 隐藏血条。
 8. （中国版玩家选做）将玩家的视场角强制设置为 45°。
-9. 当`time.timeline`为`1060`时，将所有玩家的相机视角在 3 秒内按照二次方淡入淡出的缓动函数，缓动到(-237,33,130)的位置上，并面向(-247,35,130)。然后，当`time.timeline`为`1420`时，将所有玩家的相机视角在 3 秒内按照二次方淡入淡出的缓动函数，缓动到玩家眼部前方 0.5 格的位置上，并和玩家朝向一致。然后，在`time.timeline`为`1460`时，清除玩家的视角并将玩家的相机和移动权限复原。（题目基于《冒险世界：筑梦》命令系统，有删改）  
+9. 当`time.timeline`为`1060`时，将所有玩家的相机视角在 3 秒内按照二次方淡入淡出的缓动函数，缓动到(-237,33,130)的位置上，并面向(-247,35,130)。然后，当`time.timeline`为`1420`时，将所有玩家的相机视角在 3 秒内按照二次方淡入淡出的缓动函数，缓动到玩家眼部前方 0.5 格的位置上，并和玩家朝向一致。然后，在`time.timeline`为`1460`时，清除玩家的视角并将玩家的相机和移动权限复原。（题目基于《冒险世界：筑梦》命令系统，有删改）
 
     ```text title="每游戏刻执行，命令条数要求固定" showLineNumbers
 

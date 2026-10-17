@@ -1,11 +1,11 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # 战利品表
 
 import Button from '/src/components/button/base';
-import Version from "/src/components/highlight/scriptVersion"
+import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 
 本文主要记录战利品表相关接口。
@@ -22,11 +22,12 @@ import ReadOnly from "/src/components/highlight/readonly"
 
 ### LootTableManager 类
 
-<Version add="2.2.0"/> <br/>
+<Version type="script" add="2.2.0"/> <br/>
 
 <Button text="projectxero.top" url="https://projectxero.top/sapi/classes/server.LootTableManager.html"/>
 
 ---
+
 ---
 
 ## 参考文档

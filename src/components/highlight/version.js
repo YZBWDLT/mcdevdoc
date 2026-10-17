@@ -1,8 +1,20 @@
 import React from "react";
 import BaseHighlight from "./base";
 
-// 中国版当前支持的格式版本
-const CHINA_VERSION = "1.21.120";
+/**
+ * 各版本类型对应的中国版当前支持版本与显示文案。
+ * - `format`：格式版本
+ * - `game`：游戏版本
+ * - `script`：`server` 模块脚本版本
+ * - `script-ui`：`server-ui` 模块脚本版本
+ * @type {Record<"format"|"game"|"script"|"script-ui", {label: string, china: string}>}
+ */
+const VERSION_TYPES = {
+    format: { label: "格式版本", china: "1.21.120" },
+    game: { label: "游戏版本", china: "1.21.120" },
+    script: { label: "server模块脚本版本", china: "2.3.0" },
+    "script-ui": { label: "server-ui模块脚本版本", china: "2.0.0" },
+};
 
 /**
  * 比较两个语义化版本号，返回 version1 > version2 布尔值
@@ -25,6 +37,7 @@ function isVersionGreater(v1, v2) {
 
 /**
  * @typedef VersionHighlightOptions
+ * @property {"format"|"game"|"script"|"script-ui"} [type] 版本类型。`format` 为格式版本（默认），`game` 为游戏版本，`script` 为`server`模块脚本版本，`script-ui` 为`server-ui`模块脚本版本。
  * @property {string} add 版本信息。
  * @property {string} [experimental] 需要开启的实验性玩法。
  * @property {boolean} [removed] 是否被移除。
@@ -36,15 +49,25 @@ function isVersionGreater(v1, v2) {
 /** 版本高亮。
  * @param {VersionHighlightOptions} param0
  */
-export default function VersionHighlight({ add = "", experimental = "", removed = false, deprecated, tooltip = "", inline = false }) {
+export default function VersionHighlight({
+    type = "format",
+    add = "",
+    experimental = "",
+    removed = false,
+    deprecated,
+    tooltip = "",
+    inline = false,
+}) {
+    const { label, china } = VERSION_TYPES[type] || VERSION_TYPES.format;
+
     // 正常颜色
     let color = "yellowgreen";
     let text = `${add}+`;
-    let newTooltip = `该特性在格式版本${add}+下可用。${tooltip}`;
+    let newTooltip = `该特性在${label}${add}+下可用。${tooltip}`;
 
-    if (add && isVersionGreater(add, CHINA_VERSION)) {
+    if (add && isVersionGreater(add, china)) {
         color = "gold";
-        newTooltip = `该特性在格式版本${add}+下可用，但该版本对于当前的中国版版本过高。${tooltip}`;
+        newTooltip = `该特性在${label}${add}+下可用，但该版本对于当前的中国版版本过高。${tooltip}`;
     }
 
     // 如果是实验性玩法
@@ -58,7 +81,7 @@ export default function VersionHighlight({ add = "", experimental = "", removed 
     if (deprecated) {
         color = "red";
         text = `已弃用：${add}-${deprecated}`;
-        newTooltip = `该特性已被弃用，只能在格式版本${add}-${deprecated}下使用。${tooltip}`;
+        newTooltip = `该特性已被弃用，只能在${label}${add}-${deprecated}下使用。${tooltip}`;
     }
 
     // 如果是移除特性

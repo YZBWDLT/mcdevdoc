@@ -14,7 +14,7 @@ import Image from "/src/components/image/standard"
 import Button from '/src/components/button/base';
 import WikiButton from '/src/components/button/wiki';
 import Highlight from '/src/components/highlight/base';
-import Version from '/src/components/highlight/gameVersion';
+import Version from '/src/components/highlight/version';
 
 > 适用版本：国际版 26.60，中国版 3.9（1.21.120）。
 
@@ -26,7 +26,7 @@ import Version from '/src/components/highlight/gameVersion';
 
 ### `/help`（或`/?`）
 
-<Version add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c1_command" color="green"/> <WikiButton item="命令/help"/>
 
@@ -66,7 +66,7 @@ import Version from '/src/components/highlight/gameVersion';
 
 ### `/execute`
 
-<Version add="1.19.50" tooltip="最早的版本于0.16加入，但现在的版本已不可用。"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.19.50" tooltip="最早的版本于0.16加入，但现在的版本已不可用。"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d1_cmd_context" color="green"/>
 <WikiButton item="命令/execute"/>
@@ -267,7 +267,7 @@ in <维度: Dimension> -> execute
 
 ### `/function`
 
-<Version add="1.8.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.8.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#直接执行函数文件的命令function" color="green"/>
 <WikiButton item="命令/function"/>
@@ -286,7 +286,7 @@ in <维度: Dimension> -> execute
 
 ### `/scoreboard`
 
-<Version add="1.7.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.7.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d2_scoreboard"  color="green"/>
 <WikiButton item="命令/scoreboard"/>
@@ -481,7 +481,7 @@ in <维度: Dimension> -> execute
 
 ### `/summon`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d1_add_and_remove_entity" color="green"/>
 <WikiButton item="命令/summon"/>
@@ -504,7 +504,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="summon_2" label="常规（旋转角度）">
 
-<Version add="1.19.70"/>
+<Version type="game" add="1.19.70"/>
 
 ```text
 /summon <实体: EntityType> [生成位置: x y z] [y旋转: value] [x旋转: value] [生成事件: string] [名称: string]
@@ -518,7 +518,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="summon_3" label="常规（面向实体）">
 
-<Version add="1.19.80"/>
+<Version type="game" add="1.19.80"/>
 
 ```text
 /summon <实体: EntityType> [生成位置: x y z] facing <面向实体: target> [生成事件: string] [名称: string]
@@ -532,7 +532,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="summon_4" label="常规（面向坐标）">
 
-<Version add="1.19.80"/>
+<Version type="game" add="1.19.80"/>
 
 ```text
 /summon <实体: EntityType> [生成位置: x y z] facing <面向位置: x y z> [生成事件: string] [名称: string]
@@ -550,7 +550,7 @@ in <维度: Dimension> -> execute
 
 ### `/tellraw`
 
-<Version add="1.9.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.9.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" color="green"/>
 <WikiButton item="命令/tellraw"/>
@@ -569,7 +569,7 @@ in <维度: Dimension> -> execute
 
 ### `/tag`
 
-<Version add="1.9.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.9.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d1_tag" color="green"/>
 <WikiButton item="命令/tag"/>
@@ -616,7 +616,7 @@ in <维度: Dimension> -> execute
 
 ### `/tp`（或`/teleport`）
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#传送玩家的命令tp或teleport" color="green"/>
 <WikiButton item="命令/teleport"/>
@@ -641,9 +641,9 @@ in <维度: Dimension> -> execute
 
 将执行者传送到`位置`。
 
-<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_1_3" label="常规（旋转角度）">
 
@@ -653,13 +653,13 @@ in <维度: Dimension> -> execute
 
 将执行者按特定旋转角度传送到`位置`。
 
-<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_1_4" label="常规（面向实体）">
 
-<Version add="1.2.0"/>
+<Version type="game" add="1.2.0"/>
 
 ```text
 /tp <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
@@ -667,13 +667,13 @@ in <维度: Dimension> -> execute
 
 将执行者按面向`面向实体`的朝向传送到`位置`。
 
-<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_1_5" label="常规（面向坐标）">
 
-<Version add="1.2.0"/>
+<Version type="game" add="1.2.0"/>
 
 ```text
 /tp <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
@@ -681,9 +681,9 @@ in <维度: Dimension> -> execute
 
 将执行者按面向`面向坐标`的朝向传送到`位置`。
 
-<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem></Tabs>
 
@@ -697,9 +697,9 @@ in <维度: Dimension> -> execute
 
 将`目标`传送到`位置`。
 
-<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_2_2" label="常规">
 
@@ -709,9 +709,9 @@ in <维度: Dimension> -> execute
 
 将`目标`传送到`位置`。
 
-<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_2_3" label="常规（旋转角度）">
 
@@ -721,13 +721,13 @@ in <维度: Dimension> -> execute
 
 将`目标`按特定旋转角度传送到`位置`。
 
-<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_2_4" label="常规（面向实体）">
 
-<Version add="1.2.0"/>
+<Version type="game" add="1.2.0"/>
 
 ```text
 /tp <目标: target> <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
@@ -735,13 +735,13 @@ in <维度: Dimension> -> execute
 
 将`目标`按面向`面向实体`的朝向传送到`位置`。
 
-<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_2_5" label="常规（面向坐标）">
 
-<Version add="1.2.0"/>
+<Version type="game" add="1.2.0"/>
 
 ```text
 /tp <目标: target> <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
@@ -749,9 +749,9 @@ in <维度: Dimension> -> execute
 
 将`目标`按面向`面向坐标`的朝向传送到`位置`。
 
-<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem></Tabs>
 
@@ -761,7 +761,7 @@ in <维度: Dimension> -> execute
 
 ### `/scriptevent`
 
-<Version add="1.20.30"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.20.30"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <WikiButton item="命令/scriptevent"/>
 
@@ -779,7 +779,7 @@ in <维度: Dimension> -> execute
 
 ### `/titleraw`
 
-<Version add="1.9.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.9.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" color="green"/>
 <WikiButton item="命令/titleraw"/>
@@ -846,7 +846,7 @@ in <维度: Dimension> -> execute
 
 ### `/playsound`
 
-<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle" color="green"/>
 <WikiButton item="命令/playsound"/>
@@ -867,7 +867,7 @@ in <维度: Dimension> -> execute
 
 ### `/setblock`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#放置方块的命令setblock" color="green"/>
 <WikiButton item="命令/setblock"/>
@@ -914,7 +914,7 @@ in <维度: Dimension> -> execute
 
 ### `/event`
 
-<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#触发生成事件event" color="green"/>
 <WikiButton item="命令/event"/>
@@ -933,7 +933,7 @@ in <维度: Dimension> -> execute
 
 ### `/particle`
 
-<Version add="1.8.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.8.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle" color="green"/>
 <WikiButton item="命令/particle"/>
@@ -954,7 +954,7 @@ in <维度: Dimension> -> execute
 
 ### `/clear`
 
-<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除物品的命令clear" color="green"/>
 <WikiButton item="命令/clear"/>
@@ -975,7 +975,7 @@ in <维度: Dimension> -> execute
 
 ### `/clone`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#复制一片区域的命令clone" color="green"/>
 <WikiButton item="命令/clone"/>
@@ -1029,7 +1029,7 @@ in <维度: Dimension> -> execute
 
 ### `/camera`
 
-<Version add="1.20.30"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.20.30"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机命令camera" color="green"/>
 <WikiButton item="命令/camera"/>
@@ -1080,8 +1080,8 @@ in <维度: Dimension> -> execute
 - `minecraft:first_person`：第一人称
 - `minecraft:third_person`：第三人称背面
 - `minecraft:third_person_front`：第三人称正面
-- `minecraft:follow_orbit`：<Version add="1.21.40" inline/> 轨道相机
-- `minecraft:fixed_boom`：<Version add="1.21.70" inline/> 轨道相机，锁定视角
+- `minecraft:follow_orbit`：<Version type="game" add="1.21.40" inline/> 轨道相机
+- `minecraft:fixed_boom`：<Version type="game" add="1.21.70" inline/> 轨道相机，锁定视角
 - `minecraft:free`：自由视角
 
 </TabItem><TabItem value="2" label="自由视角相机">
@@ -1106,7 +1106,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="3" label="轨道相机">
 
-<Version add="1.21.40"/>
+<Version type="game" add="1.21.40"/>
 
 ```text
 /camera <玩家: target> set <预设: string> [缓动] [朝向] [视角偏移] [实体偏移]
@@ -1118,12 +1118,12 @@ in <维度: Dimension> -> execute
 
 `缓动`、`朝向`、`视角偏移`和`实体偏移`可任意缺少一个或若干个，但顺序上必须是`缓动`在前，`朝向`其次，`视角偏移`再次，`实体偏移`在后。对应关系如下表所示。
 
-| 完整语法                                                                 |   简写语法   | 含义                                                                                                                   |
-| ------------------------------------------------------------------------ | :----------: | ---------------------------------------------------------------------------------------------------------------------- |
-| `ease <缓动时间: float> <缓动类型: Easing>`                              |   `[缓动]`   | <Version add="1.21.80" inline/> 将玩家的相机按照`缓动类型`决定的运镜方式，在`缓动时间`秒内将玩家的相机从起点移动到终点 |
-| `rot <x旋转: value> <y旋转: value>`                                      |   `[朝向]`   | <Version add="1.21.80" inline/> 设置相机的旋转角度                                                                     |
-| `entity_offset <x实体偏移: float> <y实体偏移: float> <z实体偏移: float>` | `[实体偏移]` | 相机焦点相对于玩家位置的偏移                                                                                           |
-| `view_offset <x视角偏移: float> <y视角偏移: float>`                      | `[视角偏移]` | 相机焦点相对于玩家视角的偏移                                                                                           |
+| 完整语法                                                                 |   简写语法   | 含义                                                                                                                               |
+| ------------------------------------------------------------------------ | :----------: | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `ease <缓动时间: float> <缓动类型: Easing>`                              |   `[缓动]`   | <Version type="game" add="1.21.80" inline/> 将玩家的相机按照`缓动类型`决定的运镜方式，在`缓动时间`秒内将玩家的相机从起点移动到终点 |
+| `rot <x旋转: value> <y旋转: value>`                                      |   `[朝向]`   | <Version type="game" add="1.21.80" inline/> 设置相机的旋转角度                                                                     |
+| `entity_offset <x实体偏移: float> <y实体偏移: float> <z实体偏移: float>` | `[实体偏移]` | 相机焦点相对于玩家位置的偏移                                                                                                       |
+| `view_offset <x视角偏移: float> <y视角偏移: float>`                      | `[视角偏移]` | 相机焦点相对于玩家视角的偏移                                                                                                       |
 
 `[朝向]`的默认值为`rot 0 0`。`[实体偏移]`为空时，不改变位置偏移。`[视角偏移]`为空时，不改变视角偏移。
 
@@ -1131,7 +1131,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="target" label="target">
 
-<Version add="1.21.60"/>
+<Version type="game" add="1.21.60"/>
 
 聚焦实体语法，可令玩家的相机焦点始终对准某个实体。包括`target_entity`和`remove_target`。
 
@@ -1165,7 +1165,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="fov" label="fov">
 
-<Version add="1.21.111"/>
+<Version type="game" add="1.21.111"/>
 
 视场角语法，控制玩家相机的视场角。包括`fov_clear`和`fov_set`。
 
@@ -1193,7 +1193,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="attach" label="attach">
 
-<Version add="26.10"/>
+<Version type="game" add="26.10"/>
 
 附着相机语法，将相机固定到特定实体上。包括`attach_to_entity`和`detach_from_entity`。
 
@@ -1217,7 +1217,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="play_spline" label="play_spline">
 
-<Version add="26.10"/>
+<Version type="game" add="26.10"/>
 
 样条语法，按照特定样条路径播放相机。
 
@@ -1233,7 +1233,7 @@ in <维度: Dimension> -> execute
 
 ### `/structure`
 
-<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b3_command_systems/c3_structure_block#结构命令structure" color="green"/>
 <WikiButton item="命令/structure"/>
@@ -1341,7 +1341,7 @@ in <维度: Dimension> -> execute
 - `block_by_block`：逐个方块加载。
 - `layer_by_layer`：逐层加载。
 
-`包含实体`的默认值为`true`。`包含方块`的默认值为`true`。`动画秒数`的默认值为`0`。`含水`（<Version add="1.19.30" inline/>）的默认值为`false`。`完整度`的默认值为`100`。`种子`为空时，随机取值。
+`包含实体`的默认值为`true`。`包含方块`的默认值为`true`。`动画秒数`的默认值为`0`。`含水`（<Version type="game" add="1.19.30" inline/>）的默认值为`false`。`完整度`的默认值为`100`。`种子`为空时，随机取值。
 
 </TabItem>
 
@@ -1365,7 +1365,7 @@ in <维度: Dimension> -> execute
 
 ### `/gamerule`
 
-<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改游戏规则的命令gamerule" color="green"/>
 <WikiButton item="命令/gamerule"/>
@@ -1407,7 +1407,7 @@ in <维度: Dimension> -> execute
 
 ### `/effect`
 
-<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#添加状态效果effect" color="green"/>
 <WikiButton item="命令/effect"/>
@@ -1438,7 +1438,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="2" label="无限时长">
 
-<Version add="1.21.40"/>
+<Version type="game" add="1.21.40"/>
 
 ```text
 /effect <实体: target> <状态效果: Effect> infinite [放大倍率: int] [隐藏粒子: Boolean]
@@ -1474,7 +1474,7 @@ in <维度: Dimension> -> execute
 
 ### `/replaceitem`
 
-<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#改物品更改物品栏物品的命令replaceitem" color="green"/>
 <WikiButton item="命令/replaceitem"/>
@@ -1501,7 +1501,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="2" label="检查旧物品">
 
-<Version add="1.16.0"/>
+<Version type="game" add="1.16.0"/>
 
 ```text
 /replaceitem block <位置: x y z> slot.container <槽位ID: int> <旧物品处理: ReplaceMode> <物品: Item> [数量: int] [数据值: int] [组件: json]
@@ -1542,7 +1542,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="2" label="检查旧物品">
 
-<Version add="1.16.0"/>
+<Version type="game" add="1.16.0"/>
 
 ```text
 /replaceitem entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> <旧物品处理: ReplaceMode> <物品: Item> [数量: int] [数据值: int] [组件: json]
@@ -1571,7 +1571,7 @@ in <维度: Dimension> -> execute
 
 ### `/kill`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除实体的命令kill" color="green"/>
 <WikiButton item="命令/kill"/>
@@ -1588,7 +1588,7 @@ in <维度: Dimension> -> execute
 
 ### `/give`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#give的扩展语法" color="green"/>
 <WikiButton item="命令/give"/>
@@ -1607,7 +1607,7 @@ in <维度: Dimension> -> execute
 
 ### `/spawnpoint`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置重生点spawnpoint" color="green"/>
 <WikiButton item="命令/spawnpoint"/>
@@ -1628,7 +1628,7 @@ in <维度: Dimension> -> execute
 
 ### `/inputpermission`
 
-<Version add="1.19.80"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.19.80"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#变更权限inputpermission" color="green"/>
 <WikiButton item="命令/inputpermission" length="large"/>
@@ -1665,7 +1665,7 @@ in <维度: Dimension> -> execute
 
 ### `/fill`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#批量填充方块的命令fill" color="green"/>
 <WikiButton item="命令/fill"/>
@@ -1756,7 +1756,7 @@ in <维度: Dimension> -> execute
 
 ### `/gamemode`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#更改玩家游戏模式的命令gamemode" color="green"/>
 <WikiButton item="命令/gamemode"/>
@@ -1784,7 +1784,7 @@ in <维度: Dimension> -> execute
 
 ### `/music`
 
-<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#播放音乐的命令music" color="green"/>
 <WikiButton item="命令/music"/>
@@ -1861,7 +1861,7 @@ in <维度: Dimension> -> execute
 
 ### `/title`
 
-<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#标题命令title" color="green"/>
 <WikiButton item="命令/title"/>
@@ -1928,7 +1928,7 @@ in <维度: Dimension> -> execute
 
 ### `/fog`
 
-<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#迷雾命令fog" color="green"/>
 <WikiButton item="命令/fog"/>
@@ -1968,7 +1968,7 @@ in <维度: Dimension> -> execute
 
 ### `/hud`
 
-<Version add="1.20.80"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.20.80"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#hud-显示命令hud" color="green"/>
 <WikiButton item="命令/hud"/>
@@ -1992,7 +1992,7 @@ in <维度: Dimension> -> execute
 
 ### `/dialogue`
 
-<Version add="1.17.10"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="中国版不可用" tooltip="中国版移除了 NPC 的功能，包括实体定义的 minecraft:npc 组件。因此，该命令在中国版的执行结果无论如何都是无效。" color="red"/><br/>
+<Version type="game" add="1.17.10"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="中国版不可用" tooltip="中国版移除了 NPC 的功能，包括实体定义的 minecraft:npc 组件。因此，该命令在中国版的执行结果无论如何都是无效。" color="red"/><br/>
 
 <WikiButton item="命令/dialogue"/>
 
@@ -2036,7 +2036,7 @@ in <维度: Dimension> -> execute
 
 ### `/playanimation`
 
-<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <WikiButton item="命令/playanimation"/>
 
@@ -2052,7 +2052,7 @@ in <维度: Dimension> -> execute
 
 ### `/say`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#发送消息的命令say" color="green"/>
 <WikiButton item="命令/say"/>
@@ -2071,7 +2071,7 @@ in <维度: Dimension> -> execute
 
 ### `/setworldspawn`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置出生点setworldspawn" color="green"/>
 <WikiButton item="命令/setworldspawn" length="large"/>
@@ -2090,7 +2090,7 @@ in <维度: Dimension> -> execute
 
 ### `/tickingarea`
 
-<Version add="1.2.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.2.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界常加载区域的命令tickingarea" color="green"/>
 <WikiButton item="命令/tickingarea"/>
@@ -2105,7 +2105,7 @@ in <维度: Dimension> -> execute
 /tickingarea add <起点: x y z> <终点: x y z> [名称: string] [预加载: Boolean]
 ```
 
-添加含`起点`到`终点`组成的长方体区域的所有区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`（<Version add="1.18.30" inline/>）。
+添加含`起点`到`终点`组成的长方体区域的所有区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`（<Version type="game" add="1.18.30" inline/>）。
 
 `名称`的默认值为`AreaX`，其中`X`为从`0`开始的第 n-1 个常加载区域。`预加载`的默认值为`false`。
 
@@ -2113,7 +2113,7 @@ in <维度: Dimension> -> execute
 /tickingarea add <中心: x y z> <半径: int> [名称: string] [预加载: Boolean]
 ```
 
-添加由`中心`和`半径`确定的圆形区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`（<Version add="1.18.30" inline/>）。
+添加由`中心`和`半径`确定的圆形区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`（<Version type="game" add="1.18.30" inline/>）。
 
 `名称`的默认值为`AreaX`，其中`X`为从`0`开始的第 n-1 个常加载区域。`预加载`的默认值为`false`。
 
@@ -2143,7 +2143,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="preload" label="preload">
 
-<Version add="1.18.30"/>
+<Version type="game" add="1.18.30"/>
 
 ```text
 /tickingarea preload <名称: string> [预加载: Boolean]
@@ -2181,7 +2181,7 @@ in <维度: Dimension> -> execute
 
 ### `/tell`（或`/msg`、`/w`）
 
-<Version add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#私聊玩家tellwmsg" color="green"/>
 <WikiButton item="命令/tell"/>
@@ -2202,7 +2202,7 @@ in <维度: Dimension> -> execute
 
 ### `/time`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整时间的命令time" color="green"/>
 <WikiButton item="命令/time"/>
@@ -2218,7 +2218,7 @@ in <维度: Dimension> -> execute
 
 加快世界时间或特定`时钟`的时间`数值`游戏刻。
 
-<Version add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
+<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
 
 </TabItem><TabItem value="query" label="query">
 
@@ -2229,9 +2229,9 @@ in <维度: Dimension> -> execute
 
 查询世界处于第几天、或时间、或存在总时长，或查询特定`时钟`的时间。
 
-<Version add="26.60" inline/>：`query`支持`time`参数。
+<Version type="game" add="26.60" inline/>：`query`支持`time`参数。
 
-<Version add="26.60" inline/>：`时钟`，指定要操作的时钟。当选择了特定时钟后，只能查询在该时钟内的时长。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
+<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。当选择了特定时钟后，只能查询在该时钟内的时长。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
 
 </TabItem><TabItem value="set" label="set">
 
@@ -2242,7 +2242,7 @@ in <维度: Dimension> -> execute
 
 设置世界的时间或特定`时钟`的时间为`数值`游戏刻。
 
-<Version add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
+<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
 
 ```text
 /time set <时间标记: timemarker name> [时间标记出现方式: TimeMarkerOccurrence]
@@ -2253,18 +2253,19 @@ in <维度: Dimension> -> execute
 
 `时间标记`可选值为：`sunrise`（日出）、`day`（早上）、`noon`（中午）、`sunset`（日落）、`night`（晚上）、`midnight`（午夜）。
 
-<Version add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
+<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
 
-<Version add="26.60" inline/>：`时间标记`现在允许添加`minecraft:`命名空间。可通过脚本注册新的时间标记。
+<Version type="game" add="26.60" inline/>：`时间标记`现在允许添加`minecraft:`命名空间。可通过脚本注册新的时间标记。
 
-<Version add="26.60" inline/>：`时间标记出现方式`，指定寻找时间标记的方式。可选值为：
+<Version type="game" add="26.60" inline/>：`时间标记出现方式`，指定寻找时间标记的方式。可选值为：
+
 - `next`：默认，寻找晚于当前时间的下次标记（今天或明天）
 - `stay`：寻找当天内的标记（今天）
 - `previous`：寻找早于当前时间的上次标记（今天或昨天）
 
 </TabItem><TabItem value="pause" label="pause">
 
-<Version add="26.60"/>
+<Version type="game" add="26.60"/>
 
 ```text
 /time pause
@@ -2275,7 +2276,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="resume" label="resume">
 
-<Version add="26.60"/>
+<Version type="game" add="26.60"/>
 
 ```text
 /time resume
@@ -2290,7 +2291,7 @@ in <维度: Dimension> -> execute
 
 ### `/xp`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#添加或夺走经验xp" color="green"/>
 <WikiButton item="命令/xp"/>
@@ -2333,7 +2334,7 @@ in <维度: Dimension> -> execute
 
 ### `/loot`
 
-<Version add="1.18.10"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.18.10"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <WikiButton item="命令/loot"/>
 
@@ -2349,27 +2350,27 @@ in <维度: Dimension> -> execute
 
 `目标`确定操作的目标和操作方法。可用的子命令如下表所示。其中，`[数量: int]`的默认值为`1`。
 
-| 子命令                                                                                    | 含义                                                                                                                            |
-| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `give <玩家: target>`                                                                     | <Version add="1.18.30" inline/> 给予`玩家`战利品                                                                                |
-| `insert <位置: x y z>`                                                                    | <Version add="1.18.30" inline/> 向`位置`的容器按顺序插入战利品                                                                  |
-| `spawn <位置: x y z>`                                                                     | 在`位置`生成战利品                                                                                                              |
-| `replace block <位置: x y z> slot.container <槽位ID: int> [数量: int]`                    | <Version add="1.19.40" inline/> 对`位置`处的容器，从`槽位ID`的槽位开始，清除`数量`个槽位后，再插入至多`数量`种战利品            |
-| `replace entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> [数量: int]` | <Version add="1.19.0" inline/> 对`实体`的物品栏，从`槽位ID`的槽位开始，清除`数量`个`槽位类型`的槽位后，再插入至多`数量`种战利品 |
+| 子命令                                                                                    | 含义                                                                                                                                        |
+| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `give <玩家: target>`                                                                     | <Version type="game" add="1.18.30" inline/> 给予`玩家`战利品                                                                                |
+| `insert <位置: x y z>`                                                                    | <Version type="game" add="1.18.30" inline/> 向`位置`的容器按顺序插入战利品                                                                  |
+| `spawn <位置: x y z>`                                                                     | 在`位置`生成战利品                                                                                                                          |
+| `replace block <位置: x y z> slot.container <槽位ID: int> [数量: int]`                    | <Version type="game" add="1.19.40" inline/> 对`位置`处的容器，从`槽位ID`的槽位开始，清除`数量`个槽位后，再插入至多`数量`种战利品            |
+| `replace entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> [数量: int]` | <Version type="game" add="1.19.0" inline/> 对`实体`的物品栏，从`槽位ID`的槽位开始，清除`数量`个`槽位类型`的槽位后，再插入至多`数量`种战利品 |
 
 `来源`确定调用的战利品表。可用的子命令如下表所示：
 
-| 子命令                                                           | 含义                                                                           |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `kill <实体: target> [<tool>\|mainhand\|offhand: string]`        | 模拟使用指定工具杀死`实体`后的战利品表                                         |
-| `loot <战利品表: string> [<tool>\|mainhand\|offhand: string]`    | 模拟使用指定工具直接调用`战利品表`（不带`loot_tables/`和`.json`后缀）          |
-| `mine <目标方块位置: x y z> [<tool>\|mainhand\|offhand: string]` | <Version add="1.21.60" inline/> 模拟使用指定工具挖掘`目标方块位置`后的战利品表 |
+| 子命令                                                           | 含义                                                                                       |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `kill <实体: target> [<tool>\|mainhand\|offhand: string]`        | 模拟使用指定工具杀死`实体`后的战利品表                                                     |
+| `loot <战利品表: string> [<tool>\|mainhand\|offhand: string]`    | 模拟使用指定工具直接调用`战利品表`（不带`loot_tables/`和`.json`后缀）                      |
+| `mine <目标方块位置: x y z> [<tool>\|mainhand\|offhand: string]` | <Version type="game" add="1.21.60" inline/> 模拟使用指定工具挖掘`目标方块位置`后的战利品表 |
 
 ---
 
 ### `/difficulty`
 
-<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界难度的命令difficulty" color="green"/>
 <WikiButton item="命令/difficulty"/>
@@ -2394,7 +2395,7 @@ in <维度: Dimension> -> execute
 
 ### `/weather`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整天气的命令weather" color="green"/>
 <WikiButton item="命令/weather"/>
@@ -2433,7 +2434,7 @@ in <维度: Dimension> -> execute
 
 ### `/enchant`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#为物品附魔的命令enchant" color="green"/>
 <WikiButton item="命令/enchant"/>
@@ -2455,7 +2456,7 @@ in <维度: Dimension> -> execute
 
 ### `/schedule`
 
-<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#队列执行函数文件的命令schedule" color="green"/>
 <WikiButton item="命令/schedule"/>
@@ -2464,7 +2465,7 @@ in <维度: Dimension> -> execute
 
 <Tabs><TabItem value="delay" label="delay" default>
 
-<Version add="1.21.50"/>
+<Version type="game" add="1.21.50"/>
 
 <Tabs><TabItem value="1" label="add (游戏刻)" default>
 
@@ -2562,7 +2563,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="clear" label="clear">
 
-<Version add="1.21.40"/>
+<Version type="game" add="1.21.40"/>
 
 ```text
 /schedule clear <函数: filepath>
@@ -2576,7 +2577,7 @@ in <维度: Dimension> -> execute
 
 ### `/ride`
 
-<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#改变骑乘关系ride" color="green"/>
 <WikiButton item="命令/ride"/>
@@ -2667,7 +2668,7 @@ in <维度: Dimension> -> execute
 
 ### `/stopsound`
 
-<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#停止音效的命令stopsound" color="green"/>
 <WikiButton item="命令/stopsound"/>
@@ -2686,7 +2687,7 @@ in <维度: Dimension> -> execute
 
 ### `/damage`
 
-<Version add="1.18.10"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.18.10"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#施加特定伤害damage" color="green"/>
 <WikiButton item="命令/damage"/>
@@ -2721,7 +2722,7 @@ in <维度: Dimension> -> execute
 
 ### `/camerashake`
 
-<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机摇晃命令camerashake" color="green"/>
 <WikiButton item="命令/camerashake"/>
@@ -2749,7 +2750,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="stop" label="stop">
 
-<Version add="1.16.210"/>
+<Version type="game" add="1.16.210"/>
 
 ```text
 /camerashake stop [玩家: target]
@@ -2767,7 +2768,7 @@ in <维度: Dimension> -> execute
 
 ### `/mobevent`
 
-<Version add="1.11.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.11.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界生物生成事件的命令mobevent" color="green"/>
 <WikiButton item="命令/mobevent"/>
@@ -2786,7 +2787,7 @@ in <维度: Dimension> -> execute
 
 ### `/aimassist`
 
-<Version add="1.21.70"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.21.70"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <WikiButton item="命令/aimassist"/>
 
@@ -2827,7 +2828,7 @@ in <维度: Dimension> -> execute
 
 ### `/place`
 
-<Version add="1.21.70"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。但是，在SAPI中有Dimension.placeFeature()、StructureManager.placeJigsaw()等对应方法可用。"/><br/>
+<Version type="game" add="1.21.70"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。但是，在SAPI中有Dimension.placeFeature()、StructureManager.placeJigsaw()等对应方法可用。"/><br/>
 
 <WikiButton item="命令/place"/>
 
@@ -2861,7 +2862,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="jigsaw" label="jigsaw">
 
-<Version add="1.21.80"/>
+<Version type="game" add="1.21.80"/>
 
 ```text
 /place jigsaw <pool: filepath> <jigsawTarget: string> <maxDepth: int> [pos: x y z] [keepJigsaws: Boolean] [liquidSettings: LiquidSettings]
@@ -2869,13 +2870,13 @@ in <维度: Dimension> -> execute
 
 放置结构池并展开指定深度[^needTest]。
 
-<Version add="1.21.90" inline/> 新增了`liquidSetting`参数。
+<Version type="game" add="1.21.90" inline/> 新增了`liquidSetting`参数。
 
 </TabItem>
 
 <TabItem value="structure" label="structure">
 
-<Version add="1.21.80"/>
+<Version type="game" add="1.21.80"/>
 
 ```text
 /place structure <structure: string> [pos: x y z] [ignoreStartHeight: Boolean] [keepJigsaws: Boolean] [liquidSettings: LiquidSettings]
@@ -2883,7 +2884,7 @@ in <维度: Dimension> -> execute
 
 放置结构地物[^needTest]。
 
-<Version add="1.21.90" inline/> 新增了`liquidSetting`参数。
+<Version type="game" add="1.21.90" inline/> 新增了`liquidSetting`参数。
 
 </TabItem>
 
@@ -2893,7 +2894,7 @@ in <维度: Dimension> -> execute
 
 ### `/controlscheme`
 
-<Version add="1.21.90"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.21.90"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <WikiButton item="命令/controlscheme" length="large"/>
 
@@ -2944,7 +2945,7 @@ in <维度: Dimension> -> execute
 
 ### `/alwaysday`（或`/daylock`）
 
-<Version add="1.2.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.2.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#设置终为白日alwaysday" color="green"/>
 <WikiButton item="命令/alwaysday"/>
@@ -2964,7 +2965,7 @@ in <维度: Dimension> -> execute
 
 ### `/clearspawnpoint`
 
-<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#清除重生点clearspawnpoint" color="green"/>
 <WikiButton item="命令/clearspawnpoint" length="large"/>
@@ -2983,7 +2984,7 @@ in <维度: Dimension> -> execute
 
 ### `/gametest`
 
-<Version add="1.19.40"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="实验性玩法" color="red" tooltip="该命令使用的脚本@minecraft/gametest仍然处于beta阶段，必须开启实验性玩法。"/><br/>
+<Version type="game" add="1.19.40"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="实验性玩法" color="red" tooltip="该命令使用的脚本@minecraft/gametest仍然处于beta阶段，必须开启实验性玩法。"/><br/>
 
 <WikiButton item="命令/gametest"/>
 
@@ -2993,7 +2994,7 @@ in <维度: Dimension> -> execute
 
 ### `/locate`
 
-<Version add="1.19.10" tooltip="最早的版本于1.0加入，但现在的版本已不可用。"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.19.10" tooltip="最早的版本于1.0加入，但现在的版本已不可用。"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#定位命令locate" color="green"/>
 <WikiButton item="命令/locate"/>
@@ -3028,7 +3029,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="poi" label="poi">
 
-<Version add="26.60" experimental="兴趣点（POI）"/>
+<Version type="game" add="26.60" experimental="兴趣点（POI）"/>
 
 ```text
 /locate poi <兴趣点: poi type>
@@ -3047,7 +3048,7 @@ in <维度: Dimension> -> execute
 
 ### `/me`
 
-<Version add="1.0.5"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version type="game" add="1.0.5"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#聊天栏宣告状态me" color="green"/>
 <WikiButton item="命令/me"/>
@@ -3066,7 +3067,7 @@ in <维度: Dimension> -> execute
 
 ### `/recipe`
 
-<Version add="1.20.30"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.20.30"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a2_addons/b4_data_driven_items/c3_recipes#配方命令recipe" color="green"/>
 <WikiButton item="命令/recipe"/>
@@ -3105,7 +3106,7 @@ in <维度: Dimension> -> execute
 
 ### `/script`
 
-<Version add="1.19.70"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="实验性玩法" color="red" tooltip="该命令使用的脚本@minecraft/gametest仍然处于beta阶段，必须开启实验性玩法。"/><br/>
+<Version type="game" add="1.19.70"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="实验性玩法" color="red" tooltip="该命令使用的脚本@minecraft/gametest仍然处于beta阶段，必须开启实验性玩法。"/><br/>
 
 <WikiButton item="命令/script"/>
 
@@ -3115,7 +3116,7 @@ in <维度: Dimension> -> execute
 
 ### `/spreadplayers`
 
-<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#随机传送玩家spreadplayers" color="green"/>
 <WikiButton item="命令/spreadplayers" length="large"/>
@@ -3126,7 +3127,7 @@ in <维度: Dimension> -> execute
 spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: float> <实体: target> [最高高度: value]
 ```
 
-将实体随机扩散到以`x`和`z`为中心，边长为（2\*`最大范围`+1）的正方形区域的地表，并要求其间距不小于`实体间距离`。若指定`最高高度`（<Version add="1.21.20" inline/>），则地表的判定改为`最高高度`下方的地表。
+将实体随机扩散到以`x`和`z`为中心，边长为（2\*`最大范围`+1）的正方形区域的地表，并要求其间距不小于`实体间距离`。若指定`最高高度`（<Version type="game" add="1.21.20" inline/>），则地表的判定改为`最高高度`下方的地表。
 
 `最高高度`为空时，默认为全高度。
 
@@ -3136,7 +3137,7 @@ spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: floa
 
 ### `/testfor`
 
-<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c6_target_selector#命令testfor检测实体的命令" color="green"/>
 <WikiButton item="命令/testfor"/>
@@ -3155,7 +3156,7 @@ spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: floa
 
 ### `/testforblock`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d3_subcommands_2#检测方块的子命令ifunless-block" color="green"/>
 <WikiButton item="命令/testforblock"/>
@@ -3176,7 +3177,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/testforblocks`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d3_subcommands_2#检测区域的子命令ifunless-blocks" color="green"/>
 <WikiButton item="命令/testforblocks" length="large"/>
@@ -3200,7 +3201,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/toggledownfall`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#切换天气toggledownfall" color="green"/>
 <WikiButton item="命令/toggledownfall" length="large"/>
@@ -3217,7 +3218,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/packstack`
 
-<Version add="26.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version type="game" add="26.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <WikiButton item="命令/packstack"/>
 
@@ -3242,7 +3243,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/op`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" color="green"/>
 <WikiButton item="命令/op"/>
@@ -3261,7 +3262,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/deop`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" color="green"/>
 <WikiButton item="命令/deop"/>
@@ -3278,7 +3279,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/kick`
 
-<Version add="1.16.0"/> <Highlight text="权限等级 1" color="lightblue" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version type="game" add="1.16.0"/> <Highlight text="权限等级 1" color="lightblue" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#移出玩家命令kick" color="green"/>
 <WikiButton item="命令/kick"/>
@@ -3297,7 +3298,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/list`
 
-<Version add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#玩家列表命令list" color="green"/>
 <WikiButton item="命令/list"/>
@@ -3314,7 +3315,7 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 
 ### `/connect`（或`/wsserver`）
 
-<Version add="0.16.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/connect"/>
 
@@ -3332,7 +3333,7 @@ connect <服务器URI: text>
 
 ### `/reload`
 
-<Version add="1.8.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version type="game" add="1.8.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#重载函数文件的命令reload" color="green"/>
 <WikiButton item="命令/reload"/>
@@ -3343,7 +3344,7 @@ connect <服务器URI: text>
 /reload [全部: reload_all]
 ```
 
-重新热加载函数和脚本（仅限国际版的 ScriptAPI）。如果`全部`（<Version add="1.21.30" inline/>）指定为`all`，则退出地图再重新加载。
+重新热加载函数和脚本（仅限国际版的 ScriptAPI）。如果`全部`（<Version type="game" add="1.21.30" inline/>）指定为`all`，则退出地图再重新加载。
 
 ---
 
@@ -3366,7 +3367,7 @@ stop
 
 ### `/setmaxplayers`
 
-<Version add="1.1.0"/> <Highlight text="权限等级 3" tooltip="该命令的权限等级为房主，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version type="game" add="1.1.0"/> <Highlight text="权限等级 3" tooltip="该命令的权限等级为房主，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#设置最大玩家数setmaxplayers" color="green"/>
 <WikiButton item="命令/setmaxplayers" length="large"/>
@@ -3383,7 +3384,7 @@ stop
 
 ### `/allowlist`
 
-<Version add="1.18.10" tooltip="曾用名为/whitelist，最早于1.16.0加入。"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version type="game" add="1.18.10" tooltip="曾用名为/whitelist，最早于1.16.0加入。"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" color="green"/>
 <WikiButton item="命令/allowlist"/>
@@ -3436,7 +3437,7 @@ allowlist reload
 
 ### `/permission`
 
-<Version add="26.40"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version type="game" add="26.40"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/permission"/>
 
@@ -3484,7 +3485,7 @@ permission reload
 
 ### `/party`
 
-<Version add="26.30" tooltip="正式版不可用。"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/> <Highlight text="仅登录账户可执行" tooltip="该命令不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version type="game" add="26.30" tooltip="正式版不可用。"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/> <Highlight text="仅登录账户可执行" tooltip="该命令不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/party"/>
 

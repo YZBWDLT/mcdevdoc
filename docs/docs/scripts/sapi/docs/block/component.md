@@ -5,7 +5,7 @@ sidebar_position: 3
 # 方块组件
 
 import Button from '/src/components/button/base';
-import Version from "/src/components/highlight/scriptVersion"
+import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 import Static from "/src/components/highlight/static"
 
@@ -44,18 +44,18 @@ class BlockComponent extends Component {
 
 ### BlockMovableComponent 类
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 方块可推动组件（例如被活塞推动）。
 
-另见：*[`minecraft:movable`](/docs/docs/blocks/components#minecraftmovable)方块组件*。
+另见：_[`minecraft:movable`](/docs/docs/blocks/components#minecraftmovable)方块组件_。
 
 ```typescript
 class BlockMovableComponent extends BlockComponent {
     private constructor();
     readonly movementType: MovementType;
     readonly stickyType: StickyType;
-    static readonly componentId = 'minecraft:movable';
+    static readonly componentId = "minecraft:movable";
 }
 ```
 
@@ -69,33 +69,34 @@ class BlockMovableComponent extends BlockComponent {
 
 ### MovementType 枚举
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 被活塞推动的行为类型。
 
 ```ts
 enum MovementType {
-    Immovable = 'Immovable',
-    Popped = 'Popped',
-    Push = 'Push',
-    PushPull = 'PushPull',
+    Immovable = "Immovable",
+    Popped = "Popped",
+    Push = "Push",
+    PushPull = "PushPull",
 }
 ```
 
 ### StickyType 枚举
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 是否具有粘性。
 
 ```ts
 enum StickyType {
-    None = 'None',
-    Same = 'Same',
+    None = "None",
+    Same = "Same",
 }
 ```
 
 ---
+
 ---
 
 ## 参考文档

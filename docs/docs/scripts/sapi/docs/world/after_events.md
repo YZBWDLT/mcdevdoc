@@ -1,13 +1,14 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # 世界后事件
 
-import Version from "/src/components/highlight/scriptVersion"
+import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 import Optional from "/src/components/highlight/optional"
 import EarlyExecution from "/src/components/highlight/earlyExecution"
+import RestrictedMode from "/src/components/highlight/restrictedMode"
 
 本文主要记录世界后事件相关接口。
 
@@ -17,7 +18,7 @@ import EarlyExecution from "/src/components/highlight/earlyExecution"
 
 ### PlayerJoinAfterEventSignal 类
 
-<Version add="1.3.0"/>
+<Version type="script" add="1.3.0"/>
 
 当玩家加入游戏后触发该事件信号。
 
@@ -31,14 +32,12 @@ class PlayerJoinAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerJoinAfterEvent](#playerjoinafterevent-类)) => void) => (arg0: [PlayerJoinAfterEvent](#playerjoinafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerJoinAfterEvent](#playerjoinafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerJoinAfterEvent](#playerjoinafterevent-类)) => void) => (arg0: [PlayerJoinAfterEvent](#playerjoinafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerJoinAfterEvent](#playerjoinafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerJoinAfterEvent 类
 
-<Version add="1.3.0"/>
+<Version type="script" add="1.3.0"/>
 
 玩家加入游戏后的事件信息。
 
@@ -61,7 +60,7 @@ class PlayerJoinAfterEvent {
 
 ### PlayerLeaveAfterEventSignal 类
 
-<Version add="1.3.0"/>
+<Version type="script" add="1.3.0"/>
 
 当玩家离开游戏后触发该事件信号。
 
@@ -75,14 +74,12 @@ class PlayerLeaveAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerLeaveAfterEvent](#playerleaveafterevent-类)) => void) => (arg0: [PlayerLeaveAfterEvent](#playerleaveafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerLeaveAfterEvent](#playerleaveafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerLeaveAfterEvent](#playerleaveafterevent-类)) => void) => (arg0: [PlayerLeaveAfterEvent](#playerleaveafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerLeaveAfterEvent](#playerleaveafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerLeaveAfterEvent 类
 
-<Version add="1.3.0"/>
+<Version type="script" add="1.3.0"/>
 
 玩家离开游戏后的事件信息。
 
@@ -105,7 +102,7 @@ class PlayerLeaveAfterEvent {
 
 ### PlayerSpawnAfterEventSignal 类
 
-<Version add="1.3.0"/>
+<Version type="script" add="1.3.0"/>
 
 当玩家生成后触发该事件信号。
 
@@ -119,14 +116,12 @@ class PlayerSpawnAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerSpawnAfterEvent](#playerspawnafterevent-类)) => void) => (arg0: [PlayerSpawnAfterEvent](#playerspawnafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerSpawnAfterEvent](#playerspawnafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerSpawnAfterEvent](#playerspawnafterevent-类)) => void) => (arg0: [PlayerSpawnAfterEvent](#playerspawnafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerSpawnAfterEvent](#playerspawnafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerSpawnAfterEvent 类
 
-<Version add="1.3.0"/>
+<Version type="script" add="1.3.0"/>
 
 玩家生成后的事件信息。
 
@@ -149,7 +144,7 @@ class PlayerSpawnAfterEvent {
 
 ### ButtonPushAfterEventSignal 类
 
-<Version add="1.3.0"/>
+<Version type="script" add="1.3.0"/>
 
 当按下按钮后触发该事件信号。
 
@@ -163,14 +158,12 @@ class ButtonPushAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [ButtonPushAfterEvent](#buttonpushafterevent-类)) => void) => (arg0: [ButtonPushAfterEvent](#buttonpushafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [ButtonPushAfterEvent](#buttonpushafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [ButtonPushAfterEvent](#buttonpushafterevent-类)) => void) => (arg0: [ButtonPushAfterEvent](#buttonpushafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [ButtonPushAfterEvent](#buttonpushafterevent-类)) => void) => void，取消订阅该事件。
 
 ### ButtonPushAfterEvent 类
 
-<Version add="1.3.0"/>
+<Version type="script" add="1.3.0"/>
 
 按下按钮后的事件信息。
 
@@ -191,7 +184,7 @@ class ButtonPushAfterEvent {
 
 ### LeverActionAfterEventSignal 类
 
-<Version add="1.3.0"/>
+<Version type="script" add="1.3.0"/>
 
 当拉杆活动后触发该事件信号。
 
@@ -205,14 +198,12 @@ class LeverActionAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [LeverActionAfterEvent](#leveractionafterevent-类)) => void) => (arg0: [LeverActionAfterEvent](#leveractionafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [LeverActionAfterEvent](#leveractionafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [LeverActionAfterEvent](#leveractionafterevent-类)) => void) => (arg0: [LeverActionAfterEvent](#leveractionafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [LeverActionAfterEvent](#leveractionafterevent-类)) => void) => void，取消订阅该事件。
 
 ### LeverActionAfterEvent 类
 
-<Version add="1.3.0"/>
+<Version type="script" add="1.3.0"/>
 
 拉杆活动后的事件信息。
 
@@ -235,7 +226,7 @@ class LeverActionAfterEvent {
 
 ### EntityDieAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当实体死亡后触发该事件信号。
 
@@ -249,14 +240,12 @@ class EntityDieAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityDieAfterEvent](#entitydieafterevent-类)) => void, options?: [EntityEventOptions](#entityeventoptions-接口)) => (arg0: [EntityDieAfterEvent](#entitydieafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityDieAfterEvent](#entitydieafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityDieAfterEvent](#entitydieafterevent-类)) => void, options?: [EntityEventOptions](#entityeventoptions-接口)) => (arg0: [EntityDieAfterEvent](#entitydieafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityDieAfterEvent](#entitydieafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityDieAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 实体死亡后的事件信息。
 
@@ -273,11 +262,9 @@ class EntityDieAfterEvent {
 - <ReadOnly/> damageSource: EntityDamageSource，若可获取，返回导致该实体死亡的伤害来源信息。
 - <ReadOnly/> deadEntity: [Entity](../entity_and_player/entity#entity-类)，已死亡的实体。
 
----
-
 ### EntityEventOptions 接口
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 指定实体相关事件的筛选项，可用于实体死亡、实体击打方块、实体击打实体和实体移除事件。
 
@@ -297,7 +284,7 @@ interface EntityEventOptions {
 
 ### EntityHealthChangedAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当实体生命值改变后触发该事件信号。
 
@@ -314,14 +301,12 @@ class EntityHealthChangedAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityHealthChangedAfterEvent](#entityhealthchangedafterevent-类)) => void, options?: [EntityEventOptions](#entityeventoptions-接口)) => (arg0: [EntityHealthChangedAfterEvent](#entityhealthchangedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityHealthChangedAfterEvent](#entityhealthchangedafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityHealthChangedAfterEvent](#entityhealthchangedafterevent-类)) => void, options?: [EntityEventOptions](#entityeventoptions-接口)) => (arg0: [EntityHealthChangedAfterEvent](#entityhealthchangedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityHealthChangedAfterEvent](#entityhealthchangedafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityHealthChangedAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 实体生命值改变后的事件信息。其筛选项见[实体死亡事件](#实体死亡事件)。
 
@@ -346,7 +331,7 @@ class EntityHealthChangedAfterEvent {
 
 ### EntityHitBlockAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当实体击打方块后触发该事件信号。
 
@@ -363,14 +348,12 @@ class EntityHitBlockAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityHitBlockAfterEvent](#entityhitblockafterevent-类)) => void, options?: [EntityEventOptions](#entityeventoptions-接口)) => (arg0: [EntityHitBlockAfterEvent](#entityhitblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityHitBlockAfterEvent](#entityhitblockafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityHitBlockAfterEvent](#entityhitblockafterevent-类)) => void, options?: [EntityEventOptions](#entityeventoptions-接口)) => (arg0: [EntityHitBlockAfterEvent](#entityhitblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityHitBlockAfterEvent](#entityhitblockafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityHitBlockAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 实体击打方块后的事件信息。其筛选项见[实体死亡事件](#实体死亡事件)。
 
@@ -386,7 +369,7 @@ class EntityHitBlockAfterEvent {
 
 #### 属性
 
-- <ReadOnly/> blockFace: Direction，被击中方块的朝向。
+- <ReadOnly/> blockFace: [Direction](../general#direction-枚举)，被击中方块的朝向。
 - <ReadOnly/> damagingEntity: [Entity](../entity_and_player/entity#entity-类)，发起攻击的实体。
 - <ReadOnly/> hitBlock: [Block](../block/main#block-类)，被攻击击中的方块。
 - <ReadOnly/> hitBlockPermutation: [BlockPermutation](../block/main#blockpermutation-类)，被攻击击中的方块状态。
@@ -397,7 +380,7 @@ class EntityHitBlockAfterEvent {
 
 ### EntityHitEntityAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当实体击打实体后触发该事件信号。
 
@@ -414,14 +397,12 @@ class EntityHitEntityAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityHitEntityAfterEvent](#entityhitentityafterevent-类)) => void, options?: [EntityEventOptions](#entityeventoptions-接口)) => (arg0: [EntityHitEntityAfterEvent](#entityhitentityafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityHitEntityAfterEvent](#entityhitentityafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityHitEntityAfterEvent](#entityhitentityafterevent-类)) => void, options?: [EntityEventOptions](#entityeventoptions-接口)) => (arg0: [EntityHitEntityAfterEvent](#entityhitentityafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityHitEntityAfterEvent](#entityhitentityafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityHitEntityAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 实体击打实体后的事件信息。其筛选项见[实体死亡事件](#实体死亡事件)。
 
@@ -444,7 +425,7 @@ class EntityHitEntityAfterEvent {
 
 ### EntityHurtAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当实体受伤后触发该事件信号。
 
@@ -461,14 +442,12 @@ class EntityHurtAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityHurtAfterEvent](#entityhurtafterevent-类)) => void, options?: [EntityHurtAfterEventOptions](#entityhurtaftereventoptions-接口)) => (arg0: [EntityHurtAfterEvent](#entityhurtafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityHurtAfterEvent](#entityhurtafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityHurtAfterEvent](#entityhurtafterevent-类)) => void, options?: [EntityHurtAfterEventOptions](#entityhurtaftereventoptions-接口)) => (arg0: [EntityHurtAfterEvent](#entityhurtafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityHurtAfterEvent](#entityhurtafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityHurtAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 实体受伤后的事件信息。
 
@@ -487,11 +466,9 @@ class EntityHurtAfterEvent {
 - <ReadOnly/> damageSource: EntityDamageSource，施加该伤害的来源信息。
 - <ReadOnly/> hurtEntity: [Entity](../entity_and_player/entity#entity-类)，受伤的实体。
 
----
-
 ### EntityHurtAfterEventOptions 接口
 
-<Version add="2.6.0"/>
+<Version type="script" add="2.6.0"/>
 
 指定实体受伤后事件的筛选项。
 
@@ -506,7 +483,7 @@ interface EntityHurtAfterEventOptions {
 
 - <Optional/> allowedDamageCauses: EntityDamageCause[]，若设置，该事件只会在伤害原因匹配时触发。
 - <Optional/> entities: [Entity](../entity_and_player/entity#entity-类)[]，若设置，该事件只会对集合内包含的实体触发。
-- <Optional/> entityFilter: EntityFilter，若设置，该事件只会对匹配的实体触发。
+- <Optional/> entityFilter: [EntityFilter](../entity_and_player/entity#entityfilter-接口)，若设置，该事件只会对匹配的实体触发。
 - <Optional/> entityTypes: string[]，若设置，该事件只会在受影响实体的类型与此匹配时触发。
 
 ---
@@ -515,7 +492,7 @@ interface EntityHurtAfterEventOptions {
 
 ### ItemCompleteUseAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当物品完成使用后触发该事件信号。
 
@@ -529,14 +506,12 @@ class ItemCompleteUseAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [ItemCompleteUseAfterEvent](#itemcompleteuseafterevent-类)) => void) => (arg0: [ItemCompleteUseAfterEvent](#itemcompleteuseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemCompleteUseAfterEvent](#itemcompleteuseafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [ItemCompleteUseAfterEvent](#itemcompleteuseafterevent-类)) => void) => (arg0: [ItemCompleteUseAfterEvent](#itemcompleteuseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemCompleteUseAfterEvent](#itemcompleteuseafterevent-类)) => void) => void，取消订阅该事件。
 
 ### ItemCompleteUseAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 物品完成使用后的事件信息。
 
@@ -561,7 +536,7 @@ class ItemCompleteUseAfterEvent {
 
 ### ItemReleaseUseAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当物品释放使用后触发该事件信号。
 
@@ -575,14 +550,12 @@ class ItemReleaseUseAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [ItemReleaseUseAfterEvent](#itemreleaseuseafterevent-类)) => void) => (arg0: [ItemReleaseUseAfterEvent](#itemreleaseuseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemReleaseUseAfterEvent](#itemreleaseuseafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [ItemReleaseUseAfterEvent](#itemreleaseuseafterevent-类)) => void) => (arg0: [ItemReleaseUseAfterEvent](#itemreleaseuseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemReleaseUseAfterEvent](#itemreleaseuseafterevent-类)) => void) => void，取消订阅该事件。
 
 ### ItemReleaseUseAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 物品释放使用后的事件信息。
 
@@ -607,7 +580,7 @@ class ItemReleaseUseAfterEvent {
 
 ### ItemStartUseAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当物品开始使用后触发该事件信号。
 
@@ -621,14 +594,12 @@ class ItemStartUseAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [ItemStartUseAfterEvent](#itemstartuseafterevent-类)) => void) => (arg0: [ItemStartUseAfterEvent](#itemstartuseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemStartUseAfterEvent](#itemstartuseafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [ItemStartUseAfterEvent](#itemstartuseafterevent-类)) => void) => (arg0: [ItemStartUseAfterEvent](#itemstartuseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemStartUseAfterEvent](#itemstartuseafterevent-类)) => void) => void，取消订阅该事件。
 
 ### ItemStartUseAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 物品开始使用后的事件信息。
 
@@ -653,7 +624,7 @@ class ItemStartUseAfterEvent {
 
 ### ItemStartUseOnAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当物品开始对方块使用后触发该事件信号。
 
@@ -667,14 +638,12 @@ class ItemStartUseOnAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [ItemStartUseOnAfterEvent](#itemstartuseonafterevent-类)) => void) => (arg0: [ItemStartUseOnAfterEvent](#itemstartuseonafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemStartUseOnAfterEvent](#itemstartuseonafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [ItemStartUseOnAfterEvent](#itemstartuseonafterevent-类)) => void) => (arg0: [ItemStartUseOnAfterEvent](#itemstartuseonafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemStartUseOnAfterEvent](#itemstartuseonafterevent-类)) => void) => void，取消订阅该事件。
 
 ### ItemStartUseOnAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 物品开始对方块使用后的事件信息。
 
@@ -691,7 +660,7 @@ class ItemStartUseOnAfterEvent {
 #### 属性
 
 - <ReadOnly/> block: [Block](../block/main#block-类)，物品作用的目标方块。
-- <ReadOnly/> blockFace: Direction，物品作用的方块朝向。
+- <ReadOnly/> blockFace: [Direction](../general#direction-枚举)，物品作用的方块朝向。
 - <ReadOnly/> <Optional/> itemStack: [ItemStack](../item/main#itemstack-类)，开始使用的物品。在某些游戏场景（例如空手按下按钮）下可能为空。
 - <ReadOnly/> source: [Player](../entity_and_player/player#player-类)，触发该物品事件的来源实体。
 
@@ -701,7 +670,7 @@ class ItemStartUseOnAfterEvent {
 
 ### ItemStopUseAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当物品停止使用后触发该事件信号。
 
@@ -715,14 +684,12 @@ class ItemStopUseAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [ItemStopUseAfterEvent](#itemstopuseafterevent-类)) => void) => (arg0: [ItemStopUseAfterEvent](#itemstopuseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemStopUseAfterEvent](#itemstopuseafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [ItemStopUseAfterEvent](#itemstopuseafterevent-类)) => void) => (arg0: [ItemStopUseAfterEvent](#itemstopuseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemStopUseAfterEvent](#itemstopuseafterevent-类)) => void) => void，取消订阅该事件。
 
 ### ItemStopUseAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 物品停止使用后的事件信息。
 
@@ -747,7 +714,7 @@ class ItemStopUseAfterEvent {
 
 ### ItemStopUseOnAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当物品停止对方块使用后触发该事件信号。
 
@@ -761,14 +728,12 @@ class ItemStopUseOnAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [ItemStopUseOnAfterEvent](#itemstopuseonafterevent-类)) => void) => (arg0: [ItemStopUseOnAfterEvent](#itemstopuseonafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemStopUseOnAfterEvent](#itemstopuseonafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [ItemStopUseOnAfterEvent](#itemstopuseonafterevent-类)) => void) => (arg0: [ItemStopUseOnAfterEvent](#itemstopuseonafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemStopUseOnAfterEvent](#itemstopuseonafterevent-类)) => void) => void，取消订阅该事件。
 
 ### ItemStopUseOnAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 物品停止对方块使用后的事件信息。
 
@@ -793,7 +758,7 @@ class ItemStopUseOnAfterEvent {
 
 ### ItemUseAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当物品使用后触发该事件信号。
 
@@ -807,14 +772,12 @@ class ItemUseAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [ItemUseAfterEvent](#itemuseafterevent-类)) => void) => (arg0: [ItemUseAfterEvent](#itemuseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemUseAfterEvent](#itemuseafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [ItemUseAfterEvent](#itemuseafterevent-类)) => void) => (arg0: [ItemUseAfterEvent](#itemuseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [ItemUseAfterEvent](#itemuseafterevent-类)) => void) => void，取消订阅该事件。
 
 ### ItemUseAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 物品使用后的事件信息。
 
@@ -837,7 +800,7 @@ class ItemUseAfterEvent {
 
 ### PressurePlatePopAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当压力板弹出后触发该事件信号。
 
@@ -851,14 +814,12 @@ class PressurePlatePopAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PressurePlatePopAfterEvent](#pressureplatepopafterevent-类)) => void) => (arg0: [PressurePlatePopAfterEvent](#pressureplatepopafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PressurePlatePopAfterEvent](#pressureplatepopafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PressurePlatePopAfterEvent](#pressureplatepopafterevent-类)) => void) => (arg0: [PressurePlatePopAfterEvent](#pressureplatepopafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PressurePlatePopAfterEvent](#pressureplatepopafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PressurePlatePopAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 压力板弹出后的事件信息。
 
@@ -881,7 +842,7 @@ class PressurePlatePopAfterEvent {
 
 ### PressurePlatePushAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当压力板压下后触发该事件信号。
 
@@ -895,14 +856,12 @@ class PressurePlatePushAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PressurePlatePushAfterEvent](#pressureplatepushafterevent-类)) => void) => (arg0: [PressurePlatePushAfterEvent](#pressureplatepushafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PressurePlatePushAfterEvent](#pressureplatepushafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PressurePlatePushAfterEvent](#pressureplatepushafterevent-类)) => void) => (arg0: [PressurePlatePushAfterEvent](#pressureplatepushafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PressurePlatePushAfterEvent](#pressureplatepushafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PressurePlatePushAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 压力板压下后的事件信息。
 
@@ -927,7 +886,7 @@ class PressurePlatePushAfterEvent {
 
 ### TargetBlockHitAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当击中标靶后触发该事件信号。
 
@@ -941,14 +900,12 @@ class TargetBlockHitAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [TargetBlockHitAfterEvent](#targetblockhitafterevent-类)) => void) => (arg0: [TargetBlockHitAfterEvent](#targetblockhitafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [TargetBlockHitAfterEvent](#targetblockhitafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [TargetBlockHitAfterEvent](#targetblockhitafterevent-类)) => void) => (arg0: [TargetBlockHitAfterEvent](#targetblockhitafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [TargetBlockHitAfterEvent](#targetblockhitafterevent-类)) => void) => void，取消订阅该事件。
 
 ### TargetBlockHitAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 击中标靶后的事件信息。
 
@@ -975,7 +932,7 @@ class TargetBlockHitAfterEvent {
 
 ### TripWireTripAfterEventSignal 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 当绊线钩被触发后触发该事件信号。
 
@@ -989,14 +946,12 @@ class TripWireTripAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [TripWireTripAfterEvent](#tripwiretripafterevent-类)) => void) => (arg0: [TripWireTripAfterEvent](#tripwiretripafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [TripWireTripAfterEvent](#tripwiretripafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [TripWireTripAfterEvent](#tripwiretripafterevent-类)) => void) => (arg0: [TripWireTripAfterEvent](#tripwiretripafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [TripWireTripAfterEvent](#tripwiretripafterevent-类)) => void) => void，取消订阅该事件。
 
 ### TripWireTripAfterEvent 类
 
-<Version add="1.4.0"/>
+<Version type="script" add="1.4.0"/>
 
 绊线钩触发后的事件信息。
 
@@ -1019,7 +974,7 @@ class TripWireTripAfterEvent {
 
 ### ProjectileHitBlockAfterEventSignal 类
 
-<Version add="1.5.0"/>
+<Version type="script" add="1.5.0"/>
 
 当弹射物击中方块后触发该事件信号。
 
@@ -1033,14 +988,12 @@ class ProjectileHitBlockAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [ProjectileHitBlockAfterEvent](#projectilehitblockafterevent-类)) => void) => (arg0: [ProjectileHitBlockAfterEvent](#projectilehitblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [ProjectileHitBlockAfterEvent](#projectilehitblockafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [ProjectileHitBlockAfterEvent](#projectilehitblockafterevent-类)) => void) => (arg0: [ProjectileHitBlockAfterEvent](#projectilehitblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [ProjectileHitBlockAfterEvent](#projectilehitblockafterevent-类)) => void) => void，取消订阅该事件。
 
 ### ProjectileHitBlockAfterEvent 类
 
-<Version add="1.5.0"/>
+<Version type="script" add="1.5.0"/>
 
 弹射物击中方块后的事件信息。
 
@@ -1066,7 +1019,7 @@ class ProjectileHitBlockAfterEvent {
 
 #### 方法
 
-- getBlockHit: () => BlockHitInformation，获取被弹射物击中方块的附加信息。
+- <RestrictedMode inline/> getBlockHit: () => BlockHitInformation，获取被弹射物击中方块的附加信息。
 
 ---
 
@@ -1074,7 +1027,7 @@ class ProjectileHitBlockAfterEvent {
 
 ### ProjectileHitEntityAfterEventSignal 类
 
-<Version add="1.5.0"/>
+<Version type="script" add="1.5.0"/>
 
 当弹射物击中实体后触发该事件信号。
 
@@ -1088,14 +1041,12 @@ class ProjectileHitEntityAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [ProjectileHitEntityAfterEvent](#projectilehitentityafterevent-类)) => void) => (arg0: [ProjectileHitEntityAfterEvent](#projectilehitentityafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [ProjectileHitEntityAfterEvent](#projectilehitentityafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [ProjectileHitEntityAfterEvent](#projectilehitentityafterevent-类)) => void) => (arg0: [ProjectileHitEntityAfterEvent](#projectilehitentityafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [ProjectileHitEntityAfterEvent](#projectilehitentityafterevent-类)) => void) => void，取消订阅该事件。
 
 ### ProjectileHitEntityAfterEvent 类
 
-<Version add="1.5.0"/>
+<Version type="script" add="1.5.0"/>
 
 弹射物击中实体后的事件信息。
 
@@ -1121,7 +1072,7 @@ class ProjectileHitEntityAfterEvent {
 
 #### 方法
 
-- getEntityHit: () => EntityHitInformation，获取被弹射物击中实体的附加信息。
+- <RestrictedMode inline/> getEntityHit: () => EntityHitInformation，获取被弹射物击中实体的附加信息。
 
 ---
 
@@ -1129,7 +1080,7 @@ class ProjectileHitEntityAfterEvent {
 
 ### EntityLoadAfterEventSignal 类
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 当实体加载后触发该事件信号。
 
@@ -1143,14 +1094,12 @@ class EntityLoadAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityLoadAfterEvent](#entityloadafterevent-类)) => void) => (arg0: [EntityLoadAfterEvent](#entityloadafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityLoadAfterEvent](#entityloadafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityLoadAfterEvent](#entityloadafterevent-类)) => void) => (arg0: [EntityLoadAfterEvent](#entityloadafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityLoadAfterEvent](#entityloadafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityLoadAfterEvent 类
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 实体加载后的事件信息。
 
@@ -1171,7 +1120,7 @@ class EntityLoadAfterEvent {
 
 ### EntityRemoveAfterEventSignal 类
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 当实体移除后触发该事件信号。
 
@@ -1185,14 +1134,12 @@ class EntityRemoveAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityRemoveAfterEvent](#entityremoveafterevent-类)) => void, options?: [EntityEventOptions](#entityeventoptions-接口)) => (arg0: [EntityRemoveAfterEvent](#entityremoveafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityRemoveAfterEvent](#entityremoveafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityRemoveAfterEvent](#entityremoveafterevent-类)) => void, options?: [EntityEventOptions](#entityeventoptions-接口)) => (arg0: [EntityRemoveAfterEvent](#entityremoveafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityRemoveAfterEvent](#entityremoveafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityRemoveAfterEvent 类
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 实体移除后的事件信息。其筛选项见[实体死亡事件](#实体死亡事件)。
 
@@ -1215,7 +1162,7 @@ class EntityRemoveAfterEvent {
 
 ### EntitySpawnAfterEventSignal 类
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 当实体生成后触发该事件信号。
 
@@ -1229,14 +1176,12 @@ class EntitySpawnAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntitySpawnAfterEvent](#entityspawnafterevent-类)) => void) => (arg0: [EntitySpawnAfterEvent](#entityspawnafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntitySpawnAfterEvent](#entityspawnafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntitySpawnAfterEvent](#entityspawnafterevent-类)) => void) => (arg0: [EntitySpawnAfterEvent](#entityspawnafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntitySpawnAfterEvent](#entityspawnafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntitySpawnAfterEvent 类
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 实体生成后的事件信息。
 
@@ -1259,7 +1204,7 @@ class EntitySpawnAfterEvent {
 
 ### PlayerBreakBlockAfterEventSignal 类
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 当玩家破坏方块后触发该事件信号。
 
@@ -1276,14 +1221,12 @@ class PlayerBreakBlockAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerBreakBlockAfterEvent](#playerbreakblockafterevent-类)) => void, options?: [BlockEventOptions](#blockeventoptions-接口)) => (arg0: [PlayerBreakBlockAfterEvent](#playerbreakblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerBreakBlockAfterEvent](#playerbreakblockafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerBreakBlockAfterEvent](#playerbreakblockafterevent-类)) => void, options?: [BlockEventOptions](#blockeventoptions-接口)) => (arg0: [PlayerBreakBlockAfterEvent](#playerbreakblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerBreakBlockAfterEvent](#playerbreakblockafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerBreakBlockAfterEvent 类
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 玩家破坏方块后的事件信息。
 
@@ -1304,11 +1247,9 @@ class PlayerBreakBlockAfterEvent {
 - <ReadOnly/> <Optional/> itemStackBeforeBreak: [ItemStack](../item/main#itemstack-类)，方块被破坏前，玩家用于破坏该方块的物品；若为空手则为空。
 - <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，破坏该方块的玩家。
 
----
-
 ### BlockEventOptions 接口
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 指定方块相关事件的筛选项，可用于玩家破坏方块和玩家放置方块事件。
 
@@ -1328,7 +1269,7 @@ interface BlockEventOptions {
 
 ### PlayerDimensionChangeAfterEventSignal 类
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 当玩家维度更改后触发该事件信号。
 
@@ -1342,14 +1283,12 @@ class PlayerDimensionChangeAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerDimensionChangeAfterEvent](#playerdimensionchangeafterevent-类)) => void) => (arg0: [PlayerDimensionChangeAfterEvent](#playerdimensionchangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerDimensionChangeAfterEvent](#playerdimensionchangeafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerDimensionChangeAfterEvent](#playerdimensionchangeafterevent-类)) => void) => (arg0: [PlayerDimensionChangeAfterEvent](#playerdimensionchangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerDimensionChangeAfterEvent](#playerdimensionchangeafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerDimensionChangeAfterEvent 类
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 玩家维度更改后的事件信息。
 
@@ -1378,7 +1317,7 @@ class PlayerDimensionChangeAfterEvent {
 
 ### PlayerPlaceBlockAfterEventSignal 类
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 当玩家放置方块后触发该事件信号。
 
@@ -1395,14 +1334,12 @@ class PlayerPlaceBlockAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerPlaceBlockAfterEvent](#playerplaceblockafterevent-类)) => void, options?: [BlockEventOptions](#blockeventoptions-接口)) => (arg0: [PlayerPlaceBlockAfterEvent](#playerplaceblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerPlaceBlockAfterEvent](#playerplaceblockafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerPlaceBlockAfterEvent](#playerplaceblockafterevent-类)) => void, options?: [BlockEventOptions](#blockeventoptions-接口)) => (arg0: [PlayerPlaceBlockAfterEvent](#playerplaceblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerPlaceBlockAfterEvent](#playerplaceblockafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerPlaceBlockAfterEvent 类
 
-<Version add="1.6.0"/>
+<Version type="script" add="1.6.0"/>
 
 玩家放置方块后的事件信息。其筛选项见[玩家破坏方块事件](#玩家破坏方块事件)。
 
@@ -1423,7 +1360,7 @@ class PlayerPlaceBlockAfterEvent {
 
 ### DataDrivenEntityTriggerAfterEventSignal 类
 
-<Version add="1.8.0"/>
+<Version type="script" add="1.8.0"/>
 
 当数据驱动实体触发实体后触发该事件信号。
 
@@ -1440,14 +1377,12 @@ class DataDrivenEntityTriggerAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [DataDrivenEntityTriggerAfterEvent](#datadrivenentitytriggerafterevent-类)) => void, options?: [EntityDataDrivenTriggerEventOptions](#entitydatadriventriggereventoptions-接口)) => (arg0: [DataDrivenEntityTriggerAfterEvent](#datadrivenentitytriggerafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [DataDrivenEntityTriggerAfterEvent](#datadrivenentitytriggerafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [DataDrivenEntityTriggerAfterEvent](#datadrivenentitytriggerafterevent-类)) => void, options?: [EntityDataDrivenTriggerEventOptions](#entitydatadriventriggereventoptions-接口)) => (arg0: [DataDrivenEntityTriggerAfterEvent](#datadrivenentitytriggerafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [DataDrivenEntityTriggerAfterEvent](#datadrivenentitytriggerafterevent-类)) => void) => void，取消订阅该事件。
 
 ### DataDrivenEntityTriggerAfterEvent 类
 
-<Version add="1.8.0"/>
+<Version type="script" add="1.8.0"/>
 
 数据驱动实体触发实体后的事件信息。
 
@@ -1469,11 +1404,9 @@ class DataDrivenEntityTriggerAfterEvent {
 
 - getModifiers: () => DefinitionModifier[]，该事件对组件状态所做修改的可更新列表。
 
----
-
 ### EntityDataDrivenTriggerEventOptions 接口
 
-<Version add="1.8.0"/>
+<Version type="script" add="1.8.0"/>
 
 指定数据驱动实体触发实体事件的筛选项。
 
@@ -1495,7 +1428,7 @@ interface EntityDataDrivenTriggerEventOptions {
 
 ### EffectAddAfterEventSignal 类
 
-<Version add="1.9.0"/>
+<Version type="script" add="1.9.0"/>
 
 当添加状态效果后触发该事件信号。
 
@@ -1509,14 +1442,12 @@ class EffectAddAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EffectAddAfterEvent](#effectaddafterevent-类)) => void, options?: [EntityEventOptions](#entityeventoptions-接口)) => (arg0: [EffectAddAfterEvent](#effectaddafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EffectAddAfterEvent](#effectaddafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EffectAddAfterEvent](#effectaddafterevent-类)) => void, options?: [EntityEventOptions](#entityeventoptions-接口)) => (arg0: [EffectAddAfterEvent](#effectaddafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EffectAddAfterEvent](#effectaddafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EffectAddAfterEvent 类
 
-<Version add="1.9.0"/>
+<Version type="script" add="1.9.0"/>
 
 添加状态效果后的事件信息。其筛选项见[实体死亡事件](#实体死亡事件)。
 
@@ -1539,7 +1470,7 @@ class EffectAddAfterEvent {
 
 ### ExplosionAfterEventSignal 类
 
-<Version add="1.9.0"/>
+<Version type="script" add="1.9.0"/>
 
 当发生爆炸后触发该事件信号。
 
@@ -1553,14 +1484,12 @@ class ExplosionAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [ExplosionAfterEvent](#explosionafterevent-类)) => void) => (arg0: [ExplosionAfterEvent](#explosionafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [ExplosionAfterEvent](#explosionafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [ExplosionAfterEvent](#explosionafterevent-类)) => void) => (arg0: [ExplosionAfterEvent](#explosionafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [ExplosionAfterEvent](#explosionafterevent-类)) => void) => void，取消订阅该事件。
 
 ### ExplosionAfterEvent 类
 
-<Version add="1.9.0"/>
+<Version type="script" add="1.9.0"/>
 
 爆炸发生后的事件信息。
 
@@ -1588,7 +1517,7 @@ class ExplosionAfterEvent {
 
 ### WeatherChangeAfterEventSignal 类
 
-<Version add="1.9.0"/>
+<Version type="script" add="1.9.0"/>
 
 当天气更改后触发该事件信号。
 
@@ -1602,14 +1531,12 @@ class WeatherChangeAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [WeatherChangeAfterEvent](#weatherchangeafterevent-类)) => void) => (arg0: [WeatherChangeAfterEvent](#weatherchangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [WeatherChangeAfterEvent](#weatherchangeafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [WeatherChangeAfterEvent](#weatherchangeafterevent-类)) => void) => (arg0: [WeatherChangeAfterEvent](#weatherchangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [WeatherChangeAfterEvent](#weatherchangeafterevent-类)) => void) => void，取消订阅该事件。
 
 ### WeatherChangeAfterEvent 类
 
-<Version add="1.9.0"/>
+<Version type="script" add="1.9.0"/>
 
 天气更改后的事件信息。
 
@@ -1625,8 +1552,8 @@ class WeatherChangeAfterEvent {
 #### 属性
 
 - <ReadOnly/> dimension: string，天气发生改变的维度。
-- <ReadOnly/> newWeather: WeatherType，天气改变后的天气类型。
-- <ReadOnly/> previousWeather: WeatherType，天气改变前的天气类型。
+- <ReadOnly/> newWeather: [WeatherType](../dimension/main#weathertype-枚举)，天气改变后的天气类型。
+- <ReadOnly/> previousWeather: [WeatherType](../dimension/main#weathertype-枚举)，天气改变前的天气类型。
 
 ---
 
@@ -1634,7 +1561,7 @@ class WeatherChangeAfterEvent {
 
 ### PistonActivateAfterEventSignal 类
 
-<Version add="1.9.0"/>
+<Version type="script" add="1.9.0"/>
 
 当活塞激活后触发该事件信号。
 
@@ -1648,14 +1575,12 @@ class PistonActivateAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PistonActivateAfterEvent](#pistonactivateafterevent-类)) => void) => (arg0: [PistonActivateAfterEvent](#pistonactivateafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PistonActivateAfterEvent](#pistonactivateafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PistonActivateAfterEvent](#pistonactivateafterevent-类)) => void) => (arg0: [PistonActivateAfterEvent](#pistonactivateafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PistonActivateAfterEvent](#pistonactivateafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PistonActivateAfterEvent 类
 
-<Version add="1.9.0"/>
+<Version type="script" add="1.9.0"/>
 
 活塞激活后的事件信息。
 
@@ -1678,7 +1603,7 @@ class PistonActivateAfterEvent {
 
 ### GameRuleChangeAfterEventSignal 类
 
-<Version add="1.11.0"/>
+<Version type="script" add="1.11.0"/>
 
 当游戏规则更改后触发该事件信号。
 
@@ -1692,14 +1617,12 @@ class GameRuleChangeAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [GameRuleChangeAfterEvent](#gamerulechangeafterevent-类)) => void) => (arg0: [GameRuleChangeAfterEvent](#gamerulechangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [GameRuleChangeAfterEvent](#gamerulechangeafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [GameRuleChangeAfterEvent](#gamerulechangeafterevent-类)) => void) => (arg0: [GameRuleChangeAfterEvent](#gamerulechangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [GameRuleChangeAfterEvent](#gamerulechangeafterevent-类)) => void) => void，取消订阅该事件。
 
 ### GameRuleChangeAfterEvent 类
 
-<Version add="1.11.0"/>
+<Version type="script" add="1.11.0"/>
 
 游戏规则更改后的事件信息。
 
@@ -1722,7 +1645,7 @@ class GameRuleChangeAfterEvent {
 
 ### PlayerGameModeChangeAfterEventSignal 类
 
-<Version add="1.11.0"/>
+<Version type="script" add="1.11.0"/>
 
 当玩家游戏模式更改后触发该事件信号。
 
@@ -1736,14 +1659,12 @@ class PlayerGameModeChangeAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerGameModeChangeAfterEvent](#playergamemodechangeafterevent-类)) => void) => (arg0: [PlayerGameModeChangeAfterEvent](#playergamemodechangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerGameModeChangeAfterEvent](#playergamemodechangeafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerGameModeChangeAfterEvent](#playergamemodechangeafterevent-类)) => void) => (arg0: [PlayerGameModeChangeAfterEvent](#playergamemodechangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerGameModeChangeAfterEvent](#playergamemodechangeafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerGameModeChangeAfterEvent 类
 
-<Version add="1.11.0"/>
+<Version type="script" add="1.11.0"/>
 
 玩家游戏模式更改后的事件信息。
 
@@ -1768,7 +1689,7 @@ class PlayerGameModeChangeAfterEvent {
 
 ### PlayerInputPermissionCategoryChangeAfterEventSignal 类
 
-<Version add="1.12.0"/>
+<Version type="script" add="1.12.0"/>
 
 当玩家输入权限分类更改后触发该事件信号。
 
@@ -1784,14 +1705,12 @@ class PlayerInputPermissionCategoryChangeAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerInputPermissionCategoryChangeAfterEvent](#playerinputpermissioncategorychangeafterevent-类)) => void) => (arg0: [PlayerInputPermissionCategoryChangeAfterEvent](#playerinputpermissioncategorychangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerInputPermissionCategoryChangeAfterEvent](#playerinputpermissioncategorychangeafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerInputPermissionCategoryChangeAfterEvent](#playerinputpermissioncategorychangeafterevent-类)) => void) => (arg0: [PlayerInputPermissionCategoryChangeAfterEvent](#playerinputpermissioncategorychangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerInputPermissionCategoryChangeAfterEvent](#playerinputpermissioncategorychangeafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerInputPermissionCategoryChangeAfterEvent 类
 
-<Version add="1.12.0"/>
+<Version type="script" add="1.12.0"/>
 
 玩家输入权限分类更改后的事件信息。
 
@@ -1816,7 +1735,7 @@ class PlayerInputPermissionCategoryChangeAfterEvent {
 
 ### BlockExplodeAfterEventSignal 类
 
-<Version add="1.12.0"/>
+<Version type="script" add="1.12.0"/>
 
 当发生方块爆炸后触发该事件信号。
 
@@ -1830,14 +1749,12 @@ class BlockExplodeAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [BlockExplodeAfterEvent](#blockexplodeafterevent-类)) => void) => (arg0: [BlockExplodeAfterEvent](#blockexplodeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [BlockExplodeAfterEvent](#blockexplodeafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [BlockExplodeAfterEvent](#blockexplodeafterevent-类)) => void) => (arg0: [BlockExplodeAfterEvent](#blockexplodeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [BlockExplodeAfterEvent](#blockexplodeafterevent-类)) => void) => void，取消订阅该事件。
 
 ### BlockExplodeAfterEvent 类
 
-<Version add="1.12.0"/>
+<Version type="script" add="1.12.0"/>
 
 方块爆炸发生后的事件信息。
 
@@ -1860,7 +1777,7 @@ class BlockExplodeAfterEvent {
 
 ### PlayerEmoteAfterEventSignal 类
 
-<Version add="1.14.0"/>
+<Version type="script" add="1.14.0"/>
 
 当玩家发送表情后触发该事件信号。
 
@@ -1874,14 +1791,12 @@ class PlayerEmoteAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerEmoteAfterEvent](#playeremoteafterevent-类)) => void) => (arg0: [PlayerEmoteAfterEvent](#playeremoteafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerEmoteAfterEvent](#playeremoteafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerEmoteAfterEvent](#playeremoteafterevent-类)) => void) => (arg0: [PlayerEmoteAfterEvent](#playeremoteafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerEmoteAfterEvent](#playeremoteafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerEmoteAfterEvent 类
 
-<Version add="1.14.0"/>
+<Version type="script" add="1.14.0"/>
 
 玩家发送表情后的事件信息。
 
@@ -1904,7 +1819,7 @@ class PlayerEmoteAfterEvent {
 
 ### PlayerInteractWithBlockAfterEventSignal 类
 
-<Version add="1.15.0"/>
+<Version type="script" add="1.15.0"/>
 
 当玩家和方块交互后触发该事件信号。
 
@@ -1918,14 +1833,12 @@ class PlayerInteractWithBlockAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerInteractWithBlockAfterEvent](#playerinteractwithblockafterevent-类)) => void) => (arg0: [PlayerInteractWithBlockAfterEvent](#playerinteractwithblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerInteractWithBlockAfterEvent](#playerinteractwithblockafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerInteractWithBlockAfterEvent](#playerinteractwithblockafterevent-类)) => void) => (arg0: [PlayerInteractWithBlockAfterEvent](#playerinteractwithblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerInteractWithBlockAfterEvent](#playerinteractwithblockafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerInteractWithBlockAfterEvent 类
 
-<Version add="1.15.0"/>
+<Version type="script" add="1.15.0"/>
 
 玩家和方块交互后的事件信息。
 
@@ -1946,7 +1859,7 @@ class PlayerInteractWithBlockAfterEvent {
 
 - <ReadOnly/> <Optional/> beforeItemStack: [ItemStack](../item/main#itemstack-类)，交互成功前的物品；若为空手则为空。
 - <ReadOnly/> block: [Block](../block/main#block-类)，被交互的方块。
-- <ReadOnly/> blockFace: Direction，被交互方块的朝向。
+- <ReadOnly/> blockFace: [Direction](../general#direction-枚举)，被交互方块的朝向。
 - <ReadOnly/> faceLocation: [Vector3](../general#vector3-接口)，相对于方块西北下角的位置，用于表示物品被放置的位置。
 - <ReadOnly/> isFirstEvent: boolean，玩家首次按下交互键触发时为 true，因长按交互键而触发时为 false。
 - <ReadOnly/> <Optional/> itemStack: [ItemStack](../item/main#itemstack-类)，交互成功后的物品；若为空手则为空。
@@ -1958,7 +1871,7 @@ class PlayerInteractWithBlockAfterEvent {
 
 ### PlayerInteractWithEntityAfterEventSignal 类
 
-<Version add="1.15.0"/>
+<Version type="script" add="1.15.0"/>
 
 当玩家和实体交互后触发该事件信号。
 
@@ -1972,14 +1885,12 @@ class PlayerInteractWithEntityAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerInteractWithEntityAfterEvent](#playerinteractwithentityafterevent-类)) => void) => (arg0: [PlayerInteractWithEntityAfterEvent](#playerinteractwithentityafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerInteractWithEntityAfterEvent](#playerinteractwithentityafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerInteractWithEntityAfterEvent](#playerinteractwithentityafterevent-类)) => void) => (arg0: [PlayerInteractWithEntityAfterEvent](#playerinteractwithentityafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerInteractWithEntityAfterEvent](#playerinteractwithentityafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerInteractWithEntityAfterEvent 类
 
-<Version add="1.15.0"/>
+<Version type="script" add="1.15.0"/>
 
 玩家和实体交互后的事件信息。
 
@@ -2006,7 +1917,7 @@ class PlayerInteractWithEntityAfterEvent {
 
 ### PlayerInputModeChangeAfterEventSignal 类
 
-<Version add="1.17.0"/>
+<Version type="script" add="1.17.0"/>
 
 当玩家输入模式更改后触发该事件信号。
 
@@ -2020,14 +1931,12 @@ class PlayerInputModeChangeAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerInputModeChangeAfterEvent](#playerinputmodechangeafterevent-类)) => void) => (arg0: [PlayerInputModeChangeAfterEvent](#playerinputmodechangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerInputModeChangeAfterEvent](#playerinputmodechangeafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerInputModeChangeAfterEvent](#playerinputmodechangeafterevent-类)) => void) => (arg0: [PlayerInputModeChangeAfterEvent](#playerinputmodechangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerInputModeChangeAfterEvent](#playerinputmodechangeafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerInputModeChangeAfterEvent 类
 
-<Version add="1.17.0"/>
+<Version type="script" add="1.17.0"/>
 
 玩家输入模式更改后的事件信息。
 
@@ -2052,7 +1961,7 @@ class PlayerInputModeChangeAfterEvent {
 
 ### PlayerButtonInputAfterEventSignal 类
 
-<Version add="1.18.0"/>
+<Version type="script" add="1.18.0"/>
 
 当玩家输入按钮更改后触发该事件信号。
 
@@ -2069,14 +1978,12 @@ class PlayerButtonInputAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerButtonInputAfterEvent](#playerbuttoninputafterevent-类)) => void, options?: [InputEventOptions](#inputeventoptions-接口)) => (arg0: [PlayerButtonInputAfterEvent](#playerbuttoninputafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerButtonInputAfterEvent](#playerbuttoninputafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerButtonInputAfterEvent](#playerbuttoninputafterevent-类)) => void, options?: [InputEventOptions](#inputeventoptions-接口)) => (arg0: [PlayerButtonInputAfterEvent](#playerbuttoninputafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerButtonInputAfterEvent](#playerbuttoninputafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerButtonInputAfterEvent 类
 
-<Version add="1.18.0"/>
+<Version type="script" add="1.18.0"/>
 
 玩家输入按钮更改后的事件信息。
 
@@ -2095,11 +2002,9 @@ class PlayerButtonInputAfterEvent {
 - <ReadOnly/> newButtonState: ButtonState，该按钮转变到的状态。
 - <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，执行该输入事件的玩家。
 
----
-
 ### InputEventOptions 接口
 
-<Version add="1.18.0"/>
+<Version type="script" add="1.18.0"/>
 
 指定玩家输入按钮更改事件的筛选项。
 
@@ -2119,7 +2024,7 @@ interface InputEventOptions {
 
 ### WorldLoadAfterEventSignal 类
 
-<Version add="2.0.0"/>
+<Version type="script" add="2.0.0"/>
 
 当世界加载后触发该事件信号。
 
@@ -2133,14 +2038,12 @@ class WorldLoadAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [WorldLoadAfterEvent](#worldloadafterevent-类)) => void) => (arg0: [WorldLoadAfterEvent](#worldloadafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [WorldLoadAfterEvent](#worldloadafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [WorldLoadAfterEvent](#worldloadafterevent-类)) => void) => (arg0: [WorldLoadAfterEvent](#worldloadafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [WorldLoadAfterEvent](#worldloadafterevent-类)) => void) => void，取消订阅该事件。
 
 ### WorldLoadAfterEvent 类
 
-<Version add="2.0.0"/>
+<Version type="script" add="2.0.0"/>
 
 世界加载后的事件信息。
 
@@ -2156,7 +2059,7 @@ class WorldLoadAfterEvent {
 
 ### PlayerHotbarSelectedSlotChangeAfterEventSignal 类
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 当玩家快捷栏选择槽位更改后触发该事件信号。
 
@@ -2173,14 +2076,12 @@ class PlayerHotbarSelectedSlotChangeAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerHotbarSelectedSlotChangeAfterEvent](#playerhotbarselectedslotchangeafterevent-类)) => void, options?: [HotbarEventOptions](#hotbareventoptions-接口)) => (arg0: [PlayerHotbarSelectedSlotChangeAfterEvent](#playerhotbarselectedslotchangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerHotbarSelectedSlotChangeAfterEvent](#playerhotbarselectedslotchangeafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerHotbarSelectedSlotChangeAfterEvent](#playerhotbarselectedslotchangeafterevent-类)) => void, options?: [HotbarEventOptions](#hotbareventoptions-接口)) => (arg0: [PlayerHotbarSelectedSlotChangeAfterEvent](#playerhotbarselectedslotchangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerHotbarSelectedSlotChangeAfterEvent](#playerhotbarselectedslotchangeafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerHotbarSelectedSlotChangeAfterEvent 类
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 玩家快捷栏选择槽位更改后的事件信息。
 
@@ -2201,11 +2102,9 @@ class PlayerHotbarSelectedSlotChangeAfterEvent {
 - <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，该事件对应的玩家。
 - <ReadOnly/> previousSlotSelected: number，原来选中的快捷栏槽位索引。
 
----
-
 ### HotbarEventOptions 接口
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 指定玩家快捷栏选择槽位更改事件的筛选项。
 
@@ -2223,7 +2122,7 @@ interface HotbarEventOptions {
 
 ### PlayerInventoryItemChangeAfterEventSignal 类
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 当玩家物品栏物品更改后触发该事件信号。
 
@@ -2240,14 +2139,12 @@ class PlayerInventoryItemChangeAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerInventoryItemChangeAfterEvent](#playerinventoryitemchangeafterevent-类)) => void, options?: [InventoryItemEventOptions](#inventoryitemeventoptions-接口)) => (arg0: [PlayerInventoryItemChangeAfterEvent](#playerinventoryitemchangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerInventoryItemChangeAfterEvent](#playerinventoryitemchangeafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerInventoryItemChangeAfterEvent](#playerinventoryitemchangeafterevent-类)) => void, options?: [InventoryItemEventOptions](#inventoryitemeventoptions-接口)) => (arg0: [PlayerInventoryItemChangeAfterEvent](#playerinventoryitemchangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerInventoryItemChangeAfterEvent](#playerinventoryitemchangeafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerInventoryItemChangeAfterEvent 类
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 玩家物品栏物品更改后的事件信息。
 
@@ -2270,11 +2167,9 @@ class PlayerInventoryItemChangeAfterEvent {
 - <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，该事件对应的玩家。
 - <ReadOnly/> slot: number，发生改变的槽位索引。
 
----
-
 ### InventoryItemEventOptions 接口
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 指定玩家物品栏物品更改事件的筛选项。
 
@@ -2298,11 +2193,9 @@ interface InventoryItemEventOptions {
 - <Optional/> includeTags: string[]，需要关注的物品标签。
 - <Optional/> inventoryType: [PlayerInventoryType](#playerinventorytype-枚举)，需要关注的玩家物品栏类型。
 
----
-
 ### PlayerInventoryType 枚举
 
-<Version add="2.1.0"/>
+<Version type="script" add="2.1.0"/>
 
 变更的物品栏类型。
 
@@ -2319,7 +2212,7 @@ enum PlayerInventoryType {
 
 ### PlayerSwingStartAfterEventSignal 类
 
-<Version add="2.5.0"/>
+<Version type="script" add="2.5.0"/>
 
 当玩家开始挥舞后触发该事件信号。
 
@@ -2336,14 +2229,12 @@ class PlayerSwingStartAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerSwingStartAfterEvent](#playerswingstartafterevent-类)) => void, options?: [PlayerSwingEventOptions](#playerswingeventoptions-接口)) => (arg0: [PlayerSwingStartAfterEvent](#playerswingstartafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerSwingStartAfterEvent](#playerswingstartafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerSwingStartAfterEvent](#playerswingstartafterevent-类)) => void, options?: [PlayerSwingEventOptions](#playerswingeventoptions-接口)) => (arg0: [PlayerSwingStartAfterEvent](#playerswingstartafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerSwingStartAfterEvent](#playerswingstartafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerSwingStartAfterEvent 类
 
-<Version add="2.5.0"/>
+<Version type="script" add="2.5.0"/>
 
 玩家开始挥舞后的事件信息。
 
@@ -2362,11 +2253,9 @@ class PlayerSwingStartAfterEvent {
 - <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，该事件对应的玩家。
 - <ReadOnly/> swingSource: EntitySwingSource，玩家挥舞的来源，见 EntitySwingSource。
 
----
-
 ### PlayerSwingEventOptions 接口
 
-<Version add="2.5.0"/>
+<Version type="script" add="2.5.0"/>
 
 指定玩家开始挥舞事件的筛选项。
 
@@ -2386,7 +2275,7 @@ interface PlayerSwingEventOptions {
 
 ### EntityHealAfterEventSignal 类
 
-<Version add="2.6.0"/>
+<Version type="script" add="2.6.0"/>
 
 当实体回复生命后触发该事件信号。
 
@@ -2400,14 +2289,12 @@ class EntityHealAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityHealAfterEvent](#entityhealafterevent-类)) => void, options?: [EntityHealEventOptions](#entityhealeventoptions-接口)) => (arg0: [EntityHealAfterEvent](#entityhealafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityHealAfterEvent](#entityhealafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityHealAfterEvent](#entityhealafterevent-类)) => void, options?: [EntityHealEventOptions](#entityhealeventoptions-接口)) => (arg0: [EntityHealAfterEvent](#entityhealafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityHealAfterEvent](#entityhealafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityHealAfterEvent 类
 
-<Version add="2.6.0"/>
+<Version type="script" add="2.6.0"/>
 
 实体回复生命后的事件信息。
 
@@ -2426,11 +2313,9 @@ class EntityHealAfterEvent {
 - <ReadOnly/> healing: number，治疗的数值。
 - <ReadOnly/> healSource: EntityHealSource，治疗的来源信息。
 
----
-
 ### EntityHealEventOptions 接口
 
-<Version add="2.6.0"/>
+<Version type="script" add="2.6.0"/>
 
 指定实体生命值相关事件的筛选项，可用于实体生命值改变和实体回复生命事件。
 
@@ -2442,7 +2327,7 @@ interface EntityHealEventOptions {
 ```
 
 - <Optional/> allowedHealCauses: EntityHealCause[]，若设置，该事件只会在治疗原因匹配时触发。
-- <Optional/> entityFilter: EntityFilter，若设置，该事件只会对匹配的实体触发。
+- <Optional/> entityFilter: [EntityFilter](../entity_and_player/entity#entityfilter-接口)，若设置，该事件只会对匹配的实体触发。
 
 ---
 
@@ -2450,7 +2335,7 @@ interface EntityHealEventOptions {
 
 ### EntityItemDropAfterEventSignal 类
 
-<Version add="2.6.0"/>
+<Version type="script" add="2.6.0"/>
 
 当实体掉落物品后触发该事件信号。
 
@@ -2467,14 +2352,12 @@ class EntityItemDropAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityItemDropAfterEvent](#entityitemdropafterevent-类)) => void, options?: [EntityItemDropEventOptions](#entityitemdropeventoptions-接口)) => (arg0: [EntityItemDropAfterEvent](#entityitemdropafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityItemDropAfterEvent](#entityitemdropafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityItemDropAfterEvent](#entityitemdropafterevent-类)) => void, options?: [EntityItemDropEventOptions](#entityitemdropeventoptions-接口)) => (arg0: [EntityItemDropAfterEvent](#entityitemdropafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityItemDropAfterEvent](#entityitemdropafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityItemDropAfterEvent 类
 
-<Version add="2.6.0"/>
+<Version type="script" add="2.6.0"/>
 
 物品实体掉落后的事件信息。
 
@@ -2491,11 +2374,9 @@ class EntityItemDropAfterEvent {
 - <ReadOnly/> entity: [Entity](../entity_and_player/entity#entity-类)，掉落物品的实体。
 - <ReadOnly/> items: [Entity](../entity_and_player/entity#entity-类)[]，实体掉落的物品列表。
 
----
-
 ### EntityItemDropEventOptions 接口
 
-<Version add="2.6.0"/>
+<Version type="script" add="2.6.0"/>
 
 指定物品实体掉落事件的筛选项。
 
@@ -2506,7 +2387,7 @@ interface EntityItemDropEventOptions {
 }
 ```
 
-- <Optional/> entityFilter: EntityFilter，若设置，该事件只会对匹配的实体触发。
+- <Optional/> entityFilter: [EntityFilter](../entity_and_player/entity#entityfilter-接口)，若设置，该事件只会对匹配的实体触发。
 - <Optional/> itemFilter: ItemFilter，若设置，该事件只会在事件中的某一物品匹配时触发。
 
 ---
@@ -2515,7 +2396,7 @@ interface EntityItemDropEventOptions {
 
 ### EntityItemPickupAfterEventSignal 类
 
-<Version add="2.6.0"/>
+<Version type="script" add="2.6.0"/>
 
 当实体拾取物品后触发该事件信号。
 
@@ -2532,14 +2413,12 @@ class EntityItemPickupAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityItemPickupAfterEvent](#entityitempickupafterevent-类)) => void, options?: [EntityItemPickupEventOptions](#entityitempickupeventoptions-接口)) => (arg0: [EntityItemPickupAfterEvent](#entityitempickupafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityItemPickupAfterEvent](#entityitempickupafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityItemPickupAfterEvent](#entityitempickupafterevent-类)) => void, options?: [EntityItemPickupEventOptions](#entityitempickupeventoptions-接口)) => (arg0: [EntityItemPickupAfterEvent](#entityitempickupafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityItemPickupAfterEvent](#entityitempickupafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityItemPickupAfterEvent 类
 
-<Version add="2.6.0"/>
+<Version type="script" add="2.6.0"/>
 
 实体拾取物品后的事件信息。
 
@@ -2556,11 +2435,9 @@ class EntityItemPickupAfterEvent {
 - <ReadOnly/> entity: [Entity](../entity_and_player/entity#entity-类)，拾取物品的实体。
 - <ReadOnly/> items: [ItemStack](../item/main#itemstack-类)[]，实体拾取的物品列表。
 
----
-
 ### EntityItemPickupEventOptions 接口
 
-<Version add="2.6.0"/>
+<Version type="script" add="2.6.0"/>
 
 指定实体拾取物品事件的筛选项。
 
@@ -2571,7 +2448,7 @@ interface EntityItemPickupEventOptions {
 }
 ```
 
-- <Optional/> entityFilter: EntityFilter，若设置，该事件只会对匹配的实体触发。
+- <Optional/> entityFilter: [EntityFilter](../entity_and_player/entity#entityfilter-接口)，若设置，该事件只会对匹配的实体触发。
 - <Optional/> itemFilter: ItemFilter，若设置，该事件只会在事件中的某一物品匹配时触发。
 
 ---
@@ -2580,7 +2457,7 @@ interface EntityItemPickupEventOptions {
 
 ### BlockContainerClosedAfterEventSignal 类
 
-<Version add="2.8.0"/>
+<Version type="script" add="2.8.0"/>
 
 当方块容器关闭后触发该事件信号。
 
@@ -2597,14 +2474,12 @@ class BlockContainerClosedAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [BlockContainerClosedAfterEvent](#blockcontainerclosedafterevent-类)) => void, options?: [BlockContainerAccessEventOptions](#blockcontaineraccesseventoptions-接口)) => (arg0: [BlockContainerClosedAfterEvent](#blockcontainerclosedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [BlockContainerClosedAfterEvent](#blockcontainerclosedafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [BlockContainerClosedAfterEvent](#blockcontainerclosedafterevent-类)) => void, options?: [BlockContainerAccessEventOptions](#blockcontaineraccesseventoptions-接口)) => (arg0: [BlockContainerClosedAfterEvent](#blockcontainerclosedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [BlockContainerClosedAfterEvent](#blockcontainerclosedafterevent-类)) => void) => void，取消订阅该事件。
 
 ### BlockContainerClosedAfterEvent 类
 
-<Version add="2.8.0"/>
+<Version type="script" add="2.8.0"/>
 
 方块容器关闭后的事件信息。
 
@@ -2619,11 +2494,9 @@ class BlockContainerClosedAfterEvent {
 
 - closeSource: ContainerAccessSource，方块容器被关闭的来源。
 
----
-
 ### BlockContainerAccessEventOptions 接口
 
-<Version add="2.8.0"/>
+<Version type="script" add="2.8.0"/>
 
 指定方块容器访问事件的筛选项，可用于方块容器关闭和方块容器打开事件。
 
@@ -2635,7 +2508,7 @@ interface BlockContainerAccessEventOptions {
 ```
 
 - <Optional/> accessSourceFilter: ContainerAccessSourceFilter，若提供，用于筛选哪些容器访问来源可以触发该事件。
-- <Optional/> blockFilter: BlockFilter，若提供，用于筛选哪些容器方块可以触发该事件。
+- <Optional/> blockFilter: [BlockFilter](../dimension/volume#blockfilter-接口)，若提供，用于筛选哪些容器方块可以触发该事件。
 
 ---
 
@@ -2643,7 +2516,7 @@ interface BlockContainerAccessEventOptions {
 
 ### BlockContainerOpenedAfterEventSignal 类
 
-<Version add="2.8.0"/>
+<Version type="script" add="2.8.0"/>
 
 当方块容器打开后触发该事件信号。
 
@@ -2660,14 +2533,12 @@ class BlockContainerOpenedAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [BlockContainerOpenedAfterEvent](#blockcontaineropenedafterevent-类)) => void, options?: [BlockContainerAccessEventOptions](#blockcontaineraccesseventoptions-接口)) => (arg0: [BlockContainerOpenedAfterEvent](#blockcontaineropenedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [BlockContainerOpenedAfterEvent](#blockcontaineropenedafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [BlockContainerOpenedAfterEvent](#blockcontaineropenedafterevent-类)) => void, options?: [BlockContainerAccessEventOptions](#blockcontaineraccesseventoptions-接口)) => (arg0: [BlockContainerOpenedAfterEvent](#blockcontaineropenedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [BlockContainerOpenedAfterEvent](#blockcontaineropenedafterevent-类)) => void) => void，取消订阅该事件。
 
 ### BlockContainerOpenedAfterEvent 类
 
-<Version add="2.8.0"/>
+<Version type="script" add="2.8.0"/>
 
 方块容器打开后的事件信息。其筛选项见[方块容器关闭事件](#方块容器关闭事件)。
 
@@ -2688,7 +2559,7 @@ class BlockContainerOpenedAfterEvent {
 
 ### EntityContainerClosedAfterEventSignal 类
 
-<Version add="2.8.0"/>
+<Version type="script" add="2.8.0"/>
 
 当实体容器关闭后触发该事件信号。
 
@@ -2705,14 +2576,12 @@ class EntityContainerClosedAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityContainerClosedAfterEvent](#entitycontainerclosedafterevent-类)) => void, options?: [EntityContainerAccessEventOptions](#entitycontaineraccesseventoptions-接口)) => (arg0: [EntityContainerClosedAfterEvent](#entitycontainerclosedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityContainerClosedAfterEvent](#entitycontainerclosedafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityContainerClosedAfterEvent](#entitycontainerclosedafterevent-类)) => void, options?: [EntityContainerAccessEventOptions](#entitycontaineraccesseventoptions-接口)) => (arg0: [EntityContainerClosedAfterEvent](#entitycontainerclosedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityContainerClosedAfterEvent](#entitycontainerclosedafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityContainerClosedAfterEvent 类
 
-<Version add="2.8.0"/>
+<Version type="script" add="2.8.0"/>
 
 实体容器关闭后的事件信息。
 
@@ -2729,11 +2598,9 @@ class EntityContainerClosedAfterEvent {
 - <ReadOnly/> closeSource: ContainerAccessSource，实体容器被关闭的来源。
 - <ReadOnly/> entity: [Entity](../entity_and_player/entity#entity-类)，容器被关闭的实体。
 
----
-
 ### EntityContainerAccessEventOptions 接口
 
-<Version add="2.8.0"/>
+<Version type="script" add="2.8.0"/>
 
 指定实体容器访问事件的筛选项，可用于实体容器关闭和实体容器打开事件。
 
@@ -2745,7 +2612,7 @@ interface EntityContainerAccessEventOptions {
 ```
 
 - <Optional/> accessSourceFilter: ContainerAccessSourceFilter，若提供，用于筛选哪些容器访问来源可以触发该事件。
-- <Optional/> entityFilter: EntityFilter，若提供，用于筛选哪些实体容器可以触发该事件。
+- <Optional/> entityFilter: [EntityFilter](../entity_and_player/entity#entityfilter-接口)，若提供，用于筛选哪些实体容器可以触发该事件。
 
 ---
 
@@ -2753,7 +2620,7 @@ interface EntityContainerAccessEventOptions {
 
 ### EntityContainerOpenedAfterEventSignal 类
 
-<Version add="2.8.0"/>
+<Version type="script" add="2.8.0"/>
 
 当实体容器打开后触发该事件信号。
 
@@ -2770,14 +2637,12 @@ class EntityContainerOpenedAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityContainerOpenedAfterEvent](#entitycontaineropenedafterevent-类)) => void, options?: [EntityContainerAccessEventOptions](#entitycontaineraccesseventoptions-接口)) => (arg0: [EntityContainerOpenedAfterEvent](#entitycontaineropenedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityContainerOpenedAfterEvent](#entitycontaineropenedafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityContainerOpenedAfterEvent](#entitycontaineropenedafterevent-类)) => void, options?: [EntityContainerAccessEventOptions](#entitycontaineraccesseventoptions-接口)) => (arg0: [EntityContainerOpenedAfterEvent](#entitycontaineropenedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityContainerOpenedAfterEvent](#entitycontaineropenedafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityContainerOpenedAfterEvent 类
 
-<Version add="2.8.0"/>
+<Version type="script" add="2.8.0"/>
 
 实体容器打开后的事件信息。其筛选项见[实体容器关闭事件](#实体容器关闭事件)。
 
@@ -2802,7 +2667,7 @@ class EntityContainerOpenedAfterEvent {
 
 ### EntityUpgradeAfterEventSignal 类
 
-<Version add="2.8.0"/>
+<Version type="script" add="2.8.0"/>
 
 当实体更新后触发该事件信号。
 
@@ -2819,14 +2684,12 @@ class EntityUpgradeAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityUpgradeAfterEvent](#entityupgradeafterevent-类)) => void, options?: [EntityDataDrivenTriggerEventOptions](#entitydatadriventriggereventoptions-接口)) => (arg0: [EntityUpgradeAfterEvent](#entityupgradeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityUpgradeAfterEvent](#entityupgradeafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityUpgradeAfterEvent](#entityupgradeafterevent-类)) => void, options?: [EntityDataDrivenTriggerEventOptions](#entitydatadriventriggereventoptions-接口)) => (arg0: [EntityUpgradeAfterEvent](#entityupgradeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityUpgradeAfterEvent](#entityupgradeafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityUpgradeAfterEvent 类
 
-<Version add="2.8.0"/>
+<Version type="script" add="2.8.0"/>
 
 实体更新后的事件信息。其筛选项见[数据驱动实体触发实体事件](#数据驱动实体触发实体事件)。
 
@@ -2854,7 +2717,7 @@ class EntityUpgradeAfterEvent {
 
 ### PlayerCancelBreakingBlockAfterEventSignal 类
 
-<Version add="2.9.0"/>
+<Version type="script" add="2.9.0"/>
 
 当玩家取消破坏方块后触发该事件信号。
 
@@ -2871,14 +2734,12 @@ class PlayerCancelBreakingBlockAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerCancelBreakingBlockAfterEvent](#playercancelbreakingblockafterevent-类)) => void, options?: [PlayerBreakingBlockEventOptions](#playerbreakingblockeventoptions-接口)) => (arg0: [PlayerCancelBreakingBlockAfterEvent](#playercancelbreakingblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerCancelBreakingBlockAfterEvent](#playercancelbreakingblockafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerCancelBreakingBlockAfterEvent](#playercancelbreakingblockafterevent-类)) => void, options?: [PlayerBreakingBlockEventOptions](#playerbreakingblockeventoptions-接口)) => (arg0: [PlayerCancelBreakingBlockAfterEvent](#playercancelbreakingblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerCancelBreakingBlockAfterEvent](#playercancelbreakingblockafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerCancelBreakingBlockAfterEvent 类
 
-<Version add="2.9.0"/>
+<Version type="script" add="2.9.0"/>
 
 玩家取消破坏方块后的事件信息。
 
@@ -2897,15 +2758,13 @@ class PlayerCancelBreakingBlockAfterEvent {
 
 - <ReadOnly/> blockPermutation: [BlockPermutation](../block/main#blockpermutation-类)，玩家取消破坏时方块的状态。
 - <ReadOnly/> breakProgress: number，玩家取消破坏时的破坏进度，范围为开区间 (0, 1)。
-- <ReadOnly/> face: Direction，正在被破坏的方块的朝向。
+- <ReadOnly/> face: [Direction](../general#direction-枚举)，正在被破坏的方块的朝向。
 - <ReadOnly/> <Optional/> heldItemStack: [ItemStack](../item/main#itemstack-类)，玩家用于破坏该方块的物品；若为空手则为空。
 - <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，取消破坏该方块的玩家。
 
----
-
 ### PlayerBreakingBlockEventOptions 接口
 
-<Version add="2.9.0"/>
+<Version type="script" add="2.9.0"/>
 
 指定玩家破坏方块相关事件的筛选项，可用于玩家取消破坏方块和玩家开始破坏方块事件。
 
@@ -2916,8 +2775,8 @@ interface PlayerBreakingBlockEventOptions {
 }
 ```
 
-- <Optional/> blockFilter: BlockFilter，需要调用回调的方块筛选项，见 BlockFilter。若为空，则对所有方块调用回调。
-- <Optional/> playerFilter: EntityFilter，需要调用回调的玩家筛选项，见 EntityFilter。若为空，则对所有玩家调用回调。
+- <Optional/> blockFilter: [BlockFilter](../dimension/volume#blockfilter-接口)，需要调用回调的方块筛选项，见 BlockFilter。若为空，则对所有方块调用回调。
+- <Optional/> playerFilter: [EntityFilter](../entity_and_player/entity#entityfilter-接口)，需要调用回调的玩家筛选项，见 EntityFilter。若为空，则对所有玩家调用回调。
 
 ---
 
@@ -2925,7 +2784,7 @@ interface PlayerBreakingBlockEventOptions {
 
 ### PlayerStartBreakingBlockAfterEventSignal 类
 
-<Version add="2.9.0"/>
+<Version type="script" add="2.9.0"/>
 
 当玩家开始破坏方块后触发该事件信号。
 
@@ -2942,14 +2801,12 @@ class PlayerStartBreakingBlockAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerStartBreakingBlockAfterEvent](#playerstartbreakingblockafterevent-类)) => void, options?: [PlayerBreakingBlockEventOptions](#playerbreakingblockeventoptions-接口)) => (arg0: [PlayerStartBreakingBlockAfterEvent](#playerstartbreakingblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerStartBreakingBlockAfterEvent](#playerstartbreakingblockafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerStartBreakingBlockAfterEvent](#playerstartbreakingblockafterevent-类)) => void, options?: [PlayerBreakingBlockEventOptions](#playerbreakingblockeventoptions-接口)) => (arg0: [PlayerStartBreakingBlockAfterEvent](#playerstartbreakingblockafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerStartBreakingBlockAfterEvent](#playerstartbreakingblockafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerStartBreakingBlockAfterEvent 类
 
-<Version add="2.9.0"/>
+<Version type="script" add="2.9.0"/>
 
 玩家开始破坏方块后的事件信息。其筛选项见[玩家取消破坏方块事件](#玩家取消破坏方块事件)。
 
@@ -2966,7 +2823,7 @@ class PlayerStartBreakingBlockAfterEvent {
 #### 属性
 
 - <ReadOnly/> blockPermutation: [BlockPermutation](../block/main#blockpermutation-类)，玩家开始破坏的方块的状态。
-- <ReadOnly/> face: Direction，正在被破坏的方块的朝向。
+- <ReadOnly/> face: [Direction](../general#direction-枚举)，正在被破坏的方块的朝向。
 - <ReadOnly/> <Optional/> heldItemStack: [ItemStack](../item/main#itemstack-类)，玩家用于破坏该方块的物品；若为空手则为空。
 - <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，开始破坏该方块的玩家。
 
@@ -2976,7 +2833,7 @@ class PlayerStartBreakingBlockAfterEvent {
 
 ### EntityStartSneakingAfterEventSignal 类
 
-<Version add="2.10.0"/>
+<Version type="script" add="2.10.0"/>
 
 当实体开始潜行后触发该事件信号。
 
@@ -2993,14 +2850,12 @@ class EntityStartSneakingAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityStartSneakingAfterEvent](#entitystartsneakingafterevent-类)) => void, options?: [EntitySneakingChangedEventOptions](#entitysneakingchangedeventoptions-接口)) => (arg0: [EntityStartSneakingAfterEvent](#entitystartsneakingafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityStartSneakingAfterEvent](#entitystartsneakingafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityStartSneakingAfterEvent](#entitystartsneakingafterevent-类)) => void, options?: [EntitySneakingChangedEventOptions](#entitysneakingchangedeventoptions-接口)) => (arg0: [EntityStartSneakingAfterEvent](#entitystartsneakingafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityStartSneakingAfterEvent](#entitystartsneakingafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityStartSneakingAfterEvent 类
 
-<Version add="2.10.0"/>
+<Version type="script" add="2.10.0"/>
 
 实体开始潜行后的事件信息。
 
@@ -3015,11 +2870,9 @@ class EntityStartSneakingAfterEvent {
 
 - <ReadOnly/> entity: [Entity](../entity_and_player/entity#entity-类)，开始潜行的实体。
 
----
-
 ### EntitySneakingChangedEventOptions 接口
 
-<Version add="2.10.0"/>
+<Version type="script" add="2.10.0"/>
 
 指定实体潜行相关事件的筛选项，可用于实体开始潜行和实体停止潜行事件。
 
@@ -3029,7 +2882,7 @@ interface EntitySneakingChangedEventOptions {
 }
 ```
 
-- <Optional/> entityFilter: EntityFilter，需要关注的实体筛选项。
+- <Optional/> entityFilter: [EntityFilter](../entity_and_player/entity#entityfilter-接口)，需要关注的实体筛选项。
 
 ---
 
@@ -3037,7 +2890,7 @@ interface EntitySneakingChangedEventOptions {
 
 ### EntityStopSneakingAfterEventSignal 类
 
-<Version add="2.10.0"/>
+<Version type="script" add="2.10.0"/>
 
 当实体停止潜行后触发该事件信号。
 
@@ -3054,14 +2907,12 @@ class EntityStopSneakingAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityStopSneakingAfterEvent](#entitystopsneakingafterevent-类)) => void, options?: [EntitySneakingChangedEventOptions](#entitysneakingchangedeventoptions-接口)) => (arg0: [EntityStopSneakingAfterEvent](#entitystopsneakingafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityStopSneakingAfterEvent](#entitystopsneakingafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityStopSneakingAfterEvent](#entitystopsneakingafterevent-类)) => void, options?: [EntitySneakingChangedEventOptions](#entitysneakingchangedeventoptions-接口)) => (arg0: [EntityStopSneakingAfterEvent](#entitystopsneakingafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityStopSneakingAfterEvent](#entitystopsneakingafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityStopSneakingAfterEvent 类
 
-<Version add="2.10.0"/>
+<Version type="script" add="2.10.0"/>
 
 实体停止潜行后的事件信息。其筛选项见[实体开始潜行事件](#实体开始潜行事件)。
 
@@ -3082,7 +2933,7 @@ class EntityStopSneakingAfterEvent {
 
 ### EntityTamedAfterEventSignal 类
 
-<Version add="2.10.0"/>
+<Version type="script" add="2.10.0"/>
 
 当实体被驯服后触发该事件信号。
 
@@ -3099,14 +2950,12 @@ class EntityTamedAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [EntityTamedAfterEvent](#entitytamedafterevent-类)) => void, options?: [EntityTamedEventOptions](#entitytamedeventoptions-接口)) => (arg0: [EntityTamedAfterEvent](#entitytamedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityTamedAfterEvent](#entitytamedafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [EntityTamedAfterEvent](#entitytamedafterevent-类)) => void, options?: [EntityTamedEventOptions](#entitytamedeventoptions-接口)) => (arg0: [EntityTamedAfterEvent](#entitytamedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [EntityTamedAfterEvent](#entitytamedafterevent-类)) => void) => void，取消订阅该事件。
 
 ### EntityTamedAfterEvent 类
 
-<Version add="2.10.0"/>
+<Version type="script" add="2.10.0"/>
 
 实体被驯服后的事件信息。
 
@@ -3123,11 +2972,9 @@ class EntityTamedAfterEvent {
 - <ReadOnly/> entity: [Entity](../entity_and_player/entity#entity-类)，被驯服的实体。
 - <ReadOnly/> tamingEntity: [Entity](../entity_and_player/entity#entity-类)，驯服该实体的实体。
 
----
-
 ### EntityTamedEventOptions 接口
 
-<Version add="2.10.0"/>
+<Version type="script" add="2.10.0"/>
 
 指定实体被驯服事件的筛选项。
 
@@ -3138,8 +2985,8 @@ interface EntityTamedEventOptions {
 }
 ```
 
-- <Optional/> entityFilter: EntityFilter，需要关注的实体筛选项。
-- <Optional/> tamingEntityFilter: EntityFilter，需要关注的驯服者筛选项。
+- <Optional/> entityFilter: [EntityFilter](../entity_and_player/entity#entityfilter-接口)，需要关注的实体筛选项。
+- <Optional/> tamingEntityFilter: [EntityFilter](../entity_and_player/entity#entityfilter-接口)，需要关注的驯服者筛选项。
 
 ---
 
@@ -3147,7 +2994,7 @@ interface EntityTamedEventOptions {
 
 ### SoundCompletedAfterEventSignal 类
 
-<Version add="2.10.0"/>
+<Version type="script" add="2.10.0"/>
 
 当音效播放完毕后触发该事件信号。
 
@@ -3161,14 +3008,12 @@ class SoundCompletedAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [SoundCompletedAfterEvent](#soundcompletedafterevent-类)) => void) => (arg0: [SoundCompletedAfterEvent](#soundcompletedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [SoundCompletedAfterEvent](#soundcompletedafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [SoundCompletedAfterEvent](#soundcompletedafterevent-类)) => void) => (arg0: [SoundCompletedAfterEvent](#soundcompletedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [SoundCompletedAfterEvent](#soundcompletedafterevent-类)) => void) => void，取消订阅该事件。
 
 ### SoundCompletedAfterEvent 类
 
-<Version add="2.10.0"/>
+<Version type="script" add="2.10.0"/>
 
 音效播放完毕后的事件信息。
 
@@ -3189,7 +3034,7 @@ class SoundCompletedAfterEvent {
 
 ### WorldClockOnPausedAfterEventSignal 类
 
-<Version add="2.11.0"/>
+<Version type="script" add="2.11.0"/>
 
 当世界时钟暂停后触发该事件信号。
 
@@ -3206,14 +3051,12 @@ class WorldClockOnPausedAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [WorldClockOnPausedAfterEvent](#worldclockonpausedafterevent-类)) => void, options?: [WorldClockEventOptions](#worldclockeventoptions-接口)) => (arg0: [WorldClockOnPausedAfterEvent](#worldclockonpausedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [WorldClockOnPausedAfterEvent](#worldclockonpausedafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [WorldClockOnPausedAfterEvent](#worldclockonpausedafterevent-类)) => void, options?: [WorldClockEventOptions](#worldclockeventoptions-接口)) => (arg0: [WorldClockOnPausedAfterEvent](#worldclockonpausedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [WorldClockOnPausedAfterEvent](#worldclockonpausedafterevent-类)) => void) => void，取消订阅该事件。
 
 ### WorldClockOnPausedAfterEvent 类
 
-<Version add="2.11.0"/>
+<Version type="script" add="2.11.0"/>
 
 世界时钟暂停后的事件信息。
 
@@ -3226,13 +3069,11 @@ class WorldClockOnPausedAfterEvent {
 
 #### 属性
 
-- <ReadOnly/> clock: WorldClock，被暂停的世界时钟。
-
----
+- <ReadOnly/> clock: [WorldClock](./world_clock#worldclock-类)，被暂停的世界时钟。
 
 ### WorldClockEventOptions 接口
 
-<Version add="2.11.0"/>
+<Version type="script" add="2.11.0"/>
 
 指定世界时钟相关事件的筛选项，可用于世界时钟暂停、世界时钟恢复和世界时钟时间更改事件。
 
@@ -3250,7 +3091,7 @@ interface WorldClockEventOptions {
 
 ### WorldClockOnResumedAfterEventSignal 类
 
-<Version add="2.11.0"/>
+<Version type="script" add="2.11.0"/>
 
 当世界时钟恢复后触发该事件信号。
 
@@ -3267,14 +3108,12 @@ class WorldClockOnResumedAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [WorldClockOnResumedAfterEvent](#worldclockonresumedafterevent-类)) => void, options?: [WorldClockEventOptions](#worldclockeventoptions-接口)) => (arg0: [WorldClockOnResumedAfterEvent](#worldclockonresumedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [WorldClockOnResumedAfterEvent](#worldclockonresumedafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [WorldClockOnResumedAfterEvent](#worldclockonresumedafterevent-类)) => void, options?: [WorldClockEventOptions](#worldclockeventoptions-接口)) => (arg0: [WorldClockOnResumedAfterEvent](#worldclockonresumedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [WorldClockOnResumedAfterEvent](#worldclockonresumedafterevent-类)) => void) => void，取消订阅该事件。
 
 ### WorldClockOnResumedAfterEvent 类
 
-<Version add="2.11.0"/>
+<Version type="script" add="2.11.0"/>
 
 世界时钟恢复后的事件信息。其筛选项见[世界时钟暂停事件](#世界时钟暂停事件)。
 
@@ -3287,7 +3126,7 @@ class WorldClockOnResumedAfterEvent {
 
 #### 属性
 
-- <ReadOnly/> clock: WorldClock，被恢复的世界时钟。
+- <ReadOnly/> clock: [WorldClock](./world_clock#worldclock-类)，被恢复的世界时钟。
 
 ---
 
@@ -3295,7 +3134,7 @@ class WorldClockOnResumedAfterEvent {
 
 ### WorldClockOnTimeMarkerAfterEventSignal 类
 
-<Version add="2.11.0"/>
+<Version type="script" add="2.11.0"/>
 
 当世界时钟的时间到达时间标记后触发该事件信号。
 
@@ -3312,14 +3151,12 @@ class WorldClockOnTimeMarkerAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [WorldClockOnTimeMarkerAfterEvent](#worldclockontimemarkerafterevent-类)) => void, options?: [WorldClockTimeMarkerEventOptions](#worldclocktimemarkereventoptions-接口)) => (arg0: [WorldClockOnTimeMarkerAfterEvent](#worldclockontimemarkerafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [WorldClockOnTimeMarkerAfterEvent](#worldclockontimemarkerafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [WorldClockOnTimeMarkerAfterEvent](#worldclockontimemarkerafterevent-类)) => void, options?: [WorldClockTimeMarkerEventOptions](#worldclocktimemarkereventoptions-接口)) => (arg0: [WorldClockOnTimeMarkerAfterEvent](#worldclockontimemarkerafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [WorldClockOnTimeMarkerAfterEvent](#worldclockontimemarkerafterevent-类)) => void) => void，取消订阅该事件。
 
 ### WorldClockOnTimeMarkerAfterEvent 类
 
-<Version add="2.11.0"/>
+<Version type="script" add="2.11.0"/>
 
 世界时钟的时间到达时间标记后的事件信息。
 
@@ -3333,14 +3170,12 @@ class WorldClockOnTimeMarkerAfterEvent {
 
 #### 属性
 
-- <ReadOnly/> clock: WorldClock，到达时间标记的世界时钟。
-- <ReadOnly/> timeMarker: TimeMarker，被世界时钟到达的时间标记。
-
----
+- <ReadOnly/> clock: [WorldClock](./world_clock#worldclock-类)，到达时间标记的世界时钟。
+- <ReadOnly/> timeMarker: [TimeMarker](./world_clock#timemarker-类)，被世界时钟到达的时间标记。
 
 ### WorldClockTimeMarkerEventOptions 接口
 
-<Version add="2.11.0"/>
+<Version type="script" add="2.11.0"/>
 
 指定世界时钟时间标记事件的筛选项。
 
@@ -3360,7 +3195,7 @@ interface WorldClockTimeMarkerEventOptions {
 
 ### WorldClockOnTimeModifiedAfterEventSignal 类
 
-<Version add="2.11.0"/>
+<Version type="script" add="2.11.0"/>
 
 当世界时钟时间更改后触发该事件信号。
 
@@ -3377,14 +3212,12 @@ class WorldClockOnTimeModifiedAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [WorldClockOnTimeModifiedAfterEvent](#worldclockontimemodifiedafterevent-类)) => void, options?: [WorldClockEventOptions](#worldclockeventoptions-接口)) => (arg0: [WorldClockOnTimeModifiedAfterEvent](#worldclockontimemodifiedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [WorldClockOnTimeModifiedAfterEvent](#worldclockontimemodifiedafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [WorldClockOnTimeModifiedAfterEvent](#worldclockontimemodifiedafterevent-类)) => void, options?: [WorldClockEventOptions](#worldclockeventoptions-接口)) => (arg0: [WorldClockOnTimeModifiedAfterEvent](#worldclockontimemodifiedafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [WorldClockOnTimeModifiedAfterEvent](#worldclockontimemodifiedafterevent-类)) => void) => void，取消订阅该事件。
 
 ### WorldClockOnTimeModifiedAfterEvent 类
 
-<Version add="2.11.0"/>
+<Version type="script" add="2.11.0"/>
 
 世界时钟时间更改后的事件信息。其筛选项见[世界时钟暂停事件](#世界时钟暂停事件)。
 
@@ -3397,7 +3230,7 @@ class WorldClockOnTimeModifiedAfterEvent {
 
 #### 属性
 
-- <ReadOnly/> clock: WorldClock，时间被更改的世界时钟。
+- <ReadOnly/> clock: [WorldClock](./world_clock#worldclock-类)，时间被更改的世界时钟。
 
 ---
 
@@ -3405,7 +3238,7 @@ class WorldClockOnTimeModifiedAfterEvent {
 
 ### ChatSendAfterEventSignal 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 当发送聊天消息后触发该事件信号。
 
@@ -3419,14 +3252,12 @@ class ChatSendAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [ChatSendAfterEvent](#chatsendafterevent-类)) => void) => (arg0: [ChatSendAfterEvent](#chatsendafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [ChatSendAfterEvent](#chatsendafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [ChatSendAfterEvent](#chatsendafterevent-类)) => void) => (arg0: [ChatSendAfterEvent](#chatsendafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [ChatSendAfterEvent](#chatsendafterevent-类)) => void) => void，取消订阅该事件。
 
 ### ChatSendAfterEvent 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 发送聊天消息后的事件信息。
 
@@ -3451,7 +3282,7 @@ class ChatSendAfterEvent {
 
 ### PackSettingChangeAfterEventSignal 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 当附加包设置更改后触发该事件信号。
 
@@ -3465,14 +3296,12 @@ class PackSettingChangeAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PackSettingChangeAfterEvent](#packsettingchangeafterevent-类)) => void) => (arg0: [PackSettingChangeAfterEvent](#packsettingchangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PackSettingChangeAfterEvent](#packsettingchangeafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PackSettingChangeAfterEvent](#packsettingchangeafterevent-类)) => void) => (arg0: [PackSettingChangeAfterEvent](#packsettingchangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PackSettingChangeAfterEvent](#packsettingchangeafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PackSettingChangeAfterEvent 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 附加包设置更改后的事件信息。
 
@@ -3495,7 +3324,7 @@ class PackSettingChangeAfterEvent {
 
 ### PlayerUseNameTagAfterEventSignal 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 当玩家使用命名牌后触发该事件信号。
 
@@ -3509,14 +3338,12 @@ class PlayerUseNameTagAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerUseNameTagAfterEvent](#playerusenametagafterevent-类)) => void) => (arg0: [PlayerUseNameTagAfterEvent](#playerusenametagafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerUseNameTagAfterEvent](#playerusenametagafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerUseNameTagAfterEvent](#playerusenametagafterevent-类)) => void) => (arg0: [PlayerUseNameTagAfterEvent](#playerusenametagafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerUseNameTagAfterEvent](#playerusenametagafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerUseNameTagAfterEvent 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 玩家使用命名牌后的事件信息。
 
@@ -3543,7 +3370,7 @@ class PlayerUseNameTagAfterEvent {
 
 ### PlayerCraftRecipeAfterEventSignal 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 当玩家合成配方后触发该事件信号。
 
@@ -3560,14 +3387,12 @@ class PlayerCraftRecipeAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerCraftRecipeAfterEvent](#playercraftrecipeafterevent-类)) => void, options?: [PlayerCraftRecipeEventOptions](#playercraftrecipeeventoptions-接口)) => (arg0: [PlayerCraftRecipeAfterEvent](#playercraftrecipeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerCraftRecipeAfterEvent](#playercraftrecipeafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerCraftRecipeAfterEvent](#playercraftrecipeafterevent-类)) => void, options?: [PlayerCraftRecipeEventOptions](#playercraftrecipeeventoptions-接口)) => (arg0: [PlayerCraftRecipeAfterEvent](#playercraftrecipeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerCraftRecipeAfterEvent](#playercraftrecipeafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerCraftRecipeAfterEvent 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 玩家合成配方后的事件信息。
 
@@ -3586,11 +3411,9 @@ class PlayerCraftRecipeAfterEvent {
 - <ReadOnly/> <Optional/> itemStack: [ItemStack](../item/main#itemstack-类)，玩家合成的物品。
 - <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，合成该配方的玩家。
 
----
-
 ### PlayerCraftRecipeEventOptions 接口
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 指定玩家合成配方事件的筛选项。
 
@@ -3602,9 +3425,9 @@ interface PlayerCraftRecipeEventOptions {
 }
 ```
 
-- <Optional/> blockFilter: BlockFilter，对合成配方所用方块的筛选。
+- <Optional/> blockFilter: [BlockFilter](../dimension/volume#blockfilter-接口)，对合成配方所用方块的筛选。
 - <Optional/> itemFilter: ItemFilter，对玩家合成物品的筛选。
-- <Optional/> playerFilter: EntityFilter，对合成配方玩家的筛选。
+- <Optional/> playerFilter: [EntityFilter](../entity_and_player/entity#entityfilter-接口)，对合成配方玩家的筛选。
 
 ---
 
@@ -3612,7 +3435,7 @@ interface PlayerCraftRecipeEventOptions {
 
 ### PlayerCursorItemGrabAfterEventSignal 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 当物品从容器移动到玩家光标后触发该事件信号。
 
@@ -3626,14 +3449,12 @@ class PlayerCursorItemGrabAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerCursorItemGrabAfterEvent](#playercursoritemgrabafterevent-类)) => void) => (arg0: [PlayerCursorItemGrabAfterEvent](#playercursoritemgrabafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerCursorItemGrabAfterEvent](#playercursoritemgrabafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerCursorItemGrabAfterEvent](#playercursoritemgrabafterevent-类)) => void) => (arg0: [PlayerCursorItemGrabAfterEvent](#playercursoritemgrabafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerCursorItemGrabAfterEvent](#playercursoritemgrabafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerCursorItemGrabAfterEvent 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 物品从容器移动到玩家光标后的事件信息。
 
@@ -3656,7 +3477,7 @@ class PlayerCursorItemGrabAfterEvent {
 
 ### PlayerCursorItemReleaseAfterEventSignal 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 当物品从玩家光标移动到容器后触发该事件信号。
 
@@ -3670,14 +3491,12 @@ class PlayerCursorItemReleaseAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [PlayerCursorItemReleaseAfterEvent](#playercursoritemreleaseafterevent-类)) => void) => (arg0: [PlayerCursorItemReleaseAfterEvent](#playercursoritemreleaseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerCursorItemReleaseAfterEvent](#playercursoritemreleaseafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerCursorItemReleaseAfterEvent](#playercursoritemreleaseafterevent-类)) => void) => (arg0: [PlayerCursorItemReleaseAfterEvent](#playercursoritemreleaseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerCursorItemReleaseAfterEvent](#playercursoritemreleaseafterevent-类)) => void) => void，取消订阅该事件。
 
 ### PlayerCursorItemReleaseAfterEvent 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 物品从玩家光标移动到容器后的事件信息。
 
@@ -3706,7 +3525,7 @@ class PlayerCursorItemReleaseAfterEvent {
 
 ### ServerMessageAfterEventSignal 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 当客户端向服务器发送消息后触发该事件信号。
 
@@ -3720,14 +3539,12 @@ class ServerMessageAfterEventSignal {
 
 #### 方法
 
-- <EarlyExecution/> subscribe: (callback: (arg0: [MessageReceiveAfterEvent](#messagereceiveafterevent-类)) => void) => (arg0: [MessageReceiveAfterEvent](#messagereceiveafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <EarlyExecution/> unsubscribe: (callback: (arg0: [MessageReceiveAfterEvent](#messagereceiveafterevent-类)) => void) => void，取消订阅该事件。
-
----
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [MessageReceiveAfterEvent](#messagereceiveafterevent-类)) => void) => (arg0: [MessageReceiveAfterEvent](#messagereceiveafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [MessageReceiveAfterEvent](#messagereceiveafterevent-类)) => void) => void，取消订阅该事件。
 
 ### MessageReceiveAfterEvent 类
 
-<Version experimental="测试版API"/>
+<Version type="script" experimental="测试版API"/>
 
 客户端向服务器发送的消息信息。
 

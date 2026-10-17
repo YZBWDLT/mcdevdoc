@@ -4,25 +4,19 @@ sidebar_position: 2
 
 # 生物群系
 
-import Button from '/src/components/button/base';
-import Version from "/src/components/highlight/scriptVersion"
+import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
+import Optional from "/src/components/highlight/optional"
 
 本文主要记录生物群系相关接口。
 
-:::warning[注意]
-
-本文正在编辑中，缺少大量信息，仅供参考。
-
-:::
-
 ---
 
-## 维度信息
+## 生物群系
 
 ### BiomeType 类
 
-<Version add="2.3.0"/> <br/>
+<Version type="script" add="2.3.0"/>
 
 代表一个生物群系。
 
@@ -44,20 +38,65 @@ class BiomeType {
 返回该生物群系的所有标签。
 
 ```typescript
-getTags(): string[];
+getTags(): string[]
 ```
+
+**返回值**：string[]，该生物群系的所有标签。
 
 #### hasTags 方法
 
 检查生物群系是否拥有所有给定的标签。
 
 ```typescript
-hasTags(tags: string[]): boolean;
+hasTags(tags: string[]): boolean
 ```
 
 - tags: string[]，待检查的生物群系标签列表。
 
+**返回值**：boolean，`true` 表示该生物群系拥有全部给定标签。
+
 ---
+
+## 筛选与搜索
+
+### BiomeFilter 接口
+
+<Version type="script" add="2.6.0"/>
+
+按生物群系或标签包含、排除生物群系的条件集合，可传给[Dimension.containsBiomes](./main#containsbiomes-方法)。
+
+```typescript
+interface BiomeFilter {
+    excludeBiomes?: string[];
+    excludeTags?: string[];
+    includeBiomes?: string[];
+    includeTags?: string[];
+}
+```
+
+#### 属性
+
+- <Optional/> excludeBiomes: string[]，排除指定标识符的生物群系。
+- <Optional/> excludeTags: string[]，排除带有指定标签的生物群系。
+- <Optional/> includeBiomes: string[]，只包含指定标识符的生物群系。
+- <Optional/> includeTags: string[]，只包含带有指定标签的生物群系。
+
+### BiomeSearchOptions 接口
+
+<Version type="script" add="2.9.0"/>
+
+[Dimension.calculateClosestBiomeFromSeed](./main#calculateclosestbiomefromseed-方法)的附加选项。
+
+```typescript
+interface BiomeSearchOptions {
+    boundingSize?: Vector3;
+}
+```
+
+#### 属性
+
+- <Optional/> boundingSize: [Vector3](../general#vector3-接口)，搜索时使用的包围盒体积大小。
+
 ---
 
 ## 参考文档

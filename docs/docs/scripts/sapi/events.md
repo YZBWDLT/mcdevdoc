@@ -145,7 +145,7 @@ sidebar_position: 1
 | :----------- | :-------------------------------------------------------------------------------------------------------------: | :-------------------------: |
 | 系统关闭     |                [`ShutdownEvent`](https://projectxero.top/sapi/classes/server.ShutdownEvent.html)                |           `2.0.0`           |
 | **系统启动** |                 [`StartupEvent`](https://projectxero.top/sapi/classes/server.StartupEvent.html)                 |           `2.0.0`           |
-| 看门狗       | [`WatchdogTerminateBeforeEvent`](https://projectxero.top/sapi/classes/server.WatchdogTerminateBeforeEvent.html) |           `beta`            |
+| 看门狗终止   | [`WatchdogTerminateBeforeEvent`](https://projectxero.top/sapi/classes/server.WatchdogTerminateBeforeEvent.html) |           `beta`            |
 
 ### 系统后事件
 
