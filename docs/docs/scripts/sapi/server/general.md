@@ -4,19 +4,12 @@ sidebar_position: 0
 
 # 通用
 
-import Button from '/src/components/button/base';
 import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 import Optional from "/src/components/highlight/optional"
 import RestrictedMode from "/src/components/highlight/restrictedMode"
 
 本文主要记录在各分类间通用的接口。
-
-:::warning[注意]
-
-本文正在编辑中，缺少大量信息，仅供参考。
-
-:::
 
 ---
 
@@ -579,7 +572,22 @@ interface RawMessageScore {
 
 ### Component 类
 
-<Button text="projectxero.top" url="https://projectxero.top/sapi/classes/server.Component.html"/>
+<Version type="script" add="1.2.0"/>
+
+所有组件的基类，提供组件的通用信息。
+
+```typescript
+class Component {
+    private constructor();
+    readonly isValid: boolean;
+    readonly typeId: string;
+}
+```
+
+#### 属性
+
+- <ReadOnly/> isValid: boolean，该组件是否有效；其所属对象有效、且该组件自身校验通过时，组件才有效。
+- <ReadOnly/> typeId: string，该组件的标识符。
 
 ---
 
