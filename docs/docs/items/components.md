@@ -706,7 +706,7 @@ import Button from '/src/components/button/base';
 
 另见：_[`minecraft:icon`](#minecrafticon)组件_。
 
-可通过 ScriptAPI 更改物品的颜色。另见：_[ItemDyeableComponent 类](/docs/docs/scripts/sapi/docs/item/component#itemdyeablecomponent-类)_。
+可通过 ScriptAPI 更改物品的颜色。另见：_[ItemDyeableComponent 类](/docs/docs/scripts/sapi/server/item/component#itemdyeablecomponent-类)_。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 

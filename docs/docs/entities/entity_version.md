@@ -23,7 +23,7 @@ import '/src/css/treeview.css';
 
 新生成的实体总是使用最新的实体版本。
 
-实体更新会触发实体升级后事件。见 [ScriptAPI 文档：实体更新事件](/docs/docs/scripts/sapi/docs/world/after_events#实体更新事件)。
+实体更新会触发实体升级后事件。见 [ScriptAPI 文档：实体更新事件](/docs/docs/scripts/sapi/server/world/after_events#实体更新事件)。
 
 ## 格式
 
