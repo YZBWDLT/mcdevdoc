@@ -9,7 +9,7 @@ import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
 
-> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
+> 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
 方块面剔除（Block Culling）可用于在临近存在方块时、方块面不可见时、或间距过远时隐藏特定的骨骼或方块面，这可以显著提升客户端方面的性能。
 
@@ -110,7 +110,7 @@ import Image from "/src/components/image/standard"
 
 体素（Voxel）是和像素（Pixel）类似的概念，指使用立方体为基本单位构成的空间图形。在基岩版，可以通过体素剔除相邻方块的面。
 
-可在<FileType type="folder" name="behavior_packs"/> - <FileType type="folder" name="shapes"/> - <FileType type="file" name="*.json"/>中定义体素，例如下面的下半砖形状体素：
+可在<FileType type="folder" name="behavior_packs"/> - <FileType type="folder" name="shapes"/> - <FileType type="file" name="*.json"/>中定义体素（每个体素最多包含 32 个盒体），例如下面的下半砖形状体素：
 
 ```json showLineNumbers title="shapes/slab_bottom.voxel.json"
 {

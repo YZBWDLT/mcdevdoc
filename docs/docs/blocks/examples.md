@@ -12,7 +12,7 @@ import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
 import Button from "/src/components/button/base";
 
-> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
+> 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
 本文给出一些常见的方块实例。**注意：代码中高亮部分是需要读者自行修改的**。
 

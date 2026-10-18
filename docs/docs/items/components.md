@@ -34,9 +34,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.0"/><br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_display_name?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#display-name"/>
-
 定义物品的显示名称。
 
 <Tabs><TabItem value="parameters" label="参数" default>
@@ -71,9 +68,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:durability`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.0" tooltip="在更旧的版本下使用minecraft:max_damage组件。"/><br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_durability?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#durability"/>
 
 定义物品的耐久度。
 
@@ -120,9 +114,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:icon`
 
 <Usable type="all"/> <Version add="1.20.0" tooltip="在更旧的版本下使用已废弃的同名组件。"/><br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_icon?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#icon"/>
 
 定义物品的图标。
 
@@ -182,9 +173,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.20" tooltip="在更旧的版本下使用已废弃的同名组件。"/><br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_max_stack_size?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#max-stack-size"/>
-
 定义物品的最大堆叠数。
 
 <Tabs><TabItem value="parameters" label="参数" default>
@@ -226,9 +214,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.20" tooltip="在更旧的版本下使用已废弃的同名组件。"/><br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_stacked_by_data?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#stacked-by-data"/>
-
 定义是否允许不同数据值的同种物品堆叠。
 
 <Tabs><TabItem value="parameters" label="参数" default>
@@ -269,10 +254,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:tags`
 
 <Usable type="all"/> <Version add="1.20.50"/><br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_tags?view=minecraft-bedrock-stable"/>
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-tags"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#tags"/>
 
 定义物品标签。
 
@@ -320,9 +301,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.20"/><br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_allow_off_hand?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#allow-off-hand"/>
-
 允许玩家将物品放在副手。
 
 <Tabs><TabItem value="parameters" label="参数" default>
@@ -363,9 +341,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:block_placer`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.10" tooltip="在更旧的版本下使用minecraft:block组件或minecraft:seed组件。"/><br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_block_placer?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#block-placer"/>
 
 可以在特定方块上放置特定方块。
 
@@ -408,9 +383,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.21.40"/> <Highlight text="需要前置组件" tooltip="要使用此组件，请事先定义minecraft:storage_item组件。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_bundle_interaction?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#bundle-interaction"/>
-
 为物品启用收纳袋的交互模式和物品提示。
 
 另见：_[`minecraft:storage_item`](#minecraftstorage_item)组件_。
@@ -437,9 +409,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:can_destroy_in_creative`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.10"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_can_destroy_in_creative?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#can-destroy-in-creative"/>
 
 允许玩家在创造模式下手持该物品时可以破坏方块。如果设置为`false`，该物品就会像剑一样手持时无法破坏方块。
 
@@ -482,9 +451,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.21.60"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_compostable?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#compostable"/>
-
 定义物品可在堆肥桶中用于堆肥。
 
 另见：_[ItemCompostableComponent 类](/docs/docs/scripts/sapi/server/item/component#itemcompostablecomponent-类)_（通过脚本读取堆肥概率）。
@@ -493,7 +459,7 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="minecraft:compostable"/>：根对象。
-  - <DataType type="float" name="composting_chance" isRequired/>：有百分之多少的概率会堆肥成功。
+  - <DataType type="int" name="composting_chance" isRequired/>：有百分之多少的概率会堆肥成功。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -512,9 +478,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.10" tooltip="在更旧的版本下使用minecraft:food组件。"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:use_modifiers组件。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_cooldown?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#cooldown"/>
-
 定义物品使用后的冷却。
 
 另见：_[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件_、_[ItemCooldownComponent 类](/docs/docs/scripts/sapi/server/item/component#itemcooldowncomponent-类)_（通过脚本设置冷却）。
@@ -523,8 +486,8 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="minecraft:cooldown"/>：根对象。
-  - <DataType type="string" name="category"/>：冷却类别，共享同种冷却类别的物品将会一起进入冷却阶段。
-  - <DataType type="float" name="duration"/>：冷却时间，单位为秒。
+  - <DataType type="string" name="category" isRequired/>：冷却类别，共享同种冷却类别的物品将会一起进入冷却阶段。
+  - <DataType type="float" name="duration" isRequired/>：冷却时间，单位为秒。
   - <DataType type="string" name="type"/>：<Version add="1.21.130" inline/>冷却类型，在使用或攻击时令此物品进入冷却状态。可选值为：`use`（使用后进入冷却，冷却期间不再允许使用，但允许攻击或进行其他操作）、`attack`（攻击后进入冷却，冷却期间不再允许攻击，但允许使用或进行其他操作）。默认值为`use`。
 </treeview>
 
@@ -545,9 +508,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:damage`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.20"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_damage?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#damage"/>
 
 定义物品的攻击伤害，类似剑。
 
@@ -590,9 +550,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.21.20"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:durability组件和minecraft:wearable组件。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_damage_absorption?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#damage-absorption"/>
-
 定义该物品在穿戴时可吸收何种类型的伤害，类似狼铠。
 
 另见：_[`minecraft:durability`](#minecraftdurability)组件_、_[`minecraft:wearable`](#minecraftwearable)组件_。
@@ -621,21 +578,18 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.20"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_digger?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#digger"/>
-
 定义物品破坏特定方块的速度。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="minecraft:digger"/>：根对象。
-  - <DataType type="array" name="destroy_speeds" isRequired/>：定义列表中的方块的破坏速度。
+  - <DataType type="array" name="destroy_speeds"/>：定义列表中的方块的破坏速度。
     - <DataType type="object"/>
-      - <DataType type="string" name="block"/>：方块 ID。
-      - <DataType type="object" name="block"/>（替代）：方块标签。
+      - <DataType type="string" name="block" isRequired/>：方块 ID。
+      - <DataType type="object" name="block" isRequired/>（替代）：方块标签。
         - <DataType type="string" name="tags"/>：一个 [Molang 表达式](../blocks/molang)。通常使用`query.any_tag()`来代表拥有特定标签的方块。
-      - <DataType type="int" name="speed"/>：破坏方块的速度。若为负数则代表无法破坏。更多信息参见[挖掘 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E6%8C%96%E6%8E%98#%E6%8C%96%E6%8E%98%E9%80%9F%E5%BA%A6)，但请格外注意此值不支持浮点数。
+      - <DataType type="int" name="speed" isRequired/>：破坏方块的速度。若为负数则代表无法破坏。更多信息参见[挖掘 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E6%8C%96%E6%8E%98#%E6%8C%96%E6%8E%98%E9%80%9F%E5%BA%A6)，但请格外注意此值不支持浮点数。
   - <DataType type="boolean" name="use_efficiency"/>：定义有效率附魔的物品是否影响挖掘速度。
 </treeview>
 
@@ -660,9 +614,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:durability_sensor`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.21.20"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_durability_sensor?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#durability-sensor"/>
 
 定义物品在降低耐久度后触发的事件。
 
@@ -703,9 +654,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.21.30"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:icon组件的dyed贴图。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_dyeable?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#dyeable"/>
-
 定义物品在炼药锅中可染色。
 
 另见：_[`minecraft:icon`](#minecrafticon)组件_。
@@ -716,7 +664,7 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="minecraft:dyeable"/>：根对象。
-  - <DataType type="string" name="default_color"/>：该物品染色前采用的默认颜色，应指定为有效的颜色代码（`#xxxxxx`）。
+  - <DataType type="string" name="default_color"/>：该物品染色前采用的默认颜色。可填写`#rrggbb`形式的颜色代码，或由 3 个整数组成的`[R, G, B]`数组。默认值为`[255, 255, 255]`（白色）。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -734,9 +682,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:enchantable`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.30"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_enchantable?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#enchantable"/>
 
 定义物品为可附魔。
 
@@ -774,16 +719,13 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.0"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_entity_placer?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#entity-placer"/>
-
 定义物品可生成实体。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="minecraft:entity_placer"/>：根对象。
-  - <DataType type="string" name="entity" isRequired/>：生成的实体的 ID。
+  - <DataType type="string" name="entity"/>：生成的实体的 ID。
   - <DataType type="array" name="dispense_on"/>：可在何种方块上通过发射器使用该物品并生成实体。留空则默认允许全部方块。
     - <DataType type="string"/>：方块 ID。
   - <DataType type="array" name="use_on"/>：可在何种方块上使用该物品并生成实体。留空则默认允许全部方块。
@@ -816,9 +758,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.21.110"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_fire_resistant?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#fire-resistant"/>
-
 定义物品防火，类似于下界合金物品。
 
 <Tabs><TabItem value="parameters" label="参数" default>
@@ -844,9 +783,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.30" tooltip="在更旧的版本下使用已废弃的同名组件。"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:use_modifiers组件。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_food?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#food"/>
-
 定义物品为食物。
 
 另见：_[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件_、_[ItemFoodComponent 类](/docs/docs/scripts/sapi/server/item/component#itemfoodcomponent-类)_（通过脚本读取食物属性）。
@@ -855,8 +791,8 @@ import Button from '/src/components/button/base';
 
 新版的`food`组件相比旧版删去了大量功能，拆分到了其他组件或脚本功能中。以下为功能点差异，若读者有相关需求，请参考以下替代方案，若无法接受请使用旧版组件。
 
-- 提供状态效果（或解除状态效果）：使用脚本的物品使用后事件（`ItemCompleteUseAfterEvent`）监听并对使用实体提供药效。
-- 使用后随机传送：使用脚本的物品使用后事件（`ItemCompleteUseAfterEvent`）监听并传送实体（不要忘记加传送到地表的判定）。
+- 提供状态效果（或解除状态效果）：使用脚本的物品使用后事件（[ItemCompleteUseAfterEvent](/docs/docs/scripts/sapi/server/world/after_events#itemcompleteuseafterevent-类)）监听并对使用实体提供药效。
+- 使用后随机传送：使用脚本的物品使用后事件（[ItemCompleteUseAfterEvent](/docs/docs/scripts/sapi/server/world/after_events#itemcompleteuseafterevent-类)）监听并传送实体（不要忘记加传送到地表的判定）。
 - 使用冷却：使用物品组件[`minecraft:cooldown`](#minecraftcooldown)代替。
 
 :::
@@ -888,9 +824,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.0"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_fuel?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#fuel"/>
-
 定义该物品为燃料。
 
 <Tabs><TabItem value="parameters" label="参数" default>
@@ -915,9 +848,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:glint`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.20" tooltip="在更旧的版本下使用minecraft:foil组件。"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_glint?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#glint"/>
 
 定义该物品会像附魔书一样产生附魔光泽。
 
@@ -960,9 +890,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.20" tooltip="在更旧的版本下使用已废弃的同名组件。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_hand_equipped?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#hand-equipped"/>
-
 定义该物品像工具一样直立展示在玩家手中。
 
 <Tabs><TabItem value="parameters" label="参数" default>
@@ -1003,9 +930,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:hover_text_color`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.10" tooltip="在更旧的版本下使用已废弃的同名组件。"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_hover_text_color?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#hover-text-color"/>
 
 定义物品悬浮文本的颜色。
 
@@ -1048,9 +972,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.30"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_interact_button?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#interact-button"/>
-
 在触控设备中，为物品添加交互按钮。
 
 <Tabs><TabItem value="parameters" label="参数" default>
@@ -1081,9 +1002,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.21.130"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_kinetic_weapon?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#kinetic-weapon"/>
-
 定义物品可造成动能伤害，类似于矛。
 
 动能伤害每刻计算一次，根据使用者和目标投影到视线向量上的速度来计算伤害（通过点积），速度越快伤害越高；越对齐视线向量伤害也越高。若应用参数`damage_multiplier`和`damage_modifier`，伤害值将向下取整。
@@ -1104,16 +1022,16 @@ import Button from '/src/components/button/base';
   - <DataType type="float" name="damage_modifier"/>：在基础伤害×伤害乘数（`damage_multiplier`）的基础上的伤害加和值，得到最终伤害。默认值为`0`。
   - <DataType type="object" name="damage_conditions"/>：应用伤害需满足的条件，条件不满足时不施加伤害。
     - <DataType type="int" name="max_duration"/>：当`delay`参数计时完毕后，在多长的时间范围内时可施加伤害。如果为负数则不设限制。单位：游戏刻。默认值为`-1`。
-    - <DataType type="int" name="min_relative_speed"/>：目标和使用者之间的相对速度应至少为多大时施加伤害。默认值为`0`。
-    - <DataType type="int" name="min_speed"/>：使用者的速度应至少为多大时施加伤害。默认值为`0`。
+    - <DataType type="float" name="min_relative_speed"/>：目标和使用者之间的相对速度应至少为多大时施加伤害。默认值为`0`。
+    - <DataType type="float" name="min_speed"/>：使用者的速度应至少为多大时施加伤害。默认值为`0`。
   - <DataType type="object" name="dismount_conditions"/>：击落目标需满足的条件，条件不满足时不会使目标从载具上击落。
     - <DataType type="int" name="max_duration"/>：当`delay`参数计时完毕后，在多长的时间范围内时可将目标从载具上击落。如果为负数则不设限制。单位：游戏刻。默认值为`-1`。
-    - <DataType type="int" name="min_relative_speed"/>：目标和使用者之间的相对速度应至少为多大时将目标从载具上击落。默认值为`0`。
-    - <DataType type="int" name="min_speed"/>：使用者的速度应至少为多大时将目标从载具上击落。默认值为`0`。
+    - <DataType type="float" name="min_relative_speed"/>：目标和使用者之间的相对速度应至少为多大时将目标从载具上击落。默认值为`0`。
+    - <DataType type="float" name="min_speed"/>：使用者的速度应至少为多大时将目标从载具上击落。默认值为`0`。
   - <DataType type="object" name="knockback_conditions"/>：击退目标需满足的条件，条件不满足时不击退目标。
     - <DataType type="int" name="max_duration"/>：当`delay`参数计时完毕后，在多长的时间范围内时可击退目标。如果为负数则不设限制。单位：游戏刻。默认值为`-1`。
-    - <DataType type="int" name="min_relative_speed"/>：目标和使用者之间的相对速度应至少为多大时击退目标。默认值为`0`。
-    - <DataType type="int" name="min_speed"/>：使用者的速度应至少为多大时击退目标。默认值为`0`。
+    - <DataType type="float" name="min_relative_speed"/>：目标和使用者之间的相对速度应至少为多大时击退目标。默认值为`0`。
+    - <DataType type="float" name="min_speed"/>：使用者的速度应至少为多大时击退目标。默认值为`0`。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -1156,9 +1074,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.20"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_liquid_clipped?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#liquid-clipped"/>
-
 定义物品是否可与流体交互。
 
 <Tabs><TabItem value="parameters" label="参数" default>
@@ -1199,9 +1114,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:piercing_weapon`
 
 <Usable type="all"/> <Version add="1.21.130"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_piercing_weapon?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#piercing-weapon"/>
 
 定义物品可造成戳刺伤害，类似于矛。
 
@@ -1246,9 +1158,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.10"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_projectile?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#projectile"/>
-
 定义物品为弹射物，例如箭。
 
 <Tabs><TabItem value="parameters" label="参数" default>
@@ -1275,9 +1184,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:rarity`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.21.30"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_rarity?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#rarity"/>
 
 定义物品的稀有度。
 
@@ -1322,16 +1228,13 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.10"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_record?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#record"/>
-
 定义物品为唱片。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="minecraft:record"/>：根对象。
-  - <DataType type="int" name="comparator_signal"/>：在唱片机中通过红石信号输出的信号，应在`0`-`15`之间。
+  - <DataType type="int" name="comparator_signal"/>：在唱片机中通过红石信号输出的信号，应在`1`-`13`之间。默认值为`1`。
   - <DataType type="float" name="duration"/>：音乐时长，单位秒。
   - <DataType type="string" name="sound_event"/>：要播放的音效。
 </treeview>
@@ -1355,9 +1258,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:repairable`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.10"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_repairable?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#repairable"/>
 
 定义物品为可修复的。默认情况下，允许此物品和另一个同种类的物品在一起修复（例如两把损坏铁镐合成一把较新的铁镐），此时恢复的耐久度为二者相加。
 
@@ -1419,9 +1319,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.10"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:use_modifiers组件。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_shooter?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#shooter"/>
-
 定义物品为某种弹射物的发射物，类似于弓或弩。
 
 另见：_[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件_。
@@ -1436,7 +1333,7 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="minecraft:shooter"/>：根对象。
-  - <DataType type="array" name="ammunition" isRequired/>：定义该发射物使用何种子弹。
+  - <DataType type="array" name="ammunition"/>：定义该发射物使用何种子弹。
     - <DataType type="object"/>
       - <DataType type="string" name="item" isRequired/>：子弹所对应的物品 ID。该物品 ID 对应的物品必须具有[`minecraft:projectile`](#minecraftprojectile)组件，否则将会报错。
       - <DataType type="boolean" name="use_offhand"/>：是否允许使用副手上的子弹，像弩和烟花一样。默认值为`false`。
@@ -1472,9 +1369,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:should_despawn`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.20"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_should_despawn?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#should-despawn"/>
 
 定义该物品对应的掉落物是否会在一段时间后消失。
 
@@ -1517,9 +1411,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.21.40"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:max_stack_size组件并将最大堆叠设置为1。建议定义minecraft:bundle_interaction组件。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_item?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#storage-item"/>
-
 定义该物品为可存储物品，可以存储其他物品，类似于收纳袋。
 
 另见：_[`minecraft:max_stack_size`](#minecraftmax_stack_size)组件_（将最大堆叠设置为`1`）、_[`minecraft:bundle_interaction`](#minecraftbundle_interaction)组件_（保证交互功能）。
@@ -1528,12 +1419,12 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="minecraft:storage_item"/>：根对象。
-  - <DataType type="boolean" name="allow_nested_storage_items"/>：是否允许该类物品嵌套存储，例如收纳袋存储收纳袋。
+  - <DataType type="boolean" name="allow_nested_storage_items"/>：是否允许该类物品嵌套存储，例如收纳袋存储收纳袋。默认值为`true`。
   - <DataType type="array" name="allowed_items"/>：允许存储的物品，不在此列名单中的物品无法存储。若设置为空则允许存储一切物品。
     - <DataType type="string"/>：允许存储的物品 ID。
   - <DataType type="array" name="banned_items"/>：禁止存储的物品，在此列名单中的物品无法存储。
     - <DataType type="string"/>：禁止存储的物品 ID。
-  - <DataType type="int" name="max_slots"/>：该物品的最大槽位数。
+  - <DataType type="int" name="max_slots"/>：该物品的最大槽位数。默认值为`64`，最大为`64`。
   - <DataType type="int" name="max_weight_limit"/>：<Version add="1.21.40" deprecated="1.21.50" inline/>该物品可存储的最大容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)组件。
   - <DataType type="int" name="weight_in_storage_item"/>：<Version add="1.21.40" deprecated="1.21.50" inline/>该物品在其他可存储物品中占用的容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier)组件。
 </treeview>
@@ -1555,9 +1446,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:storage_weight_limit`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.21.60"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:storage_item组件。"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_limit?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#storage-weight-limit"/>
 
 定义该可存储物品最多可以存储多少物品。
 
@@ -1586,9 +1474,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.21.60"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_storage_weight_modifier?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#storage-weight-modifier"/>
-
 定义该物品在存储到一个可存储物品时需要占用多大空间。
 
 <Tabs><TabItem value="parameters" label="参数" default>
@@ -1614,9 +1499,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.21.120"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_swing_duration?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#swing-duration"/>
-
 定义该物品的挥舞动画（例如攻击、挖掘时）所需时间。仅决定视觉效果，不会影响其他底层机制（例如攻击时间等）。
 
 <Tabs><TabItem value="parameters" label="参数" default>
@@ -1641,9 +1523,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:swing_sounds`
 
 <Usable type="all"/> <Version add="1.21.130"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_swing_sounds?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#swing-sounds"/>
 
 定义该物品的挥舞音效。
 
@@ -1671,9 +1550,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:throwable`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.10"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:projectile组件。"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_throwable?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#throwable"/>
 
 定义该物品可掷出，类似于雪球或鸡蛋。
 
@@ -1708,9 +1584,6 @@ import Button from '/src/components/button/base';
 ### `minecraft:use_animation`
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.20" tooltip="在更旧的版本下使用已废弃的同名组件。"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_animation?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#use-animation"/>
 
 定义物品的使用动画。
 
@@ -1753,16 +1626,13 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.50" tooltip="在更旧的版本下使用minecraft:use_duration组件。"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_use_modifiers?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#use-modifiers"/>
-
 定义物品使用修饰器。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="minecraft:use_modifiers"/>：根对象。
-  - <DataType type="float" name="use_duration" isRequired/>：使用时长。例如苹果的该值为`1.6`。
+  - <DataType type="float" name="use_duration"/>：使用时长。例如苹果的该值为`1.6`。默认值为`0`。
   - <DataType type="float" name="movement_modifier"/>：定义玩家使用物品时的速度倍率，必须小于等于`1`。例如苹果的该值为`0.35`。
   - <DataType type="boolean" name="emit_vibrations"/>：<Version add="1.21.120" inline/>定义玩家使用物品时是否发出振动。
   - <DataType type="string" name="start_sound"/>：<Version add="1.21.130" inline/>定义玩家在使用物品后播放何种音效。
@@ -1806,16 +1676,13 @@ import Button from '/src/components/button/base';
 
 <Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.20"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_wearable?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#wearable"/>
-
 定义该物品为可穿戴物品，例如盔甲。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="minecraft:wearable"/>：根对象。
-  - <DataType type="string" name="slot" isRequired/>：定义可穿戴的位置。可选值：`slot.weapon.mainhand`、`slot.weapon.offhand`、`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`。
+  - <DataType type="string" name="slot" isRequired/>：定义可穿戴的位置。可选值：`slot.weapon.mainhand`、`slot.weapon.offhand`、`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`、`slot.armor.body`（用于马铠、狼铠等整体装备）。
   - <DataType type="int" name="protection"/>：物品可提供的护甲值。默认为`0`。
   - <DataType type="boolean" name="hides_player_location"/>：（1.21.90+）穿戴后是否在定位栏中隐藏玩家位置。
 </treeview>
@@ -2031,7 +1898,7 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="netease:egg"/>：根对象。
-  - <DataType type="string" name="entity" isRequired/>：生成的实体的 ID。
+  - <DataType type="string" name="entity"/>：生成的实体的 ID。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -3236,7 +3103,7 @@ import Button from '/src/components/button/base';
 
 定义物品为武器。这会自动为物品添加伤害信息与攻击事件。
 
-另见：_[`minecraft:damage`](#minecraftdamage)组件_（在高版本中用于定义攻击伤害）、_[ItemCustomComponent 接口](/docs/docs/scripts/sapi/server/system/custom_component#itemcustomcomponent-接口)_（`onHitEntity`、`onMineBlock`回调）、_[物品事件响应](./event_responses)_、脚本事件_[EntityHitBlockAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitblockafterevent-类)_（对应`on_hit_block`）、_[EntityHurtAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhurtafterevent-类)_（对应`on_hurt_entity`）、_[EntityHitEntityAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitentityafterevent-类)_（对应`on_not_hurt_entity`）。
+另见：_[`minecraft:damage`](#minecraftdamage)组件_（在高版本中用于定义攻击伤害）、_[ItemCustomComponent 接口](/docs/docs/scripts/sapi/server/system/custom_component#itemcustomcomponent-接口)_（`onHitEntity`、`onMineBlock`回调）、_[物品事件响应](./event_responses)_、脚本事件*[EntityHitBlockAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitblockafterevent-类)*（对应`on_hit_block`）、_[EntityHurtAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhurtafterevent-类)_（对应`on_hurt_entity`）、_[EntityHitEntityAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitentityafterevent-类)_（对应`on_not_hurt_entity`）。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 

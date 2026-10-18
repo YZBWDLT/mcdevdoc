@@ -14,7 +14,7 @@ import Usable from "/src/components/highlight/usable"
 import Version from "/src/components/highlight/version"
 import Button from '/src/components/button/base';
 
-> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
+> 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
 方块特征（Block Traits）[^1]可以用来启用原版的方块状态和方块功能。
 
@@ -30,8 +30,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.20.20"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/placement_direction?view=minecraft-bedrock-stable"/>
-
 使方块按特定朝向放置时具有特定的方块状态。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -46,7 +44,7 @@ import Button from '/src/components/button/base';
       | `minecraft:facing_direction` | 面向朝向 | `north`、`south`、`west`、`east`、`up`、`down`（默认） |
       | `minecraft:corner_and_cardinal_direction` | <Version add="1.26.0" inline/>角落和基础朝向<br/>同时启用两个方块状态：`minecraft:cardinal_direction`、`minecraft:corner` | `minecraft:corner`的可能值：`inner_left`、`inner_right`、`outer_left`、`outer_right`、`none`（默认） |
       | `minecraft:sixteen_way_rotation` | <Version add="1.26.40" inline/> 十六旋转朝向 | `0`-`15`间的整数 |
-  - <DataType type="float" name="y_rotation_offset"/>：定义方块以玩家面向朝向为基准，在按逆时针添加多少旋转偏移值后放置方块。默认值为`0.0`。
+  - <DataType type="float" name="y_rotation_offset"/>：定义方块以玩家面向朝向为基准，在按逆时针添加多少旋转偏移值后放置方块。应在`0.0`-`360.0`之间（含），且必须是`90.0`的倍数。默认值为`0.0`。
   - <DataType type="array" name="blocks_to_corner_with"/>：<Version add="1.26.0" inline/>仅当启用了`minecraft:corner_and_cardinal_direction`时可用。指定可形成拐角的方块列表。不指定时，默认指定为和该方块相同 ID 的方块。
     - <DataType type="object"/>：指定方块标签。
       - <DataType type="string" name="tags"/>：符合特定方块标签要求的方块。
@@ -95,8 +93,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.20.20"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/placement_position?view=minecraft-bedrock-stable"/>
-
 使方块按特定位置放置时具有特定的方块状态。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -137,8 +133,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此方块特征。"/> <Version add="1.26.0"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/connection?view=minecraft-bedrock-stable"/>
-
 使方块与其他方块连接时具有特定的方块状态。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -168,8 +162,6 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此方块特征。"/> <Version add="1.26.40"/> <Highlight text="需要前置组件" tooltip="要使用此特征，请事先定义minecraft:movable组件，且movement_type必须指定为popped或immovable中的一个。"/> <Highlight text="禁用组件" tooltip="使用此方块特征后，不可定义带有n_way_visual_rotation属性的minecraft:geometry组件。" color="red"/> <Highlight text="禁用置换组件" tooltip="使用此方块特征后，不可在方块置换中定义minecraft:movable组件、minecraft:placement_filter组件、minecraft:random_offset组件、minecraft:replaceable组件和minecraft:precipitation_interactions组件。" color="red"/> <Highlight text="禁用方块特征" tooltip="使用此方块特征后，只能定义minecraft:placement_direction方块特征，且该方块特征的enabled_states属性只能定义minecraft:cardinal_direction方块状态。" color="red"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/multi_block?view=minecraft-bedrock-stable"/>
-
 定义方块为多部分方块。
 
 另见：_[`minecraft:movable`](components#minecraftmovable)组件_（`movement_type`必须指定为`popped`或`immovable`中的一个）、_[`minecraft:placement_filter`](components#minecraftplacement_filter)组件_、_[`minecraft:random_offset`](components#minecraftrandom_offset)组件_、_[`minecraft:replaceable`](components#minecraftreplaceable)组件_、_[`minecraft:precipitation_interactions`](components#minecraftprecipitation_interactions)组件_ 和 _[`minecraft:geometry`](components#minecraftgeometry)组件_。
@@ -183,7 +175,7 @@ import Button from '/src/components/button/base';
   - <DataType type="array" name="enabled_states" isRequired/>：定义方块将会启用何种方块状态。
     - <DataType type="string"/>：仅允许填写为`minecraft:multi_block_part`。  
       这会启用 1 个整数方块状态：`minecraft:multi_block_part`，代表多部分方块的子块处于该多部分方块的第几部分。
-  - <DataType type="string" name="direction"/>：定义方块将会沿什么方向延伸。可选值为：  
+  - <DataType type="string" name="direction" isRequired/>：定义方块将会沿什么方向延伸。可选值为：  
     | 延伸方向可选值 | 描述 |
     | --- | --- |
     | `up`/`down` | 向上/向下延伸 |

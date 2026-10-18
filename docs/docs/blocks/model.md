@@ -11,7 +11,7 @@ import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
 
-> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
+> 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
 方块模型（Block Model）是用于方块的模型，决定方块在世界中以何种形状渲染并呈现出来。方块模型需要在<FileType type="folder" name="models"/> - <FileType type="folder" name="blocks"/>的 json 文件中定义。
 

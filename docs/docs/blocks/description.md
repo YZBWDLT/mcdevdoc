@@ -12,7 +12,7 @@ import DataType from "/src/components/type/data"
 import Usable from "/src/components/highlight/usable"
 import Version from "/src/components/highlight/version"
 
-> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
+> 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
 数据驱动方块（Data-Driven Blocks，简称数驱方块）是由开发者给定数据，由游戏引擎自行注册的方块。
 
@@ -58,7 +58,7 @@ import Version from "/src/components/highlight/version"
   - <DataType type="string" name="format_version" isRequired/>：格式版本，决定方块可用的功能。格式版本与游戏版本一一对应，且固定以`1.`开头：游戏版本`1.21.120`对应`1.21.120`，游戏版本`26.50`对应`1.26.50`。填写较低的格式版本时，方块会按该版本的功能解析。
   - <DataType type="object" name="minecraft:block" isRequired/>：定义数驱方块。
     - <DataType type="object" name="description" isRequired/>：方块描述，定义方块的基本属性。
-      - <DataType type="string" name="identifier" isRequired/>：定义方块的命名空间和方块 ID。
+      - <DataType type="string" name="identifier" isRequired/>：定义方块的命名空间和方块 ID。必须带有命名空间，且不能使用`minecraft`命名空间。
       - <DataType type="object" name="menu_category"/>：<Version add="1.19.30" inline/>定义方块的分类和组别。
         - <DataType type="string" name="category" isRequired/>：定义方块在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`none`（空）。
         - <DataType type="string" name="group"/>：定义方块在创造模式物品栏中置于何物品组中，详见[物品组与物品分类](../items/item_category_and_group#物品组)。  
@@ -76,11 +76,13 @@ import Version from "/src/components/highlight/version"
       - `minecraft:(component)`：方块组件，可用的方块组件见[数据驱动方块组件](./components)。
     - <DataType type="array" name="permutations"/>：<Version add="1.19.70" inline/>方块置换，定义方块在满足特定条件时使用何种特定功能。
       - <DataType type="object"/>
-                - <DataType type="string" name="condition"/>：使用该方块置换的条件。应填写为一个 [Molang 表达式](./molang)（常用`query.block_state()`）。
-                - <DataType type="object" name="components"/>：使用此置换时使用的方块组件，定义方块的功能。
-                    - `minecraft:(component)`：方块组件，可用的方块组件见[数据驱动方块组件](./components)。
+        - <DataType type="string" name="condition" isRequired/>：使用该方块置换的条件。应填写为一个 [Molang 表达式](./molang)（常用`query.block_state()`）。
+        - <DataType type="object" name="components" isRequired/>：使用此置换时使用的方块组件，定义方块的功能。
+          - `minecraft:(component)`：方块组件，可用的方块组件见[数据驱动方块组件](./components)。
 
 </treeview>
+
+> **注意**：`minecraft:redstone_consumer`、`minecraft:block_entity`、`minecraft:support`、`minecraft:embedded_visual`、`minecraft:item_visual`和`minecraft:flower_pottable`只能定义在根的`components`中，**不可定义在方块置换的`components`内**（已弃用的旧组件同样不支持）。
 
 [^1]: 关于方块状态的定义，不止有(方块状态 ID)数组一种定义方法，然而我们给出的数组定义方法已可以解决所有情况。感兴趣的读者可以阅读[参考文档的*方块状态 | Bedrock Wiki*](#参考文档)了解更多。
 
