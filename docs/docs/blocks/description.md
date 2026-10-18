@@ -12,7 +12,7 @@ import DataType from "/src/components/type/data"
 import Usable from "/src/components/highlight/usable"
 import Version from "/src/components/highlight/version"
 
-> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
 
 数据驱动方块（Data-Driven Blocks，简称数驱方块）是由开发者给定数据，由游戏引擎自行注册的方块。
 
@@ -50,17 +50,17 @@ import Version from "/src/components/highlight/version"
 
 ### 行为包定义格式
 
-以下为 <FileType type="folder" name="behavior_packs"/> - <FileType type="folder" name="blocks"/>（或<FileType type="folder" name="netease_blocks"/>） - <FileType type="file" name="(方块 ID).json"/> 的结构。
+以下为 <FileType type="folder" name="behavior_packs"/> - <FileType type="folder" name="blocks"/>（或<FileType type="folder" name="netease_blocks"/>） - <FileType type="file" name="(方块 ID).block.json"/> 的结构。
 
 <treeview>
 
 - <DataType type="object"/>：根对象。
-  - <DataType type="string" name="format_version" isRequired/>：格式版本，决定方块可用的功能。填写版本取决于目标版本，如果是低于 26.0 的版本（1.xx.yy）填写为`1.xx.y0`，高于 26.0 的版本（xx.yy）填写为`1.xx.y0`。
+  - <DataType type="string" name="format_version" isRequired/>：格式版本，决定方块可用的功能。格式版本与游戏版本一一对应，且固定以`1.`开头：游戏版本`1.21.120`对应`1.21.120`，游戏版本`26.50`对应`1.26.50`。填写较低的格式版本时，方块会按该版本的功能解析。
   - <DataType type="object" name="minecraft:block" isRequired/>：定义数驱方块。
     - <DataType type="object" name="description" isRequired/>：方块描述，定义方块的基本属性。
       - <DataType type="string" name="identifier" isRequired/>：定义方块的命名空间和方块 ID。
-      - <DataType type="object" name="menu_category" isRequired/>：<Version add="1.19.30" inline/>定义方块的分类和组别。
-        - <DataType type="string" name="category"/>：定义方块在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`none`（空）。
+      - <DataType type="object" name="menu_category"/>：<Version add="1.19.30" inline/>定义方块的分类和组别。
+        - <DataType type="string" name="category" isRequired/>：定义方块在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`none`（空）。
         - <DataType type="string" name="group"/>：定义方块在创造模式物品栏中置于何物品组中，详见[物品组与物品分类](../items/item_category_and_group#物品组)。  
                   在格式版本为`1.21.50`或更低时，不能添加命名空间；在格式版本为`1.21.60`或更高时，必须添加命名空间。
         - <DataType type="boolean" name="is_hidden_in_commands"/>：<Version add="1.19.40" inline/>定义方块是否隐藏在命令中。
@@ -69,7 +69,7 @@ import Version from "/src/components/highlight/version"
           - <DataType type="string"/><DataType type="boolean"/><DataType type="int"/>：方块状态枚举
       - <DataType type="object" name="traits"/>：<Version add="1.20.20" inline/>定义方块特征，以引用原版的方块特征并应用原版的方块状态。
         - <DataType type="object" name="minecraft:(traits)"/>：方块特征，可用的方块特征详见[方块特征](./traits)。
-      - <DataType type="string" name="category"/>：<Usable type="onlyChina" inline/>定义物品在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`commands`（只有命令和 API 可获取）、`none`（只有 API 可获取）。也可设置为自定义分类，详见[物品组与物品分类](../items/item_category_and_group#物品分类)。
+      - <DataType type="string" name="category"/>：<Usable type="onlyChina" inline/>定义方块在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`commands`（只有命令和 API 可获取）、`none`（只有 API 可获取）。也可设置为自定义分类，详见[物品组与物品分类](../items/item_category_and_group#物品分类)。
       - <DataType type="boolean" name="register_to_create_menu"/>：<Usable type="onlyChina" inline/>是否注册到创造模式物品栏中。
       - <DataType type="string" name="base_block"/>：<Usable type="onlyChina" inline/>定义方块的基础行为，可选值有`mob_spawner`（刷怪笼）、`portal`（传送门）、`custom_crop_block`（农作物）、`custom_heavy_block`（重力方块）、`liquid`（静态流体）、`flowing_liquid`（流动流体）、`netease_container`（容器）。
     - <DataType type="object" name="components" isRequired/>：方块组件，定义方块的功能。
@@ -95,7 +95,7 @@ import Version from "/src/components/highlight/version"
 <treeview>
 
 - <DataType type="object"/>：根对象。
-  - <DataType type="string" name="format_version" isRequired/>：格式版本，默认为`1.1.0`。最高为`1.21.40`。不填写此字段时会报错（警告）。
+  - <DataType type="string" name="format_version" isRequired/>：格式版本，默认为`1.1.0`。最高为`1.21.40`。
   - <DataType type="object" name="(方块 ID)" isRequired/>：定义方块使用的资源。`方块 ID`应是带命名空间的 ID。
     - <DataType type="string" name="textures"/>：定义方块使用的贴图（写法 1），使方块六面全部使用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。
     - <DataType type="object" name="textures"/>：定义方块使用的贴图（写法 2）。使用此写法时将定义方块顶底侧面各采用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。
@@ -112,12 +112,12 @@ import Version from "/src/components/highlight/version"
     - <DataType type="string" name="sound"/>：定义方块的音效。音效可以在<FileType type="file" name="sounds.json"/>中定义，也可以使用原版正在使用的音效（见 [Bedrock Wiki](https://wiki.bedrock.dev/blocks/vanilla-block-sounds)）。默认值为`stone`。
     - <DataType type="string"/><DataType type="object" name="carried_textures"/>：定义在手持此方块时，在手中所显示的贴图。同样允许类似于<DataType type="object" name="textures"/>的 3 种写法。
     - <DataType type="boolean"/><DataType type="object" name="isotropic"/>：定义方块面是各向同性的。指定为`true`或确定哪些面使用各向同性后，贴图将会随机旋转。这可用于防止方块贴图过于一致使得世界外观过于单调，常常被用在大量生成的地形方块中，例如草方块或深板岩。默认值为`false`。同样允许类似于<DataType type="object" name="textures"/>的 3 种写法，以确定哪些面使用各向同性。
-    - <DataType type="float" name="brightness_gamma"/>：<Version add="?" deprecated="1.21.60" inline tooltip="请使用ambient_occlusion_exponent代替之。"/>定义方块的 gamma 值。
+    - <DataType type="float" name="brightness_gamma"/>：<Version add="未知" deprecated="1.21.60" inline tooltip="请使用ambient_occlusion_exponent代替之。"/>定义方块的 gamma 值。
     - <DataType type="float" name="ambient_occlusion_exponent"/>：<Version add="1.21.60" inline/>定义方块的环境光遮挡指数。
 
 </treeview>
 
-备注：在方块指定了[`minecraft:material_instance`](./components#minecraftmaterial_instances)组件后，请在该组件内部指定方块贴图，无需在<FileType type="file" name="blocks.json"/>中通过<DataType type="object" name="textures"/>指定方块的贴图。
+备注：在方块指定了[`minecraft:material_instances`](./components#minecraftmaterial_instances)组件后，请在该组件内部指定方块贴图，无需在<FileType type="file" name="blocks.json"/>中通过<DataType type="object" name="textures"/>指定方块的贴图。
 
 ### `terrain_texture.json`
 

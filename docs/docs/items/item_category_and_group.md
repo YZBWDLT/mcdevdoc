@@ -12,7 +12,7 @@ import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
 import Button from "/src/components/button/base"
 
-> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
 
 <Button text="教程" url="/docs/tutorials/a2_addons/b4_data_driven_items/c7_custom_category_and_group" color="green"/>
 
@@ -45,7 +45,8 @@ import Button from "/src/components/button/base"
                         - <DataType type="object" name="group_identifier"/>：定义物品组。如果不指定该参数将直接指定下面<DataType type="string" name="items" isRequired/>中的物品为分散在物品栏中的物品。
                             - <DataType type="string" name="icon" isRequired/>：定义物品组的图标使用何物品的图标。
                             - <DataType type="string" name="name" isRequired/>：定义物品组的名称和 ID。可以指定为原版物品组（必须带`minecraft:`命名空间），详见[原版使用的物品组](./item_category_and_group#原版使用的物品组)，也可以自行新建（必须带命名空间）。
-                        - <DataType type="string" name="items" isRequired/>：定义哪些物品归类进该物品组。
+                        - <DataType type="array" name="items" isRequired/>：定义哪些物品归类进该物品组。
+                            - <DataType type="string"/>：物品 ID。
 
 </treeview>
 
@@ -192,7 +193,7 @@ import Button from "/src/components/button/base"
 
 :::
 
-以下为 <FileType type="folder" name="behavior_packs"/> - <FileType type="folder" name="netease_tab"/> - <FileType type="file" name="*.json"/> 的结构，用于新建物品组。官方文档表达了更多需要注意的事项，[见此](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/13-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%A9%E5%93%81%E5%88%86%E9%A1%B5.html?catalog=1)。
+以下为 <FileType type="folder" name="behavior_packs"/> - <FileType type="folder" name="netease_tab"/> - <FileType type="file" name="*.json"/> 的结构，用于新建物品分类。官方文档表达了更多需要注意的事项，[见此](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/13-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%A9%E5%93%81%E5%88%86%E9%A1%B5.html?catalog=1)。
 
 <treeview>
 

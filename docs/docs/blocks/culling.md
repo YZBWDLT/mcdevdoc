@@ -4,14 +4,12 @@ sidebar_position: 6
 
 # 方块面剔除
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
 
-> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
 
 方块面剔除（Block Culling）可用于在临近存在方块时、方块面不可见时、或间距过远时隐藏特定的骨骼或方块面，这可以显著提升客户端方面的性能。
 
@@ -35,7 +33,7 @@ import Image from "/src/components/image/standard"
         - <DataType type="object" name="geometry_part" isRequired/>：待剔除的模型的部分。详见[方块模型](./model)。
           - <DataType type="string" name="bone" isRequired/>：待剔除的模型的骨骼 ID。
           - <DataType type="int" name="cube"/>：待剔除的模型的骨骼 ID 中，将其中的第几个部件剔除掉。
-          - <DataType type="string" name="face"/>：待剔除的模型的骨骼 ID 中，将选定的部件的哪个面剔除掉。必须指定<DataType type="int" name="cube"/>后可用。可选值为`up`、`down`、`east`、`west`、`south`、`north`。一般来说，这个值会指定为和<DataType type="string" name="direction" isRequired/>相同的值。
+          - <DataType type="string" name="face"/>：待剔除的模型的骨骼 ID 中，将选定的部件的哪个面剔除掉。必须指定<DataType type="int" name="cube"/> 后可用。可选值为`up`、`down`、`east`、`west`、`south`、`north`。一般来说，这个值会指定为和<DataType type="string" name="direction" isRequired/>相同的值。
         - <DataType type="string" name="condition"/>：当满足何种额外条件时进行面剔除。可选值为：
           | 可选值 | 描述 |
           | --- | --- |

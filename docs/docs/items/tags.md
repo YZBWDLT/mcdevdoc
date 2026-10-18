@@ -4,13 +4,7 @@ sidebar_position: 3
 
 # 物品标签
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import '/src/css/treeview.css';
-import FileType from "/src/components/type/file"
-import DataType from "/src/components/type/data"
-
-> 适用版本：国际版 1.21.130，中国版 3.7（1.21.50）。
+> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
 
 ---
 
@@ -66,7 +60,7 @@ import DataType from "/src/components/type/data"
 | `minecraft:logs_that_burn`                        | 各类可燃烧的原木和去皮原木，**带有此标签的物品可用于烧制为木炭**                 |
 | `minecraft:mangrove_logs`                         | 红树原木及其变种                                                                 |
 | `minecraft:metal_nuggets`                         | 金属粒，可用于合成命名牌                                                         |
-| `minecraft:mushroom_for_stew`                     | 可用于制作谜之炖菜的蘑菇                                                         |
+| `minecraft:mushrooms_for_stew`                    | 可用于制作谜之炖菜的蘑菇                                                         |
 | `minecraft:music_disc`                            | 各类音乐唱片                                                                     |
 | `minecraft:nautilus_armor`                        | 各类鹦鹉螺铠[^2]                                                                 |
 | `minecraft:netherite_tier`                        | 下界合金盔甲、武器和工具                                                         |
@@ -96,7 +90,7 @@ import DataType from "/src/components/type/data"
 | `minecraft:transform_materials`                   | 锻造升级配方材料（当前仅有下界合金锭）[^2]                                       |
 | `minecraft:transform_templates`                   | 锻造升级配方模板[^2]                                                             |
 | `minecraft:transformable_items`                   | 锻造升级配方基底物品[^2]                                                         |
-| `minecraft:trim_materials`                        | 锻造纹饰配方材料（当前仅有下界合金锭）[^2]                                       |
+| `minecraft:trim_materials`                        | 锻造纹饰配方材料（紫水晶碎片、铜锭、钻石、绿宝石、金锭、铁锭、青金石、下界合金锭、石英、红石）[^2] |
 | `minecraft:trim_templates`                        | 锻造纹饰配方模板[^2]                                                             |
 | `minecraft:trimmable_armors`                      | 锻造纹饰配方基底盔甲[^2]                                                         |
 | `minecraft:vibration_damper`                      | 掉在地上不会产生振动的物品，**带有此标签的物品亦将带有此功能**                   |
@@ -115,3 +109,7 @@ import DataType from "/src/components/type/data"
 
 - [配方文档 - 物品标签 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/recipereference/examples/recipedefinitions/recipetaglist?view=minecraft-bedrock-stable)
 - [物品标签 | Bedrock Wiki](https://wiki.bedrock.dev/items/item-tags)
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>

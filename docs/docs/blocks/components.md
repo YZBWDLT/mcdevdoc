@@ -15,7 +15,7 @@ import Usable from "/src/components/highlight/usable"
 import Version from "/src/components/highlight/version"
 import Button from '/src/components/button/base';
 
-> 适用版本：国际版 26.40，中国版 3.9（1.21.120）。
+> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
 
 数据驱动方块组件（Data-Driven Block Components）用于规定方块的功能。将不同的方块组件组合在一起可以实现多种复杂的功能。方块组件可以指定到<DataType type="object" name="components" isRequired/>中，以使得方块在所有情况下都使用相关功能；也可以指定到方块置换<DataType type="array" name="permutations"/> - <DataType type="object"/> - <DataType type="object" name="components" isRequired/>中，使得方块在使用特定方块置换时使用特定的功能。
 
@@ -63,7 +63,7 @@ import Button from '/src/components/button/base';
 可使用数组型定义多个子碰撞箱所复合而成的复杂碰撞箱。
 
 <treeview>
-- <DataType type="array" name="minecraft:collision_box"/>：根对象。
+- <DataType type="array" name="minecraft:collision_box"/>：根数组。
   - <DataType type="object"/>
     - <DataType type="array" name="origin"/>：定义方块碰撞箱源坐标，`[0, 0, 0]`为底面中心点的坐标。默认值为`[-8, 0, -8]`。
       - <DataType type="float" name="0"/>：基于源坐标的 X 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
@@ -92,7 +92,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-**数组型**（26.0+ 版本可用，楼梯尺寸）：
+**数组型**（1.26.0+ 版本可用，楼梯尺寸）：
 
 ```json showLineNumbers
 "minecraft:collision_box": [
@@ -275,7 +275,7 @@ import Button from '/src/components/button/base';
 <treeview>
 - <DataType type="object" name="minecraft:map_color"/>：根对象
   - <DataType type="string" name="color" isRequired/>：定义方块在地图物品上显示的颜色，应为颜色代码`#RRGGBB`。
-  - <DataType type="string" name="tint_method"/>：<Version add="1.21.80" inline/>定义方块的着色方法，将方块颜色与预定义的色调相乘，可选值为`none`、`​default_foliage`、`​birch_foliage`、`​evergreen_foliage`、`​grass`和​`water`。默认值为`none`。
+  - <DataType type="string" name="tint_method"/>：<Version add="1.21.80" inline/>定义方块的着色方法，将方块颜色与预定义的色调相乘，可选值为`none`、`default_foliage`、`birch_foliage`、`evergreen_foliage`、`grass`和`water`。默认值为`none`。
 </treeview>
 
 <Version add="1.16.0"/> 字符串型：
@@ -426,7 +426,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-对象型：
+对象型（原版内置模型）：
 
 ```json showLineNumbers
 "minecraft:geometry": {
@@ -435,12 +435,16 @@ import Button from '/src/components/button/base';
 }
 ```
 
+对象型（自定义模型，配合面剔除）：
+
 ```json showLineNumbers
 "minecraft:geometry": {
     "identifier": "geometry.full_block",
     "culling": "test:culling.glass"
 }
 ```
+
+> **注意**：第二个示例中的`geometry.full_block`是**自定义模型**的标识符（不带命名空间，指向资源包`models/block`下的`*.geo.json`），与第一个示例中原版内置的`minecraft:geometry.full_block`不是同一个模型。之所以要换成自定义模型，是因为原版内置模型不能使用`culling`面剔除。
 
 **字符串型**：
 
@@ -466,7 +470,7 @@ import Button from '/src/components/button/base';
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
-- <DataType type="object" name="minecraft:material_instance"/>：根对象
+- <DataType type="object" name="minecraft:material_instances"/>：根对象
   - <DataType type="object" name="(材质实例)"/>：定义方块的面如何实例化。`(材质实例)`可指定为原版内置的`east`、`west`、`south`、`north`、`up`、`down`、`*`（应用到所有面上）或在[模型文件](./model#方块模型文件格式)中定义的`material_instance`参数（以应用到这些面上）。  
   在`1.21.80`及之前的格式版本，必须指定`*`的实例。
     - <DataType type="string" name="texture" isRequired/>：定义方块的贴图。会对指定的面使用[`terrain_texture.json`](./description#terrain_texturejson)中定义的对应的贴图路径。
@@ -502,7 +506,7 @@ import Button from '/src/components/button/base';
 </TabItem><TabItem value="示例" label="示例">
 
 ```json showLineNumbers
-"minecraft:material_instance": {
+"minecraft:material_instances": {
     "*": {
         "texture": "stone",
         "isotropic": true
@@ -511,7 +515,7 @@ import Button from '/src/components/button/base';
 ```
 
 ```json showLineNumbers
-"minecraft:material_instance": {
+"minecraft:material_instances": {
     "*": {
         "texture": "stone",
         "ambient_occlusion": false,
@@ -521,7 +525,7 @@ import Button from '/src/components/button/base';
 ```
 
 ```json showLineNumbers
-"minecraft:material_instance": {
+"minecraft:material_instances": {
     "*": {
         "texture": "glass",
         "render_method": "blend"
@@ -581,7 +585,7 @@ import Button from '/src/components/button/base';
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_embedded_visual?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#embedded-visual"/>
 
-定义了方块嵌入另一方块（如花盆）时需要使用的`geometry`和`​material_instances`。
+定义了方块嵌入另一方块（如花盆）时需要使用的`geometry`和`material_instances`。
 
 另见：_[`minecraft:flower_pottable`](#minecraftflower_pottable)组件_。
 
@@ -590,7 +594,7 @@ import Button from '/src/components/button/base';
 <treeview>
 - <DataType type="object" name="minecraft:embedded_visual"/>：根对象。
   - <DataType type="object" name="geometry"/>：定义方块在其他方块内使用的模型。可写入的内容详见[`minecraft:geometry`](#minecraftgeometry)组件。
-  - <DataType type="object" name="material_instance"/>：定义方块在其他方块内使用的材质贴图实例。可写入的内容详见[`minecraft:material_instances`](#minecraftmaterial_instances)组件。
+  - <DataType type="object" name="material_instances"/>：定义方块在其他方块内使用的材质贴图实例。可写入的内容详见[`minecraft:material_instances`](#minecraftmaterial_instances)组件。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -613,14 +617,14 @@ import Button from '/src/components/button/base';
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_item_visual?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#item-visual"/>
 
-定义方块在物品栏中和手持时需要使用的`geometry`和`​material_instances`。
+定义方块在物品栏中和手持时需要使用的`geometry`和`material_instances`。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="minecraft:item_visual"/>：根对象。
   - <DataType type="object" name="geometry"/>：定义方块在物品栏中和手持时使用的模型。可写入的内容详见[`minecraft:geometry`](#minecraftgeometry)组件。
-  - <DataType type="object" name="material_instance"/>：定义方块在物品栏中和手持时使用的材质贴图实例。可写入的内容详见[`minecraft:material_instances`](#minecraftmaterial_instances)组件。
+  - <DataType type="object" name="material_instances"/>：定义方块在物品栏中和手持时使用的材质贴图实例。可写入的内容详见[`minecraft:material_instances`](#minecraftmaterial_instances)组件。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -640,10 +644,9 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.26.50"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_item_visual?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#item-visual"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#sound"/>
 
-定义方块的音效。该参数和资源包的 blocks.json 定义的音效等价。
+定义方块的音效。该组件和资源包<FileType type="file" name="blocks.json"/>中定义的音效等价。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -686,7 +689,7 @@ import Button from '/src/components/button/base';
 <treeview>
 - <DataType type="object" name="minecraft:block_entity"/>：根对象。
   - <DataType type="boolean" name="dynamic_properties"/>：是否允许方块实体存储动态属性，通过 SAPI 进行读写。默认值为`false`。
-  - <DataType type="object" name="container"/>：允许方块像箱子一样存储方块。
+  - <DataType type="object" name="container"/>：允许方块像箱子一样存储物品。
     - <DataType type="int" name="slot_count"/>：定义槽位数量。可选值为`1`-`54`（含）。
 </treeview>
 
@@ -732,6 +735,37 @@ import Button from '/src/components/button/base';
 
 ---
 
+### `minecraft:connection_rule`
+
+<Usable type="all"/> <Version add="1.26.0"/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_connection_rule?view=minecraft-bedrock-stable"/>
+<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#connection-rule"/>
+
+定义方块和其他方块的连接规则。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:connection_rule"/>：根对象。
+  - <DataType type="string" name="accepts_connections_from"/>：允许何种方块连接到此方块。可选值为`none`（禁止其他方块连接到此方块）、`only_fence`（只允许栅栏连接到此方块）、`all`（默认值，允许栅栏、墙、玻璃板等连接到此方块）。
+  - <DataType type="array" name="enabled_directions"/>：若允许其他方块连接此方块，允许从何方向连接此方块。默认为`["north", "south", "west", "east"]`。
+    - <DataType type="string"/>：可选值为`east`、`west`、`south`、`north`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:connection_rule": {
+    "accepts_connections_from": "only_fence",
+    "enabled_directions": ["north", "south", "west", "east"]
+}
+```
+
+</TabItem></Tabs>
+
+---
+
 ### `minecraft:crafting_table`
 
 <Usable type="all"/> <Version add="1.19.50"/> <br/>
@@ -763,37 +797,6 @@ import Button from '/src/components/button/base';
 
 ---
 
-### `minecraft:connection_rule`
-
-<Usable type="all"/> <Version add="1.26.0"/> <br/>
-
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_connection_rule?view=minecraft-bedrock-stable"/>
-<Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#connection-rule"/>
-
-定义方块和其他方块的连接规则。
-
-<Tabs><TabItem value="参数" label="参数" default>
-
-<treeview>
-- <DataType type="object" name="minecraft:connection_rule"/>：根数组。
-  - <DataType type="string" name="accepts_connections_from"/>：允许何种方块连接到此方块。可选值为`none`（禁止其他方块连接到此方块）、`only_fence`（只允许栅栏连接到此方块）、`all`（默认值，允许栅栏、墙、玻璃板等连接到此方块）。
-  - <DataType type="array" name="enabled_directions"/>：若允许其他方块连接此方块，允许从何方向连接此方块。默认为`["north", "south", "west", "east"]`。
-    - <DataType type="string"/>：可选值为`east`、`west`、`south`、`north`。
-</treeview>
-
-</TabItem><TabItem value="示例" label="示例">
-
-```json showLineNumbers
-"minecraft:connection_rule": {
-    "accepts_connections_from": "only_fence",
-    "enabled_directions": ["north", "south", "west", "east"]
-}
-```
-
-</TabItem></Tabs>
-
----
-
 ### `minecraft:entity_fall_on`
 
 <Usable type="all"/> <Version add="1.21.10"/> <br/>
@@ -801,13 +804,13 @@ import Button from '/src/components/button/base';
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_entity_fall_on?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#entity-fall-on"/>
 
-定义实体在多高处落到该方块上之后，才能触发 ScriptAPI 中方块自定义组件定义的[`onEntityFallOn`事件](./custom_components#onentityfallon属性)。
+定义实体在多高处落到该方块上之后，才能触发 ScriptAPI 中方块自定义组件定义的[onEntityFallOn 事件](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
-- <DataType type="object" name="minecraft:entity_fall_on"/>：根数组。
-  - <DataType type="float" name="min_fall_distance"/>：在从多高的高度掉落到该方块上后，才能触发 ScriptAPI 中方块自定义组件定义的[`onEntityFallOn`事件](./custom_components#onentityfallon属性)。默认值为`1`。
+- <DataType type="object" name="minecraft:entity_fall_on"/>：根对象。
+  - <DataType type="float" name="min_fall_distance"/>：在从多高的高度掉落到该方块上后，才能触发 ScriptAPI 中方块自定义组件定义的[onEntityFallOn 事件](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)。默认值为`1`。
 </treeview>
 
 > **注意**：经过实测，Microsoft Learn 给出的`minimum_fall_distance`是错误写法，请使用本文档给出的写法。参见[Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-components#entity-fall-on)。
@@ -928,20 +931,24 @@ import Button from '/src/components/button/base';
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+对象型：
+
 <treeview>
 - <DataType type="object" name="minecraft:friction"/>：根对象
-  - <DataType type="int" name="value"/>：定义方块的摩擦因数。摩擦因数越低则方块越光滑。应在`0.0`-`0.9`之间（含）。
+  - <DataType type="float" name="value"/>：定义方块的摩擦因数。摩擦因数越低则方块越光滑。应在`0.0`-`0.9`之间（含）。
 </treeview>
 
-<Version add="1.19.20"/>
+浮点型：
 
 <treeview>
-- <DataType type="int" name="minecraft:friction"/>：定义方块的摩擦因数。摩擦因数越低则方块越光滑。应在`0.0`-`0.9`之间（含）。默认值为`0.4`。
+- <DataType type="float" name="minecraft:friction"/>：定义方块的摩擦因数。摩擦因数越低则方块越光滑。应在`0.0`-`0.9`之间（含）。默认值为`0.4`。
 </treeview>
+
+> 浮点型仅在格式版本1.16.x与1.19.20及更高版本中可用，介于其间的版本需改用对象型。
 
 </TabItem><TabItem value="示例" label="示例">
 
-**格式版本 1.16.0 以前**：
+**对象型**（格式版本 1.19.20 以前）：
 
 ```json showLineNumbers
 "minecraft:friction": {
@@ -949,7 +956,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-**格式版本 1.16.X 或 1.19.20 及更高**：
+**标量型**（格式版本 1.16.x 或 1.19.20 及更高）：
 
 ```json showLineNumbers
 "minecraft:friction": 0.4
@@ -1085,10 +1092,10 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="minecraft:liquid_detection"/>：根对象。
-  - <DataType type="array" name="detection_rules"/>：根对象。
+  - <DataType type="array" name="detection_rules"/>：定义方块遇到液体时的检测规则。数组中的每个元素对应一种被检测的液体，可分别为其设置是否可容纳、接触时触发何种行为、从哪些方向阻止液体流动等。
     - <DataType type="object"/>
       - <DataType type="string" name="liquid_type"/>：方块检查何种液体的行为。可选值为`water`（水）。默认值为`water`。
-      - <DataType type="string" name="can_contain_liquid"/>：方块是否可以容纳该液体。默认值为`false`。若为`true`则代表方块可含水。
+      - <DataType type="boolean" name="can_contain_liquid"/>：方块是否可以容纳该液体。默认值为`false`。若为`true`则代表方块可含水。
       - <DataType type="string" name="on_liquid_touches"/>：方块在接触到该液体时触发何种行为。可选值为`blocking`（默认值，阻挡水流过）、`broken`（打破该方块）、`no_reaction`（水正常流过）、`popped`（打破该方块并掉落物品）。
       - <DataType type="array" name="stops_liquid_flowing_from_direction"/>：阻止液体从方块的何种方向流出。若<DataType type="string" name="on_liquid_touches"/>指定为`no_reaction`，则还阻止液体从方块的何种方向流入。
         - <DataType type="string"/>：可指定为`east`、`west`、`north`、`south`、`up`、`down`六面。
@@ -1217,7 +1224,7 @@ import Button from '/src/components/button/base';
 - <DataType type="object" name="minecraft:placement_filter"/>：根对象。
   - <DataType type="array" name="conditions" isRequired/>：定义方块允许放置或允许存在的条件。哪怕已被放置，在不满足条件时仍会掉落对应的物品形式。
     - <DataType type="object"/>
-      - <DataType type="array" name="allow_faces"/>：定义可以放置于其他方块的哪个或哪些面上。默认值为`["all"]`。
+      - <DataType type="array" name="allowed_faces"/>：定义可以放置于其他方块的哪个或哪些面上。默认值为`["all"]`。
         - <DataType type="string"/>：可选值：`all`、`side`、`down`、`up`、`north`、`south`、`west`和`east`。
       - <DataType type="array" name="block_filter"/>：定义可以放置于何种方块上。默认值为`[{"tags":"1"}]`。
         - <DataType type="string"/>：（写法 1）方块 ID。
@@ -1261,7 +1268,7 @@ import Button from '/src/components/button/base';
 
 - <DataType type="object" name="minecraft:precipitation_interactions"/>：根对象。
     - <DataType type="string" name="precipitation_behavior"/>：方块在雨雪天气下的行为。可选值如下表，若挡雨则会使雨打在方块上并溅起水花，否则穿过方块；若积雪则会在方块上方形成雪层，否则穿过方块。
-        <!-- markdownlint-disable MD058 -->
+          <!-- markdownlint-disable MD058 -->
 
         | 可选值                                       | 是否挡雨 | 是否积雪 |
         | -------------------------------------------- | -------- | -------- |
@@ -1365,13 +1372,13 @@ import Button from '/src/components/button/base';
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_redstone_consumer?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#redstone-consumer"/>
 
-定义方块为一种机械元件，并触发 ScriptAPI 中方块自定义组件定义的[`onRedstoneUpdate`事件](./custom_components#onredstoneupdate属性)，将自己获得的红石信号强度传递给脚本。
+定义方块为一种机械元件，并触发 ScriptAPI 中方块自定义组件定义的[onRedstoneUpdate 事件](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)，将自己获得的红石信号强度传递给脚本。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="minecraft:redstone_consumer"/>：根对象。
-  - <DataType type="int" name="min_power"/>：至少为多少信号才能触发[`onRedstoneUpdate`事件](./custom_components#onredstoneupdate属性)。
+  - <DataType type="int" name="min_power"/>：至少为多少信号才能触发[onRedstoneUpdate 事件](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)。
   - <DataType type="boolean" name="propagates_power"/>：是否能够继续传播红石信号。默认为`false`。不受<DataType type="int" name="min_power"/>的影响。
 </treeview>
 
@@ -1499,13 +1506,13 @@ import Button from '/src/components/button/base';
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tick?view=minecraft-bedrock-stable"/>
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/blocks/block-components#tick"/>
 
-定义方块的更新频率，并触发 ScriptAPI 中方块自定义组件定义的[`onTick`事件](./custom_components#ontick属性)。
+定义方块的更新频率，并触发 ScriptAPI 中方块自定义组件定义的[onTick 事件](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
-- <DataType type="object" name="minecraft:tick"/>：根数组。
-  - <DataType type="array" name="interval_range" isRequired/>：间隔多久执行一次[`onTick`事件](./custom_components#ontick属性)。
+- <DataType type="object" name="minecraft:tick"/>：根对象。
+  - <DataType type="array" name="interval_range" isRequired/>：间隔多久执行一次[onTick 事件](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)。
     - <DataType type="int" name="0"/>：最短在多少游戏刻内执行一次事件。
     - <DataType type="int" name="1"/>：最长在多少游戏刻内执行一次事件。
   - <DataType type="boolean" name="looping"/>：是否循环执行更新事件。默认值为`true`。
@@ -1564,6 +1571,8 @@ import Button from '/src/components/button/base';
 
 其中，部分方块组件有国际版组件或方块特征的平替，或组件的部分功能有国际版组件或方块特征的平替。**因为中国版方块可以直接使用高版本的国际版组件或方块特征，因此请在存在平替的情况下优先考虑平替**。
 
+---
+
 ### `minecraft:max_stack_size`
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
@@ -1575,7 +1584,7 @@ import Button from '/src/components/button/base';
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
-- <DataType type="int" name="minecraft:max_stack_size"/>：定义方块的最大堆叠数。应在`0`-`64`之间（含）。
+- <DataType type="int" name="minecraft:max_stack_size"/>：定义方块的最大堆叠数。应在`1`-`64`之间（含）。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -1601,8 +1610,8 @@ import Button from '/src/components/button/base';
 <treeview>
 - <DataType type="object" name="netease:aabb"/>：根对象
   - <DataType type="object" name="collision"/>/<DataType type="object" name="clip"/>：（写法 1）定义方块的碰撞箱/选择箱，使用此写法将定义一个单一的碰撞箱/选择箱。
-    - <DataType type="array" name="min"/>：代表碰撞箱的起点，应为<DataType type="float"/>的三元数组，应大于等于`[-1, -1, -1]`，小于等于<DataType type="array" name="max"/>的对应值。
-    - <DataType type="array" name="max"/>：代表碰撞箱的大小，应为<DataType type="float"/>的三元数组，应小于等于`[2, 2, 2]`。
+    - <DataType type="array" name="min"/>：代表碰撞箱的起点（最小坐标），应为<DataType type="float"/>的三元数组，应大于等于`[-1, -1, -1]`，小于等于<DataType type="array" name="max"/>的对应值。
+    - <DataType type="array" name="max"/>：代表碰撞箱的终点（最大坐标），应为<DataType type="float"/>的三元数组，应小于等于`[2, 2, 2]`。
   - <DataType type="array" name="collision"/>/<DataType type="array" name="clip"/>：（写法 2）定义方块的碰撞箱/选择箱，使用此写法将定义一个复合的碰撞箱/选择箱。
     - <DataType type="object"/>：子碰撞箱/选择箱，每个子碰撞箱/选择箱都允许<DataType type="array" name="max"/>和<DataType type="array" name="min"/>（详见上文），还额外允许以下的参数。
       - <DataType type="string" name="enable"/>：是否启用该碰撞箱/选择箱，应指定为[检查连接状态的 Molang（`query.is_connect()`）](../blocks/molang#其他)。详见[`netease:connection`](#neteaseconnection)。
@@ -2267,7 +2276,7 @@ import Button from '/src/components/button/base';
         }
     ],
     "spawn_resources": true
-},
+}
 ```
 
 </TabItem></Tabs>
@@ -2393,7 +2402,7 @@ import Button from '/src/components/button/base';
 
 定义实体刚掉落到该方块上的时候是否触发 ModAPI 的[`OnBeforeFallOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onbeforefallonblockserverevent)。
 
-基于这两个事件可实现类似于粘液块一样的效果。
+基于该事件可实现类似于粘液块一样的效果。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2449,7 +2458,7 @@ import Button from '/src/components/button/base';
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-stand-on"/>
 
-定义当实体站在该方块后是否触发 ModAPI 的[`OnStandOnBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onstandonblockclientevent)和[`OnStandOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onstandonblockserverevent)。
+定义当实体站在该方块上后是否触发 ModAPI 的[`OnStandOnBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onstandonblockclientevent)和[`OnStandOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onstandonblockserverevent)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2503,7 +2512,7 @@ import Button from '/src/components/button/base';
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-step-on"/>
 
-定义当实体踏上该方块上后是否触发 ModAPI 的[`StepOnBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#steponblockclientevent)和[`StepOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#steponblockserverevent)。
+定义当实体踏上该方块后是否触发 ModAPI 的[`StepOnBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#steponblockclientevent)和[`StepOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#steponblockserverevent)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2768,7 +2777,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:tier`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件的最佳挖掘工具功能可由minecraft:digger组件平替，需求格式版本为1.21.50。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件的最佳挖掘工具功能可由minecraft:destructible_by_mining组件的item_specific_speeds参数平替，需求格式版本为1.21.50。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-tier"/>
 
@@ -2835,7 +2844,7 @@ import Button from '/src/components/button/base';
         "surrouding": { "value": "minecraft:sand", "radius": 1 }
     },
     "result": "customcrop:customcrop_stage2"
-},
+}
 ```
 
 </TabItem></Tabs>
@@ -2955,6 +2964,8 @@ import Button from '/src/components/button/base';
 ## 弃用组件
 
 以下组件仅限旧版本的方块适用，因这些组件曾在非实验性方块中可用，故本文档也一并列出，但强烈不推荐使用。
+
+---
 
 ### `minecraft:block_light_absorption`
 
@@ -3166,7 +3177,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:custom_components`
 
-<Usable type="all"/> <Version add="1.21.20" deprecated="1.21.90" tooltip="弃用原因：1.21.90 推出了自定义组件 V2。在 1.21.90 或更高版本下的物品定义中不应再使用该组件。"/> <br/>
+<Usable type="all"/> <Version add="1.21.20" deprecated="1.21.90" tooltip="弃用原因：1.21.90 推出了方块自定义组件 V2。在 1.21.90 或更高版本下的方块定义中不应再使用该组件。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_custom_components?view=minecraft-bedrock-stable"/>
 
@@ -3193,7 +3204,7 @@ import Button from '/src/components/button/base';
 
 ### `tag:(标签)`
 
-<Usable type="all"/> <Version add="?" deprecated="1.26.20" tooltip="在高版本使用minecraft:tags组件代替之。"/> <br/>
+<Usable type="all"/> <Version add="未知" deprecated="1.26.20" tooltip="在高版本使用minecraft:tags组件代替之。"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_tag?view=minecraft-bedrock-stable"/>
 
@@ -3203,12 +3214,571 @@ import Button from '/src/components/button/base';
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<treeview>
 - <DataType type="object" name="tag:(标签)"/>：定义方块具有方块标签`(标签)`。
+</treeview>
 
 </TabItem><TabItem value="示例" label="示例">
 
 ```json showLineNumbers
 "tag:dirt": {}
+```
+
+</TabItem></Tabs>
+
+---
+
+## 已移除组件
+
+以下组件曾在早期的实验性玩法「假日创作者功能」中开放，随后被移出游戏。它们大多**从未走出实验性玩法**进入稳定版本，因此在当前的任何游戏版本、任何格式版本下均无法生效。此处仅作考古与排错之用，**请勿在任何方块中定义**。若你在旧教程或旧存档中见到它们，请按各条目给出的替代方案改写。
+
+其中以`minecraft:on_`开头的若干条是旧版的**触发器组件**，它们的作用后来由[自定义方块组件](/docs/docs/scripts/sapi/server/system/custom_block_component)与脚本接口接管。
+
+### `minecraft:breakonpush`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:breakonpush"/>
+
+定义方块被活塞推动时是否会被破坏。
+
+另见：_[`minecraft:movable`](#minecraftmovable)组件_（将`movement_type`定义为`popped`时行为等价）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="boolean" name="minecraft:breakonpush"/>：方块被活塞推动时是否会被破坏。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:breakonpush": true
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:breathability`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:breathability"/>
+
+定义方块的透气性，即生物呼吸点位于该方块内时是否会被视为固体。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="string" name="minecraft:breathability"/>：定义方块的透气类型。可选值为`solid`（视为固体，生物在其中会窒息）或`air`（视为空气，生物可在其中呼吸）。默认值为`solid`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:breathability": "air"
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:creative_category`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:creative_category"/>
+
+定义方块在创造模式物品栏中的分类。
+
+另见：_[方块描述](./description#行为包定义格式)_ 中的`menu_category`参数。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="string" name="minecraft:creative_category"/>：方块所属的创造模式分类。常用值为`construction`、`nature`、`equipment`、`items`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:creative_category": "construction"
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:immovable`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:immovable"/>
+
+定义方块能否被活塞推动。
+
+另见：_[`minecraft:movable`](#minecraftmovable)组件_（将`movement_type`定义为`immovable`时行为等价）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="boolean" name="minecraft:immovable"/>：方块是否不可被活塞推动。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:immovable": true
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:on_fall_on`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:on_fall_on"/>
+
+定义实体掉落到该方块上时触发的事件。
+
+另见：_[`minecraft:entity_fall_on`](#minecraftentity_fall_on)组件_（用于设定触发高度）、_[onEntityFallOn 属性](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)_（替代方案）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:on_fall_on"/>：根对象。
+  - <DataType type="string" name="condition"/>：触发事件需满足的条件，默认为`1`（即总是触发）。
+  - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+  - <DataType type="float" name="min_fall_distance"/>：触发事件所需的最小下落高度（以方块为单位）。默认值为`0.0`。
+  - <DataType type="string" name="target"/>：事件的作用目标。默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:on_fall_on": {
+    "event": "test:on_fall",
+    "min_fall_distance": 3.0
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:on_interact`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:on_interact"/>
+
+定义玩家与该方块交互（如右键点击）时触发的事件。
+
+另见：_[onPlayerInteract 属性](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)_（替代方案）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:on_interact"/>：根对象。
+  - <DataType type="string" name="condition"/>：触发事件需满足的条件，默认为`1`（即总是触发）。
+  - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+  - <DataType type="string" name="target"/>：事件的作用目标。默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:on_interact": {
+    "event": "test:on_interact"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:on_placed`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:on_placed"/>
+
+定义方块被放置后触发的事件。
+
+另见：_[onPlace 属性](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)_（替代方案）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:on_placed"/>：根对象。
+  - <DataType type="string" name="condition"/>：触发事件需满足的条件，默认为`1`（即总是触发）。
+  - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+  - <DataType type="string" name="target"/>：事件的作用目标。默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:on_placed": {
+    "event": "test:on_placed"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:on_player_destroyed`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:on_player_destroyed"/>
+
+定义玩家破坏该方块时触发的事件。
+
+另见：_[onPlayerBreak 属性](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)_（替代方案）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:on_player_destroyed"/>：根对象。
+  - <DataType type="string" name="condition"/>：触发事件需满足的条件，默认为`1`（即总是触发）。
+  - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+  - <DataType type="string" name="target"/>：事件的作用目标。默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:on_player_destroyed": {
+    "event": "test:on_destroyed"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:on_player_placing`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:on_player_placing"/>
+
+定义玩家放置该方块时触发的事件。
+
+另见：_[beforeOnPlayerPlace 属性](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)_（替代方案）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:on_player_placing"/>：根对象。
+  - <DataType type="string" name="condition"/>：触发事件需满足的条件，默认为`1`（即总是触发）。
+  - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+  - <DataType type="string" name="target"/>：事件的作用目标。默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:on_player_placing": {
+    "event": "test:on_placing"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:on_step_off`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:on_step_off"/>
+
+定义实体离开该方块时触发的事件。
+
+另见：_[onStepOff 属性](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)_（替代方案）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:on_step_off"/>：根对象。
+  - <DataType type="string" name="condition"/>：触发事件需满足的条件，默认为`1`（即总是触发）。
+  - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+  - <DataType type="string" name="target"/>：事件的作用目标。默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:on_step_off": {
+    "event": "test:on_step_off"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:on_step_on`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:on_step_on"/>
+
+定义实体踩上该方块时触发的事件。
+
+另见：_[onStepOn 属性](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)_（替代方案）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:on_step_on"/>：根对象。
+  - <DataType type="string" name="condition"/>：触发事件需满足的条件，默认为`1`（即总是触发）。
+  - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+  - <DataType type="string" name="target"/>：事件的作用目标。默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:on_step_on": {
+    "event": "test:on_step_on"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:onlypistonpush`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:onlypistonpush"/>
+
+定义方块是否不会被粘性活塞拉动（仍可被普通活塞推动）。
+
+另见：_[`minecraft:movable`](#minecraftmovable)组件_（将`movement_type`定义为`push`时行为等价）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="boolean" name="minecraft:onlypistonpush"/>：方块是否只能被推动而不能被拉动。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:onlypistonpush": true
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:part_visibility`
+
+<Usable type="all"/> <Version experimental="即将到来的创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:part_visibility"/>
+
+定义方块模型的骨骼在满足条件时是否显示。该组件最终未走出实验性玩法，随即被弃用。
+
+另见：*[`minecraft:geometry`](#minecraftgeometry)组件*的`bone_visibility`参数（替代方案）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:part_visibility"/>：根对象。
+  - <DataType type="string" name="(骨骼 ID)"/>：定义该骨骼是否显示。应为一个返回布尔值的 Molang 表达式，可使用`query.has_block_property()`、`query.block_property()` 等不依赖方块位置的查询（这两个查询自格式版本`1.20.40`起已被移除）。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:part_visibility": {
+    "head": "query.block_property('test:open')"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:preventsjumping`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:preventsjumping"/>
+
+定义实体在该方块上行走时是否无法跳跃。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="boolean" name="minecraft:preventsjumping"/>：实体在该方块上时是否无法跳跃。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:preventsjumping": true
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:queued_ticking`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_queued_ticking?view=minecraft-bedrock-stable"/>
+
+定义方块的计划刻，在指定间隔后触发事件。
+
+另见：_[`minecraft:tick`](#minecrafttick)组件_（替代方案）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:queued_ticking"/>：根对象。
+  - <DataType type="array" name="interval_range"/>：两次触发之间的间隔（游戏刻），每次从该区间中随机取值。若两个值相同，则每次都以固定间隔触发。
+    - <DataType type="int" name="0"/>：最短间隔。
+    - <DataType type="int" name="1"/>：最长间隔。
+  - <DataType type="boolean" name="looping"/>：是否循环触发。默认为`true`；为`false`时仅在延时后触发一次。
+  - <DataType type="object" name="on_tick"/>：要触发的事件。
+    - <DataType type="string" name="condition"/>：触发事件需满足的条件，默认为`1`（即总是触发）。
+    - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+    - <DataType type="string" name="target"/>：事件的作用目标。默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:queued_ticking": {
+    "interval_range": [ 20, 100 ],
+    "looping": true,
+    "on_tick": {
+        "event": "test:tick"
+    }
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:random_ticking`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:random_ticking"/>
+
+定义方块被随机刻选中时触发的事件。
+
+另见：_[onRandomTick 属性](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)_（替代方案）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:random_ticking"/>：根对象。
+  - <DataType type="object" name="on_tick"/>：随机刻触发的事件。
+    - <DataType type="string" name="condition"/>：触发事件需满足的条件，默认为`1`（即总是触发）。
+    - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+    - <DataType type="string" name="target"/>：事件的作用目标。默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:random_ticking": {
+    "on_tick": {
+        "event": "test:random_tick"
+    }
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:rotation`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:rotation"/>
+
+定义方块环绕方块中心的旋转角度，单位为度。
+
+另见：*[`minecraft:transformation`](#minecrafttransformation)组件*的`rotation`参数（替代方案）。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="array" name="minecraft:rotation"/>：根数组，依次为 X、Y、Z 轴的旋转角度。默认值为`[0, 0, 0]`。
+  - <DataType type="float" name="0"/>：X 轴旋转角度。
+  - <DataType type="float" name="1"/>：Y 轴旋转角度。
+  - <DataType type="float" name="2"/>：Z 轴旋转角度。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:rotation": [ 0, 90, 0 ]
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:unit_cube`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/minecraftblock_unit_cube?view=minecraft-bedrock-stable"/>
+
+指定方块在曲面细分渲染时使用单位立方体。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:unit_cube"/>：根对象，不含任何参数。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:unit_cube": {}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:unwalkable`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:unwalkable"/>
+
+定义方块是否不可行走，即生物不会尝试途经其上。默认值为`false`。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="boolean" name="minecraft:unwalkable"/>：方块是否不可行走。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+```json showLineNumbers
+"minecraft:unwalkable": true
 ```
 
 </TabItem></Tabs>

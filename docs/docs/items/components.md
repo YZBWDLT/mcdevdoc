@@ -14,7 +14,7 @@ import Usable from "/src/components/highlight/usable"
 import Version from "/src/components/highlight/version"
 import Button from '/src/components/button/base';
 
-> 适用版本：国际版 26.30，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
 
 数据驱动物品组件（Data-Driven Item Components）用于规定物品的功能。将不同的物品组件组合在一起可以实现多种复杂的功能。
 
@@ -85,6 +85,8 @@ import Button from '/src/components/button/base';
 > 当使用[`minecraft:wearable`](#minecraftwearable)时，攻击生物不会降低这 2 点耐久度。在穿着该物品时，被其他实体攻击后会降低 1 点耐久度，这是符合原版的运作方式的。
 >
 > —— [Bedrock Wiki](https://wiki.bedrock.dev/items/item-components#durability)
+
+另见：_[ItemDurabilityComponent 类](/docs/docs/scripts/sapi/server/item/component#itemdurabilitycomponent-类)_（通过脚本读写耐久值、修改损耗概率）。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -385,8 +387,8 @@ import Button from '/src/components/button/base';
 
 ```json showLineNumbers
 "minecraft:block_placer": {
-    "block": "seeds",
-    "use_on": [ "dirt", "grass" ],
+    "block": "minecraft:wheat",
+    "use_on": [ "minecraft:dirt", "minecraft:grass_block" ],
     "replace_block_item": true
 }
 ```
@@ -394,7 +396,7 @@ import Button from '/src/components/button/base';
 ```json showLineNumbers
 "minecraft:block_placer": {
     "block": "minecraft:dirt",
-    "use_on": [ "dirt", "grass", "anvil" ]
+    "use_on": [ "dirt", "grass_block", "anvil" ]
 }
 ```
 
@@ -485,6 +487,8 @@ import Button from '/src/components/button/base';
 
 定义物品可在堆肥桶中用于堆肥。
 
+另见：_[ItemCompostableComponent 类](/docs/docs/scripts/sapi/server/item/component#itemcompostablecomponent-类)_（通过脚本读取堆肥概率）。
+
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
@@ -513,7 +517,7 @@ import Button from '/src/components/button/base';
 
 定义物品使用后的冷却。
 
-另见：_[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件_。
+另见：_[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件_、_[ItemCooldownComponent 类](/docs/docs/scripts/sapi/server/item/component#itemcooldowncomponent-类)_（通过脚本设置冷却）。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -665,7 +669,7 @@ import Button from '/src/components/button/base';
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-- <DataType type="object" name="minecraft:durability"/>：根对象。
+- <DataType type="object" name="minecraft:durability_sensor"/>：根对象。
   - <DataType type="array" name="durability_thresholds" isRequired/>：当物品耐久度降低到某个阈值时，触发事件。如果同时满足多个阈值，考虑所有阈值中最低的那个。至少指定 1 项。
     - <DataType type="object"/>：耐久度阈值
       - <DataType type="int" name="durability"/>：指定耐久度阈值，当物品耐久度低于此值时触发下面的事件。
@@ -735,6 +739,8 @@ import Button from '/src/components/button/base';
 <Button text="Bedrock Wiki" url="https://wiki.bedrock.dev/items/item-components#enchantable"/>
 
 定义物品为可附魔。
+
+另见：_[ItemEnchantableComponent 类](/docs/docs/scripts/sapi/server/item/component#itemenchantablecomponent-类)_（通过脚本添加、移除与查询附魔）。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -843,7 +849,7 @@ import Button from '/src/components/button/base';
 
 定义物品为食物。
 
-另见：_[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件_。
+另见：_[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件_、_[ItemFoodComponent 类](/docs/docs/scripts/sapi/server/item/component#itemfoodcomponent-类)_（通过脚本读取食物属性）。
 
 :::note[编者注]
 
@@ -865,7 +871,7 @@ import Button from '/src/components/button/base';
   - <DataType type="boolean" name="can_always_eat"/>：食物是否在任何情况下都可食用，否则仅当玩家的饥饿值不满时才可食用。
 </treeview>
 
-</TabItem><TabItem value="example" label="示例" default>
+</TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
 "minecraft:food": {
@@ -1012,7 +1018,7 @@ import Button from '/src/components/button/base';
   - <DataType type="string" name="value"/>：设置物品的悬浮文本颜色。可选值为格式化代码对应的名称，详见[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/格式化代码#颜色代码) 对应的名称一列。
 </treeview>
 
-**布尔型**：
+**字符串型**：
 
 <treeview>
 - <DataType type="string" name="minecraft:hover_text_color"/>：设置物品的悬浮文本颜色。可选值为格式化代码对应的名称，详见[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/格式化代码#颜色代码) 对应的名称一列。
@@ -1028,7 +1034,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-**布尔型**：
+**字符串型**：
 
 ```json showLineNumbers
 "minecraft:hover_text_color": "aqua"
@@ -1208,6 +1214,9 @@ import Button from '/src/components/button/base';
   - <DataType type="object" name="reach"/>：定义目标必须在使用者的视线向量内多少格的范围才能被击中。如果目标和使用者之间有方块，也会阻止伤害及其效果。
     - <DataType type="float" name="max"/>：目标和使用者之间的最大范围。默认值为`3`。
     - <DataType type="float" name="min"/>：目标和使用者之间的最小范围。默认值为`0`。
+  - <DataType type="object" name="creative_reach"/>：定义目标必须在*创造模式*使用者的视线向量内多少格的范围才能被击中。如果目标和使用者之间有方块，也会阻止伤害及其效果。
+    - <DataType type="float" name="max"/>：目标和使用者之间的最大范围。默认值为<DataType type="object" name="reach"/>规定的值。
+    - <DataType type="float" name="min"/>：目标和使用者之间的最小范围。默认值为<DataType type="object" name="reach"/>规定的值。
   - <DataType type="float" name="hitbox_margin"/>：允许使用者视线向量的偏移误差。默认值为`0`。
 </treeview>
 
@@ -1219,11 +1228,11 @@ import Button from '/src/components/button/base';
 "minecraft:piercing_weapon": {
     "reach": {
         "min": 2,
-        "max": 4.5,
+        "max": 4.5
     },
     "creative_reach": {
         "min": 2,
-        "max": 7.5,
+        "max": 7.5
     },
     "hitbox_margin": 0.25
 }
@@ -1280,13 +1289,13 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="minecraft:rarity"/>：根对象。
-  - <DataType type="boolean" name="value"/>：定义物品的基础稀有度。可选值为`common`（普通）、`uncommon`（少见）、`rare`（稀有）、`epic`（传奇）。
+  - <DataType type="string" name="value"/>：定义物品的基础稀有度。可选值为`common`（普通）、`uncommon`（少见）、`rare`（稀有）、`epic`（传奇）。
 </treeview>
 
 **字符串型**：
 
 <treeview>
-- <DataType type="boolean" name="minecraft:rarity"/>：定义物品的基础稀有度。可选值为`common`（普通）、`uncommon`（少见）、`rare`（稀有）、`epic`（传奇）。
+- <DataType type="string" name="minecraft:rarity"/>：定义物品的基础稀有度。可选值为`common`（普通）、`uncommon`（少见）、`rare`（稀有）、`epic`（传奇）。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -1523,9 +1532,9 @@ import Button from '/src/components/button/base';
   - <DataType type="array" name="allowed_items"/>：允许存储的物品，不在此列名单中的物品无法存储。若设置为空则允许存储一切物品。
     - <DataType type="string"/>：允许存储的物品 ID。
   - <DataType type="array" name="banned_items"/>：禁止存储的物品，在此列名单中的物品无法存储。
-    - <DataType type="string"/>：允许存储的物品 ID。
+    - <DataType type="string"/>：禁止存储的物品 ID。
   - <DataType type="int" name="max_slots"/>：该物品的最大槽位数。
-  - <DataType type="int" name="max_weight_limit"/>：<Version add="1.21.40" deprecated="1.21.50" inline/>该物品在其他可存储物品中占用的容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)组件。
+  - <DataType type="int" name="max_weight_limit"/>：<Version add="1.21.40" deprecated="1.21.50" inline/>该物品可存储的最大容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)组件。
   - <DataType type="int" name="weight_in_storage_item"/>：<Version add="1.21.40" deprecated="1.21.50" inline/>该物品在其他可存储物品中占用的容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier)组件。
 </treeview>
 
@@ -1675,7 +1684,7 @@ import Button from '/src/components/button/base';
 <treeview>
 - <DataType type="object" name="minecraft:throwable"/>：根对象。
   - <DataType type="boolean" name="do_swing_animation"/>：物品掷出后是否播放摆手动画。
-  - <DataType type="float" name="launch_power_scale"/>：随着蓄力时间增长而增加的弹射物威力比例。默认值为`1.0`（即蓄力时间增长，弹射物威力不增加）。设置负值将导致弹射物以反方向掷出。
+  - <DataType type="float" name="launch_power_scale"/>：投掷时威力随蓄力增长的倍率。默认值为`1.0`。设置负值将导致弹射物以反方向掷出。
   - <DataType type="float" name="min_draw_duration"/>：最短蓄力时间，单位秒。蓄力未达到最短蓄力时间则无法掷出弹射物。默认为`0.0`。
   - <DataType type="float" name="max_launch_power"/>：弹射物的最大威力（以保证弹射物的威力不会无限增大）。
   - <DataType type="boolean" name="scale_power_by_draw_duration"/>：是否随着蓄力时间的增长而增加弹射物掷出时的威力，默认值为`false`。
@@ -1757,9 +1766,19 @@ import Button from '/src/components/button/base';
   - <DataType type="float" name="movement_modifier"/>：定义玩家使用物品时的速度倍率，必须小于等于`1`。例如苹果的该值为`0.35`。
   - <DataType type="boolean" name="emit_vibrations"/>：<Version add="1.21.120" inline/>定义玩家使用物品时是否发出振动。
   - <DataType type="string" name="start_sound"/>：<Version add="1.21.130" inline/>定义玩家在使用物品后播放何种音效。
-  - <DataType type="string" name="start_using"/>：<Version add="1.26.30" inline/>判定何时触发使用修饰器，可选值为`always`（只要触发使用操作就尝试开始使用该物品）和`if_first`（仅在没有其他组件尝试使用该物品时尝试开始使用该物品）[^1]。
+  - <DataType type="string" name="start_using"/>：<Version add="1.26.30" inline/>定义该组件何时去抢占「开始使用物品」这一动作。可选值为`always`（无论是否有其他组件已经开始使用该物品，都尝试开始使用）和`if_first`（仅在没有其他组件尝试开始使用该物品时，才尝试开始使用）。格式版本低于`1.26.30`时默认值为`always`，`1.26.30`及更高时默认值为`if_first`。
 </treeview>
-[^1]: 有待验证。
+
+:::note[编者注]
+
+同一物品上可能有多个组件都会在玩家按下使用键时启动「使用」状态：`minecraft:use_modifiers`负责使用时长与移动减速，`minecraft:shooter`负责蓄力拉弓，`minecraft:food`负责进食，等等。它们之间会争抢「谁来开始这次使用」，`start_using`就是`minecraft:use_modifiers`的退让开关。
+
+- 设为`if_first`时，只要别的组件（例如带蓄力时长的`minecraft:shooter`）先开始了使用，本组件就不介入，弓类物品因此能正常蓄力与发射。
+- 设为`always`时，本组件无论如何都会开始使用，可能会与上述蓄力流程冲突。
+
+`1.26.30`之前的格式版本没有这个开关，行为等同于`always`；从`1.26.30`起默认改为`if_first`，以修复同时带有`minecraft:shooter`的物品无法正常蓄力的漏洞。
+
+:::
 
 </TabItem><TabItem value="example" label="示例">
 
@@ -1768,7 +1787,8 @@ import Button from '/src/components/button/base';
     "use_duration": 1.6,
     "movement_modifier": 0.35,
     "emit_vibrations": true,
-    "start_sound": "random.orb"
+    "start_sound": "random.orb",
+    "start_using": "if_first"
 }
 ```
 
@@ -1795,7 +1815,7 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="minecraft:wearable"/>：根对象。
-  - <DataType type="string" name="slot" isRequired/>：定义可穿戴的位置。可选值：`slot.weapon.offhand`、`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`。
+  - <DataType type="string" name="slot" isRequired/>：定义可穿戴的位置。可选值：`slot.weapon.mainhand`、`slot.weapon.offhand`、`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`。
   - <DataType type="int" name="protection"/>：物品可提供的护甲值。默认为`0`。
   - <DataType type="boolean" name="hides_player_location"/>：（1.21.90+）穿戴后是否在定位栏中隐藏玩家位置。
 </treeview>
@@ -1904,7 +1924,7 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="netease:bucket"/>：根对象。
-  - <DataType type="string" name="fill_liquid" isRequired/>：定义使用时倒出的流体方块 ID。默认值为`flowing_water`。
+  - <DataType type="string" name="fill_liquid"/>：定义使用时倒出的流体方块 ID。默认值为`flowing_water`。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -2037,14 +2057,14 @@ import Button from '/src/components/button/base';
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-- <DataType type="object" name="netease:enchantment_material"/>：根对象。
+- <DataType type="object" name="netease:enchant_material"/>：根对象。
   - <DataType type="boolean" name="value" isRequired/>：物品是否为附魔材料。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
 
 ```json showLineNumbers
-"netease:enchantment_material": {
+"netease:enchant_material": {
     "value": true
 }
 ```
@@ -2122,11 +2142,10 @@ import Button from '/src/components/button/base';
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-- <DataType type="object" name="netease:weapon"/>：根对象。
-  - <DataType type="string" name="flipbook_texture" isRequired/>：序列帧资源的路径。
-  - <DataType type="string" name="atlas_tile" isRequired/>：在图集中声明的名称。
+- <DataType type="object" name="netease:frame_anim_in_scene"/>：根对象。
+  - <DataType type="string" name="texture_path" isRequired/>：序列帧图集贴图的路径，从`textures/`开始，不带后缀，例如`textures/items/watch_atlas`。
   - <DataType type="int" name="ticks_per_frame" isRequired/>：代表多少帧切换一次贴图，按 1 秒 20 帧算，设置 20 的话即为 1 秒切换一帧贴图。
-  - <DataType type="boolean" name="blend_frames"/>：切换贴图的时候是否混合上一帧。
+  - <DataType type="boolean" name="blend_frames"/>：切换贴图的时候是否混合上一帧。官方文档未说明该字段，有待验证。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -2153,7 +2172,7 @@ import Button from '/src/components/button/base';
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
-- <DataType type="object" name="netease:weapon"/>：根对象。
+- <DataType type="object" name="netease:frame_animation"/>：根对象。
   - <DataType type="string" name="texture_name" isRequired/>：`item_texture.json`中定义的序列帧数组。
   - <DataType type="int" name="frame_count"/>：定义序列帧帧数。默认值为`1`。
   - <DataType type="boolean" name="animate_in_toolbar"/>：在物品栏中是否支持动画。默认值为`true`。
@@ -2226,7 +2245,7 @@ import Button from '/src/components/button/base';
       - <DataType type="object" name="lvl" isRequired/>：附魔等级。
         - <DataType type="int" name="__type__"/>：下面的`__value__`值的类型，`1`代表字节型（Byte），`2`代表短整型（short）。
         - <DataType type="int" name="__value__"/>：附魔等级。
-  - <DataType type="boolean" name="minecraft:keep_on_death"/>：物品是否在玩家死亡后掉落。默认值为`false`。
+  - <DataType type="boolean" name="minecraft:keep_on_death"/>：物品在玩家死亡时是否保留（即死亡后不掉落）。默认值为`false`。
   - <DataType type="int" name="minecraft:item_lock"/>：指定物品锁定。可选值为`0`（不锁定）、`1`（无法移动）、`2`（无法丢弃），默认为`0`。
   - 其他可用键名及可用值请参考[基岩版物品格式 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/基岩版存档格式#物品格式)。
 </treeview>
@@ -2336,8 +2355,7 @@ import Button from '/src/components/button/base';
     "controller_position_adjust": [0.0, 0.1, 0.0],
     "controller_rotation_adjust": [0.0, -45.0, 0.0],
     "controller_scale": 1
-},
-
+}
 ```
 
 </TabItem></Tabs>
@@ -2519,8 +2537,8 @@ import Button from '/src/components/button/base';
     | **饱和度系数** | 0.1 | 0.3 | 0.6 | 0.8 | 1.0 | 1.2 |
     <!-- markdownlint-enable MD058 -->
   - <DataType type="string" name="using_converts_to"/>：食物在食用完毕后将转化为的物品。应填写为物品 ID。
-  - <DataType type="string" name="on_use_action"/>：食物在食用完毕后的行为。可选值：`chrous_teleport`、`suspicious_stew_effect`、`none`，默认为`none`。
-  - <DataType type="array" name="on_use_range"/>：食物在食用完毕后的影响范围。仅在`on_use_action`指定为`chrous_teleport`时有意义，代表随机传送的范围。
+  - <DataType type="string" name="on_use_action"/>：食物在食用完毕后的行为。可选值：`chorus_teleport`、`suspicious_stew_effect`、`none`，默认为`none`。
+  - <DataType type="array" name="on_use_range"/>：食物在食用完毕后的影响范围。仅在`on_use_action`指定为`chorus_teleport`时有意义，代表随机传送的范围。
     - <DataType type="float"/>0：X 轴偏移，默认值为`0.0`。
     - <DataType type="float"/>1：Y 轴偏移，默认值为`0.0`。
     - <DataType type="float"/>2：Z 轴偏移，默认值为`0.0`。
@@ -2537,7 +2555,7 @@ import Button from '/src/components/button/base';
     - <DataType type="string"/>：解除的状态效果 ID。
 </treeview>
 
-</TabItem><TabItem value="example" label="示例" default>
+</TabItem><TabItem value="example" label="示例">
 
 **紫颂果**：
 
@@ -2640,7 +2658,7 @@ import Button from '/src/components/button/base';
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用同名组件代替之。"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" color="lightblue"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
-<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-icon" isRP/>
+<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-icon"/>
 
 定义物品的图标。
 
@@ -2862,6 +2880,8 @@ import Button from '/src/components/button/base';
 
 定义物品的自定义组件。自定义组件的行为需要在世界初始化前事件`WorldInitializeBeforeEvent`中定义。
 
+另见：_自定义物品组件文档中的[ItemComponentRegistry 类](/docs/docs/scripts/sapi/server/system/custom_component#itemcomponentregistry-类)_（注册自定义组件）、_[ItemCustomComponent 接口](/docs/docs/scripts/sapi/server/system/custom_component#itemcustomcomponent-接口)_（实现组件回调）。
+
 <Tabs><TabItem value="parameters" label="参数" default>
 
 <treeview>
@@ -2881,6 +2901,381 @@ import Button from '/src/components/button/base';
 
 ---
 
+---
+
+## 已移除组件
+
+以下组件曾在早期的实验性玩法（例如已于 1.21.20 被移除的「假日创作者功能」实验性玩法）或旧版格式的物品中开放，随后被移出游戏，在当前的任何版本、任何格式版本下均无法生效。此处仅作考古与排错之用，**请勿在任何物品中定义**。若你在旧教程或旧存档中见到它们，请按各条目给出的替代方案改写。
+
+### `minecraft:armor`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:armor"/>
+
+定义护甲物品的防护等级。
+
+另见：_[`minecraft:wearable`](#minecraftwearable)组件_（在高版本中用于定义装备槽位与护甲值）、_[`netease:armor`](#neteasearmor)组件_（中国版）。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:armor"/>：根对象。
+  - <DataType type="int" name="protection"/>：该护甲物品提供的护甲值。最小值为`0`。
+  - <DataType type="string" name="texture_type"/>：该护甲使用的纹理类型。可选值为`none`、`leather`、`chain`、`iron`、`diamond`、`gold`、`elytra`、`turtle`、`netherite`。马铠仅支持`leather`、`iron`、`gold`、`diamond`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:armor": {
+    "protection": 10,
+    "texture_type": "iron"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:chargeable`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_chargeable?view=minecraft-bedrock-stable"/>
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:chargeable"/>
+
+定义物品为蓄力物品，并在蓄力完成时触发事件。
+
+另见：_[`minecraft:use_modifiers`](#minecraftuse_modifiers)组件_（用于定义使用时长与蓄力时的移动速度）、_[ItemCompleteUseAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#itemcompleteuseafterevent-类)_（用于替代`on_complete`触发的事件）、_[ItemCustomComponent 接口](/docs/docs/scripts/sapi/server/system/custom_component#itemcustomcomponent-接口)_（`onCompleteUse`回调）。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:chargeable"/>：根对象。
+  - <DataType type="float" name="movement_modifier"/>：定义玩家使用物品时的速度倍率，必须小于等于`1`。不设置时玩家的移动速度不变。
+  - <DataType type="object" name="on_complete"/>：蓄力完成时触发的事件，结构与旧版事件组件一致。
+    - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+    - <DataType type="string" name="target"/>：事件的作用目标。可选值为`self`（触发者自身）、`other`（被作用的其他实体）、`block`（被使用的方块）、`holder`（物品的持有者），默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:chargeable": {
+    "movement_modifier": 0.35,
+    "on_complete": {
+        "event": "example:on_complete",
+        "target": "self"
+    }
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:creative_category`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:creative_category"/>
+
+定义物品在创造模式物品栏中的分类与分组。
+
+另见：_物品描述中的[`menu_category`](./description#行为包定义格式)，其在`1.20.20.20`后取代了该组件_。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:creative_category"/>：根对象。
+  - <DataType type="string" name="parent" isRequired/>：该物品所属的分组（本地化键名），例如`itemGroup.name.record`。
+  - <DataType type="string" name="category"/>：该物品所属的分类。可选值为`all`（全部分类）、`construction`（建筑）、`nature`（自然）、`equipment`（装备）、`items`（物品）、`commands`（仅命令获取）、`none`（无分类）。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:creative_category": {
+    "parent": "itemGroup.name.record",
+    "category": "items"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:explodable`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:explodable"/>
+
+定义物品的掉落物形式是否可被爆炸摧毁。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="boolean" name="minecraft:explodable"/>：物品的掉落物形式是否可被爆炸摧毁。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:explodable": true
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:knockback_resistance`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:knockback_resistance"/>
+
+定义物品提供的击退抗性。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:knockback_resistance"/>：根对象。
+  - <DataType type="float" name="protection"/>：提供的击退抗性。应在`0.0`-`1.0`之间（含），为`1.0`时完全免疫击退。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:knockback_resistance": {
+    "protection": 0.4
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:mining_speed`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:mining_speed"/>
+
+定义物品的挖掘速度。
+
+另见：_[`minecraft:digger`](#minecraftdigger)组件_（在高版本中用于按方块定义挖掘速度）。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="int" name="minecraft:mining_speed"/>：物品的挖掘速度。应为正整数。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:mining_speed": 5
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:on_use`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:on_use"/>
+
+定义物品被使用时触发的事件。
+
+另见：_脚本事件[ItemUseAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#itemuseafterevent-类)_、_[ItemCustomComponent 接口](/docs/docs/scripts/sapi/server/system/custom_component#itemcustomcomponent-接口)_（`onUse`回调）、_[物品事件响应](./event_responses)_。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:on_use"/>：根对象。
+  - <DataType type="object" name="on_use"/>：物品被使用时触发的事件。
+    - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+    - <DataType type="string" name="target"/>：事件的作用目标。可选值为`self`（触发者自身）、`other`（被作用的其他实体）、`block`（被使用的方块）、`holder`（物品的持有者），默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:on_use": {
+    "on_use": {
+        "event": "example:on_use",
+        "target": "self"
+    }
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:on_use_on`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:on_use_on"/>
+
+定义物品在方块上使用时触发的事件。
+
+另见：_脚本事件[ItemStartUseOnAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#itemstartuseonafterevent-类)_、_[ItemCustomComponent 接口](/docs/docs/scripts/sapi/server/system/custom_component#itemcustomcomponent-接口)_（`onUseOn`回调）、_[物品事件响应](./event_responses)_。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:on_use_on"/>：根对象。
+  - <DataType type="object" name="on_use_on"/>：物品在方块上使用时触发的事件。
+    - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+    - <DataType type="string" name="target"/>：事件的作用目标。可选值为`self`（触发者自身）、`other`（被作用的其他实体）、`block`（被使用的方块）、`holder`（物品的持有者），默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:on_use_on": {
+    "on_use_on": {
+        "event": "example:on_use_on",
+        "target": "self"
+    }
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:render_offsets`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:render_offsets"/>
+
+定义手持物品的渲染偏移与大小。
+
+另见：_[`netease:render_offsets`](#neteaserender_offsets)组件_（中国版的同功能组件，与本节内容无关）。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+**布尔型**：
+
+<treeview>
+- <DataType type="boolean" name="minecraft:render_offsets"/>：为`false`时将禁用该物品的渲染偏移。
+</treeview>
+
+**对象型**：
+
+<treeview>
+- <DataType type="object" name="minecraft:render_offsets"/>：根对象。官方文档只列出了`scale`，`position`与`rotation`为社区文档记载的写法，有待验证。
+  - <DataType type="object" name="main_hand"/>：物品在惯用手时的渲染偏移。
+    - <DataType type="object" name="first_person"/>：第一人称时的渲染偏移。
+      - <DataType type="array" name="position"/>：物品的位置偏移。应为 3 个浮点数组成的数组，依次对应 X、Y、Z 轴。
+      - <DataType type="array" name="rotation"/>：物品的旋转偏移。应为 3 个浮点数组成的数组，依次对应 X、Y、Z 轴。
+      - <DataType type="array" name="scale"/>：物品的缩放。应为 3 个浮点数组成的数组，依次对应 X、Y、Z 轴。
+    - <DataType type="object" name="third_person"/>：第三人称时的渲染偏移。
+      - <DataType type="array" name="position"/>：物品的位置偏移。应为 3 个浮点数组成的数组，依次对应 X、Y、Z 轴。
+      - <DataType type="array" name="rotation"/>：物品的旋转偏移。应为 3 个浮点数组成的数组，依次对应 X、Y、Z 轴。
+      - <DataType type="array" name="scale"/>：物品的缩放。应为 3 个浮点数组成的数组，依次对应 X、Y、Z 轴。
+  - <DataType type="object" name="off_hand"/>：物品在副手时的渲染偏移，结构与`main_hand`相同。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+**布尔型**：
+
+```json showLineNumbers
+"minecraft:render_offsets": false
+```
+
+**对象型**：
+
+```json showLineNumbers
+"minecraft:render_offsets": {
+    "main_hand": {
+        "first_person": {
+            "position": [0.0, 0.0, 0.0],
+            "rotation": [0.0, 0.0, 0.0],
+            "scale": [0.01, 0.01, 0.01]
+        },
+        "third_person": {
+            "position": [0.0, 0.0, 0.0],
+            "rotation": [0.0, 0.0, 0.0],
+            "scale": [0.01, 0.01, 0.01]
+        }
+    },
+    "off_hand": {
+        "first_person": {
+            "position": [0.0, 0.0, 0.0],
+            "rotation": [0.0, 0.0, 0.0],
+            "scale": [0.01, 0.01, 0.01]
+        },
+        "third_person": {
+            "position": [0.0, 0.0, 0.0],
+            "rotation": [0.0, 0.0, 0.0],
+            "scale": [0.01, 0.01, 0.01]
+        }
+    }
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:weapon`
+
+<Usable type="all"/> <Version experimental="假日创作者功能"/> <Version removed/> <br/>
+
+<Button text="基岩版开发 Wiki" url="https://wiki.mcbe-dev.net/p/Manual:Minecraft:weapon"/>
+
+定义物品为武器。这会自动为物品添加伤害信息与攻击事件。
+
+另见：_[`minecraft:damage`](#minecraftdamage)组件_（在高版本中用于定义攻击伤害）、_[ItemCustomComponent 接口](/docs/docs/scripts/sapi/server/system/custom_component#itemcustomcomponent-接口)_（`onHitEntity`、`onMineBlock`回调）、_[物品事件响应](./event_responses)_、脚本事件_[EntityHitBlockAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitblockafterevent-类)_（对应`on_hit_block`）、_[EntityHurtAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhurtafterevent-类)_（对应`on_hurt_entity`）、_[EntityHitEntityAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitentityafterevent-类)_（对应`on_not_hurt_entity`）。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:weapon"/>：根对象。
+  - <DataType type="object" name="on_hit_block"/>：使用该物品击中方块时触发的事件。
+    - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+    - <DataType type="string" name="target"/>：事件的作用目标。可选值为`self`（触发者自身）、`other`（被作用的其他实体）、`block`（被使用的方块）、`holder`（物品的持有者），默认为`self`。
+  - <DataType type="object" name="on_hurt_entity"/>：使用该物品伤害到实体时触发的事件。
+    - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+    - <DataType type="string" name="target"/>：事件的作用目标。可选值为`self`（触发者自身）、`other`（被作用的其他实体）、`block`（被使用的方块）、`holder`（物品的持有者），默认为`self`。
+  - <DataType type="object" name="on_not_hurt_entity"/>：使用该物品击中实体但未造成伤害时触发的事件。
+    - <DataType type="string" name="event" isRequired/>：要触发的事件名称。
+    - <DataType type="string" name="target"/>：事件的作用目标。可选值为`self`（触发者自身）、`other`（被作用的其他实体）、`block`（被使用的方块）、`holder`（物品的持有者），默认为`self`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+```json showLineNumbers
+"minecraft:weapon": {
+    "on_hit_block": {
+        "event": "example:on_hit_block",
+        "target": "self"
+    },
+    "on_hurt_entity": {
+        "event": "example:on_hurt_entity",
+        "target": "self"
+    },
+    "on_not_hurt_entity": {
+        "event": "example:on_not_hurt_entity",
+        "target": "other"
+    }
+}
+```
+
+</TabItem></Tabs>
+
+---
+
 ## 参考文档
 
 本文主要参考文档如下，读者可以在这些文档获得更多信息。
@@ -2889,6 +3284,7 @@ import Button from '/src/components/button/base';
 - [自定义基础物品 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1)
 - [物品文档 | 1.16.20.3 | bedrock.dev](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item)
 - [物品组件 | Bedrock Wki](https://wiki.bedrock.dev/items/item-components)
+- [基岩版开发 Wiki - 数据驱动物品](https://wiki.mcbe-dev.net/p/Manual:%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/%E7%89%A9%E5%93%81)
 
 import GiscusComment from "/src/components/comment/giscus.js"
 

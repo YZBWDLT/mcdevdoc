@@ -4,11 +4,11 @@ sidebar_position: 4
 
 # 方块标签
 
-> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
 
 ---
 
-方块标签（Item Tags）可以用于将多个方块在底层代码上进行分类，可用于[相关 Molang](./molang) 和[配方表](../items/recipes)中。方块标签可以在数据驱动方块中通过[方块组件`minecraft:tags`](./components#minecrafttags)（1.26.20+）或[方块组件`tag:(标签)`](./components#tag标签)（1.26.10-）定义。原版的方块也在大量使用方块标签。
+方块标签（Block Tags）可以用于将多个方块在底层代码上进行分类，可用于[相关 Molang](./molang) 和[配方表](../items/recipes)中。方块标签可以在数据驱动方块中通过[方块组件`minecraft:tags`](./components#minecrafttags)（1.26.20+）或[方块组件`tag:(标签)`](./components#tag标签)（1.26.10-）定义。原版的方块也在大量使用方块标签。
 
 本文档收录方块标签的相关信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
 
@@ -16,7 +16,7 @@ sidebar_position: 4
 
 ## 原版使用的标签
 
-原版可用的物品标签如下表所示。不展示已弃用的标签。读者可在[Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-tags)中查看更多相关信息。
+原版可用的方块标签如下表所示。不展示已弃用的标签。读者可在[Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-tags)中查看更多相关信息。
 
 | 标签 | 解释及功能 |
 | :--- | :--- |
@@ -33,6 +33,8 @@ sidebar_position: 4
 | `minecraft:iron_tier_destructible` | 只有铁镐级别的工具才可挖掘掉落的方块，但对自定义方块无效 |
 | `minecraft:is_axe_item_destructible` | 斧挖掘速度更快的方块[^3] |
 | `minecraft:is_hoe_item_destructible` | 锄挖掘速度更快的方块 |
+| `minecraft:is_item_tier_destructible` | [^1] |
+| `minecraft:is_mace_item_destructible` | 重锤挖掘速度更快的方块[^1] |
 | `minecraft:is_pickaxe_item_destructible` | 镐挖掘速度更快的方块 |
 | `minecraft:is_shears_item_destructible` | 剪刀挖掘速度更快的方块 |
 | `minecraft:is_shovel_item_destructible` | 锹挖掘速度更快的方块 |
@@ -40,8 +42,6 @@ sidebar_position: 4
 | `jungle` | 丛林木 |
 | `log` | 原木 |
 | `metal` | 金属块 |
-| `minecraft:is_item_tier_destructible` | [^1] |
-| `minecraft:is_mace_item_destructible` | 重锤挖掘速度更快的方块[^1] |
 | `mob_spawner` | 刷怪笼 |
 | `not_feature_replaceable` | 地物无法替换的方块 |
 | `minecraft:netherite_tier_destructible` | 只有下界合金镐级别的工具才可挖掘掉落的方块，但对自定义方块无效[^1] |

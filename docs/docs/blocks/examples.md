@@ -1,5 +1,5 @@
 ---
-sidebar_position: 9
+sidebar_position: 8
 ---
 
 # 常见的方块实例
@@ -12,7 +12,7 @@ import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
 import Button from "/src/components/button/base";
 
-> 适用版本：国际版 26.20，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
 
 本文给出一些常见的方块实例。**注意：代码中高亮部分是需要读者自行修改的**。
 
@@ -44,7 +44,7 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 
 <summary>方块行为包定义（旧版本）</summary>
 
-```json showLineNumbers title=(方块 ID).block.json {5,7,11,13,14}
+```json showLineNumbers title="(方块 ID).block.json" {5,7,11,13,14}
 {
     "format_version": "1.19.40",
     "minecraft:block": {
@@ -70,7 +70,7 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 
 <summary>方块行为包定义</summary>
 
-```json showLineNumbers title=(方块 ID).block.json {5,7,11,13,15}
+```json showLineNumbers title="(方块 ID).block.json" {5,7,11,13,15}
 {
     "format_version": "1.21.40",
     "minecraft:block": {
@@ -119,7 +119,7 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 
 要使用以下方块实例，必须使用`1.26.0`或更高版本的格式版本。这会导致中国版无法运行。必须使用更高格式版本的理由为：
 
-- 需要使用[`minecraft:collision_box`](./components#minecraftcollision_box)组件的数组型，使用复合碰撞箱以还原楼梯的碰撞行为，格式版本需求为`1.26.0`。中国版存在对应组件的平替，读者可使用[`neteaase:aabb`](./components#neteaseaabb)组件代替。
+- 需要使用[`minecraft:collision_box`](./components#minecraftcollision_box)组件的数组型，使用复合碰撞箱以还原楼梯的碰撞行为，格式版本需求为`1.26.0`。中国版存在对应组件的平替，读者可使用[`netease:aabb`](./components#neteaseaabb)组件代替。
 - 需要使用[`item_display_transforms`](./model#方块模型文件格式)方块模型以在物品栏中和原版楼梯面向方向对应，格式版本需求为`1.21.110`。读者可定义一个旋转了 180° 的模型后使用[`minecraft:item_visual`](./components#minecraftitem_visual)组件显示以代替。
 
 :::
@@ -304,7 +304,7 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 
 要使用以下方块实例，必须使用`1.26.0`或更高版本的格式版本。这会导致中国版无法运行。必须使用更高格式版本的理由为：
 
-- 需要使用[`minecraft:collision_box`](./components#minecraftcollision_box)组件的数组型，使用复合碰撞箱以还原楼梯的碰撞行为，格式版本需求为`1.26.0`。中国版存在对应组件的平替，读者可使用[`neteaase:aabb`](./components#neteaseaabb)组件代替。
+- 需要使用[`minecraft:collision_box`](./components#minecraftcollision_box)组件的数组型，使用复合碰撞箱以还原楼梯的碰撞行为，格式版本需求为`1.26.0`。中国版存在对应组件的平替，读者可使用[`netease:aabb`](./components#neteaseaabb)组件代替。
 - 需要使用[`item_display_transforms`](./model#方块模型文件格式)方块模型以在物品栏中和原版楼梯面向方向对应，格式版本需求为`1.21.110`。读者可定义一个旋转了 180° 的模型后使用[`minecraft:item_visual`](./components#minecraftitem_visual)组件显示以代替。
 
 :::
@@ -752,7 +752,7 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 
 要使用以下方块实例，必须使用`1.26.0`或更高版本的格式版本。这会导致中国版无法运行。必须使用更高格式版本的理由为：
 
-- 需要使用[`minecraft:collision_box`](./components#minecraftcollision_box)组件的数组型，使用复合碰撞箱以还原玻璃板在连接多方向时的碰撞行为，格式版本需求为`1.26.0`。中国版存在对应组件的平替，读者可使用[`neteaase:aabb`](./components#neteaseaabb)组件代替。
+- 需要使用[`minecraft:collision_box`](./components#minecraftcollision_box)组件的数组型，使用复合碰撞箱以还原玻璃板在连接多方向时的碰撞行为，格式版本需求为`1.26.0`。中国版存在对应组件的平替，读者可使用[`netease:aabb`](./components#neteaseaabb)组件代替。
 - 需要使用[`minecraft:connection`](./traits#minecraftconnection)方块特征以使用正确的连接行为，格式版本需求为`1.26.0`。中国版存在对应组件的平替，读者可使用[`netease:connection`](./components#neteaseconnection)组件代替。
 
 :::
@@ -1225,7 +1225,7 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 
 <summary>方块行为包定义</summary>
 
-```json showLineNumbers title=(方块 ID).block.json {5,7}
+```json showLineNumbers title="(方块 ID).block.json" {5,7}
 {
     "format_version": "1.19.40",
     "minecraft:block": {
@@ -1244,6 +1244,12 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 </details>
 
 -->
+
+## 参考文档
+
+- [数据驱动方块 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/blocks-intro)
+- [方块模型 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-models)
+- [数据驱动方块教程](/docs/tutorials/a2_addons/b5_data_driven_blocks/c1_data_driven_blocks)
 
 ---
 

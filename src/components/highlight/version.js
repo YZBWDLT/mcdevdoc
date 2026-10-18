@@ -10,9 +10,9 @@ import BaseHighlight from "./base";
  * @type {Record<"format"|"game"|"script"|"script-ui", {label: string, china: string}>}
  */
 const VERSION_TYPES = {
-    format: { label: "格式版本", china: "1.21.120" },
-    game: { label: "游戏版本", china: "1.21.120" },
-    script: { label: "server模块脚本版本", china: "2.3.0" },
+    format: { label: "格式版本", china: "1.21.130" },
+    game: { label: "游戏版本", china: "1.21.130" },
+    script: { label: "server模块脚本版本", china: "2.4.0" },
     "script-ui": { label: "server-ui模块脚本版本", china: "2.0.0" },
 };
 

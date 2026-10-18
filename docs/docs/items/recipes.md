@@ -11,7 +11,7 @@ import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 import Button from "/src/components/button/base"
 
-> 适用版本：国际版 1.21.130，中国版 3.7（1.21.50）。  
+> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
 
 <Button text="教程" url="/docs/tutorials/a2_addons/b4_data_driven_items/c3_recipes" color="green"/>
 
@@ -478,7 +478,7 @@ import Button from "/src/components/button/base"
 
 锻造台锻造配方分为升级配方（Smithing Transform Recipes）和纹饰配方（Smithing Trim Recipes）。升级配方类似于下界合金升级，会将一个物品通过模板转换为另一个物品；而纹饰配方则类似于其他纹饰模板，为一个物品（专指盔甲类物品）添加纹饰。
 
-<Tabs><TabItem value="升级配方" label="升级配方">
+<Tabs><TabItem value="升级配方" label="升级配方" default>
 
 <treeview>
 
@@ -588,3 +588,7 @@ import Button from "/src/components/button/base"
 - [自定义配方 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E6%96%B9.html?catalog=1)
 - [配方书 | 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E9%85%8D%E6%96%B9%E4%B9%A6)
 - [药水酿造 | 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E8%8D%AF%E6%B0%B4%E9%85%BF%E9%80%A0)
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>

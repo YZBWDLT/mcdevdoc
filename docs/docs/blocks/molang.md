@@ -4,7 +4,7 @@ sidebar_position: 7
 
 # 与方块有关的 Molang 查询函数
 
-> 适用版本：国际版 26.10，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
 
 下文的所有 Molang 均链接到官方文档，读者可点击查阅。
 
@@ -27,6 +27,8 @@ sidebar_position: 7
 | --- | --- | --- | --- |
 | [`query.block_state(block_state: string)`](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/molangreference/examples/molangconcepts/queryfunctions/query_block_state?view=minecraft-bedrock-stable) | 返回该方块的方块状态值。 | 方块状态值 | `query.block_state('example:color') == 'blue'` |
 | [`query.has_block_state(block_state: string)`](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/molangreference/examples/molangconcepts/queryfunctions/query_has_block_state?view=minecraft-bedrock-stable) | 返回该方块是否拥有给定的方块状态。 | 否：`0.0`，是：`1.0` | `query.has_block_state('example:color')` |
+
+> **注意**：`query.block_property()`和`query.has_block_property()`是上面两个查询的旧称，自格式版本`1.20.40`起已被移除，请勿再使用。
 
 ## 其他
 

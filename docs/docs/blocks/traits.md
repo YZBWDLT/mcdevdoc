@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 # 方块特征
@@ -14,7 +14,7 @@ import Usable from "/src/components/highlight/usable"
 import Version from "/src/components/highlight/version"
 import Button from '/src/components/button/base';
 
-> 适用版本：国际版 26.30，中国版 3.8（1.21.90）。
+> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
 
 方块特征（Block Traits）[^1]可以用来启用原版的方块状态和方块功能。
 
@@ -76,7 +76,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-（26.0+）定义方块与带有`minecraft:cornerable_stairs`标签的方块形成拐角：
+（1.26.0+）定义方块与带有`minecraft:cornerable_stairs`标签的方块形成拐角：
 
 ```json showLineNumbers
 "minecraft:placement_direction": {
@@ -135,7 +135,7 @@ import Button from '/src/components/button/base';
 
 ## `minecraft:connection`
 
-<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此组件。"/> <Version add="1.26.0"/> <br/>
+<Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此方块特征。"/> <Version add="1.26.0"/> <br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/connection?view=minecraft-bedrock-stable"/>
 
@@ -168,11 +168,11 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyInternational" tooltip="因为当前的中国版版本不足以运行此方块特征。"/> <Version add="1.26.40"/> <Highlight text="需要前置组件" tooltip="要使用此特征，请事先定义minecraft:movable组件，且movement_type必须指定为popped或immovable中的一个。"/> <Highlight text="禁用组件" tooltip="使用此方块特征后，不可定义带有n_way_visual_rotation属性的minecraft:geometry组件。" color="red"/> <Highlight text="禁用置换组件" tooltip="使用此方块特征后，不可在方块置换中定义minecraft:movable组件、minecraft:placement_filter组件、minecraft:random_offset组件、minecraft:replaceable组件和minecraft:precipitation_interactions组件。" color="red"/> <Highlight text="禁用方块特征" tooltip="使用此方块特征后，只能定义minecraft:placement_direction方块特征，且该方块特征的enabled_states属性只能定义minecraft:cardinal_direction方块状态。" color="red"/> <br/>
 
-<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/multi_block?view=minecraft-bedrock-stable" isBeta/>
+<Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/traits/multi_block?view=minecraft-bedrock-stable"/>
 
 定义方块为多部分方块。
 
-另见：_[`minecraft:moveable`](components#minecraftmoveable)组件_（`movement_type`必须指定为`popped`或`immovable`中的一个）、_[`minecraft:placement_filter`](components#minecraftplacement_filter)组件_、_[`minecraft:random_offset`](components#minecraftrandom_offset)组件_、_[`minecraft:replaceable`](components#minecraftreplaceable)组件_、_[`minecraft:precipitation_interactions`](components#minecraftprecipitation_interactions)组件_ 和 _[`minecraft:geometry`](components#minecraftgeometry)组件_。
+另见：_[`minecraft:movable`](components#minecraftmovable)组件_（`movement_type`必须指定为`popped`或`immovable`中的一个）、_[`minecraft:placement_filter`](components#minecraftplacement_filter)组件_、_[`minecraft:random_offset`](components#minecraftrandom_offset)组件_、_[`minecraft:replaceable`](components#minecraftreplaceable)组件_、_[`minecraft:precipitation_interactions`](components#minecraftprecipitation_interactions)组件_ 和 _[`minecraft:geometry`](components#minecraftgeometry)组件_。
 
 另见：_[`minecraft:placement_direction`](#minecraftplacement_direction)方块特征_。
 

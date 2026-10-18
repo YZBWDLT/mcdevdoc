@@ -12,7 +12,7 @@ import DataType from "/src/components/type/data"
 import Usable from "/src/components/highlight/usable"
 import Version from "/src/components/highlight/version"
 
-> 适用版本：国际版 1.21.130，中国版 3.7（1.21.50）。
+> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
 
 数据驱动物品（Data-Driven Items，简称数驱物品）是由开发者给定数据，由游戏引擎自行注册的物品。
 
@@ -21,6 +21,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ## 文件架构
+
+物品定义的文件名可任意指定。国际版常见的写法是`(物品 ID).json`或`(物品 ID).item.json`，中国版则多用`(物品 ID).json`；本文档不对此作强制要求。
 
 <Tabs><TabItem value="国际版" label="国际版" default>
 
@@ -46,7 +48,7 @@ import Version from "/src/components/highlight/version"
 
 </treeview>
 
-</TabItem><TabItem value="国际版（旧版）" label="国际版（旧版）" default>
+</TabItem><TabItem value="国际版（旧版）" label="国际版（旧版）">
 
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0"/>
 
@@ -70,7 +72,7 @@ import Version from "/src/components/highlight/version"
 
 </treeview>
 
-</TabItem><TabItem value="中国版" label="中国版" default>
+</TabItem><TabItem value="中国版" label="中国版">
 
 <Usable type="onlyChina"/> <Version add="1.10"/>
 
@@ -82,7 +84,7 @@ import Version from "/src/components/highlight/version"
   - <FileType type="folder" name="netease_group"/>
     - [<FileType type="file" name="*.json"/>](./item_category_and_group#自定义物品组)：定义物品组，名称可任意指定（例如 crafting_item_catalog.json 或 group_config.json）
   - <FileType type="folder" name="netease_tab"/>
-    - [<FileType type="file" name="*.json"/>](./item_category_and_group#自定义物品分类)：定义物品分类，名称可任意指定（例如  crafting_item_catalog.json 或 category_config.json）
+    - [<FileType type="file" name="*.json"/>](./item_category_and_group#自定义物品分类)：定义物品分类，名称可任意指定（例如 crafting_item_catalog.json 或 category_config.json）
   - <FileType type="folder" name="netease_recipes"/>
     - [<FileType type="file" name="(物品 ID).json"/>](recipes)：定义物品的配方表，亦可用于原版物品
 - <FileType type="folder" name="resource_packs"/>
@@ -127,7 +129,7 @@ import Version from "/src/components/highlight/version"
 
 </treeview>
 
-</TabItem><TabItem value="国际版（1.20.0~1.20.30）" label="国际版（1.20.0~1.20.30）" default>
+</TabItem><TabItem value="国际版（1.20.0~1.20.30）" label="国际版（1.20.0~1.20.30）">
 
 <treeview>
 
@@ -142,7 +144,7 @@ import Version from "/src/components/highlight/version"
 
 </treeview>
 
-</TabItem><TabItem value="国际版（旧版）" label="国际版（旧版）" default>
+</TabItem><TabItem value="国际版（旧版）" label="国际版（旧版）">
 
 <treeview>
 
@@ -156,7 +158,7 @@ import Version from "/src/components/highlight/version"
 
 </treeview>
 
-</TabItem><TabItem value="中国版" label="中国版" default>
+</TabItem><TabItem value="中国版" label="中国版">
 
 <treeview>
 
@@ -198,7 +200,7 @@ import Version from "/src/components/highlight/version"
 
 </treeview>
 
-</TabItem><TabItem value="中国版" label="中国版" default>
+</TabItem><TabItem value="中国版" label="中国版">
 
 <treeview>
 
@@ -221,15 +223,13 @@ import Version from "/src/components/highlight/version"
 <treeview>
 
 - <DataType type="object"/>：根对象。
-  - <DataType type="string" name="resource_pack_name"/>：资源包的包名。原版使用`vanilla`。[^1]
-  - <DataType type="string" name="texture_name"/>：贴图名。原版使用`atlas.items`。[^1]
+  - <DataType type="string" name="resource_pack_name"/>：资源包的包名，仅作标识之用，可任意填写。原版使用`vanilla`。
+  - <DataType type="string" name="texture_name"/>：贴图注册进入的图集名。物品贴图必须为`atlas.items`。
   - <DataType type="object" name="texture_data" isRequired/>：贴图数据。
     - <DataType type="object" name="(短 ID)"/>：`短 ID`对应的实际贴图。`短 ID`由物品定义的`minecraft:icon`组件指定。
       - <DataType type="string" name="textures"/>：贴图路径，从`textures/`开始，不带后缀，例如`textures/items/apple`。
 
 </treeview>
-
-[^1]: 目前该参数的实际意义不明。
 
 ### 语言文件键名
 
