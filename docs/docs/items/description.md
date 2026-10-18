@@ -129,6 +129,30 @@ import Version from "/src/components/highlight/version"
 
 </treeview>
 
+一枚自定义物品（`items/ruby.json`）：注册到「物品」分类，图标直接引用`item_texture.json`中的短 ID。
+
+```json showLineNumbers
+{
+    "format_version": "1.20.30",
+    "minecraft:item": {
+        "description": {
+            "identifier": "test:ruby",
+            "menu_category": {
+                "category": "items",
+                "group": "itemGroup.name.gem"
+            }
+        },
+        "components": {
+            "minecraft:icon": "ruby",
+            "minecraft:display_name": {
+                "value": "item.test:ruby.name"
+            },
+            "minecraft:max_stack_size": 64
+        }
+    }
+}
+```
+
 </TabItem><TabItem value="国际版（1.20.0~1.20.30）" label="国际版（1.20.0~1.20.30）">
 
 <treeview>
@@ -230,6 +254,20 @@ import Version from "/src/components/highlight/version"
       - <DataType type="string" name="textures"/>：贴图路径，从`textures/`开始，不带后缀，例如`textures/items/apple`。
 
 </treeview>
+
+注册一枚名为`ruby`的贴图，物品通过`minecraft:icon`组件的`ruby`引用它：
+
+```json showLineNumbers
+{
+    "resource_pack_name": "wiki",
+    "texture_name": "atlas.items",
+    "texture_data": {
+        "ruby": {
+            "textures": "textures/items/ruby"
+        }
+    }
+}
+```
 
 ### 语言文件键名
 

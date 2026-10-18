@@ -50,6 +50,30 @@ import Button from "/src/components/button/base"
 
 </treeview>
 
+把`test:ruby`与`test:sapphire`放进「物品」分类下的自定义组「宝石」：
+
+```json showLineNumbers
+{
+    "format_version": "1.21.60",
+    "minecraft:crafting_item_catalog": {
+        "categories": [
+            {
+                "category_name": "items",
+                "groups": [
+                    {
+                        "group_identifier": {
+                            "icon": "test:ruby",
+                            "name": "test:itemGroup.name.gem"
+                        },
+                        "items": [ "test:ruby", "test:sapphire" ]
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
 </TabItem><TabItem value="中国版" label="中国版">
 
 以下为 <FileType type="folder" name="behavior_packs"/> - <FileType type="folder" name="netease_group"/> - <FileType type="file" name="*.json"/> 的结构，用于新建物品组。官方文档表达了更多需要注意的事项，[见此](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/12-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%A9%E5%93%81%E5%88%86%E7%BB%84.html?catalog=1)。
@@ -65,6 +89,20 @@ import Button from "/src/components/button/base"
                 - <DataType type="string"/>：物品 ID。
 
 </treeview>
+
+中国版的物品组（`netease_group`下的任意`.json`）：
+
+```json showLineNumbers
+{
+    "groups": [
+        {
+            "group_name": "test:itemGroup.name.gem",
+            "icon": "test:ruby",
+            "list": [ "test:ruby", "test:sapphire" ]
+        }
+    ]
+}
+```
 
 </TabItem></Tabs>
 

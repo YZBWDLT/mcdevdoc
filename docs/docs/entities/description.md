@@ -13,7 +13,7 @@ import Highlight from "/src/components/highlight/base"
 import Usable from "/src/components/highlight/usable"
 import Version from "/src/components/highlight/version"
 
-> 适用版本：国际版 26.40，中国版 3.9（1.21.120）。
+> 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
 数据驱动实体（Data-Driven Blocks，简称数驱实体）是由开发者给定数据，由游戏引擎自行注册的实体。
 
@@ -51,7 +51,7 @@ import Version from "/src/components/highlight/version"
       - <DataType type="object" name="animations"/>：定义实体的行为包动画。另见[动画与动画控制器](./animations)。
       - <DataType type="object" name="entity_version"/>：<Version add="1.26.30" inline/> 定义实体的版本控制。另见[实体版本](./entity_version)。
       - <DataType type="object" name="properties"/>：定义实体的实体属性。另见[实体属性](./property)。
-      - <DataType type="string" name="runtime_identifier"/>：定义实体的运行时 ID。该属性允许实体使用类似于原版相关实体的行为。
+      - <DataType type="string" name="runtime_identifier"/>：定义实体的运行时 ID。该属性允许实体使用类似于原版相关实体的行为。另见[运行时 ID](./runtime_identifier)。
       - <DataType type="string" name="spawn_category"/>：<Version add="1.20.80" tooltip="实际加入版本存疑。" inline/> 定义实体的生成类别，该类别会影响实体的自然生成上限。可选值为`ambient`、`axolotls`、`creature`、`misc`、`monster`、`underground_water_creature`、`water_ambient`、`water_creature`。
     - <DataType type="object" name="components" isRequired/>：实体组件，定义实体的功能。
       - `minecraft:(component)`：实体组件，可用的实体组件见[数据驱动实体组件](./components)。
@@ -59,7 +59,7 @@ import Version from "/src/components/highlight/version"
     - <DataType type="object" name="component_groups"/>：实体组件组，可通过实体事件加减的组件。
       - <DataType type="object" name="(组件组 ID)"/>：实体组件组使用的组件。
         - `minecraft:(component)`：实体组件，可用的实体组件见[数据驱动实体组件](./components)。
-    - <DataType type="object" name="upgrades"/>：<Version add="1.26.30" inline/> 实体更新事件，定义实体更新之后会调用的组件组、或执行的功能等。另见[实体事件](./events)。
+    - <DataType type="object" name="upgrades"/>：<Version add="1.26.30" inline/> 实体更新事件，定义实体更新之后会调用的组件组、或执行的功能等。另见[实体版本](./entity_version)。
 
 </treeview>
 
@@ -82,14 +82,15 @@ import Version from "/src/components/highlight/version"
   - <DataType type="object" name="minecraft:client_entity" isRequired/>：定义数驱客户端实体。
     - <DataType type="object" name="description" isRequired/>：实体描述，定义实体的基本属性。
       - <DataType type="string" name="identifier" isRequired/>：定义实体的命名空间和实体 ID。
-      - <DataType type="array" name="render_controllers"/>：定义实体使用的[渲染控制器](#渲染控制器)。若不指定，则实体不会正常渲染。
-        - <DataType type="string"/>：渲染控制器的 ID。
+      - <DataType type="array" name="render_controllers"/>：定义实体使用的[渲染控制器](./render_controller)。若不指定，则实体不会正常渲染。
+        - <DataType type="string"/>：渲染控制器的 ID，该控制器始终挂载。
+        - <DataType type="object"/>：以渲染控制器的 ID 为键、Molang 表达式为值，条件成立时才挂载该控制器。
       - <DataType type="object" name="materials"/>：定义实体的材质列表。
-        - <DataType type="string" name="(材质短 ID)"/>：定义实体使用的材质。`材质短 ID`应与在渲染控制器中定义的`material.(材质短 ID)`一一对应。另见[实体材质](./material)。
+        - <DataType type="string" name="(材质短 ID)"/>：定义实体使用的材质。`材质短 ID`应与在渲染控制器中定义的`Material.(材质短 ID)`一一对应。另见[实体材质](./material)。
       - <DataType type="object" name="geometry"/>：定义实体的模型列表。
-        - <DataType type="string" name="(模型短 ID)"/>：定义实体使用的模型，应指定为模型长 ID。`模型短 ID`应与在渲染控制器中定义的`geometry.(模型短 ID)`一一对应。另见[实体模型](./geometry)。
+        - <DataType type="string" name="(模型短 ID)"/>：定义实体使用的模型，应指定为模型长 ID。`模型短 ID`应与在渲染控制器中定义的`Geometry.(模型短 ID)`一一对应。另见[实体模型](./model)。
       - <DataType type="object" name="textures"/>：定义实体的贴图列表。
-        - <DataType type="string" name="(贴图短 ID)"/>：定义实体使用的贴图路径，从`textures/`开始，不带后缀（例：`textures/entity/steve`）。`贴图短 ID`应与在渲染控制器中定义的`texture.(贴图短 ID)`一一对应。
+        - <DataType type="string" name="(贴图短 ID)"/>：定义实体使用的贴图路径，从`textures/`开始，不带后缀（例：`textures/entity/steve`）。`贴图短 ID`应与在渲染控制器中定义的`Texture.(贴图短 ID)`一一对应。
       - <DataType type="object" name="particle_effects"/>：定义实体的粒子列表。
         - <DataType type="string" name="(粒子短 ID)"/>：定义实体使用的粒子，应指定为粒子发射器文件定义的粒子长 ID。`粒子短 ID`应与在[动画与动画控制器](./animations)中定义的`粒子短 ID`一一对应。
       - <DataType type="object" name="sound_effects"/>：定义实体的音效列表。

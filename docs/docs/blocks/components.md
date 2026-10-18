@@ -88,7 +88,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**数组型**（楼梯尺寸）：
+**自定义楼梯**（数组型）：上下两级台阶拼出阶梯形碰撞箱。
 
 ```json showLineNumbers
 "minecraft:collision_box": [
@@ -103,7 +103,7 @@ import Button from '/src/components/button/base';
 ]
 ```
 
-**数组型**（`min`/`max` 写法，1.26.60+，半砖尺寸）：
+**自定义半砖**（数组型，`min`/`max` 写法，1.26.60+）：只占方块下半部分。
 
 ```json showLineNumbers
 "minecraft:collision_box": [
@@ -114,13 +114,13 @@ import Button from '/src/components/button/base';
 ]
 ```
 
-**布尔型**（正常方块尺寸）：
+**完整方块**（布尔型）：不写复杂碰撞箱时，一个`true`即为 16×16×16 的完整碰撞箱。
 
 ```json showLineNumbers
 "minecraft:collision_box": true
 ```
 
-**对象型**（已弃用，半砖尺寸，仅`1.26.60`之前的格式版本可用）：
+**自定义半砖**（对象型，已弃用，仅`1.26.60`之前的格式版本可用）：旧写法，效果与上一例相同。
 
 ```json showLineNumbers
 "minecraft:collision_box": {
@@ -146,6 +146,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**自定义译名**：方块名与 ID 不一致、或需要按状态显示不同名称时，在语言文件中单独指定译名键。
 
 ```json showLineNumbers
 "minecraft:display_name": "tile.test:custom_block.name"
@@ -178,7 +180,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-对象型：
+**高抗性方块**（对象型）：把爆炸抗性调高，做到类似黑曜石那样难以被爆炸破坏。
 
 ```json showLineNumbers
 "minecraft:destructible_by_explosion": {
@@ -186,7 +188,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-布尔型：
+**不可破坏方块**（布尔型）：直接写`false`，做到类似基岩那样无法被爆炸破坏。
 
 ```json showLineNumbers
 "minecraft:destructible_by_explosion": false
@@ -228,13 +230,15 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-对象型：
+**自定义石质方块**（对象型）：这里填写的值会被当作硬度参与计算，并不等于实际耗时。此处硬度为 1，徒手挖掘约需 1.5 秒。
 
 ```json showLineNumbers
 "minecraft:destructible_by_mining": {
     "seconds_to_destroy": 1.0
 }
 ```
+
+**工具分级**（`item_specific_speeds`）：分别指定各工具的挖掘速度倍率，数值越大越快。此处剑 10 倍、镐 5 倍；填负数则表示该工具挖不动。
 
 ```json showLineNumbers
 "minecraft:destructible_by_mining": {
@@ -252,7 +256,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-布尔型：
+**不可挖掘方块**（布尔型）：直接写`false`，做到类似基岩那样无法被挖掘破坏。
 
 ```json showLineNumbers
 "minecraft:destructible_by_mining": false
@@ -295,6 +299,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**随群系变色的方块**（`tint_method`为`grass`）：地图颜色随所在生物群系变化，类似草方块。
+
 ```json showLineNumbers
 "minecraft:map_color": {
     "color": "#FFFFFF",
@@ -302,9 +308,13 @@ import Button from '/src/components/button/base';
 }
 ```
 
+**纯色方块**（字符串型）：直接给一个十六进制颜色。
+
 ```json showLineNumbers
 "minecraft:map_color": "#FFFFFF"
 ```
+
+**纯色方块**（数组型）：用`[R, G, B]`三元组表示颜色。
 
 ```json showLineNumbers
 "minecraft:map_color": [ 255, 255, 255 ]
@@ -344,7 +354,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**对象型**（半砖尺寸）：
+**自定义半砖**（对象型）：选中框只覆盖下半部分，与碰撞箱一致。
 
 ```json showLineNumbers
 "minecraft:selection_box": {
@@ -353,7 +363,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-**布尔型**（正常方块尺寸）：
+**完整方块**（布尔型）：使用默认的 16×16×16 选中框。
 
 ```json showLineNumbers
 "minecraft:selection_box": true
@@ -377,6 +387,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**自定义作物**：打上`minecraft:crop`标签后，可被配方、交易表或 Molang 的`query.any_tag()`批量识别。
 
 ```json showLineNumbers
 "minecraft:tags": [
@@ -430,7 +442,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-对象型（原版内置模型）：
+**完整方块**（对象型，原版内置模型）：需要额外配置（如`uv_lock`）时使用对象写法。
 
 ```json showLineNumbers
 "minecraft:geometry": {
@@ -439,7 +451,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-对象型（自定义模型，配合面剔除）：
+**自定义玻璃**（对象型，配合面剔除）：`geometry.full_block`是**自定义模型**的标识符（不带命名空间，指向资源包`models/block`下的`*.geo.json`），与原版内置的`minecraft:geometry.full_block`不是同一个模型。原版内置模型不能使用`culling`面剔除，要剔除就必须换成自定义模型。
 
 ```json showLineNumbers
 "minecraft:geometry": {
@@ -448,9 +460,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-> **注意**：第二个示例中的`geometry.full_block`是**自定义模型**的标识符（不带命名空间，指向资源包`models/block`下的`*.geo.json`），与第一个示例中原版内置的`minecraft:geometry.full_block`不是同一个模型。之所以要换成自定义模型，是因为原版内置模型不能使用`culling`面剔除。
-
-**字符串型**：
+**完整方块**（字符串型）：只指定模型时可用简写。
 
 ```json showLineNumbers
 "minecraft:geometry": "minecraft:geometry.full_block"
@@ -506,6 +516,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**自定义石质方块**（各向同性）：`isotropic`让贴图随机旋转，避免大面积铺开时过于单调。
+
 ```json showLineNumbers
 "minecraft:material_instances": {
     "*": {
@@ -515,15 +527,19 @@ import Button from '/src/components/button/base';
 }
 ```
 
+**发光方块**（关闭环境光遮蔽与面调暗）：使六面亮度一致，常用于类似荧石、海晶灯的发光方块。
+
 ```json showLineNumbers
 "minecraft:material_instances": {
     "*": {
         "texture": "stone",
-        "ambient_occlusion": false,
+        "ambient_occlusion": 0.0,
         "face_dimming": false
     }
 }
 ```
+
+**自定义玻璃**（`render_method`为`blend`）：半透明渲染，适用于类似玻璃、水的材质。
 
 ```json showLineNumbers
 "minecraft:material_instances": {
@@ -565,6 +581,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**自定义泥土方块**：破坏时喷出类似的泥土颗粒，`particle_count`控制颗粒数量。
+
 ```json showLineNumbers
 "minecraft:destruction_particles": {
     "particle_count": 255,
@@ -594,6 +612,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**嵌入其他方块的方块**：定义方块被嵌入另一方块内部时使用的模型与材质，类似花盆中的植物。
+
 ```json showLineNumbers
 "minecraft:embedded_visual": {
     "geometry": { "identifier": "minecraft:geometry.full_block" },
@@ -621,6 +641,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**物品形态与方块形态不一致**：物品栏中显示为完整方块、放置后却是半砖这类情况。
+
 ```json showLineNumbers
 "minecraft:item_visual": {
     "geometry": { "identifier": "minecraft:geometry.full_block" },
@@ -646,6 +668,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**自定义玻璃方块**：方块的破坏、放置与踩踏音效全部使用玻璃音效组。
 
 ```json showLineNumbers
 "minecraft:sound": {
@@ -684,6 +708,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**自定义箱子**：27 格容器，同时开放动态属性供脚本读写。
+
 ```json showLineNumbers
 "minecraft:block_entity": {
     "dynamic_properties": true,
@@ -711,6 +737,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**自定义楼梯**（`never`）：放在箱子上方时不会阻止下方的箱子被打开。
+
 ```json showLineNumbers
 "minecraft:chest_obstruction": {
     "obstruction_rule": "never"
@@ -737,6 +765,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**自定义栅栏**：只与栅栏连接，不连接墙和玻璃板。
 
 ```json showLineNumbers
 "minecraft:connection_rule": {
@@ -766,6 +796,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**自定义工作台**：`crafting_tags`决定能打开哪些配方类型（工作台、切石机）。
+
 ```json showLineNumbers
 "minecraft:crafting_table": {
     "crafting_tags": ["crafting_table", "stonecutter"],
@@ -791,6 +823,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**附魔台旁的填充方块**：把它插在附魔台与书架之间，也仍能传递附魔能量。
+
 ```json showLineNumbers
 "minecraft:enchantment_power_transmitter": true
 ```
@@ -815,6 +849,8 @@ import Button from '/src/components/button/base';
 > **注意**：经过实测，Microsoft Learn 给出的`minimum_fall_distance`是错误写法，请使用本文档给出的写法。参见[Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-components#entity-fall-on)。
 
 </TabItem><TabItem value="示例" label="示例">
+
+**自定义耕地**：从 3 格以上落到方块上时触发事件，可用于实现被踩坏、触发落地效果。
 
 ```json showLineNumbers
 "minecraft:entity_fall_on": {
@@ -861,7 +897,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**格式版本 1.16.X 及更低**：
+**自定义羊毛方块**（格式版本 1.16.X 及更低，旧参数）：`flame_odds`与`burn_odds`越大越容易被点燃、烧毁。
 
 ```json showLineNumbers
 "minecraft:flammable": {
@@ -870,13 +906,13 @@ import Button from '/src/components/button/base';
 }
 ```
 
-**格式版本 1.19.10 及更高（布尔型）**：
+**自定义羊毛方块**（布尔型）：直接写`true`，使用默认的燃烧概率。
 
 ```json showLineNumbers
 "minecraft:flammable": true
 ```
 
-**格式版本 1.19.10 及更高（对象型）**：
+**自定义羊毛方块**（对象型，1.19.10+）：自定义引燃与烧毁概率的修正值。
 
 ```json showLineNumbers
 "minecraft:flammable": {
@@ -904,6 +940,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**自定义花**：允许该方块被放入花盆。
 
 ```json showLineNumbers
 "minecraft:flower_pottable": { }
@@ -938,7 +976,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**对象型**（格式版本 1.19.20 以前）：
+**自定义滑溜方块**（对象型，1.19.20 以前）：摩擦因数调低后效果类似冰面，数值越低越滑。
 
 ```json showLineNumbers
 "minecraft:friction": {
@@ -946,7 +984,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-**标量型**（格式版本 1.16.x 或 1.19.20 及更高）：
+**自定义滑溜方块**（浮点型）：1.16.x 或 1.19.20+ 可直接写数字。
 
 ```json showLineNumbers
 "minecraft:friction": 0.4
@@ -972,6 +1010,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**音符盒底座**：该方块位于音符盒下方时，让音符盒发出铃铛音色。
+
 ```json showLineNumbers
 "minecraft:instrument_sound": {
     "down": "note.bell"
@@ -996,6 +1036,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**自定义栅栏**：可被拴绳拴住生物，`offset`调整拴绳的连接点高度（单位：像素）。
 
 ```json showLineNumbers
 "minecraft:leashable": {
@@ -1025,6 +1067,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**不透明方块**：遮挡 15 级光照，即完全不透光。
+
 ```json showLineNumbers
 "minecraft:light_dampening": 15
 ```
@@ -1046,6 +1090,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**自定义发光方块**：发光等级 15，与常见发光方块一致。
 
 ```json showLineNumbers
 "minecraft:light_emission": 15
@@ -1078,6 +1124,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**自定义实体方块**（`blocking`）：水无法流入，流体被完全阻挡。
+
 ```json showLineNumbers
 "minecraft:liquid_detection": {
     "detection_rules": [
@@ -1085,6 +1133,8 @@ import Button from '/src/components/button/base';
     ]
 }
 ```
+
+**自定义半砖**（`can_contain_liquid`）：可含水，并阻止水从上方流入。
 
 ```json showLineNumbers
 "minecraft:liquid_detection": {
@@ -1129,7 +1179,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**格式版本 1.16.0 以前**：
+**自定义掉落**（1.16.0 以前，对象型）：通过`table`指定战利品表路径。
 
 ```json showLineNumbers
 "minecraft:loot": {
@@ -1137,7 +1187,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-**格式版本 1.16.X 及更高**：
+**自定义掉落**（1.16.X 及更高，字符串型）：直接写战利品表路径。
 
 ```json showLineNumbers
 "minecraft:loot": "loot_tables/blocks/my_custom_block.json"
@@ -1165,6 +1215,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**普通方块**（`push`）：可被活塞推动，但不会被粘性活塞拉回。
+
 ```json showLineNumbers
 "minecraft:movable": {
     "movement_type": "push"
@@ -1190,6 +1242,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**红石元件**：只有南北上下四个方向的相邻方块发生置换变化时才通知脚本。
 
 ```json showLineNumbers
 "minecraft:neighbor_change": {
@@ -1226,6 +1280,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**类似火把的方块**：只能放在方块的顶面，且下方必须是草方块。
 
 ```json showLineNumbers
 "minecraft:placement_filter": {
@@ -1269,6 +1325,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**类似树叶的方块**（`obstruct_rain`）：挡住雨雪，下方不会下雨下雪。
+
 ```json showLineNumbers
 "minecraft:precipitation_interactions": {
     "precipitation_behavior": "obstruct_rain"
@@ -1302,6 +1360,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**类似花草的方块**：放置时在水平方向 ±1 像素内随机偏移，避免成片排列过于整齐。
+
 ```json showLineNumbers
 "minecraft:random_offset": {
     "x": { "range": { "min": -1, "max": 1 }, "steps": 0 }
@@ -1334,6 +1394,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**自定义石质方块**：可导电，且红石线能沿方块侧面向下走。
+
 ```json showLineNumbers
 "minecraft:redstone_conductivity": {
     "allows_wire_to_step_down": true,
@@ -1360,6 +1422,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**类似红石灯的方块**：需要 15 级信号才点亮，同时自身会把信号传递给相邻方块。
 
 ```json showLineNumbers
 "minecraft:redstone_consumer": {
@@ -1395,6 +1459,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**类似红石块的方块**：向相邻方块发出 15 级信号，强充能上方方块，且只允许东西向红石线连接。
+
 ```json showLineNumbers
 "minecraft:redstone_producer": {
     "power": 15,
@@ -1427,6 +1493,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**类似草丛的方块**：可被直接放置的其他方块替换掉。
+
 ```json showLineNumbers
 "minecraft:replaceable": { }
 ```
@@ -1452,6 +1520,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**自定义栅栏**：使用栅栏的支撑形状，类似灯笼、锁链的方块可挂在下方。
 
 ```json showLineNumbers
 "minecraft:support": {
@@ -1485,6 +1555,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**自定义作物**：每 20–100 刻触发一次事件，用于生长、腐烂等周期性行为。
+
 ```json showLineNumbers
 "minecraft:tick": {
     "interval_range": [ 20, 100 ],
@@ -1515,6 +1587,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**倒置方块**：把模型绕 X 轴旋转 180°，做出上下颠倒的效果。
+
 ```json showLineNumbers
 "minecraft:transformation": {
     "rotation": [180, 0, 0]
@@ -1540,6 +1614,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**类似羊毛的方块**：减弱接触产生的振动，但不阻挡振动穿过。
 
 ```json showLineNumbers
 "minecraft:vibration_properties": {
@@ -1577,6 +1653,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**小堆叠方块**：最多堆叠 16，类似桶、雪球等物品。
 
 ```json showLineNumbers
 "minecraft:max_stack_size": 16
@@ -1679,6 +1757,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**随机动画方块**：以 20% 的概率触发随机刻，并把事件发送到脚本。
+
 ```json showLineNumbers
 "netease:block_animate_random_tick": {
     "trigger_rate": 0.2,
@@ -1723,6 +1803,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**自定义箱子**：容量 4 格。
+
 ```json showLineNumbers
 "netease:block_chest": {
     "custom_description": "Copper Chest",
@@ -1762,12 +1844,16 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**背包方块**：81 格容器，使用自定义 UI 界面。
+
 ```json showLineNumbers
 "netease:block_container": {
     "screen_name": "my_ui.backpack",
     "container_size": 81
 }
 ```
+
+**类似漏斗的容器**：5 格容器，按面配置输入与输出槽位。
 
 ```json showLineNumbers
 "netease:block_container": {
@@ -1809,6 +1895,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**自定义工作台**：可打开工作台与切石机配方。
+
 ```json showLineNumbers
 "netease:block_crafting_table": {
     "crafting_tags": ["crafting_table", "stonecutter"],
@@ -1838,6 +1926,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**带实体数据的方块**：支持客户端 tick，且可被活塞移动。
 
 ```json showLineNumbers
 "netease:block_entity": {
@@ -1874,6 +1964,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**粘性方块**：声明可被活塞抓取，并具有粘液块一样的性质。
+
 ```json showLineNumbers
 "netease:block_properties": {
     "properties": [ "piston_block_grabber", "slime" ]
@@ -1902,6 +1994,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**类似花草的方块**：在两个水平方向各随机偏移 0–0.25 格。
+
 ```json showLineNumbers
 "netease:block_random_offset": {
     "x_scope": [ 0.0, 0.25 ],
@@ -1929,6 +2023,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**可替换方块**：其他方块可直接放置覆盖掉它。
 
 ```json showLineNumbers
 "netease:can_built_over": {
@@ -1987,6 +2083,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**自定义提示**：在物品栏中显示彩色描述文字。
+
 ```json showLineNumbers
 "netease:custom_tips": {
     "value": "§r§a幸运值 +100"
@@ -2013,6 +2111,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**朝向方块**：按放置方向设置`direction`状态，常用于类似楼梯、原木的方块。
 
 ```json showLineNumbers
 "netease:face_directional": {
@@ -2086,6 +2186,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**抗火方块**：不会被岩浆点燃或烧毁。
+
 ```json showLineNumbers
 "netease:fire_resistant": {
     "value": true
@@ -2112,6 +2214,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**燃料方块**：可放入熔炉作为燃料，燃烧 80 刻（4 秒）。
 
 ```json showLineNumbers
 "netease:fuel": {
@@ -2215,6 +2319,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**需要感知移除的方块**：方块被移除时向脚本发送事件。
+
 ```json showLineNumbers
 "netease:listen_block_remove": {
     "value": true
@@ -2289,6 +2395,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**刷怪笼类方块**：`base_block`指定为`mob_spawner`时，定义生成的生物。
+
 ```json showLineNumbers
 "netease:mob_spawner": {
     "type": "minecraft:parrot"
@@ -2346,6 +2454,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**自定义模型方块**：关闭相邻方块对本方块的面裁切，避免自定义模型缺面。
+
 ```json showLineNumbers
 "netease:no_crop_face_block": { }
 ```
@@ -2372,6 +2482,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**落地事件**：实体落到方块后向脚本发送事件。
 
 ```json showLineNumbers
 "netease:on_after_fall_on": {
@@ -2402,6 +2514,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**落地事件**：实体落到方块前向脚本发送事件。
+
 ```json showLineNumbers
 "netease:on_before_fall_on": {
     "send_python_event": true
@@ -2431,6 +2545,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**区域方块**：实体处于方块内部时持续向脚本发送事件。
+
 ```json showLineNumbers
 "netease:on_entity_inside": {
     "send_python_event": true
@@ -2457,6 +2573,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**站立事件**：实体站在方块上时向脚本发送事件。
 
 ```json showLineNumbers
 "netease:on_stand_on": {
@@ -2485,6 +2603,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**踩踏事件**：实体离开方块时向脚本发送事件，可用于压力板类方块。
+
 ```json showLineNumbers
 "netease:on_step_off": {
     "send_python_event": true
@@ -2512,6 +2632,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**踩踏事件**：实体踩上方块时向脚本发送事件。
+
 ```json showLineNumbers
 "netease:on_step_on": {
     "send_python_event": true
@@ -2538,6 +2660,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**可寻路方块**：允许生物把该方块视为可通行。
 
 ```json showLineNumbers
 "netease:pathable": {
@@ -2604,6 +2728,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**可随机刻方块**：类似作物，随机刻时通知脚本处理生长。
+
 ```json showLineNumbers
 "netease:random_tick": {
     "enable": true,
@@ -2633,11 +2759,15 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**红石接收方**：类似红石灯，接收红石信号。
+
 ```json showLineNumbers
 "netease:redstone": {
     "type": "consumer"
 }
 ```
+
+**红石发出方**：类似红石块，输出 10 级信号。
 
 ```json showLineNumbers
 "netease:redstone": {
@@ -2666,6 +2796,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**红石属性**：被活塞推动时直接破坏，类似火把。
 
 ```json showLineNumbers
 "netease:redstone_property": {
@@ -2698,6 +2830,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**半透明方块**：使用 alpha 渲染层，类似玻璃、冰。
+
 ```json showLineNumbers
 "netease:render_layer": {
     "value": "alpha"
@@ -2724,6 +2858,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**可积雪方块**：可通过积雪恢复，类似草地被雪覆盖。
 
 ```json showLineNumbers
 "netease:snow_recover_able": {
@@ -2753,6 +2889,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**非固体方块**：类似空气、流体，实体可以从中间穿过。
 
 ```json showLineNumbers
 "netease:solid": {
@@ -2857,6 +2995,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**流动水源**：该方块作为流动流体的源头。
+
 ```json showLineNumbers
 "netease:water_flow_source": {
     "value": true
@@ -2883,6 +3023,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**遇水破坏**：水流过时方块被破坏，类似火把。
 
 ```json showLineNumbers
 "netease:water_destroy": {
@@ -2911,6 +3053,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**仅水中可存活**：类似海带、珊瑚，离开水就会被破坏。
+
 ```json showLineNumbers
 "netease:water_only": {
     "value": true
@@ -2937,6 +3081,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**静态水源**：该方块作为静态流体的源头。
 
 ```json showLineNumbers
 "netease:water_source": {
@@ -2984,11 +3130,15 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**类似树叶的方块**（对象型，旧写法）：削弱穿过方块的光照。
+
 ```json showLineNumbers
 "minecraft:block_light_absorption": {
     "value": 3
 }
 ```
+
+**类似树叶的方块**（整型）：同上，直接写数字。
 
 ```json showLineNumbers
 "minecraft:block_light_absorption": 3
@@ -3015,6 +3165,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**类似树叶的方块**：遮挡 3 级光照。
 
 ```json showLineNumbers
 "minecraft:block_light_filter": 3
@@ -3052,7 +3204,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**格式版本 1.16.0 以前**：
+**发光方块**（1.16.0 以前，对象型）：发光 1.0，旧取值范围为 0–15。
 
 ```json showLineNumbers
 "minecraft:block_light_emission": {
@@ -3060,7 +3212,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-**格式版本 1.16.X**：
+**发光方块**（1.16.X，浮点型）：直接写数字。
 
 ```json showLineNumbers
 "minecraft:block_light_emission": 1.0
@@ -3098,7 +3250,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**格式版本 1.16.0 以前**：
+**自定义石质方块**（1.16.0 以前，对象型）：填写的值同样按硬度理解，此处为 1.0。
 
 ```json showLineNumbers
 "minecraft:destroy_time": {
@@ -3106,7 +3258,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-**格式版本 1.16.X**：
+**自定义石质方块**（1.16.X，浮点型）：同上，直接写数字。
 
 ```json showLineNumbers
 "minecraft:destroy_time": 1.0
@@ -3142,7 +3294,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**格式版本 1.16.0 以前**：
+**高抗性方块**（1.16.0 以前，对象型）：爆炸抗性 1.0。
 
 ```json showLineNumbers
 "minecraft:explosion_resistance": {
@@ -3150,7 +3302,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-**格式版本 1.16.X**：
+**高抗性方块**（1.16.X，浮点型）：同上，直接写数字。
 
 ```json showLineNumbers
 "minecraft:explosion_resistance": 1.0
@@ -3177,6 +3329,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**脚本注册的方块自定义组件**：在这里声明方块使用哪些脚本组件；组件本身始终由脚本注册（1.21.90 前需在`WorldInitializeBeforeEvent`中注册），1.21.90 起改为在`StartupEvent`中用脚本注册并直接指定作用的方块，因此方块定义中不再需要该组件。
+
 ```json showLineNumbers
 "minecraft:custom_components": [
     "example:on_step"
@@ -3202,6 +3356,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**泥土类方块**：给方块打上`minecraft:dirt`标签，使其可被当作泥土使用。
 
 ```json showLineNumbers
 "tag:dirt": {}
@@ -3235,6 +3391,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**易碎方块**：被活塞推动时直接破坏，类似火把。
+
 ```json showLineNumbers
 "minecraft:breakonpush": true
 ```
@@ -3258,6 +3416,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**可呼吸方块**：类似空气，在水中不消耗氧气。
 
 ```json showLineNumbers
 "minecraft:breathability": "air"
@@ -3285,6 +3445,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**创造分类**：把方块放进建筑分类，已被`menu_category`取代。
+
 ```json showLineNumbers
 "minecraft:creative_category": "construction"
 ```
@@ -3310,6 +3472,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**不可推动方块**：活塞无法推动，类似黑曜石。
 
 ```json showLineNumbers
 "minecraft:immovable": true
@@ -3340,6 +3504,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**落地触发**：从 3 格以上落到方块时触发事件。
 
 ```json showLineNumbers
 "minecraft:on_fall_on": {
@@ -3373,6 +3539,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**交互触发**：玩家右键方块时触发事件，类似按钮。
+
 ```json showLineNumbers
 "minecraft:on_interact": {
     "event": "test:on_interact"
@@ -3403,6 +3571,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**放置触发**：方块被放置后触发事件。
 
 ```json showLineNumbers
 "minecraft:on_placed": {
@@ -3435,6 +3605,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**破坏触发**：玩家破坏方块时触发事件。
+
 ```json showLineNumbers
 "minecraft:on_player_destroyed": {
     "event": "test:on_destroyed"
@@ -3465,6 +3637,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**放置前触发**：玩家放置方块时触发事件。
 
 ```json showLineNumbers
 "minecraft:on_player_placing": {
@@ -3497,6 +3671,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**离开触发**：实体离开方块时触发事件，类似压力板。
+
 ```json showLineNumbers
 "minecraft:on_step_off": {
     "event": "test:on_step_off"
@@ -3528,6 +3704,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**踩上触发**：实体踩上方块时触发事件。
+
 ```json showLineNumbers
 "minecraft:on_step_on": {
     "event": "test:on_step_on"
@@ -3556,6 +3734,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**仅活塞推动**：只能被活塞推动，不受其他外力影响。
+
 ```json showLineNumbers
 "minecraft:onlypistonpush": true
 ```
@@ -3583,6 +3763,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**可开合的方块**：按方块状态控制模型骨骼显示，类似箱子开盖。
+
 ```json showLineNumbers
 "minecraft:part_visibility": {
     "head": "query.block_property('test:open')"
@@ -3608,6 +3790,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**禁止跳跃**：站在方块上的实体无法跳跃，类似蜂蜜块。
 
 ```json showLineNumbers
 "minecraft:preventsjumping": true
@@ -3640,6 +3824,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**定时触发**：每 20–100 刻触发一次事件，类似作物生长。
 
 ```json showLineNumbers
 "minecraft:queued_ticking": {
@@ -3677,6 +3863,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**随机刻触发**：随机刻时触发事件，类似草方块蔓延。
+
 ```json showLineNumbers
 "minecraft:random_ticking": {
     "on_tick": {
@@ -3710,6 +3898,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
+**朝向方块**：让模型绕 Y 轴旋转 90°，已被`placement_direction`取代。
+
 ```json showLineNumbers
 "minecraft:rotation": [ 0, 90, 0 ]
 ```
@@ -3731,6 +3921,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**标准方块**：声明该方块为完整的单位立方体，已被`geometry`取代。
 
 ```json showLineNumbers
 "minecraft:unit_cube": {}
@@ -3755,6 +3947,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
+
+**不可行走方块**：生物不会主动走上去，类似岩浆块。
 
 ```json showLineNumbers
 "minecraft:unwalkable": true

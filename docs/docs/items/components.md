@@ -94,6 +94,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+镐、剑等工具与武器：设置总耐久与每次使用的损耗概率。
+
 ```json showLineNumbers
 "minecraft:durability": {
     "max_durability": 251
@@ -171,7 +173,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:max_stack_size`
 
-<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.20" tooltip="在更旧的版本下使用已废弃的同名组件。"/><br/>
+<Usable type="all" tooltip="但必须是定义在items/下的国际版物品。"/> <Version add="1.20.10" tooltip="在更旧的版本下使用已废弃的同名组件。"/><br/>
 
 定义物品的最大堆叠数。
 
@@ -269,6 +271,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+苹果（apple.json）：挂上`minecraft:is_food`标签，供配方、狐狸行为与 Molang 查询识别。
+
 ```json showLineNumbers
 "minecraft:tags": {
     "tags": [ "minecraft:planks", "example:foo" ]
@@ -360,6 +364,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+把物品做成可放置方块的物品，例如让自定义物品像花一样种在泥土上。
+
 ```json showLineNumbers
 "minecraft:block_placer": {
     "block": "minecraft:wheat",
@@ -395,6 +401,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+收纳袋（bundle.json）：启用收纳袋的存取交互与容量提示。
 
 ```json showLineNumbers
 "minecraft:bundle_interaction": {
@@ -464,9 +472,11 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+让物品可用于堆肥，设置放入堆肥桶后的堆肥成功率。
+
 ```json showLineNumbers
 "minecraft:compostable": {
-    "composting_chance": 50
+    "composting_chance": 30
 }
 ```
 
@@ -492,6 +502,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+风弹（wind_charge.json）：使用后让同一`category`的物品一起进入冷却，示例同时演示了`type`字段的作用。
 
 ```json showLineNumbers
 "minecraft:cooldown": {
@@ -564,6 +576,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+盔甲类物品：按伤害类型吸收一部分伤害。
+
 ```json showLineNumbers
 "minecraft:damage_absorption": {
     "absorbable_causes": [ "all" ]
@@ -597,6 +611,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+镐、斧、锹等工具：按方块或方块标签设置挖掘速度，并让物品成为对应方块的合适工具。
+
 ```json showLineNumbers
 "minecraft:digger": {
     "use_efficiency": true,
@@ -629,6 +645,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+耐久接近耗尽时播放提示音或产生振动，提醒玩家工具即将损坏。
 
 ```json showLineNumbers
 "minecraft:durability_sensor": {
@@ -669,6 +687,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+皮革盔甲：让物品在炼药锅中可染色，并指定染色前的默认颜色。
+
 ```json showLineNumbers
 "minecraft:dyeable": {
     "default_color": "#ffffff"
@@ -704,6 +724,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+剑、镐、盔甲等：指定可用的附魔槽类型与附魔能力值。
+
 ```json showLineNumbers
 "minecraft:enchantable": {
     "slot": "sword",
@@ -735,6 +757,8 @@ import Button from '/src/components/button/base';
 更完整的用法请查阅官方文档。
 
 </TabItem><TabItem value="example" label="示例">
+
+刷怪蛋：设置使用后生成何种实体、可在哪些方块上使用。
 
 ```json showLineNumbers
 "minecraft:entity_placer": {
@@ -768,6 +792,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+下界合金制品：让物品掉入岩浆后不被烧毁。
 
 ```json showLineNumbers
 "minecraft:fire_resistant": {
@@ -809,6 +835,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+苹果（apple.json）：设置 4 点营养值、0.3 的饱和度加成，并配合`use_modifiers`定义食用时长。
+
 ```json showLineNumbers
 "minecraft:food": {
     "nutrition": 4,
@@ -834,6 +862,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+木棍、木板等：设置物品在熔炉中作为燃料的燃烧时长。
 
 ```json showLineNumbers
 "minecraft:fuel": {
@@ -1170,6 +1200,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+风弹（wind_charge.json）：让物品发射`wind_charge_projectile`弹射物。
+
 ```json showLineNumbers
 "minecraft:projectile": {
     "minimum_critical_power": 1.25,
@@ -1274,6 +1306,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+铁砧修复：指定用什么物品修复、每次修回多少耐久。
+
 ```json showLineNumbers
 "minecraft:repairable":{
     "repair_items": [
@@ -1345,6 +1379,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+弓、弩：设置弹药、蓄力时长与发射力度。
 
 ```json showLineNumbers
 "minecraft:shooter": {
@@ -1431,6 +1467,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+收纳袋（bundle.json）：把物品变成 64 格容量的容器，并禁止放入潜影盒。
+
 ```json showLineNumbers
 "minecraft:storage_item": {
     "max_slots": 64,
@@ -1460,6 +1498,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+收纳袋（bundle.json）：设置容器可容纳的总容量为 64。
+
 ```json showLineNumbers
 "minecraft:storage_weight_limit": {
     "max_weight_limit": 64
@@ -1485,6 +1525,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+收纳袋（bundle.json）：设置该物品放进其他容器时占用的容量。
+
 ```json showLineNumbers
 "minecraft:storage_weight_modifier": {
     "weight_in_storage_item": 4
@@ -1509,6 +1551,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+剑、斧：调整挥动动画的时长，控制攻击手感。
 
 ```json showLineNumbers
 "minecraft:swing_duration": {
@@ -1536,6 +1580,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+剑、斧：分别指定落空、命中与暴击时的音效。
 
 ```json showLineNumbers
 "minecraft:swing_sounds": {
@@ -1568,6 +1614,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+风弹（wind_charge.json）：做成可投掷物，投掷时播放挥手动画、力度为 1.5。
 
 ```json showLineNumbers
 "minecraft:throwable": {
@@ -1603,6 +1651,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+苹果（apple.json）：食用时播放进食动画。
 
 **对象型**：
 
@@ -1652,6 +1702,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+苹果（apple.json）：设置 1.6 秒的使用时长与 0.35 倍的移动减速。
+
 ```json showLineNumbers
 "minecraft:use_modifiers": {
     "use_duration": 1.6,
@@ -1688,6 +1740,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+头盔、胸甲、靴子：指定穿戴槽位与护甲值。
 
 ```json showLineNumbers
 "minecraft:wearable": {
@@ -1736,6 +1790,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+允许物品装备到副手槽。
+
 ```json showLineNumbers
 "netease:allow_offhand": {
     "value": true
@@ -1767,6 +1823,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+中国版护甲：设置护甲值与护甲材质类型。
+
 ```json showLineNumbers
 "netease:armor":{
     "defense": 10,
@@ -1796,6 +1854,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+把物品做成桶类物品，可装入或倒出指定方块。
+
 ```json showLineNumbers
 "netease:bucket": {
     "fill_liquid": "flowing_water"
@@ -1822,6 +1882,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+中国版堆肥：设置堆肥成功率。
+
 ```json showLineNumbers
 "netease:compostable": 50
 ```
@@ -1847,6 +1909,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+中国版冷却：设置使用后的冷却时长（以游戏刻计）。
 
 ```json showLineNumbers
 "netease:cooldown": {
@@ -1876,6 +1940,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+为物品追加自定义的悬浮提示文本。
+
 ```json showLineNumbers
 "netease:customtips": {
     "value": "§8右键可发射"
@@ -1902,6 +1968,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+把物品做成刷怪蛋，生成指定生物。
 
 ```json showLineNumbers
 "netease:egg": {
@@ -1930,6 +1998,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+设置物品作为附魔材料时的附魔能力。
+
 ```json showLineNumbers
 "netease:enchant_material": {
     "value": true
@@ -1956,6 +2026,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+让物品掉入岩浆后不被烧毁。
 
 ```json showLineNumbers
 "netease:fire_resistant": {
@@ -1985,6 +2057,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+把物品做成鱼钩，用于钓鱼玩法。
 
 ```json showLineNumbers
 "netease:fishing_hook": {
@@ -2017,6 +2091,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+用于液体、动态方块等需要在场景中播放序列帧动画的物品。
+
 ```json showLineNumbers
 "netease:frame_anim_in_scene": {
     "texture_path": "textures/items/watch_atlas",
@@ -2047,6 +2123,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+为物品图标设置序列帧动画。
+
 ```json showLineNumbers
 "netease:frame_animation": {
     "frame_count": 3,
@@ -2075,6 +2153,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+设置物品作为燃料时的燃烧时长。
 
 ```json showLineNumbers
 "netease:fuel": {
@@ -2118,6 +2198,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+为物品写入初始的`userData`，供脚本读取。
 
 ```json showLineNumbers
 "netease:initial_user_data": {
@@ -2184,6 +2266,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+把物品做成可发射的弹射物。
+
 ```json showLineNumbers
 "netease:projectile": "minecraft:snowball"
 ```
@@ -2216,6 +2300,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+修正手持物品的渲染偏移，解决穿模或位置异常。
 
 ```json showLineNumbers
 "netease:render_offsets": {
@@ -2250,6 +2336,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+把物品做成盾牌，可格挡伤害。
+
 ```json showLineNumbers
 "netease:shield":{
     "defence_damage_source_list": [ "drowning" ],
@@ -2278,6 +2366,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+控制物品被手持时是否渲染。
 
 ```json showLineNumbers
 "netease:show_in_hand": {
@@ -2309,6 +2399,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+把物品做成武器，设置伤害与攻击相关属性。
 
 ```json showLineNumbers
 "netease:weapon": {
@@ -2346,6 +2438,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+旧版格式：让物品与方块绑定，使其可放置该方块。
+
 ```json showLineNumbers
 "minecraft:block": "minecraft:camera"
 ```
@@ -2372,6 +2466,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+旧版格式：为物品添加附魔光效，常用于收藏品。
 
 ```json showLineNumbers
 "minecraft:foil": true
@@ -2485,6 +2581,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+旧版格式：让物品以工具的方式手持渲染。
+
 ```json showLineNumbers
 "minecraft:hand_equipped": true
 ```
@@ -2511,6 +2609,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+旧版格式：设置物品名称的颜色。
 
 ```json showLineNumbers
 "minecraft:hover_text_color": "aqua"
@@ -2545,6 +2645,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+旧版格式：指定物品的图标短 ID。
+
 ```json showLineNumbers
 "minecraft:icon": "apple"
 ```
@@ -2572,6 +2674,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+旧版格式：设置物品的最大耐久。
+
 ```json showLineNumbers
 "minecraft:max_damage": 1000
 ```
@@ -2598,6 +2702,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+旧版格式：设置物品的最大堆叠数量。
 
 ```json showLineNumbers
 "minecraft:max_stack_size": 16
@@ -2629,6 +2735,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+旧版格式：把物品标记为种子，可种在耕地上。
+
 ```json showLineNumbers
 "minecraft:seed": {
     "crop_result": "sweet_berry_bush",
@@ -2659,6 +2767,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+旧版格式：按数据值分别堆叠，例如不同颜色的羊毛。
+
 ```json showLineNumbers
 "minecraft:stacked_by_data": true
 ```
@@ -2686,6 +2796,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+旧版格式：设置物品使用时的动画，例如食用时播放进食动作。
+
 ```json showLineNumbers
 "minecraft:use_animation": "eat"
 ```
@@ -2696,7 +2808,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:use_duration`
 
-<Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用minecraft:use_modifiers组件代替之。"/> <Version add="1.20.20" deprecated="1.20.40" tooltip="在高版本使用minecraft:use_modifiers组件代替之。"/> <Highlight text="需要前置组件" tooltip="在1.10-1.16.0下，要使用该组件，请事先定义minecraft:food组件。"/> <br/>
+<Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用minecraft:use_modifiers组件代替之。"/> <Version add="1.20.20" deprecated="1.20.50" tooltip="在高版本使用minecraft:use_modifiers组件代替之。"/> <Highlight text="需要前置组件" tooltip="在1.10-1.16.0下，要使用该组件，请事先定义minecraft:food组件。"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
 <Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-use-duration"/>
@@ -2741,7 +2853,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:custom_components`
 
-<Usable type="all"/> <Version add="1.21.20" deprecated="1.21.90" tooltip="弃用原因：1.21.90 推出了自定义组件 V2。在 1.21.90 或更高版本下的物品定义中不应再使用该组件。"/><br/>
+<Usable type="all"/> <Version add="1.21.10" deprecated="1.21.90" tooltip="弃用原因：1.21.90 推出了自定义组件 V2。在 1.21.90 或更高版本下的物品定义中不应再使用该组件。"/><br/>
 
 <Button text="Microsoft Learn" url="https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponents/minecraft_custom_components?view=minecraft-bedrock-stable"/>
 
@@ -2757,6 +2869,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+先在脚本中注册自定义组件，再在物品 JSON 中引用名称以启用对应行为。
 
 ```json showLineNumbers
 "minecraft:custom_components": [
@@ -2794,6 +2908,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+当年的护甲：设置护甲值与贴图类型，现由`minecraft:wearable`承担。
+
 ```json showLineNumbers
 "minecraft:armor": {
     "protection": 10,
@@ -2827,6 +2943,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+当年的蓄力物品（如食物）：设置蓄力时长与完成时触发的事件。
 
 ```json showLineNumbers
 "minecraft:chargeable": {
@@ -2862,6 +2980,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+当年的物品：注册到创造模式物品栏的分类与分组，现由`menu_category`承担。
+
 ```json showLineNumbers
 "minecraft:creative_category": {
     "parent": "itemGroup.name.record",
@@ -2889,6 +3009,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+当年的物品：控制掉落物能否被爆炸摧毁。
+
 ```json showLineNumbers
 "minecraft:explodable": true
 ```
@@ -2913,6 +3035,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+当年的护甲：设置受击时的击退抗性。
 
 ```json showLineNumbers
 "minecraft:knockback_resistance": {
@@ -2942,6 +3066,8 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="example" label="示例">
 
+当年的工具：设置统一的挖掘速度，现由`minecraft:digger`按方块细分。
+
 ```json showLineNumbers
 "minecraft:mining_speed": 5
 ```
@@ -2970,6 +3096,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+当年的物品：被使用时触发自定义事件，现由`ItemUseAfterEvent`或自定义组件的`onUse`承接。
 
 ```json showLineNumbers
 "minecraft:on_use": {
@@ -3004,6 +3132,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+当年的物品：在方块上使用时触发自定义事件。
 
 ```json showLineNumbers
 "minecraft:on_use_on": {
@@ -3103,7 +3233,7 @@ import Button from '/src/components/button/base';
 
 定义物品为武器。这会自动为物品添加伤害信息与攻击事件。
 
-另见：_[`minecraft:damage`](#minecraftdamage)组件_（在高版本中用于定义攻击伤害）、_[ItemCustomComponent 接口](/docs/docs/scripts/sapi/server/system/custom_component#itemcustomcomponent-接口)_（`onHitEntity`、`onMineBlock`回调）、_[物品事件响应](./event_responses)_、脚本事件*[EntityHitBlockAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitblockafterevent-类)*（对应`on_hit_block`）、_[EntityHurtAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhurtafterevent-类)_（对应`on_hurt_entity`）、_[EntityHitEntityAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitentityafterevent-类)_（对应`on_not_hurt_entity`）。
+另见：_[`minecraft:damage`](#minecraftdamage)组件_（在高版本中用于定义攻击伤害）、_[ItemCustomComponent 接口](/docs/docs/scripts/sapi/server/system/custom_component#itemcustomcomponent-接口)_（`onHitEntity`、`onMineBlock`回调）、_[物品事件响应](./event_responses)_、脚本事件_[EntityHitBlockAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitblockafterevent-类)_（对应`on_hit_block`）、_[EntityHurtAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhurtafterevent-类)_（对应`on_hurt_entity`）、_[EntityHitEntityAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitentityafterevent-类)_（对应`on_not_hurt_entity`）。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 
@@ -3121,6 +3251,8 @@ import Button from '/src/components/button/base';
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
+
+当年的武器：自动附加伤害信息与攻击事件。
 
 ```json showLineNumbers
 "minecraft:weapon": {

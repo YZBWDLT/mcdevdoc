@@ -82,7 +82,117 @@ import Version from "/src/components/highlight/version"
 
 </treeview>
 
-> **注意**：`minecraft:redstone_consumer`、`minecraft:block_entity`、`minecraft:support`、`minecraft:embedded_visual`、`minecraft:item_visual`和`minecraft:flower_pottable`只能定义在根的`components`中，**不可定义在方块置换的`components`内**（已弃用的旧组件同样不支持）。
+一块自定义半砖（`blocks/test:custom_slab.block.json`）：注册到「建筑」分类，按玩家放置的上下半格切换碰撞箱，可含水，并掉落自定义战利品表。
+
+```json showLineNumbers
+{
+    "format_version": "1.26.60",
+    "minecraft:block": {
+        "description": {
+            "identifier": "test:custom_slab",
+            "menu_category": {
+                "category": "construction",
+                "group": "minecraft:itemGroup.name.slab"
+            },
+            "traits": {
+                "minecraft:placement_position": {
+                    "enabled_states": ["minecraft:vertical_half"]
+                }
+            }
+        },
+        "components": {
+            "minecraft:geometry": "minecraft:geometry.full_block",
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "custom_slab",
+                    "render_method": "opaque"
+                }
+            },
+            "minecraft:destructible_by_mining": { "seconds_to_destroy": 1.5 },
+            "minecraft:destructible_by_explosion": { "explosion_resistance": 6.0 },
+            "minecraft:map_color": "#8C8C8C",
+            "minecraft:liquid_detection": {
+                "detection_rules": [
+                    {
+                        "can_contain_liquid": true,
+                        "on_liquid_touches": "blocking"
+                    }
+                ]
+            },
+            "minecraft:loot": "loot_tables/blocks/test_custom_slab.json"
+        },
+        "permutations": [
+            {
+                "condition": "query.block_state('minecraft:vertical_half') == 'bottom'",
+                "components": {
+                    "minecraft:collision_box": [
+                        { "min": [0, 0, 0], "max": [16, 8, 16] }
+                    ],
+                    "minecraft:selection_box": { "origin": [-8, 0, -8], "size": [16, 8, 16] }
+                }
+            },
+            {
+                "condition": "query.block_state('minecraft:vertical_half') == 'top'",
+                "components": {
+                    "minecraft:collision_box": [
+                        { "min": [0, 8, 0], "max": [16, 16, 16] }
+                    ],
+                    "minecraft:selection_box": { "origin": [-8, 8, -8], "size": [16, 8, 16] }
+                }
+            }
+        ]
+    }
+}
+```
+
+### 方块置换
+
+方块置换由「条件 + 组件」组成：条件成立时，该组组件会覆盖根`components`中的同名组件。同一个方块可以写多条置换，**越靠后**的置换优先级越高，同名组件以最后一条成立的置换为准。
+
+因此惯例是：把方块「最常见」的形态写在根`components`里，其余形态用置换覆盖。
+
+**自定义作物**（按生长阶段切换贴图与选中框）：
+
+```json showLineNumbers
+"permutations": [
+    {
+        "condition": "query.block_state('test:growth') == 1",
+        "components": {
+            "minecraft:material_instances": {
+                "*": { "texture": "custom_crop_stage1", "render_method": "alpha_test" }
+            },
+            "minecraft:collision_box": false,
+            "minecraft:selection_box": { "origin": [-8, 0, -8], "size": [16, 8, 16] }
+        }
+    },
+    {
+        "condition": "query.block_state('test:growth') == 2",
+        "components": {
+            "minecraft:material_instances": {
+                "*": { "texture": "custom_crop_stage2", "render_method": "alpha_test" }
+            },
+            "minecraft:collision_box": false,
+            "minecraft:selection_box": { "origin": [-8, 0, -8], "size": [16, 12, 16] }
+        }
+    }
+]
+```
+
+**自定义红石灯**（按点亮状态切换贴图与发光等级，熄灭时的形态写在根`components`中）：
+
+```json showLineNumbers
+"permutations": [
+    {
+        "condition": "query.block_state('test:lit') == true",
+        "components": {
+            "minecraft:light_emission": 15,
+            "minecraft:material_instances": {
+                "*": { "texture": "custom_lamp_on", "render_method": "opaque" }
+            }
+        }
+    }
+]
+```
 
 [^1]: 关于方块状态的定义，不止有(方块状态 ID)数组一种定义方法，然而我们给出的数组定义方法已可以解决所有情况。感兴趣的读者可以阅读[参考文档的*方块状态 | Bedrock Wiki*](#参考文档)了解更多。
 
@@ -121,6 +231,25 @@ import Version from "/src/components/highlight/version"
 
 备注：在方块指定了[`minecraft:material_instances`](./components#minecraftmaterial_instances)组件后，请在该组件内部指定方块贴图，无需在<FileType type="file" name="blocks.json"/>中通过<DataType type="object" name="textures"/>指定方块的贴图。
 
+未使用`minecraft:material_instances`的方块，在这里指定六面贴图与音效（音效也可以改用[`minecraft:sound`](./components#minecraftsound)组件指定）：
+
+```json showLineNumbers
+{
+    "format_version": "1.21.40",
+    "test:custom_slab": {
+        "textures": {
+            "up": "custom_slab_top",
+            "down": "custom_slab_top",
+            "side": "custom_slab_side"
+        },
+        "sound": "stone",
+        "isotropic": {
+            "up": true
+        }
+    }
+}
+```
+
 ### `terrain_texture.json`
 
 以下为 <FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="textures"/> - <FileType type="file" name="terrain_texture.json"/> 的结构。
@@ -141,6 +270,25 @@ import Version from "/src/components/highlight/version"
 
 [^3]: 目前该参数的实际意义不明。
 
+注册上面用到的两张贴图，供`blocks.json`与`minecraft:material_instances`组件引用：
+
+```json showLineNumbers
+{
+    "resource_pack_name": "test",
+    "texture_name": "atlas.terrain",
+    "padding": 8,
+    "num_mip_levels": 4,
+    "texture_data": {
+        "custom_slab_top": {
+            "textures": "textures/blocks/custom_slab_top"
+        },
+        "custom_slab_side": {
+            "textures": "textures/blocks/custom_slab_side"
+        }
+    }
+}
+```
+
 ### `flipbook_textures.json`
 
 以下为 <FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="textures"/> - <FileType type="file" name="flipbook_textures.json"/> 的结构。
@@ -159,6 +307,20 @@ import Version from "/src/components/highlight/version"
     - <DataType type="boolean" name="blend_frames"/>：每帧是否平滑过渡。默认值为`true`。
 
 </treeview>
+
+让一张竖排图集循环播放动画（如熔炉火焰、海晶灯一类发光方块）：
+
+```json showLineNumbers
+[
+    {
+        "flipbook_texture": "textures/blocks/custom_lamp_on",
+        "atlas_tile": "custom_lamp_on",
+        "ticks_per_frame": 2,
+        "frames": 4,
+        "blend_frames": true
+    }
+]
+```
 
 ### `sounds.json`
 
@@ -187,6 +349,36 @@ import Version from "/src/components/highlight/version"
           - <DataType type="string" name="step"/>：当有实体在此方块上走动时播放音效。
 
 </treeview>
+
+注册一组名为`custom_slab_sound`的方块音效（供`blocks.json`的`sound`引用），并让方块落地、跳跃时也播放交互音效：
+
+```json showLineNumbers
+{
+    "block_sounds": {
+        "custom_slab_sound": {
+            "pitch": 1.0,
+            "volume": 1.0,
+            "events": {
+                "break": "dig.stone",
+                "hit": "hit.stone",
+                "place": "dig.stone"
+            }
+        }
+    },
+    "interactive_sounds": {
+        "block_sounds": {
+            "custom_slab_sound": {
+                "events": {
+                    "fall": "fall.stone",
+                    "jump": "jump.stone",
+                    "land": "step.stone",
+                    "step": "step.stone"
+                }
+            }
+        }
+    }
+}
+```
 
 ---
 

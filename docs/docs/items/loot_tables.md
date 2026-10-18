@@ -481,7 +481,7 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="random_block_state"/>：根对象。
-  - <DataType type="string" name="block_state" isRequired/>：方块状态的名称，例如`wiki:color`。
+  - <DataType type="string" name="block_state" isRequired/>：方块状态的名称，例如`test:color`。
   - <DataType type="int" name="values" isRequired/>：该状态的取值。应填写为整数，或`{"min": (最小), "max": (最大)}`的范围对象。默认值为`0`。
 </treeview>
 
@@ -490,7 +490,7 @@ import Button from '/src/components/button/base';
 ```json showLineNumbers
 {
     "function": "random_block_state",
-    "block_state": "wiki:color",
+    "block_state": "test:color",
     "values": 3
 }
 ```

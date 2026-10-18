@@ -12,6 +12,18 @@ sidebar_position: 3
 
 本文档收录物品标签的相关信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
 
+## 为物品添加标签
+
+在物品定义的`components`中通过[`minecraft:tags`](./components#minecrafttags)组件声明标签。例如给自定义食物挂上`minecraft:is_food`，它就会像原版食物一样被狐狸捡走：
+
+```json showLineNumbers
+"minecraft:tags": {
+    "tags": [ "minecraft:is_food", "test:ruby" ]
+}
+```
+
+自定义标签需自带命名空间，可在配方材料、[相关 Molang](./molang)的`query.any_tag()`以及实体筛选器中引用。
+
 ## 原版使用的标签
 
 原版可用的物品标签如下表所示。读者可在[Bedrock Wiki](https://wiki.bedrock.dev/items/item-tags)中查看更多相关信息。
