@@ -17,7 +17,7 @@ import Version from "/src/components/highlight/version"
 
 :::warning[注意]
 
-本文部分组件的格式版本仍在核实中，版本徽标可能显示为「?」。组件参数以 26.60 的官方 JSON schema 与原版实体文件为准，如需更多信息可查阅[实体组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/componentlist?view=minecraft-bedrock-stable)和[实体 AI 意向组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/aigoallist?view=minecraft-bedrock-stable)。
+本文部分组件的格式版本仍在核实中：版本徽标显示「?」表示尚未核实，显示「未知」表示已查找但无法确定加入版本。组件参数以 26.60 的官方 JSON schema 与原版实体文件为准，如需更多信息可查阅[实体组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/componentlist?view=minecraft-bedrock-stable)和[实体 AI 意向组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/aigoallist?view=minecraft-bedrock-stable)。
 
 :::
 
@@ -70,7 +70,7 @@ import Version from "/src/components/highlight/version"
 
 ### `minecraft:health`
 
-<Usable type="all"/> <Version add="1.2.0" tooltip="无法确定具体加入版本。"/> <br/>
+<Usable type="all"/> <Version add="未知"/> <br/>
 
 定义实体的生命值。1 颗心等于 2 点生命值。
 
@@ -204,12 +204,8 @@ import Version from "/src/components/highlight/version"
       - <DataType type="float" name="min_kick_speed"/>：<Highlight text="限定参数" tooltip="仅当push_mode为ball时可用。" inline/> 最小踢球速度，实体将被击退的最小速度。默认值为`0.0`。
       - <DataType type="float" name="max_kick_speed"/>：<Highlight text="限定参数" tooltip="仅当push_mode为ball时可用。" inline/> 最大踢球速度，实体将被击退的最大速度。默认值为`0.5`。
       - <DataType type="float" name="vertical_kick_multiplier"/>：<Highlight text="限定参数" tooltip="仅当push_mode为ball时可用。" inline/> 当物体在地面上被推动时，向上施加的力的乘数。为`0`时则使实体保持在地面上。默认值为`0.3`。
-      - <DataType type="float" name="require_collision_overlap"/>：<Version add="1.26.40" inline/>是否需要碰撞箱重叠才能推动。默认值为`true`。
+      - <DataType type="float" name="require_collision_overlap"/>：<Version add="1.26.40" inline/>是否需要碰撞箱重叠才能推动。默认值为`true`。`1.26.40`起未写时按`true`处理，更早的格式版本则按`false`处理。
 </treeview>
-
-> 备注：部分数值看起来十分抽象，但微软文档记录原文如此。
-
-> **备注**：该字段的判定随格式版本变化：1.26.40 起未写时按`true`处理，更早的格式版本则按`false`处理。
 
 </TabItem><TabItem value="示例" label="示例">
 
@@ -356,7 +352,7 @@ import Version from "/src/components/highlight/version"
         - <DataType type="string"/>：方块 ID。
       - <DataType type="string" name="on_block_broken"/>：方块列表的方块被破坏后，触发的事件。见[实体事件](./events)。
   - <DataType type="float" name="sensor_radius"/>：检查的方块的半径。应小于等于`32`。默认值为`16`。
-  - <DataType type="array" name="sources"/>：<Version add="1.18.30" inline/> 检查破坏方块的实体。实体必须满足规定条件才能继续检查方块是否被破坏并触发事件。
+  - <DataType type="array" name="sources"/>：<Version add="1.18.30" inline/>检查破坏方块的实体。实体必须满足规定条件才能继续检查方块是否被破坏并触发事件。
     - <DataType type="object"/>：代表一个实体的过滤器。见[过滤器](./filters)。
 </treeview>
 
@@ -389,16 +385,27 @@ import Version from "/src/components/highlight/version"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<Version add="1.2.0" deprecated="1.13.0"/>直接写在组件下：
+
+<treeview>
+- <DataType type="array"/><DataType type="object" name="minecraft:damage_sensor"/>：伤害传感器，可写成数组或单个对象。
+  - <DataType type="string" name="cause"/>：实体受到伤害的类型。只有实体受到规定伤害类型时才能触发该伤害传感器。可选值见[伤害类型 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/伤害类型#基岩版)。默认值为`none`。
+  - <DataType type="boolean" name="deals_damage"/>：定义实体在满足条件时是否执行伤害。默认值为`true`。
+  - <DataType type="array" name="on_damage"/>：受击时按顺序求值的触发器列表，每项包含`filters`与`event`。
+</treeview>
+
+<Version add="1.13.0"/>：
+
 <treeview>
 - <DataType type="object" name="minecraft:damage_sensor"/>：根对象。
   - <DataType type="array"/><DataType type="object" name="triggers"/>：代表多个伤害传感器。如果只有一个伤害传感器，也可以直接写成`"triggers": {...}`的对象结构。
     - <DataType type="object"/>：伤害传感器。
-      - <DataType type="boolean" name="deals_damage"/>：<Version add="1.2.0" deprecated="1.21.40" inline/> 定义实体在满足条件时是否执行伤害。默认值为`false`。
+      - <DataType type="boolean" name="deals_damage"/>：<Version add="1.2.0" deprecated="1.21.40" inline/>定义实体在满足条件时是否执行伤害。默认值为`true`。
       - <DataType type="string" name="deals_damage"/>：<Version add="1.21.40" inline/>定义实体在满足条件时是否执行伤害。可选值如下表所示：
         | 可选值 | 描述 |
         | --- | --- |
-        | `yes` | 正常施加伤害。 |
-        | `no` | 不施加伤害。默认值。 |
+        | `yes` | 正常施加伤害。默认值。 |
+        | `no` | 不施加伤害。 |
         | `no_but_side_effects_apply` | 不施加伤害，但应用攻击的其他效果。例如，攻击者的武器的耐久值会下降，应用魔咒效果等。类似于嘎枝。 |
         | `no_but_entity_effects_apply` | <Version add="1.26.20" inline/> 不施加伤害，但应用击退和攻击的其他效果。例如，攻击者的武器的耐久值会下降，应用魔咒效果等。类似于硫方怪。 |
       - <DataType type="string" name="cause"/>：实体受到伤害的类型。只有实体受到规定伤害类型时才能触发该伤害传感器。可选值见[伤害类型 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/伤害类型#基岩版)。默认值为`none`。
@@ -406,8 +413,8 @@ import Version from "/src/components/highlight/version"
         - <DataType type="string" name="event"/>：实体受到伤害后触发的事件。
         - <DataType type="object" name="filters"/>：代表一个实体的过滤器。见[过滤器](./filters)。
       - <DataType type="float" name="damage_modifier"/>：<Version add="1.16.200" inline/> 实体受到伤害的加和值，在原有伤害的基础上增加该伤害。默认值为`0`。
-      - <DataType type="float" name="damage_multiplier"/>：<Version add="1.13.0" inline/> 实体受到伤害的乘积值，在原有伤害的基础上倍乘该伤害。默认值为`1`。
-      - <DataType type="string" name="on_damage_sound_event"/>：<Version add="1.14.0" inline/> 实体受伤后播放的音效。
+      - <DataType type="float" name="damage_multiplier"/>：实体受到伤害的乘积值，在原有伤害的基础上倍乘该伤害。默认值为`1`。
+      - <DataType type="string" name="on_damage_sound_event"/>：<Version add="1.13.3" inline/>实体受伤后播放的音效。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -465,26 +472,42 @@ import Version from "/src/components/highlight/version"
 
 ### `minecraft:entity_sensor`
 
-<Usable type="all"/> <Version add="1.14.0"/> <br/>
+<Usable type="all"/> <Version add="1.13.3"/> <br/>
 
-定义一组子传感器：当其他实体在指定范围内满足某组条件时，每个子传感器都会触发事件。
+当其他实体在指定范围内满足指定条件时触发事件。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<Version add="1.13.3" deprecated="1.20.60"/>参数直接写在组件下：
+
 <treeview>
 - <DataType type="object" name="minecraft:entity_sensor"/>：根对象。
-  - <DataType type="boolean" name="find_players_only"/>：全部子传感器是否只检测玩家。默认值为`false`。
+  - <DataType type="float" name="sensor_range"/>：检测半径，单位为方块。默认值为`10`。
+  - <DataType type="object" name="event_filters"/>：条件。见[实体过滤器](./filters)。
+  - <DataType type="string" name="event"/>：条件满足时触发的事件 ID。
+  - <DataType type="int" name="minimum_count"/>：触发事件所需的最少实体数。默认值为`1`。
+  - <DataType type="int" name="maximum_count"/>：触发事件所需的最多实体数；`-1`表示不限。默认值为`-1`。
+  - <DataType type="boolean" name="require_all"/>：是否要求范围内全部实体都通过条件。默认值为`false`。
+  - <DataType type="boolean" name="relative_range"/>：<Version add="1.15.0" inline/>检测范围是否在实体自身尺寸之上叠加。默认值为`true`。
+</treeview>
+
+<Version add="1.20.60"/>：
+
+<treeview>
+- <DataType type="object" name="minecraft:entity_sensor"/>：根对象。
+  - <DataType type="boolean" name="find_players_only"/>：<Version add="1.21.70" inline/>全部子传感器是否只检测玩家。默认值为`false`。
   - <DataType type="boolean" name="relative_range"/>：子传感器的范围是否在实体自身尺寸之上叠加。默认值为`true`。
   - <DataType type="array" name="subsensors"/>：子传感器列表，各项独立求值。
     - <DataType type="object"/>：一个子传感器。
       - <DataType type="string" name="event"/>：条件满足时触发的事件 ID。
       - <DataType type="object" name="event_filters"/>：条件。见[实体过滤器](./filters)。
       - <DataType type="float" name="cooldown"/>：再次检测前需等待的秒数；`-1`表示不设冷却。默认值为`-1`。
-      - <DataType type="array" name="range"/>：检测范围，写作`[水平, 垂直]`，单位为方块。默认值为`[10, 10]`。
+      - <DataType type="float" name="range"/>：<Version add="1.20.60" deprecated="1.20.70" inline/>检测半径，单位为方块，写作单个数值。默认值为`10`。
+      - <DataType type="array" name="range"/>：<Version add="1.20.70" inline/>检测范围，写作`[水平, 垂直]`，单位为方块。默认值为`[10, 10]`。
       - <DataType type="int" name="minimum_count"/>：触发事件所需的最少实体数。默认值为`1`。
       - <DataType type="int" name="maximum_count"/>：触发事件所需的最多实体数；`-1`表示不限。默认值为`-1`。
       - <DataType type="boolean" name="require_all"/>：是否要求范围内全部实体都通过条件。默认值为`false`。
-      - <DataType type="float" name="y_offset"/>：计算距离时对实体位置施加的垂直偏移。默认值为`0`。
+      - <DataType type="float" name="y_offset"/>：<Version add="1.21.70" inline/>计算距离时对实体施加的垂直偏移。默认值为`0`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -524,7 +547,11 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:environment_sensor"/>：根对象。
-  - <DataType type="array" name="triggers"/>：触发器列表，每刻按顺序求值。
+  - <DataType type="array" name="triggers"/>：<Version add="1.13.3" inline/>触发器列表，每刻按顺序求值。
+    - <DataType type="object"/>：一个触发器。
+      - <DataType type="object" name="filters"/>：环境条件。见[实体过滤器](./filters)。
+      - <DataType type="string" name="event"/>：条件满足时触发的事件 ID。
+  - <DataType type="array" name="on_environment"/>：<Version add="1.2.0" deprecated="1.13.3" inline/>触发器列表，每刻按顺序求值，第一项条件成立即触发对应事件。
     - <DataType type="object"/>：一个触发器。
       - <DataType type="object" name="filters"/>：环境条件。见[实体过滤器](./filters)。
       - <DataType type="string" name="event"/>：条件满足时触发的事件 ID。
@@ -608,13 +635,13 @@ import Version from "/src/components/highlight/version"
 - <DataType type="object" name="minecraft:target_nearby_sensor"/>：根对象。
   - <DataType type="float" name="inside_range"/>：进入「内圈」的距离阈值，单位为方块。默认值为`1`。
   - <DataType type="float" name="outside_range"/>：离开「外圈」的距离阈值，单位为方块。默认值为`5`。
-  - <DataType type="boolean" name="must_see"/>：是否需要看见目标才判定为进入内圈。默认值为`false`。
+  - <DataType type="boolean" name="must_see"/>：<Version add="1.13.3" inline/>是否需要看见目标才判定为进入内圈。默认值为`false`。
   - <DataType type="object" name="on_inside_range"/>：实体进入内圈时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
     - <DataType type="object" name="filters"/>：触发条件。见[实体过滤器](./filters)。
     - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
   - <DataType type="object" name="on_outside_range"/>：实体离开外圈时触发的事件，结构同上。
-  - <DataType type="object" name="on_vision_lost_inside_range"/>：实体在内圈内失去视野时触发的事件，结构同上。
+  - <DataType type="object" name="on_vision_lost_inside_range"/>：<Version add="1.13.3" inline/>实体在内圈内失去视野时触发的事件，结构同上。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -658,7 +685,7 @@ import Version from "/src/components/highlight/version"
   - <DataType type="boolean" name="looping"/>：触发后是否重新计时。默认值为`true`。
   - <DataType type="boolean" name="randomInterval"/>：时长是否在`time`的最小值与最大值之间随机取值。默认值为`true`。
   - <DataType type="float"/><DataType type="array" name="time"/>：计时时长，单位为秒。写单个数值为固定时长，写`[最小值, 最大值]`则在区间内随机。默认值为`0.0`。
-  - <DataType type="array" name="random_time_choices"/>：可随机选取的时长及权重，与`time`互斥。
+  - <DataType type="array" name="random_time_choices"/>：<Version add="1.10.0" inline/>可随机选取的时长及权重，与`time`互斥。
     - <DataType type="object"/>：一项。
       - <DataType type="float" name="value"/>：时长，单位为秒。
       - <DataType type="int" name="weight"/>：该项被选中的权重。默认值为`0`。
@@ -707,8 +734,10 @@ import Version from "/src/components/highlight/version"
   - <DataType type="array" name="riders"/>：要添加的骑乘者列表。
     - <DataType type="object"/>：一个骑乘者。
       - <DataType type="string" name="entity_type"/>：骑乘者的实体 ID。
-      - <DataType type="string" name="spawn_event"/>：生成骑乘者时触发的事件 ID。
+      - <DataType type="string" name="spawn_event"/>：<Version add="1.11.0" inline/>生成骑乘者时触发的事件 ID。
 </treeview>
+
+> **备注**：官方文档把`entity_type`直接写在组件下、只描述单个骑乘者，26.60 的 schema 则改用`riders`数组。
 
 </TabItem><TabItem value="示例" label="示例">
 
@@ -775,15 +804,19 @@ import Version from "/src/components/highlight/version"
 <treeview>
 - <DataType type="object" name="minecraft:ageable"/>：根对象。
   - <DataType type="float" name="duration"/>：成长为成年体所需的秒数；写`-1`则永不长大。默认值为`1200`。
-  - <DataType type="array" name="feed_items"/>：可喂食的物品列表。
+  - <DataType type="string"/><DataType type="array" name="feed_items"/>：<Version add="1.13.0" inline/>可喂食的物品，可写单个物品 ID、物品 ID 数组，也可写成对象数组。
+    - <DataType type="string"/><DataType type="object"/>：一项。写字符串为物品 ID；写对象可同时指定成长进度与转化物品。
+      - <DataType type="string" name="item"/>：物品 ID。
+      - <DataType type="float" name="growth"/>：喂食后推进的成长进度，按`duration`的比例计，`0.1`相当于推进总时长的十分之一。
+      - <DataType type="string" name="result_item"/>：<Version add="1.21.130" inline/>喂食成功后转化成的物品，写作`物品ID:数据值`。
+  - <DataType type="string" name="transform_to_item"/>：<Version add="1.17.0" deprecated="1.21.130" inline/>喂食成功后，喂食物品转化成的物品。
+  - <DataType type="array" name="drop_items"/>：<Version add="1.5.0" inline/>成年时掉落的物品列表。
     - <DataType type="string"/>：物品 ID。
-  - <DataType type="array" name="drop_items"/>：成年时掉落的物品列表。
+  - <DataType type="array" name="pause_growth_items"/>：<Version add="1.26.10" inline/>可暂停幼年体成长的物品列表。
     - <DataType type="string"/>：物品 ID。
-  - <DataType type="array" name="pause_growth_items"/>：可暂停幼年体成长的物品列表。
+  - <DataType type="array" name="reset_growth_items"/>：<Version add="1.26.10" inline/>可重置幼年体成长进度的物品列表。
     - <DataType type="string"/>：物品 ID。
-  - <DataType type="array" name="reset_growth_items"/>：可重置幼年体成长进度的物品列表。
-    - <DataType type="string"/>：物品 ID。
-  - <DataType type="object" name="interact_filters"/>：允许喂食的条件。见[实体过滤器](./filters)。
+  - <DataType type="object" name="interact_filters"/>：<Version add="1.20.60" inline/>允许喂食的条件。见[实体过滤器](./filters)。
   - <DataType type="object" name="grow_up"/>：成长为成年体时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
     - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
@@ -828,8 +861,6 @@ import Version from "/src/components/highlight/version"
   - <DataType type="float" name="value"/>：空气阻力的修正值。
 </treeview>
 
-> **备注**：原版用例中该值写`1.0`。
-
 > **备注**：官方 schema 未定义该组件的参数，以上按原版用例整理。
 
 </TabItem><TabItem value="示例" label="示例">
@@ -856,8 +887,8 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:ambient_sound_interval"/>：根对象。
-  - <DataType type="string" name="event_name"/>：默认播放的音效事件名，须在[`sounds.json`](./description#soundsjson)中定义。默认值为`ambient`。
-  - <DataType type="array" name="event_names"/>：按条件切换的音效事件，按顺序求值，第一个条件成立者生效；全部不成立时回退到`event_name`。
+  - <DataType type="string" name="event_name"/>：<Version add="1.13.0" inline/>默认播放的音效事件名，须在[`sounds.json`](./description#soundsjson)中定义。默认值为`ambient`。
+  - <DataType type="array" name="event_names"/>：<Version add="1.19.0" inline/>按条件切换的音效事件，按顺序求值，第一个条件成立者生效；全部不成立时回退到`event_name`。
     - <DataType type="object"/>：一项。
       - <DataType type="string" name="condition"/>：判断条件，填 Molang 表达式。
       - <DataType type="string" name="event_name"/>：条件成立时播放的音效事件名。
@@ -951,21 +982,21 @@ import Version from "/src/components/highlight/version"
 <treeview>
 - <DataType type="object" name="minecraft:angry"/>：根对象。
   - <DataType type="int" name="duration"/>：愤怒状态的持续秒数。默认值为`25`。
-  - <DataType type="int" name="duration_delta"/>：持续时长的随机浮动范围，实际时长在`duration±duration_delta`之间。默认值为`0`。
-  - <DataType type="string" name="angry_sound"/>：进入愤怒状态时播放的音效定义 ID。
-  - <DataType type="array" name="sound_interval"/>：两次愤怒音效之间的随机等待区间，单位为秒。
+  - <DataType type="int" name="duration_delta"/>：<Version add="1.4.0" inline/>持续时长的随机浮动范围，实际时长在`duration±duration_delta`之间。默认值为`0`。
+  - <DataType type="string" name="angry_sound"/>：<Version add="1.16.0" inline/>进入愤怒状态时播放的音效定义 ID。
+  - <DataType type="array" name="sound_interval"/>：<Version add="1.16.0" inline/>两次愤怒音效之间的随机等待区间，单位为秒。
   - <DataType type="object" name="calm_event"/>：愤怒状态结束时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
     - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
-  - <DataType type="object" name="filters"/>：处于愤怒状态时不予攻击的目标条件。见[实体过滤器](./filters)。
-  - <DataType type="boolean" name="broadcast_anger"/>：是否把愤怒传播给范围内同种实体。默认值为`false`。
-  - <DataType type="boolean" name="broadcast_anger_on_attack"/>：攻击时是否传播愤怒。默认值为`false`。
-  - <DataType type="boolean" name="broadcast_anger_on_being_attacked"/>：被攻击时是否传播愤怒。默认值为`false`。
-  - <DataType type="boolean" name="broadcast_anger_when_dying"/>：死亡时是否传播愤怒。默认值为`true`。
-  - <DataType type="int" name="broadcast_range"/>：愤怒传播的距离，单位为方块。默认值为`20`。
-  - <DataType type="array" name="broadcast_targets"/>：愤怒传播的目标家族列表。
+  - <DataType type="object" name="filters"/>：<Version add="1.16.0" inline/>处于愤怒状态时不予攻击的目标条件。见[实体过滤器](./filters)。
+  - <DataType type="boolean" name="broadcast_anger"/>：<Version add="1.13.0" inline/>是否把愤怒传播给范围内同种实体。默认值为`false`。
+  - <DataType type="boolean" name="broadcast_anger_on_attack"/>：<Version add="1.16.0" inline/>攻击时是否传播愤怒。默认值为`false`。
+  - <DataType type="boolean" name="broadcast_anger_on_being_attacked"/>：<Version add="1.16.0" inline/>被攻击时是否传播愤怒。默认值为`false`。
+  - <DataType type="boolean" name="broadcast_anger_when_dying"/>：<Version add="1.21.50" inline/>死亡时是否传播愤怒。默认值为`true`。
+  - <DataType type="int" name="broadcast_range"/>：<Version add="1.13.0" inline/>愤怒传播的距离，单位为方块。默认值为`20`。
+  - <DataType type="array" name="broadcast_targets"/>：<Version add="1.13.3" inline/>愤怒传播的目标家族列表。
     - <DataType type="string"/>：家族名。
-  - <DataType type="object" name="broadcast_filters"/>：愤怒传播的条件。见[实体过滤器](./filters)。
+  - <DataType type="object" name="broadcast_filters"/>：<Version add="1.9.0" inline/>愤怒传播的条件。见[实体过滤器](./filters)。
 </treeview>
 
 > **备注**：原版少数文件对`broadcast_anger`与`broadcast_range`使用`broadcastAnger`、`broadcastRange`的旧拼写，两种写法均可解析。
@@ -1006,8 +1037,8 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:annotation.break_door"/>：根对象。
-  - <DataType type="float" name="break_time"/>：破坏一扇门所需的秒数。默认值为`12`。
-  - <DataType type="string" name="min_difficulty"/>：允许破坏门的最低难度。可选值为`peaceful`、`easy`、`normal`、`hard`。默认值为`hard`。
+  - <DataType type="float" name="break_time"/>：<Version add="1.12.0" inline/>破坏一扇门所需的秒数。默认值为`12`。
+  - <DataType type="string" name="min_difficulty"/>：<Version add="1.12.0" inline/>允许破坏门的最低难度。可选值为`peaceful`、`easy`、`normal`、`hard`。默认值为`hard`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -1048,7 +1079,7 @@ import Version from "/src/components/highlight/version"
 
 ### `minecraft:apply_knockback_rules`
 
-<Usable type="all"/> <Version add="1.26.30"/> <br/>
+<Usable type="all"/> <Version add="1.26.20"/> <br/>
 
 定义实体攻击时的击退施加规则。
 
@@ -1068,6 +1099,8 @@ import Version from "/src/components/highlight/version"
       - <DataType type="string" name="knockback_mode"/>：击退方向的计算方式。可选值为`relative_horizontal`（由攻击者指向目标的水平方向）、`hit_direction`（按命中方向与命中点决定）。默认值为`relative_horizontal`。
       - <DataType type="string" name="extra_knockback_approach"/>：附魔、疾跑等额外击退的叠加方式。可选值为`reapply_default`（以默认参数再施加一次）、`multiply_reduced`（按基础击退与衰减系数相乘后叠加）。默认值为`reapply_default`。
 </treeview>
+
+> **备注**：该组件未见于任何版本的官方文档，参数按 26.60 的 schema 整理。
 
 </TabItem><TabItem value="示例" label="示例">
 
@@ -1092,7 +1125,7 @@ import Version from "/src/components/highlight/version"
 
 ### `minecraft:area_attack`
 
-<Usable type="all"/> <Version add="1.14.0"/> <br/>
+<Usable type="all"/> <Version add="1.13.3"/> <br/>
 
 对进入范围的实体持续造成伤害。
 
@@ -1103,11 +1136,11 @@ import Version from "/src/components/highlight/version"
   - <DataType type="string" name="cause"/>：造成的伤害类型。
   - <DataType type="int" name="damage_per_tick"/>：每刻造成的伤害。默认值为`2`。
   - <DataType type="float" name="damage_range"/>：生效的距离范围，单位为方块。默认值为`0.2`。
-  - <DataType type="float" name="damage_cooldown"/>：对同一目标的伤害间隔，单位为秒。默认值为`0`。
+  - <DataType type="float" name="damage_cooldown"/>：<Version add="1.19.50" inline/>对同一目标的伤害间隔，单位为秒。默认值为`0`。
   - <DataType type="object" name="entity_filter"/>：可被伤害的实体条件。见[实体过滤器](./filters)。
-  - <DataType type="boolean" name="play_attack_sound"/>：造成伤害时是否播放攻击音效。默认值为`true`。
-  - <DataType type="boolean" name="use_self_as_damage_source"/>：是否以自身作为伤害来源。为`false`时目标不会反击，其`minecraft:damage_sensor`也无法识别攻击者。默认值为`true`。
-  - <DataType type="string" name="death_message_override"/>：死亡提示使用的本地化键；留空时使用该伤害类型的默认提示。
+  - <DataType type="boolean" name="play_attack_sound"/>：<Version add="1.19.50" inline/>造成伤害时是否播放攻击音效。默认值为`true`。
+  - <DataType type="boolean" name="use_self_as_damage_source"/>：<Version add="1.26.30" inline/>是否以自身作为伤害来源。为`false`时目标不会反击，其`minecraft:damage_sensor`也无法识别攻击者。默认值为`true`。
+  - <DataType type="string" name="death_message_override"/>：<Version add="1.26.30" inline/>死亡提示使用的本地化键；留空时使用该伤害类型的默认提示。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -1146,7 +1179,7 @@ import Version from "/src/components/highlight/version"
   - <DataType type="float"/><DataType type="array" name="damage"/>：近战伤害。写单个数值为固定伤害，写`[最小值, 最大值]`则在区间内随机；负值会为目标回血。默认值为`0`。
   - <DataType type="string" name="effect_name"/>：命中时施加的状态效果 ID。
   - <DataType type="float"/><DataType type="array" name="effect_duration"/>：状态效果的持续秒数，可写`[最小值, 最大值]`；写`infinite`表示永久。
-  - <DataType type="int" name="effect_amplifier"/>：状态效果的等级，从`0`开始。默认值为`0`。
+  - <DataType type="int" name="effect_amplifier"/>：<Version add="1.26.30" inline/>状态效果的等级，从`0`开始。默认值为`0`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -1323,6 +1356,8 @@ import Version from "/src/components/highlight/version"
     - <DataType type="string"/>：方块描述符。
 </treeview>
 
+> **备注**：该组件未见于任何版本的官方文档，参数按 26.60 的 schema 整理。
+
 </TabItem><TabItem value="示例" label="示例">
 
 洞穴蜘蛛（<FileType type="file" name="cave_spider.json"/>）：蜘蛛网不再减速。
@@ -1402,11 +1437,10 @@ import Version from "/src/components/highlight/version"
       - <DataType type="string" name="item"/>：物品 ID。
       - <DataType type="int" name="damage"/>：每次使用时物品消耗的耐久。默认值为`1`。
       - <DataType type="string" name="replace_item"/>：物品耗尽后替换为的物品 ID。
+      - <DataType type="string" name="replaceItem"/>：<Version add="1.2.0" deprecated="1.13.0" inline/>物品耗尽后替换为的物品 ID（旧拼写）。
   - <DataType type="float" name="speed_multiplier"/>：加速时的速度乘数。
   - <DataType type="float" name="duration"/>：单次加速的持续秒数。
 </treeview>
-
-> **备注**：官方文档只列出`boost_items`，`speed_multiplier`与`duration`按原版用例补充。
 
 </TabItem><TabItem value="示例" label="示例">
 
@@ -1432,7 +1466,7 @@ import Version from "/src/components/highlight/version"
 
 ### `minecraft:boss`
 
-<Usable type="all"/> <Version add="1.14.0"/> <br/>
+<Usable type="all"/> <Version add="1.13.3"/> <br/>
 
 定义 BOSS 血条的显示方式。
 
@@ -1539,6 +1573,26 @@ import Version from "/src/components/highlight/version"
 另见：_[EntityBreathableComponent 类](/docs/docs/scripts/sapi/server/entity_and_player/component#entitybreathablecomponent-类)_。
 
 <Tabs><TabItem value="参数" label="参数" default>
+
+<Version add="1.2.0" deprecated="1.13.0"/>：
+
+<treeview>
+- <DataType type="object" name="minecraft:breathable"/>：根对象。
+  - <DataType type="int" name="totalSupply"/>：可憋气的秒数。默认值为`15`。
+  - <DataType type="int" name="suffocateTime"/>：两次窒息伤害之间的秒数。默认值为`-20`。
+  - <DataType type="float" name="inhaleTime"/>：<Version add="1.4.0" inline/>把憋气量恢复到上限所需的秒数。默认值为`0`。
+  - <DataType type="boolean" name="breathesAir"/>：是否能在空气中呼吸。默认值为`true`。
+  - <DataType type="boolean" name="breathesWater"/>：是否能在水中呼吸。默认值为`false`。
+  - <DataType type="boolean" name="breathesLava"/>：是否能在熔岩中呼吸。默认值为`false`。
+  - <DataType type="boolean" name="breathesSolids"/>：是否能在固体方块中呼吸。默认值为`false`。
+  - <DataType type="boolean" name="generatesBubbles"/>：在水中是否显示气泡。默认值为`true`。
+  - <DataType type="array" name="breatheBlocks"/>：除上述开关外，额外允许呼吸的方块。
+    - <DataType type="string"/>：方块 ID。
+  - <DataType type="array" name="nonBreatheBlocks"/>：除上述开关外，额外禁止呼吸的方块。
+    - <DataType type="string"/>：方块 ID。
+</treeview>
+
+<Version add="1.13.0"/>：
 
 <treeview>
 - <DataType type="object" name="minecraft:breathable"/>：根对象。
@@ -6214,7 +6268,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:trade_resupply`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="未知"/> <br/>
 
 使实体的交易在补给后重新补满。
 
@@ -6223,6 +6277,8 @@ NPC（<FileType type="file" name="npc.json"/>）：
 <treeview>
 - <DataType type="object" name="minecraft:trade_resupply"/>：根对象，不含任何参数。
 </treeview>
+
+> **备注**：该组件未见于任何版本的官方文档，加入版本无法确认；原版只有`villager_v2.json`使用，而村民补货机制自 1.11.0（村庄与掠夺）起出现，故加入版本不早于 1.11.0。
 
 </TabItem><TabItem value="示例" label="示例">
 
@@ -6751,7 +6807,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:movement`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="未知"/> <br/>
 
 定义实体的基础移动速度。
 
@@ -6780,7 +6836,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:movement.amphibious`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.5.0"/> <br/>
 
 定义两栖实体的移动方式，可在水中与陆地上移动。
 
@@ -6809,7 +6865,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:movement.basic`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 定义实体在地面上的基础移动方式。
 
@@ -6836,7 +6892,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:movement.dolphin`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="未知"/> <br/>
 
 定义海豚一类的水中移动方式。
 
@@ -6863,7 +6919,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:movement.fly`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 定义实体的飞行移动方式。
 
@@ -6890,7 +6946,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:movement.generic`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.4.0"/> <br/>
 
 定义通用移动方式，适用于水生与陆生兼有的实体。
 
@@ -6917,7 +6973,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:movement.glide`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="未知"/> <br/>
 
 定义滑翔式移动方式，幻翼使用该组件。
 
@@ -6949,7 +7005,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:movement.hover`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
 
 定义悬停式移动方式，实体可在原地悬停。
 
@@ -6976,7 +7032,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:movement.jump`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 定义跳跃式移动方式，落地后需等待一段时间才能再次起跳。
 
@@ -7006,7 +7062,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:movement.skip`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 定义跳跃式移动方式，移动时持续小跳。
 
@@ -7033,7 +7089,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:movement.sway`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 定义摇摆式移动方式，实体在移动时左右晃动。
 
@@ -7044,8 +7100,8 @@ NPC（<FileType type="file" name="npc.json"/>）：
 <treeview>
 - <DataType type="object" name="minecraft:movement.sway"/>：根对象。
   - <DataType type="float" name="max_turn"/>：每刻最多转动的角度，单位为度。默认值为`30`。
-  - <DataType type="float" name="sway_amplitude"/>：左右摇摆的幅度。默认值为`0.05`。
-  - <DataType type="float" name="sway_frequency"/>：摇摆频率的乘数。默认值为`0.5`。
+  - <DataType type="float" name="sway_amplitude"/>：<Version add="1.18.10" inline/>左右摇摆的幅度。默认值为`0.05`。
+  - <DataType type="float" name="sway_frequency"/>：<Version add="1.18.10" inline/>摇摆频率的乘数。默认值为`0.5`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -7062,7 +7118,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:navigation.climb`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 定义可攀爬实体的寻路方式，能在墙面与方块侧面上下移动。
 
@@ -7072,25 +7128,27 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:navigation.climb"/>：根对象。
-  - <DataType type="boolean" name="can_walk"/>：是否能在水面之外的地面行走。默认值为`true`。
-  - <DataType type="boolean" name="can_swim"/>：是否能在水中通行。默认值为`false`。
-  - <DataType type="boolean" name="can_sink"/>：在水中是否受重力下坠。默认值为`true`。
-  - <DataType type="boolean" name="can_path_over_water"/>：是否能从水面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_over_lava"/>：是否能从熔岩表面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_from_air"/>：是否能从空中开始寻路。默认值为`false`。
+  - <DataType type="boolean" name="can_walk"/>：<Version add="1.16.210" inline/>是否能在水面之外的地面行走。默认值为`true`。
+  - <DataType type="boolean" name="can_swim"/>：<Version add="1.16.210" inline/>是否能在水中通行。默认值为`false`。
+  - <DataType type="boolean" name="can_sink"/>：<Version add="1.4.0" inline/>在水中是否受重力下坠。默认值为`true`。
+  - <DataType type="boolean" name="can_path_over_water"/>：<Version add="1.7.0" inline/>是否能从水面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_over_lava"/>：<Version add="1.16.0" inline/>是否能从熔岩表面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_from_air"/>：<Version add="1.14.0" inline/>是否能从空中开始寻路。默认值为`false`。
   - <DataType type="boolean" name="can_pass_doors"/>：是否能穿过门。默认值为`true`。
   - <DataType type="boolean" name="can_open_doors"/>：是否能打开关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_open_iron_doors"/>：是否能打开关闭的铁门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_break_doors"/>：是否能破坏关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_jump"/>：是否能跳上方块。默认值为`true`。
-  - <DataType type="boolean" name="can_breach"/>：是否能跃出水面。默认值为`false`。
-  - <DataType type="boolean" name="can_walk_in_lava"/>：是否能在熔岩中行走。默认值为`false`。
-  - <DataType type="boolean" name="is_amphibious"/>：是否能在水下地面上行走。默认值为`false`。
+  - <DataType type="boolean" name="can_open_iron_doors"/>：<Version add="1.15.0" inline/>是否能打开关闭的铁门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_break_doors"/>：<Version add="1.10.0" inline/>是否能破坏关闭的门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_float"/>：<Version add="1.2.0" deprecated="1.7.0" inline/>是否能在水面上漂浮。默认值为`false`。
+  - <DataType type="boolean" name="can_jump"/>：<Version add="1.16.210" inline/>是否能跳上方块。默认值为`true`。
+  - <DataType type="boolean" name="can_breach"/>：<Version add="1.16.210" inline/>是否能跃出水面。默认值为`false`。
+  - <DataType type="boolean" name="can_walk_in_lava"/>：<Version add="1.16.0" inline/>是否能在熔岩中行走。默认值为`false`。
+  - <DataType type="boolean" name="is_amphibious"/>：<Version add="1.16.210" inline/>是否能在水下地面上行走。默认值为`false`。
   - <DataType type="boolean" name="avoid_water"/>：寻路时是否避开水面。默认值为`false`。
   - <DataType type="boolean" name="avoid_sun"/>：寻路时是否避开被阳光照射的方块。默认值为`false`。
   - <DataType type="boolean" name="avoid_portals"/>：寻路时是否避开传送门。默认值为`false`。
-  - <DataType type="boolean" name="avoid_damage_blocks"/>：寻路时是否避开会造成伤害的方块。默认值为`false`。
-  - <DataType type="array" name="blocks_to_avoid"/>：寻路时要避开的方块列表。
+  - <DataType type="boolean" name="avoid_powder_snow"/>：<Version add="1.16.200" deprecated="1.16.210" inline/>寻路时是否避开细雪。
+  - <DataType type="boolean" name="avoid_damage_blocks"/>：<Version add="1.16.210" inline/>寻路时是否避开会造成伤害的方块。默认值为`false`。
+  - <DataType type="array" name="blocks_to_avoid"/>：<Version add="1.16.210" inline/>寻路时要避开的方块列表。
     - <DataType type="string"/>：方块 ID。
   - <DataType type="boolean" name="using_door_annotation"/>：是否依据门的注解决定能否通行，需配合[`minecraft:annotation.open_door`](./components#minecraftannotationopen_door)等组件。
 </treeview>
@@ -7111,7 +7169,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:navigation.float`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 定义漂浮实体的寻路方式，如蝙蝠在空中的缓慢移动。
 
@@ -7121,25 +7179,27 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:navigation.float"/>：根对象。
-  - <DataType type="boolean" name="can_walk"/>：是否能在水面之外的地面行走。默认值为`true`。
-  - <DataType type="boolean" name="can_swim"/>：是否能在水中通行。默认值为`false`。
-  - <DataType type="boolean" name="can_sink"/>：在水中是否受重力下坠。默认值为`true`。
-  - <DataType type="boolean" name="can_path_over_water"/>：是否能从水面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_over_lava"/>：是否能从熔岩表面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_from_air"/>：是否能从空中开始寻路。默认值为`false`。
+  - <DataType type="boolean" name="can_walk"/>：<Version add="1.16.210" inline/>是否能在水面之外的地面行走。默认值为`true`。
+  - <DataType type="boolean" name="can_swim"/>：<Version add="1.16.210" inline/>是否能在水中通行。默认值为`false`。
+  - <DataType type="boolean" name="can_sink"/>：<Version add="1.4.0" inline/>在水中是否受重力下坠。默认值为`true`。
+  - <DataType type="boolean" name="can_path_over_water"/>：<Version add="1.7.0" inline/>是否能从水面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_over_lava"/>：<Version add="1.16.0" inline/>是否能从熔岩表面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_from_air"/>：<Version add="1.14.0" inline/>是否能从空中开始寻路。默认值为`false`。
   - <DataType type="boolean" name="can_pass_doors"/>：是否能穿过门。默认值为`true`。
   - <DataType type="boolean" name="can_open_doors"/>：是否能打开关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_open_iron_doors"/>：是否能打开关闭的铁门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_break_doors"/>：是否能破坏关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_jump"/>：是否能跳上方块。默认值为`true`。
-  - <DataType type="boolean" name="can_breach"/>：是否能跃出水面。默认值为`false`。
-  - <DataType type="boolean" name="can_walk_in_lava"/>：是否能在熔岩中行走。默认值为`false`。
-  - <DataType type="boolean" name="is_amphibious"/>：是否能在水下地面上行走。默认值为`false`。
+  - <DataType type="boolean" name="can_open_iron_doors"/>：<Version add="1.15.0" inline/>是否能打开关闭的铁门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_break_doors"/>：<Version add="1.10.0" inline/>是否能破坏关闭的门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_float"/>：<Version add="1.2.0" deprecated="1.7.0" inline/>是否能在水面上漂浮。默认值为`false`。
+  - <DataType type="boolean" name="can_jump"/>：<Version add="1.16.210" inline/>是否能跳上方块。默认值为`true`。
+  - <DataType type="boolean" name="can_breach"/>：<Version add="1.16.210" inline/>是否能跃出水面。默认值为`false`。
+  - <DataType type="boolean" name="can_walk_in_lava"/>：<Version add="1.16.0" inline/>是否能在熔岩中行走。默认值为`false`。
+  - <DataType type="boolean" name="is_amphibious"/>：<Version add="1.16.210" inline/>是否能在水下地面上行走。默认值为`false`。
   - <DataType type="boolean" name="avoid_water"/>：寻路时是否避开水面。默认值为`false`。
   - <DataType type="boolean" name="avoid_sun"/>：寻路时是否避开被阳光照射的方块。默认值为`false`。
   - <DataType type="boolean" name="avoid_portals"/>：寻路时是否避开传送门。默认值为`false`。
-  - <DataType type="boolean" name="avoid_damage_blocks"/>：寻路时是否避开会造成伤害的方块。默认值为`false`。
-  - <DataType type="array" name="blocks_to_avoid"/>：寻路时要避开的方块列表。
+  - <DataType type="boolean" name="avoid_powder_snow"/>：<Version add="1.16.200" deprecated="1.16.210" inline/>寻路时是否避开细雪。
+  - <DataType type="boolean" name="avoid_damage_blocks"/>：<Version add="1.16.210" inline/>寻路时是否避开会造成伤害的方块。默认值为`false`。
+  - <DataType type="array" name="blocks_to_avoid"/>：<Version add="1.16.210" inline/>寻路时要避开的方块列表。
     - <DataType type="string"/>：方块 ID。
   - <DataType type="boolean" name="using_door_annotation"/>：是否依据门的注解决定能否通行，需配合[`minecraft:annotation.open_door`](./components#minecraftannotationopen_door)等组件。
 </treeview>
@@ -7161,7 +7221,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:navigation.fly`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 定义飞行实体的寻路方式，可穿越空中与水面。
 
@@ -7171,25 +7231,27 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:navigation.fly"/>：根对象。
-  - <DataType type="boolean" name="can_walk"/>：是否能在水面之外的地面行走。默认值为`true`。
-  - <DataType type="boolean" name="can_swim"/>：是否能在水中通行。默认值为`false`。
-  - <DataType type="boolean" name="can_sink"/>：在水中是否受重力下坠。默认值为`true`。
-  - <DataType type="boolean" name="can_path_over_water"/>：是否能从水面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_over_lava"/>：是否能从熔岩表面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_from_air"/>：是否能从空中开始寻路。默认值为`false`。
+  - <DataType type="boolean" name="can_walk"/>：<Version add="1.16.210" inline/>是否能在水面之外的地面行走。默认值为`true`。
+  - <DataType type="boolean" name="can_swim"/>：<Version add="1.16.210" inline/>是否能在水中通行。默认值为`false`。
+  - <DataType type="boolean" name="can_sink"/>：<Version add="1.4.0" inline/>在水中是否受重力下坠。默认值为`true`。
+  - <DataType type="boolean" name="can_path_over_water"/>：<Version add="1.7.0" inline/>是否能从水面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_over_lava"/>：<Version add="1.16.0" inline/>是否能从熔岩表面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_from_air"/>：<Version add="1.14.0" inline/>是否能从空中开始寻路。默认值为`false`。
   - <DataType type="boolean" name="can_pass_doors"/>：是否能穿过门。默认值为`true`。
   - <DataType type="boolean" name="can_open_doors"/>：是否能打开关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_open_iron_doors"/>：是否能打开关闭的铁门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_break_doors"/>：是否能破坏关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_jump"/>：是否能跳上方块。默认值为`true`。
-  - <DataType type="boolean" name="can_breach"/>：是否能跃出水面。默认值为`false`。
-  - <DataType type="boolean" name="can_walk_in_lava"/>：是否能在熔岩中行走。默认值为`false`。
-  - <DataType type="boolean" name="is_amphibious"/>：是否能在水下地面上行走。默认值为`false`。
+  - <DataType type="boolean" name="can_open_iron_doors"/>：<Version add="1.15.0" inline/>是否能打开关闭的铁门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_break_doors"/>：<Version add="1.10.0" inline/>是否能破坏关闭的门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_float"/>：<Version add="1.2.0" deprecated="1.7.0" inline/>是否能在水面上漂浮。默认值为`false`。
+  - <DataType type="boolean" name="can_jump"/>：<Version add="1.16.210" inline/>是否能跳上方块。默认值为`true`。
+  - <DataType type="boolean" name="can_breach"/>：<Version add="1.16.210" inline/>是否能跃出水面。默认值为`false`。
+  - <DataType type="boolean" name="can_walk_in_lava"/>：<Version add="1.16.0" inline/>是否能在熔岩中行走。默认值为`false`。
+  - <DataType type="boolean" name="is_amphibious"/>：<Version add="1.16.210" inline/>是否能在水下地面上行走。默认值为`false`。
   - <DataType type="boolean" name="avoid_water"/>：寻路时是否避开水面。默认值为`false`。
   - <DataType type="boolean" name="avoid_sun"/>：寻路时是否避开被阳光照射的方块。默认值为`false`。
   - <DataType type="boolean" name="avoid_portals"/>：寻路时是否避开传送门。默认值为`false`。
-  - <DataType type="boolean" name="avoid_damage_blocks"/>：寻路时是否避开会造成伤害的方块。默认值为`false`。
-  - <DataType type="array" name="blocks_to_avoid"/>：寻路时要避开的方块列表。
+  - <DataType type="boolean" name="avoid_powder_snow"/>：<Version add="1.16.200" deprecated="1.16.210" inline/>寻路时是否避开细雪。
+  - <DataType type="boolean" name="avoid_damage_blocks"/>：<Version add="1.16.210" inline/>寻路时是否避开会造成伤害的方块。默认值为`false`。
+  - <DataType type="array" name="blocks_to_avoid"/>：<Version add="1.16.210" inline/>寻路时要避开的方块列表。
     - <DataType type="string"/>：方块 ID。
   - <DataType type="boolean" name="using_door_annotation"/>：是否依据门的注解决定能否通行，需配合[`minecraft:annotation.open_door`](./components#minecraftannotationopen_door)等组件。
 </treeview>
@@ -7211,7 +7273,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:navigation.generic`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.4.0"/> <br/>
 
 定义通用寻路方式，同时具备行走、游泳与攀爬等多种通行能力。
 
@@ -7221,25 +7283,27 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:navigation.generic"/>：根对象。
-  - <DataType type="boolean" name="can_walk"/>：是否能在水面之外的地面行走。默认值为`true`。
-  - <DataType type="boolean" name="can_swim"/>：是否能在水中通行。默认值为`false`。
+  - <DataType type="boolean" name="can_walk"/>：<Version add="1.16.210" inline/>是否能在水面之外的地面行走。默认值为`true`。
+  - <DataType type="boolean" name="can_swim"/>：<Version add="1.16.210" inline/>是否能在水中通行。默认值为`false`。
   - <DataType type="boolean" name="can_sink"/>：在水中是否受重力下坠。默认值为`true`。
-  - <DataType type="boolean" name="can_path_over_water"/>：是否能从水面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_over_lava"/>：是否能从熔岩表面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_from_air"/>：是否能从空中开始寻路。默认值为`false`。
+  - <DataType type="boolean" name="can_path_over_water"/>：<Version add="1.7.0" inline/>是否能从水面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_over_lava"/>：<Version add="1.16.0" inline/>是否能从熔岩表面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_from_air"/>：<Version add="1.14.0" inline/>是否能从空中开始寻路。默认值为`false`。
   - <DataType type="boolean" name="can_pass_doors"/>：是否能穿过门。默认值为`true`。
   - <DataType type="boolean" name="can_open_doors"/>：是否能打开关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_open_iron_doors"/>：是否能打开关闭的铁门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_break_doors"/>：是否能破坏关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_jump"/>：是否能跳上方块。默认值为`true`。
-  - <DataType type="boolean" name="can_breach"/>：是否能跃出水面。默认值为`false`。
-  - <DataType type="boolean" name="can_walk_in_lava"/>：是否能在熔岩中行走。默认值为`false`。
-  - <DataType type="boolean" name="is_amphibious"/>：是否能在水下地面上行走。默认值为`false`。
+  - <DataType type="boolean" name="can_open_iron_doors"/>：<Version add="1.15.0" inline/>是否能打开关闭的铁门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_break_doors"/>：<Version add="1.10.0" inline/>是否能破坏关闭的门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_float"/>：<Version add="1.4.0" deprecated="1.7.0" inline/>是否能在水面上漂浮。默认值为`false`。
+  - <DataType type="boolean" name="can_jump"/>：<Version add="1.16.210" inline/>是否能跳上方块。默认值为`true`。
+  - <DataType type="boolean" name="can_breach"/>：<Version add="1.16.210" inline/>是否能跃出水面。默认值为`false`。
+  - <DataType type="boolean" name="can_walk_in_lava"/>：<Version add="1.16.0" inline/>是否能在熔岩中行走。默认值为`false`。
+  - <DataType type="boolean" name="is_amphibious"/>：<Version add="1.16.210" inline/>是否能在水下地面上行走。默认值为`false`。
   - <DataType type="boolean" name="avoid_water"/>：寻路时是否避开水面。默认值为`false`。
   - <DataType type="boolean" name="avoid_sun"/>：寻路时是否避开被阳光照射的方块。默认值为`false`。
   - <DataType type="boolean" name="avoid_portals"/>：寻路时是否避开传送门。默认值为`false`。
-  - <DataType type="boolean" name="avoid_damage_blocks"/>：寻路时是否避开会造成伤害的方块。默认值为`false`。
-  - <DataType type="array" name="blocks_to_avoid"/>：寻路时要避开的方块列表。
+  - <DataType type="boolean" name="avoid_powder_snow"/>：<Version add="1.16.200" deprecated="1.16.210" inline/>寻路时是否避开细雪。
+  - <DataType type="boolean" name="avoid_damage_blocks"/>：<Version add="1.16.210" inline/>寻路时是否避开会造成伤害的方块。默认值为`false`。
+  - <DataType type="array" name="blocks_to_avoid"/>：<Version add="1.16.210" inline/>寻路时要避开的方块列表。
     - <DataType type="string"/>：方块 ID。
   - <DataType type="boolean" name="using_door_annotation"/>：是否依据门的注解决定能否通行，需配合[`minecraft:annotation.open_door`](./components#minecraftannotationopen_door)等组件。
 </treeview>
@@ -7265,7 +7329,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:navigation.hover`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
 
 定义悬停实体的寻路方式，如悦灵在空中悬停移动。
 
@@ -7275,25 +7339,26 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:navigation.hover"/>：根对象。
-  - <DataType type="boolean" name="can_walk"/>：是否能在水面之外的地面行走。默认值为`true`。
-  - <DataType type="boolean" name="can_swim"/>：是否能在水中通行。默认值为`false`。
+  - <DataType type="boolean" name="can_walk"/>：<Version add="1.16.210" inline/>是否能在水面之外的地面行走。默认值为`true`。
+  - <DataType type="boolean" name="can_swim"/>：<Version add="1.16.210" inline/>是否能在水中通行。默认值为`false`。
   - <DataType type="boolean" name="can_sink"/>：在水中是否受重力下坠。默认值为`true`。
   - <DataType type="boolean" name="can_path_over_water"/>：是否能从水面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_over_lava"/>：是否能从熔岩表面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_over_lava"/>：<Version add="1.16.0" inline/>是否能从熔岩表面通行。默认值为`false`。
   - <DataType type="boolean" name="can_path_from_air"/>：是否能从空中开始寻路。默认值为`false`。
   - <DataType type="boolean" name="can_pass_doors"/>：是否能穿过门。默认值为`true`。
   - <DataType type="boolean" name="can_open_doors"/>：是否能打开关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_open_iron_doors"/>：是否能打开关闭的铁门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_open_iron_doors"/>：<Version add="1.15.0" inline/>是否能打开关闭的铁门后通过。默认值为`false`。
   - <DataType type="boolean" name="can_break_doors"/>：是否能破坏关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_jump"/>：是否能跳上方块。默认值为`true`。
-  - <DataType type="boolean" name="can_breach"/>：是否能跃出水面。默认值为`false`。
-  - <DataType type="boolean" name="can_walk_in_lava"/>：是否能在熔岩中行走。默认值为`false`。
-  - <DataType type="boolean" name="is_amphibious"/>：是否能在水下地面上行走。默认值为`false`。
+  - <DataType type="boolean" name="can_jump"/>：<Version add="1.16.210" inline/>是否能跳上方块。默认值为`true`。
+  - <DataType type="boolean" name="can_breach"/>：<Version add="1.16.210" inline/>是否能跃出水面。默认值为`false`。
+  - <DataType type="boolean" name="can_walk_in_lava"/>：<Version add="1.16.0" inline/>是否能在熔岩中行走。默认值为`false`。
+  - <DataType type="boolean" name="is_amphibious"/>：<Version add="1.16.210" inline/>是否能在水下地面上行走。默认值为`false`。
   - <DataType type="boolean" name="avoid_water"/>：寻路时是否避开水面。默认值为`false`。
   - <DataType type="boolean" name="avoid_sun"/>：寻路时是否避开被阳光照射的方块。默认值为`false`。
   - <DataType type="boolean" name="avoid_portals"/>：寻路时是否避开传送门。默认值为`false`。
-  - <DataType type="boolean" name="avoid_damage_blocks"/>：寻路时是否避开会造成伤害的方块。默认值为`false`。
-  - <DataType type="array" name="blocks_to_avoid"/>：寻路时要避开的方块列表。
+  - <DataType type="boolean" name="avoid_powder_snow"/>：<Version add="1.16.200" deprecated="1.16.210" inline/>寻路时是否避开细雪。
+  - <DataType type="boolean" name="avoid_damage_blocks"/>：<Version add="1.16.210" inline/>寻路时是否避开会造成伤害的方块。默认值为`false`。
+  - <DataType type="array" name="blocks_to_avoid"/>：<Version add="1.16.210" inline/>寻路时要避开的方块列表。
     - <DataType type="string"/>：方块 ID。
   - <DataType type="boolean" name="using_door_annotation"/>：是否依据门的注解决定能否通行，需配合[`minecraft:annotation.open_door`](./components#minecraftannotationopen_door)等组件。
 </treeview>
@@ -7319,7 +7384,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:navigation.swim`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 定义水生实体的寻路方式，只能在水中通行。
 
@@ -7327,25 +7392,27 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:navigation.swim"/>：根对象。
-  - <DataType type="boolean" name="can_walk"/>：是否能在水面之外的地面行走。默认值为`true`。
-  - <DataType type="boolean" name="can_swim"/>：是否能在水中通行。默认值为`false`。
-  - <DataType type="boolean" name="can_sink"/>：在水中是否受重力下坠。默认值为`true`。
-  - <DataType type="boolean" name="can_path_over_water"/>：是否能从水面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_over_lava"/>：是否能从熔岩表面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_from_air"/>：是否能从空中开始寻路。默认值为`false`。
+  - <DataType type="boolean" name="can_walk"/>：<Version add="1.16.210" inline/>是否能在水面之外的地面行走。默认值为`true`。
+  - <DataType type="boolean" name="can_swim"/>：<Version add="1.16.210" inline/>是否能在水中通行。默认值为`false`。
+  - <DataType type="boolean" name="can_sink"/>：<Version add="1.4.0" inline/>在水中是否受重力下坠。默认值为`true`。
+  - <DataType type="boolean" name="can_path_over_water"/>：<Version add="1.7.0" inline/>是否能从水面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_over_lava"/>：<Version add="1.16.0" inline/>是否能从熔岩表面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_from_air"/>：<Version add="1.14.0" inline/>是否能从空中开始寻路。默认值为`false`。
   - <DataType type="boolean" name="can_pass_doors"/>：是否能穿过门。默认值为`true`。
   - <DataType type="boolean" name="can_open_doors"/>：是否能打开关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_open_iron_doors"/>：是否能打开关闭的铁门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_break_doors"/>：是否能破坏关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_jump"/>：是否能跳上方块。默认值为`true`。
-  - <DataType type="boolean" name="can_breach"/>：是否能跃出水面。默认值为`false`。
-  - <DataType type="boolean" name="can_walk_in_lava"/>：是否能在熔岩中行走。默认值为`false`。
-  - <DataType type="boolean" name="is_amphibious"/>：是否能在水下地面上行走。默认值为`false`。
+  - <DataType type="boolean" name="can_open_iron_doors"/>：<Version add="1.15.0" inline/>是否能打开关闭的铁门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_break_doors"/>：<Version add="1.10.0" inline/>是否能破坏关闭的门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_float"/>：<Version add="1.2.0" deprecated="1.7.0" inline/>是否能在水面上漂浮。默认值为`false`。
+  - <DataType type="boolean" name="can_jump"/>：<Version add="1.16.210" inline/>是否能跳上方块。默认值为`true`。
+  - <DataType type="boolean" name="can_breach"/>：<Version add="1.16.210" inline/>是否能跃出水面。默认值为`false`。
+  - <DataType type="boolean" name="can_walk_in_lava"/>：<Version add="1.16.0" inline/>是否能在熔岩中行走。默认值为`false`。
+  - <DataType type="boolean" name="is_amphibious"/>：<Version add="1.16.210" inline/>是否能在水下地面上行走。默认值为`false`。
   - <DataType type="boolean" name="avoid_water"/>：寻路时是否避开水面。默认值为`false`。
   - <DataType type="boolean" name="avoid_sun"/>：寻路时是否避开被阳光照射的方块。默认值为`false`。
   - <DataType type="boolean" name="avoid_portals"/>：寻路时是否避开传送门。默认值为`false`。
-  - <DataType type="boolean" name="avoid_damage_blocks"/>：寻路时是否避开会造成伤害的方块。默认值为`false`。
-  - <DataType type="array" name="blocks_to_avoid"/>：寻路时要避开的方块列表。
+  - <DataType type="boolean" name="avoid_powder_snow"/>：<Version add="1.16.200" deprecated="1.16.210" inline/>寻路时是否避开细雪。
+  - <DataType type="boolean" name="avoid_damage_blocks"/>：<Version add="1.16.210" inline/>寻路时是否避开会造成伤害的方块。默认值为`false`。
+  - <DataType type="array" name="blocks_to_avoid"/>：<Version add="1.16.210" inline/>寻路时要避开的方块列表。
     - <DataType type="string"/>：方块 ID。
   - <DataType type="boolean" name="using_door_annotation"/>：是否依据门的注解决定能否通行，需配合[`minecraft:annotation.open_door`](./components#minecraftannotationopen_door)等组件。
 </treeview>
@@ -7370,7 +7437,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:navigation.walk`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 定义陆生实体的寻路方式，可在地面行走并跳过一格高的障碍。
 
@@ -7380,25 +7447,27 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:navigation.walk"/>：根对象。
-  - <DataType type="boolean" name="can_walk"/>：是否能在水面之外的地面行走。默认值为`true`。
-  - <DataType type="boolean" name="can_swim"/>：是否能在水中通行。默认值为`false`。
-  - <DataType type="boolean" name="can_sink"/>：在水中是否受重力下坠。默认值为`true`。
-  - <DataType type="boolean" name="can_path_over_water"/>：是否能从水面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_over_lava"/>：是否能从熔岩表面通行。默认值为`false`。
-  - <DataType type="boolean" name="can_path_from_air"/>：是否能从空中开始寻路。默认值为`false`。
+  - <DataType type="boolean" name="can_walk"/>：<Version add="1.16.210" inline/>是否能在水面之外的地面行走。默认值为`true`。
+  - <DataType type="boolean" name="can_swim"/>：<Version add="1.16.210" inline/>是否能在水中通行。默认值为`false`。
+  - <DataType type="boolean" name="can_sink"/>：<Version add="1.4.0" inline/>在水中是否受重力下坠。默认值为`true`。
+  - <DataType type="boolean" name="can_path_over_water"/>：<Version add="1.7.0" inline/>是否能从水面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_over_lava"/>：<Version add="1.16.0" inline/>是否能从熔岩表面通行。默认值为`false`。
+  - <DataType type="boolean" name="can_path_from_air"/>：<Version add="1.14.0" inline/>是否能从空中开始寻路。默认值为`false`。
   - <DataType type="boolean" name="can_pass_doors"/>：是否能穿过门。默认值为`true`。
   - <DataType type="boolean" name="can_open_doors"/>：是否能打开关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_open_iron_doors"/>：是否能打开关闭的铁门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_break_doors"/>：是否能破坏关闭的门后通过。默认值为`false`。
-  - <DataType type="boolean" name="can_jump"/>：是否能跳上方块。默认值为`true`。
-  - <DataType type="boolean" name="can_breach"/>：是否能跃出水面。默认值为`false`。
-  - <DataType type="boolean" name="can_walk_in_lava"/>：是否能在熔岩中行走。默认值为`false`。
-  - <DataType type="boolean" name="is_amphibious"/>：是否能在水下地面上行走。默认值为`false`。
+  - <DataType type="boolean" name="can_open_iron_doors"/>：<Version add="1.15.0" inline/>是否能打开关闭的铁门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_break_doors"/>：<Version add="1.10.0" inline/>是否能破坏关闭的门后通过。默认值为`false`。
+  - <DataType type="boolean" name="can_float"/>：<Version add="1.2.0" deprecated="1.7.0" inline/>是否能在水面上漂浮。默认值为`false`。
+  - <DataType type="boolean" name="can_jump"/>：<Version add="1.16.210" inline/>是否能跳上方块。默认值为`true`。
+  - <DataType type="boolean" name="can_breach"/>：<Version add="1.16.210" inline/>是否能跃出水面。默认值为`false`。
+  - <DataType type="boolean" name="can_walk_in_lava"/>：<Version add="1.16.0" inline/>是否能在熔岩中行走。默认值为`false`。
+  - <DataType type="boolean" name="is_amphibious"/>：<Version add="1.16.210" inline/>是否能在水下地面上行走。默认值为`false`。
   - <DataType type="boolean" name="avoid_water"/>：寻路时是否避开水面。默认值为`false`。
   - <DataType type="boolean" name="avoid_sun"/>：寻路时是否避开被阳光照射的方块。默认值为`false`。
   - <DataType type="boolean" name="avoid_portals"/>：寻路时是否避开传送门。默认值为`false`。
-  - <DataType type="boolean" name="avoid_damage_blocks"/>：寻路时是否避开会造成伤害的方块。默认值为`false`。
-  - <DataType type="array" name="blocks_to_avoid"/>：寻路时要避开的方块列表。
+  - <DataType type="boolean" name="avoid_powder_snow"/>：<Version add="1.16.200" deprecated="1.16.210" inline/>寻路时是否避开细雪。
+  - <DataType type="boolean" name="avoid_damage_blocks"/>：<Version add="1.16.210" inline/>寻路时是否避开会造成伤害的方块。默认值为`false`。
+  - <DataType type="array" name="blocks_to_avoid"/>：<Version add="1.16.210" inline/>寻路时要避开的方块列表。
     - <DataType type="string"/>：方块 ID。
   - <DataType type="boolean" name="using_door_annotation"/>：是否依据门的注解决定能否通行，需配合[`minecraft:annotation.open_door`](./components#minecraftannotationopen_door)等组件。
 </treeview>
@@ -7466,7 +7535,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.aquatic_charge_attack`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="未知"/> <br/>
 
 使水生生物向目标发起冲刺攻击。
 
@@ -8012,6 +8081,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8058,6 +8128,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8169,6 +8240,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "hit_delay_pct": 0.5
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8211,6 +8283,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "on_start": { "event": "on_digging_event" }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8239,6 +8312,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 1
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8274,6 +8348,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 1
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8302,6 +8377,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 0
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8337,6 +8413,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 1
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8365,6 +8442,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 3
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8393,6 +8471,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 0
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8421,6 +8500,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 2
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8457,6 +8537,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 2
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8485,6 +8566,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 0
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8633,6 +8715,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "target_range": [ 5.0, 5.0, 5.0 ]
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8676,6 +8759,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     ]
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8706,6 +8790,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "delay_before_eating": 28
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8746,6 +8831,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "loot_table": "loot_tables/entities/frog.json"
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8783,6 +8869,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8811,6 +8898,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 3
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8850,6 +8938,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:behavior.explore_outskirts": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8885,6 +8974,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 8
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8917,6 +9007,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "cooldown_time": 0.0
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8954,6 +9045,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "within_radius": 16
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -8988,6 +9080,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "stop_distance": 50
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9041,6 +9134,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9071,6 +9165,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 1
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9102,6 +9197,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 7
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9201,6 +9297,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "y_dist": 7
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9241,6 +9338,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9280,6 +9378,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "preferred_actor_type": "player"
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9319,6 +9418,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "stop_distance": 4
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9349,42 +9449,6 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 1.25
 }
 ```
-</TabItem></Tabs>
-
----
-
-### `minecraft:behavior.follow_target_captain`
-
-<Usable type="all"/> <Version add="?"/> <br/>
-
-使袭击者跟随袭击队长。
-
-<Tabs><TabItem value="参数" label="参数" default>
-
-<treeview>
-- <DataType type="object" name="minecraft:behavior.follow_target_captain"/>：根对象。
-  - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
-  - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
-    - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="follow_distance"/>：与队长保持的距离，单位为方块。
-  - <DataType type="float" name="within_radius"/>：搜索队长的范围，单位为方块。
-  - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
-</treeview>
-
-> **备注**：官方 schema 未收录该组件，参数按原版用例整理。
-
-</TabItem><TabItem value="示例" label="示例">
-
-掠夺者（<FileType type="file" name="pillager.json"/>）：
-
-```json showLineNumbers
-"minecraft:behavior.follow_target_captain": {
-    "priority": 5,
-    "follow_distance": 5,
-    "within_radius": 64,
-    "speed_multiplier": 0.8
-}
-```
 
 </TabItem></Tabs>
 
@@ -9392,7 +9456,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.follow_target_leader`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.26.20"/> <br/>
 
 使生物跟随符合条件的目标作为领队。
 
@@ -9423,6 +9487,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "follow_distance": 4
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9466,6 +9531,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     ]
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9508,6 +9574,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     ]
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9561,6 +9628,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     ]
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9596,6 +9664,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 4
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9635,6 +9704,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 0.5
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9670,6 +9740,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 0.8
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9708,13 +9779,14 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "within_radius_event": { "event": "minecraft:ranged_mode", "target": "self" }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
 
 ### `minecraft:behavior.hover`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
 
 使实体在空中悬停。
 
@@ -9736,6 +9808,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 5
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9768,6 +9841,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 1
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9799,6 +9873,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:behavior.inspect_bookshelf": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9830,6 +9905,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 0.7
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9886,6 +9962,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9930,6 +10007,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "preferred_blocks": [ { "name": "minecraft:waterlily" } ]
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -9977,6 +10055,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "knockback_range": 4
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10009,6 +10088,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "random_stop_interval": 2000
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10058,6 +10138,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "on_lay": { "event": "laid_egg", "target": "self" }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10091,13 +10172,14 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 3
 }
 ```
+
 </TabItem></Tabs>
 
 ---
 
 ### `minecraft:behavior.look_at_entity`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物注视附近的特定实体。
 
@@ -10126,13 +10208,14 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "look_time": { "min": 1, "max": 2 }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
 
 ### `minecraft:behavior.look_at_player`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物注视附近的玩家。
 
@@ -10160,13 +10243,14 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "look_distance": 6
 }
 ```
+
 </TabItem></Tabs>
 
 ---
 
 ### `minecraft:behavior.look_at_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物注视其当前攻击目标。
 
@@ -10194,13 +10278,14 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "look_time": { "min": 1, "max": 2 }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
 
 ### `minecraft:behavior.look_at_trading_player`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物注视正在与其交易的玩家。
 
@@ -10228,6 +10313,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "look_time": { "min": 1, "max": 2 }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10256,6 +10342,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 6
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10309,6 +10396,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 1.25
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10361,6 +10449,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "on_attack": { "event": "killed_enemy_event" }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10399,6 +10488,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 0.5
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10435,6 +10525,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "track_target": true
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10510,6 +10601,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 0.8
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10546,6 +10638,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "timeout_cooldown": 8
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10580,6 +10673,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 0.6
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10633,6 +10727,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "target_offset": [ 0, 0.25, 0 ]
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10670,6 +10765,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "search_range": 30
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10745,6 +10841,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "search_count": 10
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10776,6 +10873,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "poi_type": "bed"
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10810,6 +10908,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "within_radius": 8
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10843,6 +10942,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 0.7
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10880,6 +10980,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "goal_radius": 0.1
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10909,6 +11010,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 7
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -10938,13 +11040,14 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 9
 }
 ```
+
 </TabItem></Tabs>
 
 ---
 
 ### `minecraft:behavior.move_towards_restriction`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物回到行为限制的范围内。
 
@@ -11002,6 +11105,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "within_radius": 32
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11046,6 +11150,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11116,6 +11221,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     ]
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11184,6 +11290,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     ]
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11214,6 +11321,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 1.0
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11257,6 +11365,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "reach_multiplier": 2.0
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11292,6 +11401,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "filters": { "test": "is_daytime" }
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11324,6 +11434,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "close_door_after": true
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11366,6 +11477,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 1
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11408,6 +11520,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 2
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11445,6 +11558,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 2.0
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11480,6 +11594,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "goal_radius": 1.0
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11531,6 +11646,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "pickup_same_items_as_in_hand": true
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11633,6 +11749,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "speed_multiplier": 0.32
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -11722,6 +11839,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:behavior.player_ride_tamed": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -13186,6 +13304,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 2
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -13272,6 +13391,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "priority": 1
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -14025,7 +14145,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.target_when_pushed`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="未知"/> <br/>
 
 使实体在被其他实体推动时把对方设为目标。
 
@@ -14437,7 +14557,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.transport_items`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.21.100"/> <br/>
 
 使实体在容器之间搬运物品。铜傀儡用它把铜箱中的物品放进普通箱子。
 
@@ -14502,7 +14622,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.use_kinetic_weapon`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.21.130"/> <br/>
 
 使实体使用动能武器，间歇性地冲向目标并在攻击后重新拉开距离。
 
@@ -14849,6 +14969,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:is_baby": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -14874,6 +14995,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:is_charged": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -14899,6 +15021,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:is_chested": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -14924,6 +15047,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:is_ignited": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -14947,6 +15071,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:is_pregnant": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -14972,6 +15097,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:is_saddled": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -14997,6 +15123,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:is_shaking": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -15022,6 +15149,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:is_sheared": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -15047,6 +15175,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:is_stunned": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -15072,6 +15201,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:is_tamed": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -15100,6 +15230,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "value": 1
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -15128,6 +15259,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     "value": 2
 }
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -15233,6 +15365,45 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ---
 
+### `minecraft:behavior.follow_target_captain`
+
+<Usable type="all"/> <Version add="1.11.0" deprecated="1.26.20" tooltip="在高版本使用minecraft:behavior.follow_target_leader组件代替之。"/> <br/>
+
+使袭击者跟随袭击队长。
+
+另见：_[`minecraft:behavior.follow_target_leader`](#minecraftbehaviorfollow_target_leader)组件_。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:behavior.follow_target_captain"/>：根对象。
+  - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
+  - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
+    - <DataType type="string"/>：一个控制通道。
+  - <DataType type="float" name="follow_distance"/>：与队长保持的距离，单位为方块。
+  - <DataType type="float" name="within_radius"/>：搜索队长的范围，单位为方块。
+  - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
+</treeview>
+
+> **备注**：官方 schema 已不再收录该组件，1.26.20 起由`minecraft:behavior.follow_target_leader`承接；以下参数按 26.60 之前的原版用例整理。
+
+</TabItem><TabItem value="示例" label="示例">
+
+掠夺者（<FileType type="file" name="pillager.json"/>）：
+
+```json showLineNumbers
+"minecraft:behavior.follow_target_captain": {
+    "priority": 5,
+    "follow_distance": 5,
+    "within_radius": 64,
+    "speed_multiplier": 0.8
+}
+```
+
+</TabItem></Tabs>
+
+---
+
 ### `minecraft:body_rotation_axis_aligned`
 
 <Usable type="all"/> <Version add="1.21.70" deprecated="1.21.100" tooltip="在高版本使用minecraft:rotation_axis_aligned组件代替之。"/> <br/>
@@ -15252,6 +15423,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:body_rotation_axis_aligned": {}
 ```
+
 </TabItem></Tabs>
 
 ---
@@ -15331,6 +15503,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 ```json showLineNumbers
 "minecraft:hurt_when_wet": {}
 ```
+
 </TabItem></Tabs>
 
 ---

@@ -65,7 +65,14 @@ export default function VersionHighlight({
     let text = `${add}+`;
     let newTooltip = `该特性在${label}${add}+下可用。${tooltip}`;
 
-    if (add && isVersionGreater(add, china)) {
+    // 已查找但无法确定加入版本
+    if (add === "未知") {
+        color = "gray";
+        text = "未知";
+        newTooltip = `已尝试查找该特性的加入版本，但未能确定。${tooltip}`;
+    }
+
+    if (add && add !== "未知" && isVersionGreater(add, china)) {
         color = "gold";
         newTooltip = `该特性在${label}${add}+下可用，但该版本对于当前的中国版版本过高。${tooltip}`;
     }
