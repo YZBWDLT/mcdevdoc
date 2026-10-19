@@ -4,16 +4,11 @@ sidebar_position: 10
 
 # 运行时 ID
 
-import '/src/css/treeview.css';
-import FileType from "/src/components/type/file"
-import DataType from "/src/components/type/data"
-import Version from "/src/components/highlight/version"
-
 > 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
-运行时 ID（Runtime Identifier）用于让自定义实体继承某个原版实体的硬编码行为。举例来说，把自己的弹射物声明为`minecraft:arrow`，它就会获得箭的飞行物理与击退效果，而不必自己实现一遍。
+运行时 ID（Runtime Identifier）用于让自定义实体继承某个原版实体的硬编码行为。举例来说，把自己的弹射物声明为`minecraft:arrow`，该实体即获得箭的飞行物理与击退效果，无需自行实现。
 
-需要注意，运行时 ID 只会解析**原版实体中被硬编码的部分**：
+运行时 ID 只解析**原版实体中被硬编码的部分**：
 
 - **只接受原版实体的 ID**。把一个纯数据驱动的实体填进运行时 ID 不会产生任何效果，因为它没有硬编码行为可继承。
 - **部分原版实体的硬编码行为会覆盖数据驱动组件**，例如潜影贝的碰撞箱尺寸无法由[`minecraft:collision_box`](./components#minecraftcollision_box)改变。
@@ -21,21 +16,11 @@ import Version from "/src/components/highlight/version"
 
 :::warning[注意]
 
-运行时 ID 有可能会**直接破坏实体的正常行为**，并且使用其中的硬编码功能几乎必定会带来副作用——其硬编码的功能要么照单全收，要么全部放弃。因此该功能只适合在明确知道后果时使用。
+运行时 ID 继承的是原版实体的硬编码逻辑，这部分逻辑不受数据驱动组件控制，也无法只取其中一部分。当原版实体的行为与自定义实体的设计不一致时，二者会直接冲突，没有折中方案；继承来的行为还可能覆盖实体自身的组件，改变名称、碰撞箱等属性。使用前应确认目标原版实体的行为符合预期。
 
 :::
 
-## 实体定义文件格式
-
-运行时 ID 定义在服务端实体定义的<DataType type="object" name="description" isRequired/>下。
-
-<treeview>
-
-- <DataType type="string" name="runtime_identifier"/>：原版实体的 ID，如`minecraft:shulker`。
-
-</treeview>
-
-示例：让一个自定义实体表现得像潜影贝。
+运行时 ID 是一个字符串字段，定义在服务端实体定义的`description`下，写法见[数据驱动实体](./description#行为包定义格式)。以下示例让一个自定义实体表现得像潜影贝：
 
 ```json showLineNumbers
 "description": {

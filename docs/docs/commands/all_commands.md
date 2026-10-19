@@ -6,8 +6,6 @@ sidebar_position: 1
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import '/src/css/treeview.css';
-import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
 import Image from "/src/components/image/standard"
 
@@ -16,7 +14,7 @@ import WikiButton from '/src/components/button/wiki';
 import Highlight from '/src/components/highlight/base';
 import Version from '/src/components/highlight/version';
 
-> 适用版本：国际版 26.60，中国版 3.9（1.21.120）。
+> 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
 本文档收录所有正式版或预览版中可用的命令，并给出对应课时。其中，部分内容并未在模块 1 介绍，请阅读本篇文档的初学者注意甄别，如果需要，请学习相关知识。
 
@@ -34,7 +32,7 @@ import Version from '/src/components/highlight/version';
 
 <Tabs>
 
-<TabItem value="页码帮助" label="页码帮助" default>
+<TabItem value="page" label="页码帮助" default>
 
 ```text
 /help [页码: int]
@@ -48,7 +46,7 @@ import Version from '/src/components/highlight/version';
 
 </TabItem>
 
-<TabItem value="命令帮助" label="命令帮助">
+<TabItem value="command" label="命令帮助">
 
 ```text
 /help <命令: CommandName>
@@ -205,7 +203,7 @@ in <维度: Dimension> -> execute
 
 <Tabs>
 
-<TabItem value="execute_if_entity" label="entity">
+<TabItem value="execute_if_entity" label="entity" default>
 
 ```text
 <if|unless> entity <目标: target> -> execute
@@ -962,12 +960,12 @@ in <维度: Dimension> -> execute
 清除玩家的物品。
 
 ```text
-/clear <玩家: target> <物品: Item> [数据值: int] [最大数量: int]
+/clear [玩家: target] [物品: Item] [数据值: int] [最大数量: int]
 ```
 
 清除`玩家`至多`最大数量`个数据值为`数据值`的`物品`。
 
-`数据值`的默认值为`-1`。`最大数量`的默认值为`-1`。
+`玩家`的默认值为执行者。`物品`为空时，指定全部物品。`数据值`的默认值为`-1`。`最大数量`的默认值为`-1`。
 
 `最大数量`指定为`0`时，该命令用于检测玩家是否拥有物品。
 
@@ -1092,7 +1090,7 @@ in <维度: Dimension> -> execute
 
 **仅限`minecraft:free`预设**。设置`玩家`的自由相机按照特定的`缓动`动画移动到`位置`和`朝向`。
 
-`缓动`、`位置`和`颜色`可任意缺少一个或若干个，但顺序上必须是`缓动`在前，`位置`其次，`颜色`在后。对应关系如下表所示。
+`缓动`、`位置`和`朝向`可任意缺少一个或若干个，但顺序上必须是`缓动`在前，`位置`其次，`朝向`在后。对应关系如下表所示。
 
 | 完整语法                                                                                     | 简写语法 | 含义                                                                                   |
 | -------------------------------------------------------------------------------------------- | :------: | -------------------------------------------------------------------------------------- |
@@ -1100,7 +1098,7 @@ in <维度: Dimension> -> execute
 | `pos <位置: x y z>`                                                                          | `[位置]` | 玩家的相机移动到的`位置`                                                               |
 | `facing <面向实体: target>`或`facing <面向坐标: x y z>`或`rot <x旋转: value> <y旋转: value>` | `[朝向]` | 玩家的相机的朝向                                                                       |
 
-`[缓变]`为空时，直接切换视角。`[位置]`的默认值为`pos 0 0 0`[^lackOfDocs]。`[朝向]`的默认值为`rot 0 0`[^lackOfDocs]。
+`[缓动]`为空时，直接切换视角。`[位置]`的默认值为`pos 0 0 0`[^lackOfDocs]。`[朝向]`的默认值为`rot 0 0`[^lackOfDocs]。
 
 `Easing`类型的可选值详见 Wiki。
 
@@ -1135,7 +1133,7 @@ in <维度: Dimension> -> execute
 
 聚焦实体语法，可令玩家的相机焦点始终对准某个实体。包括`target_entity`和`remove_target`。
 
-<Tabs><TabItem value="target_entity" label="target_entity">
+<Tabs><TabItem value="target_entity" label="target_entity" default>
 
 ```text
 /camera <玩家: target> target_entity <实体: target> [实体中心偏移]
@@ -1169,7 +1167,7 @@ in <维度: Dimension> -> execute
 
 视场角语法，控制玩家相机的视场角。包括`fov_clear`和`fov_set`。
 
-<Tabs><TabItem value="fov_clear" label="fov_clear">
+<Tabs><TabItem value="fov_clear" label="fov_clear" default>
 
 ```text
 /camera <玩家: target> fov_clear [视场角缓动时间: float] [视场角缓动类型: Easing]
@@ -1197,7 +1195,7 @@ in <维度: Dimension> -> execute
 
 附着相机语法，将相机固定到特定实体上。包括`attach_to_entity`和`detach_from_entity`。
 
-<Tabs><TabItem value="attach_to_entity" label="attach_to_entity">
+<Tabs><TabItem value="attach_to_entity" label="attach_to_entity" default>
 
 ```text
 /camera <玩家: target> attach_to_entity <实体: target>
@@ -1420,7 +1418,7 @@ in <维度: Dimension> -> execute
 
 <Tabs>
 
-<TabItem value="1" label="有限时长">
+<TabItem value="1" label="有限时长" default>
 
 ```text
 /effect <实体: target> <状态效果: Effect> [秒数: int] [放大倍率: int] [隐藏粒子: Boolean]
@@ -1483,11 +1481,11 @@ in <维度: Dimension> -> execute
 
 <Tabs>
 
-<TabItem value="block" label="block">
+<TabItem value="block" label="block" default>
 
 <Tabs>
 
-<TabItem value="1" label="不检查旧物品">
+<TabItem value="1" label="不检查旧物品" default>
 
 ```text
 /replaceitem block <位置: x y z> slot.container <槽位ID: int> <物品: Item> [数量: int] [数据值: int] [组件: json]
@@ -1526,7 +1524,7 @@ in <维度: Dimension> -> execute
 
 <Tabs>
 
-<TabItem value="1" label="不检查旧物品">
+<TabItem value="1" label="不检查旧物品" default>
 
 ```text
 /replaceitem entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> <物品: Item> [数量: int] [数据值: int] [组件: json]
@@ -1637,7 +1635,7 @@ in <维度: Dimension> -> execute
 
 <Tabs>
 
-<TabItem value="query" label="query">
+<TabItem value="query" label="query" default>
 
 ```text
 /inputpermission query <玩家: target> <权限: permission> [状态: state]
@@ -1674,11 +1672,11 @@ in <维度: Dimension> -> execute
 
 <Tabs>
 
-<TabItem value="no_replace" label="非 replace">
+<TabItem value="no_replace" label="非 replace" default>
 
 <Tabs>
 
-<TabItem value="1" label="有方块状态">
+<TabItem value="1" label="有方块状态" default>
 
 ```text
 /fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states> [旧方块处理: FillMode]
@@ -1722,7 +1720,7 @@ in <维度: Dimension> -> execute
 
 <Tabs>
 
-<TabItem value="1" label="有方块状态">
+<TabItem value="1" label="有方块状态" default>
 
 ```text
 /fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states> replace [替换方块: Block] [替换方块状态: block states]
@@ -1873,7 +1871,7 @@ in <维度: Dimension> -> execute
 <TabItem value="title_pos" label="title | subtitle | actionbar" default>
 
 ```text
-/title <player: target> <title|subtitle|actionbar> <标题文本: message>
+/title <玩家: target> <title|subtitle|actionbar> <标题文本: message>
 ```
 
 对`玩家`在*标题位置*（`title|subtitle|actionbar`）显示`标题文本`。
@@ -1950,7 +1948,7 @@ in <维度: Dimension> -> execute
 <TabItem value="pop | remove" label="pop | remove">
 
 ```text
-/fog <玩家: target> <模式: delete> <用户提供ID: string>
+/fog <玩家: target> <模式: pop|remove> <用户提供ID: string>
 ```
 
 移除或弹出`玩家`用户提供 ID `用户提供ID`的迷雾栈。
@@ -1958,7 +1956,7 @@ in <维度: Dimension> -> execute
 `模式`的可选值为：
 
 - `pop`：从迷雾栈弹出最后一个符合`用户提供ID`的迷雾。
-- `remove`：从迷雾栈移除所有符合符合`用户提供ID`的迷雾。
+- `remove`：从迷雾栈移除所有符合`用户提供ID`的迷雾。
 
 </TabItem>
 
@@ -1986,7 +1984,22 @@ in <维度: Dimension> -> execute
 - `reset`：重置 HUD 可见性。
 - `hide`：隐藏 HUD。
 
-`HUD元素`的默认值为`all`，可选值参见 Wiki。
+`HUD元素`的默认值为`all`，可选值为：
+
+- `all`：所有 HUD 元素。
+- `air_bubbles`：氧气值。
+- `armor`：护甲值。
+- `crosshair`：屏幕上的十字准星。
+- `health`：生命值。
+- `horse_health`：骑乘坐骑时坐骑的生命值。
+- `hotbar`：快捷栏。
+- `hunger`：饥饿值。
+- `item_text`：物品文本。
+- `paperdoll`：纸娃娃。
+- `progress_bar`：经验条。
+- `status_effects`：状态效果图标。
+- `tooltips`：提示框。
+- `touch_controls`：触控按键。
 
 ---
 
@@ -2000,7 +2013,7 @@ in <维度: Dimension> -> execute
 
 <Tabs>
 
-<TabItem value="open" label="open">
+<TabItem value="open" label="open" default>
 
 ```text
 /dialogue open <NPC: target> <玩家: target> [场景: string]
@@ -2052,7 +2065,7 @@ in <维度: Dimension> -> execute
 
 ### `/say`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#发送消息的命令say" color="green"/>
 <WikiButton item="命令/say"/>
@@ -2082,9 +2095,9 @@ in <维度: Dimension> -> execute
 /setworldspawn [出生点: x y z]
 ```
 
-将世界出生点设置在`重生点`。
+将世界出生点设置在`出生点`。
 
-`重生点`的默认值为执行位置。
+`出生点`的默认值为执行位置。
 
 ---
 
@@ -2095,7 +2108,7 @@ in <维度: Dimension> -> execute
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界常加载区域的命令tickingarea" color="green"/>
 <WikiButton item="命令/tickingarea"/>
 
-添加常加载区域。
+添加常加载区域。每个维度最多可同时定义 10 个常加载区域，单个区域不能超过 100 个区块。
 
 <Tabs>
 
@@ -2110,10 +2123,12 @@ in <维度: Dimension> -> execute
 `名称`的默认值为`AreaX`，其中`X`为从`0`开始的第 n-1 个常加载区域。`预加载`的默认值为`false`。
 
 ```text
-/tickingarea add <中心: x y z> <半径: int> [名称: string] [预加载: Boolean]
+/tickingarea add circle <中心: x y z> <半径: int> [名称: string] [预加载: Boolean]
 ```
 
 添加由`中心`和`半径`确定的圆形区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`（<Version type="game" add="1.18.30" inline/>）。
+
+`半径`以区块为单位，只能是`1`到`4`的整数。
 
 `名称`的默认值为`AreaX`，其中`X`为从`0`开始的第 n-1 个常加载区域。`预加载`的默认值为`false`。
 
@@ -2209,7 +2224,7 @@ in <维度: Dimension> -> execute
 
 控制或查询世界时间或特定时钟。
 
-<Tabs><TabItem value="add" label="add">
+<Tabs><TabItem value="add" label="add" default>
 
 ```text
 /time add <数值: int>
@@ -2339,8 +2354,6 @@ in <维度: Dimension> -> execute
 <WikiButton item="命令/loot"/>
 
 生成、给予、插入、替换战利品。
-
----
 
 ```text
 /loot <目标> <来源>
@@ -2696,7 +2709,7 @@ in <维度: Dimension> -> execute
 
 <Tabs>
 
-<TabItem value="实体伤害" label="实体伤害" default>
+<TabItem value="entity" label="实体伤害" default>
 
 ```text
 /damage <目标: target> <伤害值: int> <成因: DamageCause> entity <伤害者: target>
@@ -2706,7 +2719,7 @@ in <维度: Dimension> -> execute
 
 </TabItem>
 
-<TabItem value="执行者伤害" label="执行者伤害">
+<TabItem value="executor" label="执行者伤害">
 
 ```text
 /damage <目标: target> <伤害值: int> [成因: DamageCause]
@@ -2741,7 +2754,7 @@ in <维度: Dimension> -> execute
 
 `强度`的默认值为`0.5`[^lackOfDocs]。`秒数`的默认值为`1`。
 
-`摇晃`的默认值为`positional`，可选值为：
+`摇晃类型`的默认值为`positional`，可选值为：
 
 - `positional`：坐标摇晃。
 - `rotational`：角度摇晃。
@@ -2865,12 +2878,12 @@ in <维度: Dimension> -> execute
 <Version type="game" add="1.21.80"/>
 
 ```text
-/place jigsaw <pool: filepath> <jigsawTarget: string> <maxDepth: int> [pos: x y z] [keepJigsaws: Boolean] [liquidSettings: LiquidSettings]
+/place jigsaw <pool: filepath> <jigsawTarget: string> <maxDepth: int> [pos: x y z] [keepJigsaws: Boolean] [includeEntities: Boolean] [liquidSettings: LiquidSettings]
 ```
 
 放置结构池并展开指定深度[^needTest]。
 
-<Version type="game" add="1.21.90" inline/> 新增了`liquidSetting`参数。
+`includeEntities`于 1.21.60 加入，`liquidSettings`于 1.21.90 加入。
 
 </TabItem>
 
@@ -2879,12 +2892,12 @@ in <维度: Dimension> -> execute
 <Version type="game" add="1.21.80"/>
 
 ```text
-/place structure <structure: string> [pos: x y z] [ignoreStartHeight: Boolean] [keepJigsaws: Boolean] [liquidSettings: LiquidSettings]
+/place structure <structure: string> [pos: x y z] [ignoreStartHeight: Boolean] [keepJigsaws: Boolean] [includeEntities: Boolean] [liquidSettings: LiquidSettings]
 ```
 
 放置结构地物[^needTest]。
 
-<Version type="game" add="1.21.90" inline/> 新增了`liquidSetting`参数。
+`includeEntities`于 1.21.60 加入，`liquidSettings`于 1.21.90 加入。
 
 </TabItem>
 
@@ -2910,7 +2923,7 @@ in <维度: Dimension> -> execute
 
 设定`玩家`的控制方案为`控制方案`。
 
-`控制方案`的默认值为`locked_player_relative_strafe`，可选值为：
+`控制方案`的可选值为：
 
 | 可选值                          | 移动方向       | 朝向                                               | 是否显示鼠标指针 | 是否锁定水平方向 |
 | ------------------------------- | -------------- | -------------------------------------------------- | ---------------- | ---------------- |
@@ -2984,11 +2997,56 @@ in <维度: Dimension> -> execute
 
 ### `/gametest`
 
-<Version type="game" add="1.19.40"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="实验性玩法" color="red" tooltip="该命令使用的脚本@minecraft/gametest仍然处于beta阶段，必须开启实验性玩法。"/><br/>
+<Version type="game" add="1.19.40"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="实验性玩法" color="red" tooltip="该命令本身自 1.19.40 起已不再属于实验性玩法，但 GameTest 框架所依赖的 @minecraft/server-gametest 模块仍处于 beta 阶段，实际使用时仍需开启「Beta API」实验性玩法。"/><br/>
 
 <WikiButton item="命令/gametest"/>
 
-触发 Gametest。
+触发 Gametest 测试。
+
+```text
+gametest runthis
+gametest run <测试名: string> [旋转步数: int]
+gametest run <测试名: string> <失败时停止: Boolean> <重复次数: int> [旋转步数: int]
+gametest runset [标签: string] [旋转步数: int]
+gametest runsetuntilfail [标签: string] [旋转步数: int]
+gametest runthese
+gametest stopall
+gametest clearall
+gametest pos
+gametest create <测试名: string> [宽度: int] [高度: int] [深度: int]
+```
+
+各子命令的作用如下表所示。
+
+| 子命令                  | 含义                                                       |
+| ----------------------- | ---------------------------------------------------------- |
+| `runthis`               | 执行 15 格半径内的测试结构。                               |
+| `run`                   | 执行指定的`测试名`，可指定是否失败时停止、重复次数与旋转步数。 |
+| `runset`                | 创建并执行所有测试。                                       |
+| `runsetuntilfail`       | 创建并执行所有测试，直到某个测试失败为止。                 |
+| `runthese`              | 在 200 格半径内执行测试。                                  |
+| `stopall`               | 停止执行所有测试。                                         |
+| `clearall`              | 清除所有测试。                                             |
+| `pos`                   | 在 200 格半径内寻找最近的测试结构。                        |
+| `create`                | 创建一个`测试名`指定大小的测试。                           |
+
+---
+
+### `/gametips`
+
+<Version type="game" add="1.20.80"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令需要启用作弊后才能使用。"/><br/>
+
+<WikiButton item="命令/gametips"/>
+
+启用或禁用此设备上的游戏提示。
+
+```text
+gametips <disable|enable>
+```
+
+`disable`禁用游戏提示，`enable`启用游戏提示。二者可分别简写为`d`和`e`。
+
+该命令只在客户端生效，不能在专用服务端上使用。
 
 ---
 
@@ -3021,7 +3079,7 @@ in <维度: Dimension> -> execute
 /locate structure <结构: Structure> [只使用新区块: Boolean]
 ```
 
-定位`结构`并返回该结构对应的坐标。可以选定在其他区块检索结构（`只使用新区块`）。
+定位`结构`并返回该结构对应的坐标。`只使用新区块`指定为`true`时，只定位尚未生成的区块中的结构，默认值为`false`。
 
 会受到游戏规则`sendCommandFeedBack`的影响。
 
@@ -3106,11 +3164,33 @@ in <维度: Dimension> -> execute
 
 ### `/script`
 
-<Version type="game" add="1.19.70"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="实验性玩法" color="red" tooltip="该命令使用的脚本@minecraft/gametest仍然处于beta阶段，必须开启实验性玩法。"/><br/>
+<Version type="game" add="1.19.70"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/> <Highlight text="实验性玩法" color="red" tooltip="该命令本身自 1.19.70 起已不再属于实验性玩法，但它主要服务于 GameTest 框架，而该框架所依赖的 @minecraft/server-gametest 模块仍处于 beta 阶段，实际使用时仍需开启「Beta API」实验性玩法。"/><br/>
 
 <WikiButton item="命令/script"/>
 
-调试 Gametest。
+调试脚本。
+
+```text
+script debugger listen <端口: int>
+script debugger connect [主机: string] [端口: int]
+script debugger close
+script profiler start
+script profiler stop
+script diagnostics startcapture
+script diagnostics stopcapture
+```
+
+各子命令的作用如下表所示。
+
+| 子命令                           | 含义                                     |
+| -------------------------------- | ---------------------------------------- |
+| `debugger listen`                | 监听`端口`，等待调试器连接。             |
+| `debugger connect`               | 连接`主机`与`端口`上的调试器。           |
+| `debugger close`                 | 关闭调试器。                             |
+| `profiler start` / `profiler stop`           | 开始或停止记录脚本性能分析数据。         |
+| `diagnostics startcapture` / `diagnostics stopcapture` | 开始或停止捕获诊断信息。                 |
+
+`端口`的可用范围为`1024`到`65535`。
 
 ---
 
@@ -3124,7 +3204,7 @@ in <维度: Dimension> -> execute
 随机扩散实体到地表。
 
 ```text
-spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: float> <实体: target> [最高高度: value]
+/spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: float> <实体: target> [最高高度: value]
 ```
 
 将实体随机扩散到以`x`和`z`为中心，边长为（2\*`最大范围`+1）的正方形区域的地表，并要求其间距不小于`实体间距离`。若指定`最高高度`（<Version type="game" add="1.21.20" inline/>），则地表的判定改为`最高高度`下方的地表。
@@ -3164,7 +3244,7 @@ spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: floa
 检查方块是否存在。
 
 ```text
-testforblock <位置: x y z> <方块: Block> [方块状态: block states]
+/testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 ```
 
 检查`位置`处是否为`方块状态`的`方块`。
@@ -3322,12 +3402,30 @@ testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 连接到 WebSocket 服务器。
 
 ```text
-connect <服务器URI: text>
+/connect <服务器URI: text>
 ```
 
 连接到 URI 为`服务器URI`的 WebSocket 服务器上。
 
 一般用于 Minecraft 和其他软件的连接互通。
+
+---
+
+### `/dedicatedwsserver`
+
+<Version type="game" add="1.19.10"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令需要启用作弊后才能使用。"/><br/>
+
+<WikiButton item="命令/dedicatedwsserver" length="large"/>
+
+在专用服务器上连接到 WebSocket 服务器。
+
+```text
+dedicatedwsserver <服务器地址: string> <端口: int>
+```
+
+连接到地址为`服务器地址`、端口为`端口`的 WebSocket 服务器。该命令只能在 BDS 中执行。
+
+与`/connect`使用单个 URI 参数不同，该命令把地址与端口拆成两个参数分别填写。
 
 ---
 
@@ -3348,6 +3446,40 @@ connect <服务器URI: text>
 
 ---
 
+### `/reloadconfig`
+
+<Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+
+<WikiButton item="命令/reloadconfig" length="large"/>
+
+重新加载与权限、变量等相关的配置文件。
+
+```text
+reloadconfig
+```
+
+重新读取服务器目录下的配置文件，且始终执行成功。该命令只能在 BDS 中执行。
+
+加入版本无明确记录。
+
+---
+
+### `/reloadpacketlimitconfig`
+
+<Version type="game" add="1.21.100"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+
+<WikiButton item="命令/reloadpacketlimitconfig" length="extra_large"/>
+
+重新加载数据包限制的配置文件。
+
+```text
+reloadpacketlimitconfig
+```
+
+重新读取服务器目录下的`packetlimitconfig.json`，且始终执行成功。该命令只能在 BDS 中执行。
+
+---
+
 ### `/stop`
 
 <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
@@ -3362,6 +3494,93 @@ stop
 ```
 
 关闭 BDS 服务器。在控制台的命令不能使用斜杠。
+
+---
+
+### `/save`
+
+<Version type="game" add="1.6.1"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+
+<Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" color="green"/>
+<WikiButton item="命令/save"/>
+
+控制服务器将存档写入磁盘的方式，用于在服务器运行期间从外部复制存档作为备份。该命令只能在 BDS 中执行。
+
+<Tabs>
+
+<TabItem value="hold" label="hold" default>
+
+```text
+save hold
+```
+
+暂停服务器对存档文件的写入（玩家、统计、进度数据除外），以便从外部复制存档文件作为备份。
+
+</TabItem>
+
+<TabItem value="query" label="query">
+
+```text
+save query
+```
+
+返回每个存档文件的路径，以及其应被截断的字节量，以冒号分隔。
+
+</TabItem>
+
+<TabItem value="resume" label="resume">
+
+```text
+save resume
+```
+
+恢复服务器对存档文件的写入。
+
+</TabItem>
+
+</Tabs>
+
+---
+
+### `/changesetting`
+
+<Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+
+<WikiButton item="命令/changesetting" length="large"/>
+
+在服务器运行期间更改专用服务器的设置。该命令只能在 BDS 控制台执行。
+
+```text
+changesetting allow-cheats <允许作弊: Boolean>
+changesetting difficulty <难度: Difficulty>
+changesetting difficulty <难度: int>
+```
+
+将服务器是否允许作弊设置为`允许作弊`，或将其难度设置为`难度`。
+
+`难度`的可选值与`/difficulty`相同。
+
+该命令不会修改`server.properties`中的值。加入版本无明确记录。
+
+---
+
+### `/transfer`
+
+<Version type="game" add="1.20.30"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+
+<WikiButton item="命令/transfer"/>
+
+将玩家转移到另一个服务器。
+
+```text
+transfer <玩家ID: string> <服务器: string> [端口: int]
+```
+
+将`玩家ID`转移到主机名为`服务器`的服务器上。
+
+`玩家ID`可以是玩家的微软账号名，也可以是玩家加入或断开服务器时显示的 PlayFab ID。`端口`的取值范围为`0`到`65535`。
+
+能否转移成功取决于目标服务器是否接受转移登录。该命令只能在 BDS 中执行。
 
 ---
 
@@ -3382,7 +3601,7 @@ stop
 
 ---
 
-### `/allowlist`
+### `/allowlist`（或`/whitelist`）
 
 <Version type="game" add="1.18.10" tooltip="曾用名为/whitelist，最早于1.16.0加入。"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
@@ -3435,13 +3654,17 @@ allowlist reload
 
 </Tabs>
 
-### `/permission`
+---
 
-<Version type="game" add="26.40"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+### `/permission`（或`/ops`）
+
+<Version type="game" add="1.10.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/permission"/>
 
 枚举或重新加载权限列表，或设置玩家的权限等级。
+
+<Version type="game" add="26.40" inline/> 该命令的权限等级由`4`下调为`2`，且不再要求启用作弊。
 
 <Tabs>
 
@@ -3482,6 +3705,28 @@ permission reload
 </TabItem>
 
 </Tabs>
+
+---
+
+### `/serveridentity`
+
+<Version type="game" add="26.50"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+
+<WikiButton item="命令/serveridentity" length="large"/>
+
+保存、删除或查询专用服务器的标识符密钥文件。
+
+```text
+serveridentity save
+serveridentity delete
+serveridentity status
+```
+
+`save`保存密钥文件，`delete`删除密钥文件，`status`查询密钥文件是否存在。该命令只能在 BDS 中执行。
+
+密钥文件位于服务器目录的`keys/server_identity_key.pem`。
+
+---
 
 ### `/party`
 
@@ -3541,7 +3786,7 @@ permission reload
 
 [^lackOfDocs]: 缺少资料。
 
-## 参考资料
+## 参考文档
 
 - [中文 Minecraft Wiki](https://zh.minecraft.wiki/)
 - [Minecraft 命令更新日志 | 命令助手](https://github.com/XeroAlpha/Minecraft-Bedrock-Command-Log)

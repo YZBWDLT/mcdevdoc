@@ -11,13 +11,13 @@ import Version from "/src/components/highlight/version"
 
 > 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
-实体模型（Entity Geometry）定义实体的形状——由骨骼（Bone）与被骨骼驱动的立方体（Cube）构成。模型文件放在资源包的<FileType type="folder" name="models/entity"/>下，每个模型以模型标识符（如`geometry.armadillo`）登记。
+实体模型（Entity Geometry）定义实体的形状——由骨骼（Bone）与被骨骼驱动的立方体（Cube）构成。模型文件的位置见[文件架构](./description#文件架构)，每个模型以模型标识符（如`geometry.armadillo`）登记。
 
 模型标识符习惯以`geometry.`开头。模型只影响外观，不影响碰撞箱等行为；碰撞箱由[`minecraft:collision_box`](./components#minecraftcollision_box)决定。
 
 :::warning[注意]
 
-实体模型建议使用 [Blockbench](https://blockbench.net/) 等模型编辑器制作后导出，不建议手工编写 JSON。骨骼层级、立方体尺寸与 UV 坐标都是空间数值，手写极易出错，而错误在游戏中往往只表现为模型缺失或贴图错位，排查成本很高。
+实体模型建议使用 [Blockbench](https://blockbench.net/) 等模型编辑器制作后导出，不建议手工编写 JSON。骨骼层级、立方体尺寸与 UV 坐标都是空间数值，手写极易出错，而错误在游戏中往往只表现为模型缺失或贴图错位，排查成本较高。
 
 :::
 
@@ -97,7 +97,7 @@ import Version from "/src/components/highlight/version"
 
 ## 客户端实体中的引用
 
-模型文件写好后，还需在客户端实体的<DataType type="object" name="geometry"/>中登记，渲染控制器才能取用。登记时把模型标识符映射到一个短 ID：
+完成模型文件后，还需在客户端实体的<DataType type="object" name="geometry"/>中登记，渲染控制器才能取用。登记时把模型标识符映射到一个短 ID：
 
 ```json showLineNumbers
 "geometry": {
@@ -184,10 +184,10 @@ import Version from "/src/components/highlight/version"
 ## 提示
 
 - `texture_width`与`texture_height`必须与贴图实际的像素尺寸一致，否则 UV 会整体错位。
-- 超出`visible_bounds`的模型部分会被裁剪掉，模型较大时记得同步调大这两个值。
-- 立方体的`uv`在`1.12.0`格式下既可以写成`[u, v]`，也可以写成按面指定的对象；模型编辑器导出的文件多为后者，手写时用`[u, v]`更省事。
-- 按面写法中未列出的面不会被绘制，因此贴图分辨率有限时可以用这种方式省掉看不到的面。
-- 骨骼的`pivot`同时是旋转中心与子骨骼的坐标基准，位置偏了会让整段动画绕着错误的地方转。
+- 超出`visible_bounds`的模型部分会被裁剪掉，模型较大时应同步调大这两个值。
+- 立方体的`uv`在`1.12.0`格式下既可以写成`[u, v]`，也可以写成按面指定的对象；模型编辑器导出的文件多为后者，手写时使用`[u, v]`更简洁。
+- 按面写法中未列出的面不会被绘制，因此贴图分辨率有限时，可用这种方式省略不会被看到的面。
+- 骨骼的`pivot`同时是旋转中心与子骨骼的坐标基准，位置偏移会使整段动画绕错误的轴心旋转。
 
 :::note[编者注]
 

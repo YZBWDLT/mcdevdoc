@@ -15,11 +15,11 @@ import '/src/css/treeview.css';
 
 渲染控制器本身不含资源，只按短 ID 取用[客户端实体](./description#资源包配置)中已声明的模型、材质与贴图。模型与材质本身的写法分别见[实体模型](./model)与[实体材质](./material)。
 
-一个客户端实体可以挂多个渲染控制器，按`render_controllers`数组的顺序依次叠加渲染。各字段都可以填写 [Molang 表达式](./molang)，可用的查询见[与实体有关的 Molang 查询函数](./molang)。
+一个客户端实体可以挂多个渲染控制器，按`render_controllers`数组的顺序依次叠加渲染。各字段都可以填写 Molang 表达式，可用的查询见[与实体有关的 Molang 查询函数](./molang)。
 
 ## 渲染控制器文件格式
 
-渲染控制器文件放在资源包的<FileType type="folder" name="render_controllers"/>下，后缀为`.json`。
+渲染控制器文件的后缀为`.json`，位置见[文件架构](./description#文件架构)。
 
 <treeview>
 
@@ -41,15 +41,21 @@ import '/src/css/treeview.css';
                 - <DataType type="string"/>：一层贴图，可写`Texture.(短 ID)`、`Array.(数组名)[(索引)]`或 Molang 表达式。
             - <DataType type="array" name="part_visibility"/>：骨骼可见性。另见[部件可见性](#部件可见性)。
                 - <DataType type="object"/>：一条规则，键为骨骼名或通配，值为`boolean`或 Molang 表达式。
-            - <DataType type="object" name="color"/>：整体染色，由`r`、`g`、`b`、`a`四个分量构成，各分量可填 Molang 表达式。另见[颜色与贴图动画](#颜色与贴图动画)。
+            - <DataType type="object" name="color"/>：整体染色。另见[颜色与贴图动画](#颜色与贴图动画)。
+                - <DataType type="string" name="r"/>：红色分量，可填 Molang 表达式。
+                - <DataType type="string" name="g"/>：绿色分量，可填 Molang 表达式。
+                - <DataType type="string" name="b"/>：蓝色分量，可填 Molang 表达式。
+                - <DataType type="string" name="a"/>：不透明度分量，可填 Molang 表达式。
             - <DataType type="object" name="overlay_color"/>：叠加色，结构同上。常用于受伤闪光、充能一类效果。另见[颜色与贴图动画](#颜色与贴图动画)。
             - <DataType type="object" name="is_hurt_color"/>：受伤时叠加的颜色，结构同上。另见[颜色与贴图动画](#颜色与贴图动画)。
             - <DataType type="object" name="on_fire_color"/>：<Version add="1.10.0" inline/>[^1] 着火时叠加的颜色，结构同上。另见[颜色与贴图动画](#颜色与贴图动画)。
             - <DataType type="object" name="uv_anim"/>：随时间移动的贴图 UV。另见[颜色与贴图动画](#颜色与贴图动画)。
-                - <DataType type="array" name="offset"/>：UV 偏移，由 2 个 Molang 表达式构成，分别对应 U 与 V。
-                - <DataType type="array" name="scale"/>：UV 缩放，同样由 2 个 Molang 表达式构成。
+                - <DataType type="array" name="offset"/>：UV 偏移，固定 2 个元素。
+                    - <DataType type="string" name="0"/>：U 方向的偏移量，Molang 表达式。
+                    - <DataType type="string" name="1"/>：V 方向的偏移量，Molang 表达式。
+                - <DataType type="array" name="scale"/>：UV 缩放，写法同上。
             - <DataType type="boolean" name="ignore_lighting"/>：为`true`时忽略环境光照，始终以最大亮度渲染。
-            - <DataType type="boolean" name="filter_lighting"/>：<Version add="1.10.0" inline/>[^1] 为`true`时过滤环境光照，原版用于物品形态与投影物。
+            - <DataType type="boolean" name="filter_lighting"/>：<Version add="1.10.0" inline/>[^1] 为`true`时过滤环境光照。
             - <DataType type="float" name="light_color_multiplier"/>：环境光照的颜色乘数，可填 Molang 表达式。
             - <DataType type="boolean" name="rebuild_animation_matrices"/>：为`true`时重建动画矩阵。具体影响未见官方说明。
 
@@ -67,7 +73,7 @@ import '/src/css/treeview.css';
 | `Texture.`  | `textures`         | 贴图路径，从`textures/`开始且不带后缀 |
 | `Material.` | `materials`        | 材质名，如`entity_alphatest`          |
 
-短 ID 只是文件内部使用的名称，与资源本身的标识符无关，也不要求带命名空间。同一个名称可以在三类中各登记一次，互不冲突（原版几乎每个客户端实体都同时拥有`geometry.default`、`textures.default`与`materials.default`）。下面是一个最简的登记方式：
+短 ID 只是文件内部使用的名称，与资源本身的标识符无关，也不要求带命名空间。同一个名称可以在三类中各登记一次，互不冲突（原版几乎每个客户端实体都同时拥有`geometry.default`、`textures.default`与`materials.default`）。以下是最简的登记方式：
 
 ```json showLineNumbers title="客户端实体，节选"
 "materials": { "(材质短 ID)": "entity_alphatest" },
@@ -154,7 +160,7 @@ import '/src/css/treeview.css';
 
     :::warning[注意]
 
-    列表按顺序应用，**后面的规则会覆盖前面的**。因此`*`必须写在最前面作为默认值，写在后面会把前面所有具体规则一并覆盖掉。
+    列表按顺序应用，**后面的规则会覆盖前面的**。因此`*`必须写在最前面作为默认值，写在后面会覆盖前面所有具体规则。
 
     :::
 
@@ -201,7 +207,7 @@ import '/src/css/treeview.css';
     ]
     ```
 
-    花用的是独立模型`geometry.copper_golem.flower`，以及与本体不同的材质和贴图。这个模型为了对齐位置，保留了本体的`root`、`body`、`head`、`right_arm`等骨骼，真正新增的只有`flower`一根。若不先把其余骨骼关掉，它们会被这个控制器再画一遍，与本体控制器叠加后出现重复渲染。因此先用`{"*": "false"}`关闭全部，再单独打开花：
+    花用的是独立模型`geometry.copper_golem.flower`，以及与本体不同的材质和贴图。这个模型为了对齐位置，保留了本体的`root`、`body`、`head`、`right_arm`等骨骼，真正新增的只有`flower`一根。若不先隐藏其余骨骼，它们会被该控制器再次绘制，与本体控制器叠加后出现重复渲染。因此先用`{"*": "false"}`关闭全部，再单独打开花：
 
     ```json showLineNumbers title="copper_golem.render_controllers.json"
     "part_visibility": [
@@ -251,7 +257,7 @@ import '/src/css/treeview.css';
 
 1. 苦力怕（<FileType type="file" name="creeper.render_controllers.json"/>）在引信闪烁时叠一层白，其余时间保持原色。三元表达式成立时取`this`，表示该分量沿用原本的颜色值；不成立时`r`、`g`、`b`取`1.0`、`a`取`0.5`，叠上一层半透明白光。
 
-    若想关掉某种状态的染色，把`a`设为`0.0`即可——披风（<FileType type="file" name="cape.render_controllers.json"/>）与火球（<FileType type="file" name="fireball.render_controllers.json"/>）就是这么做的。
+    若要关闭某种状态的染色，把`a`设为`0.0`即可，披风（<FileType type="file" name="cape.render_controllers.json"/>）与火球（<FileType type="file" name="fireball.render_controllers.json"/>）即采用这一写法。
 
     ```json showLineNumbers title="creeper.render_controllers.json"
     "overlay_color": {
@@ -274,16 +280,6 @@ import '/src/css/treeview.css';
     }
     ```
 
-## 光照与动画矩阵
-
-- `ignore_lighting`：忽略环境光照，始终以最大亮度渲染。悦灵、恼鬼、监守者与充能苦力怕外壳都用它，避免实体在暗处发黑。
-- `light_color_multiplier`：环境光照的颜色乘数。充能苦力怕外壳取`0.5`压暗，旋风人的风场取`1.8`提亮，风弹取`1.6`。
-- `filter_lighting`：为`true`时过滤环境光照，原版用在箭、蛋、经验瓶、投掷药水、烟花火箭等 9 个渲染控制器上，都是物品形态与投影物。
-
-> `ignore_lighting`与`filter_lighting`名字相近，但原版实例中的分工明确：前者让实体自身不被环境光压暗，后者用于物品形态与投影物。然而，两者的具体差别，官方文档与 Bedrock Wiki 都没有说明。
-
-`rebuild_animation_matrices`为`true`时重建动画矩阵，原版用在玩家、村民一家、沼骸、流髑与披风上，实际作用同样未见官方说明。
-
 ## 在客户端实体中引用
 
 `render_controllers`是一个数组，可以直接写控制器 ID，也可以写带 Molang 条件的对象：
@@ -295,7 +291,7 @@ import '/src/css/treeview.css';
 ]
 ```
 
-字符串无条件挂载，对象则以键为控制器 ID、值为 Molang 条件——条件成立时才挂载。苦力怕（<FileType type="file" name="creeper.entity.json"/>）本体始终渲染，外壳只在[`query.is_powered`](./molang#身份与状态)成立时叠加，靠的就是数组中的这一项。
+字符串无条件挂载，对象则以键为控制器 ID、值为 Molang 条件——条件成立时才挂载。苦力怕（<FileType type="file" name="creeper.entity.json"/>）本体始终渲染，外壳只在[`query.is_powered`](./molang#身份与状态)成立时叠加，即由数组中的这一项实现。
 
 从原版用例看，数组中靠后的控制器渲染在上层，因此外壳能覆盖在本体之上。若把两者拆开各自引用，也可以按需分别开关。
 
@@ -321,7 +317,7 @@ import '/src/css/treeview.css';
 }
 ```
 
-`query.is_saddled`返回布尔值，未上鞍时取`0`用`Texture.default`，上鞍后取`1`用`Texture.saddled`，省去了写条件表达式。
+`query.is_saddled`返回布尔值，未上鞍时取`0`用`Texture.default`，上鞍后取`1`用`Texture.saddled`，无需再写条件表达式。
 
 绵羊（<FileType type="file" name="sheep.v2.render_controllers.json"/>）：幼年换模型，同时按是否被剪毛换贴图。
 
@@ -364,7 +360,7 @@ import '/src/css/treeview.css';
 ]
 ```
 
-三层贴图按书写顺序从下往上叠加，上层贴图的透明像素会露出下层。这样只改花纹就不用重画整套底色。
+三层贴图按书写顺序从下往上叠加，上层贴图的透明像素会露出下层。因此更换花纹时无需重绘整套底色。
 
 自定义实体：先在客户端实体中声明三组短 ID，再由渲染控制器引用。
 

@@ -17,7 +17,7 @@ import Usable from "/src/components/highlight/usable"
 
 :::warning[注意]
 
-部分原版材质的行为尚不明确，甚至有导致崩溃的风险（例如`entity_alphablend_nocolorentity_static`）。更换材质时建议逐个测试，不要直接套用到成批的实体上。
+部分原版材质的行为尚不明确，甚至有导致崩溃的风险（例如`entity_alphablend_nocolorentity_static`）。更换材质时应逐个测试，避免批量套用。
 
 :::
 
@@ -85,11 +85,11 @@ import Usable from "/src/components/highlight/usable"
 
 ## 自定义材质
 
-材质文件放在资源包的<FileType type="folder" name="materials"/>下，后缀为`.material`，一个文件可定义任意多个材质。实体与粒子均可引用自定义材质，其余元素的材质为硬编码。
+材质文件的后缀为`.material`，位置见[文件架构](./description#文件架构)。一个文件可定义任意多个材质。实体与粒子均可引用自定义材质，其余元素的材质为硬编码。
 
 :::danger[警告]
 
-**自定义材质风险较高**。材质按名称全局生效：定义与原版同名的材质，会一并改掉所有使用该材质的实体。字段写错时通常不会有明确提示，多数情况只是内容日志中多出一条报错，或者模型不再显示；错误的材质配置也可能导致游戏崩溃。改动前应备份原有文件，确认可用后再实装到作品中。
+**自定义材质风险较高**。材质按名称全局生效：定义与原版同名的材质，会一并改掉所有使用该材质的实体。字段写错时通常不会有明确提示，多数情况下仅在内容日志中留下一条报错，或者模型不再显示；错误的材质配置也可能导致游戏崩溃。改动前应备份原有文件，确认可用后再实装到作品中。
 
 :::
 
@@ -105,7 +105,7 @@ import Usable from "/src/components/highlight/usable"
 
 </treeview>
 
-材质文件不会自动加载，必须登记在上面三个清单之一，否则整个文件都会被忽略。`common.json`不分画质，进游戏就加载；`fancy.json`与`sad.json`随「设置 → 视频 → 精美图像」开关二选一，开销较大的效果可放入`fancy.json`，低配版本放入`sad.json`。
+材质文件不会自动加载，必须登记在以上三个清单之一，否则整个文件都会被忽略。`common.json`不分画质，进入游戏后即加载；`fancy.json`与`sad.json`随「设置 → 视频 → 精美图像」开关二选一，开销较大的效果可放入`fancy.json`，低配版本放入`sad.json`。
 
 ```json showLineNumbers
 [{ "path": "materials/entity.material" }, { "path": "materials/example.material", "+defines": ["FANCY"] }]
@@ -270,7 +270,7 @@ import Usable from "/src/components/highlight/usable"
 | `OneMinusDestColor` | `(1, 1, 1)`减去缓冲颜色 |
 | `OneMinusSrcAlpha`  | `1`减去当前透明度       |
 
-渲染时按下面的公式混合：
+渲染时按以下公式混合：
 
 ```text
 输出颜色 = 当前片元颜色 × blendSrc + 颜色缓冲颜色 × blendDst
@@ -340,15 +340,15 @@ MSAA（多重采样抗锯齿）在每个像素上取多个采样点计算覆盖�
 
 ### 继承与合并
 
-写成`(新材质名):(基材质名)`时，新材质继承基材质的全部字段，只需写出改动部分。原版`entity.material`里仍然大量使用这种写法（如`villager_v2_masked:entity_multitexture_masked`）。
+写成`(新材质名):(基材质名)`时，新材质继承基材质的全部字段，只需写出改动部分。原版`entity.material`中仍大量使用这种写法（如`villager_v2_masked:entity_multitexture_masked`）。
 
 :::warning[注意]
 
-**格式版本 1.16.100 起，资源包中新增的材质继承会触发内容日志错误**。替代方案是把冒号后的基材质名留空，写成`(材质名):`——不继承任何材质，自己补齐着色器路径与`vertexFields`，本文示例都按这种写法。中国版文档中的示例仍在用继承写法，两版在此处的行为可能不同，国际版请以空基名为准并自行核对游戏日志。另见 [Materials | Bedrock Wiki](https://wiki.bedrock.dev/visuals/materials#_1-16-100-notes)。
+**格式版本 1.16.100 起，资源包中新增的材质继承会触发内容日志错误**。替代方案是把冒号后的基材质名留空，写成`(材质名):`——不继承任何材质，需自行补齐着色器路径与`vertexFields`，本文示例都按这种写法。中国版文档中的示例仍在用继承写法，两版在此处的行为可能不同，国际版请以空基名为准并自行核对游戏日志。另见 [Materials | Bedrock Wiki](https://wiki.bedrock.dev/visuals/materials#_1-16-100-notes)。
 
 :::
 
-多个文件定义同名材质时，后加载的覆盖先加载的。`defines`、`states`、`samplerStates`三者例外，还支持用`+`添加、`-`删除，且顺序固定为「先全部覆盖、再全部添加、最后全部删除」。
+多个文件定义同名材质时，后加载的定义覆盖先加载的定义。`defines`、`states`、`samplerStates`三者例外，还支持用`+`添加、`-`删除，且顺序固定为「先全部覆盖、再全部添加、最后全部删除」。
 
 ### 材质文件示例
 
@@ -393,7 +393,7 @@ MSAA（多重采样抗锯齿）在每个像素上取多个采样点计算覆盖�
 
 :::note[编者注]
 
-`+defines`能否起作用，取决于着色器是否按该宏编译过。Render Dragon 的着色器是预编译的（打包在`material.bin`里），资源包无法触发重新编译，基岩版开发 Wiki 对此的表述是「Render Dragon 下不可自定义宏定义」。该示例主要用于记录字段写法：自定义宏必然无效，引擎已识别的宏（如`USE_ONLY_EMISSIVE`）是否生效需实测。
+`+defines`能否起作用，取决于着色器是否按该宏编译过。Render Dragon 的着色器是预编译的（打包在`material.bin`里），资源包无法触发重新编译，基岩版开发 Wiki 对此的表述是「Render Dragon 下不可自定义宏定义」。该示例主要用于记录字段写法：自定义宏必然无效，引擎已识别的宏（如`USE_ONLY_EMISSIVE`）是否生效需经实测确认。
 
 :::
 

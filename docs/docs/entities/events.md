@@ -19,19 +19,28 @@ import Version from "/src/components/highlight/version"
 
 实体事件可以指定到<DataType type="object" name="events"/>中。
 
-本文档收录所有已开放或即将开放的实体事件信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
+本文收录所有已开放或即将开放的实体事件信息。可使用<kbd>Ctrl</kbd>+<kbd>F</kbd>查找所需条目。
 
-**每个组件条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。"/>。
+**每个条目下方的高亮标签均含注释，鼠标悬停或点击即可查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。"/>。
 
 :::note[备注]
 
-实体事件随数据驱动实体一同在 0.16 的附加包中公布，早期只有`add`、`remove`、`randomize`、`sequence`等少数响应，如今已扩展到二十余种。早期响应的可用版本已难以考证，本文档以 [bedrock.dev 的 1.2.0](https://bedrock.dev/docs/1.2.0.0/1.2.9.1/Addons) 版本为可用格式版本的最早版本，但这些响应可能在更早就可以应用。
+实体事件随数据驱动实体一同在 0.16 的附加包中公布，早期只有`add`、`remove`、`randomize`、`sequence`等少数响应，如今已扩展到二十余种。早期响应的可用版本已难以考证，本文以 [bedrock.dev 的 1.2.0](https://bedrock.dev/docs/1.2.0.0/1.2.9.1/Addons) 版本为可用格式版本的最早版本，但这些响应可能在更早就可以应用。
 
 :::
 
 ## 事件格式
 
 事件定义在<DataType type="object" name="events"/>下，键为事件 ID，值为一个或多个「事件响应」（Event Response）。同一个事件中可以同时写多个响应，它们会一起生效。
+
+<treeview>
+
+- <DataType type="object" name="events"/>：实体事件列表。
+    - <DataType type="object" name="(事件 ID)"/>：一个事件，触发后执行其中的响应。
+        - <DataType type="object" name="(事件响应)"/>：一个事件响应，可同时写多个。可用的响应见[事件响应](#事件响应)。
+        - <DataType type="object" name="filters"/>：事件级过滤器，条件不通过时整个事件都不执行。另见[`filters`](#filters)。
+
+</treeview>
 
 ```json showLineNumbers
 "events": {
@@ -88,7 +97,7 @@ import Version from "/src/components/highlight/version"
 
 ## 事件响应
 
-事件响应（Event Response）是构成实体事件的基本单位。下面的条目按「结构 → 组件组 → 事件与属性 → 表现 → 状态」排列，同一事件中可以任意组合使用。
+事件响应（Event Response）是构成实体事件的基本单位。以下条目按「结构 → 组件组 → 事件与属性 → 表现 → 状态」排列，同一事件中可以任意组合使用。
 
 ### `sequence`
 
@@ -98,7 +107,7 @@ import Version from "/src/components/highlight/version"
 
 :::info[提示]
 
-事件的效果在接收到事件的瞬间就已确定，但要等到实体在服务端 tick 时才会应用。因此在`sequence`中，靠后的过滤器看不到前面刚添加的组件组。
+事件的效果在接收到事件的瞬间就已确定，但要等到实体在服务端 tick 时才会应用。因此在`sequence`中，靠后的过滤器无法读取前面刚添加的组件组。
 
 :::
 
@@ -542,7 +551,7 @@ import Version from "/src/components/highlight/version"
 
 </TabItem><TabItem value="示例" label="示例">
 
-犰狳（<FileType type="file" name="armadillo.json"/>）：缩壳时以自身为源头发出一记实体动作振动。
+犰狳（<FileType type="file" name="armadillo.json"/>）：缩壳时以自身为源头产生一次实体动作振动。
 
 ```json showLineNumbers
 "emit_vibration": {
@@ -705,13 +714,13 @@ import Version from "/src/components/highlight/version"
 
 <Usable type="all"/> <Version add="1.21.110"/>
 
-允许实体丢弃物品。类似于铜傀儡、硫方怪。
+让实体丢弃指定槽位中的物品。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="drop_item"/>：根对象。
-  - <DataType type="string" name="slot" isRequired/>：丢弃何槽位的物品。可选值为`"slot.armor.head"`、`"slot.armor.chest"`、`"slot.armor.legs"`、`"slot.armor.feet"`、`"slot.armor.body"`、`"slot.weapon.mainhand"`和`"slot.weapon.offhand"`。
+  - <DataType type="string" name="slot" isRequired/>：要丢弃物品的槽位。可选值为`"slot.armor.head"`、`"slot.armor.chest"`、`"slot.armor.legs"`、`"slot.armor.feet"`、`"slot.armor.body"`、`"slot.weapon.mainhand"`和`"slot.weapon.offhand"`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">

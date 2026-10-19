@@ -17,7 +17,7 @@ import Version from "/src/components/highlight/version"
 
 同一类型实体的每个实例都拥有独立的属性值，且该值会随存档保存。属性还可以选择同步到客户端，供资源包的动画、动画控制器与渲染控制器读取。
 
-用属性来表达状态，可以避免为了一个无关的状态去借用`minecraft:is_baby`这类组件——既不会引入组件的副作用，数据结构也更清晰。
+用属性表达状态，可以避免为无关的状态借用`minecraft:is_baby`这类组件，既不引入组件的副作用，数据结构也更清晰。
 
 ## 实体定义文件格式
 
@@ -41,7 +41,7 @@ import Version from "/src/components/highlight/version"
 
 </treeview>
 
-**实例 1**：嘎枝（<FileType type="file" name="creaking.json"/>）：一个带范围的整数属性与一个枚举属性。
+**示例 1**：嘎枝（<FileType type="file" name="creaking.json"/>）：一个带范围的整数属性与一个枚举属性。
 
 ```json showLineNumbers
 "properties": {
@@ -60,7 +60,7 @@ import Version from "/src/components/highlight/version"
 }
 ```
 
-**实例 2**：蜜蜂（<FileType type="file" name="bee.json"/>）：`default`运用表达式的一个原版实例，若旧存档中的蜜蜂带有`has_nectar`组件组，则属性初始化为`true`。
+**示例 2**：蜜蜂（<FileType type="file" name="bee.json"/>）：`default`使用表达式的一个原版示例，若旧存档中的蜜蜂带有`has_nectar`组件组，则属性初始化为`true`。
 
 ```json showLineNumbers
 "properties": {
@@ -72,7 +72,7 @@ import Version from "/src/components/highlight/version"
 }
 ```
 
-**实例 3**：犰狳（<FileType type="file" name="armadillo.json"/>）：`minecraft:armadillo_state`开启了同步。
+**示例 3**：犰狳（<FileType type="file" name="armadillo.json"/>）：枚举属性开启`client_sync`后，资源包可依据其值选择动画。
 
 ```json showLineNumbers
 "minecraft:armadillo_state": {

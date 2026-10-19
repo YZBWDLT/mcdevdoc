@@ -2522,7 +2522,7 @@ class EntityContainerOpenedAfterEvent {
 
 ## 实体更新事件
 
-实体更新是在实体定义中定义了实体版本所导致的。另见[实体版本](/docs/docs/entities/entity_version)。
+实体更新是在实体定义中定义了实体版本所导致的。另见[实体版本](/docs/docs/entities/description#实体版本)。
 
 ### EntityUpgradeAfterEventSignal 类
 
