@@ -11,6 +11,16 @@ import RestrictedMode from "/src/components/highlight/restrictedMode"
 
 本文主要记录定位栏相关接口。
 
+:::warning[警告]
+
+**定位栏有一个严重缺陷**。官方于 [26.60.29](https://zh.minecraft.wiki/w/%E5%9F%BA%E5%B2%A9%E7%89%8826.60.29#%E6%8A%80%E6%9C%AF%E6%80%A7) 修复了一个漏洞：
+
+- 显示玩家范围的 [TextPrimitive](/docs/docs/scripts/sapi/server/world/primitive_shapes#textprimitive-类) 或 [CustomForm](/docs/docs/scripts/sapi/server-ui/data_driven#customform-类) 不再会在下一玩家加入时损坏定位栏。
+
+这代表着，在 26.4X - 26.5X 中，使用了上述两个特性之一的多人游戏模组或地图，都可能会因为此问题导致**定位栏无法对重新进入的玩家生效**，除非使用 [/reload](/docs/docs/commands/all_commands#reload) 解决。这可能会对依赖该功能的服务器造成严重影响，因此请谨慎考虑使用相关功能。
+
+:::
+
 ---
 
 ## 定位栏
