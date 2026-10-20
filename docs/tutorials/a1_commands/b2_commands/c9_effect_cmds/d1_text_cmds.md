@@ -22,7 +22,7 @@ sidebar_position: 1
 /say <消息: message>
 ```
 
-### *私聊玩家：`/tell`（`/w`、`/msg`）
+### \*私聊玩家：`/tell`（`/w`、`/msg`）
 
 `/tell`是一条能够对特定玩家展示聊天栏消息的命令。它还有两个同义命令（也是同义命令最多的命令），`/w`和`/msg`。语法如下：
 
@@ -30,7 +30,7 @@ sidebar_position: 1
 /tell <玩家: target> <消息: message>
 ```
 
-对`玩家`展示`消息`。在`/tellraw`在 1.9 版本加入到游戏之前，这条命令也是常用的对玩家私发聊天栏消息的命令，然而现在在实际工程中却已经几乎不用了。但特别的是，因为这条命令在服务器中普通玩家也能使用，因此它反而是无作弊服务器中玩家们常用的命令之一。关于权限等级的问题，我们在 2.10 会详细谈谈。
+对`玩家`展示`消息`。在`/tellraw`于 1.9 版本加入到游戏之前，这条命令也是常用的对玩家私发聊天栏消息的命令，然而现在在实际工程中却已经几乎不用了。但特别的是，因为这条命令在服务器中普通玩家也能使用，因此它反而是无作弊服务器中玩家们常用的命令之一。关于权限等级的问题，我们在 2.10 会详细谈谈。
 
 执行命令`/tell @a @a，你们好，这是对玩家私聊一条消息的效果！`的效果如下图所示。
 
@@ -38,15 +38,15 @@ sidebar_position: 1
 
 :::note[扩展：关于该命令的返回]
 
-如果你在无作弊服务器中想要通过这条命令私聊玩家，请务必提醒服主关闭`sendCommandFeedBack`游戏规则。否则，你在私聊的同时，命令的返回值也会一并对其他玩家显示，其他玩家也能看到你的悄悄话，颇有一种掩耳盗铃的意味。
+如果你在无作弊服务器中想要通过这条命令私聊玩家，请务必提醒服主关闭`sendCommandFeedback`游戏规则。否则，你在私聊的同时，命令的返回值也会一并对其他玩家显示，其他玩家也能看到你的悄悄话，颇有一种掩耳盗铃的意味。
 
 :::
 
-### *聊天栏宣告状态：`/me`
+### \*聊天栏宣告状态：`/me`
 
 `/me`对所有玩家宣告执行者的状态。语法如下：
 
-```text title="/tell的语法" showLineNumbers
+```text title="/me的语法" showLineNumbers
 /me <消息: message>
 ```
 
@@ -91,7 +91,7 @@ sidebar_position: 1
 
 实际播放标题时，当然不会使用副标题的这种队列性，因为它很可能会造成标题播放的混乱。通常我们都是在本次主标题播放的瞬间立刻播放副标题，或者至少在主标题还存在的时候播放副标题。
 
-### *清空标题
+### \*清空标题
 
 你可以在标题正在播放的时候使用`/title <玩家> clear`来清空标题。这种用法还是比较少的，通常直接通过时间调控来解决。
 
@@ -150,7 +150,7 @@ sidebar_position: 1
 **普通文本组件**的格式是
 
 ```json title="text组件"
-{"text":"(文本)"}
+{ "text": "(文本)" }
 ```
 
 我们来做两个实验，体验一下普通文本组件的效果。
@@ -201,8 +201,8 @@ sidebar_position: 1
 转义在程序设计中具有非常重要的意义，有多种转义搭配可供使用。在基岩版的命令中，主要支持这么几种转义：
 
 - `\n`，代表换行符。在命令中要输出换行的消息、标题，都可以通过`\n`来换行。
-- `\"`或`\'`，代表在字符串中打印出引号。
-- `\\`，代表在字符串中打印出反斜杠`\\`。反斜杠接上任意字符都会导致这个字符的转义，然而大部分情况下，这些字符并不会有任何其他含义，最后反而会因为不支持这样的转义符而报错。所以，为了打印出反斜杠，需要用转义符把转义符转义掉。听起来可能会拗口一些？:)
+- `\"`，代表在字符串中打印出双引号。
+- `\\`，代表在字符串中打印出反斜杠`\`。反斜杠接上任意字符都会导致这个字符的转义，然而大部分情况下，这些字符并不会有任何其他含义，最后反而会因为不支持这样的转义符而报错。所以，为了打印出反斜杠，需要用转义符把转义符转义掉。听起来可能会拗口一些？:)
 
 ### 格式化代码
 
@@ -220,7 +220,7 @@ sidebar_position: 1
 
 这东西可不是命令！到处都能用，然而我们还是要来做一个实验\~
 
-找一个告示牌，然后按下面的格式打字并使其发光（*当然基岩版没有`/back`这种命令哈*）：
+找一个告示牌，然后按下面的格式打字并使其发光（_当然基岩版没有`/back`这种命令哈_）：
 
 ![format_code_3](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/format_code_3.png)
 
@@ -248,7 +248,7 @@ title @a subtitle 这是一段只有副标题的内容！
 好，看完了转义符和格式化代码，现在我们要继续回归正题了。`/say`里面的`message`类型的参数是允许输出实体名的，比如`/say @a`会打印所有玩家的名字。我们在文本组件中，**用实体名组件`selector`实现打印实体名字的功能**。
 
 ```json title="selector组件"
-{"selector":"<目标: target>"}
+{ "selector": "<目标: target>" }
 ```
 
 我们来试一试这个组件吧！
@@ -283,7 +283,7 @@ title @a subtitle 这是一段只有副标题的内容！
 和传统的`message`类型不同的是，文本组件还能够**输出分数，也就是分数组件`score`**。只是它的格式略微复杂一些：
 
 ```json title="score组件"
-{"score":{"objective":"<记分项: string>","name":"<追踪对象: target>"}}
+{ "score": { "objective": "<记分项: string>", "name": "<追踪对象: target>" } }
 ```
 
 也就是说，`score`组件需要同时接收两个参数`objective`和`name`才能完整地打印分数，正如我们在 2.4 中讲过的那样。
@@ -370,9 +370,9 @@ titleraw @a actionbar {"rawtext":[{"text":"§l§b 关卡 "},{"score":{"objective
 上面我们提到了模板字符串，那么插入值该如何表示呢？在基岩版，我们有两种表示方法：
 
 - `%%s`：将`with`中的值或组件按顺序依次代入。
-  - 例如`with`下有 3 个值`["1","2","3"]`，那么代入到`"%%s, %%s, %%s"`时就变为`"1,2,3"`。
+    - 例如`with`下有 3 个值`["1","2","3"]`，那么代入到`"%%s, %%s, %%s"`时就变为`"1,2,3"`。
 - `%%(整数)`：将`with`中的值或组件按索引代入。注意：第一个元素的索引是`1`。
-  - 例如`with`下有 3 个值`["1","2","3"]`，那么代入到`"%%1，%%3，%%2"`时就变为`"1,3,2"`。
+    - 例如`with`下有 3 个值`["1","2","3"]`，那么代入到`"%%1，%%3，%%2"`时就变为`"1,3,2"`。
 
 这么说还是太抽象了，我们来做几个小实验来体验一下吧！
 
@@ -385,7 +385,7 @@ titleraw @a actionbar {"rawtext":[{"text":"§l§b 关卡 "},{"score":{"objective
 3. `/tellraw @a {"rawtext":[{"translate":"§e%%s 加入了游戏","with":["@s"]}]}`
 4. `/tellraw @a {"rawtext":[{"translate":"§e%%s 加入了游戏","with":{"rawtext":[{"selector":"@s"}]}}]}`
 
-这 3 条命令，是为了让你体会 3 种不同的`translate`的文本组件的用法。它们的执行结果如下：
+这 4 条命令，是为了让你体会 3 种不同的`translate`的文本组件的用法。它们的执行结果如下：
 
 ![tellraw_8](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/tellraw_8.png)
 
@@ -452,66 +452,66 @@ titleraw @a actionbar {"rawtext":[{"translate":"§l§b 关卡 %%s-%%s | 怪物�
 本节我们主要讲了标题和文本组件的用法。对于`/tell`或`/me`这种小众命令，现如今已经不在我们的讨论范围内。使用`/tellraw`可以规定任意样式的文本信息，是远强于这些小众命令的。实际工程中，也是`/tellraw`这种命令要用的更多。
 
 - **标题（Title）**
-  - 主标题：在屏幕正中间显示的大文字
-  - 副标题：在主标题下方显示的问题，必须依托主标题存在
-  - 快捷栏标题：在快捷栏上方的小文字，淡入淡出停留时间不受控制
+    - 主标题：在屏幕正中间显示的大文字
+    - 副标题：在主标题下方显示的问题，必须依托主标题存在
+    - 快捷栏标题：在快捷栏上方的小文字，淡入淡出停留时间不受控制
 - **转义（Escape）**
-  - 在字符串内用来表达特殊字符时，需要使用转义以防程序误判
-  - 常用的转义符有：
-    - `\"`或`\'`：在字符串内的引号，防止被解析为字符串的结束
-    - `\n`：换行符
-    - `\\`：在字符串内的反斜杠，防止被解析为转义符
+    - 在字符串内用来表达特殊字符时，需要使用转义以防程序误判
+    - 常用的转义符有：
+        - `\"`或`\'`：在字符串内的引号，防止被解析为字符串的结束
+        - `\n`：换行符
+        - `\\`：在字符串内的反斜杠，防止被解析为转义符
 - **格式化代码（Formatting Code）**
-  - 在 Minecraft 中用来表达文本特殊格式的代码
-  - 格式是`§(0-9,a-z)`。
-  - 常用的格式化代码包括：`§l`粗体、`§o`斜体、`§r`复原颜色和正体、`§2`绿色、`§3`青色、`§6`橙色、`§7`浅灰色、`§9`蓝色、`§a`浅绿色、`§b`天蓝色、`§c`亮红色、`§e`黄色、`§f`白色、等
+    - 在 Minecraft 中用来表达文本特殊格式的代码
+    - 格式是`§(0-9,a-z)`。
+    - 常用的格式化代码包括：`§l`粗体、`§o`斜体、`§r`复原颜色和正体、`§2`绿色、`§3`青色、`§6`橙色、`§7`浅灰色、`§9`蓝色、`§a`浅绿色、`§b`天蓝色、`§c`亮红色、`§e`黄色、`§f`白色、等
 - **文本组件（Text Component）**（或**原始 JSON 文本，Raw JSON Text**）
-  - 一种用来表达特定文本的组件，使用 JSON 格式
-  - 使用文本组件能够打印特定文本、实体名称、分值、或者使用格式化的文本
-  - 一切的文本组件都要以`rawtext`格式开头
-    - 其中，`...`为不同组件的集合`组件1,组件2,...`
+    - 一种用来表达特定文本的组件，使用 JSON 格式
+    - 使用文本组件能够打印特定文本、实体名称、分值、或者使用格式化的文本
+    - 一切的文本组件都要以`rawtext`格式开头
+        - 其中，`...`为不同组件的集合`组件1,组件2,...`
 
-  ```json title="rawtext文本组件"
-  {"rawtext":[...]}
-  ```
+    ```json title="rawtext文本组件"
+    {"rawtext":[...]}
+    ```
 
-  - 普通文本组件为`text`，用于原样输出文本
+    - 普通文本组件为`text`，用于原样输出文本
 
-  ```json title="text组件"
-  {"text":"(文本)"}
-  ```
+    ```json title="text组件"
+    { "text": "(文本)" }
+    ```
 
-  - 选择器组件为`selector`，用于输出符合特定条件实体的名字
+    - 选择器组件为`selector`，用于输出符合特定条件实体的名字
 
-  ```json title="selector组件"
-  {"selector":"(选择器)"}
-  ```
+    ```json title="selector组件"
+    { "selector": "(选择器)" }
+    ```
 
-  - 分数组件为`score`，用于输出特定的分数
+    - 分数组件为`score`，用于输出特定的分数
 
-  ```json title="score组件"
-  {"score":{"objective":"(记分项)","name":"(玩家)"}}
-  ```
+    ```json title="score组件"
+    { "score": { "objective": "(记分项)", "name": "(玩家)" } }
+    ```
 
-  - 翻译组件为`translate`，用于输出语言文件的键名或格式化的文本
-    - 其中，`"with":["(值1)","(值2)",...]`的用法不会解析其中特殊值（例如`@s`等选择器）的含义，可将其视为`"with":{"rawtext":[{"text":"(值1)"},{"text":"(值2)"},...]}`
-    - 文本中会查找`%%s`或`%%(索引)`格式，并将`with`里面在特定索引下的值代入
-    - `%%`代表一个`%`，例如要输出`100%`，应写为`100%%`
+    - 翻译组件为`translate`，用于输出语言文件的键名或格式化的文本
+        - 其中，`"with":["(值1)","(值2)",...]`的用法不会解析其中特殊值（例如`@s`等选择器）的含义，可将其视为`"with":{"rawtext":[{"text":"(值1)"},{"text":"(值2)"},...]}`
+        - 文本中会查找`%%s`或`%%(索引)`格式，并将`with`里面在特定索引下的值代入
+        - `%%`代表一个`%`，例如要输出`100%`，应写为`100%%`
 
-  ```json title="translate组件"
-  {"translate":"(键名或文本)"}
-  {"translate":"(键名或文本)","with":["(值1)","(值2)",...]}
-  {"translate":"(键名或文本)","with":{"rawtext":[...]}}
-  ```
+    ```json title="translate组件"
+    {"translate":"(键名或文本)"}
+    {"translate":"(键名或文本)","with":["(值1)","(值2)",...]}
+    {"translate":"(键名或文本)","with":{"rawtext":[...]}}
+    ```
 
 - **新命令部分**
 
-  | 命令 | 含义 | 备注 |
-  | --- | --- | --- |
-  | `/title <玩家: target> <title\|subtitle\|actionbar> <标题信息: message>` | 对`玩家`在对应位置显示`标题信息` | 对应位置如下：`title`：主标题、`subtitle`：副标题、`actionbar`：快捷栏标题 |
-  | `/title <玩家: target> times <淡入: int> <停留: int> <淡出: int>` | 将标题播放时间改为淡入`淡入`游戏刻、停留`停留`游戏刻、淡出`淡出`游戏刻 | 默认值为`10 70 20`，对快捷栏标题无效，和`/titleraw通用` |
-  | `/tellraw <玩家: target> <原始JSON文本: json>` | 对`玩家`在聊天栏输出`原始JSON文本` | |
-  | `/titleraw <玩家: target> <title\|subtitle\|actionbar> <原始JSON文本: json>` | 和`title`同义，改为显示`原始JSON文本` | |
+    | 命令                                                                         | 含义                                                                   | 备注                                                                       |
+    | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+    | `/title <玩家: target> <title\|subtitle\|actionbar> <标题信息: message>`     | 对`玩家`在对应位置显示`标题信息`                                       | 对应位置如下：`title`：主标题、`subtitle`：副标题、`actionbar`：快捷栏标题 |
+    | `/title <玩家: target> times <淡入: int> <停留: int> <淡出: int>`            | 将标题播放时间改为淡入`淡入`游戏刻、停留`停留`游戏刻、淡出`淡出`游戏刻 | 默认值为`10 70 20`，对快捷栏标题无效，和`/titleraw`通用                    |
+    | `/tellraw <玩家: target> <原始JSON文本: json>`                               | 对`玩家`在聊天栏输出`原始JSON文本`                                     |                                                                            |
+    | `/titleraw <玩家: target> <title\|subtitle\|actionbar> <原始JSON文本: json>` | 和`title`同义，改为显示`原始JSON文本`                                  |                                                                            |
 
 ## 练习
 
@@ -520,98 +520,98 @@ titleraw @a actionbar {"rawtext":[{"translate":"§l§b 关卡 %%s-%%s | 怪物�
 1. 回顾练习 2.3-1 的第 8 题：检测所有下界的生物，并让每个下界的生物执行`/say 你们好，主世界的生物们！`命令。  
    现在我们要修改题干描述为：检测所有下界的生物，并让每个下界的生物对主世界的玩家私聊“你们好，主世界的生物们！”。允许使用多条命令，试用`/tellraw`实现之。下面是练习 2.3-1 第 8 题的参考答案：
 
-   ```mcfunction title="练习 2.3-1 第 8 题的参考答案" showLineNumbers
-   execute in nether as @e[rm=0] run say 你们好，主世界的生物们！
-   ```
+    ```mcfunction title="练习 2.3-1 第 8 题的参考答案" showLineNumbers
+    execute in nether as @e[rm=0] run say 你们好，主世界的生物们！
+    ```
 
 2. 回顾练习 2.4-4 的第 4 题：在起床战争中，假定红队的床在(30,65,30)上，当床被破坏后则标记为红队的床被破坏。假定`data.redBedState`为标记红队床状态的变量，记`0`=被破坏，`1`=未被破坏，并且其初始值为`1`。写 2 条命令，当红队的床被破坏后公告全体玩家“§c红队的床已被破坏！”并标记红队的床为被破坏状态。  
    当时，我们使用的是`/say`命令公告。现在我们要更进一步，假设`team.@s`（玩家在`team`记分板上的分数）为 `1` 的玩家为红队玩家，通知红队玩家“§c你的床已被破坏！”，而通知其他玩家“§c红队的床已被破坏！”。试用`/tellraw`实现之。此外，对红队玩家播放标题“§l床已被破坏！”。下面是练习 2.4-4 第 4 题的参考答案：
 
-   ```mcfunction title="练习 2.4-4 第 4 题的参考答案" showLineNumbers
-   execute if block 30 65 60 air if score redBedState data matches 1 run say §c红队的床已被破坏！
-   execute if block 30 65 60 air if score redBedState data matches 1 run scoreboard players set redBedState data 0
-   ```
+    ```mcfunction title="练习 2.4-4 第 4 题的参考答案" showLineNumbers
+    execute if block 30 65 30 air if score redBedState data matches 1 run say §c红队的床已被破坏！
+    execute if block 30 65 30 air if score redBedState data matches 1 run scoreboard players set redBedState data 0
+    ```
 
 3. 回顾练习 2.4-4 的第 7 题：若新进入服务器的玩家拥有标签`vip`，则全服公告“欢迎玩家 xxx 回到服务器”，自定义变量和记分板，用命令实现之。用`/say`实现公告效果。  
    当时，我们使用的是`/say`命令公告。现在我们要更进一步，使用`/tellraw`输出“§lxxx服务器 >> §r§e欢迎 (玩家名) 回到服务器”，并为该玩家播放主标题“§b欢迎回到服务器！”。下面是练习 2.4-4 的第 7 题的参考答案：
 
-   ```mcfunction title="练习 2.4-4 第 7 题的参考答案" showLineNumbers
-   scoreboard players add @a isOnline 0
-   execute as @a[scores={isOnline=0},tag=vip] run say 欢迎玩家 @s 回到服务器
-   scoreboard objectives remove isOnline
-   scoreboard objectives add isOnline dummy "在线数据"
-   scoreboard players set @a isOnline 1
-   ```
+    ```mcfunction title="练习 2.4-4 第 7 题的参考答案" showLineNumbers
+    scoreboard players add @a isOnline 0
+    execute as @a[scores={isOnline=0},tag=vip] run say 欢迎玩家 @s 回到服务器
+    scoreboard objectives remove isOnline
+    scoreboard objectives add isOnline dummy "在线数据"
+    scoreboard players set @a isOnline 1
+    ```
 
 4. 回顾练习 2.4-4 的第 8 题：若玩家在一次跑酷中死亡超过 5 次，则公告“xxx 闯关失败”，自定义变量和记分板，用命令实现之。用`/say`实现公告效果。  
    当时，我们使用的是`/say`命令公告。现在我们要更进一步，当玩家在跑酷过程中死亡，提示玩家“§7你已经死亡 (`deathCount.@s`) 次了，再死亡 (`5-deathCount.@s`) 次你将失败！”；死亡超过 5 次后，不必公告，直接提示该玩家“§c闯关失败！重来一次吧！”，并为该玩家播放标题“§l§c闯关失败！”和副标题“§7重来一次吧！”。试实现之，允许额外定义变量，输出到聊天栏的消息使用`/tellraw`。下面是练习 2.4-4 的第 8 题的参考答案：
 
-   ```mcfunction title="练习 2.4-4 第 8 题的参考答案" showLineNumbers
-   scoreboard players set @a[scores={deathState=!2}] deathState 1
-   scoreboard players set @e[type=player] deathState 0
-   scoreboard players add @a[scores={deathState=1}] deathCount 1
-   scoreboard players set @a[scores={deathState=1}] deathState 2
-   execute as @a[scores={deathCount=5..}] run say @s 闯关失败
-   scoreboard players set @a[scores={deathCount=5..}] deathCount 0
-   ```
+    ```mcfunction title="练习 2.4-4 第 8 题的参考答案" showLineNumbers
+    scoreboard players set @a[scores={deathState=!2}] deathState 1
+    scoreboard players set @e[type=player] deathState 0
+    scoreboard players add @a[scores={deathState=1}] deathCount 1
+    scoreboard players set @a[scores={deathState=1}] deathState 2
+    execute as @a[scores={deathCount=5..}] run say @s 闯关失败
+    scoreboard players set @a[scores={deathCount=5..}] deathCount 0
+    ```
 
-   以下是你可以写入的命令。
+    以下是你可以写入的命令。
 
-   ```mcfunction title="变量定义，命令条数任意" showLineNumbers
-
-
-   ```
-
-   ```mcfunction title="循环执行，无需修改" showLineNumbers
-   scoreboard players set @a[scores={deathState=!2}] deathState 1
-   scoreboard players set @e[type=player] deathState 0
-   scoreboard players add @a[scores={deathState=1}] deathCount 1
-   execute as @a[scores={deathState=1}] at @s run (执行到下面的*玩家死亡时执行*上)
-   scoreboard players set @a[scores={deathState=1}] deathState 2
-   ```
-
-   ```mcfunction title="玩家死亡时执行，命令条数任意" showLineNumbers
+    ```mcfunction title="变量定义，命令条数任意" showLineNumbers
 
 
-   ```
+    ```
+
+    ```mcfunction title="循环执行，无需修改" showLineNumbers
+    scoreboard players set @a[scores={deathState=!2}] deathState 1
+    scoreboard players set @e[type=player] deathState 0
+    scoreboard players add @a[scores={deathState=1}] deathCount 1
+    execute as @a[scores={deathState=1}] at @s run (执行到下面的*玩家死亡时执行*上)
+    scoreboard players set @a[scores={deathState=1}] deathState 2
+    ```
+
+    ```mcfunction title="玩家死亡时执行，命令条数任意" showLineNumbers
+
+
+    ```
 
 5. 为还原独立游戏《Dark Deception》的效果，当有僵尸在玩家 7 格以内时，对玩家播放“§c§l跑！”的副标题，但不要播放主标题阻挡玩家的视线。试实现之。提示：记得不要引入淡入效果。
 
-   ```mcfunction title="每游戏刻执行" showLineNumbers
+    ```mcfunction title="每游戏刻执行" showLineNumbers
 
 
 
-   ```
+    ```
 
 6. 试实现播放主标题“§l主 线 已 完 成”的 2 秒后播放副标题“§b结束屋已开放”。你可以使用变量`time.timeline`。
 
-   ```mcfunction title="每游戏刻执行" showLineNumbers
+    ```mcfunction title="每游戏刻执行" showLineNumbers
 
 
 
-   ```
+    ```
 
 7. 假设`record.@s`为玩家跑酷时长记录，单位为游戏刻，试对玩家返回其使用的游戏记录，格式为“§b你的记录为(分钟):(秒数).(毫秒数)”。可额外定义变量。可不考虑输出类似于“1:09.05”这种十位数为 0 的情况。只考虑最近的一名玩家（`@p`）。
 
-   ```mcfunction title="单次执行，命令条数任意" showLineNumbers
+    ```mcfunction title="单次执行，命令条数任意" showLineNumbers
 
 
-   ```
+    ```
 
 8. 定义`coin.@s`为玩家的金币数、`killAmount.@s`为玩家的击杀数、`deathCount.@s`为玩家的死亡数、`team.@s`为玩家所在队伍，`0`=红队，`1`=蓝队。现在需要计算不同队伍的金币数总和并进行比对，在快捷栏标题上输出玩家信息和优势队伍如下：
 
-   ```text
-   你的名字 (玩家名) | 金币 (金币数) | 击杀 (击杀数) | 死亡 (死亡数) | 优势队伍 (红队|蓝队)
-   ```
+    ```text
+    你的名字 (玩家名) | 金币 (金币数) | 击杀 (击杀数) | 死亡 (死亡数) | 优势队伍 (红队|蓝队)
+    ```
 
-   试实现之。
+    试实现之。
 
-   ```mcfunction title="单次执行" showLineNumbers
-
-
+    ```mcfunction title="单次执行" showLineNumbers
 
 
-   ```
+
+
+    ```
 
 :::
 
@@ -626,10 +626,10 @@ titleraw @a actionbar {"rawtext":[{"translate":"§l§b 关卡 %%s-%%s | 怪物�
    ```
 
 2. ```mcfunction title="高亮部分为相比于给定的参考答案改动的地方" showLineNumbers {1-3}
-   execute if block 30 65 60 air if score redBedState data matches 1 run tellraw @a[scores={team=1}] {"rawtext":[{"text":"§c你的床已被破坏！"}]}
-   execute if block 30 65 60 air if score redBedState data matches 1 run tellraw @a[scores={team=!1}] {"rawtext":[{"text":"§c红队的床已被破坏！"}]}
-   execute if block 30 65 60 air if score redBedState data matches 1 run title @a[scores={team=1}] title §l床已被破坏！
-   execute if block 30 65 60 air if score redBedState data matches 1 run scoreboard players set redBedState data 0
+   execute if block 30 65 30 air if score redBedState data matches 1 run tellraw @a[scores={team=1}] {"rawtext":[{"text":"§c你的床已被破坏！"}]}
+   execute if block 30 65 30 air if score redBedState data matches 1 run tellraw @a[scores={team=!1}] {"rawtext":[{"text":"§c红队的床已被破坏！"}]}
+   execute if block 30 65 30 air if score redBedState data matches 1 run title @a[scores={team=1}] title §l床已被破坏！
+   execute if block 30 65 30 air if score redBedState data matches 1 run scoreboard players set redBedState data 0
    ```
 
 3. ```mcfunction title="高亮部分为相比于给定的参考答案改动的地方" showLineNumbers {2-3}
@@ -646,16 +646,16 @@ titleraw @a actionbar {"rawtext":[{"translate":"§l§b 关卡 %%s-%%s | 怪物�
    scoreboard players set const5 health 5
    ```
 
-   ```mcfunction title="玩家死亡时执行" showLineNumbers
-   execute as @a[scores={deathCount=1..4}] run scoreboard players operation @s health = const5 health
-   execute as @a[scores={deathCount=1..4}] run scoreboard players operation @s health -= @s deathCount
-   execute as @a[scores={deathCount=1..4}] run tellraw @s {"rawtext":[{"translate":"§7你已经死亡 %%s 次了，再死亡 %%s 次你将失败！","with":{"rawtext":[{"score":{"objective":"deathCount","name":"@s"}},{"score":{"objective":"health","name":"@s"}}]}}]}
+    ```mcfunction title="玩家死亡时执行" showLineNumbers
+    execute as @a[scores={deathCount=1..4}] run scoreboard players operation @s health = const5 health
+    execute as @a[scores={deathCount=1..4}] run scoreboard players operation @s health -= @s deathCount
+    execute as @a[scores={deathCount=1..4}] run tellraw @s {"rawtext":[{"translate":"§7你已经死亡 %%s 次了，再死亡 %%s 次你将失败！","with":{"rawtext":[{"score":{"objective":"deathCount","name":"@s"}},{"score":{"objective":"health","name":"@s"}}]}}]}
 
-   execute as @a[scores={deathCount=5..}] run tellraw @s {"rawtext":[{"text":"§c闯关失败！重来一次吧！"}]}
-   execute as @a[scores={deathCount=5..}] run title @s title §l§c闯关失败！
-   execute as @a[scores={deathCount=5..}] run title @s subtitle §7重来一次吧！
-   execute as @a[scores={deathCount=5..}] run scoreboard players set @s deathCount 0
-   ```
+    execute as @a[scores={deathCount=5..}] run tellraw @s {"rawtext":[{"text":"§c闯关失败！重来一次吧！"}]}
+    execute as @a[scores={deathCount=5..}] run title @s title §l§c闯关失败！
+    execute as @a[scores={deathCount=5..}] run title @s subtitle §7重来一次吧！
+    execute as @a[scores={deathCount=5..}] run scoreboard players set @s deathCount 0
+    ```
 
 5. ```mcfunction showLineNumbers
    title @a times 0 60 0
@@ -692,8 +692,8 @@ titleraw @a actionbar {"rawtext":[{"translate":"§l§b 关卡 %%s-%%s | 怪物�
    execute as @a[scores={team=0}] run scoreboard players operation redTeam coin += @s coin
    execute as @a[scores={team=1}] run scoreboard players operation blueTeam coin += @s coin
    ## 比对后显示分数
-   execute if score redTeam coin > blueTeam coin as @a run titleraw @s actionbar {"rawtext":[{"translate":"你的名字 %%s | 金币 %%s | 击杀 %%s | 死亡 %%s | 优势队伍 红队","with":{"rawtext":[{"selector":"@s"},{"score":{"objective":"coin","name":"@s"}},{"score":{"objective":"killCount","name":"@s"}},{"score":{"objective":"deathCount","name":"@s"}}]}}]}
-   execute if score redTeam coin < blueTeam coin as @a run titleraw @s actionbar {"rawtext":[{"translate":"你的名字 %%s | 金币 %%s | 击杀 %%s | 死亡 %%s | 优势队伍 蓝队","with":{"rawtext":[{"selector":"@s"},{"score":{"objective":"coin","name":"@s"}},{"score":{"objective":"killCount","name":"@s"}},{"score":{"objective":"deathCount","name":"@s"}}]}}]}
+   execute if score redTeam coin > blueTeam coin as @a run titleraw @s actionbar {"rawtext":[{"translate":"你的名字 %%s | 金币 %%s | 击杀 %%s | 死亡 %%s | 优势队伍 红队","with":{"rawtext":[{"selector":"@s"},{"score":{"objective":"coin","name":"@s"}},{"score":{"objective":"killAmount","name":"@s"}},{"score":{"objective":"deathCount","name":"@s"}}]}}]}
+   execute if score redTeam coin < blueTeam coin as @a run titleraw @s actionbar {"rawtext":[{"translate":"你的名字 %%s | 金币 %%s | 击杀 %%s | 死亡 %%s | 优势队伍 蓝队","with":{"rawtext":[{"selector":"@s"},{"score":{"objective":"coin","name":"@s"}},{"score":{"objective":"killAmount","name":"@s"}},{"score":{"objective":"deathCount","name":"@s"}}]}}]}
    ```
 
 </details>

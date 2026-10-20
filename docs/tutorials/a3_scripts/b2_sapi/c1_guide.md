@@ -174,7 +174,7 @@ import { world } from "@minecraft/server";
 
 ```
 
-`world`常量代表这个世界，它是由`World`类实例化而来的，可以用来获取这个世界的大量信息，并让这个世界做一些事情。需要注意，`World`类的构造函数是**私有（Private）** 属性，这意味着我们是不能够实例化`World`类的，而只能使用游戏本体通过`World`类实例化之后提供的`world`常量。
+`world`常量代表这个世界，它是由[`World`](/docs/docs/scripts/sapi/server/world/main#world-类)类实例化而来的，可以用来获取这个世界的大量信息，并让这个世界做一些事情。需要注意，`World`类的构造函数是**私有（Private）** 属性，这意味着我们是不能够实例化`World`类的，而只能使用游戏本体通过`World`类实例化之后提供的`world`常量。
 
 例如，对于我们的需求，我们需要让玩家在使用木棍时执行代码，这样的话，我们就可以这么写：
 
@@ -195,7 +195,7 @@ world.afterEvents.itemUse.subscribe(event => {});
 - 然后，我们调用了`afterEvents`的`itemUse`属性，这个属性所对应的就是使用物品的后事件。
 - 接下来，我们调用了`itemUse`的`subscribe`方法，这个方法接收一个参数`callback: (arg0: ItemUseAfterEvent) => void`，我们注意到这个参数的类型是一个函数。这种**函数 A 作为另一个函数 B 的参数的情况并不少见，我们将函数 A 称为回调函数（Callback Function）**。
 
-  这里的回调函数是一个单参数的函数，因此我们传入了一个匿名函数`event => {}`，参照回调函数的参数类型，我们知道这里的`event`的类型是`ItemUseAfterEvent`，这里的`ItemUseAfterEvent`就代表事件的基本信息。
+  这里的回调函数是一个单参数的函数，因此我们传入了一个匿名函数`event => {}`，参照回调函数的参数类型，我们知道这里的`event`的类型是[`ItemUseAfterEvent`](/docs/docs/scripts/sapi/server/world/after_events#itemuseafterevent-类)，这里的`ItemUseAfterEvent`就代表事件的基本信息。
 
 所以，这一行实际在做的事情是，**订阅玩家使用物品后事件，并把事件信息传递给回调函数内的`event`**。
 
@@ -322,7 +322,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {
 
 简单翻译一下：
 
-「RefrenceError：函数 [Player::playSound] 不能在受限执行下使用。位于\<匿名函数> （main.js：第 16 行）」
+「ReferenceError：函数 [Player::playSound] 不能在受限执行下使用。位于\<匿名函数> （main.js：第 16 行）」
 
 看来我们在这里遇到了一个特殊的**执行权限（Execution Privilege）**：**受限执行（Restricted Execution）**。
 
@@ -332,7 +332,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {
 2. **受限执行**：这个权限通常**是前事件环境中使用的**。在受限执行下，**一切可能对世界造成更改的操作都会被拦截并报错**，这是为了前事件的执行稳定。我们播放音效的操作也可以认为是可能对世界造成更改的操作，因此被拦截掉了。
 3. **早期执行（Early Execution）**：这个权限则是**在世界完全加载前使用的，在`2.0.0`的脚本中引入**。在早期执行下，**一切需要访问世界信息的操作都会被拦截并报错**。事实上，如果读者已经习惯编写函数（mcfunction），会发现 mcfunction 会在世界完全加载之前就开始执行，并导致某些奇奇怪怪的问题，早期执行就是为了防止这种情况发生的。因此，为了代码正常运行不报错，我们通常都需要使用世界加载后事件`world.afterEvents.worldLoad`，来执行可能会在早期执行阶段出错的代码。
 
-难道受限执行就意味着我们就什么都做不了了吗？当然不是，既然在事件发生前不能执行，我们可以延后到事件发生之后执行嘛。这就需要使用 **`system`常量**了。和`world`类似，`system`也是从`System`类经过游戏实例化之后得到的常量，**用来控制游戏引擎的行为**。从`system`中，我们可以得到游戏运行到多少刻的信息，以及延迟或循环执行代码。这里，我们使用`system`常量的`run(callback: () => void): number`方法：
+难道受限执行就意味着我们就什么都做不了了吗？当然不是，既然在事件发生前不能执行，我们可以延后到事件发生之后执行嘛。这就需要使用 **`system`常量**了。和`world`类似，`system`也是从[`System`](/docs/docs/scripts/sapi/server/system/main#system-类)类经过游戏实例化之后得到的常量，**用来控制游戏引擎的行为**。从`system`中，我们可以得到游戏运行到多少刻的信息，以及延迟或循环执行代码。这里，我们使用`system`常量的`run(callback: () => void): number`方法：
 
 ```js showLineNumbers title="main.js" {1,8,12}
 import { world, system } from "@minecraft/server";
@@ -379,7 +379,7 @@ world.sendMessage("Hello, world");
 
 简单翻译一下：
 
-「RefrenceError：函数 [World::sendMessage] 不能在早期执行下使用。位于\<匿名函数> （main.js：第 21 行）」
+「ReferenceError：函数 [World::sendMessage] 不能在早期执行下使用。位于\<匿名函数> （main.js：第 21 行）」
 
 因此，我们必须使用世界加载后事件，这样写完的代码就不会再出现问题了。
 
@@ -416,7 +416,7 @@ system.runInterval(() => {
 });
 ```
 
-这里我们使用了`world`的`getPlayers(options?: EntityQueryOptions | undefined): Player[]`方法，它可以返回全体玩家或指定玩家的信息数组。然后，使用数组内置的`forEach`方法进行遍历，对每个玩家都执行`player => {}`函数，这里的`player`的类型就是`Player`类了。
+这里我们使用了`world`的`getPlayers(options?: EntityQueryOptions | undefined): Player[]`方法，它可以返回全体玩家或指定玩家的信息数组。然后，使用数组内置的`forEach`方法进行遍历，对每个玩家都执行`player => {}`函数，这里的`player`的类型就是[`Player`](/docs/docs/scripts/sapi/server/entity_and_player/player#player-类)类了。
 
 现在我们来检查玩家是否潜行，我们发现`Player`类下面可以直接获取`isSneaking`属性：
 
@@ -476,7 +476,9 @@ system.runInterval(() => {
 
 ## 学会查看文档
 
-应该要说明的是，目前 SAPI 的更新速度依旧很快，并且时不时就会推出非常重磅的新内容，这也就意味着本文以至于本系列的脚本相关文章都具有一定的时效性。因此，读者必须培养自己查阅文档的能力。我们这里给出几个常用的 SAPI 文档：
+应该要说明的是，目前 SAPI 的更新速度依旧很快，并且时不时就会推出非常重磅的新内容，这也就意味着本文以至于本系列的脚本相关文章都具有一定的时效性。因此，读者必须培养自己查阅文档的能力。
+
+本站已经整理了完整的[脚本文档](/docs/docs/scripts/sapi/version_table)，按版本收录了各个类与接口，中文阅读、查找方便，**建议优先查阅**。下面几个外部文档则可以作为补充：
 
 ### JaylyMC 的 SAPI 文档
 
@@ -492,7 +494,7 @@ system.runInterval(() => {
 
 然而，这个文档最大的问题在于国内的网络难以连接……你懂得。此外，它还是一个纯英文的文档。
 
-我们可以看到 SAPI 提供的接口非常多，有巨多无比的类，让人难以下手。**这里给一个可以大幅降低你入门难度的建议：先看`World`和`System`类**！剩下的几乎其他类都是从这两个类延伸出来的，所以当然要从世界和系统类先下手。要获取方块、实体时，先考虑从世界类获取维度，然后就可以获取方块和实体了。
+我们可以看到 SAPI 提供的接口非常多，有巨多无比的类，让人难以下手。**这里给一个可以大幅降低你入门难度的建议：先看[`World`](/docs/docs/scripts/sapi/server/world/main#world-类)和[`System`](/docs/docs/scripts/sapi/server/system/main#system-类)类**！剩下的几乎其他类都是从这两个类延伸出来的，所以当然要从世界和系统类先下手。要获取方块、实体时，先考虑从世界类获取维度，然后就可以获取方块和实体了。
 
 ### ProjectXero 的 SAPI 文档
 
@@ -500,7 +502,7 @@ system.runInterval(() => {
 
 ![doc_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/doc_3.webp)
 
-美中不足的是，它缺少了旧版本的接口列表，这意味着部分旧版无法使用的新版接口是无法给出的，比如如果使用此文档发现`EntityEnderInventoryComponent`类可用，但在 1.21.90 试图访问这个类时就会报错，因为这是 26.30 才开放的接口。此外，本文档主要锚定的版本是最新的`beta`版本，这也同时意味着文档里含有大量的预览版接口，在未使用实验性玩法时是不能访问的，读者应注意甄别。
+美中不足的是，它缺少了旧版本的接口列表，这意味着部分旧版无法使用的新版接口是无法给出的，比如如果使用此文档发现[`EntityEnderInventoryComponent`](/docs/docs/scripts/sapi/server/entity_and_player/component#entityenderinventorycomponent-类)类可用，但在 1.21.90 试图访问这个类时就会报错，因为这是 26.30 才开放的接口。此外，本文档主要锚定的版本是最新的`beta`版本，这也同时意味着文档里含有大量的预览版接口，在未使用实验性玩法时是不能访问的，读者应注意甄别。
 
 ### 微软官方文档
 
@@ -566,8 +568,9 @@ npm i @minecraft/server-ui
 
 我们还介绍了一个获取所有玩家的方法，也就是使用`World.getPlayers(): Player[]`。
 
-最后，我们介绍了三个常用的文档，各有千秋，读者可以按需查阅。学习 SAPI 一定要学会看文档，否则是难以学会 SAPI 的！
+最后，除了本站的脚本文档，我们还介绍了三个常用的外部文档，各有千秋，读者可以按需查阅。学习 SAPI 一定要学会看文档，否则是难以学会 SAPI 的！
 
+- [站内脚本文档](/docs/docs/scripts/sapi/version_table)（推荐优先查阅）
 - [JaylyMC 的 SAPI 文档](https://jaylydev.github.io/scriptapi-docs/)
 - [ProjectXero 的 SAPI 文档](https://projectxero.top/sapi/index.html)
 - [微软官方文档](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/minecraft-server?view=minecraft-bedrock-stable)
@@ -576,9 +579,9 @@ npm i @minecraft/server-ui
 
 :::info[练习 2.1]
 
-哎呀……激动人心的练习时刻！想必读者已经发现了，脚本系统实际上就是超级进阶版的命令系统！它主要是为了实现更加复杂的逻辑的。在下面的练习题中，请读者打开上面 3 个文档中的一个，多加进行查阅和学习，我们也会给读者一些提示的。
+哎呀……激动人心的练习时刻！想必读者已经发现了，脚本系统实际上就是超级进阶版的命令系统！它主要是为了实现更加复杂的逻辑的。在下面的练习题中，请读者打开本站脚本文档或上面 3 个外部文档中的一个，多加进行查阅和学习，我们也会给读者一些提示的。
 
-在初学时，**读者应该格外关注几个重要的大类的学习，大体了解它们都拥有什么属性、什么方法，以掌握实际我们可以用脚本系统做什么**。它们分别是：`World`类（世界）、`System`类（系统）、`Dimension`类（维度）、`Block`类（方块）、`Entity`类（实体）、`Player`类（玩家）、`ItemStack`类（物品）。其实就是物品方块实体三件套！除此之外，**读者还应该格外关注我们都有哪些世界前事件和世界后事件可用，因为它们的性能好，功能强，我们在很多情况下就是用它们解决问题的**。
+在初学时，**读者应该格外关注几个重要的大类的学习，大体了解它们都拥有什么属性、什么方法，以掌握实际我们可以用脚本系统做什么**。它们分别是：[`World`](/docs/docs/scripts/sapi/server/world/main#world-类)类（世界）、[`System`](/docs/docs/scripts/sapi/server/system/main#system-类)类（系统）、[`Dimension`](/docs/docs/scripts/sapi/server/dimension/main#dimension-类)类（维度）、[`Block`](/docs/docs/scripts/sapi/server/block/main#block-类)类（方块）、[`Entity`](/docs/docs/scripts/sapi/server/entity_and_player/entity#entity-类)类（实体）、[`Player`](/docs/docs/scripts/sapi/server/entity_and_player/player#player-类)类（玩家）、[`ItemStack`](/docs/docs/scripts/sapi/server/item/main#itemstack-类)类（物品）。其实就是物品方块实体三件套！除此之外，**读者还应该格外关注我们都有哪些世界前事件和世界后事件可用，因为它们的性能好，功能强，我们在很多情况下就是用它们解决问题的**。
 
 现在我们正式开始练习吧。越到后面的题目，我们越会面对更加复杂的需求！
 
@@ -619,12 +622,12 @@ npm i @minecraft/server-ui
         yellow: { x: -60, y: 60, z: 0 },
     };
     ```
-    这里先对第一行做一个解释，这是声明`teamChest`的类型为一个键为`string`，值为`Vector3`的对象。现在我们假定这是 4 个队伍的箱子位置，要求在其他队伍的玩家（分别具有对应的标签，例如红队玩家拥有标签`red`，蓝队玩家拥有标签`blue`，以此类推）开箱时禁止打开其他队伍的箱子。从本题开始，我们就不再给出需要使用什么事件了，现在试试自行判断需要使用什么事件！
+    这里先对第一行做一个解释，这是声明`teamChest`的类型为一个键为`string`，值为[`Vector3`](/docs/docs/scripts/sapi/server/general#vector3-接口)的对象。现在我们假定这是 4 个队伍的箱子位置，要求在其他队伍的玩家（分别具有对应的标签，例如红队玩家拥有标签`red`，蓝队玩家拥有标签`blue`，以此类推）开箱时禁止打开其他队伍的箱子。从本题开始，我们就不再给出需要使用什么事件了，现在试试自行判断需要使用什么事件！
 16. 当玩家投掷雪球砸到木板的侧面时，传送玩家到木板的侧面 0.5 格远的位置。如果雪球砸中底面则传送到木板下方 2 格的位置，砸中顶面则传送到木板上方 1 格的位置。同样地，我们不告诉你要用什么事件了！
 17. 当玩家使用木剑时，在玩家上方 5 格的位置生成 1 颗钻石，名为「§e木剑生成的钻石」。对，是直接生成掉落物！提示：`ItemStack`对象是可以实例化的。考虑使用`Dimension`的`spawnItem`方法。
 18. 现在给出一个坐标工具类`Vector3Util`，定义一个双参数的静态方法`distance(location1: Vector3, location2: Vector3)`，返回两坐标点的距离。提示：数学上定义两点间距离 d=√(Δx²+Δy²+Δz²)。编程领域，数学很重要哦！
 19. 只考虑单人游戏的情况下，将玩家的 xyz 位置分别*实时*打印到记分板`playerData`的`x`、`y`、`z`假名上，向下取整。例如当玩家位于(0.5, -60.5, 35)的时候，记载`playerData.x`为`0`，`playerData.y`为`-61`，`playerData.z`为`35`。现在可以和二分法取坐标说再见了！
-20. 第二十道题！！哈哈哈，SAPI 当然值得这个待遇啦！现在我们给小木棍升个级，当小木棍对一个方块使用后，当方块具有`minecraft:vertical_half`方块状态时，把该方块状态的值换成另一个，比如如果是下半砖，就在小木棍对其交互后改成上半砖；如果是上半砖就改成下半砖！这就是一个很简易的调试棒功能了。提示：可以使用`Block`类的`permutation`属性获取方块状态，然后用`withState()`方法定义一个新的`BlockPermutation`，再用`Block.setPermutation()`方法应用新`BlockPermutation`。别忘了再加个快捷栏标题，比如「已选择“minecraft:vertical_half”（"top"）」，这就更像了。
+20. 第二十道题！！哈哈哈，SAPI 当然值得这个待遇啦！现在我们给小木棍升个级，当小木棍对一个方块使用后，当方块具有`minecraft:vertical_half`方块状态时，把该方块状态的值换成另一个，比如如果是下半砖，就在小木棍对其交互后改成上半砖；如果是上半砖就改成下半砖！这就是一个很简易的调试棒功能了。提示：可以使用`Block`类的`permutation`属性获取方块状态，然后用`withState()`方法定义一个新的[`BlockPermutation`](/docs/docs/scripts/sapi/server/block/main#blockpermutation-类)，再用`Block.setPermutation()`方法应用新`BlockPermutation`。别忘了再加个快捷栏标题，比如「已选择“minecraft:vertical_half”（"top"）」，这就更像了。
 
 :::
 

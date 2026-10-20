@@ -12,11 +12,11 @@ import Version from "/src/components/highlight/version"
 >
 > 关键词：方块自定义组件（`BlockCustomComponent`）、组件注册（`BlockComponentRegistry.registerCustomComponent()`）、世界启动前事件（`StartupEvent`）、组件参数（`CustomComponentParameters`）等
 
-方块自定义组件允许我们为数据驱动方块编写自定义的行为。它的思路很简单：先在方块 JSON 里以`"命名空间:组件名": { 参数 }`的形式使用一个「不存在的组件」，再在脚本启动时把这个名字注册成真正的逻辑，参数会原样传给脚本。
+方块自定义组件允许我们为数据驱动方块编写自定义的行为。它的思路很简单：先在方块 JSON 里以`"命名空间:组件名": { 参数 }`的形式使用一个「不存在的组件」，再在脚本启动时把这个名字注册成真正的逻辑，参数会原样传给脚本（即[`CustomComponentParameters`](/docs/docs/scripts/sapi/server/system/custom_block_component#customcomponentparameters-类)）。
 
 接口定义与各事件的字段详见[自定义方块组件](/docs/docs/scripts/sapi/server/system/custom_block_component)，本文只给出若干可直接套用的实例。
 
-所有实例的注册方式都一样，统一写在世界启动前事件中：
+所有实例的注册方式都一样，统一写在世界启动前事件（[`StartupEvent`](/docs/docs/scripts/sapi/server/system/before_events#startupevent-类)）中：
 
 ```javascript showLineNumbers
 import * as minecraft from "@minecraft/server";
@@ -265,4 +265,3 @@ minecraft.system.beforeEvents.startup.subscribe(event => {
 ## 参考文档
 
 - [自定义方块组件 | 脚本文档](/docs/docs/scripts/sapi/server/system/custom_block_component)
-- [方块自定义组件接口 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/blockcustomcomponent?view=minecraft-bedrock-stable)

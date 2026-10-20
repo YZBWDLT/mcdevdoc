@@ -15,8 +15,8 @@ import FileType from "/src/components/type/file"
 <treeview>
 
 - <FileType type="folder" name="RP_test" />：资源包
-  - <FileType type="file" name="manifest.json" />：清单文件
-  - <FileType type="image" name="pack_icon.png" />：包图标
+    - <FileType type="file" name="manifest.json" />：清单文件
+    - <FileType type="image" name="pack_icon.png" />：包图标
 
 </treeview>
 
@@ -98,7 +98,7 @@ import FileType from "/src/components/type/file"
 
 之所以不剪切，是因为官方的模板包在其他地方还能派上很多用场，所以我们只需要复制原版的代码就行，尽量不要做出修改。这样，我们就能在我们自己的包里看到钻石矿的贴图了。
 
-:::info[思考 3.1]
+:::info[思考 3.1-1]
 
 假设你是一个整蛊包的作者，如何把钻石矿的贴图改成石头的贴图？（这样你就会得到一个长得像石头但其实是钻石矿的东西了（坏笑）
 
@@ -122,7 +122,7 @@ import FileType from "/src/components/type/file"
 
 然而，Blockbench 在国内的下载速度极其缓慢，请读者务必耐心等待。不要觉得 Blockbench 下载时间长就要放弃了哦，因为**我们后面做方块和实体的时候要多次地用到 Blockbench**。读者可以耐心等待，或者采用一些特殊手段来提速，或者[**下载我们事先准备好的这个安装包**](https://app.nekodrive.net/s/RZ2te)（`.exe`为 Windows 可用，`.dmg`为 MacOS 可用，其他平台恕不提供，下载日期 2025 年 8 月 22 日，能用就行了，需要更新可以评论回复哦）。如果实在没有条件下载的话，我们用网页 APP 也是可以的，也就是点击 OPEN WEB APP。当然，使用线上软件的体验就没有线下软件好了，因为要正常使用需要等待加载也是比较烦人的。
 
-下文，我们假设读者已经正常下载完并安装软件（*毕竟有我们提供的安装包，理论上应该都能下载吧*）。打开软件，读者可以在 File - Preferences - Settings 中切换语言为简体中文，如下两图所示：
+下文，我们假设读者已经正常下载完并安装软件（_毕竟有我们提供的安装包，理论上应该都能下载吧_）。打开软件，读者可以在 File - Preferences - Settings 中切换语言为简体中文，如下两图所示：
 
 ![blockbench_5](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_5.webp)
 ![blockbench_6](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_6.webp)

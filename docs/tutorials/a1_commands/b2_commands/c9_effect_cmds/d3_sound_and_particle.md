@@ -44,7 +44,7 @@ sidebar_position: 3
 
 看，一下子就找到了！这个网站建议收藏下来，对你可能很有帮助。未来，在使用 Visual Studio Code 写函数的时候，我们还会了解到更多的自动补全的方法。
 
-:::tip[实验 2.9-18]
+:::tip[实验 2.9-20]
 
 播放末影龙吼叫的声音。在[中文 Minecraft Wiki](https://zh.minecraft.wiki)或[MCBEID 查询表](https://idlist.projectxero.top/)里面查询声音，然后代入到`/playsound (音效ID)`中。在没有找到答案并实验成功之前，不要看下面的答案！
 
@@ -76,7 +76,7 @@ sidebar_position: 3
 
 ![playsound_7](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/playsound_7.webp)
 
-:::tip[实验 2.9-19]
+:::tip[实验 2.9-21]
 
 分别执行命令`/playsound random.levelup @s ~~~ 1 1`、`/playsound random.levelup @s ~~~ 1 2`、`/playsound random.levelup @s ~~~ 1 0.5`，听听不同音调的升级音效是什么表现吧！
 
@@ -92,7 +92,7 @@ sidebar_position: 3
 
 `/stopsound`就是停止对玩家播放音效。例如如果你嫌活塞的声音太吵，或者不想让玩家听到游戏 BGM 的声音，就可以考虑用这条命令了。它的语法也很简单：
 
-```text title="/playsound的语法" showLineNumbers
+```text title="/stopsound的语法" showLineNumbers
 /stopsound <玩家: target> [音效: string]
 ```
 
@@ -133,7 +133,7 @@ sidebar_position: 3
 
 在`位置`释放`粒子效果`。和`/playsound`类似，可用的粒子也需要查表。Wiki 上的[粒子 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/粒子#基岩版和教育版)为你提供了一个可用的粒子表格，**但其中的`ID名`必须在前面加上`minecraft:`才能使用**。在模块 2 你就会知道，这叫做**命名空间（Namespace）**。[MCBEID 查询表](https://idlist.projectxero.top/)也可以用来查询。
 
-:::tip[实验 2.9-20]
+:::tip[实验 2.9-22]
 
 执行命令`/particle minecraft:endrod ~~-5~`，这条命令会在你脚下 5 格的位置生成末地烛的粒子。记住这个粒子，它很常用！
 

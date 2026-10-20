@@ -119,7 +119,7 @@ sidebar_position: 3
 
 在`/execute`更新前，我们往往使用一条命令检测方块——`/testforblock`。这条命令的语法和`/execute if block`完全一致：
 
-```text title="/testforblock的语法" showNumberLines
+```text title="/testforblock的语法" showLineNumbers
 /testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 ```
 
@@ -129,7 +129,7 @@ sidebar_position: 3
 
 ## 检测区域的子命令：`<if|unless> blocks`
 
-`/execcute if blocks`则能够检测一片区域内的方块是否完全一致。
+`/execute if blocks`则能够检测一片区域内的方块是否完全一致。
 
 ```text title="if|unless blocks的语法" showLineNumbers
 <if|unless> blocks <起点: x y z> <终点: x y z> <目标点: x y z> <扫描模式: all|masked> -> execute
@@ -185,7 +185,7 @@ sidebar_position: 3
 
 和`/testfor`、`/testforblock`类似，在`/execute`更新前，我们也往往使用一条命令检测区域——`/testforblocks`。这条命令的语法和`/execute if blocks`也完全一致（除了这里的`扫描模式`是可选的）：
 
-```text title="/testforblocks的语法" showNumberLines
+```text title="/testforblocks的语法" showLineNumbers
 /testforblocks <起点: x y z> <终点: x y z> <目标点: x y z> [masked|all]
 ```
 
@@ -257,8 +257,8 @@ sidebar_position: 3
 5. 命令 1：`/execute positioned 0 -60 0 if entity @a[r=2,hasitem={item=tripwire_hook}] run setblock 0 -61 0 redstone_block`  
   命令 2：`/execute positioned 0 -60 0 as @a[r=2,hasitem={item=tripwire_hook}] run clear @s tripwire_hook`  
   答案不唯一，合理即可。
-6. `/execute if blocks -50 19 92 -50 19 92 -54 10 87 if block 19 22 7 cyan_terracotta run say [C3]通过本关后将获得纪念品[金锭]`
-7. `/execute positioned -244 32 23 if entity @e[r=2,type=snowball] run tp @a ~~-2~ 180 0`
+6. `/execute if blocks -50 19 92 -50 19 92 -54 10 87 all if block 19 22 7 cyan_terracotta run say [C3]通过本关后将获得纪念品[金锭]`
+7. `/execute positioned -244 32 23 if entity @e[r=2,type=snowball] run tp @a ~~-3~ 180 0`
 
 </details>
 

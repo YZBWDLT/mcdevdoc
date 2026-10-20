@@ -192,12 +192,12 @@ give @s apple
 
 ## 控制 CB 运行的四条游戏规则
 
-### `commandBlockOutPut`
+### `commandBlockOutput`
 
 这个游戏规则会**控制命令方块是否输出反馈消息到聊天栏**。在初次使用命令方块的时候，你可能常常会被命令方块在聊天栏的自动输出所困扰。
 
 ![commandblockoutput](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/commandblockoutput.webp)  
-↑ 这些 *[!:……]* 就是命令方块输出的消息
+↑ 这些 _[!:……]_ 就是命令方块输出的消息
 
 将这个游戏规则关掉，就可以禁用这些消息。在开发过程中，可能会有部分开发者需要开启命令方块的反馈，但在正式发布地图前，或者在服务器中，都请把这个游戏规则关闭掉，因为玩家是不需要这些信息的。
 
@@ -209,14 +209,14 @@ give @s apple
 
 一个坏坏的小提示：对于某些强行开启了反作弊的地图，可以考虑暂时关闭命令方块来开作弊拆地图。不过这么做一定会破坏你的游戏体验，所以请在游玩完地图后再备份一张地图，然后再考虑用这种方法拆图会更好一些。
 
-### `sendCommandFeedBack`
+### `sendCommandFeedback`
 
 这个游戏规则会控制**命令执行效果是否在聊天栏反馈**。请注意，这个反馈和刚刚的**命令方块的反馈**不一样，这是**命令的反馈**。
 
 一些命令在涉及到多名玩家之后，会通知该玩家发生了什么变化，比如给予了玩家物品、传送了玩家等，这些变化信息即使在关闭命令方块的情况下也会提示，所以通常在正式发布地图前也应关闭该游戏规则。
 
 ![sendcommandfeedback](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/sendcommandfeedback.png)  
-↑ 即使关闭命令方块反馈之后，使用命令方块传送还是会返回信息，这时必须将`sendCommandFeedBack`游戏规则关闭才能彻底关闭所有命令反馈
+↑ 即使关闭命令方块反馈之后，使用命令方块传送还是会返回信息，这时必须将`sendCommandFeedback`游戏规则关闭才能彻底关闭所有命令反馈
 
 ### `maxCommandChainLength`
 
@@ -258,7 +258,7 @@ give @s apple
 
 **连锁型命令方块（Chain Command Block，简称 CCB）** 的作用是，当指向它的命令方块执行后，执行 CCB 内的内容。
 
-*提示：CCB 的简写也是社区内的惯用写法，请牢记 CCB 指代连锁型命令方块*。
+_提示：CCB 的简写也是社区内的惯用写法，请牢记 CCB 指代连锁型命令方块_。
 
 这里，我们必须首先强调命令方块的方向问题。所谓指向，就是指代命令方块的方向。命令方块的方向可以从其贴图中心图案的尖端看出来，尖端指向的方向就是这个命令方块的方向。
 
@@ -321,7 +321,7 @@ give @s apple
 
 **循环型命令方块（Repeating Command Block，简称 RCB）** 的作用是，**当处于激活状态时则一直尝试执行命令**。
 
-*提示：RCB 的简写也是社区内的惯用写法，请牢记 RCB 指代循环型命令方块*。
+_提示：RCB 的简写也是社区内的惯用写法，请牢记 RCB 指代循环型命令方块_。
 
 :::tip[实验 3.2-7]
 
@@ -431,8 +431,8 @@ tellraw @p {"rawtext":[{"text":"成功购买了金苹果 * 15"}]}
 
 1. **关于“背后”和“被指向”的表述**，是不一样的。在上面的 8 CB 的 CB 链的例子中我们已强调过这一点，在转角处的⑤号命令方块，有④号命令方块指向它，却没有任何命令方块在它的背后。
 2. **关于“执行”和“成功执行”的表述**，也是不一样的。
-   - CCB 的执行条件只是指向它的命令方块*执行*，从来不要求其中的命令是成功执行，甚至不要求指向它的命令方块里面是合法的、甚至是存在的命令。比如，前一个 CB 哪怕什么也不写，只要激活了之后就会激活它指向的下一个连锁型命令方块。
-   - 而条件制约的执行条件则要求其背后的命令方块必须是*成功执行*。什么叫成功执行？在前面我们有简单提过，聊天栏里的命令反馈只要是白色的反馈就都算成功执行，而红色的反馈都不算成功执行。比如`没有与选择器匹配的目标`，就叫做执行失败。再次强调：执行失败并不完全等同于命令出错，语法正确也会有执行失败的情况，这是很正常的，关键在于如何灵活运用命令执行失败的特性，实现我们想要的效果。
+    - CCB 的执行条件只是指向它的命令方块*执行*，从来不要求其中的命令是成功执行，甚至不要求指向它的命令方块里面是合法的、甚至是存在的命令。比如，前一个 CB 哪怕什么也不写，只要激活了之后就会激活它指向的下一个连锁型命令方块。
+    - 而条件制约的执行条件则要求其背后的命令方块必须是*成功执行*。什么叫成功执行？在前面我们有简单提过，聊天栏里的命令反馈只要是白色的反馈就都算成功执行，而红色的反馈都不算成功执行。比如`没有与选择器匹配的目标`，就叫做执行失败。再次强调：执行失败并不完全等同于命令出错，语法正确也会有执行失败的情况，这是很正常的，关键在于如何灵活运用命令执行失败的特性，实现我们想要的效果。
 
 ---
 
@@ -440,21 +440,21 @@ tellraw @p {"rawtext":[{"text":"成功购买了金苹果 * 15"}]}
 
 我们再来关注一下命令方块的两个启动条件（红石控制）：红石控制 & 保持开启。这两个选项其实很简单，**如果选定为红石控制模式，那么只有在接收到红石信号之后才会被激活；而如果选定为保持开启模式，那么就一直处于激活状态**。
 
-这三个启动条件在 3 种不同类型的命令方块上，会产生不同的效果：
+这两个启动条件在 3 种不同类型的命令方块上，会产生不同的效果：
 
 - 如果是**脉冲型命令方块**，**红石控制**是其默认值。
-  - 在红石控制模式下，接收到红石信号后才会执行。
-  - 而在保持开启模式下，在保存命令方块设置的那一刻就立刻激活一次，然后永不再执行。
-  - 所以，**绝大部分情况下，为控制方便，脉冲型命令方块都使用红石控制模式**。
-    - 有一个例外是，社区发现当保持开启的脉冲型命令方块在用`/clone`等方式新添加进世界时，会在添加的那一瞬间执行一次，这可能会在少数场景下有特殊应用。
+    - 在红石控制模式下，接收到红石信号后才会执行。
+    - 而在保持开启模式下，在保存命令方块设置的那一刻就立刻激活一次，然后永不再执行。
+    - 所以，**绝大部分情况下，为控制方便，脉冲型命令方块都使用红石控制模式**。
+        - 有一个例外是，社区发现当保持开启的脉冲型命令方块在用`/clone`等方式新添加进世界时，会在添加的那一瞬间执行一次，这可能会在少数场景下有特殊应用。
 - 如果是**连锁型命令方块**，**保持开启**是其默认值。
-  - 因为 CCB 特殊的激活模式，使得它即使是在保持开启的情况下，只要指向它的 CB 没有执行，它就不会执行；而指向它的 CB 一旦执行，无论有没有红石信号，都立刻执行。
-  - 而启用红石控制的话，反而会导致连锁型命令方块只有在接收到红石信号后，并且指向它的 CB 执行后才会执行，这大幅增加了运用 CCB 的难度。
-  - 所以，**几乎所有情况下，连锁型命令方块都使用保持开启模式**。
+    - 因为 CCB 特殊的激活模式，使得它即使是在保持开启的情况下，只要指向它的 CB 没有执行，它就不会执行；而指向它的 CB 一旦执行，无论有没有红石信号，都立刻执行。
+    - 而启用红石控制的话，反而会导致连锁型命令方块只有在接收到红石信号后，并且指向它的 CB 执行后才会执行，这大幅增加了运用 CCB 的难度。
+    - 所以，**几乎所有情况下，连锁型命令方块都使用保持开启模式**。
 - 如果是**循环型命令方块**，**红石控制**是其默认值。
-  - 在红石控制模式下，循环型命令方块会在接收到红石信号后循环执行命令。
-  - 而在保持开启模式下，循环型命令方块会无条件地循环执行命令。
-  - 两种模式在实际工程中都很常用，**然而我们推荐为控制方便，应首选红石控制模式**。
+    - 在红石控制模式下，循环型命令方块会在接收到红石信号后循环执行命令。
+    - 而在保持开启模式下，循环型命令方块会无条件地循环执行命令。
+    - 两种模式在实际工程中都很常用，**然而我们推荐为控制方便，应首选红石控制模式**。
 
 ---
 
@@ -567,51 +567,51 @@ say 1
 
 - 命令方块是一种用于执行提前写入的命令的红石元件。
 - 命令方块的上下文信息：
-  - 执行者：不存在执行者实体，执行者名称为“悬停注释”的名称，默认为`!`。
-  - 执行环境参数：执行位置为命令方块的位置，执行朝向为`(xRot=0,yRot=0)`，执行维度为命令方块所在的维度。
-  - 执行权限等级：为`1`。
-  - 执行输出反馈：内容写入到“上一次输出”中，并将执行成功次数保存到命令方块的信息中，可用红石比较器读取。
+    - 执行者：不存在执行者实体，执行者名称为“悬停注释”的名称，默认为`!`。
+    - 执行环境参数：执行位置为命令方块的位置，执行朝向为`(xRot=0,yRot=0)`，执行维度为命令方块所在的维度。
+    - 执行权限等级：为`1`。
+    - 执行输出反馈：内容写入到“上一次输出”中，并将执行成功次数保存到命令方块的信息中，可用红石比较器读取。
 - 针对命令方块的 4 种常用游戏规则：
-  - `commandBlockOutPut`：控制命令方块的执行效果是否输出到聊天栏。通常关闭。*毕竟你也不希望开循环型命令方块的时候被消息轰炸吧？*
-  - `sendCommandFeedBack`：控制命令的反馈效果是否输出到聊天栏。通常在开发过程中，需要的时候开启，其余情况下关闭。
-  - `commandBlocksEnabled`：控制命令方块是否启用。通常开启，因为关掉就不能用命令方块了。
-  - `maxCommandChainLength`：控制命令方块链的最大长度。通常保持为默认值`65535`。
+    - `commandBlockOutput`：控制命令方块的执行效果是否输出到聊天栏。通常关闭。_毕竟你也不希望开循环型命令方块的时候被消息轰炸吧？_
+    - `sendCommandFeedback`：控制命令的反馈效果是否输出到聊天栏。通常在开发过程中，需要的时候开启，其余情况下关闭。
+    - `commandBlocksEnabled`：控制命令方块是否启用。通常开启，因为关掉就不能用命令方块了。
+    - `maxCommandChainLength`：控制命令方块链的最大长度。通常保持为默认值`65535`。
 - 命令方块的命令输入区和保存、取消方法：
-  - 在右上角的命令输入区中写入命令，可以不带`/`。
-  - 命令输入区的左数第一个定位按钮为粘贴剪切板的内容，第二个加号按钮为展开命令输入区。
-    - 在展开的情况下，点击右上角的减号可以收缩命令输入区。
-  - 按下`ESC`或右上角的`x`可以保存命令方块的更改并退出命令方块的界面。
-  - 按下左下角的`取消`不会保存命令方块的更改并退出命令方块的界面。
+    - 在右上角的命令输入区中写入命令，可以不带`/`。
+    - 命令输入区的左数第一个定位按钮为粘贴剪切板的内容，第二个加号按钮为展开命令输入区。
+        - 在展开的情况下，点击右上角的减号可以收缩命令输入区。
+    - 按下`ESC`或右上角的`x`可以保存命令方块的更改并退出命令方块的界面。
+    - 按下左下角的`取消`不会保存命令方块的更改并退出命令方块的界面。
 - 命令方块的悬停注释：
-  - 可以在“悬停注释”中添加命令方块的简要注释，在指向命令方块的时候会像物品展示框一样展示这段注释。
-  - 会将命令方块的执行者名称改为这个值。
+    - 可以在“悬停注释”中添加命令方块的简要注释，在指向命令方块的时候会像物品展示框一样展示这段注释。
+    - 会将命令方块的执行者名称改为这个值。
 - 命令方块的类型：
-  - 脉冲型：激活一次就执行一次。
-  - 连锁型（Chain Command Block，简称CCB）：**指向**连锁型命令方块的命令方块**执行**后执行。
-  - 循环型（Repeating Command Block，简称RCB）：激活状态下循环执行。
+    - 脉冲型：激活一次就执行一次。
+    - 连锁型（Chain Command Block，简称CCB）：**指向**连锁型命令方块的命令方块**执行**后执行。
+    - 循环型（Repeating Command Block，简称RCB）：激活状态下循环执行。
 - 命令方块的执行条件：
-  - 不受制约：不论命令方块背后是否有命令方块，也不论命令方块背后的命令方块是否成功执行，都在激活后执行
-  - 条件制约：只有命令方块**背后**的命令方块**成功执行**后执行。
-    - 请注意不要和连锁型命令方块的执行条件混淆，需要注意的点已经粗体标出。
+    - 不受制约：不论命令方块背后是否有命令方块，也不论命令方块背后的命令方块是否成功执行，都在激活后执行
+    - 条件制约：只有命令方块**背后**的命令方块**成功执行**后执行。
+        - 请注意不要和连锁型命令方块的执行条件混淆，需要注意的点已经粗体标出。
 - 命令方块的红石控制（启动条件）：
-  - 红石控制：只有接收到红石信号后激活。
-    - 脉冲型命令方块通常使用这个模式；推荐循环型命令方块使用这个模式。
-  - 保持开启：无论是否接收到红石信号，都始终激活。
-    - 连锁型命令方块通常使用这个模式。
+    - 红石控制：只有接收到红石信号后激活。
+        - 脉冲型命令方块通常使用这个模式；推荐循环型命令方块使用这个模式。
+    - 保持开启：无论是否接收到红石信号，都始终激活。
+        - 连锁型命令方块通常使用这个模式。
 - 命令方块链（CB 链）：
-  - 由一个脉冲型或循环型命令方块开头，后接若干个保持开启的连锁型命令方块的结构。
-  - 通常采用平放或竖直放置的方式，可以拐弯甚至蛇形走位。
-  - 相比于红石布线使大量命令方块按顺序执行的方式，命令方块链在易编辑性、延迟表现、摆放方式等方面都显著更优。
+    - 由一个脉冲型或循环型命令方块开头，后接若干个保持开启的连锁型命令方块的结构。
+    - 通常采用平放或竖直放置的方式，可以拐弯甚至蛇形走位。
+    - 相比于红石布线使大量命令方块按顺序执行的方式，命令方块链在易编辑性、延迟表现、摆放方式等方面都显著更优。
 - 命令方块的延迟执行：
-  - 延迟刻数：
-    - 在这个命令方块被激活的状态下，要延迟多久才执行一次命令。
-    - 对于脉冲和循环这两种类型的命令方块，`0`和`1`是等价的，都是在激活后的下一个游戏刻执行；而对于连锁型命令方块，`0`和`1`并不等价，`1`会展现出它的延迟特性。
-    - 对于命令方块链，各命令方块依次延迟执行，但循环型命令方块的延迟执行是独立的。所以，对于循环型命令方块链，通常将起始的循环型命令方块的延迟设置为大于其他连锁型命令方块的延迟刻数的总和，以使其执行效果不会发生混乱。
-  - 在首刻执行：
-    - 只能用于循环型命令方块，决定是否在启动后就立刻执行。
+    - 延迟刻数：
+        - 在这个命令方块被激活的状态下，要延迟多久才执行一次命令。
+        - 对于脉冲和循环这两种类型的命令方块，`0`和`1`是等价的，都是在激活后的下一个游戏刻执行；而对于连锁型命令方块，`0`和`1`并不等价，`1`会展现出它的延迟特性。
+        - 对于命令方块链，各命令方块依次延迟执行，但循环型命令方块的延迟执行是独立的。所以，对于循环型命令方块链，通常将起始的循环型命令方块的延迟设置为大于其他连锁型命令方块的延迟刻数的总和，以使其执行效果不会发生混乱。
+    - 在首刻执行：
+        - 只能用于循环型命令方块，决定是否在启动后就立刻执行。
 - 常用的命令方块快捷键：
-  - 可以用<kbd>Ctrl</kbd>+<kbd>A</kbd>全选、<kbd>Ctrl</kbd>+<kbd>C</kbd>复制、<kbd>Ctrl</kbd>+<kbd>C</kbd>粘贴。
-  - 可以用<kbd>Ctrl</kbd>+<kbd>鼠标中键</kbd>选取带有相同信息的命令方块。
+    - 可以用<kbd>Ctrl</kbd>+<kbd>A</kbd>全选、<kbd>Ctrl</kbd>+<kbd>C</kbd>复制、<kbd>Ctrl</kbd>+<kbd>V</kbd>粘贴。
+    - 可以用<kbd>Ctrl</kbd>+<kbd>鼠标中键</kbd>选取带有相同信息的命令方块。
 
 ## 练习
 
@@ -621,12 +621,12 @@ say 1
 
 1. 还记得我们在 2.4 时写的死亡榜吗？试用一个 RCB 链实现之。命令如下：
 
-   ```text showLineNumbers title="死亡榜逻辑"
-   scoreboard players set @a[scores={deathState=!2}] deathState 1
-   scoreboard players set @e[type=player] deathState 0
-   scoreboard players add @a[scores={deathState=1}] deathCount 1
-   scoreboard players set @a[scores={deathState=1}] deathState 2
-   ```
+    ```text showLineNumbers title="死亡榜逻辑"
+    scoreboard players set @a[scores={deathState=!2}] deathState 1
+    scoreboard players set @e[type=player] deathState 0
+    scoreboard players add @a[scores={deathState=1}] deathCount 1
+    scoreboard players set @a[scores={deathState=1}] deathState 2
+    ```
 
 2. 在以数织为主要玩法的地图 Minecraft Picross 中，作者使用了一种非记分板的方式标记关卡是否完成。该地图分为若干章节，每个章节有 7 个关卡，关卡结束后就在一个特定位置上放上红石导体，并在所有关卡完成后通过中继器延续信号的特性最终激活该章完成的 CB 链的逻辑。现在我们简化一下这个逻辑：假设一章内存在 3 个关卡，在所有关卡完成后执行命令方块链。不依靠记分板，请使用 3 个 CB 模拟关卡完成后的效果，然后 3 个关卡全部完成后执行命令`say 本章已完成`。
 3. 在上一个问题中，如果使用记分板，试使用 3 个 CB 链模拟关卡完成后的效果，然后 3 个关卡全部完成后执行命令`say 本章已完成`。
@@ -658,42 +658,41 @@ say 1
    ![answer_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_2.webp)  
    然后，按编号写入下面的命令，其中`...`分别指代其对应的红石导体的位置：
 
-   ```text showLineNumbers
-   setblock ... stone
-   setblock ... stone 
-   setblock ... stone
-   say 本章已完成
-   ```
+    ```text showLineNumbers
+    setblock ... stone
+    setblock ... stone
+    setblock ... stone
+    say 本章已完成
+    ```
 
 3. 这里采用`data.levelCompleted`来指代关卡完成数。显然，当完成一关后，应该为该值加 1。为了防止一个关卡能重复完成多次，可以采用始终激活 CB 的方式，确保它只执行一次。当关卡完成后，就在一个位置上放上红石块，这可以满足我们的需求。最后，检测到满足条件后，应该执行`say 本章已完成`的命令，但是只能执行一次。
 
-   首先，对于红石块的需求，我们可以采用活塞解决：  
-   ![answer_3_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_3_1.webp)  
-   这里的每个命令方块的命令都是`scoreboard players add levelCompleted data 1`。
+    首先，对于红石块的需求，我们可以采用活塞解决：  
+    ![answer_3_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_3_1.webp)  
+    这里的每个命令方块的命令都是`scoreboard players add levelCompleted data 1`。
 
-   然后，检测到条件满足后执行一次`say 本章已完成`。检测通常是需要循环执行的，而待执行的命令只能执行一次，这是一个经典的矛盾问题。这里有两种可以考虑的方法：
+    然后，检测到条件满足后执行一次`say 本章已完成`。检测通常是需要循环执行的，而待执行的命令只能执行一次，这是一个经典的矛盾问题。这里有两种可以考虑的方法：
+    1. 使用红石比较器连接：  
+       ![answer_3_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_3_2.webp)  
+       其中，RCB 的命令为`execute if score levelCompleted data matches 3..`，CB 的命令为`say 本章已完成`。
+    2. 直接在检测成功后停止执行命令：  
+       ![answer_3_3](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_3_3.webp)  
+       其中，RCB 的命令为`execute if score levelCompleted data matches 3.. run say 本章已完成`，CCB 的命令为`setblock ... air`，其中`...`为红石块的坐标。这种方案的优势在于不会在检测成功后引入额外延迟，但缺点在于待执行的命令不能过于复杂，否则会导致后面的命令方块都带上长长的检测条件，并且因为要中间插入命令方块，也不利于后续维护。
 
-   1. 使用红石比较器连接：  
-      ![answer_3_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_3_2.webp)  
-      其中，RCB 的命令为`execute if score levelCompleted data matches 3..`，CB 的命令为`say 本章已完成`。
-   2. 直接在检测成功后停止执行命令：  
-      ![answer_3_3](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_3_3.webp)  
-      其中，RCB 的命令为`execute if score levelCompleted data matches 3.. run say 本章已完成`，CCB 的命令为`setblock ... air`，其中`...`为红石块的坐标。这种方案的优势在于不会在检测成功后引入额外延迟，但缺点在于待执行的命令不能过于复杂，否则会导致后面的命令方块都带上长长的检测条件，并且因为要中间插入命令方块，也不利于后续维护。
-
-   将关卡完成的活塞装置和上面两种检测装置的任意一种拿出来并组合一下，就得到题意需要的命令系统。
+    将关卡完成的活塞装置和上面两种检测装置的任意一种拿出来并组合一下，就得到题意需要的命令系统。
 
 4. 和第 3 问类似，这里同样面临检测的循环和给予物品的单次执行的矛盾。这里我们采用经典的红石比较器的思路。检测到物品后，激活 CB 链，清除玩家的原物品并给予一个新物品。然后，为了防止玩家刷物品，可以在给予后就直接停止检测。这样，我们就得到下图的命令系统：
    ![answer_4](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_4.webp)  
    然后，按编号写入下面的命令，其中`...`指代红石块的位置：
 
-   ```text showLineNumbers
-   execute if entity @a[hasitem={item=crafting_table}]
-   clear @a crafting_table
-   give @a crafting_table 1 0 {"can_place_on":{"blocks":["emerald_block"]}}
-   setblock ... air
-   ```
+    ```text showLineNumbers
+    execute if entity @a[hasitem={item=crafting_table}]
+    clear @a crafting_table
+    give @a crafting_table 1 0 {"can_place_on":{"blocks":["emerald_block"]}}
+    setblock ... air
+    ```
 
-   视情况，可以继续优化这个逻辑，例如多人适配、或者添加提示语、音效等。
+    视情况，可以继续优化这个逻辑，例如多人适配、或者添加提示语、音效等。
 
 5. 这里可以结合红石系统。此处，设计了如下图的一种感应门，当玩家到 RCB（`testfor @a[y=~2,dy=0]`）上方 2 格时，门会自动打开。注意：这里此时只有一名玩家，所以必须使用红石中继器延续信号。
    ![answer_5](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_5.webp)
@@ -702,22 +701,22 @@ say 1
    ![answer_6](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_6.webp)
    然后，按编号写入下面的命令，其中第 6~11 个命令方块应设置为 80 刻的延迟刻数：
 
-   ```text showLineNumbers
-   execute as @e[type=villager] at @s if entity @a[r=3]
-   execute as @e[type=villager] at @s run tp @a ^^^3
-   execute as @a at @s run tp @s ~~~ facing @e[type=villager,c=1]
-   inputpermission set @a movement disabled
-   inputpermission set @a camera disabled
-   execute as @e[type=villager] run say 这是第一句话
-   execute as @e[type=villager] run say 这是第二句话
-   execute as @e[type=villager] run say 这是第三句话
-   execute as @e[type=villager] run say 这是第四句话
-   execute as @e[type=villager] run say 这是第五句话
-   inputpermission set @a movement enabled
-   inputpermission set @a camera enabled
-   ```
+    ```text showLineNumbers
+    execute as @e[type=villager] at @s if entity @a[r=3]
+    execute as @e[type=villager] at @s run tp @a ^^^3
+    execute as @a at @s run tp @s ~~~ facing @e[type=villager,c=1]
+    inputpermission set @a movement disabled
+    inputpermission set @a camera disabled
+    execute as @e[type=villager] run say 这是第一句话
+    execute as @e[type=villager] run say 这是第二句话
+    execute as @e[type=villager] run say 这是第三句话
+    execute as @e[type=villager] run say 这是第四句话
+    execute as @e[type=villager] run say 这是第五句话
+    inputpermission set @a movement enabled
+    inputpermission set @a camera enabled
+    ```
 
-   命令逻辑是比较简单的，这里不再详细解析。无法理解上述命令含义的读者请回顾第 2 章的内容。
+    命令逻辑是比较简单的，这里不再详细解析。无法理解上述命令含义的读者请回顾第 2 章的内容。
 
 7. 这个问题非常简单，命令方块写入`setblock ~~1~ air`即可。通常来说，结合 CB 链可以实现多次的 CB 链调用，例如下图的结构中可以通过多次放置红石块的方式来多次调用这个 CB 链，因此这种结构是一种很常见的扩展版 CB 链结构。  
    ![answer_7](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_7.webp)
@@ -726,29 +725,29 @@ say 1
    ![answer_8](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_8.webp)  
    注意红石线路的长度为 14。然后，按编号写入下面的命令，其中第 2 个命令方块应该设置为 20 刻的延迟刻数：
 
-   ```text showLineNumbers
-   testfor @a
-   scoreboard players remove startCountdown time 1
-   ```
+    ```text showLineNumbers
+    testfor @a
+    scoreboard players remove startCountdown time 1
+    ```
 
 9. 这里我们需要检测玩家是否扔出钓竿，然后执行单次的命令。很经典的循环与单次的矛盾，所以采用红石比较器结构。检测钓竿可以使用`execute if entity`命令检查浮漂，然后检查到之后将距离浮漂最近的玩家传送，并立刻移除浮漂以防误判，这就是最基础的“钓竿回城”了。
    ![answer_9_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_9_1.webp)
 
-   ```text showLineNumbers
-   execute if entity @e[type=fishing_hook]
-   execute as @e[type=fishing_hook] at @s run tp @p 0 128 0
-   kill @e[type=fishing_hook]
-   ```
+    ```text showLineNumbers
+    execute if entity @e[type=fishing_hook]
+    execute as @e[type=fishing_hook] at @s run tp @p 0 128 0
+    kill @e[type=fishing_hook]
+    ```
 
-   不过这样做，会导致额外的延迟。事实上我们注意到，在我们这个思路的最后，移除了浮漂，**这直接影响了一开始的检测条件**，所以哪怕后面两条命令循环执行，最后的传送效果也是单次的传送。所以，这个思路可以继续优化为
-   ![answer_9_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_9_2.png)
+    不过这样做，会导致额外的延迟。事实上我们注意到，在我们这个思路的最后，移除了浮漂，**这直接影响了一开始的检测条件**，所以哪怕后面两条命令循环执行，最后的传送效果也是单次的传送。所以，这个思路可以继续优化为
+    ![answer_9_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_9_2.png)
 
-   ```text showLineNumbers {2} title="高亮部分为条件制约型命令方块"
-   execute as @e[type=fishing_hook] at @s run tp @p 0 128 0
-   kill @e[type=fishing_hook]
-   ```
+    ```text showLineNumbers {2} title="高亮部分为条件制约型命令方块"
+    execute as @e[type=fishing_hook] at @s run tp @p 0 128 0
+    kill @e[type=fishing_hook]
+    ```
 
-   这里不使用条件制约也是可以的，这个小优化只是为了每游戏刻少执行一些命令而已。
+    这里不使用条件制约也是可以的，这个小优化只是为了每游戏刻少执行一些命令而已。
 
 10. 商店的逻辑已在实验 3.2-8 中讲过，这里不再赘述，直接给出命令系统和答案。
     ![answer_10](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_10.webp)

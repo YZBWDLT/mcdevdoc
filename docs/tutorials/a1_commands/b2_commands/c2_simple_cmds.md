@@ -216,7 +216,7 @@ import Version from '/src/components/highlight/version';
 
 :::note[扩展：为什么旁观模式不存在简称和数字写法？]
 
-这是因为，Java 版自 1.13 后，该命令仅支持全称写法，而旁观模式在基岩版加入时间较晚，所以为了顺应 Java 版的趋势，就不再允许该模式写为简称或数字。旁观模式在 Java 版 1.12 以前的简称写法为`sp`。基岩版在刚加入旁观模式时，允许使用数字`6`指代该模式。
+这是因为，Java 版自 1.13 后，该命令仅支持全称写法，而旁观模式在基岩版加入时间较晚，所以为了顺应 Java 版的趋势，就不再允许该模式写为简称或数字。旁观模式在 Java 版 1.12 以前的简称写法为`sp`。基岩版在刚加入旁观模式时，允许使用数字`6`指代该模式；现版本请直接写`spectator`，不必纠结数字写法。
 
 :::
 
@@ -557,7 +557,7 @@ m=<游戏模式: int|GameMode>
 rx=<x旋转最大值: float>
 ry=<y旋转最大值: float>
 rxm=<x旋转最小值: float>
-rym=<x旋转最小值: float>
+rym=<y旋转最小值: float>
 ```
 
 与`rm`类似，这里的 m 仍然指代最小值 Minimum。很多抬头检测、低头检测，就是基于这个目标选择器参数检测的。
@@ -584,7 +584,7 @@ rym=<x旋转最小值: float>
 
 我们来举两个例子：
 
-- `/say Hello,world!`：在全服说`[(你的名字)] Hello,world！`
+- `/say Hello,world!`：在全服说`[(你的名字)] Hello,world!`
 - `/say @e`：在全服说`[(你的名字)] (所有实体的名字)`，下图为示例。
 
 ![/say @e](/img/tutorials/a1_commands/b2_commands/c2_simple_cmds/say_entity.png)
@@ -641,7 +641,7 @@ rym=<x旋转最小值: float>
 | `/tp <目标: target> <位置: target> [检查卡墙: Boolean]`                                               | 传送`目标`到`位置`实体处的位置，检查`检查卡墙`                                         |                                                                                     |
 | `/tp <目标: target> <位置: x y z> [检查卡墙: Boolean]`                                                | 传送`目标`到`位置`坐标处的位置，检查`检查卡墙`                                         |                                                                                     |
 | **`/tp <目标: target> <位置: x y z> [y旋转: value] [x旋转: value] [检查卡墙: Boolean]`**              | 按照旋转角度`y旋转`和`x旋转`传送`目标`到`位置`坐标处的位置，检查`检查卡墙`             |                                                                                     |
-| **`/tp <目标: target> <位置: x y z> facing <面向实体: target\|面向坐标: x y z> [检查卡墙: Boolean]`** | 按照面向`面向实体`（或`面向坐标`）的朝向传送`目标`到`位置`坐标处的位置，检查`检查卡墙` | `面向实体`至多指代 1 个                                                             |
+| **`/tp <目标: target> <位置: x y z> facing <面向实体: target\|面向坐标: x y z> [检查卡墙: Boolean]`** | 按照面向`面向实体`（或`面向坐标`）的朝向传送`目标`到`位置`坐标处的位置，检查`检查卡墙` | `面向实体`必须且只能指代 1 个                                                             |
 | **`/say <消息: message>`**                                                                            | 在全服务器发送`消息`                                                                   |                                                                                     |
 | `/weather <clear\|rain\|thunder> [时长: int]`                                                         | 设置特定的天气为`时长`游戏刻                                                           |                                                                                     |
 | `/weather query`                                                                                      | 查询天气                                                                               |                                                                                     |
@@ -650,11 +650,11 @@ rym=<x旋转最小值: float>
 
 | 目标选择器参数                | 取自                       | 意义                         | 备注                   |
 | ----------------------------- | -------------------------- | ---------------------------- | ---------------------- |
-| `m=<游戏模式: int\|GameMode>` | **M**ode                   | 查找`m`的玩家                | 允许反选，只能指定一次 |
+| `m=<游戏模式: int\|GameMode>` | **M**ode                   | 查找特定游戏模式的玩家                | 允许反选，只能指定一次 |
 | `rx=<x旋转最大值: float>`     | **x R**otation             | 查找 x 旋转值小于`rx`的玩家  |                        |
 | `ry=<y旋转最大值: float>`     | **y R**otation             | 查找 y 旋转值小于`ry`的玩家  |                        |
 | `rxm=<x旋转最小值: float>`    | **M**inimum **x R**otation | 查找 x 旋转值大于`rxm`的玩家 |                        |
-| `rym=<x旋转最小值: float>`    | **M**inimum **y R**otation | 查找 y 旋转值大于`rym`的玩家 |                        |
+| `rym=<y旋转最小值: float>`    | **M**inimum **y R**otation | 查找 y 旋转值大于`rym`的玩家 |                        |
 
 ## 练习
 

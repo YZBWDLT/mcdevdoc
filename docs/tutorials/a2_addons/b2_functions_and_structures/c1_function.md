@@ -235,7 +235,7 @@ say 1
 
 函数可以等效于一个 CB 链，理所当然地支持多条命令。
 
-:::tip[实验 2.1-6]
+:::tip[实验 2.1-5]
 
 将函数文件内的内容更改为下面的内容：
 
@@ -409,7 +409,7 @@ execute as @a run scoreboard players add playerAmount data 1
 
 刚刚我们说，函数的地位和一个无条件的 CB 链是等同的。既然命令方块能执行函数，那么函数理论上也能执行函数了？既然这样，我们不妨一试。
 
-:::tip[实验 2.1-8]
+:::tip[实验 2.1-9]
 
 在函数文件夹中，新建一个函数文件<FileType type="file" name="test2.mcfunction" />。此时，你的函数文件路径如下：
 
@@ -451,7 +451,7 @@ say 6
 
 现在，我们需要研究一下函数执行的顺序问题。我们知道，函数和 CB 链都是瞬时执行命令的，但是在调用其他 CB 链（调用其他函数）的时候，就存在执行顺序问题了。我们来做一个小实验，来了解一下二者的调用顺序问题。
 
-:::tip[实验 2.1-9]
+:::tip[实验 2.1-10]
 
 将<FileType type="file" name="test.mcfunction" />中改为下面的内容（将第 3-4 行调换）：
 
@@ -510,7 +510,7 @@ say 3
 
 既然函数可以调用其他函数，能否调用自己呢？我们来试验一下：
 
-:::tip[实验 2.1-10]
+:::tip[实验 2.1-11]
 
 将<FileType type="file" name="test.mcfunction" />中改为下面的内容：
 
@@ -538,7 +538,7 @@ function test
 
 我们来试一下使用命令系统直接实现阶乘的计算。以防读者不清楚，x 的阶乘在数学上定义为 x! = x·(x-1)·(x-2)·...·3·2·1。
 
-:::tip[实验 2.1-11]
+:::tip[实验 2.1-12]
 
 我们先考虑如何实现 x 的阶乘。假设传入一个变量`data.x`，我们先设定一个结果变量`data.result`。
 
@@ -648,7 +648,7 @@ tellraw @a {"rawtext":[{"translate":"%%s的阶乘等于%%s","with":{"rawtext":[{
 
 嗯，有的兄弟，有的。
 
-:::tip[实验 2.1-12]
+:::tip[实验 2.1-13]
 
 我们在<FileType type="folder" name="functions" />根目录中创建一个 JSON 文件<FileType type="file" name="tick.json" />：
 

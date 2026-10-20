@@ -23,18 +23,18 @@ scores={<记分项: string>=<值: integer range>,...}
 其实，`integer range`非常简单。它既可以代表一个特定的值，也可以代表一个数值范围。
 
 - **如果要指定一个具体的值，就直接写为这个值**。
-  - 例如，指定分数为 1 分，就写为`1`。
+    - 例如，指定分数为 1 分，就写为`1`。
 - **如果要指定为范围，它的格式是`最小值..最大值`，并且含两端**。
-  - 例如，指定分数范围在 1~5 分之内，就写为`1..5`。注意：中间是 2 个点哦！不要写为 3 个点。
-  - 如果只想指定大于等于 1 分，那么可以不写最大值，直接写为`1..`。
-  - 同样地，指定小于等于 5 分，可以不写最小值，直接写为`..5`。
+    - 例如，指定分数范围在 1~5 分之内，就写为`1..5`。注意：中间是 2 个点哦！不要写为 3 个点。
+    - 如果只想指定大于等于 1 分，那么可以不写最大值，直接写为`1..`。
+    - 同样地，指定小于等于 5 分，可以不写最小值，直接写为`..5`。
 - **`integer range`还支持反选，只需要在其最前面加上一个`!`即可**。
-  - 例如，如果指定分数不在 1~5 分之内，就写为`!1..5`。
-  - 如果分数不为 1 分，就写为`!1`。
+    - 例如，如果指定分数不在 1~5 分之内，就写为`!1..5`。
+    - 如果分数不为 1 分，就写为`!1`。
 
 我们在后面还会见到这个`integer range`类型，例如马上要提到的`execute if score`和之后要提到的`hasitem`的扩展。
 
-:::tip[实验 2.4-18]
+:::tip[实验 2.4-16]
 
 执行命令`/scoreboard players set @s data 5`，然后执行`/execute if entity @s[scores={data=1..10}]`。如上文所说，这条命令将检查执行者是否在`data`上拥有 1~10 分（取两端）。
 
@@ -75,7 +75,7 @@ scores={<记分项: string>=<值: integer range>,...}
 
 你是否还记得我们上一节曾讲过的`/scoreboard players operation`？那里也涉及到一个很类似的`操作`，而且也是左边的分数和右边的分数进行对比。但是，这里终究不完全一样，因为`/scoreboard players operation`的`操作`是`operator`类型，每个运算符都进行了赋值的操作；而这里是`compare operator`类型，代表它只进行对比而不赋值。其接受的运算符，就是典型的比较符号了：大于等于`>=`、小于等于`<=`、大于`>`、小于`<`、等于`=`。
 
-:::tip[实验 2.4-19]
+:::tip[实验 2.4-17]
 
 依次执行下面的命令。
 
@@ -93,9 +93,9 @@ scores={<记分项: string>=<值: integer range>,...}
 
 而第二个语法，则是我们直接把`/scoreboard players test`打为“扩展内容”的直接原因。它表示，**当`目标`在`记分项`上的分数满足`范围`条件时，则检测通过**。看，`integer range`又回来了！
 
-:::tip[实验 2.4-20]
+:::tip[实验 2.4-18]
 
-在实验 2.4-19 的基础上，分别执行下面的几条命令，观察执行效果。注意：实践时很多开发者常常丢`matches`，不要忘了哦！
+在实验 2.4-17 的基础上，分别执行下面的几条命令，观察执行效果。注意：实践时很多开发者常常丢`matches`，不要忘了哦！
 
 ```mcfunction showLineNumbers
 /execute if score x data matches 1..
@@ -107,7 +107,7 @@ scores={<记分项: string>=<值: integer range>,...}
 
 :::
 
-因为在实验 2.4-19 中，定义了`data.x`=`100`，所以：
+因为在实验 2.4-17 中，定义了`data.x`=`100`，所以：
 
 - 第一条命令执行成功，因为 100≥1 成立；
 - 第二条命令执行失败，因为 100≤10 不成立；
@@ -257,7 +257,7 @@ execute as @e[type=custom:npc] run scoreboard players reset @s data
 
 ![player_height](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_height.png)
 
-这不由得让我们想起目标选择器，因为基本上只有它能在不依靠任何外部环境的情况下做检测。而检测位置的参数，主要有`x`、`y`、`z`、`dx`、`dy`、`dz`、`r`和`rm`，这些都是**判定碰撞箱是否和检测区域重叠**。利用这些，我们就可以考虑从玩家的位置开始，在 1.6 格高度处看能不能检测到这个玩家的碰撞箱，如果检测得到，那么玩家必定处于站立状态下，为站立玩家添加`isStanding`标签，否则就不处于站立状态，没有`isStanding`标签。用命令来写，就是：
+这不由得让我们想起目标选择器，因为基本上只有它能在不依靠任何外部环境的情况下做检测。而检测位置的参数，主要有`x`、`y`、`z`、`dx`、`dy`、`dz`、`r`和`rm`。这里要用的是**体积判定**：`x`、`y`、`z` 确定基准坐标，再配合`dx`、`dy`、`dz` 围出一块长方体区域，**只要碰撞箱和这块区域有重叠，就视为检测通过**（`r`、`rm` 则不同，它们比较的是实体坐标点到原点的距离，和碰撞箱大小无关，不适用于这里）。利用这些，我们就可以考虑从玩家的位置开始，在 1.6 格高度处看能不能检测到这个玩家的碰撞箱，如果检测得到，那么玩家必定处于站立状态下，为站立玩家添加`isStanding`标签，否则就不处于站立状态，没有`isStanding`标签。用命令来写，就是：
 
 ```mcfunction showLineNumbers
 tag @a remove isStanding
@@ -404,7 +404,8 @@ execute as @a run scoreboard players operation @s display = @s data
 但是，经过众多租赁服服主的实测发现：当历史玩家逐渐增多的时候，使用`reset`移除所有玩家的分数会渐渐造成更大的负载。这负载是不难理解的，因为随着玩家人数增多，`data`上记载了大量的数据，而`*`即便是只对`display`记分板生效，也仍然会尝试移除`data`正在追踪的对象，这些对象每个都要穷举一次执行一次命令，导致单游戏刻上堆积了大量的命令响应需求，会导致在清除的那一瞬间变得极为卡顿，就更不要说实际工程中其他大量的记分板了。看来这是一个很严重的问题，有什么办法处理呢？在 B 站上，有一些租赁服开发者给出了他们的答案：将记分板整个移除[^1] [^2]！但是，移除了我们用什么呢？很简单，再加回来就是了嘛。
 
 [^1]: [Bilibili，@黑白格小板凳：【【租赁服】还在用高加载的reset去除玩家下线吗？最新版去除玩家下线，非高频.】](https://www.bilibili.com/video/BV1ae4y1A77S?vd_source=7359c02da6506153a61386c9dea981c1)
-[^2]: [Bilibili，@F_小仿：【新型删除计分板玩家下线 不要再用reset*了 网易租赁服必备】](https://www.bilibili.com/video/BV1YvFTeAEFJ?vd_source=7359c02da6506153a61386c9dea981c1)
+
+[^2]: [Bilibili，@F\_小仿：【新型删除计分板玩家下线 不要再用reset\*了 网易租赁服必备】](https://www.bilibili.com/video/BV1YvFTeAEFJ?vd_source=7359c02da6506153a61386c9dea981c1)
 
 ```mcfunction
 scoreboard objectives remove display
@@ -448,14 +449,17 @@ scoreboard players set @a isOnline 1
 
 <summary>答案（思考过后再翻看哦~）</summary>
 
-同样采用直接移除记分板再添加的方法解决。
+同样采用直接移除记分板再添加的方法解决。仍然以上面的「重进玩家回到大厅」为例：
 
 ```mcfunction showLineNumbers
 scoreboard players add @a isOnline 0
+execute as @a[scores={isOnline=0}] run tp 0 -60 0
 scoreboard objectives remove isOnline
 scoreboard objectives add isOnline dummy "在线数据"
 scoreboard players set @a isOnline 1
 ```
+
+同样要注意检测命令必须插在`add`与`remove`之间。
 
 </details>
 
@@ -530,7 +534,7 @@ let c = a + b; // c = 3
 
 在 Minecraft 中，我们可以**将标签抽象为一种布尔值变量**，当特定实体拥有特定标签`tag`时，说`tag` = `true`，否则说`tag` = `false`。同样地，可以**将记分板抽象为一种整数变量**，并且说名为`name`的追踪对象在记分项`obj`上的分数为`score`时，将`obj.name`视为变量，而将`score`视为值。
 
-在未来，我们将会把标签和记分板统一视作为变量，并声明变量的类型是记分板变量还是标签变量。如果未特殊说明，或者以`obj.score`形式出现的变量，默认都是记分板变量。
+在未来，我们将会把标签和记分板统一视作为变量，并声明变量的类型是记分板变量还是标签变量。如果未特殊说明，或者以`objective.name`=`score`形式出现的变量，默认都是记分板变量。
 
 ### 数据库的“增删改查”
 
@@ -572,37 +576,37 @@ execute as @a at @s if entity @s[y=~1.6,dy=0.1] run tag @s add isStanding
 本节，我们介绍了检测分数的常用方法、记分板的一些运用实例和抽象出的变量概念。现在我们一起来回顾一下吧！
 
 - **参数类型`integer range`**
-  - 用于指代一个特定的值，或一个特定的范围。
-  - 指代特定的值的时候，表示为`<值: int>`。
-  - 指代大于等于某个值的时候，表示为`<最小值: int>..`。
-  - 指代小于等于某个值的时候，表示为`..<最大值: int>`。
-  - 指代在两个值之间的时候，表示为`<最小值: int>..<最大值: int>`。
-  - 允许反选，在它们的表示前面加上一个`!`即可。
+    - 用于指代一个特定的值，或一个特定的范围。
+    - 指代特定的值的时候，表示为`<值: int>`。
+    - 指代大于等于某个值的时候，表示为`<最小值: int>..`。
+    - 指代小于等于某个值的时候，表示为`..<最大值: int>`。
+    - 指代在两个值之间的时候，表示为`<最小值: int>..<最大值: int>`。
+    - 允许反选，在它们的表示前面加上一个`!`即可。
 - **`scores`目标选择器参数**
-  - 格式为`scores={<记分项: string>=<值: integer range>,...}`，判断实体在`记分项`上的分数是否满足`值`的要求。
-  - `...`代表允许同时检测一个实体上多个记分项的分数。
-- **`execute in score`子命令**
-  - 语法 1：`<if|unless> score <目标: target> <记分项: string> <操作方法: compare operator> <源目标: target> <记分项: string> -> execute`
-    - 当`目标`在其`记分项`上的分数和`源目标`在其`记分项`上的分数经过`操作方法`比较成立后，则检测通过。
-    - `操作方法`允许的值为：`=`、`>`、`>=`、`<`、`<=`
-  - 语法 2：`<if|unless> score <目标: target> <记分项: string> matches <范围: integer range> -> execute`
-    - 当`目标`在`记分项`上的分数满足`范围`条件时，则检测通过。
+    - 格式为`scores={<记分项: string>=<值: integer range>,...}`，判断实体在`记分项`上的分数是否满足`值`的要求。
+    - `...`代表允许同时检测一个实体上多个记分项的分数。
+- **`execute if score`子命令**
+    - 语法 1：`<if|unless> score <目标: target> <记分项: string> <操作方法: compare operator> <源目标: target> <记分项: string> -> execute`
+        - 当`目标`在其`记分项`上的分数和`源目标`在其`记分项`上的分数经过`操作方法`比较成立后，则检测通过。
+        - `操作方法`允许的值为：`=`、`>`、`>=`、`<`、`<=`
+    - 语法 2：`<if|unless> score <目标: target> <记分项: string> matches <范围: integer range> -> execute`
+        - 当`目标`在`记分项`上的分数满足`范围`条件时，则检测通过。
 - **记分板的实际应用**
-  - 利用假名的性质和排序方法的特性，可以实现信息板，并按照特定变量条件将信息打印到记分板上。
-  - 利用追踪对象命令`random`，可以实现抽奖机、随机对话等涉及到随机事件的特性。
-  - 利用记分板的大范围整数类型，可以用于进行多状态标记，例如死亡状态、玩家站立状态等。
-  - 利用记分板的数值特性，可以用于记录虚拟金币、经验等需要大范围数值的情况。并且利用分值可检测范围的特性，可以再基于此制作记分板商店。
-  - 利用时间变换原理（1秒=20游戏刻），可以制作计时器。
-  - 利用“玩家下线”的原理，可以用于解决多人情况下玩家退出重进的棘手问题。
-    - 然而，“玩家下线”本身的问题也比较棘手，现在常用移除记分板再重建的方法来移除“玩家下线”的分数，而不是`reset *`。
-  - 利用`@a`和`@e[type=player]`的筛选差异，还可以制作死亡榜。
-  - 等等……
+    - 利用假名的性质和排序方法的特性，可以实现信息板，并按照特定变量条件将信息打印到记分板上。
+    - 利用追踪对象命令`random`，可以实现抽奖机、随机对话等涉及到随机事件的特性。
+    - 利用记分板的大范围整数类型，可以用于进行多状态标记，例如死亡状态、玩家站立状态等。
+    - 利用记分板的数值特性，可以用于记录虚拟金币、经验等需要大范围数值的情况。并且利用分值可检测范围的特性，可以再基于此制作记分板商店。
+    - 利用时间变换原理（1秒=20游戏刻），可以制作计时器。
+    - 利用“玩家下线”的原理，可以用于解决多人情况下玩家退出重进的棘手问题。
+        - 然而，“玩家下线”本身的问题也比较棘手，现在常用移除记分板再重建的方法来移除“玩家下线”的分数，而不是`reset *`。
+    - 利用`@a`和`@e[type=player]`的筛选差异，还可以制作死亡榜。
+    - 等等……
 - **变量与数据库**
-  - 变量是一种表示存储值或计算结果的抽象概念。数据库则认为是各种各样抽象的数据组成的集合。
-  - 记分板的分数可以视作是一种整数型变量，标签可以视作是一种布尔值变量。
-  - 对于数据库中的各类数据而言，“增删改查”是基本操作。
-    - 对于记分板和标签的众多命令而言，都有非常明确的“增删改查”的原理存在。
-  - 当涉及到实体本身的两种状态的变换时，用标签，其他情况用记分板。
+    - 变量是一种表示存储值或计算结果的抽象概念。数据库则认为是各种各样抽象的数据组成的集合。
+    - 记分板的分数可以视作是一种整数型变量，标签可以视作是一种布尔值变量。
+    - 对于数据库中的各类数据而言，“增删改查”是基本操作。
+        - 对于记分板和标签的众多命令而言，都有非常明确的“增删改查”的原理存在。
+    - 当涉及到实体本身的两种状态的变换时，用标签，其他情况用记分板。
 
 ## 练习
 
@@ -637,32 +641,32 @@ execute as @a at @s if entity @s[y=~1.6,dy=0.1] run tag @s add isStanding
 
 1. `/execute if score adv1 advancement matches 0 if score adv0 advancement matches 1 if blocks -1 22 85 -1 22 85 10 5 7 all unless entity @e[type=item] if entity @e[type=skeleton] unless entity @a[hasitem={item=skeleton_spawn_egg}] run say 恭喜你获取进度！`
 2. `/execute if score timeline time < parkour data run scoreboard players operation parkour data = timeline time`
-3. 1. `/scoreboard players set playerAmount data 0`
-   2. `/execute as @a run scoreboard players add playerAmount data 1`
-   3. `/execute if score playerAmount data matches 14.. run scoreboard players remove startCountdown time 1`
-   4. `/execute unless score playerAmount data matches 14.. run scoreboard players set startCountdown time 400`
-4. 1. `/execute if block 30 65 60 air if score redBedState data matches 1 run say §c红队的床已被破坏！`，注意要加上`if score`的检测，否则循环执行时会导致该队床在被破坏情况下不断公告。
-   2. `/execute if block 30 65 60 air if score redBedState data matches 1 run scoreboard players set redBedState data 0`
-5. 1. `/tag @a remove isAlive`
-   2. `/tag @e[type=player] add isAlive`
-   3. `/execute as @a[tag=!isAlive,tag=teamRed,tag=!isEliminated] if score redBedState data matches 0 run tag @s add isEliminated`
-6. 1. `/scoreboard players add tick time 1`
-   2. `/execute if score tick time matches 60 run say Hello,world!`
-7. 1. `/scoreboard players add @a isOnline 0`
-   2. `/execute as @a[scores={isOnline=0},tag=vip] run say 欢迎玩家 @s 回到服务器`
-   3. `/scoreboard players reset * isOnline`，这里也可以改为`scoreboard objectives remove isOnline`和`scoreboard objectives add isOnline dummy "在线数据"`，以防止追踪对象过多导致运行负载过大
-   4. `/scoreboard players set @a isOnline 1`
-8. 1. `/scoreboard players set @a[scores={deathState=!2}] deathState 1`
-   2. `/scoreboard players set @e[type=player] deathState 0`
-   3. `/scoreboard players add @a[scores={deathState=1}] deathCount 1`
-   4. `/scoreboard players set @a[scores={deathState=1}] deathState 2`
-   5. `/execute as @a[scores={deathCount=5..}] run say @s 闯关失败`
-   6. `/scoreboard players set @a[scores={deathCount=5..}] deathCount 0`，以使玩家能够重新回到游戏。当然，按照题意，也可以不写这条命令。
-9. 1. `/execute as @p if entity @s[hasitem={item=dirt}] run tag @s add lottery`
-   2. `/execute as @p[tag=lottery] run scoreboard players random lottery data 1 10000`
-   3. `/execute as @p[tag=lottery] if score lottery data matches 1 run give @s enchanted_golden_apple`
-   4. `/execute as @p[tag=lottery] run clear @s dirt`
-   5. `/tag @a remove lottery`
+3.  1. `/scoreboard players set playerAmount data 0`
+    2. `/execute as @a run scoreboard players add playerAmount data 1`
+    3. `/execute if score playerAmount data matches 14.. run scoreboard players remove startCountdown time 1`
+    4. `/execute unless score playerAmount data matches 14.. run scoreboard players set startCountdown time 400`
+4.  1. `/execute if block 30 65 30 air if score redBedState data matches 1 run say §c红队的床已被破坏！`，注意要加上`if score`的检测，否则循环执行时会导致该队床在被破坏情况下不断公告。
+    2. `/execute if block 30 65 30 air if score redBedState data matches 1 run scoreboard players set redBedState data 0`
+5.  1. `/tag @a remove isAlive`
+    2. `/tag @e[type=player] add isAlive`
+    3. `/execute as @a[tag=!isAlive,tag=teamRed,tag=!isEliminated] if score redBedState data matches 0 run tag @s add isEliminated`
+6.  1. `/scoreboard players add tick time 1`
+    2. `/execute if score tick time matches 60 run say Hello,world!`
+7.  1. `/scoreboard players add @a isOnline 0`
+    2. `/execute as @a[scores={isOnline=0},tag=vip] run say 欢迎玩家 @s 回到服务器`
+    3. `/scoreboard players reset * isOnline`，这里也可以改为`scoreboard objectives remove isOnline`和`scoreboard objectives add isOnline dummy "在线数据"`，以防止追踪对象过多导致运行负载过大
+    4. `/scoreboard players set @a isOnline 1`
+8.  1. `/scoreboard players set @a[scores={deathState=!2}] deathState 1`
+    2. `/scoreboard players set @e[type=player] deathState 0`
+    3. `/scoreboard players add @a[scores={deathState=1}] deathCount 1`
+    4. `/scoreboard players set @a[scores={deathState=1}] deathState 2`
+    5. `/execute as @a[scores={deathCount=5..}] run say @s 闯关失败`
+    6. `/scoreboard players set @a[scores={deathCount=5..}] deathCount 0`，以使玩家能够重新回到游戏。当然，按照题意，也可以不写这条命令。
+9.  1. `/execute as @p if entity @s[hasitem={item=dirt}] run tag @s add lottery`
+    2. `/execute as @p[tag=lottery] run scoreboard players random lottery data 1 10000`
+    3. `/execute as @p[tag=lottery] if score lottery data matches 1 run give @s enchanted_golden_apple`
+    4. `/execute as @p[tag=lottery] run clear @s dirt`
+    5. `/tag @a remove lottery`
 10. 1. `/scoreboard players set deadPlayerAmount data 0`
     2. `/tag @a remove isAlive`
     3. `/tag @e[type=player] add isAlive`

@@ -37,7 +37,7 @@
 
 有没有一种方法可以既不大量枚举也能一条命令搞定呢？有的，我们可以创建一个脚本。
 
-这里我们需要使用`ScriptEventCommandMessageAfterEvent`，也就是使用`/scriptevent`。这条命令常常用于进行命令系统和脚本系统之间的通讯。我们来基于脚本事件写一个“自定义命令”：
+这里我们需要使用[`ScriptEventCommandMessageAfterEvent`](/docs/docs/scripts/sapi/server/system/after_events#scripteventcommandmessageafterevent-类)，也就是使用`/scriptevent`。这条命令常常用于进行命令系统和脚本系统之间的通讯。我们来基于脚本事件写一个“自定义命令”：
 
 ```js showLineNumbers {1-6}
 // @ts-check
@@ -66,7 +66,7 @@ minecraft.system.afterEvents.scriptEventReceive.subscribe(event => {
 });
 ```
 
-这里，我们强行定义了`player`是一个`Player`，因为默认是`Entity | undefined`，而你不能对非玩家实体播放音效，这是没有意义的。因为我们启用了强制类型检查，所以加一行`// @ts-ignore`忽略它的报错，我们自己知道这一定会是一个`Player`就好了。
+这里，我们强行定义了`player`是一个[`Player`](/docs/docs/scripts/sapi/server/entity_and_player/player#player-类)，因为默认是`Entity | undefined`，而你不能对非玩家实体播放音效，这是没有意义的。因为我们启用了强制类型检查，所以加一行`// @ts-ignore`忽略它的报错，我们自己知道这一定会是一个`Player`就好了。
 
 接下来要做的就很简单了，我们可以调用`system.runTimeout()`实现延时，然后调用`player.playSound()`播放音效。
 

@@ -248,7 +248,7 @@ Java 版也同样存在物品组件这个概念。在 1.20.5 以前，Java 版�
 然而，对于“删”物品的`/clear`来说，则没有什么要补充的，因为它毕竟不支持`组件: json`参数，所以我们看看语法简单回顾一下就过了。
 
 ```text title="/clear的语法" showLineNumbers
-/clear <玩家: target> <物品: Item> [数据值: int] [最大数量: int]
+/clear [玩家: target] [物品: Item] [数据值: int] [最大数量: int]
 ```
 
 ## “改”物品：更改物品栏物品的命令`/replaceitem`

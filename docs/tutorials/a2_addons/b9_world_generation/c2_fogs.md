@@ -14,9 +14,9 @@ sidebar_position: 2
   ![fog_3](./img/c2_fogs/fog_3.png)
 - `lava_resistance`（有抗火时在熔岩中）
   ![fog_4](./img/c2_fogs/fog_4.png)
-- `weather`（雨中）s
+- `weather`（雨中）
   ![fog_5](./img/c2_fogs/fog_5.png)
 - `powder_snow`（细雪中）。
   ![fog_6](./img/c2_fogs/fog_6.png)
 
-每种迷雾都拥有**颜色（Color）**、迷雾起始距离（For Start Distance）和迷雾可见距离（Fog End Distance）。
+每种迷雾都拥有**颜色（Color）**、迷雾起始距离（Fog Start Distance）和迷雾可见距离（Fog End Distance）。

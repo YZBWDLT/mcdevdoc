@@ -133,7 +133,7 @@ at <源目标: target> -> execute
 
 分别执行下面两条命令：
 
-- `/execute as @e[type=sheep] run tp @a ~~~`。在实验 2.2-2 中，你已经知道这条命令会导致所有的羊执行“*将玩家传送到执行位置（原执行者的位置）*”的命令。
+- `/execute as @e[type=sheep] run tp @a ~~~`。在实验 2.3-2 中，你已经知道这条命令会导致所有的羊执行“_将玩家传送到执行位置（原执行者的位置）_”的命令。
 - `/execute as @e[type=sheep] at @s run tp @a ~~~`。观察效果，你可以将这条命令的执行效果和上面进行对比，尝试分析`at @s`的作用。
 
 :::
@@ -142,7 +142,7 @@ at <源目标: target> -> execute
 
 - `as @e[type=sheep]`，更改执行者为所有的羊；
 - `at @s`，令所有的执行者（即所有的羊）把执行环境参数（位置、朝向、维度）改为自己的环境；
-- `run tp @a ~~~`，执行“*将所有玩家传送到执行位置（也就是所有羊）*”的命令。
+- `run tp @a ~~~`，执行“_将所有玩家传送到执行位置（也就是所有羊）_”的命令。
 
 所以，所有的玩家都将传送到所有羊（事实上是所有羊执行一遍，依次执行，并执行到最后那只羊身上）的位置上。
 
@@ -173,7 +173,7 @@ positioned as <源目标: target> -> execute
 
 之所以说“在大多数情况下”，是因为我们使用局部坐标和`/tp`朝向语法的时候并没有那么频繁，所以执行朝向也就用得不太频繁；而一般情况下，很多地图都并不涉及维度的变化，因此执行维度的问题考虑的也不会很多，所以很多开发者可能会混用`positioned as`和`at`，在大多数情况下这是没有问题的。但是，我们仍然要强调的是，仍然不乏有少数场景中，你会需要考虑到朝向和维度的问题，比如在不同维度下的执行者，会触发不同的效果，这时候就要充分考虑`positioned as`和`at`之间的区别。
 
-:::tip[实验 2.3-3]
+:::tip[实验 2.3-4]
 
 分别执行下面两组命令：
 
@@ -189,9 +189,9 @@ positioned as <源目标: target> -> execute
 通过实验，你可以看到两条命令的执行效果如下：
 
 1. `/execute as @a at @e[type=sheep,c=1] run tp @s ~~~ ~~`的执行效果，它把玩家传送到羊的身上，并且朝向也改为羊的朝向：  
-  ![positioned as2](/img/tutorials/a1_commands/b2_commands/c3_execute/positioned_as2.webp)
+   ![positioned as2](/img/tutorials/a1_commands/b2_commands/c3_execute/positioned_as2.webp)
 2. `/execute as @a positioned as @e[type=sheep,c=1] run tp @s ~~~ ~~`的执行效果，它把玩家传送到羊的身上，但是朝向仍然为玩家原来的朝向：  
-  ![positioned as3](/img/tutorials/a1_commands/b2_commands/c3_execute/positioned_as3.webp)
+   ![positioned as3](/img/tutorials/a1_commands/b2_commands/c3_execute/positioned_as3.webp)
 
 这样，你便看到这两条命令的异同点。它们都修改了执行位置为最近的羊，所以`tp @s ~~~`都传送玩家到相同的位置；但`positioned as`并不改变执行朝向，所以`tp`命令后面的两个`~~`就认定执行朝向仍为原执行者的朝向。
 
@@ -209,7 +209,7 @@ positioned <位置: x y z> -> execute
 
 *令所有生物脚下放置一个钻石块*这样的例子，是`/execute`命令的一个基本示例，或许你在听说这条命令之前，对于它这样的应用也有所耳闻。那么我们来做一个实验来实现这一点！
 
-:::tip[实验 2.3-4]
+:::tip[实验 2.3-5]
 
 执行命令`/execute as @e at @s positioned ~~-1~ run setblock ~~~ diamond_block`。
 
@@ -273,14 +273,14 @@ rotated as <源目标: target> -> execute
 怎么说呢……看到这 4 条命令，你很可能已经会了 3 个了。可能你自己都要问，我什么时候会的 3 个？我们不妨来仔细看看：
 
 - **`facing <位置: x y z> -> execute`**：
-  - 请联想`/tp <目标: target> <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean]`。
-  - 所以这条子命令的意义是：**执行朝向改为面向`位置`**。
+    - 请联想`/tp <目标: target> <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean]`。
+    - 所以这条子命令的意义是：**执行朝向改为面向`位置`**。
 - **`facing entity <源目标: target> <eyes|feet> -> execute`**：
-  - 请联想`/tp <目标: target> <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean]`
-  - 所以这条子命令的意义是：**执行朝向改为面向`源目标`的眼睛或脚部**。
+    - 请联想`/tp <目标: target> <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean]`
+    - 所以这条子命令的意义是：**执行朝向改为面向`源目标`的眼睛或脚部**。
 - **`rotated <y旋转: value> <x旋转: value> -> execute`**：
-  - 请联想`/tp <目标: target> <位置: x y z> [y旋转: value] [x旋转: value] [检查卡墙: Boolean]`。
-  - 所以这条子命令的意义是：**执行朝向改为指定的旋转角度**。
+    - 请联想`/tp <目标: target> <位置: x y z> [y旋转: value] [x旋转: value] [检查卡墙: Boolean]`。
+    - 所以这条子命令的意义是：**执行朝向改为指定的旋转角度**。
 
 看！很简单吧，因为你已经学会了`/tp`，所以这三个自然是手到擒来！
 
@@ -322,34 +322,34 @@ in <维度: Dimension> -> execute
 
 - `/execute`用于按照特定的上下文和特定的条件执行命令。
 - `/execute`是各式各样的子命令的集合，一共有 11 条子命令。
-  - 其中，有 8 条：`align`、`anchored`、`as`、`at`、`facing`、`in`、`positioned`、`rotated`用于**修改命令上下文**，称为**修饰子命令**。
-  - 有 2 条：`if`、`unless`用于条件判断，称为**条件子命令**。
-  - 剩下的`run`，按照所给的命令上下文，和条件子命令所判断的通过条件执行后续命令。
+    - 其中，有 8 条：`align`、`anchored`、`as`、`at`、`facing`、`in`、`positioned`、`rotated`用于**修改命令上下文**，称为**修饰子命令**。
+    - 有 2 条：`if`、`unless`用于条件判断，称为**条件子命令**。
+    - 剩下的`run`，按照所给的命令上下文，和条件子命令所判断的通过条件执行后续命令。
 - `/execute`的通用语法为`execute <子命令> -> execute`（其中`run`除外）。
-  - `-> execute`表示这是下一个子命令的起点。
-  - 这也意味着，`/execute`是允许多条子命令嵌套的。
+    - `-> execute`表示这是下一个子命令的起点。
+    - 这也意味着，`/execute`是允许多条子命令嵌套的。
 - `/execute`不得以修饰子命令收尾，必须以条件子命令或`run`收尾。
 - 因为修饰子命令会修改命令上下文，影响后续子命令和命令的执行环境，所以一条`/execute`应该从左往右读。
-  - 所以，子命令之间不可随意对调，往往会产生很大的不同。
-  - 设计一条`/execute`命令时，应当注意子命令之间的顺序关系。
+    - 所以，子命令之间不可随意对调，往往会产生很大的不同。
+    - 设计一条`/execute`命令时，应当注意子命令之间的顺序关系。
 - 修饰子命令修改命令上下文不会更改其他不该改的上下文，尤其是对于`as`需要注意这一点。
 - 需要注意：修改执行朝向不等同于修改执行者的朝向！
 
 ### 子命令列表
 
-| 子命令 | 含义 | 备注 |
-| --- | --- | --- |
-| `as <源目标: target> -> execute` | 更改命令执行者为`源目标`。 | |
-| `at <源目标: target> -> execute` | 更改执行环境参数（位置、朝向、维度）为`源目标`的环境参数 | |
-| `positioned as <源目标: target> -> execute` | 更改命令的执行位置为`源目标`的位置 | |
-| `positioned <位置: x y z> -> execute` | 更改命令的执行位置为`位置` | |
-| `align <坐标轴: string> -> execute` | 将`坐标轴`对应的执行位置坐标向下取整 | `x`、`y`、`z`各只能出现一次；修正的位置非方块中心，而为方块角落 |
-| `anchored <eyes\|feet> -> execute` | 更改执行位置为执行者的脚部或眼部的位置 | |
-| `facing <位置: x y z> -> execute` | 更改执行朝向为面向`位置` | |
-| `facing entity <源目标: target> <eyes\|feet> -> execute` | 更改执行朝向为面向`源目标`的眼睛或脚部 | |
-| `rotated <y旋转: value> <x旋转: value> -> execute` | 更改执行朝向为指定的旋转角度 | |
-| `rotated as <源目标: target> -> execute` | 更改执行朝向为`源目标`的朝向 | |
-| `in <维度: Dimension> -> execute` | 更改执行维度为`维度` | 不同维度的坐标应予以变换 |
+| 子命令                                                   | 含义                                                     | 备注                                                            |
+| -------------------------------------------------------- | -------------------------------------------------------- | --------------------------------------------------------------- |
+| `as <源目标: target> -> execute`                         | 更改命令执行者为`源目标`。                               |                                                                 |
+| `at <源目标: target> -> execute`                         | 更改执行环境参数（位置、朝向、维度）为`源目标`的环境参数 |                                                                 |
+| `positioned as <源目标: target> -> execute`              | 更改命令的执行位置为`源目标`的位置                       |                                                                 |
+| `positioned <位置: x y z> -> execute`                    | 更改命令的执行位置为`位置`                               |                                                                 |
+| `align <坐标轴: string> -> execute`                      | 将`坐标轴`对应的执行位置坐标向下取整                     | `x`、`y`、`z`各只能出现一次；修正的位置非方块中心，而为方块角落 |
+| `anchored <eyes\|feet> -> execute`                       | 更改执行位置为执行者的脚部或眼部的位置                   |                                                                 |
+| `facing <位置: x y z> -> execute`                        | 更改执行朝向为面向`位置`                                 |                                                                 |
+| `facing entity <源目标: target> <eyes\|feet> -> execute` | 更改执行朝向为面向`源目标`的眼睛或脚部                   |                                                                 |
+| `rotated <y旋转: value> <x旋转: value> -> execute`       | 更改执行朝向为指定的旋转角度                             |                                                                 |
+| `rotated as <源目标: target> -> execute`                 | 更改执行朝向为`源目标`的朝向                             |                                                                 |
+| `in <维度: Dimension> -> execute`                        | 更改执行维度为`维度`                                     | 不同维度的坐标应予以变换                                        |
 
 其中，在实际工程中，最常用的子命令为`as`、`at`和`positioned`。
 
@@ -358,18 +358,18 @@ in <维度: Dimension> -> execute
 :::info[练习 2.3-1]
 
 1. 还记得练习 2.2 中的第 4 个问题吗？写一条命令以使所有玩家都正视东北方向，但这次不得影响所有玩家原本的位置信息，只更改他们的朝向。
-2. 写一条命令，将所有末影人附近 5 格的玩家传送到末影人的眼部位置。
+2. 写一条命令，将所有末影人眼部附近 5 格的玩家传送到末影人的眼部位置。
 3. 写一条“勇敢的村民”的命令——杀死所有村民附近 5 格的僵尸！
 4. 你也许玩过一种“木乃伊抓人游戏”：木乃伊的行走速度更快，但它与你的方向始终一致，通过一些挡板来挡住木乃伊的步伐并找到出口。现在，我们来简单模拟一下这个基本原理，写一条命令以让所有僵尸的方向与一位名为 Alex 的村民一致。
 5. 写一条命令，在所有村民所在方块的正中心位置生成一只僵尸。
 6. 写一条命令，令所有羊传送到它们附近的一只牛的位置，并面向离(0,0,0)最近的一只猪。这都什么鬼要求啊……
 7. 试分析 Wiki 中给出的两条命令示例：`/execute as @e at @s run tp ^^^1`和`/execute at @s as @e run tp ^^^1`，并用语言表述它们的含义。
 8. 检测所有下界的生物，并让每个下界的生物执行`/say 你们好，主世界的生物们！`命令。  
-  你可能会发现这条命令因为下界未加载而执行失败，那就进下界执行这条命令吧（不过不要用下界传送门）！
+   你可能会发现这条命令因为下界未加载而执行失败，那就进下界执行这条命令吧（不过不要用下界传送门）！
 9. 让进入了(0,-60,0)附近 1 格范围的创造模式玩家改为生存模式，并将他传送到(0,-60,3)的位置上。这个功能需要使用 2 条命令解决，先执行命令 1 再执行命令 2。  
-  命令 1：\_\_\_\_\_  
-  命令 2：\_\_\_\_\_  
-  如果两条命令的顺序倒转，还能否实现预定效果？为什么？
+   命令 1：\_\_\_\_\_  
+   命令 2：\_\_\_\_\_  
+   如果两条命令的顺序倒转，还能否实现预定效果？为什么？
 
 :::
 
@@ -378,20 +378,20 @@ in <维度: Dimension> -> execute
 <summary>练习题答案</summary>
 
 1. `/execute as @a at @s run tp @s ~~~ -135 0`
-2. `/execute as @e[type=enderman] at @s as @a[r=5] anchored eyes run tp @s ~~~`，注意末影人周围 5 格是针对其脚部位置而言的。
+2. `/execute as @e[type=enderman] at @s anchored eyes as @a[r=5] run tp @s ~~~`
 3. `/execute as @e[type=villager] at @s run kill @e[type=zombie,r=5]`
 4. `/execute as @e[type=zombie] at @s rotated as @e[type=villager,name=Alex,c=1] run tp @s ~~~ ~~`（注意千万不要忘记后面的`~~`，更改执行朝向不等同于更改执行者的朝向！）
 5. `/execute as @e[type=villager] at @s align xz positioned ~0.5~~0.5 run summon zombie`
 6. `/execute as @e[type=sheep] at @s positioned as @e[type=cow,c=1] facing entity @e[x=0,y=0,z=0,c=1,type=pig] feet run tp @s ~~~~~`  
-  或`/execute as @e[type=sheep] at @s positioned as @e[type=cow,c=1] run tp @s ~~~ facing @e[x=0,y=0,z=0,c=1,type=pig]`，答案不唯一。
+   或`/execute as @e[type=sheep] at @s positioned as @e[type=cow,c=1] run tp @s ~~~ facing @e[x=0,y=0,z=0,c=1,type=pig]`，答案不唯一。
 7. 从左向右分析。  
-第一条命令先更改执行者为所有实体，后更改执行环境参数为执行者的环境参数，执行将所有执行者向前传送 1 格的命令，因此该命令的含义为*将所有实体向其前方传送 1 格*。  
-第二条命令的`at @s`没什么意义，可忽略（因为执行环境参数本身就已经是执行者的环境参数了），然后设置执行者为所有实体，执行将所有执行者向前传送 1 格的命令，因此该命令的含义为*将所有实体传送到原执行者前方 1 格*。
+   第一条命令先更改执行者为所有实体，后更改执行环境参数为执行者的环境参数，执行将所有执行者向前传送 1 格的命令，因此该命令的含义为*将所有实体向其前方传送 1 格*。  
+   第二条命令的`at @s`没什么意义，可忽略（因为执行环境参数本身就已经是执行者的环境参数了），然后设置执行者为所有实体，执行将所有执行者向前传送 1 格的命令，因此该命令的含义为*将所有实体传送到原执行者前方 1 格*。
 8. 进入下界：`/execute in nether run tp @s ~~~`  
-  检测下界生物：`/execute in nether as @e[rm=0] run say 你们好，主世界的生物们！`
+   检测下界生物：`/execute in nether as @e[rm=0] run say 你们好，主世界的生物们！`
 9. 命令 1：`/execute as @a[x=0,y=-60,z=0,r=1] run gamemode survival @s[m=creative]`  
-  命令 2：`/execute as @a[x=0,y=-60,z=0,r=1] run tp 0 -60 3`  
-  倒转后，因为先执行了`tp`命令导致玩家位置发生变化，一定会致使目标选择器检测失败，从而使得`gamemode`无法执行。因此，如果两条命令的顺序倒转，就无法再实现预定效果。
+   命令 2：`/execute as @a[x=0,y=-60,z=0,r=1] run tp 0 -60 3`  
+   倒转后，因为先执行了`tp`命令导致玩家位置发生变化，一定会致使目标选择器检测失败，从而使得`gamemode`无法执行。因此，如果两条命令的顺序倒转，就无法再实现预定效果。
 
 </details>
 

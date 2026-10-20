@@ -47,7 +47,7 @@ sidebar_position: 8
 可以看到，它允许两种方块状态：`button_pressed_bit`和`facing_direction`。假设我们要检测特定朝向的已经按下的按钮，就可以写为
 
 ```text
-[`button_pressed_bit`=true,`facing_direction`=0]
+["button_pressed_bit"=true,"facing_direction"=0]
 ```
 
 也就是，将两种方块状态用逗号隔开即可。不过，这里需要注意一些问题：你可以看到这里我们写为了`true`而不是`"true"`、写为了`0`而不是`"0"`——请注意，**务必注意方块状态的不同类型**，把布尔值类型、整数类型和字符串类型区分开！`true`不等于`"true"`，`0`也不等于`"0"`！一般**在 Wiki 给出的众多允许值里面，除了整数和布尔值（`true`、`false`）之外，其他的可允许值都是字符串**，例如`"west"`。
@@ -75,7 +75,7 @@ sidebar_position: 8
 
 :::tip[实验 2.8-1]
 
-执行命令`/setblock ~~~ acacia_stairs["upside_down_bit"=false,"weirdo_direction"=3]`。它将放置一个面朝南方且正置的金合欢木楼梯。
+执行命令`/setblock ~~~ acacia_stairs["upside_down_bit"=false,"weirdo_direction"=3]`。它将放置一个面朝北方且正置的金合欢木楼梯。
 
 ![setblock_1](/img/tutorials/a1_commands/b2_commands/c8_block_cmds/setblock_1.webp)
 
@@ -85,7 +85,7 @@ sidebar_position: 8
 
 - `replace`：（默认值）替换原来的旧方块。假设(0,-60,0)有一个草方块，使用`/setblock 0 -60 0 dirt replace`就会强制将它替换为泥土。因为是默认值，所以`/setblock 0 -60 0 dirt replace`和`/setblock 0 -60 0 dirt`同义。
 - `destroy`：破坏原来的旧方块。假设(0,-60,0)有一个草方块，使用`/setblock 0 -60 0 dirt destroy`会先将草方块破坏掉，然后再放置泥土。破坏的标准，是模拟使用最高等级无附魔的镐子（也就是白板下界合金镐）破坏的，所以掉落物就是泥土。
-  - 因为能够模拟方块破坏的效果（包括粒子和音效），所以一些开发者常常使用这个方法搭配`kill @e[type=item]`来还原方块被破坏的效果。
+    - 因为能够模拟方块破坏的效果（包括粒子和音效），所以一些开发者常常使用这个方法搭配`kill @e[type=item]`来还原方块被破坏的效果。
 - `keep`：如果原来的位置有方块，则不会重置方块。假设(0,-60,0)有一个草方块，使用`/setblock 0 -60 0 dirt keep`就不会执行了。
 
 :::info[思考 2.8-1]
@@ -158,13 +158,13 @@ sidebar_position: 8
 
 - **`<区域>`**：`<起点: x y z> <终点: x y z>`，**由`起点`和`终点`确定的区域**。
 - **`<方块>`**：`<方块: Block> [方块状态: block states]`：**由`方块`和`方块状态`确定的要填充的方块**。
-  - 这里，`方块状态`写为可选参数主要是因为语法 1-2 和语法 3-4 所决定的，代表指定方块不必指定方块状态。
+    - 这里，`方块状态`写为可选参数主要是因为语法 1-2 和语法 3-4 所决定的，代表指定方块不必指定方块状态。
 - **`[旧方块处理方式]`**：`destroy|hollow|outline|keep`或`replace [替换方块: Block] [替换方块状态: block states]`，**如何处理区域内原有的方块**。
-  - `destroy`：破坏原有的方块后再填充，和`/setblock`类似。
-  - `keep`：保留原有区域的方块，填充没有方块（空气）的区域，和`/setblock`也是类似的。
-  - `outline`：填充外壳，但内部不受影响。
-  - `hollow`：填充外壳，内部镂空。
-  - `replace [替换方块: Block] [替换方块状态: block states]`：（默认值）替换掉原区域符合`替换方块`和`替换方块状态`的方块。
+    - `destroy`：破坏原有的方块后再填充，和`/setblock`类似。
+    - `keep`：保留原有区域的方块，填充没有方块（空气）的区域，和`/setblock`也是类似的。
+    - `outline`：填充外壳，但内部不受影响。
+    - `hollow`：填充外壳，内部镂空。
+    - `replace [替换方块: Block] [替换方块状态: block states]`：（默认值）替换掉原区域符合`替换方块`和`替换方块状态`的方块。
 
 上面的旧方块处理方式其实和`/setblock`有相似之处，但也有一些不同。例如多了两种针对外壳的处理方法，以及`replace`支持替换特定方块。所以有时候会根据特殊需求选用`/fill`命令填充同一个位置而非使用`/setblock`，这样可以筛选需要替换的方块。
 
@@ -194,7 +194,7 @@ sidebar_position: 8
 
 ![fill_2](/img/tutorials/a1_commands/b2_commands/c8_block_cmds/fill_2.webp)
 
-此外在使用时需要注意，**`/fill`允许同时填充的最大方块数是 32767**，这个上限并不算很高，所以很多开发者在执行这条命令的时候常常会因为超限而报错。
+此外在使用时需要注意，**`/fill`允许同时填充的最大方块数是 32768**。这个上限并不算很高，所以很多开发者在执行这条命令的时候常常会因为超限而报错。
 
 ## 复制一片区域的命令`/clone`
 
@@ -207,9 +207,9 @@ sidebar_position: 8
 
 同样地，类似于`/fill`，我们也可以找到这两条命令的共同点。从`force|move|normal`出发，不难猜出`filtered`和`masked`、`replace`是类似的功能，事实上，它们都负责过滤要复制的方块。而`force|move|normal`则是控制如何复制的。因此，可以归类这些参数为下面的功能：
 
-| | `源区域` | `目标区域` | `过滤与复制模式` |
-| :---: | --- | --- | --- |
-| 语法1 | `<起点> <终点>` | `<目的地>` | `[masked\|replace] [force\|move\|normal]` |
+|       | `源区域`        | `目标区域` | `过滤与复制模式`                                   |
+| :---: | --------------- | ---------- | -------------------------------------------------- |
+| 语法1 | `<起点> <终点>` | `<目的地>` | `[masked\|replace] [force\|move\|normal]`          |
 | 语法2 | `<起点> <终点>` | `<目的地>` | `filtered <force\|move\|normal> <方块> [方块状态]` |
 
 因此，这条命令**将源区域（`起点`和`终点`）确定的区域复制到`<目的地>`上，并能够选择过滤与复制模式**。
@@ -218,7 +218,7 @@ sidebar_position: 8
 
 如果你还在疑惑为什么目标区域只需要一个坐标即可确定，请见 2.3.3 的`/execute if blocks`。举例来说，如果起点和终点确定了(0,0,0)\~(5,5,5)的 6×6×6 的区域，那么`目的地`就已经有了大小和位置信息，可以唯一地确定一个区域，例如目的地取到(10,10,10)，那么目标区域就选定(10,10,10)\~(15,15,15)的同样大小的区域。可见，**如果在已经确定了目标区域的情况下，需要找到这个区域的坐标值最小的坐标点，才能正确复制**。这一点十分重要，否则控制不好，你就有可能会因为这条命令毁了你的地图。
 
-:::tip[实验 2.8-4]
+:::tip[实验 2.8-5]
 
 先在(5,5,5)\~(10,10,10)范围内填充石头，然后执行命令`/clone 5 5 5 10 10 10 15 15 15`，观察复制命令的规律。
 
@@ -227,14 +227,14 @@ sidebar_position: 8
 接下来我们简单看看`过滤模式`和`复制模式`。
 
 - **过滤模式**：
-  - `filtered ... <方块> [方块状态]`：源区域的方块中，只有`方块`会被复制过去。
-  - `masked`：源区域的方块中，只有非空气方块会被复制过去。
-  - `replace`：（默认值）源区域的方块中，全部方块都复制过去。
+    - `filtered ... <方块> [方块状态]`：源区域的方块中，只有`方块`会被复制过去。
+    - `masked`：源区域的方块中，只有非空气方块会被复制过去。
+    - `replace`：（默认值）源区域的方块中，全部方块都复制过去。
 - **复制模式**：
-  - `force`：强制复制，哪怕目标区域与源区域重叠。
-    - 是的，如果目标区域与源区域重叠，正常来讲就无法执行复制命令了。所以这种情况必须指定`force`参数。
-  - `move`：移动，即在复制到目标区域后，完全清除源区域。（类似于剪切粘贴）
-  - `normal`：正常复制。
+    - `force`：强制复制，哪怕目标区域与源区域重叠。
+        - 是的，如果目标区域与源区域重叠，正常来讲就无法执行复制命令了。所以这种情况必须指定`force`参数。
+    - `move`：移动，即在复制到目标区域后，完全清除源区域。（类似于剪切粘贴）
+    - `normal`：正常复制。
 
 考虑到实际工程中`/clone`的使用频率并不高，因此这些模式就留给你自己来探索了。下面的练习中，也不会出太多难题来“难为”你，但是到后面的结构方块和`/structure`部分，可就要认真学习了哦。
 
@@ -245,25 +245,25 @@ sidebar_position: 8
 本节我们学习了方块状态的定义，掌握了 4 条命令：如何设置一个特定位置的方块的命令`/setblock`，检测特定位置的方块的命令`/execute if block`、填充特定区域的命令`/fill`，和复制一个特定区域到另一个区域的命令`/clone`。我们现在来总结一下：
 
 - **方块状态**
-  - 用于进一步定义方块的外观和行为，部分方块需要方块状态才能完全定义
-    - 但是，方块状态却往往不是必须的，通常可以不指定方块状态（无论这个参数在命令的什么位置），这时候游戏将选择一个默认值
-  - 在 Wiki 的特定的方块条目来查询方块状态允许的值，也可以使用 Minecraft 自带的自动补全
-  - 方块状态需要以中括号包括，不同的方块状态需要以逗号分隔
-  - 每一个方块状态需要以`状态=值`的方法来表达，需要注意值的类型，为布尔值或数字时不能带上引号
-  - 即：`[<状态1>=<值1>,<状态2>=<值2>,...]`的写法
+    - 用于进一步定义方块的外观和行为，部分方块需要方块状态才能完全定义
+        - 但是，方块状态却往往不是必须的，通常可以不指定方块状态（无论这个参数在命令的什么位置），这时候游戏将选择一个默认值
+    - 在 Wiki 的特定的方块条目来查询方块状态允许的值，也可以使用 Minecraft 自带的自动补全
+    - 方块状态需要以中括号包括，不同的方块状态需要以逗号分隔
+    - 每一个方块状态需要以`状态=值`的方法来表达，需要注意值的类型，为布尔值或数字时不能带上引号
+    - 即：`[<状态1>=<值1>,<状态2>=<值2>,...]`的写法
 - 新命令部分
 
-| 命令 | 含义 | 备注 |
-| --- | --- | --- |
-| `/setblock <位置: x y z> <方块: Block> <方块状态: block states> [replace\|destroy\|keep]` | 在`位置`放置`方块状态`的`方块`，并选定旧方块处理方式（`replace\|destroy\|keep`） | |
-| `/setblock <位置: x y z> <方块: Block> [replace\|destroy\|keep]` | 在`位置`放置`方块`，并选定旧方块处理方式（`replace\|destroy\|keep`） | |
-| `/execute <if\|unless> block <位置: x y z> <方块: Block> <方块状态: block states> -> execute` | 检查`位置`是否为`方块状态`的`方块` | |
-| `/fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states> [旧方块处理: FillMode]` | 将从`起点`到`终点`组成的区域按照`旧方块处理`方式填充`方块状态`的`方块` | |
-| `/fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states> replace [替换方块: Block] [替换方块状态: block states]` | 将从`起点`到`终点`组成的区域将`替换方块状态`的`替换方块`替换为`方块状态`的`方块` | |
-| `/fill <起点: x y z> <终点: x y z> <方块: Block> [旧方块处理: FillMode]` | 将从`起点`到`终点`组成的区域按照`旧方块处理`方式填充`方块` | |
-| `/fill <起点: x y z> <终点: x y z> <方块: Block> replace [替换方块: Block] [替换方块状态: block states]` | 将从`起点`到`终点`组成的区域将`替换方块状态`的`替换方块`替换为`方块` | |
-| `/clone <起点: x y z> <终点: x y z> <目的地: x y z> [masked\|replace] [force\|move\|normal]` | 将从`起点`到`终点`组成的源区域按照过滤模式（`masked\|replace`）和复制模式（`force\|move\|normal`）复制到`目的地`决定的目标区域 | |
-| `/clone <起点: x y z> <终点: x y z> <目的地: x y z> filtered <force\|move\|normal> <方块: Block> [方块状态: block states]` | 将从`起点`到`终点`组成的源区域中的`方块状态`的`方块`按照复制模式（`force\|move\|normal`）复制到`目的地`决定的目标区域 | |
+| 命令                                                                                                                              | 含义                                                                                                                           | 备注 |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ---- |
+| `/setblock <位置: x y z> <方块: Block> <方块状态: block states> [replace\|destroy\|keep]`                                         | 在`位置`放置`方块状态`的`方块`，并选定旧方块处理方式（`replace\|destroy\|keep`）                                               |      |
+| `/setblock <位置: x y z> <方块: Block> [replace\|destroy\|keep]`                                                                  | 在`位置`放置`方块`，并选定旧方块处理方式（`replace\|destroy\|keep`）                                                           |      |
+| `/execute <if\|unless> block <位置: x y z> <方块: Block> <方块状态: block states> -> execute`                                     | 检查`位置`是否为`方块状态`的`方块`                                                                                             |      |
+| `/fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states> [旧方块处理: FillMode]`                                 | 将从`起点`到`终点`组成的区域按照`旧方块处理`方式填充`方块状态`的`方块`                                                         |      |
+| `/fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states> replace [替换方块: Block] [替换方块状态: block states]` | 将从`起点`到`终点`组成的区域将`替换方块状态`的`替换方块`替换为`方块状态`的`方块`                                               |      |
+| `/fill <起点: x y z> <终点: x y z> <方块: Block> [旧方块处理: FillMode]`                                                          | 将从`起点`到`终点`组成的区域按照`旧方块处理`方式填充`方块`                                                                     |      |
+| `/fill <起点: x y z> <终点: x y z> <方块: Block> replace [替换方块: Block] [替换方块状态: block states]`                          | 将从`起点`到`终点`组成的区域将`替换方块状态`的`替换方块`替换为`方块`                                                           |      |
+| `/clone <起点: x y z> <终点: x y z> <目的地: x y z> [masked\|replace] [force\|move\|normal]`                                      | 将从`起点`到`终点`组成的源区域按照过滤模式（`masked\|replace`）和复制模式（`force\|move\|normal`）复制到`目的地`决定的目标区域 |      |
+| `/clone <起点: x y z> <终点: x y z> <目的地: x y z> filtered <force\|move\|normal> <方块: Block> [方块状态: block states]`        | 将从`起点`到`终点`组成的源区域中的`方块状态`的`方块`按照复制模式（`force\|move\|normal`）复制到`目的地`决定的目标区域          |      |
 
 ## 练习
 
@@ -285,11 +285,11 @@ sidebar_position: 8
 <summary>练习题答案</summary>
 
 1. `/execute positioned -13 2 86 if block ~~~ stone_button ["facing_direction"=2,"button_pressed_bit"=true] run setblock ~~~ stone_button ["facing_direction"=2]`
-2. 1. `/execute if score timeline time matches 120 run fill -40 12 28 -39 9 26 air destroy`
-   2. `/execute if score timeline time matches 120 run kill @e[type=item]`
+2.  1. `/execute if score timeline time matches 120 run fill -40 12 28 -39 9 26 air destroy`
+    2. `/execute if score timeline time matches 120 run kill @e[type=item]`
 3. `/execute if block -46 21 55 lit_redstone_lamp positioned -49 25 60 if block ~~~ magma run setblock ~~~ flowing_lava`
 4. `/execute if score getDiamondPickaxe data matches 1 if entity @a[hasitem={item=diamond_pickaxe,quantity=0}] positioned -257 -32 106 run clone ~~~~~~~~3~`
-5. `/execute positioned -145 -43 -33 if block ~~~ stone_button ["facing_direction"=1,"button_pressed_bit"=true] run summon minecart ~1~-1~`
+5. `/execute positioned -145 -43 -33 if block ~~~ stone_button ["facing_direction"=1,"button_pressed_bit"=true] run summon minecart ~1~1~`
 6. `/execute unless block -2 26 3 redstone_wire ["redstone_signal"=0] if block 20 22 7 quartz_pillar ["pillar_axis"="y"] run say 已解锁新关卡`
 
 </details>

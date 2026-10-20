@@ -453,7 +453,7 @@ camera @s set minecraft:fixed_boom rot 0 45
 
 到此，我们就把`set`的所有语法都给研究完了，其实只涉及到 6 条子命令，但是组合出了 28 条语法而已。其中还**当属自由视角的用途最为广泛且实用**。在实际工程中，使用自由视角已完全够用。在结尾的总结部分，我们还会带你总结子命令与预设的可用关系。
 
-### 聚焦实体的相机：`/camera ... target_entity`与`/camera ... reset_target`
+### 聚焦实体的相机：`/camera ... target_entity`与`/camera ... remove_target`
 
 现在我们来看`/camera`的其他功能，第一个来研究聚焦实体语法：
 
@@ -777,7 +777,7 @@ camera <玩家> play_spline <样条>
 
 9. ```text title="每游戏刻执行，命令条数要求固定" showLineNumbers
    execute if score timeline time matches 1060 run camera @a set minecraft:free ease 3 in_out_quad pos -237 33 130 facing -247 35 130
-   execute if score timeline time matches 1420 as @a at @s anchored eyes run camera @a set minecraft:free ease 3 in_out_quad pos ^^^0.5 facing ^^^1
+   execute if score timeline time matches 1420 as @a at @s anchored eyes run camera @s set minecraft:free ease 3 in_out_quad pos ^^^0.5 facing ^^^1
    execute if score timeline time matches 1460 run camera @a clear
    execute if score timeline time matches 1460 run inputpermission set @a camera enabled
    execute if score timeline time matches 1460 run inputpermission set @a movement enabled

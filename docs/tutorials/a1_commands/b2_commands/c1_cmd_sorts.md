@@ -24,7 +24,7 @@ sidebar_position: 1
   - `/scoreboard`
   - `/summon`\*[^1]
   - `/tellraw`
-- **超高频命令**：在一张较大型地图项目中的出现频率在 0.01 ~ 0.05
+- **高频命令**：在一张较大型地图项目中的出现频率在 0.01 ~ 0.05
   - `/tag`
   - `/tp`（或`/teleport`）
   - `/setblock`\*[^4]

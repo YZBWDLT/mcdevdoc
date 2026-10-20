@@ -12,9 +12,9 @@
 
 火把、灵魂火把和铜火把的配方是如此的相像，它们都共用煤炭和木棍，而只相差一个材料而已。能不能实现使用特定材料与这些火把交互，并改变它们的类型呢？答案当然是可以！
 
-利用玩家与方块交互的前事件（`PlayerInteractWithBlockBeforeEvent`），我们就可以实现这个有趣的小功能。
+利用玩家与方块交互的前事件（[`PlayerInteractWithBlockBeforeEvent`](/docs/docs/scripts/sapi/server/world/before_events#playerinteractwithblockbeforeevent-类)），我们就可以实现这个有趣的小功能。
 
-为什么不能用后事件（`PlayerInteractWithBlockAfterEvent`）呢？因为火把本身没有什么可交互的功能，而我们将要使用的铜粒也不是能交互的物品，在这种情况下使用后事件就没有效果了。
+为什么不能用后事件（[`PlayerInteractWithBlockAfterEvent`](/docs/docs/scripts/sapi/server/world/after_events#playerinteractwithblockafterevent-类)）呢？因为火把本身没有什么可交互的功能，而我们将要使用的铜粒也不是能交互的物品，在这种情况下使用后事件就没有效果了。
 
 那我们来写一个前事件如下：
 

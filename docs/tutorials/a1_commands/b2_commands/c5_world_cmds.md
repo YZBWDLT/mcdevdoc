@@ -40,7 +40,7 @@ sidebar_position: 5
 
 ![gamerule_3](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_3.webp)
 
-当然，这个表格中有些规则你可能目前还看不懂，比如`commandBlockOutPut`、或者`functionCommandLimit`等涉及到你还没有接触到的概念，如果看不懂，就直接跳过去，我们在讲到相关内容的时候会简单谈谈这些游戏规则。但是，其中的大多数内容，你应该已经能看懂了。
+当然，这个表格中有些规则你可能目前还看不懂，比如`commandBlockOutput`、或者`functionCommandLimit`等涉及到你还没有接触到的概念，如果看不懂，就直接跳过去，我们在讲到相关内容的时候会简单谈谈这些游戏规则。但是，其中的大多数内容，你应该已经能看懂了。
 
 **要好好看哦~练习的时候会用到的**！
 
@@ -62,7 +62,7 @@ sidebar_position: 5
    1. `doMobLoot`，**控制生物类型的实体**，比如羊、猪、苦力怕、僵尸等实体被杀死后是否掉落掉落物；
    2. `doEntityDrops`，则**控制非生物类型的实体**，比如画被打掉后是否掉落掉落物；
    3. `doTileDrops`则是**控制方块被挖掘后**是否掉落掉落物。
-2. 如你所见，`sendCommandFeedBack`是控制“玩家执行命令的返回信息是否在聊天框中显示”功能的，也就是说**迄今为止我们所学习的所有跟`list`有关的命令，都会受到这条游戏规则的影响**。**它还会影响例如传送位置反馈、游戏模式设置反馈等诸多反馈**，而这些反馈在实际的地图、模组中，我们是不希望玩家看到的，所以**往往都在正式发布地图前关闭这个游戏规则**。但是，在开发过程中，是否启用这个游戏规则则因人而异，有时候一些很重要的信息必须通过`list`类命令查看的时候，就不得不短暂开启这个游戏规则。在后面的教程中，**除必要情况的话我们先不关闭这个游戏规则，但你要知道什么时候该关闭它**。
+2. 如你所见，`sendCommandFeedback`是控制“玩家执行命令的返回信息是否在聊天框中显示”功能的，也就是说**迄今为止我们所学习的所有跟`list`有关的命令，都会受到这条游戏规则的影响**。**它还会影响例如传送位置反馈、游戏模式设置反馈等诸多反馈**，而这些反馈在实际的地图、模组中，我们是不希望玩家看到的，所以**往往都在正式发布地图前关闭这个游戏规则**。但是，在开发过程中，是否启用这个游戏规则则因人而异，有时候一些很重要的信息必须通过`list`类命令查看的时候，就不得不短暂开启这个游戏规则。在后面的教程中，**除必要情况的话我们先不关闭这个游戏规则，但你要知道什么时候该关闭它**。
 3. 关于随机刻更改`randomTickSpeed`的问题，它主要**控制一些方块的随机事件发生得有多快**，比如小麦生长、藤蔓蔓延、冰块融化等等。务必注意它只更改方块的随机事件发生的速度，而且**务必注意把这个值调的过高会导致游戏的卡顿**！这个值调整成`0`，就会禁用这些方块的随机事件了。
 
 ### 更改世界生物生成事件的命令：`/mobevent`
@@ -242,7 +242,7 @@ sidebar_position: 5
 /time set <时间: TimeSpec>
 ```
 
-有印象了吗？如果还没有的话，记得回去看一下哦。
+有印象了吗？如果还没有的话，记得回去看一下哦。这里列出的是长期通用的四条语法；26.60 之后`/time`还新增了按时间标记操作、暂停与恢复等用法，完整列表请回到 [2.2](./c2_simple_cmds#调整时间的命令time) 查看。
 
 ### *设置终为白日：`/alwaysday`
 
@@ -340,7 +340,7 @@ time set 6000
    6. `/gamerule doImmediateRespawn true`
    7. `/gamerule showCoordinates true`和`/gamerule showDaysPlayed true`
    8. `/gamerule fallDamage false`、`/gamerule drowningDamage false`、`/gamerule fireDamage false`和`/gamerule freezeDamage true`
-   9. `/gamerule sendCommandFeedBack false`
+   9. `/gamerule sendCommandFeedback false`
    10. `/mobevent minecraft:wandering_trader_event false`
 2. `/execute in nether run tickingarea add 50 0 50 90 0 90 example`
 3. `/execute if score level data matches 24 run difficulty easy`

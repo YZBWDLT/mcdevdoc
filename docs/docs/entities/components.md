@@ -15,12 +15,6 @@ import Version from "/src/components/highlight/version"
 
 > 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
-:::warning[注意]
-
-本文部分组件的格式版本仍在核实中：版本徽标显示「?」表示尚未核实，显示「未知」表示已查找但无法确定加入版本。组件参数以 26.60 的官方 JSON schema 与原版实体文件为准，如需更多信息可查阅[实体组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/componentlist?view=minecraft-bedrock-stable)和[实体 AI 意向组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/aigoallist?view=minecraft-bedrock-stable)。
-
-:::
-
 数据驱动实体组件（Data-Driven Entity Components）用于规定实体的功能。将不同的实体组件组合在一起可以实现多种复杂的功能。
 
 实体组件可以指定到<DataType type="object" name="components" isRequired/>中，以使得实体在所有情况下都使用相关功能；也可以指定到实体组件组<DataType type="object" name="component_groups"/> - <DataType type="object" name="*"/>中，使得实体在使用特定事件时使用特定的功能。
@@ -29,9 +23,17 @@ import Version from "/src/components/highlight/version"
 
 **每个组件条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。"/>。
 
-:::note[备注]
+:::warning[注意：有关本文的格式版本问题]
 
-因为数据驱动实体自从 Mojang 在 0.16 正式公布附加包以来就已具有应用，因此其中众多组件可用的格式版本十分之早。现如今，收集古早时期的相关资料已十分困难。本文档将以 [bedrock.dev 的 1.2.0](https://bedrock.dev/docs/1.2.0.0/1.2.9.1/Addons) 版本为可用格式版本的最早版本，但这些组件可能在更早就可以应用。
+1. 因为数据驱动实体自从 Mojang 在 0.16 正式公布附加包以来就已具有应用，因此其中众多组件可用的格式版本十分之早。现如今，收集古早时期的相关资料已十分困难。本文档将以 [bedrock.dev 的 1.2.0](https://bedrock.dev/docs/1.2.0.0/1.2.9.1/Addons) 版本为可用格式版本的最早版本，但这些组件可能在更早就可以应用。
+
+2. 文档中已尽力对多个参数、组件的可用版本添加了徽标，然而读者需要注意文档中的可用版本徽标（包括组件、参数）主要来源于：
+    1. [bedrock.dev](https://bedrock.dev) 的过往版本文档，进行逐个比对得到；
+    2. 近期版本的更新日志。
+
+    然而，官方文档、schema 和 MS Learn 的文档编排均***非常混乱***（例如会出现包括但不限于过往文档未记载导致无法比对、过往文档未及时更新（例如[`minecraft:projectile`组件](#minecraftprojectile)）导致查出的版本失真、过往文档加入后立刻移除或移除后立刻加入导致无法判别该版本是否确实移除等问题），这会对加入历史的可信度造成影响，尤其是早期组件（因为对于近期组件或参数（大约为 1.21.0+）的更改有详细的更新日志介绍相关的更改），因此仅供参考。
+
+3. 本文中涉及的版本多数为我们推荐使用的版本，因为很多较旧的组件并未更新过，默认的解析格式版本仍为`0.0.0`，因此请注意本文存在一定的不严谨性。然而我们仍然推荐读者至少使用这些版本，和当前的开发习惯保持一致。
 
 :::
 
@@ -1635,18 +1637,54 @@ import Version from "/src/components/highlight/version"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<Version add="1.2.0" deprecated="1.13.0"/>：
+
 <treeview>
 - <DataType type="object" name="minecraft:breedable"/>：根对象。
-  - <DataType type="array" name="breed_items"/>：可使实体进入求爱状态的物品。
+  - <DataType type="array" name="breedItems"/>：可使实体进入求爱状态的物品。
     - <DataType type="string"/>：物品 ID。
+  - <DataType type="array" name="breedsWith"/>：可与该实体繁殖的实体列表。
+    - <DataType type="object"/>：一项。
+      - <DataType type="string" name="mateType"/>：配偶的实体 ID。
+      - <DataType type="string" name="babyType"/>：幼体的实体 ID。
+      - <DataType type="string" name="breed_event"/>：繁殖时触发的事件。
+  - <DataType type="float" name="breedCooldown"/>：再次繁殖所需的秒数。默认值为`60`。
+  - <DataType type="boolean" name="requireTame"/>：是否要求先驯服才能繁殖。默认值为`true`。
+  - <DataType type="boolean" name="allowSitting"/>：是否允许在坐下时繁殖。默认值为`false`。
+  - <DataType type="boolean" name="inheritTamed"/>：幼体是否随父母自动驯服。默认值为`true`。
+  - <DataType type="float" name="extraBabyChance"/>：一次繁殖最多产生 16 只幼体的概率，取值`0.0`-`1.0`。默认值为`0`。
+  - <DataType type="boolean" name="blend_attributes"/>：<Version add="1.8.0" inline/>幼体是否融合父母双方的部分属性。默认值为`true`。
+  - <DataType type="object" name="mutation_factor"/>：幼体不继承父母变体的概率。
+    - <DataType type="float" name="variant"/>：变体发生突变的概率。默认值为`0`。
+    - <DataType type="float" name="extra_variant"/>：额外变体发生突变的概率。默认值为`0`。
+    - <DataType type="float" name="color"/>：颜色发生突变的概率。默认值为`0`。
+  - <DataType type="boolean" name="causes_pregnancy"/>：<Version add="1.5.0" inline/>为`true`时怀孕而非直接生成幼体。默认值为`false`。
+  - <DataType type="array" name="environment_requirements"/>：<Version add="1.8.0" inline/>进入求爱状态所需的周围方块条件。
+    - <DataType type="object"/>：一项。
+      - <DataType type="array" name="blocks"/>：要求的方块列表。
+        - <DataType type="string"/>：方块 ID。
+      - <DataType type="int" name="count"/>：需要的方块数量。
+      - <DataType type="float" name="radius"/>：搜索半径，取值`0`-`16`。
+  - <DataType type="object" name="love_filters"/>：<Version add="1.12.0" inline/>进入求爱状态的条件。见[实体过滤器](./filters)。
+</treeview>
+
+<Version add="1.13.0"/>：
+
+<treeview>
+- <DataType type="object" name="minecraft:breedable"/>：根对象。
+  - <DataType type="string"/><DataType type="array" name="breed_items"/>：可使实体进入求爱状态的物品，可写单个物品 ID、物品 ID 数组，也可写成对象数组。
+    - <DataType type="string"/><DataType type="object"/>：一项。写字符串为物品 ID；写对象可同时指定转化物品。
+      - <DataType type="string" name="item"/>：物品 ID。
+      - <DataType type="string" name="result_item"/>：<Version add="1.21.130" inline/>求爱成功后转化成的物品，写作`物品ID:数据值`。
   - <DataType type="object" name="breeds_with"/>：可与该实体繁殖的对象。键为实体 ID，值可指定该组合的繁殖事件。
   - <DataType type="float" name="breed_cooldown"/>：再次繁殖所需的秒数。默认值为`60`。
   - <DataType type="boolean" name="require_tame"/>：是否要求先驯服才能繁殖。默认值为`true`。
-  - <DataType type="boolean" name="require_full_health"/>：是否要求满血才能繁殖。默认值为`false`。
+  - <DataType type="boolean" name="require_full_health"/>：<Version add="1.16.0" inline/>是否要求满血才能繁殖。默认值为`false`。
   - <DataType type="boolean" name="allow_sitting"/>：是否允许在坐下时繁殖。默认值为`false`。
   - <DataType type="boolean" name="causes_pregnancy"/>：为`true`时怀孕而非直接生成幼体。默认值为`false`。
   - <DataType type="float" name="extra_baby_chance"/>：一次繁殖最多产生 16 只幼体的概率，取值`0.0`-`1.0`。默认值为`0`。
   - <DataType type="object" name="love_filters"/>：进入求爱状态的条件。见[实体过滤器](./filters)。
+  - <DataType type="string" name="transform_to_item"/>：<Version add="1.17.0" deprecated="1.21.130" inline/>求爱成功后，求爱物品转化成的物品。
   - <DataType type="array" name="environment_requirements"/>：进入求爱状态所需的周围方块条件。
     - <DataType type="object"/>：一项。
       - <DataType type="array" name="blocks"/>：要求的方块列表。
@@ -1656,6 +1694,8 @@ import Version from "/src/components/highlight/version"
 </treeview>
 
 > **备注**：原版中这些值均为空对象。
+
+> **备注**：1.19.70 至 1.26.0 之间的文档还列有`mutation_strategy`、`parent_centric_attribute_blending`、`property_inheritance`、`random_variant_mutation_interval`、`random_extra_variant_mutation_interval`与`deny_parents_variant`，26.60 的文档已不再列出，但原版实体仍在沿用，此处暂未展开。
 
 </TabItem><TabItem value="示例" label="示例">
 
@@ -1723,11 +1763,12 @@ import Version from "/src/components/highlight/version"
     - <DataType type="string"/>：方块 ID。
   - <DataType type="float" name="base_buoyancy"/>：基础浮力，决定漂浮的程度。默认值为`1`。
   - <DataType type="boolean" name="apply_gravity"/>：每刻是否施加额外重力。默认值为`true`。
-  - <DataType type="string" name="movement_type"/>：上下浮动的类型。可选值为`waves`（按实体速度模拟波浪）、`bobbing`（模拟波浪穿过）、`none`（不浮动）。默认值为`waves`。
+  - <DataType type="string" name="movement_type"/>：<Version add="1.26.10" inline/>上下浮动的类型。可选值为`waves`（按实体速度模拟波浪）、`bobbing`（模拟波浪穿过）、`none`（不浮动）。默认值为`waves`。
   - <DataType type="float" name="big_wave_probability"/>：出现大浪的概率，仅在`waves`下生效。默认值为`0.03`。
   - <DataType type="float" name="big_wave_speed"/>：大浪的速度乘数。默认值为`10`。
   - <DataType type="float" name="drag_down_on_buoyancy_removed"/>：组件被移除时向下拖拽的力度。默认值为`0`。
-  - <DataType type="boolean" name="can_auto_step_from_liquid"/>：被推向相邻固体方块时能否自行上岸。默认值为`false`。
+  - <DataType type="boolean" name="simulate_waves"/>：<Version add="1.16.0" deprecated="1.26.10" inline/>是否按实体速度模拟波浪，由`movement_type`取代。
+  - <DataType type="boolean" name="can_auto_step_from_liquid"/>：<Version add="1.26.10" inline/>被推向相邻固体方块时能否自行上岸。默认值为`false`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -1764,6 +1805,8 @@ import Version from "/src/components/highlight/version"
 - <DataType type="object" name="minecraft:burns_in_daylight"/>：根对象。
   - <DataType type="string" name="protection_slot"/>：可挡住阳光的装备槽位。可选值为`slot.weapon.mainhand`、`slot.weapon.offhand`、`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`、`slot.armor.body`。默认值为`slot.armor.head`。
 </treeview>
+
+> **备注**：官方文档未列出该组件的参数，`protection_slot`取自 26.60 的 schema。
 
 </TabItem><TabItem value="示例" label="示例">
 
@@ -2143,6 +2186,16 @@ import Version from "/src/components/highlight/version"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<Version add="1.4.0" deprecated="1.13.0"/>：
+
+<treeview>
+- <DataType type="object" name="minecraft:damage_over_time"/>：根对象。
+  - <DataType type="int" name="damagePerHurt"/>：每次伤害的数值。默认值为`1`。
+  - <DataType type="int" name="timeBetweenHurt"/>：两次伤害之间的秒数。默认值为`0`。
+</treeview>
+
+<Version add="1.13.0"/>：
+
 <treeview>
 - <DataType type="object" name="minecraft:damage_over_time"/>：根对象。
   - <DataType type="int" name="damage_per_hurt"/>：每次伤害的数值。默认值为`1`。
@@ -2178,7 +2231,7 @@ import Version from "/src/components/highlight/version"
   - <DataType type="float" name="horizontal_momentum"/>：水平方向施加的动量。默认值为`1.0`。
   - <DataType type="float" name="vertical_momentum"/>：垂直方向施加的动量。默认值为`1.0`。
   - <DataType type="string" name="direction"/>：动量的施加方向。可选值为`entity`（沿实体朝向）、`passenger`（沿骑乘者朝向）。默认值为`entity`。
-  - <DataType type="boolean" name="can_dash_underwater"/>：是否能在水下冲刺。默认值为`false`。
+  - <DataType type="boolean" name="can_dash_underwater"/>：<Version add="1.21.130" inline/>是否能在水下冲刺。默认值为`false`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -2234,10 +2287,16 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:despawn"/>：根对象。
-  - <DataType type="boolean" name="despawn_from_chance"/>：标准消失规则中是否使用随机概率。默认值为`true`。
-  - <DataType type="object" name="despawn_from_distance"/>：是否按距离执行标准消失规则，可继续写`min_distance`与`max_distance`。
-  - <DataType type="int" name="min_distance"/>：开始尝试消失的最小距离，单位为方块。默认值为`32`。
-  - <DataType type="int" name="max_distance"/>：立即消失的最大距离，单位为方块。默认值为`128`。
+  - <DataType type="object" name="filters"/>：消失条件。定义后标准消失规则失效。见[实体过滤器](./filters)。
+  - <DataType type="boolean" name="remove_child_entities"/>：组件生效时，是否连带移除以子关系（如拴绳）相连的实体。默认值为`false`。
+  - <DataType type="boolean" name="despawn_from_chance"/>：<Version add="1.16.0" inline/>标准消失规则是否使用`min_range_random_chance`。默认值为`true`。
+  - <DataType type="object" name="despawn_from_distance"/>：<Version add="1.16.0" inline/>标准消失规则是否使用`min_distance`与`max_distance`。
+    - <DataType type="int" name="min_distance"/>：开始尝试消失的最小距离，单位为方块。默认值为`32`。
+    - <DataType type="int" name="max_distance"/>：立即消失的最大距离，单位为方块。默认值为`128`。
+  - <DataType type="boolean" name="despawn_from_inactivity"/>：<Version add="1.16.0" inline/>标准消失规则是否使用`min_range_inactivity_timer`。默认值为`true`。
+  - <DataType type="boolean" name="despawn_from_simulation_edge"/>：<Version add="1.16.0" inline/>实体到达模拟距离边缘时是否立即消失。默认值为`true`。
+  - <DataType type="int" name="min_range_inactivity_timer"/>：<Version add="1.16.0" inline/>实体需要保持不活跃的秒数。默认值为`30`。
+  - <DataType type="int" name="min_range_random_chance"/>：<Version add="1.16.0" inline/>随机消失概率的分母，每刻在`1`到该值之间取随机数。默认值为`800`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -2367,18 +2426,18 @@ import Version from "/src/components/highlight/version"
 - <DataType type="object" name="minecraft:economy_trade_table"/>：根对象。
   - <DataType type="string" name="table"/>：交易表路径，如`trading/economy_trades/armorer_trades.json`。
   - <DataType type="string" name="display_name"/>：交易界面显示名使用的本地化键。
-  - <DataType type="boolean" name="new_screen"/>：是否使用新版交易界面。默认值为`false`。
-  - <DataType type="boolean" name="show_trade_screen"/>：交互时是否打开交易界面。默认值为`true`。
-  - <DataType type="boolean" name="persist_trades"/>：生成的交易是否随实体存档保存。默认值为`false`。
-  - <DataType type="boolean" name="convert_trades_economy"/>：是否把旧版交易数据转换为经济交易数据。默认值为`false`。
-  - <DataType type="array" name="cured_discount"/>：治愈村民后价格折扣的范围，写作`[最小值, 最大值]`。默认值为`[0, 0]`。
+  - <DataType type="boolean" name="new_screen"/>：<Version add="1.12.0" inline/>是否使用新版交易界面。默认值为`false`。
+  - <DataType type="boolean" name="show_trade_screen"/>：<Version add="1.16.0" inline/>交互时是否打开交易界面。默认值为`true`。
+  - <DataType type="boolean" name="persist_trades"/>：<Version add="1.12.0" inline/>生成的交易是否随实体存档保存。默认值为`false`。
+  - <DataType type="boolean" name="convert_trades_economy"/>：<Version add="1.12.0" inline/>是否把旧版交易数据转换为经济交易数据。默认值为`false`。
+  - <DataType type="array" name="cured_discount"/>：<Version add="1.16.0" inline/>治愈村民后价格折扣的范围，写作`[最小值, 最大值]`。默认值为`[0, 0]`。
     - <DataType type="int"/>：边界值。
-  - <DataType type="array" name="max_cured_discount"/>：治愈折扣允许的最大范围。默认值为`[0, 0]`。
+  - <DataType type="array" name="max_cured_discount"/>：<Version add="1.16.0" inline/>治愈折扣允许的最大范围。默认值为`[0, 0]`。
     - <DataType type="int"/>：边界值。
-  - <DataType type="int" name="nearby_cured_discount"/>：附近有治愈村民时的折扣步长，旧版定价使用。默认值为`-20`。
-  - <DataType type="int" name="max_nearby_cured_discount"/>：附近治愈折扣允许的最低值，旧版定价使用。默认值为`-200`。
-  - <DataType type="int" name="hero_demand_discount"/>：玩家持有村庄英雄效果时的额外需求折扣。默认值为`-4`。
-  - <DataType type="boolean" name="use_legacy_price_formula"/>：是否使用旧版价格公式。默认值为`false`。
+  - <DataType type="int" name="nearby_cured_discount"/>：<Version add="1.16.0" inline/>附近有治愈村民时的折扣步长，旧版定价使用。默认值为`-20`。
+  - <DataType type="int" name="max_nearby_cured_discount"/>：<Version add="1.16.100" inline/>附近治愈折扣允许的最低值，旧版定价使用。默认值为`-200`。
+  - <DataType type="int" name="hero_demand_discount"/>：<Version add="1.12.0" inline/>玩家持有村庄英雄效果时的额外需求折扣。默认值为`-4`。
+  - <DataType type="boolean" name="use_legacy_price_formula"/>：<Version add="1.16.100" inline/>是否使用旧版价格公式。默认值为`false`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -2402,7 +2461,7 @@ import Version from "/src/components/highlight/version"
 
 ### `minecraft:entity_armor_equipment_slot_mapping`
 
-<Usable type="all"/> <Version add="1.21.20"/> <br/>
+<Usable type="all"/> <Version add="1.21.10"/> <br/>
 
 定义装备到[`minecraft:equippable`](./components#minecraftequippable)第二个槽位的物品应当计入哪个盔甲槽位。
 
@@ -2437,7 +2496,7 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:equip_item"/>：根对象。
-  - <DataType type="array" name="excluded_items"/>：实体不会装备的物品。
+  - <DataType type="array" name="excluded_items"/>：<Version add="1.20.30" inline/>实体不会装备的物品。
     - <DataType type="object"/>：一项。
       - <DataType type="string" name="item"/>：物品 ID，可带数据值，如`minecraft:banner:15`。
 </treeview>
@@ -2469,7 +2528,7 @@ import Version from "/src/components/highlight/version"
 <treeview>
 - <DataType type="object" name="minecraft:equipment"/>：根对象。
   - <DataType type="string" name="table"/>：装备表路径，相对于行为包根目录，如`loot_tables/entities/skeleton_gear.json`。
-  - <DataType type="array" name="slot_drop_chance"/>：各槽位的掉落概率。
+  - <DataType type="array" name="slot_drop_chance"/>：<Version add="1.5.0" inline/>各槽位的掉落概率。
     - <DataType type="object"/>：一项。
       - <DataType type="string" name="slot"/>：槽位名。可填`slot.weapon.mainhand`、`slot.weapon.offhand`、`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`、`slot.armor.body`。
       - <DataType type="float" name="drop_chance"/>：该槽位掉落装备的概率，取值`0.0`-`1.0`。
@@ -2555,7 +2614,7 @@ import Version from "/src/components/highlight/version"
   - <DataType type="float" name="damage"/>：受到伤害时的消耗。默认值为`0.1`。
   - <DataType type="float" name="mine"/>：挖掘方块时的消耗。默认值为`0.005`。
   - <DataType type="float" name="heal"/>：自然回血时的消耗。默认值为`6`。
-  - <DataType type="float" name="lunge"/>：触发突刺附魔时的消耗，会再乘以附魔等级。默认值为`4`。
+  - <DataType type="float" name="lunge"/>：<Version add="1.21.130" inline/>触发突刺附魔时的消耗，会再乘以附魔等级。默认值为`4`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -2583,7 +2642,7 @@ import Version from "/src/components/highlight/version"
 
 ### `minecraft:experience_reward`
 
-<Usable type="all"/> <Version add="1.14.0"/> <br/>
+<Usable type="all"/> <Version add="1.13.3"/> <br/>
 
 定义实体被繁殖或死亡时给予的经验值。
 
@@ -2618,6 +2677,22 @@ import Version from "/src/components/highlight/version"
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<Version add="1.2.0" deprecated="1.13.0"/>：
+
+<treeview>
+- <DataType type="object" name="minecraft:explode"/>：根对象。
+  - <DataType type="array" name="fuseLength"/>：引信时长的随机区间，写作`[最小值, 最大值]`，负值表示立即爆炸。默认值为`[0, 0]`。
+  - <DataType type="float" name="power"/>：爆炸半径与伤害强度。默认值为`3`。
+  - <DataType type="float" name="maxResistance"/>：参与计算的最大方块爆炸抗性。默认值为无穷大。
+  - <DataType type="boolean" name="fuseLit"/>：添加组件时引信是否已点燃。默认值为`false`。
+  - <DataType type="boolean" name="causesFire"/>：爆炸范围内的方块是否着火。默认值为`false`。
+  - <DataType type="boolean" name="breaks_blocks"/>：是否破坏爆炸范围内的方块。默认值为`true`。
+  - <DataType type="boolean" name="destroyAffectedByGriefing"/>：是否受「允许破坏方块」的游戏规则影响。默认值为`false`。
+  - <DataType type="boolean" name="fireAffectedByGriefing"/>：是否受「允许破坏方块」的游戏规则影响而决定是否着火。默认值为`false`。
+</treeview>
+
+<Version add="1.13.0"/>：
+
 <treeview>
 - <DataType type="object" name="minecraft:explode"/>：根对象。
   - <DataType type="float" name="power"/>：爆炸半径与伤害强度。默认值为`3`。
@@ -2628,14 +2703,16 @@ import Version from "/src/components/highlight/version"
   - <DataType type="boolean" name="breaks_blocks"/>：是否破坏爆炸范围内的方块。默认值为`true`。
   - <DataType type="boolean" name="destroy_affected_by_griefing"/>：是否受「允许破坏方块」的游戏规则影响。默认值为`false`。
   - <DataType type="boolean" name="fire_affected_by_griefing"/>：是否受「允许破坏方块」的游戏规则影响而决定是否着火。默认值为`false`。
-  - <DataType type="boolean" name="allow_underwater"/>：水下是否仍然生效。默认值为`false`。
-  - <DataType type="boolean" name="toggles_blocks"/>：是否把范围内的方块切换为另一种状态。默认值为`false`。
-  - <DataType type="float" name="damage_scaling"/>：对实体伤害的缩放系数。默认值为`1.0`。
-  - <DataType type="float" name="knockback_scaling"/>：击退力的缩放系数。默认值为`1.0`。
+  - <DataType type="boolean" name="allow_underwater"/>：<Version add="1.21.40" inline/>水下是否仍然生效。默认值为`false`。
+  - <DataType type="boolean" name="toggles_blocks"/>：<Version add="1.21.40" inline/>是否把范围内的方块切换为另一种状态。默认值为`false`。
+  - <DataType type="float" name="damage_scaling"/>：<Version add="1.21.40" inline/>对实体伤害的缩放系数。默认值为`1.0`。
+  - <DataType type="float" name="knockback_scaling"/>：<Version add="1.21.40" inline/>击退力的缩放系数。默认值为`1.0`。
+  - <DataType type="boolean" name="allow_breaking_underwater"/>：<Version add="1.14.0" deprecated="1.14.1" inline/>水下是否仍可破坏方块。
+  - <DataType type="boolean" name="allow_damage_underwater"/>：<Version add="1.14.0" deprecated="1.14.1" inline/>水下是否仍可造成伤害。
   - <DataType type="float" name="max_resistance"/>：参与计算的最大方块爆炸抗性。默认值为`3.4e+38`。
-  - <DataType type="boolean" name="negates_fall_damage"/>：是否抵消落地伤害。默认值为`false`。
-  - <DataType type="string" name="particle_effect"/>：爆炸使用的粒子效果名。默认值为`explosion`。
-  - <DataType type="string" name="sound_effect"/>：爆炸播放的音效名。默认值为`explode`。
+  - <DataType type="boolean" name="negates_fall_damage"/>：<Version add="1.21.40" inline/>是否抵消落地伤害。默认值为`false`。
+  - <DataType type="string" name="particle_effect"/>：<Version add="1.21.40" inline/>爆炸使用的粒子效果名。默认值为`explosion`。
+  - <DataType type="string" name="sound_effect"/>：<Version add="1.21.40" inline/>爆炸播放的音效名。默认值为`explode`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -2716,7 +2793,7 @@ import Version from "/src/components/highlight/version"
 
 ### `minecraft:flocking`
 
-<Usable type="all"/> <Version add="1.14.0"/> <br/>
+<Usable type="all"/> <Version add="1.13.3"/> <br/>
 
 使实体在水中或空中成群活动。
 
@@ -3185,8 +3262,8 @@ import Version from "/src/components/highlight/version"
           - <DataType type="float" name="duration"/>：持续秒数。默认值为`0`。
           - <DataType type="int" name="amplifier"/>：效果等级。默认值为`1`。
           - <DataType type="float" name="chance"/>：生效概率，取值`0.0`-`1.0`。默认值为`1`。
-  - <DataType type="boolean" name="force_use"/>：满血时是否仍可使用治疗物品。默认值为`false`。
-  - <DataType type="object" name="filters"/>：允许治疗的条件。见[实体过滤器](./filters)。
+  - <DataType type="boolean" name="force_use"/>：<Version add="1.6.0" inline/>满血时是否仍可使用治疗物品。默认值为`false`。
+  - <DataType type="object" name="filters"/>：<Version add="1.6.0" inline/>允许治疗的条件。见[实体过滤器](./filters)。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -3270,9 +3347,9 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:home"/>：根对象。
-  - <DataType type="string" name="restriction_type"/>：限制方式。可选值为`none`（不限制）、`random_movement`（只限制随机移动）、`all_movement`（限制一切移动，但已经远离家的实体仍可往回走）。默认值为`none`。
-  - <DataType type="int" name="restriction_radius"/>：限制半径，单位为方块。默认值为`0`。
-  - <DataType type="array" name="home_block_list"/>：可视为有效「家」的方块列表；该位置的方块不再是其中之一时，家的限制被移除。方块 ID 不支持数据值写法（如`minecraft:sand:1`）。
+  - <DataType type="string" name="restriction_type"/>：<Version add="1.21.40" inline/>限制方式。可选值为`none`（不限制）、`random_movement`（只限制随机移动）、`all_movement`（限制一切移动，但已经远离家的实体仍可往回走）。默认值为`none`。
+  - <DataType type="int" name="restriction_radius"/>：<Version add="1.16.100" inline/>限制半径，单位为方块。默认值为`0`。
+  - <DataType type="array" name="home_block_list"/>：<Version add="1.16.200" inline/>可视为有效「家」的方块列表；该位置的方块不再是其中之一时，家的限制被移除。方块 ID 不支持数据值写法（如`minecraft:sand:1`）。
     - <DataType type="string"/>：方块 ID。
 </treeview>
 
@@ -3553,12 +3630,12 @@ import Version from "/src/components/highlight/version"
       - <DataType type="boolean" name="admire"/>：为`true`时玩家交互后会原地注视该实体，类似看向展示框。默认值为`false`。
       - <DataType type="boolean" name="barter"/>：为`true`时按以物易物处理，类似与猪灵交换。默认值为`false`。
       - <DataType type="float" name="cooldown"/>：交互冷却的秒数。默认值为`0`。
-      - <DataType type="float" name="cooldown_after_being_attacked"/>：被攻击后多少秒内不可交互。默认值为`0`。
-      - <DataType type="string" name="drop_item_slot"/>：取走装备时从哪个槽位掉落，可写整数字符串（如`"0"`）表示物品栏槽位，也可写`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`、`slot.armor.body`、`slot.weapon.mainhand`、`slot.weapon.offhand`。
-      - <DataType type="float" name="drop_item_y_offset"/>：掉落物品的垂直偏移，单位为方块。默认值为`0`。
-      - <DataType type="string" name="equip_item_slot"/>：交互物品装备到的槽位，可写整数字符串（如`"0"`）表示物品栏槽位，也可写`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`、`slot.armor.body`、`slot.weapon.mainhand`、`slot.weapon.offhand`。
+      - <DataType type="float" name="cooldown_after_being_attacked"/>：<Version add="1.16.0" inline/>被攻击后多少秒内不可交互。默认值为`0`。
+      - <DataType type="string" name="drop_item_slot"/>：<Version add="1.20.60" inline/>取走装备时从哪个槽位掉落，可写整数字符串（如`"0"`）表示物品栏槽位，也可写`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`、`slot.armor.body`、`slot.weapon.mainhand`、`slot.weapon.offhand`。
+      - <DataType type="float" name="drop_item_y_offset"/>：<Version add="1.21.80" inline/>掉落物品的垂直偏移，单位为方块。默认值为`0`。
+      - <DataType type="string" name="equip_item_slot"/>：<Version add="1.19.60" inline/>交互物品装备到的槽位，可写整数字符串（如`"0"`）表示物品栏槽位，也可写`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`、`slot.armor.body`、`slot.weapon.mainhand`、`slot.weapon.offhand`。
       - <DataType type="boolean" name="give_item"/>：为`true`时把玩家手中的物品交给实体。默认值为`false`。
-      - <DataType type="int" name="health_amount"/>：交互时恢复的生命值。默认值为`0`。
+      - <DataType type="int" name="health_amount"/>：<Version add="1.18.10" inline/>交互时恢复的生命值。默认值为`0`。
       - <DataType type="int" name="hurt_item"/>：交互时消耗手持物品的耐久值。默认值为`0`。
       - <DataType type="string" name="interact_text"/>：交互按钮的本地化键，例如`action.interact.saddle`。
       - <DataType type="object" name="on_interact"/>：交互命中该项时触发的事件。
@@ -3572,7 +3649,7 @@ import Version from "/src/components/highlight/version"
         - <DataType type="float" name="particle_y_offset"/>：粒子的垂直偏移。默认值为`0`。
       - <DataType type="string"/><DataType type="array" name="play_sounds"/>：交互时播放的音效事件名，可写单个名称，也可写成名称数组。默认值为空数组。
         - <DataType type="string"/>：一个音效事件名。
-      - <DataType type="object" name="repair_entity_item"/>：交互时修复实体已装备的物品。
+      - <DataType type="object" name="repair_entity_item"/>：<Version add="1.20.80" inline/>交互时修复实体已装备的物品。
         - <DataType type="int" name="amount"/>：每次修复的耐久值。默认值为`1`。
         - <DataType type="string" name="slot"/>：要修复的槽位，可写整数字符串（如`"0"`）表示物品栏槽位，也可写`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`、`slot.armor.body`、`slot.weapon.mainhand`、`slot.weapon.offhand`。
       - <DataType type="array" name="spawn_entities"/>：交互时生成的实体列表。默认值为空数组。
@@ -3584,7 +3661,7 @@ import Version from "/src/components/highlight/version"
       - <DataType type="boolean" name="take_item"/>：为`true`时取走玩家手中的物品。默认值为`false`。
       - <DataType type="string" name="transform_to_item"/>：把玩家的交互物品变成另一个物品。
       - <DataType type="boolean" name="use_item"/>：为`true`时使用玩家手中的物品。默认值为`false`。
-      - <DataType type="string" name="vibration"/>：交互产生的振动事件类型。可选值为`none`、`entity_act`、`entity_die`、`entity_interact`、`shear`。
+      - <DataType type="string" name="vibration"/>：<Version add="1.19.0" inline/>交互产生的振动事件类型。可选值为`none`、`entity_act`、`entity_die`、`entity_interact`、`shear`。
 </treeview>
 
 > **备注**：schema 把`play_sounds`定义为字符串数组，原版骆驼写成单个字符串`"saddle"`，两种都能解析。
@@ -3646,6 +3723,7 @@ import Version from "/src/components/highlight/version"
 <treeview>
 - <DataType type="object" name="minecraft:inventory"/>：根对象。
   - <DataType type="string" name="container_type"/>：容器类型。可选值为`none`、`horse`、`minecart_chest`、`chest_boat`、`minecart_hopper`、`hopper`、`inventory`、`container`。默认值为`none`。
+  - <DataType type="int" name="linked_slots_size"/>：<Version add="1.2.0" deprecated="1.6.0" inline/>与实体物品栏联动的槽位数量。
   - <DataType type="int" name="inventory_size"/>：容器的槽位数量。默认值为`5`。
   - <DataType type="int" name="additional_slots_per_strength"/>：每多一点力量额外增加的槽位数。默认值为`0`。
   - <DataType type="boolean" name="can_be_siphoned_from"/>：为`true`时，漏斗可以抽取其中的物品。默认值为`false`。
@@ -3870,12 +3948,12 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:jump.dynamic"/>：根对象。
-  - <DataType type="object" name="regular_skip_data"/>：普通跳跃使用的数据。
+  - <DataType type="object" name="regular_skip_data"/>：<Version add="1.26.0" inline/>普通跳跃使用的数据。
     - <DataType type="float" name="distance_scale"/>：水平速度的乘数。默认值为`1`。
     - <DataType type="float" name="height"/>：起跳时施加的垂直力度。默认值为`0.1`。
     - <DataType type="int" name="jump_delay"/>：两次跳跃之间相隔的刻数。默认值为`30`。
     - <DataType type="int" name="animation_duration"/>：跳跃动画的时长，单位为刻。默认值为`1`。
-  - <DataType type="object" name="fast_skip_data"/>：快速跳跃使用的数据，结构同上。
+  - <DataType type="object" name="fast_skip_data"/>：<Version add="1.26.0" inline/>快速跳跃使用的数据，结构同上。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -3913,7 +3991,7 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:jump.static"/>：根对象。
-  - <DataType type="float" name="jump_power"/>：起跳的初始垂直速度。默认值为`0.42`。
+  - <DataType type="float" name="jump_power"/>：<Version add="1.4.0" inline/>起跳的初始垂直速度。默认值为`0.42`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -4000,10 +4078,10 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:leashable"/>：根对象。
-  - <DataType type="boolean" name="can_be_stolen"/>：为`true`时，其他玩家可以把已被拴住的实体改拴到自己身上。默认值为`true`。
+  - <DataType type="boolean" name="can_be_stolen"/>：<Version add="1.10.0" inline/>为`true`时，其他玩家可以把已被拴住的实体改拴到自己身上。默认值为`true`。
   - <DataType type="boolean" name="can_be_cut"/>：<Version add="1.21.90" inline/> 为`true`时，玩家可以用剪刀剪断拴在该实体上的绳子。默认值为`true`。
   - <DataType type="boolean" name="unleash_on_removal"/>：<Version add="1.26.30" inline/> 为`true`时，组件被移除时自动解开拴绳。默认值为`true`。
-  - <DataType type="boolean" name="on_unleash_interact_only"/>：为`true`时，`on_unleash`只在玩家主动交互解开时触发。默认值为`false`。
+  - <DataType type="boolean" name="on_unleash_interact_only"/>：<Version add="1.21.80" inline/>为`true`时，`on_unleash`只在玩家主动交互解开时触发。默认值为`false`。
   - <DataType type="int" name="hard_distance"/>：牵引力开始生效的距离，单位为方块。默认值为`6`。
   - <DataType type="int" name="soft_distance"/>：实体开始寻路靠近拴绳持有者的距离，单位为方块。默认值为`4`。
   - <DataType type="int" name="max_distance"/>：拴绳断裂的距离，单位为方块。默认值为`0`。
@@ -4062,7 +4140,7 @@ import Version from "/src/components/highlight/version"
 <treeview>
 - <DataType type="object" name="minecraft:leashable_to"/>：根对象。
   - <DataType type="boolean" name="can_retrieve_from"/>：为`true`时，玩家可以取回拴在该实体上的实体。默认值为`false`。
-  - <DataType type="boolean" name="unleash_on_removal"/>：为`true`时，组件被移除后自动解开拴在该实体上的所有实体。默认值为`true`。
+  - <DataType type="boolean" name="unleash_on_removal"/>：<Version add="1.26.30" inline/>为`true`时，组件被移除后自动解开拴在该实体上的所有实体。默认值为`true`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -4090,7 +4168,7 @@ import Version from "/src/components/highlight/version"
   - <DataType type="float" name="field_of_view"/>：判定注视所需的视场角宽度，单位为度。默认值为`26`。
   - <DataType type="float" name="search_radius"/>：搜索注视者的最大距离，单位为方块。默认值为`10`。
   - <DataType type="boolean" name="find_players_only"/>：是否只搜索玩家。默认值为`false`。
-  - <DataType type="float" name="min_looked_at_duration"/>：需要被连续注视多少秒才算生效。默认值为`0`。
+  - <DataType type="float" name="min_looked_at_duration"/>：<Version add="1.21.60" inline/>需要被连续注视多少秒才算生效。默认值为`0`。
   - <DataType type="boolean" name="scale_fov_by_distance"/>：为`true`时视场角随距离收窄，使视锥在实体处的宽度大致恒定。默认值为`true`。
   - <DataType type="object" name="filters"/>：哪些实体算作注视者。见[实体过滤器](./filters)。
   - <DataType type="string" name="line_of_sight_obstruction_type"/>：判定视线遮挡时使用的方块形状。可选值为`outline`（碰撞轮廓）、`collision`（碰撞箱）、`collision_for_camera`（相机用碰撞箱）。默认值为`collision`。
@@ -4195,8 +4273,8 @@ import Version from "/src/components/highlight/version"
   - <DataType type="string" name="mob_effect"/>：施加的状态效果 ID，如`poison`。
   - <DataType type="float" name="effect_range"/>：生效的距离范围，单位为方块。默认值为`0.2`。
   - <DataType type="int"/><DataType type="string" name="effect_time"/>：效果持续的秒数，可填`infinite`表示永久。默认值为`10`。
-  - <DataType type="int" name="cooldown_time"/>：两次施加之间的冷却秒数。默认值为`0`。
-  - <DataType type="boolean" name="ambient"/>：效果是否按环境效果渲染（如信标、潮涌核心施加的效果）。默认值为`false`。
+  - <DataType type="int" name="cooldown_time"/>：<Version add="1.19.0" inline/>两次施加之间的冷却秒数。默认值为`0`。
+  - <DataType type="boolean" name="ambient"/>：<Version add="1.21.130" inline/>效果是否按环境效果渲染（如信标、潮涌核心施加的效果）。默认值为`false`。
   - <DataType type="object" name="entity_filter"/>：可以受到该效果影响的实体条件。见[实体过滤器](./filters)。
 </treeview>
 
@@ -4266,7 +4344,7 @@ import Version from "/src/components/highlight/version"
 
 ### `minecraft:movement_sound_distance_offset`
 
-<Usable type="all"/> <Version add="1.21.60"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 设置决定下一次移动音效播放距离的偏移量。
 
@@ -4304,7 +4382,9 @@ import Version from "/src/components/highlight/version"
 <treeview>
 - <DataType type="object" name="minecraft:nameable"/>：根对象。
   - <DataType type="boolean" name="allow_name_tag_renaming"/>：是否允许用命名牌再次改名。默认值为`true`。
+  - <DataType type="boolean" name="allowNameTagRenaming"/>：<Version add="1.2.0" deprecated="1.13.0" inline/>是否允许用命名牌再次改名（旧拼写）。默认值为`true`。
   - <DataType type="boolean" name="always_show"/>：名字是否始终显示。默认值为`false`。
+  - <DataType type="boolean" name="alwaysShow"/>：<Version add="1.2.0" deprecated="1.13.0" inline/>名字是否始终显示（旧拼写）。默认值为`false`。
   - <DataType type="object" name="default_trigger"/>：实体被命名时触发的默认事件。
     - <DataType type="string" name="event"/>：事件 ID。
     - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
@@ -4494,6 +4574,8 @@ NPC（<FileType type="file" name="npc.json"/>）：
       - <DataType type="string" name="on_unequip"/>：卸下该槽位物品时触发的事件 ID。
 </treeview>
 
+> **备注**：该组件未见于任何版本的官方文档，参数按 26.60 的 schema 整理。
+
 </TabItem><TabItem value="示例" label="示例">
 
 硫方怪（<FileType type="file" name="sulfur_cube.json"/>）：
@@ -4635,9 +4717,9 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:on_start_landing`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
 
-定义实体开始落地时触发的事件。目前仅末影龙可用。
+定义实体开始落地时触发的事件。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -4665,9 +4747,9 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:on_start_takeoff`
 
-<Usable type="all"/> <Version add="1.2.0"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
 
-定义实体开始起飞时触发的事件。目前仅末影龙可用。
+定义实体开始起飞时触发的事件。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -4755,7 +4837,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:on_wake_with_owner`
 
-<Usable type="all"/> <Version add="1.21.80" tooltip="实际加入版本存疑。"/> <br/>
+<Usable type="all"/> <Version add="1.8.0"/> <br/>
 
 定义主人与实体一同睡醒后触发的事件。
 
@@ -4846,7 +4928,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:persistent`
 
-<Usable type="all"/> <Version add="1.14.0"/> <br/>
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
 
 标记该实体为持久实体，不会因距离过远而自然消失。
 
@@ -5059,34 +5141,34 @@ NPC（<FileType type="file" name="npc.json"/>）：
   - <DataType type="float" name="gravity"/>：每刻施加的向下加速度。默认值为`0.05`。
   - <DataType type="float" name="inertia"/>：飞行中每刻保留的速度比例。默认值为`0.99`。
   - <DataType type="float" name="liquid_inertia"/>：在液体中每刻保留的速度比例。默认值为`0.6`。
-  - <DataType type="float" name="angle_offset"/>：在射击者瞄准方向之上额外增加的俯仰角，单位为度。默认值为`0`。
-  - <DataType type="float" name="uncertainty_base"/>：发射方向的基础散布值。实际散布为`uncertainty_base - 难度等级 × uncertainty_multiplier`。默认值为`0`。
-  - <DataType type="float" name="uncertainty_multiplier"/>：每级难度减少的散布量。默认值为`0`。
-  - <DataType type="boolean" name="shoot_target"/>：为`true`时瞄准射击者的当前目标。默认值为`true`。
+  - <DataType type="float" name="angle_offset"/>：<Version add="1.13.0" inline/>在射击者瞄准方向之上额外增加的俯仰角，单位为度。默认值为`0`。
+  - <DataType type="float" name="uncertainty_base"/>：<Version add="1.13.0" inline/>发射方向的基础散布值。实际散布为`uncertainty_base - 难度等级 × uncertainty_multiplier`。默认值为`0`。
+  - <DataType type="float" name="uncertainty_multiplier"/>：<Version add="1.13.0" inline/>每级难度减少的散布量。默认值为`0`。
+  - <DataType type="boolean" name="shoot_target"/>：<Version add="1.13.0" inline/>为`true`时瞄准射击者的当前目标。默认值为`true`。
   - <DataType type="boolean" name="homing"/>：为`true`时在飞行中转向追踪目标。默认值为`false`。
-  - <DataType type="boolean" name="is_dangerous"/>：为`true`时标记为危险弹射物，影响生物的反应。默认值为`false`。
-  - <DataType type="boolean" name="isolated_physics"/>：为`true`时使用独立的弹道物理，不受实体运动影响。默认值为`true`。
-  - <DataType type="boolean" name="multiple_targets"/>：为`true`时飞行途中可连续命中多个实体。默认值为`false`。
+  - <DataType type="boolean" name="is_dangerous"/>：<Version add="1.13.0" inline/>为`true`时标记为危险弹射物，影响生物的反应。默认值为`false`。
+  - <DataType type="boolean" name="isolated_physics"/>：<Version add="1.26.20" inline/>为`true`时使用独立的弹道物理，不受实体运动影响。默认值为`true`。
+  - <DataType type="boolean" name="multiple_targets"/>：<Version add="1.5.0" inline/>为`true`时飞行途中可连续命中多个实体。默认值为`false`。
   - <DataType type="boolean" name="hit_water"/>：为`true`时把水面视作命中面并停下。默认值为`false`。
-  - <DataType type="boolean" name="hit_nearest_passenger"/>：为`true`时命中载具后改为命中其上最近的乘客。默认值为`false`。
-  - <DataType type="array" name="ignored_entities"/>：弹射物会直接穿过的实体 ID 列表。
+  - <DataType type="boolean" name="hit_nearest_passenger"/>：<Version add="1.21.0" inline/>为`true`时命中载具后改为命中其上最近的乘客。默认值为`false`。
+  - <DataType type="array" name="ignored_entities"/>：<Version add="1.21.0" inline/>弹射物会直接穿过的实体 ID 列表。
     - <DataType type="string"/>：实体 ID。
-  - <DataType type="boolean" name="destroy_on_hurt"/>：为`true`时命中后立即移除该弹射物。默认值为`false`。
+  - <DataType type="boolean" name="destroy_on_hurt"/>：<Version add="1.13.0" inline/>为`true`时命中后立即移除该弹射物。默认值为`false`。
   - <DataType type="boolean" name="stop_on_hurt"/>：为`true`时命中后把速度清零。默认值为`false`。
-  - <DataType type="boolean" name="reflect_on_hurt"/>：为`true`时被击中后转向反弹。默认值为`false`。
-  - <DataType type="float" name="reflect_immunity"/>：发射后免疫反弹的秒数。默认值为`0`。
-  - <DataType type="boolean" name="crit_particle_on_hurt"/>：为`true`时命中时产生暴击粒子。默认值为`false`。
-  - <DataType type="boolean" name="catch_fire"/>：为`true`时点燃命中的目标。默认值为`false`。
-  - <DataType type="float" name="on_fire_time"/>：命中后被点燃的实体持续着火的秒数。默认值为`5`。
+  - <DataType type="boolean" name="reflect_on_hurt"/>：<Version add="1.13.0" inline/>为`true`时被击中后转向反弹。默认值为`false`。
+  - <DataType type="float" name="reflect_immunity"/>：<Version add="1.21.40" inline/>发射后免疫反弹的秒数。默认值为`0`。
+  - <DataType type="boolean" name="crit_particle_on_hurt"/>：<Version add="1.13.0" inline/>为`true`时命中时产生暴击粒子。默认值为`false`。
+  - <DataType type="boolean" name="catch_fire"/>：<Version add="1.13.0" inline/>为`true`时点燃命中的目标。默认值为`false`。
+  - <DataType type="float" name="on_fire_time"/>：<Version add="1.13.0" inline/>命中后被点燃的实体持续着火的秒数。默认值为`5`。
   - <DataType type="boolean" name="spread_fire"/>：为`true`时，着火的弹射物命中后会把火蔓延到目标身上。默认值为`true`。
-  - <DataType type="boolean" name="lightning"/>：为`true`时命中时召唤闪电。默认值为`false`。
-  - <DataType type="string" name="should_bounce"/>：是否从实体上弹开。可选值为`no`（不弹开）、`if_invulnerable`（目标免疫伤害时弹开）、`if_no_damage_dealt`（未造成伤害时弹开）。默认值为`no`。
-  - <DataType type="string" name="shoot_sound"/>：发射时播放的声音定义 ID。
-  - <DataType type="string" name="hit_sound"/>：命中实体时播放的声音定义 ID。
+  - <DataType type="boolean" name="lightning"/>：<Version add="1.4.0" inline/>为`true`时命中时召唤闪电。默认值为`false`。
+  - <DataType type="string" name="should_bounce"/>：<Version add="1.13.0" inline/>是否从实体上弹开。可选值为`no`（不弹开）、`if_invulnerable`（目标免疫伤害时弹开）、`if_no_damage_dealt`（未造成伤害时弹开）。默认值为`no`。
+  - <DataType type="string" name="shoot_sound"/>：<Version add="1.13.0" inline/>发射时播放的声音定义 ID。
+  - <DataType type="string" name="hit_sound"/>：<Version add="1.13.0" inline/>命中实体时播放的声音定义 ID。
   - <DataType type="string" name="hit_ground_sound"/>：命中方块时播放的声音定义 ID。
   - <DataType type="string" name="particle"/>：命中时生成的原版粒子效果名。默认值为`iconcrack`。
-  - <DataType type="int" name="potion_effect"/>：弹射物携带的药水辅助值，通常由投掷物品在运行时设置。默认值为`-1`。
-  - <DataType type="float" name="splash_range"/>：药水效果的溅射半径，单位为方块。默认值为`4`。
+  - <DataType type="int" name="potion_effect"/>：<Version add="1.13.0" inline/>弹射物携带的药水辅助值，通常由投掷物品在运行时设置。默认值为`-1`。
+  - <DataType type="float" name="splash_range"/>：<Version add="1.13.0" inline/>药水效果的溅射半径，单位为方块。默认值为`4`。
   - <DataType type="object" name="on_hit"/>：命中时执行的子组件集合。键为子组件名，值为该子组件的配置，多个子组件可同时生效。
     - <DataType type="object" name="arrow_effect"/>：控制命中的效果是否施加给举盾格挡者。
       - <DataType type="boolean" name="apply_effect_to_blocking_targets"/>：为`true`时，效果也会施加给格挡中的目标。默认值为`true`。
@@ -5188,6 +5270,8 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 > 自定义弹射物建议同时定义`runtime_identifier`，否则可能出现击退方向错误、可用空手打死等异常表现。
 
+> **备注**：该组件的官方文档参数表长期不完整——`on_hit`、`anchor`、`hit_ground_sound`、`stop_on_hurt`直到 1.26.40 才被文档列出，而 1.20.80 的原版箭早已在使用`on_hit`与`anchor`。因此本节各参数暂不标注加入版本。
+
 </TabItem><TabItem value="示例" label="示例">
 
 箭（<FileType type="file" name="arrow.json"/>）：从眼睛高度发射，命中未造成伤害时弹开，未造成伤害时也可着地插住。
@@ -5282,7 +5366,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 ### `minecraft:raid_trigger`
 
-<Usable type="all"/> <Version add="1.13.0"/> <br/>
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
 
 尝试在该实体所在位置触发一次袭击。
 
@@ -5491,12 +5575,12 @@ NPC（<FileType type="file" name="npc.json"/>）：
   - <DataType type="int" name="controlling_seat"/>：作为驾驶位的座位序号。默认值为`0`。
   - <DataType type="string" name="interact_text"/>：触屏操作下可骑乘时显示的提示文本，填本地化键。
   - <DataType type="boolean" name="crouching_skip_interact"/>：为`true`时，潜行状态下的实体无法与它交互。默认值为`true`。
-  - <DataType type="boolean" name="rider_can_interact"/>：为`true`时，骑乘者看向该实体即可选中它。默认值为`false`。
+  - <DataType type="boolean" name="rider_can_interact"/>：<Version add="1.6.0" inline/>为`true`时，骑乘者看向该实体即可选中它。默认值为`false`。
   - <DataType type="boolean" name="pull_in_entities"/>：为`true`时，符合`family_types`的实体会被拉入空座位。默认值为`false`。
-  - <DataType type="float" name="passenger_max_width"/>：可成为骑乘者的实体最大宽度，`0`表示不限。默认值为`0`。
-  - <DataType type="string" name="dismount_mode"/>：骑乘者下马时的落点。可选值为`default`（默认方式）、`on_top_center`（落在实体顶部中心）、`look_direction`（落在骑乘者视线方向）。默认值为`default`。
-  - <DataType type="string"/><DataType type="object" name="on_rider_enter_event"/>：有实体开始骑乘时在该实体身上触发的事件。可写事件 ID，也可写成含`event`与`target`的对象。
-  - <DataType type="string"/><DataType type="object" name="on_rider_exit_event"/>：有实体停止骑乘时触发的事件，写法同上。
+  - <DataType type="float" name="passenger_max_width"/>：<Version add="1.20.0" inline/>可成为骑乘者的实体最大宽度，`0`表示不限。默认值为`0`。
+  - <DataType type="string" name="dismount_mode"/>：<Version add="1.21.80" inline/>骑乘者下马时的落点。可选值为`default`（默认方式）、`on_top_center`（落在实体顶部中心）、`look_direction`（落在骑乘者视线方向）。默认值为`default`。
+  - <DataType type="string"/><DataType type="object" name="on_rider_enter_event"/>：<Version add="1.21.80" inline/>有实体开始骑乘时在该实体身上触发的事件。可写事件 ID，也可写成含`event`与`target`的对象。
+  - <DataType type="string"/><DataType type="object" name="on_rider_exit_event"/>：<Version add="1.21.80" inline/>有实体停止骑乘时触发的事件，写法同上。
   - <DataType type="array" name="seats"/>：座位列表。
     - <DataType type="object"/>：一个座位。
       - <DataType type="array" name="position"/>：座位相对实体位置的偏移，写作`[x, y, z]`。默认值为`[0, 0, 0]`。
@@ -5656,6 +5740,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:scheduler"/>：根对象。
+  - <DataType type="array" name="scheduled_event"/>：<Version add="1.10.0" deprecated="1.13.3" inline/>定时触发的事件列表（旧字段名）。
   - <DataType type="array" name="scheduled_events"/>：预定事件列表，按顺序取第一条条件成立者。
     - <DataType type="object"/>：一项。
       - <DataType type="object" name="filters"/>：该事件生效的条件。见[实体过滤器](./filters)。
@@ -5708,6 +5793,19 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <Tabs><TabItem value="参数" label="参数" default>
 
+<Version add="1.2.0" deprecated="1.8.0"/>：
+
+<treeview>
+- <DataType type="array" name="minecraft:shareables"/>：实体感兴趣的物品列表。
+  - <DataType type="object"/>：一种物品。
+    - <DataType type="string" name="item"/>：物品 ID。
+    - <DataType type="int" name="want_amount"/>：希望分享的数量，`-1`表示不限。默认值为`-1`。
+    - <DataType type="int" name="surplus_amount"/>：视为多余、可以分享给其他实体的数量，`-1`表示不限。默认值为`-1`。
+    - <DataType type="string" name="craft_into"/>：拾取后用于合成的目标物品 ID。
+</treeview>
+
+<Version add="1.8.0"/>：
+
 <treeview>
 - <DataType type="object" name="minecraft:shareables"/>：根对象。
   - <DataType type="array" name="items"/>：实体感兴趣的物品列表，按`priority`决定取用顺序。
@@ -5724,11 +5822,11 @@ NPC（<FileType type="file" name="npc.json"/>）：
       - <DataType type="boolean" name="admire"/>：为`true`时拾取后会拿起来端详。默认值为`false`。
       - <DataType type="boolean" name="barter"/>：为`true`时拾取后会用于以物易物，需要配合[`minecraft:barter`](./components#minecraftbarter)组件。默认值为`false`。
       - <DataType type="string" name="craft_into"/>：拾取后用于合成的目标物品 ID。
-  - <DataType type="boolean" name="singular_pickup"/>：为`true`时，同类物品只捡起一个。默认值为`false`。
-  - <DataType type="boolean" name="all_items"/>：为`true`时把其余所有物品作为兜底类别，该类别优先级总是最低。默认值为`false`。
-  - <DataType type="int" name="all_items_want_amount"/>：兜底类别希望分享的数量，`-1`表示不限。默认值为`-1`。
-  - <DataType type="int" name="all_items_surplus_amount"/>：兜底类别视为多余的数量，`-1`表示不限。默认值为`-1`。
-  - <DataType type="int" name="all_items_max_amount"/>：兜底类别的最大持有数量，`-1`表示不限。默认值为`-1`。
+  - <DataType type="boolean" name="singular_pickup"/>：<Version add="1.20.10" inline/>为`true`时，同类物品只捡起一个。默认值为`false`。
+  - <DataType type="boolean" name="all_items"/>：<Version add="1.13.0" inline/>为`true`时把其余所有物品作为兜底类别，该类别优先级总是最低。默认值为`false`。
+  - <DataType type="int" name="all_items_want_amount"/>：<Version add="1.13.0" inline/>兜底类别希望分享的数量，`-1`表示不限。默认值为`-1`。
+  - <DataType type="int" name="all_items_surplus_amount"/>：<Version add="1.13.0" inline/>兜底类别视为多余的数量，`-1`表示不限。默认值为`-1`。
+  - <DataType type="int" name="all_items_max_amount"/>：<Version add="1.13.3" inline/>兜底类别的最大持有数量，`-1`表示不限。默认值为`-1`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -5770,10 +5868,11 @@ NPC（<FileType type="file" name="npc.json"/>）：
 - <DataType type="object" name="minecraft:shooter"/>：根对象。
   - <DataType type="string" name="def"/>：默认弹射物使用的实体定义 ID，如`minecraft:arrow`。
   - <DataType type="int" name="aux_val"/>：默认弹射物携带的药水效果辅助值。默认值为`-1`。
-  - <DataType type="float" name="power"/>：弹射物的发射速度。默认值为`0`，此时由弹射物自身的`power`决定。
-  - <DataType type="boolean" name="magic"/>：为`true`时把弹射物标记为魔法伤害。默认值为`false`。
-  - <DataType type="string" name="sound"/>：发射时播放的音效事件名。
-  - <DataType type="array" name="projectiles"/>：可选的弹射物列表，按顺序取第一条条件成立者。
+  - <DataType type="int" name="auxVal"/>：<Version add="1.2.0" deprecated="1.13.0" inline/>默认弹射物携带的药水效果辅助值（旧拼写）。默认值为`-1`。
+  - <DataType type="float" name="power"/>：<Version add="1.19.60" inline/>弹射物的发射速度。默认值为`0`，此时由弹射物自身的`power`决定。
+  - <DataType type="boolean" name="magic"/>：<Version add="1.19.60" inline/>为`true`时把弹射物标记为魔法伤害。默认值为`false`。
+  - <DataType type="string" name="sound"/>：<Version add="1.19.60" inline/>发射时播放的音效事件名。
+  - <DataType type="array" name="projectiles"/>：<Version add="1.19.60" inline/>可选的弹射物列表，按顺序取第一条条件成立者。
     - <DataType type="object"/>：一项。
       - <DataType type="string" name="def"/>：该弹射物的实体定义 ID。
       - <DataType type="int" name="aux_val"/>：该弹射物携带的药水效果辅助值。默认值为`-1`。
@@ -5910,14 +6009,14 @@ NPC（<FileType type="file" name="npc.json"/>）：
       - <DataType type="int" name="max_wait_time"/>：生成前随机等待的最长时间，单位为秒。默认值为`600`。
       - <DataType type="string" name="spawn_entity"/>：要生成的实体 ID；留空时改为生成`spawn_item`指定的物品。
       - <DataType type="string" name="spawn_item"/>：要生成的物品 ID。默认值为`egg`。
-      - <DataType type="int" name="num_to_spawn"/>：每次生成的实体数量。默认值为`1`。
-      - <DataType type="boolean" name="should_leash"/>：为`true`时，生成的实体会拴在该实体上。默认值为`false`。
-      - <DataType type="boolean" name="single_use"/>：为`true`时只生成一次。默认值为`false`。
+      - <DataType type="int" name="num_to_spawn"/>：<Version add="1.10.0" inline/>每次生成的实体数量。默认值为`1`。
+      - <DataType type="boolean" name="should_leash"/>：<Version add="1.10.0" inline/>为`true`时，生成的实体会拴在该实体上。默认值为`false`。
+      - <DataType type="boolean" name="single_use"/>：<Version add="1.10.0" inline/>为`true`时只生成一次。默认值为`false`。
       - <DataType type="string" name="spawn_method"/>：生成方式。可选值为`born`、`spawned`、`summoned`。默认值为`born`。
       - <DataType type="string" name="spawn_event"/>：生成时在新生实体身上触发的事件。默认值为`minecraft:entity_born`。
-      - <DataType type="string"/><DataType type="object" name="spawn_item_event"/>：生成物品时在该实体身上触发的事件。
+      - <DataType type="string"/><DataType type="object" name="spawn_item_event"/>：<Version add="1.20.0" inline/>生成物品时在该实体身上触发的事件。
       - <DataType type="string" name="spawn_sound"/>：生成时播放的音效。默认值为`plop`。
-      - <DataType type="object" name="filters"/>：允许生成的条件。见[实体过滤器](./filters)。
+      - <DataType type="object" name="filters"/>：<Version add="1.10.0" inline/>允许生成的条件。见[实体过滤器](./filters)。
 </treeview>
 
 > **备注**：官方文档把各字段直接写在组件对象下，原版则统一包在`entities`中，此处按原版结构书写。
@@ -6091,7 +6190,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:tameable"/>：根对象。
-  - <DataType type="array" name="tame_items"/>：可用于驯服的物品列表。
+  - <DataType type="array" name="tame_items"/>：<Version add="1.13.0" inline/>可用于驯服的物品列表。
     - <DataType type="string"/>：物品 ID。
     - <DataType type="object"/>：带消耗结果的物品。
       - <DataType type="string" name="item"/>：物品 ID。
@@ -6150,10 +6249,10 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:tamemount"/>：根对象。
-  - <DataType type="int" name="min_temper"/>：初始脾气的最小值。默认值为`0`。
-  - <DataType type="int" name="max_temper"/>：脾气的上限，达到即驯服。默认值为`100`。
-  - <DataType type="int" name="attempt_temper_mod"/>：每次被骑乘时脾气的增加量。默认值为`5`。
-  - <DataType type="array" name="feed_items"/>：可用于喂食的物品列表。
+  - <DataType type="int" name="min_temper"/>：<Version add="1.13.0" inline/>初始脾气的最小值。默认值为`0`。
+  - <DataType type="int" name="max_temper"/>：<Version add="1.13.0" inline/>脾气的上限，达到即驯服。默认值为`100`。
+  - <DataType type="int" name="attempt_temper_mod"/>：<Version add="1.13.0" inline/>每次被骑乘时脾气的增加量。默认值为`5`。
+  - <DataType type="array" name="feed_items"/>：<Version add="1.13.0" inline/>可用于喂食的物品列表。
     - <DataType type="object"/>：一项。
       - <DataType type="string" name="item"/>：物品 ID。
       - <DataType type="int" name="temper_mod"/>：喂食后脾气的增加量。
@@ -6203,16 +6302,16 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:teleport"/>：根对象。
-  - <DataType type="boolean" name="random_teleports"/>：为`true`时允许随机传送。默认值为`true`。
-  - <DataType type="float" name="min_random_teleport_time"/>：两次随机传送之间的最短间隔，单位为秒。默认值为`0`。
-  - <DataType type="float" name="max_random_teleport_time"/>：两次随机传送之间的最长间隔，单位为秒。默认值为`20`。
-  - <DataType type="array" name="random_teleport_cube"/>：随机传送的范围，写作`[x, y, z]`，表示以实体为中心的立方体尺寸。默认值为`[32, 16, 32]`。
-  - <DataType type="float" name="target_distance"/>：追逐目标时传送的最大距离，单位为方块。默认值为`16`。
-  - <DataType type="float" name="target_teleport_chance"/>：追逐目标时每刻传送的概率。默认值为`1`。
-  - <DataType type="float" name="light_teleport_chance"/>：处于光照下时传送概率的修正值。默认值为`0.01`。
-  - <DataType type="float" name="dark_teleport_chance"/>：处于黑暗中时传送概率的修正值。默认值为`0.01`。
-  - <DataType type="boolean" name="teleports_on_projectile_hit"/>：为`true`时会在被弹射物命中前尝试传送闪避。默认值为`false`。
-  - <DataType type="object" name="projectile_filter"/>：哪些弹射物会触发闪避传送。见[实体过滤器](./filters)。
+  - <DataType type="boolean" name="random_teleports"/>：<Version add="1.13.0" inline/>为`true`时允许随机传送。默认值为`true`。
+  - <DataType type="float" name="min_random_teleport_time"/>：<Version add="1.13.0" inline/>两次随机传送之间的最短间隔，单位为秒。默认值为`0`。
+  - <DataType type="float" name="max_random_teleport_time"/>：<Version add="1.13.0" inline/>两次随机传送之间的最长间隔，单位为秒。默认值为`20`。
+  - <DataType type="array" name="random_teleport_cube"/>：<Version add="1.13.0" inline/>随机传送的范围，写作`[x, y, z]`，表示以实体为中心的立方体尺寸。默认值为`[32, 16, 32]`。
+  - <DataType type="float" name="target_distance"/>：<Version add="1.13.0" inline/>追逐目标时传送的最大距离，单位为方块。默认值为`16`。
+  - <DataType type="float" name="target_teleport_chance"/>：<Version add="1.13.0" inline/>追逐目标时每刻传送的概率。默认值为`1`。
+  - <DataType type="float" name="light_teleport_chance"/>：<Version add="1.13.0" inline/>处于光照下时传送概率的修正值。默认值为`0.01`。
+  - <DataType type="float" name="dark_teleport_chance"/>：<Version add="1.13.0" inline/>处于黑暗中时传送概率的修正值。默认值为`0.01`。
+  - <DataType type="boolean" name="teleports_on_projectile_hit"/>：<Version add="1.26.50" inline/>为`true`时会在被弹射物命中前尝试传送闪避。默认值为`false`。
+  - <DataType type="object" name="projectile_filter"/>：<Version add="1.26.50" inline/>哪些弹射物会触发闪避传送。见[实体过滤器](./filters)。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -6304,9 +6403,9 @@ NPC（<FileType type="file" name="npc.json"/>）：
 - <DataType type="object" name="minecraft:trade_table"/>：根对象。
   - <DataType type="string" name="table"/>：交易表路径，相对于行为包根目录，如`trading/armorer_trades.json`。
   - <DataType type="string" name="display_name"/>：交易界面显示名使用的本地化键。
-  - <DataType type="boolean" name="new_screen"/>：为`true`时使用新版交易界面。默认值为`false`。
-  - <DataType type="boolean" name="persist_trades"/>：为`true`时，实体转换形态后保留已生成的交易。默认值为`false`。
-  - <DataType type="boolean" name="convert_trades_economy"/>：实体转换形态时，是否把旧版交易数据转换为经济交易数据。默认值为`false`。
+  - <DataType type="boolean" name="new_screen"/>：<Version add="1.12.0" inline/>为`true`时使用新版交易界面。默认值为`false`。
+  - <DataType type="boolean" name="persist_trades"/>：<Version add="1.12.0" inline/>为`true`时，实体转换形态后保留已生成的交易。默认值为`false`。
+  - <DataType type="boolean" name="convert_trades_economy"/>：<Version add="1.12.0" inline/>实体转换形态时，是否把旧版交易数据转换为经济交易数据。默认值为`false`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -6336,7 +6435,7 @@ NPC（<FileType type="file" name="npc.json"/>）：
 <treeview>
 - <DataType type="object" name="minecraft:trail"/>：根对象。
   - <DataType type="string" name="block_type"/>：作为轨迹生成的方块 ID。默认值为`air`。
-  - <DataType type="array" name="spawn_offset"/>：生成位置相对实体位置的偏移，写作`[x, y, z]`。默认值为`[0, 0, 0]`。
+  - <DataType type="array" name="spawn_offset"/>：<Version add="1.16.0" inline/>生成位置相对实体位置的偏移，写作`[x, y, z]`。默认值为`[0, 0, 0]`。
   - <DataType type="int" name="radius"/>：在实体周围多大范围内生成轨迹，`-1`表示只在脚下。默认值为`-1`。
   - <DataType type="array" name="replaceable_blocks"/>：可以被轨迹方块替换的方块列表。留空时可替换任何可被替换的方块。
     - <DataType type="string"/>：方块 ID。
@@ -7496,7 +7595,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.admire_item`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:admire_item组件。"/> <br/>
+<Usable type="all"/> <Version add="1.16.0"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:admire_item组件。"/> <br/>
 
 使生物欣赏被标记为可欣赏的物品。
 
@@ -7574,7 +7673,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.avoid_block`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.30"/> <br/>
 
 使生物避开指定的方块。
 
@@ -7626,7 +7725,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.avoid_mob_type`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物避开特定类型的实体。
 
@@ -7645,19 +7744,19 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
       - <DataType type="float" name="sprint_speed_multiplier"/>：躲避时疾跑速度的乘数。
       - <DataType type="boolean" name="check_if_outnumbered"/>：是否仅在对方数量占优时躲避。
   - <DataType type="float" name="max_dist"/>：搜索躲避目标的最大距离，单位为方块。默认值为`3`。
-  - <DataType type="float" name="max_flee"/>：逃到距目标多远时停止逃跑，单位为方块。默认值为`10`。
-  - <DataType type="float" name="sprint_distance"/>：距目标多近时开始疾跑，单位为方块。默认值为`7`。
-  - <DataType type="int" name="avoid_target_xz"/>：逃跑目标点在水平方向上的选取范围，单位为方块。默认值为`16`。
-  - <DataType type="int" name="avoid_target_y"/>：逃跑目标点在垂直方向上的选取范围，单位为方块。默认值为`7`。
-  - <DataType type="boolean" name="ignore_visibility"/>：为`true`时逃跑途中不考虑视线是否被遮挡。默认值为`false`。
-  - <DataType type="boolean" name="remove_target"/>：为`true`时逃跑期间清除当前攻击目标。默认值为`false`。
+  - <DataType type="float" name="max_flee"/>：<Version add="1.4.0" inline/> 逃到距目标多远时停止逃跑，单位为方块。默认值为`10`。
+  - <DataType type="float" name="sprint_distance"/>：<Version add="1.18.30" inline/> 距目标多近时开始疾跑，单位为方块。默认值为`7`。
+  - <DataType type="int" name="avoid_target_xz"/>：<Version add="1.18.30" inline/> 逃跑目标点在水平方向上的选取范围，单位为方块。默认值为`16`。
+  - <DataType type="int" name="avoid_target_y"/>：<Version add="1.18.30" inline/> 逃跑目标点在垂直方向上的选取范围，单位为方块。默认值为`7`。
+  - <DataType type="boolean" name="ignore_visibility"/>：<Version add="1.18.30" inline/> 为`true`时逃跑途中不考虑视线是否被遮挡。默认值为`false`。
+  - <DataType type="boolean" name="remove_target"/>：<Version add="1.18.30" inline/> 为`true`时逃跑期间清除当前攻击目标。默认值为`false`。
   - <DataType type="float" name="probability_per_strength"/>：按对方力量决定停止躲避的概率。默认值为`1`。
   - <DataType type="float" name="walk_speed_multiplier"/>：行走速度的乘数。默认值为`1`。
   - <DataType type="float" name="sprint_speed_multiplier"/>：疾跑速度的乘数。默认值为`1`。
   - <DataType type="float" name="river_speed_multiplier"/>：沿河流逃跑时的速度乘数。默认值为`0.75`。
-  - <DataType type="string" name="avoid_mob_sound"/>：躲避时播放的音效事件名。
-  - <DataType type="array" name="sound_interval"/>：两次音效之间随机等待的秒数区间，写作`[最小值, 最大值]`。默认值为`[3, 8]`。
-  - <DataType type="object" name="on_escape_event"/>：成功逃脱时触发的事件，结构同其他行为的`event`加`target`。
+  - <DataType type="string" name="avoid_mob_sound"/>：<Version add="1.18.30" inline/> 躲避时播放的音效事件名。
+  - <DataType type="array" name="sound_interval"/>：<Version add="1.18.30" inline/> 两次音效之间随机等待的秒数区间，写作`[最小值, 最大值]`。默认值为`[3, 8]`。
+  - <DataType type="object" name="on_escape_event"/>：<Version add="1.18.30" inline/> 成功逃脱时触发的事件，结构同其他行为的`event`加`target`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -7684,7 +7783,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.barter`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:barter组件。"/> <br/>
+<Usable type="all"/> <Version add="1.16.0"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:barter组件。"/> <br/>
 
 使生物进行以物易物。
 
@@ -7716,7 +7815,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.beg`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物注视并跟随手持其喜爱食物的玩家。
 
@@ -7758,7 +7857,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.break_door`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物破坏阻挡其寻路的门，需配合[`minecraft:annotation.break_door`](./components#minecraftannotationbreak_door)组件。
 
@@ -7788,7 +7887,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.breed`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:breedable组件。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:breedable组件。"/> <br/>
 
 使生物寻找同类进行繁殖。
 
@@ -7821,7 +7920,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.celebrate`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.13.3"/> <br/>
 
 使生物在触发后进行庆祝，例如袭击者攻下村庄后的欢呼。
 
@@ -7867,7 +7966,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.celebrate_survive`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.30"/> <br/>
 
 使生物在袭击中存活后进行庆祝，并周期性放出烟花。
 
@@ -7907,7 +8006,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.charge_attack`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物向目标发起冲锋，例如恼鬼的突进。
 
@@ -7918,10 +8017,10 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="min_distance"/>：距目标小于该距离时不发起冲锋，单位为方块。默认值为`2`。
-  - <DataType type="float" name="max_distance"/>：距目标大于该距离时不发起冲锋，单位为方块。默认值为`3`。
-  - <DataType type="float" name="speed_multiplier"/>：冲向目标时的速度乘数。默认值为`1`。
-  - <DataType type="float" name="success_rate"/>：未处于攻击状态时发起冲锋的概率。默认值为`0.1428`。
+  - <DataType type="float" name="min_distance"/>：<Version add="1.15.0" inline/> 距目标小于该距离时不发起冲锋，单位为方块。默认值为`2`。
+  - <DataType type="float" name="max_distance"/>：<Version add="1.15.0" inline/> 距目标大于该距离时不发起冲锋，单位为方块。默认值为`3`。
+  - <DataType type="float" name="speed_multiplier"/>：<Version add="1.15.0" inline/> 冲向目标时的速度乘数。默认值为`1`。
+  - <DataType type="float" name="success_rate"/>：<Version add="1.15.0" inline/> 未处于攻击状态时发起冲锋的概率。默认值为`0.1428`。
   - <DataType type="string" name="sound_event"/>：冲锋时播放的音效事件名。默认值为`charge`。
 </treeview>
 
@@ -7941,7 +8040,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.charge_held_item`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
 
 使生物为手持物品蓄力，例如猪灵拉弓。
 
@@ -7973,7 +8072,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.circle_around_anchor`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.6.0"/> <br/>
 
 使生物围绕一个锚点盘旋，例如幻翼在空中绕圈。
 
@@ -7985,13 +8084,13 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
   - <DataType type="float" name="goal_radius"/>：距锚点多近即视为到达，单位为方块。默认值为`0.5`。
-  - <DataType type="float" name="angle_change"/>：选择下一个锚点时朝向改变的角度。默认值为`15`。
+  - <DataType type="float" name="angle_change"/>：<Version add="1.18.30" inline/> 选择下一个锚点时朝向改变的角度。默认值为`15`。
   - <DataType type="array" name="radius_range"/>：与锚点的水平距离范围，写作`[最小值, 最大值]`。默认值为`[5, 15]`。
-  - <DataType type="float" name="radius_change"/>：成功调整半径时增加的距离，单位为方块。默认值为`1`。
-  - <DataType type="float" name="radius_adjustment_chance"/>：每刻调整半径的概率。默认值为`0.004`。
+  - <DataType type="float" name="radius_change"/>：<Version add="1.18.30" inline/> 成功调整半径时增加的距离，单位为方块。默认值为`1`。
+  - <DataType type="float" name="radius_adjustment_chance"/>：<Version add="1.18.30" inline/> 每刻调整半径的概率。默认值为`0.004`。
   - <DataType type="array" name="height_above_target_range"/>：高于目标高度的范围，写作`[最小值, 最大值]`。默认值为`[0, 0]`。
   - <DataType type="array" name="height_offset_range"/>：相对锚点的垂直偏移范围，写作`[最小值, 最大值]`。默认值为`[0, 0]`。
-  - <DataType type="float" name="height_adjustment_chance"/>：每刻调整高度的概率。默认值为`0.002857`。
+  - <DataType type="float" name="height_adjustment_chance"/>：<Version add="1.18.30" inline/> 每刻调整高度的概率。默认值为`0.002857`。
   - <DataType type="float" name="speed_multiplier"/>：飞向下一位置时的速度乘数。默认值为`1`。
 </treeview>
 
@@ -8014,7 +8113,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.controlled_by_player`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:item_controllable组件、minecraft:movement组件和minecraft:rideable组件。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:item_controllable组件、minecraft:movement组件和minecraft:rideable组件。"/> <br/>
 
 使被玩家骑乘的实体接受玩家的方向控制。
 
@@ -8027,9 +8126,9 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="mount_speed_multiplier"/>：被控制时的移动速度乘数。默认值为`1`。
-  - <DataType type="float" name="fractional_rotation"/>：每刻朝玩家视角转动的比例。默认值为`0.5`。
-  - <DataType type="float" name="fractional_rotation_limit"/>：每刻可转动的最大角度，单位为度。默认值为`5`。
+  - <DataType type="float" name="mount_speed_multiplier"/>：<Version add="1.16.0" inline/> 被控制时的移动速度乘数。默认值为`1`。
+  - <DataType type="float" name="fractional_rotation"/>：<Version add="1.18.30" inline/> 每刻朝玩家视角转动的比例。默认值为`0.5`。
+  - <DataType type="float" name="fractional_rotation_limit"/>：<Version add="1.18.30" inline/> 每刻可转动的最大角度，单位为度。默认值为`5`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -8048,7 +8147,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.croak`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 使生物周期性发出鸣叫，青蛙使用该行为。
 
@@ -8088,7 +8187,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.defend_trusted_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
 
 使生物保护已获得其信任的对象，例如狐狸保护信任的玩家。
 
@@ -8135,7 +8234,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.defend_village_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物攻击村庄的入侵者，铁傀儡使用该行为。
 
@@ -8149,13 +8248,13 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="array" name="entity_types"/>：被视为入侵者的实体条件列表。
     - <DataType type="object"/>：一项条件。
       - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](./filters)。
-  - <DataType type="float" name="attack_chance"/>：每刻发起攻击的概率。默认值为`0.05`。
-  - <DataType type="boolean" name="attack_owner"/>：为`true`时该实体可以攻击自己的主人。默认值为`false`。
-  - <DataType type="boolean" name="must_reach"/>：为`true`时要求存在通往目标的完整路径。默认值为`false`。
-  - <DataType type="boolean" name="must_see"/>：为`true`时只把视野内的实体作为目标。默认值为`false`。
-  - <DataType type="float" name="must_see_forget_duration"/>：目标离开视野多少秒后放弃。默认值为`3`。
-  - <DataType type="float" name="persist_time"/>：目标不再可见后仍继续攻击的秒数。默认值为`0`。
-  - <DataType type="float" name="within_radius"/>：距目标的最大跟随距离，超出则放弃。默认值为`0`。
+  - <DataType type="float" name="attack_chance"/>：<Version add="1.18.30" inline/> 每刻发起攻击的概率。默认值为`0.05`。
+  - <DataType type="boolean" name="attack_owner"/>：<Version add="1.21.80" inline/> 为`true`时该实体可以攻击自己的主人。默认值为`false`。
+  - <DataType type="boolean" name="must_reach"/>：<Version add="1.21.80" inline/> 为`true`时要求存在通往目标的完整路径。默认值为`false`。
+  - <DataType type="boolean" name="must_see"/>：<Version add="1.21.80" inline/> 为`true`时只把视野内的实体作为目标。默认值为`false`。
+  - <DataType type="float" name="must_see_forget_duration"/>：<Version add="1.21.80" inline/> 目标离开视野多少秒后放弃。默认值为`3`。
+  - <DataType type="float" name="persist_time"/>：<Version add="1.21.80" inline/> 目标不再可见后仍继续攻击的秒数。默认值为`0`。
+  - <DataType type="float" name="within_radius"/>：<Version add="1.21.80" inline/> 距目标的最大跟随距离，超出则放弃。默认值为`0`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -8186,7 +8285,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.delayed_attack`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.11.0"/> <br/>
 
 让生物在攻击动画播放到一定进度时才结算伤害，劫掠兽使用该行为。
 
@@ -8201,27 +8300,27 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="hit_delay_pct"/>：动画播放到多少比例时结算伤害，`1.0`表示动画结束。默认值为`0.5`。
   - <DataType type="boolean" name="attack_once"/>：为`true`时该行为在实体整个生命周期内只执行一次。默认值为`false`。
   - <DataType type="string" name="attack_types"/>：该实体攻击的目标类型。
-  - <DataType type="boolean" name="can_spread_on_fire"/>：为`true`时，着火的实体空手攻击会点燃目标。默认值为`false`。
+  - <DataType type="boolean" name="can_spread_on_fire"/>：<Version add="1.20.30" inline/> 为`true`时，着火的实体空手攻击会点燃目标。默认值为`false`。
   - <DataType type="float" name="reach_multiplier"/>：以碰撞箱尺寸为基础计算攻击距离的乘数。默认值为`1.5`。
   - <DataType type="float" name="speed_multiplier"/>：接近目标时的移动速度乘数。默认值为`1`。
   - <DataType type="boolean" name="track_target"/>：为`true`时即使没有固定感知组件也能追踪目标。默认值为`true`。
-  - <DataType type="boolean" name="require_complete_path"/>：为`true`时要求存在通往目标的完整路径。默认值为`false`。
+  - <DataType type="boolean" name="require_complete_path"/>：<Version add="1.15.0" inline/> 为`true`时要求存在通往目标的完整路径。默认值为`false`。
   - <DataType type="int" name="random_stop_interval"/>：以`1/N`的概率中断攻击，`N`为该值。默认值为`0`。
-  - <DataType type="float" name="min_path_time"/>：重新计算攻击路径的最短基础间隔，单位为秒。默认值为`0.2`。
-  - <DataType type="float" name="max_path_time"/>：重新计算攻击路径的最长基础间隔，单位为秒。默认值为`0.55`。
-  - <DataType type="float" name="path_inner_boundary"/>：距目标小于该距离时按`inner_boundary_time_increase`延长重算间隔。默认值为`16`。
-  - <DataType type="float" name="path_outer_boundary"/>：距目标大于该距离时按`outer_boundary_time_increase`延长重算间隔。默认值为`32`。
-  - <DataType type="float" name="inner_boundary_time_increase"/>：目标靠近时追加的重算间隔，单位为秒。默认值为`0.25`。
-  - <DataType type="float" name="outer_boundary_time_increase"/>：目标远离时追加的重算间隔，单位为秒。默认值为`0.5`。
-  - <DataType type="float" name="path_fail_time_increase"/>：寻路失败时追加的重算间隔，单位为秒。默认值为`0.75`。
-  - <DataType type="float" name="melee_fov"/>：感知有效目标时使用的视场角，单位为度。默认值为`90`。
-  - <DataType type="float" name="x_max_rotation"/>：注视目标时俯仰方向的最大转角，单位为度。默认值为`30`。
-  - <DataType type="float" name="y_max_head_rotation"/>：注视目标时水平方向的最大转角，单位为度。默认值为`30`。
+  - <DataType type="float" name="min_path_time"/>：<Version add="1.15.0" inline/> 重新计算攻击路径的最短基础间隔，单位为秒。默认值为`0.2`。
+  - <DataType type="float" name="max_path_time"/>：<Version add="1.15.0" inline/> 重新计算攻击路径的最长基础间隔，单位为秒。默认值为`0.55`。
+  - <DataType type="float" name="path_inner_boundary"/>：<Version add="1.15.0" inline/> 距目标小于该距离时按`inner_boundary_time_increase`延长重算间隔。默认值为`16`。
+  - <DataType type="float" name="path_outer_boundary"/>：<Version add="1.15.0" inline/> 距目标大于该距离时按`outer_boundary_time_increase`延长重算间隔。默认值为`32`。
+  - <DataType type="float" name="inner_boundary_time_increase"/>：<Version add="1.15.0" inline/> 目标靠近时追加的重算间隔，单位为秒。默认值为`0.25`。
+  - <DataType type="float" name="outer_boundary_time_increase"/>：<Version add="1.15.0" inline/> 目标远离时追加的重算间隔，单位为秒。默认值为`0.5`。
+  - <DataType type="float" name="path_fail_time_increase"/>：<Version add="1.15.0" inline/> 寻路失败时追加的重算间隔，单位为秒。默认值为`0.75`。
+  - <DataType type="float" name="melee_fov"/>：<Version add="1.15.0" inline/> 感知有效目标时使用的视场角，单位为度。默认值为`90`。
+  - <DataType type="float" name="x_max_rotation"/>：<Version add="1.15.0" inline/> 注视目标时俯仰方向的最大转角，单位为度。默认值为`30`。
+  - <DataType type="float" name="y_max_head_rotation"/>：<Version add="1.15.0" inline/> 注视目标时水平方向的最大转角，单位为度。默认值为`30`。
   - <DataType type="string" name="sound_event"/>：攻击时播放的音效事件名。默认值为`attack.strong`。
-  - <DataType type="object" name="on_attack"/>：成功攻击时触发的事件。
+  - <DataType type="object" name="on_attack"/>：<Version add="1.15.0" inline/> 成功攻击时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
     - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
-  - <DataType type="object" name="on_kill"/>：击杀目标时触发的事件，结构同上。
+  - <DataType type="object" name="on_kill"/>：<Version add="1.21.80" inline/> 击杀目标时触发的事件，结构同上。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -8247,7 +8346,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.dig`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 使生物钻入地面并停留一段时间，监守者使用该行为。
 
@@ -8264,7 +8363,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="boolean" name="digs_in_daylight"/>：为`true`时实体见到阳光就开始钻地。默认值为`false`。
   - <DataType type="boolean" name="suspicion_is_disturbance"/>：为`true`时发现可疑位置也算扰动，会推迟钻地。默认值为`false`。
   - <DataType type="boolean" name="vibration_is_disturbance"/>：为`true`时振动也算扰动，会推迟钻地。默认值为`false`。
-  - <DataType type="object" name="on_start"/>：开始钻地时触发的事件。
+  - <DataType type="object" name="on_start"/>：<Version add="1.19.10" inline/> 开始钻地时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
     - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
 </treeview>
@@ -8290,7 +8389,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.door_interact`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物能够手动开关门。
 
@@ -8319,7 +8418,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.dragonchargeplayer`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:behavior.dragonscanning组件。"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:behavior.dragonscanning组件。"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
 
 使末影龙向玩家发起俯冲冲锋。
 
@@ -8332,11 +8431,11 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="active_speed"/>：冲锋进行中或已开始时的移动速度。默认值为`3`。
-  - <DataType type="float" name="flight_speed"/>：未冲锋时的飞行速度。默认值为`0.6`。
-  - <DataType type="float" name="turn_speed"/>：执行该行为时的转向速度。默认值为`0.7`。
-  - <DataType type="array" name="target_zone"/>：可使用该行为的距离区间，写作`[最小值, 最大值]`，单位为方块。默认值为`[10, 150]`。
-  - <DataType type="float" name="continue_charge_threshold_time"/>：目标脱离`target_zone`超过该秒数后停止冲锋。默认值为`0.5`。
+  - <DataType type="float" name="active_speed"/>：<Version add="1.15.0" inline/> 冲锋进行中或已开始时的移动速度。默认值为`3`。
+  - <DataType type="float" name="flight_speed"/>：<Version add="1.15.0" inline/> 未冲锋时的飞行速度。默认值为`0.6`。
+  - <DataType type="float" name="turn_speed"/>：<Version add="1.15.0" inline/> 执行该行为时的转向速度。默认值为`0.7`。
+  - <DataType type="array" name="target_zone"/>：<Version add="1.15.0" inline/> 可使用该行为的距离区间，写作`[最小值, 最大值]`，单位为方块。默认值为`[10, 150]`。
+  - <DataType type="float" name="continue_charge_threshold_time"/>：<Version add="1.15.0" inline/> 目标脱离`target_zone`超过该秒数后停止冲锋。默认值为`0.5`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -8355,7 +8454,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.dragondeath`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
 
 控制末影龙死亡时的升空与消散过程。
 
@@ -8384,7 +8483,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.dragonflaming`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
 
 使末影龙在停驻时先咆哮、再喷吐龙息。
 
@@ -8395,10 +8494,10 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="cooldown_time"/>：两次「咆哮并喷吐」循环之间的间隔，单位为秒。默认值为`10`。
-  - <DataType type="float" name="roar_time"/>：咆哮持续的秒数。默认值为`2`。
-  - <DataType type="float" name="flame_time"/>：咆哮结束后喷吐龙息持续的秒数。默认值为`0.5`。
-  - <DataType type="int" name="ground_flame_count"/>：起飞前在地面喷吐龙息的次数。默认值为`4`。
+  - <DataType type="float" name="cooldown_time"/>：<Version add="1.15.0" inline/> 两次「咆哮并喷吐」循环之间的间隔，单位为秒。默认值为`10`。
+  - <DataType type="float" name="roar_time"/>：<Version add="1.15.0" inline/> 咆哮持续的秒数。默认值为`2`。
+  - <DataType type="float" name="flame_time"/>：<Version add="1.15.0" inline/> 咆哮结束后喷吐龙息持续的秒数。默认值为`0.5`。
+  - <DataType type="int" name="ground_flame_count"/>：<Version add="1.15.0" inline/> 起飞前在地面喷吐龙息的次数。默认值为`4`。
   - <DataType type="string" name="smoke_color"/>：龙息烟雾的颜色，写作十六进制色值。默认值为`#DC00EF`。
   - <DataType type="float" name="smoke_radius"/>：烟雾的扩散半径。默认值为`5`。
   - <DataType type="float" name="smoke_time"/>：烟雾持续的时间。默认值为`10`。
@@ -8420,7 +8519,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.dragonholdingpattern`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
 
 使末影龙在祭坛上方盘旋等待。
 
@@ -8449,7 +8548,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.dragonlanding`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
 
 使末影龙降落到祭坛上。
 
@@ -8478,7 +8577,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.dragonscanning`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
 
 使末影龙扫描周围，寻找可供攻击的目标。
 
@@ -8507,7 +8606,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.dragonstrafeplayer`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
 
 使末影龙绕玩家盘旋并伺机发射火球。
 
@@ -8518,14 +8617,14 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="active_speed"/>：该行为进行中的移动速度。默认值为`0.6`。
-  - <DataType type="float" name="flight_speed"/>：未执行该行为时的飞行速度。默认值为`0.6`。
-  - <DataType type="float" name="turn_speed"/>：执行该行为时的转向速度。默认值为`0.7`。
-  - <DataType type="array" name="target_zone"/>：可使用该行为的距离区间，写作`[最小值, 最大值]`，单位为方块。默认值为`[10, 150]`。
-  - <DataType type="float" name="fireball_range"/>：盘旋时可发射火球的最大距离，单位为方块。默认值为`64`。
-  - <DataType type="float" name="view_angle"/>：目标需处于当前朝向多少度以内才发射火球，单位为度。默认值为`10`。
-  - <DataType type="float" name="target_in_range_and_in_view_time"/>：目标需持续处于射程与视野内的秒数。默认值为`0.25`。
-  - <DataType type="float" name="switch_direction_probability"/>：每刻在顺时针与逆时针之间切换的概率。默认值为`0.125`。
+  - <DataType type="float" name="active_speed"/>：<Version add="1.15.0" inline/> 该行为进行中的移动速度。默认值为`0.6`。
+  - <DataType type="float" name="flight_speed"/>：<Version add="1.15.0" inline/> 未执行该行为时的飞行速度。默认值为`0.6`。
+  - <DataType type="float" name="turn_speed"/>：<Version add="1.15.0" inline/> 执行该行为时的转向速度。默认值为`0.7`。
+  - <DataType type="array" name="target_zone"/>：<Version add="1.15.0" inline/> 可使用该行为的距离区间，写作`[最小值, 最大值]`，单位为方块。默认值为`[10, 150]`。
+  - <DataType type="float" name="fireball_range"/>：<Version add="1.15.0" inline/> 盘旋时可发射火球的最大距离，单位为方块。默认值为`64`。
+  - <DataType type="float" name="view_angle"/>：<Version add="1.15.0" inline/> 目标需处于当前朝向多少度以内才发射火球，单位为度。默认值为`10`。
+  - <DataType type="float" name="target_in_range_and_in_view_time"/>：<Version add="1.15.0" inline/> 目标需持续处于射程与视野内的秒数。默认值为`0.25`。
+  - <DataType type="float" name="switch_direction_probability"/>：<Version add="1.15.0" inline/> 每刻在顺时针与逆时针之间切换的概率。默认值为`0.125`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -8544,7 +8643,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.dragontakeoff`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影龙可用。"/> <br/>
 
 使末影龙结束停驻、重新起飞盘旋。
 
@@ -8573,7 +8672,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.drink_milk`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.19.10"/> <br/>
 
 使生物在满足条件时饮用牛奶。
 
@@ -8613,7 +8712,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.drink_potion`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
 
 使生物在满足条件时饮用指定的药水。
 
@@ -8663,7 +8762,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.drop_item_for`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:navigation组件。"/> <br/>
+<Usable type="all"/> <Version add="1.8.0"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:navigation组件。"/> <br/>
 
 使生物靠近目标并向其投下物品，例如猫向玩家赠送礼物。
 
@@ -8682,17 +8781,17 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="string" name="loot_table"/>：决定掉落内容的战利品表路径。
   - <DataType type="float" name="drop_item_chance"/>：每次尝试投下物品的概率，取值`0.0`-`1.0`。默认值为`1`。
   - <DataType type="float" name="offering_distance"/>：希望与目标保持的投赠距离，单位为方块。默认值为`1`。
-  - <DataType type="float" name="cooldown"/>：该行为的冷却秒数。默认值为`0.25`。
-  - <DataType type="float" name="seconds_before_pickup"/>：投下的物品需经过多少秒才能被拾取。默认值为`0`。
+  - <DataType type="float" name="cooldown"/>：<Version add="1.18.30" inline/> 该行为的冷却秒数。默认值为`0.25`。
+  - <DataType type="float" name="seconds_before_pickup"/>：<Version add="1.18.30" inline/> 投下的物品需经过多少秒才能被拾取。默认值为`0`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
   - <DataType type="float" name="goal_radius"/>：距目标点多近即视为到达，单位为方块。默认值为`0.5`。
-  - <DataType type="array" name="target_range"/>：寻找落点时在`[x, y, z]`三个方向上的搜索范围。默认值为`[1, 1, 1]`。
+  - <DataType type="array" name="target_range"/>：<Version add="1.18.30" inline/> 寻找落点时在`[x, y, z]`三个方向上的搜索范围。默认值为`[1, 1, 1]`。
   - <DataType type="int" name="search_range"/>：搜索落点的水平距离，单位为方块。默认值为`0`。
   - <DataType type="int" name="search_height"/>：搜索落点的垂直距离，单位为方块。默认值为`1`。
-  - <DataType type="int" name="search_count"/>：每刻随机检查的方块数量。默认值为`0`。
-  - <DataType type="float" name="max_head_look_at_height"/>：投赠时头部注视的最大高度，单位为方块。默认值为`10`。
-  - <DataType type="float" name="minimum_teleport_distance"/>：目标距离超过该值时实体改为传送，单位为方块。默认值为`2`。
-  - <DataType type="array" name="teleport_offset"/>：传送落点相对目标的偏移，写作`[x, y, z]`。默认值为`[0, 1, 0]`。
+  - <DataType type="int" name="search_count"/>：<Version add="1.18.30" inline/> 每刻随机检查的方块数量。默认值为`0`。
+  - <DataType type="float" name="max_head_look_at_height"/>：<Version add="1.18.30" inline/> 投赠时头部注视的最大高度，单位为方块。默认值为`10`。
+  - <DataType type="float" name="minimum_teleport_distance"/>：<Version add="1.18.30" inline/> 目标距离超过该值时实体改为传送，单位为方块。默认值为`2`。
+  - <DataType type="array" name="teleport_offset"/>：<Version add="1.18.30" inline/> 传送落点相对目标的偏移，写作`[x, y, z]`。默认值为`[0, 1, 0]`。
   - <DataType type="array" name="time_of_day_range"/>：允许执行该行为的时间范围，`0.0`为正午、`0.5`为午夜。默认值为`[0, 1]`。
   - <DataType type="object" name="on_drop_attempt"/>：尝试投下物品时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
@@ -8722,7 +8821,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.eat_block`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物啃食指定的方块并替换为另一方块，羊吃草即使用该行为。
 
@@ -8733,12 +8832,12 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="array" name="eat_and_replace_block_pairs"/>：被啃食方块与替换方块的对应关系列表。
+  - <DataType type="array" name="eat_and_replace_block_pairs"/>：<Version add="1.18.30" inline/> 被啃食方块与替换方块的对应关系列表。
     - <DataType type="object"/>：一组对应。
       - <DataType type="string" name="eat_block"/>：被啃食的方块 ID。
       - <DataType type="string" name="replace_block"/>：啃食后替换成的方块 ID。
-  - <DataType type="string" name="success_chance"/>：每刻成功啃食的概率，填 Molang 表达式。默认值为`0.02`。
-  - <DataType type="float" name="time_until_eat"/>：啃食动画持续的秒数。默认值为`1.8`。
+  - <DataType type="string" name="success_chance"/>：<Version add="1.18.30" inline/> 每刻成功啃食的概率，填 Molang 表达式。默认值为`0.02`。
+  - <DataType type="float" name="time_until_eat"/>：<Version add="1.18.30" inline/> 啃食动画持续的秒数。默认值为`1.8`。
   - <DataType type="object" name="on_eat"/>：啃食完成后触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
     - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
@@ -8766,7 +8865,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.eat_carried_item`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
 
 使生物吃掉口中携带的物品。
 
@@ -8797,7 +8896,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.eat_mob`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 使生物吞食其他生物，青蛙吃史莱姆即使用该行为。
 
@@ -8838,7 +8937,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.emerge`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 使生物从地下钻出，监守者使用该行为。
 
@@ -8876,7 +8975,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.equip_item`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.30"/> <br/>
 
 使生物拾起并装备地面上的物品。
 
@@ -8905,7 +9004,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.explore_outskirts`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:dweller组件和minecraft:navigation组件。"/> <br/>
+<Usable type="all"/> <Version add="1.10.0"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:dweller组件和minecraft:navigation组件。"/> <br/>
 
 使村民到村庄外围探索。
 
@@ -8918,17 +9017,17 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="array" name="dist_from_boundary"/>：距村庄边界的距离范围，写作`[x, y, z]`。默认值为`[5, 0, 5]`。
+  - <DataType type="array" name="dist_from_boundary"/>：<Version add="1.18.30" inline/> 距村庄边界的距离范围，写作`[x, y, z]`。默认值为`[5, 0, 5]`。
   - <DataType type="float" name="explore_dist"/>：超出村庄边界后继续探索的距离，单位为方块。默认值为`5`。
-  - <DataType type="float" name="max_travel_time"/>：前往探索点的最长时间，单位为秒。默认值为`60`。
-  - <DataType type="float" name="min_dist_from_target"/>：距探索点多近即视为到达，单位为方块。默认值为`2.25`。
-  - <DataType type="float" name="min_perimeter"/>：村庄的最小周长，低于该值不执行该行为。默认值为`1`。
-  - <DataType type="float" name="min_wait_time"/>：选择下一个探索点前的最短等待秒数。默认值为`3`。
-  - <DataType type="float" name="max_wait_time"/>：选择下一个探索点前的最长等待秒数。默认值为`0`。
-  - <DataType type="int" name="next_xz"/>：新探索点在水平方向上的随机范围，单位为方块。默认值为`5`。
-  - <DataType type="int" name="next_y"/>：新探索点在垂直方向上的随机范围，单位为方块。默认值为`3`。
+  - <DataType type="float" name="max_travel_time"/>：<Version add="1.18.30" inline/> 前往探索点的最长时间，单位为秒。默认值为`60`。
+  - <DataType type="float" name="min_dist_from_target"/>：<Version add="1.18.30" inline/> 距探索点多近即视为到达，单位为方块。默认值为`2.25`。
+  - <DataType type="float" name="min_perimeter"/>：<Version add="1.18.30" inline/> 村庄的最小周长，低于该值不执行该行为。默认值为`1`。
+  - <DataType type="float" name="min_wait_time"/>：<Version add="1.18.30" inline/> 选择下一个探索点前的最短等待秒数。默认值为`3`。
+  - <DataType type="float" name="max_wait_time"/>：<Version add="1.18.30" inline/> 选择下一个探索点前的最长等待秒数。默认值为`0`。
+  - <DataType type="int" name="next_xz"/>：<Version add="1.18.30" inline/> 新探索点在水平方向上的随机范围，单位为方块。默认值为`5`。
+  - <DataType type="int" name="next_y"/>：<Version add="1.18.30" inline/> 新探索点在垂直方向上的随机范围，单位为方块。默认值为`3`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
-  - <DataType type="float" name="timer_ratio"/>：等待时长在最短与最长之间的取值比例。默认值为`2`。
+  - <DataType type="float" name="timer_ratio"/>：<Version add="1.18.30" inline/> 等待时长在最短与最长之间的取值比例。默认值为`2`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -8945,7 +9044,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.fertilize_farm_block`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.30"/> <br/>
 
 使生物对农田方块施肥，促进作物生长。
 
@@ -8981,7 +9080,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.find_cover`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
 
 使生物寻找遮蔽物躲藏。
 
@@ -9014,7 +9113,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.find_mount`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物寻找可骑乘的目标并骑上去。
 
@@ -9052,7 +9151,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.find_underwater_treasure`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.5.0"/> <br/>
 
 使生物前往海底遗迹寻找宝箱，海豚使用该行为。
 
@@ -9087,7 +9186,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.fire_at_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.21.30"/> <br/>
 
 使生物向目标发射弹射物，旋风人使用该行为。
 
@@ -9141,7 +9240,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.flee_sun`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物躲避阳光，沼骸与僵尸类实体使用该行为。
 
@@ -9172,7 +9271,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.float`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体在水中向上浮动，避免沉底。
 
@@ -9183,9 +9282,9 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="chance_per_tick_to_float"/>：每刻施加向上推力的概率。默认值为`0.8`。
-  - <DataType type="boolean" name="sink_with_passengers"/>：为`true`时只要还有乘客就持续下沉。默认值为`false`。
-  - <DataType type="float" name="time_under_water_to_dismount_passengers"/>：载具头部没入水中多少秒后让乘客下船。默认值为`0`。
+  - <DataType type="float" name="chance_per_tick_to_float"/>：<Version add="1.21.130" inline/> 每刻施加向上推力的概率。默认值为`0.8`。
+  - <DataType type="boolean" name="sink_with_passengers"/>：<Version add="1.19.50" inline/> 为`true`时只要还有乘客就持续下沉。默认值为`false`。
+  - <DataType type="float" name="time_under_water_to_dismount_passengers"/>：<Version add="1.21.130" inline/> 载具头部没入水中多少秒后让乘客下船。默认值为`0`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -9204,7 +9303,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.float_tempt`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.21.80"/> <br/>
 
 使浮空的生物被手持特定物品的玩家吸引。
 
@@ -9255,7 +9354,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.float_wander`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物在空中随意漂浮游荡，蝙蝠使用该行为。
 
@@ -9272,13 +9371,13 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="y_offset"/>：在选定落点上叠加的高度偏移，单位为方块。默认值为`0`。
   - <DataType type="boolean" name="random_reselect"/>：为`true`时移动途中会随机重新选择落点。默认值为`false`。
   - <DataType type="boolean" name="must_reach"/>：为`true`时落点必须可达才有效。默认值为`false`。
-  - <DataType type="boolean" name="float_wander_has_move_control"/>：为`true`时该行为自带移动控制。默认值为`true`。
-  - <DataType type="boolean" name="use_home_position_restriction"/>：为`true`时遵守[`minecraft:home`](./components#minecrafthome)的限制范围。默认值为`true`。
-  - <DataType type="boolean" name="navigate_around_surface"/>：为`true`时优先在表面附近寻找落点。默认值为`false`。
-  - <DataType type="int" name="surface_xz_dist"/>：检查表面时的水平距离，单位为方块。默认值为`8`。
-  - <DataType type="int" name="surface_y_dist"/>：检查表面时的垂直距离，单位为方块。默认值为`8`。
-  - <DataType type="boolean" name="additional_collision_buffer"/>：为`true`时在实体周围增加一圈避让缓冲。默认值为`false`。
-  - <DataType type="boolean" name="allow_navigating_through_liquids"/>：为`true`时允许穿过液体寻路。默认值为`false`。
+  - <DataType type="boolean" name="float_wander_has_move_control"/>：<Version add="1.21.70" inline/> 为`true`时该行为自带移动控制。默认值为`true`。
+  - <DataType type="boolean" name="use_home_position_restriction"/>：<Version add="1.21.70" inline/> 为`true`时遵守[`minecraft:home`](./components#minecrafthome)的限制范围。默认值为`true`。
+  - <DataType type="boolean" name="navigate_around_surface"/>：<Version add="1.21.80" inline/> 为`true`时优先在表面附近寻找落点。默认值为`false`。
+  - <DataType type="int" name="surface_xz_dist"/>：<Version add="1.21.80" inline/> 检查表面时的水平距离，单位为方块。默认值为`8`。
+  - <DataType type="int" name="surface_y_dist"/>：<Version add="1.21.80" inline/> 检查表面时的垂直距离，单位为方块。默认值为`8`。
+  - <DataType type="boolean" name="additional_collision_buffer"/>：<Version add="1.21.80" inline/> 为`true`时在实体周围增加一圈避让缓冲。默认值为`false`。
+  - <DataType type="boolean" name="allow_navigating_through_liquids"/>：<Version add="1.21.80" inline/> 为`true`时允许穿过液体寻路。默认值为`false`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -9304,7 +9403,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.follow_caravan`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物跟随行进队伍中的其他实体，羊驼使用该行为。
 
@@ -9345,7 +9444,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.follow_mob`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物跟随附近的其他生物。
 
@@ -9359,9 +9458,9 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="search_range"/>：搜索可跟随目标的范围，单位为方块。默认值为`0`。
   - <DataType type="float" name="stop_distance"/>：与被跟随者保持的距离，单位为方块。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
-  - <DataType type="object" name="filters"/>：可作为跟随目标的实体条件。见[实体过滤器](./filters)。
-  - <DataType type="string" name="preferred_actor_type"/>：优先跟随的实体 ID，省略时随机选择。
-  - <DataType type="boolean" name="use_home_position_restriction"/>：为`true`时遵守[`minecraft:home`](./components#minecrafthome)的限制范围。默认值为`false`。
+  - <DataType type="object" name="filters"/>：<Version add="1.21.80" inline/> 可作为跟随目标的实体条件。见[实体过滤器](./filters)。
+  - <DataType type="string" name="preferred_actor_type"/>：<Version add="1.21.80" inline/> 优先跟随的实体 ID，省略时随机选择。
+  - <DataType type="boolean" name="use_home_position_restriction"/>：<Version add="1.21.80" inline/> 为`true`时遵守[`minecraft:home`](./components#minecrafthome)的限制范围。默认值为`false`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -9385,7 +9484,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.follow_owner`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物跟随其主人，如悦灵跟随给予它物品的玩家。
 
@@ -9398,11 +9497,11 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     - <DataType type="string"/>：一个控制通道。
   - <DataType type="float" name="start_distance"/>：距主人多远时开始跟随，单位为方块。默认值为`10`。
   - <DataType type="float" name="stop_distance"/>：距主人多近时停止跟随，单位为方块。默认值为`2`。
-  - <DataType type="float" name="max_distance"/>：距主人超过该距离后不再跟随，单位为方块。默认值为`60`。
+  - <DataType type="float" name="max_distance"/>：<Version add="1.18.30" inline/> 距主人超过该距离后不再跟随，单位为方块。默认值为`60`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
-  - <DataType type="boolean" name="can_teleport"/>：为`true`时距离过远会传送到主人身边。默认值为`true`。
-  - <DataType type="int" name="post_teleport_distance"/>：传送后与主人保持的距离，单位为方块。默认值为`3`。
-  - <DataType type="boolean" name="ignore_vibration"/>：为`true`时感知到振动后仍继续跟随。默认值为`false`。
+  - <DataType type="boolean" name="can_teleport"/>：<Version add="1.18.30" inline/> 为`true`时距离过远会传送到主人身边。默认值为`true`。
+  - <DataType type="int" name="post_teleport_distance"/>：<Version add="1.21.20" inline/> 传送后与主人保持的距离，单位为方块。默认值为`3`。
+  - <DataType type="boolean" name="ignore_vibration"/>：<Version add="1.18.30" inline/> 为`true`时感知到振动后仍继续跟随。默认值为`false`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -9425,7 +9524,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.follow_parent`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使幼年实体跟随其父母。
 
@@ -9494,7 +9593,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.go_and_give_items_to_noteblock`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 使生物把物品投向音符盒。
 
@@ -9538,7 +9637,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.go_and_give_items_to_owner`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 使生物把物品投向其主人。
 
@@ -9581,7 +9680,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.go_home`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.5.0"/> <br/>
 
 使生物返回其「家」的位置，需配合[`minecraft:home`](./components#minecrafthome)组件。
 
@@ -9594,14 +9693,14 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     - <DataType type="string"/>：一个控制通道。
   - <DataType type="int" name="interval"/>：再次尝试回家前的随机间隔，单位为刻。默认值为`120`。
   - <DataType type="float" name="goal_radius"/>：距家多近即视为到达，单位为方块。默认值为`0.5`。
-  - <DataType type="float" name="calculate_new_path_radius"/>：距终点多近时重新计算路径，单位为方块。默认值为`2`。
+  - <DataType type="float" name="calculate_new_path_radius"/>：<Version add="1.18.30" inline/> 距终点多近时重新计算路径，单位为方块。默认值为`2`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
   - <DataType type="array" name="on_home"/>：到家时触发的事件列表。
     - <DataType type="object"/>：一个事件。
       - <DataType type="string" name="event"/>：事件 ID。
       - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
       - <DataType type="object" name="filters"/>：触发条件。见[实体过滤器](./filters)。
-  - <DataType type="array" name="on_failed"/>：回家失败时触发的事件列表，结构同上。
+  - <DataType type="array" name="on_failed"/>：<Version add="1.18.30" inline/> 回家失败时触发的事件列表，结构同上。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -9635,7 +9734,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.guardian_attack`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对守卫者与远古守卫者可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对守卫者与远古守卫者可用。"/> <br/>
 
 使守卫者与远古守卫者发动魔法攻击。
 
@@ -9646,13 +9745,13 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="int" name="magic_damage"/>：魔法攻击的基础伤害。默认值为`1`。
-  - <DataType type="int" name="elder_extra_magic_damage"/>：远古守卫者额外增加的魔法伤害。默认值为`2`。
-  - <DataType type="int" name="hard_mode_extra_magic_damage"/>：困难难度下额外增加的魔法伤害。默认值为`2`。
-  - <DataType type="float" name="min_distance"/>：目标距离小于该值时停止该行为，单位为方块。默认值为`3`。
-  - <DataType type="float" name="sound_delay_time"/>：开始攻击后延迟多少秒播放音效。默认值为`0.5`。
-  - <DataType type="float" name="x_max_rotation"/>：俯仰方向的最大转角，单位为度。默认值为`90`。
-  - <DataType type="float" name="y_max_head_rotation"/>：水平方向的最大转角，单位为度。默认值为`90`。
+  - <DataType type="int" name="magic_damage"/>：<Version add="1.15.0" inline/> 魔法攻击的基础伤害。默认值为`1`。
+  - <DataType type="int" name="elder_extra_magic_damage"/>：<Version add="1.15.0" inline/> 远古守卫者额外增加的魔法伤害。默认值为`2`。
+  - <DataType type="int" name="hard_mode_extra_magic_damage"/>：<Version add="1.15.0" inline/> 困难难度下额外增加的魔法伤害。默认值为`2`。
+  - <DataType type="float" name="min_distance"/>：<Version add="1.15.0" inline/> 目标距离小于该值时停止该行为，单位为方块。默认值为`3`。
+  - <DataType type="float" name="sound_delay_time"/>：<Version add="1.15.0" inline/> 开始攻击后延迟多少秒播放音效。默认值为`0.5`。
+  - <DataType type="float" name="x_max_rotation"/>：<Version add="1.15.0" inline/> 俯仰方向的最大转角，单位为度。默认值为`90`。
+  - <DataType type="float" name="y_max_head_rotation"/>：<Version add="1.15.0" inline/> 水平方向的最大转角，单位为度。默认值为`90`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -9671,7 +9770,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.harvest_farm_block`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:inventory组件和minecraft:navigation组件。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:inventory组件和minecraft:navigation组件。"/> <br/>
 
 使村民收割成熟的作物。
 
@@ -9684,13 +9783,13 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="goal_radius"/>：距目标点多近即视为到达，单位为方块。默认值为`1.5`。
-  - <DataType type="int" name="search_range"/>：搜索农田的水平距离，单位为方块。默认值为`16`。
-  - <DataType type="int" name="search_height"/>：搜索农田的垂直距离，单位为方块。默认值为`1`。
-  - <DataType type="int" name="search_count"/>：每刻随机检查的方块数量。默认值为`0`。
-  - <DataType type="float" name="max_seconds_before_search"/>：开始搜索前允许等待的最长秒数。默认值为`1`。
-  - <DataType type="float" name="search_cooldown_max_seconds"/>：搜索失败后再次搜索前的最长冷却秒数。默认值为`8`。
-  - <DataType type="float" name="seconds_until_new_task"/>：成功收割后进入下一任务前的冷却秒数。默认值为`0.5`。
+  - <DataType type="float" name="goal_radius"/>：<Version add="1.18.30" inline/> 距目标点多近即视为到达，单位为方块。默认值为`1.5`。
+  - <DataType type="int" name="search_range"/>：<Version add="1.18.30" inline/> 搜索农田的水平距离，单位为方块。默认值为`16`。
+  - <DataType type="int" name="search_height"/>：<Version add="1.18.30" inline/> 搜索农田的垂直距离，单位为方块。默认值为`1`。
+  - <DataType type="int" name="search_count"/>：<Version add="1.18.30" inline/> 每刻随机检查的方块数量。默认值为`0`。
+  - <DataType type="float" name="max_seconds_before_search"/>：<Version add="1.18.30" inline/> 开始搜索前允许等待的最长秒数。默认值为`1`。
+  - <DataType type="float" name="search_cooldown_max_seconds"/>：<Version add="1.18.30" inline/> 搜索失败后再次搜索前的最长冷却秒数。默认值为`8`。
+  - <DataType type="float" name="seconds_until_new_task"/>：<Version add="1.18.30" inline/> 成功收割后进入下一任务前的冷却秒数。默认值为`0.5`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`0.5`。
 </treeview>
 
@@ -9711,7 +9810,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.hide`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.10"/> <br/>
 
 使生物移动到并躲藏在其兴趣点处。
 
@@ -9747,7 +9846,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.hold_ground`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.13.3"/> <br/>
 
 使生物在目标进入一定距离后停下并固守原地。
 
@@ -9815,7 +9914,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.hurt_by_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物把伤害来源设为目标进行反击。
 
@@ -9848,7 +9947,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.inspect_bookshelf`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
 
 使村民查看书架。
 
@@ -9880,7 +9979,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.investigate_suspicious_location`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 使生物前往可疑位置进行调查，监守者使用该行为。
 
@@ -9912,7 +10011,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.jump_around_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.21.30"/> <br/>
 
 使生物围绕目标跳跃移动，旋风人使用该行为。
 
@@ -9969,7 +10068,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.jump_to_block`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.30"/> <br/>
 
 使生物跳向指定的方块，青蛙使用该行为。
 
@@ -10014,7 +10113,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.knockback_roar`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.11.0"/> <br/>
 
 使生物咆哮并把周围的实体击退，劫掠兽使用该行为。
 
@@ -10030,12 +10129,12 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="cooldown_time"/>：该行为的冷却秒数。默认值为`0.1`。
   - <DataType type="int" name="knockback_damage"/>：咆哮造成的伤害。默认值为`6`。
   - <DataType type="int" name="knockback_range"/>：击退作用的半径，单位为方块。默认值为`4`。
-  - <DataType type="int" name="knockback_horizontal_strength"/>：水平击退强度。默认值为`4`。
-  - <DataType type="int" name="knockback_vertical_strength"/>：垂直击退强度。默认值为`4`。
-  - <DataType type="float" name="knockback_height_cap"/>：垂直击退的高度上限。默认值为`0.4`。
-  - <DataType type="object" name="damage_filters"/>：会受到伤害的实体条件。见[实体过滤器](./filters)。
-  - <DataType type="object" name="knockback_filters"/>：会被击退的实体条件。见[实体过滤器](./filters)。
-  - <DataType type="object" name="on_roar_end"/>：咆哮结束时触发的事件。
+  - <DataType type="int" name="knockback_horizontal_strength"/>：<Version add="1.17.20" inline/> 水平击退强度。默认值为`4`。
+  - <DataType type="int" name="knockback_vertical_strength"/>：<Version add="1.17.20" inline/> 垂直击退强度。默认值为`4`。
+  - <DataType type="float" name="knockback_height_cap"/>：<Version add="1.18.30" inline/> 垂直击退的高度上限。默认值为`0.4`。
+  - <DataType type="object" name="damage_filters"/>：<Version add="1.18.30" inline/> 会受到伤害的实体条件。见[实体过滤器](./filters)。
+  - <DataType type="object" name="knockback_filters"/>：<Version add="1.18.30" inline/> 会被击退的实体条件。见[实体过滤器](./filters)。
+  - <DataType type="object" name="on_roar_end"/>：<Version add="1.18.30" inline/> 咆哮结束时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
     - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
 </treeview>
@@ -10062,7 +10161,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.lay_down`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.8.0"/> <br/>
 
 使生物躺下休息，熊猫使用该行为。
 
@@ -10095,7 +10194,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.lay_egg`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.5.0"/> <br/>
 
 使生物在指定方块上产卵，海龟与青蛙使用该行为。
 
@@ -10106,13 +10205,13 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="string" name="egg_type"/>：产下的卵对应的方块 ID。默认值为`minecraft:turtle_egg`。
-  - <DataType type="array" name="target_blocks"/>：可以在其上方产卵的方块列表。默认值为`[ "minecraft:sand" ]`。
-  - <DataType type="array" name="target_materials_above_block"/>：目标方块上方允许存在的材质列表。默认值为`[ "air" ]`。
-  - <DataType type="float" name="lay_seconds"/>：产卵过程持续的秒数。默认值为`10`。
-  - <DataType type="string" name="lay_egg_sound"/>：产卵时播放的音效事件名。默认值为`lay_egg`。
-  - <DataType type="boolean" name="allow_laying_from_below"/>：为`true`时允许从目标方块下方产卵。默认值为`false`。
-  - <DataType type="boolean" name="use_default_animation"/>：为`true`时播放默认的产卵动画。默认值为`true`。
+  - <DataType type="string" name="egg_type"/>：<Version add="1.18.10" inline/> 产下的卵对应的方块 ID。默认值为`minecraft:turtle_egg`。
+  - <DataType type="array" name="target_blocks"/>：<Version add="1.18.10" inline/> 可以在其上方产卵的方块列表。默认值为`[ "minecraft:sand" ]`。
+  - <DataType type="array" name="target_materials_above_block"/>：<Version add="1.18.10" inline/> 目标方块上方允许存在的材质列表。默认值为`[ "air" ]`。
+  - <DataType type="float" name="lay_seconds"/>：<Version add="1.18.10" inline/> 产卵过程持续的秒数。默认值为`10`。
+  - <DataType type="string" name="lay_egg_sound"/>：<Version add="1.18.10" inline/> 产卵时播放的音效事件名。默认值为`lay_egg`。
+  - <DataType type="boolean" name="allow_laying_from_below"/>：<Version add="1.18.10" inline/> 为`true`时允许从目标方块下方产卵。默认值为`false`。
+  - <DataType type="boolean" name="use_default_animation"/>：<Version add="1.18.10" inline/> 为`true`时播放默认的产卵动画。默认值为`true`。
   - <DataType type="int" name="search_range"/>：搜索产卵位置的距离，单位为方块。默认值为`0`。
   - <DataType type="int" name="search_height"/>：搜索产卵位置的高度，单位为方块。默认值为`1`。
   - <DataType type="float" name="goal_radius"/>：距目标点多近即视为到达，单位为方块。默认值为`0.5`。
@@ -10145,7 +10244,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.leap_at_target`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对猫、豹猫、狼与蜘蛛类实体可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对猫、豹猫、狼与蜘蛛类实体可用。"/> <br/>
 
 使生物向目标扑跃。
 
@@ -10158,7 +10257,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     - <DataType type="string"/>：一个控制通道。
   - <DataType type="float" name="yd"/>：扑跃时达到的高度，单位为方块。默认值为`0`。
   - <DataType type="boolean" name="must_be_on_ground"/>：为`true`时只有站在地面上才会扑跃。默认值为`true`。
-  - <DataType type="boolean" name="set_persistent"/>：为`true`时锁定玩家为目标后转为持久实体。默认值为`false`。
+  - <DataType type="boolean" name="set_persistent"/>：<Version add="1.16.0" inline/> 为`true`时锁定玩家为目标后转为持久实体。默认值为`false`。
 </treeview>
 
 > schema 把该组件标注为仅敌对生物可用，但 26.60 的原版包中猫、豹猫、狼也在使用，此处按原版书写。
@@ -10320,7 +10419,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.make_love`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对村民可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对村民可用。"/> <br/>
 
 使生物寻找配偶并进入求爱状态，需配合[`minecraft:breedable`](./components#minecraftbreedable)组件。
 
@@ -10349,7 +10448,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.melee_attack`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物接近并近战攻击目标。
 
@@ -10361,28 +10460,28 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
   - <DataType type="float" name="reach_multiplier"/>：以碰撞箱尺寸为基础计算攻击距离的乘数，`0`表示不进行近战攻击。默认值为`2`。
-  - <DataType type="float" name="cooldown_time"/>：两次攻击之间的冷却秒数。默认值为`1`。
-  - <DataType type="boolean" name="attack_once"/>：为`true`时该行为在实体整个生命周期内只执行一次。默认值为`false`。
+  - <DataType type="float" name="cooldown_time"/>：<Version add="1.15.0" inline/> 两次攻击之间的冷却秒数。默认值为`1`。
+  - <DataType type="boolean" name="attack_once"/>：<Version add="1.6.0" inline/> 为`true`时该行为在实体整个生命周期内只执行一次。默认值为`false`。
   - <DataType type="string" name="attack_types"/>：该实体攻击的目标类型。
-  - <DataType type="boolean" name="can_spread_on_fire"/>：为`true`时，着火的实体空手攻击会点燃目标。默认值为`false`。
+  - <DataType type="boolean" name="can_spread_on_fire"/>：<Version add="1.20.30" inline/> 为`true`时，着火的实体空手攻击会点燃目标。默认值为`false`。
   - <DataType type="float" name="speed_multiplier"/>：接近目标时的移动速度乘数。默认值为`1`。
   - <DataType type="boolean" name="track_target"/>：为`true`时即使没有固定感知组件也能追踪目标。默认值为`false`。
-  - <DataType type="boolean" name="require_complete_path"/>：为`true`时要求存在通往目标的完整路径。默认值为`false`。
+  - <DataType type="boolean" name="require_complete_path"/>：<Version add="1.9.0" inline/> 为`true`时要求存在通往目标的完整路径。默认值为`false`。
   - <DataType type="int" name="random_stop_interval"/>：以`1/N`的概率中断攻击，`N`为该值。默认值为`0`。
-  - <DataType type="float" name="min_path_time"/>：重新计算攻击路径的最短基础间隔，单位为秒。默认值为`0.2`。
-  - <DataType type="float" name="max_path_time"/>：重新计算攻击路径的最长基础间隔，单位为秒。默认值为`0.55`。
-  - <DataType type="float" name="path_inner_boundary"/>：距目标小于该距离时追加`inner_boundary_time_increase`的重算间隔。默认值为`16`。
-  - <DataType type="float" name="path_outer_boundary"/>：距目标大于该距离时追加`outer_boundary_time_increase`的重算间隔。默认值为`32`。
-  - <DataType type="float" name="inner_boundary_time_increase"/>：目标靠近时追加的重算间隔，单位为秒。默认值为`0.25`。
-  - <DataType type="float" name="outer_boundary_time_increase"/>：目标远离时追加的重算间隔，单位为秒。默认值为`0.5`。
-  - <DataType type="float" name="path_fail_time_increase"/>：寻路失败时追加的重算间隔，单位为秒。默认值为`0.75`。
-  - <DataType type="float" name="melee_fov"/>：感知有效目标时使用的视场角，单位为度。默认值为`90`。
-  - <DataType type="float" name="x_max_rotation"/>：注视目标时俯仰方向的最大转角，单位为度。默认值为`30`。
-  - <DataType type="float" name="y_max_head_rotation"/>：注视目标时水平方向的最大转角，单位为度。默认值为`30`。
-  - <DataType type="object" name="on_attack"/>：成功攻击时触发的事件。
+  - <DataType type="float" name="min_path_time"/>：<Version add="1.15.0" inline/> 重新计算攻击路径的最短基础间隔，单位为秒。默认值为`0.2`。
+  - <DataType type="float" name="max_path_time"/>：<Version add="1.15.0" inline/> 重新计算攻击路径的最长基础间隔，单位为秒。默认值为`0.55`。
+  - <DataType type="float" name="path_inner_boundary"/>：<Version add="1.15.0" inline/> 距目标小于该距离时追加`inner_boundary_time_increase`的重算间隔。默认值为`16`。
+  - <DataType type="float" name="path_outer_boundary"/>：<Version add="1.15.0" inline/> 距目标大于该距离时追加`outer_boundary_time_increase`的重算间隔。默认值为`32`。
+  - <DataType type="float" name="inner_boundary_time_increase"/>：<Version add="1.15.0" inline/> 目标靠近时追加的重算间隔，单位为秒。默认值为`0.25`。
+  - <DataType type="float" name="outer_boundary_time_increase"/>：<Version add="1.15.0" inline/> 目标远离时追加的重算间隔，单位为秒。默认值为`0.5`。
+  - <DataType type="float" name="path_fail_time_increase"/>：<Version add="1.15.0" inline/> 寻路失败时追加的重算间隔，单位为秒。默认值为`0.75`。
+  - <DataType type="float" name="melee_fov"/>：<Version add="1.6.0" inline/> 感知有效目标时使用的视场角，单位为度。默认值为`90`。
+  - <DataType type="float" name="x_max_rotation"/>：<Version add="1.15.0" inline/> 注视目标时俯仰方向的最大转角，单位为度。默认值为`30`。
+  - <DataType type="float" name="y_max_head_rotation"/>：<Version add="1.15.0" inline/> 注视目标时水平方向的最大转角，单位为度。默认值为`30`。
+  - <DataType type="object" name="on_attack"/>：<Version add="1.15.0" inline/> 成功攻击时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
     - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
-  - <DataType type="object" name="on_kill"/>：击杀目标时触发的事件，结构同上。
+  - <DataType type="object" name="on_kill"/>：<Version add="1.21.80" inline/> 击杀目标时触发的事件，结构同上。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -10403,7 +10502,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.melee_box_attack`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.20.50"/> <br/>
 
 使生物以矩形判定范围进行近战攻击。
 
@@ -10436,7 +10535,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="object" name="on_attack"/>：成功攻击时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
     - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
-  - <DataType type="object" name="on_kill"/>：击杀目标时触发的事件，结构同上。
+  - <DataType type="object" name="on_kill"/>：<Version add="1.21.80" inline/> 击杀目标时触发的事件，结构同上。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -10456,7 +10555,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.mingle`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
 
 使生物与其他同类聚在一起交流，村民使用该行为。
 
@@ -10467,8 +10566,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="string" name="mingle_partner_type"/>：可以交流的实体类型，如`minecraft:villager_v2`。
-  - <DataType type="float" name="mingle_distance"/>：与交流对象保持的距离，单位为方块。默认值为`2`。
+  - <DataType type="string" name="mingle_partner_type"/>：<Version add="1.12.0" inline/> 可以交流的实体类型，如`minecraft:villager_v2`。
+  - <DataType type="float" name="mingle_distance"/>：<Version add="1.12.0" inline/> 与交流对象保持的距离，单位为方块。默认值为`2`。
   - <DataType type="float" name="duration"/>：每次交流持续的秒数。默认值为`1`。
   - <DataType type="float" name="cooldown_time"/>：该行为的冷却秒数。默认值为`0`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
@@ -10495,7 +10594,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.mount_pathing`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:rideable组件。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:rideable组件。"/> <br/>
 
 使骑乘中的实体朝目标移动。
 
@@ -10532,7 +10631,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_around_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.21.30"/> <br/>
 
 使生物在目标周围游走，旋风人使用该行为。
 
@@ -10545,7 +10644,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     - <DataType type="string"/>：一个控制通道。
   - <DataType type="object" name="filters"/>：允许执行该行为的条件。见[实体过滤器](./filters)。
   - <DataType type="array" name="destination_position_range"/>：落点与目标之间的距离区间写作`[最小值, 最大值]`，单位为方块。默认值为`[4, 8]`。
-  - <DataType type="float" name="destination_pos_spread_degrees"/>：选择落点时的散布角度，单位为度。默认值为`90`。
+  - <DataType type="float" name="destination_pos_spread_degrees"/>：<Version add="1.21.80" inline/> 选择落点时的散布角度，单位为度。默认值为`90`。
   - <DataType type="float" name="height_difference_limit"/>：与目标允许的最大高度差，单位为方块。默认值为`10`。
   - <DataType type="int" name="horizontal_search_distance"/>：搜索落点的水平距离，单位为方块。默认值为`5`。
   - <DataType type="int" name="vertical_search_distance"/>：搜索落点的垂直距离，单位为方块。默认值为`5`。
@@ -10576,7 +10675,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_indoors`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物向室内移动，村民在夜晚使用该行为。
 
@@ -10588,7 +10687,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
   - <DataType type="float" name="speed_multiplier"/>：移动时的速度乘数。默认值为`0.8`。
-  - <DataType type="float" name="timeout_cooldown"/>：寻路失败后再次使用该行为前的冷却秒数。默认值为`8`。
+  - <DataType type="float" name="timeout_cooldown"/>：<Version add="1.11.0" inline/> 寻路失败后再次使用该行为前的冷却秒数。默认值为`8`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -10608,7 +10707,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_outdoors`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.30"/> <br/>
 
 使生物向室外移动。
 
@@ -10645,7 +10744,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_through_village`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对铁傀儡可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对铁傀儡可用。"/> <br/>
 
 使生物在村庄中来回走动。
 
@@ -10680,7 +10779,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_to_block`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
 
 使生物移动到指定的方块处并停留一段时间。
 
@@ -10700,7 +10799,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="search_height"/>：搜索方块的高度，单位为方块。默认值为`1`。
   - <DataType type="float" name="goal_radius"/>：距目标多近即视为到达，单位为方块。默认值为`0.5`。
   - <DataType type="float" name="stay_duration"/>：到达后需要停留的刻数。默认值为`0`。
-  - <DataType type="float" name="start_chance"/>：每次尝试时启动该行为的概率。默认值为`1`。
+  - <DataType type="float" name="start_chance"/>：<Version add="1.18.10" inline/> 每次尝试时启动该行为的概率。默认值为`1`。
   - <DataType type="int" name="tick_interval"/>：尝试执行该行为的平均间隔，单位为刻。默认值为`20`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
   - <DataType type="array" name="on_reach"/>：到达方块时触发的事件列表。
@@ -10734,7 +10833,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_to_land`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.5.0"/> <br/>
 
 使生物离开水域移动到陆地上，青蛙使用该行为。
 
@@ -10747,7 +10846,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     - <DataType type="string"/>：一个控制通道。
   - <DataType type="int" name="search_range"/>：搜索陆地的水平距离，单位为方块。默认值为`0`。
   - <DataType type="int" name="search_height"/>：搜索陆地的垂直距离，单位为方块。默认值为`1`。
-  - <DataType type="int" name="search_count"/>：每刻随机检查的方块数量。默认值为`10`。
+  - <DataType type="int" name="search_count"/>：<Version add="1.8.0" inline/> 每刻随机检查的方块数量。默认值为`10`。
   - <DataType type="float" name="goal_radius"/>：距目标点多近即视为到达，单位为方块。默认值为`0.5`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
 </treeview>
@@ -10809,7 +10908,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_to_liquid`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.10"/> <br/>
 
 使生物寻找并移动到液体方块处。
 
@@ -10848,7 +10947,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_to_poi`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.10"/> <br/>
 
 使生物移动到指定类型的兴趣点处。
 
@@ -10880,7 +10979,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_to_random_block`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
 
 使生物移动到附近随机的方块位置。
 
@@ -10915,7 +11014,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_to_village`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
 
 使生物移动到最近的村庄。
 
@@ -10926,9 +11025,9 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="int" name="search_range"/>：搜索村庄的距离，单位为方块；小于等于`0`时找最近的村庄。默认值为`0`。
+  - <DataType type="int" name="search_range"/>：<Version add="1.13.0" inline/> 搜索村庄的距离，单位为方块；小于等于`0`时找最近的村庄。默认值为`0`。
   - <DataType type="float" name="goal_radius"/>：距目标点多近即视为到达，单位为方块。默认值为`1.5`。
-  - <DataType type="float" name="cooldown_time"/>：该行为的冷却秒数。默认值为`8`。
+  - <DataType type="float" name="cooldown_time"/>：<Version add="1.13.0" inline/> 该行为的冷却秒数。默认值为`8`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
 </treeview>
 
@@ -10949,7 +11048,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_to_water`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.4.0"/> <br/>
 
 使生物寻找并移动到水域。
 
@@ -10962,7 +11061,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     - <DataType type="string"/>：一个控制通道。
   - <DataType type="int" name="search_range"/>：搜索水域的水平距离，单位为方块。默认值为`0`。
   - <DataType type="int" name="search_height"/>：搜索水域的垂直距离，单位为方块。默认值为`1`。
-  - <DataType type="int" name="search_count"/>：每刻随机检查的方块数量。默认值为`10`。
+  - <DataType type="int" name="search_count"/>：<Version add="1.8.0" inline/> 每刻随机检查的方块数量。默认值为`10`。
   - <DataType type="float" name="goal_radius"/>：距目标点多近即视为到达，单位为方块。默认值为`0.5`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
 </treeview>
@@ -10987,7 +11086,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_towards_dwelling_restriction`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.30"/> <br/>
 
 使生物回到其居住地的限制范围内。
 
@@ -11017,7 +11116,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_towards_home_restriction`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.30"/> <br/>
 
 使生物回到其「家」的限制范围内。
 
@@ -11079,7 +11178,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.move_towards_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物朝其攻击目标靠近。
 
@@ -11112,7 +11211,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.nap`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
 
 使生物打盹，狐狸使用该行为。
 
@@ -11157,7 +11256,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.nearest_attackable_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物把最近的可攻击实体设为目标。
 
@@ -11186,16 +11285,16 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="boolean" name="must_reach"/>：为`true`时要求存在通往目标的路径。默认值为`false`。
   - <DataType type="float" name="must_see_forget_duration"/>：目标离开视野多少秒后放弃。默认值为`3`。
   - <DataType type="float" name="within_radius"/>：距目标的最大跟随距离，单位为方块。默认值为`0`。
-  - <DataType type="float" name="persist_time"/>：目标不可见后仍继续攻击的秒数。默认值为`0`。
+  - <DataType type="float" name="persist_time"/>：<Version add="1.6.0" inline/> 目标不可见后仍继续攻击的秒数。默认值为`0`。
   - <DataType type="boolean" name="reselect_targets"/>：为`true`时允许改用更近的目标。默认值为`false`。
-  - <DataType type="boolean" name="attack_owner"/>：为`true`时可以攻击自己的主人。默认值为`false`。
-  - <DataType type="boolean" name="set_persistent"/>：为`true`时锁定玩家为目标后转为持久实体。默认值为`false`。
-  - <DataType type="array" name="attack_interval"/>：两次搜索目标之间的秒数区间，写作`[最小值, 最大值]`。默认值为`[0, 0]`。
-  - <DataType type="int" name="scan_interval"/>：未设置`attack_interval`时的扫描间隔，单位为刻。默认值为`10`。
-  - <DataType type="float" name="target_search_height"/>：搜索目标的垂直距离，`-1`表示不限。默认值为`-1`。
-  - <DataType type="float" name="target_invisible_multiplier"/>：目标护甲覆盖率对该距离判定的修正系数。默认值为`0.7`。
-  - <DataType type="float" name="target_sneak_visibility_multiplier"/>：目标潜行时距离判定的修正系数。默认值为`0.8`。
-  - <DataType type="float" name="target_acquisition_probability"/>：接受找到的目标的概率，取值`0.0`-`1.0`。默认值为`1`。
+  - <DataType type="boolean" name="attack_owner"/>：<Version add="1.15.0" inline/> 为`true`时可以攻击自己的主人。默认值为`false`。
+  - <DataType type="boolean" name="set_persistent"/>：<Version add="1.16.0" inline/> 为`true`时锁定玩家为目标后转为持久实体。默认值为`false`。
+  - <DataType type="array" name="attack_interval"/>：<Version add="1.21.130" inline/> 两次搜索目标之间的秒数区间，写作`[最小值, 最大值]`。默认值为`[0, 0]`。
+  - <DataType type="int" name="scan_interval"/>：<Version add="1.6.0" inline/> 未设置`attack_interval`时的扫描间隔，单位为刻。默认值为`10`。
+  - <DataType type="float" name="target_search_height"/>：<Version add="1.6.0" inline/> 搜索目标的垂直距离，`-1`表示不限。默认值为`-1`。
+  - <DataType type="float" name="target_invisible_multiplier"/>：<Version add="1.15.0" inline/> 目标护甲覆盖率对该距离判定的修正系数。默认值为`0.7`。
+  - <DataType type="float" name="target_sneak_visibility_multiplier"/>：<Version add="1.15.0" inline/> 目标潜行时距离判定的修正系数。默认值为`0.8`。
+  - <DataType type="float" name="target_acquisition_probability"/>：<Version add="1.21.130" inline/> 接受找到的目标的概率，取值`0.0`-`1.0`。默认值为`1`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -11228,7 +11327,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.nearest_prioritized_attackable_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
 
 使生物按优先级选择可攻击的目标。
 
@@ -11245,7 +11344,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
       - <DataType type="float" name="max_dist"/>：该类型目标的最大距离，单位为方块。
       - <DataType type="float" name="max_height"/>：该类实体可作为目标的高度上限，`-1`表示不限制。默认值为`-1`。
       - <DataType type="float" name="max_flee"/>：逃离该类实体时距其多远停止，单位为方块。默认值为`10`。
-      - <DataType type="int" name="cooldown"/>：再次选中该类实体前需要等待的秒数。默认值为`0`。
+      - <DataType type="int" name="cooldown"/>：<Version add="1.20.0" inline/> 再次选中该类实体前需要等待的秒数。默认值为`0`。
       - <DataType type="int" name="priority"/>：该实体类型在候选列表中的优先级，数值越小越优先。默认值为`0`。
       - <DataType type="boolean" name="must_see"/>：为`true`时该类实体必须可见才会被选中。
       - <DataType type="int" name="must_see_forget_duration"/>：看不见该类实体后多少秒放弃，单位为秒。默认值为`3`。
@@ -11260,7 +11359,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="persist_time"/>：目标不可见后仍继续攻击的秒数。默认值为`0`。
   - <DataType type="boolean" name="reselect_targets"/>：为`true`时允许改用更近的目标。默认值为`false`。
   - <DataType type="boolean" name="hurt_owner"/>：为`true`时也会攻击伤害主人的实体。默认值为`false`。
-  - <DataType type="boolean" name="set_persistent"/>：为`true`时锁定玩家为目标后转为持久实体。默认值为`false`。
+  - <DataType type="boolean" name="set_persistent"/>：<Version add="1.16.0" inline/> 为`true`时锁定玩家为目标后转为持久实体。默认值为`false`。
   - <DataType type="int" name="attack_interval"/>：选择目标的间隔秒数。默认值为`0`。
   - <DataType type="int" name="scan_interval"/>：扫描目标的间隔，单位为刻。默认值为`10`。
   - <DataType type="float" name="target_search_height"/>：搜索目标的垂直距离，`-1`表示不限。默认值为`-1`。
@@ -11297,7 +11396,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.ocelot_sit_on_block`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物坐到当前所在的方块上。
 
@@ -11328,7 +11427,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.ocelotattack`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物以潜行接近再冲刺的方式发动攻击，豹猫与猫使用该行为。
 
@@ -11339,16 +11438,16 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="cooldown_time"/>：两次攻击之间的秒数。默认值为`1`。
-  - <DataType type="float" name="max_distance"/>：可使用该行为的最大距离，单位为方块。默认值为`15`。
-  - <DataType type="float" name="max_sneak_range"/>：开始潜行的最大距离，单位为方块。默认值为`15`。
-  - <DataType type="float" name="max_sprint_range"/>：开始冲刺的最大距离，单位为方块。默认值为`4`。
-  - <DataType type="float" name="reach_multiplier"/>：以碰撞箱尺寸为基础计算攻击距离的乘数。默认值为`2`。
+  - <DataType type="float" name="cooldown_time"/>：<Version add="1.15.0" inline/> 两次攻击之间的秒数。默认值为`1`。
+  - <DataType type="float" name="max_distance"/>：<Version add="1.15.0" inline/> 可使用该行为的最大距离，单位为方块。默认值为`15`。
+  - <DataType type="float" name="max_sneak_range"/>：<Version add="1.15.0" inline/> 开始潜行的最大距离，单位为方块。默认值为`15`。
+  - <DataType type="float" name="max_sprint_range"/>：<Version add="1.15.0" inline/> 开始冲刺的最大距离，单位为方块。默认值为`4`。
+  - <DataType type="float" name="reach_multiplier"/>：<Version add="1.15.0" inline/> 以碰撞箱尺寸为基础计算攻击距离的乘数。默认值为`2`。
   - <DataType type="float" name="sneak_speed_multiplier"/>：潜行时的速度乘数。默认值为`0.6`。
   - <DataType type="float" name="sprint_speed_multiplier"/>：冲刺时的速度乘数。默认值为`1.33`。
   - <DataType type="float" name="walk_speed_multiplier"/>：既不潜行也不冲刺时的速度乘数。默认值为`0.8`。
-  - <DataType type="float" name="x_max_rotation"/>：注视目标时俯仰方向的最大转角，单位为度。默认值为`30`。
-  - <DataType type="float" name="y_max_head_rotation"/>：注视目标时水平方向的最大转角，单位为度。默认值为`30`。
+  - <DataType type="float" name="x_max_rotation"/>：<Version add="1.15.0" inline/> 注视目标时俯仰方向的最大转角，单位为度。默认值为`30`。
+  - <DataType type="float" name="y_max_head_rotation"/>：<Version add="1.15.0" inline/> 注视目标时水平方向的最大转角，单位为度。默认值为`30`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -11372,7 +11471,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.offer_flower`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物向附近的另一只生物献花，铁傀儡使用该行为。
 
@@ -11383,12 +11482,12 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="object" name="filters"/>：允许献花的条件。见[实体过滤器](./filters)。
-  - <DataType type="float" name="chance_to_start"/>：每刻开始献花的概率。默认值为`0.000125`。
-  - <DataType type="float" name="max_offer_flower_duration"/>：献花持续的秒数。默认值为`20`。
-  - <DataType type="array" name="search_area"/>：搜索献花对象的范围，写作`[x, y, z]`。默认值为`[6, 2, 6]`。
-  - <DataType type="float" name="max_rotation_x"/>：俯仰方向的最大转角，单位为度。默认值为`30`。
-  - <DataType type="float" name="max_head_rotation_y"/>：水平方向的最大转角，单位为度。默认值为`30`。
+  - <DataType type="object" name="filters"/>：<Version add="1.19.50" inline/> 允许献花的条件。见[实体过滤器](./filters)。
+  - <DataType type="float" name="chance_to_start"/>：<Version add="1.19.50" inline/> 每刻开始献花的概率。默认值为`0.000125`。
+  - <DataType type="float" name="max_offer_flower_duration"/>：<Version add="1.19.50" inline/> 献花持续的秒数。默认值为`20`。
+  - <DataType type="array" name="search_area"/>：<Version add="1.19.50" inline/> 搜索献花对象的范围，写作`[x, y, z]`。默认值为`[6, 2, 6]`。
+  - <DataType type="float" name="max_rotation_x"/>：<Version add="1.19.50" inline/> 俯仰方向的最大转角，单位为度。默认值为`30`。
+  - <DataType type="float" name="max_head_rotation_y"/>：<Version add="1.19.50" inline/> 水平方向的最大转角，单位为度。默认值为`30`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -11408,7 +11507,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.open_door`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物能够开门并穿过。
 
@@ -11441,7 +11540,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.owner_hurt_by_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物在主人被攻击时把攻击者设为目标。
 
@@ -11484,7 +11583,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.owner_hurt_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物在主人攻击某实体时把该实体设为目标。
 
@@ -11527,7 +11626,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.panic`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物受到伤害后惊慌逃跑。
 
@@ -11538,11 +11637,11 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="array" name="damage_sources"/>：会引发惊慌的伤害来源类型列表，如`all`。
+  - <DataType type="array" name="damage_sources"/>：<Version add="1.16.0" inline/> 会引发惊慌的伤害来源类型列表，如`all`。
     - <DataType type="string"/>：伤害来源类型。
-  - <DataType type="boolean" name="ignore_mob_damage"/>：为`true`时被其他生物伤害不会惊慌。默认值为`false`。
+  - <DataType type="boolean" name="ignore_mob_damage"/>：<Version add="1.9.0" inline/> 为`true`时被其他生物伤害不会惊慌。默认值为`false`。
   - <DataType type="boolean" name="force"/>：为`true`时只有找不到玩家才会停止惊慌。默认值为`false`。
-  - <DataType type="boolean" name="prefer_water"/>：为`true`时优先逃向水中。默认值为`false`。
+  - <DataType type="boolean" name="prefer_water"/>：<Version add="1.5.0" inline/> 为`true`时优先逃向水中。默认值为`false`。
   - <DataType type="string" name="panic_sound"/>：惊慌时播放的音效事件名。
   - <DataType type="array" name="sound_interval"/>：两次音效之间随机等待的刻数区间。
   - <DataType type="float" name="speed_multiplier"/>：惊慌时的移动速度乘数。默认值为`1`。
@@ -11565,7 +11664,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.pet_sleep_with_owner`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.8.0"/> <br/>
 
 使已驯服的宠物睡在主人身边。
 
@@ -11601,7 +11700,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.pickup_items`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物拾取地面上的物品。
 
@@ -11612,23 +11711,23 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="boolean" name="can_pickup_any_item"/>：为`true`时任何物品都会拾取。默认值为`false`。
-  - <DataType type="boolean" name="can_pickup_to_hand_or_equipment"/>：为`true`时可以把物品放到手上或装备栏。默认值为`true`。
-  - <DataType type="boolean" name="pickup_based_on_chance"/>：为`true`时按难度决定是否拾取。默认值为`false`。
+  - <DataType type="boolean" name="can_pickup_any_item"/>：<Version add="1.16.0" inline/> 为`true`时任何物品都会拾取。默认值为`false`。
+  - <DataType type="boolean" name="can_pickup_to_hand_or_equipment"/>：<Version add="1.16.0" inline/> 为`true`时可以把物品放到手上或装备栏。默认值为`true`。
+  - <DataType type="boolean" name="pickup_based_on_chance"/>：<Version add="1.16.0" inline/> 为`true`时按难度决定是否拾取。默认值为`false`。
   - <DataType type="boolean" name="pickup_same_items_as_in_hand"/>：为`true`时只拾取与手中相同的物品。默认值为`false`。
   - <DataType type="boolean" name="stop_if_holding_item"/>：为`true`时手中已有物品就不再拾取。默认值为`false`。
   - <DataType type="boolean" name="track_target"/>：为`true`时持续追逐有效目标。默认值为`false`。
-  - <DataType type="array" name="excluded_items"/>：不会拾取的物品列表。
+  - <DataType type="array" name="excluded_items"/>：<Version add="1.17.30" inline/> 不会拾取的物品列表。
     - <DataType type="string"/>：物品 ID。
   - <DataType type="int" name="max_dist"/>：搜索物品的最大距离，单位为方块。默认值为`1`。
   - <DataType type="int" name="search_height"/>：搜索物品的垂直距离，单位为方块。默认值为`1`。
   - <DataType type="int" name="cooldown_after_being_attacked"/>：被攻击后多少秒内停止拾取。默认值为`0`。
   - <DataType type="float" name="goal_radius"/>：距物品多近即视为到达，单位为方块。默认值为`0.5`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
-  - <DataType type="object" name="on_pickup_item_start"/>：开始走向物品时触发的事件。
+  - <DataType type="object" name="on_pickup_item_start"/>：<Version add="1.26.20" inline/> 开始走向物品时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
     - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
-  - <DataType type="object" name="on_pickup_item_end"/>：拾取完成或放弃时触发的事件，结构同上。
+  - <DataType type="object" name="on_pickup_item_end"/>：<Version add="1.26.20" inline/> 拾取完成或放弃时触发的事件，结构同上。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -11653,7 +11752,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.place_block`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.21.100"/> <br/>
 
 使生物放置携带的方块，铜傀儡使用该行为。
 
@@ -11703,7 +11802,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.play`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使生物寻找同伴一起玩耍，村民的幼年个体使用该行为。
 
@@ -11714,7 +11813,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="array" name="friend_types"/>：可作为玩伴的实体条件列表。
+  - <DataType type="array" name="friend_types"/>：<Version add="1.19.40" inline/> 可作为玩伴的实体条件列表。
     - <DataType type="object"/>：一项条件。
       - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](./filters)。
       - <DataType type="float" name="max_dist"/>：该类实体可作为目标的最大距离，单位为方块。默认值为`16`。
@@ -11728,12 +11827,12 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
       - <DataType type="boolean" name="reevaluate_description"/>：为`true`时，对方一旦不再满足条件就停止将其作为目标。默认值为`false`。
       - <DataType type="float" name="walk_speed_multiplier"/>：接近该类实体时的行走速度乘数。默认值为`1`。
       - <DataType type="float" name="sprint_speed_multiplier"/>：接近该类实体时的疾跑速度乘数。默认值为`1`。
-  - <DataType type="float" name="chance_to_start"/>：每刻开始玩耍的概率。默认值为`0.0025`。
-  - <DataType type="array" name="friend_search_area"/>：搜索玩伴的范围，写作`[x, y, z]`。默认值为`[6, 3, 6]`。
-  - <DataType type="int" name="follow_distance"/>：与玩伴保持的距离，单位为方块。默认值为`2`。
-  - <DataType type="float" name="max_play_duration_seconds"/>：一次玩耍持续的秒数。默认值为`50`。
-  - <DataType type="int" name="random_pos_search_range"/>：在地面上搜索随机位置的距离，单位为方块。默认值为`16`。
-  - <DataType type="int" name="random_pos_search_height"/>：搜索随机位置的高度，单位为方块。默认值为`3`。
+  - <DataType type="float" name="chance_to_start"/>：<Version add="1.19.40" inline/> 每刻开始玩耍的概率。默认值为`0.0025`。
+  - <DataType type="array" name="friend_search_area"/>：<Version add="1.19.40" inline/> 搜索玩伴的范围，写作`[x, y, z]`。默认值为`[6, 3, 6]`。
+  - <DataType type="int" name="follow_distance"/>：<Version add="1.19.40" inline/> 与玩伴保持的距离，单位为方块。默认值为`2`。
+  - <DataType type="float" name="max_play_duration_seconds"/>：<Version add="1.19.40" inline/> 一次玩耍持续的秒数。默认值为`50`。
+  - <DataType type="int" name="random_pos_search_range"/>：<Version add="1.19.40" inline/> 在地面上搜索随机位置的距离，单位为方块。默认值为`16`。
+  - <DataType type="int" name="random_pos_search_height"/>：<Version add="1.19.40" inline/> 搜索随机位置的高度，单位为方块。默认值为`3`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
 </treeview>
 
@@ -11756,7 +11855,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.play_dead`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对美西螈可用。"/> <br/>
+<Usable type="all"/> <Version add="1.18.30"/> <Highlight text="限定实体类型" tooltip="该组件仅对美西螈可用。"/> <br/>
 
 使实体在受伤后装死，以避免被攻击者继续追击。
 
@@ -11817,7 +11916,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.player_ride_tamed`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:rideable组件。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:rideable组件。"/> <br/>
 
 使玩家可以骑乘已驯服的该实体。
 
@@ -11846,7 +11945,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.raid_garden`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体前往农田啃食或掠夺指定方块，直到吃饱为止。
 
@@ -11862,7 +11961,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="eat_delay"/>：两次啃食之间的间隔，单位为秒。默认值为`2`。
   - <DataType type="int" name="full_delay"/>：吃饱后再次产生进食欲望所需的冷却，单位为秒。默认值为`100`。
   - <DataType type="float" name="goal_radius"/>：距目标多近即视为到达，单位为方块。默认值为`0.5`。
-  - <DataType type="int" name="initial_eat_delay"/>：到达目标后开始啃食前的等待时间，单位为秒。默认值为`0`。
+  - <DataType type="int" name="initial_eat_delay"/>：<Version add="1.13.0" inline/> 到达目标后开始啃食前的等待时间，单位为秒。默认值为`0`。
   - <DataType type="int" name="max_to_eat"/>：一次最多啃食的方块数量，小于等于`0`表示不设上限。默认值为`6`。
   - <DataType type="int" name="search_height"/>：搜索作物时的垂直范围，单位为方块。默认值为`1`。
   - <DataType type="int" name="search_range"/>：搜索作物时的水平范围，单位为方块。默认值为`0`。
@@ -11898,7 +11997,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.ram_attack`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.30"/> <br/>
 
 使实体通过助跑冲撞的方式攻击目标。
 
@@ -11964,7 +12063,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.random_breach`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.4.0"/> <br/>
 
 使水生生物随机浮出水面换气。
 
@@ -12001,7 +12100,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.random_fly`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体随机飞行。
 
@@ -12013,7 +12112,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
   - <DataType type="boolean" name="can_land_on_trees"/>：为`true`时允许降落在树上而非地面。默认值为`true`。
-  - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
+  - <DataType type="float" name="speed_multiplier"/>：<Version add="1.21.0" inline/> 执行该行为时的移动速度乘数。默认值为`1`。
   - <DataType type="int" name="xz_dist"/>：水平方向上搜索目标位置的距离，单位为方块，至少为`1`。默认值为`10`。
   - <DataType type="int" name="y_dist"/>：垂直方向上搜索目标位置的距离，单位为方块，至少为`1`。默认值为`7`。
 </treeview>
@@ -12042,7 +12141,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.random_hover`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.14.0"/> <br/>
 
 使实体在贴近地面的高度上随机悬浮移动。
 
@@ -12053,7 +12152,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="object" name="hover_height"/>：悬浮高度区间，单位为方块。
+  - <DataType type="object" name="hover_height"/>：<Version add="1.18.10" inline/> 悬浮高度区间，单位为方块。
     - <DataType type="int" name="min"/>：区间下限。默认值为`0`。
     - <DataType type="int" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="int" name="interval"/>：每刻以`1/interval`的概率触发该行为。默认值为`120`。
@@ -12086,7 +12185,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.random_look_around`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体随机环顾四周。
 
@@ -12100,8 +12199,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="object" name="look_time"/>：每次注视的持续时间区间，单位为秒。
     - <DataType type="int" name="min"/>：区间下限。默认值为`2`。
     - <DataType type="int" name="max"/>：区间上限。默认值为`4`。
-  - <DataType type="float" name="max_angle_of_view_horizontal"/>：相对初始朝向，向右可转的最大角度，单位为度。默认值为`180`。
-  - <DataType type="float" name="min_angle_of_view_horizontal"/>：相对初始朝向，向左可转的最大角度，单位为度。默认值为`-180`。
+  - <DataType type="float" name="max_angle_of_view_horizontal"/>：<Version add="1.19.50" inline/> 相对初始朝向，向右可转的最大角度，单位为度。默认值为`180`。
+  - <DataType type="float" name="min_angle_of_view_horizontal"/>：<Version add="1.19.50" inline/> 相对初始朝向，向左可转的最大角度，单位为度。默认值为`-180`。
   - <DataType type="float" name="probability"/>：触发该行为的概率。默认值为`0.02`。
 </treeview>
 
@@ -12121,7 +12220,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.random_look_around_and_sit`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
 
 使实体随机坐下并在坐姿下环顾四周。需要有对应的坐下动画才能生效。
 
@@ -12132,16 +12231,16 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="boolean" name="continue_if_leashed"/>：为`true`时被拴住的实体也会持续执行该行为。默认值为`false`。
-  - <DataType type="boolean" name="continue_sitting_on_reload"/>：为`true`时区块重新加载后保持坐下状态。默认值为`false`。
-  - <DataType type="float" name="max_angle_of_view_horizontal"/>：相对初始朝向，向右可转的最大角度，单位为度。默认值为`180`。
+  - <DataType type="boolean" name="continue_if_leashed"/>：<Version add="1.19.50" inline/> 为`true`时被拴住的实体也会持续执行该行为。默认值为`false`。
+  - <DataType type="boolean" name="continue_sitting_on_reload"/>：<Version add="1.20.40" inline/> 为`true`时区块重新加载后保持坐下状态。默认值为`false`。
+  - <DataType type="float" name="max_angle_of_view_horizontal"/>：<Version add="1.19.50" inline/> 相对初始朝向，向右可转的最大角度，单位为度。默认值为`180`。
   - <DataType type="int" name="max_look_count"/>：环顾时注视方向数量的上限。默认值为`2`。
   - <DataType type="int" name="max_look_time"/>：每个方向注视时间的上限，单位为刻。默认值为`40`。
-  - <DataType type="float" name="min_angle_of_view_horizontal"/>：相对初始朝向，向左可转的最大角度，单位为度。默认值为`-180`。
+  - <DataType type="float" name="min_angle_of_view_horizontal"/>：<Version add="1.19.50" inline/> 相对初始朝向，向左可转的最大角度，单位为度。默认值为`-180`。
   - <DataType type="int" name="min_look_count"/>：环顾时注视方向数量的下限。默认值为`1`。
   - <DataType type="int" name="min_look_time"/>：每个方向注视时间的下限，单位为刻。默认值为`20`。
   - <DataType type="float" name="probability"/>：触发该行为的概率。默认值为`0.02`。
-  - <DataType type="int" name="random_look_around_cooldown"/>：再次触发前的冷却时间，单位为秒。默认值为`0`。
+  - <DataType type="int" name="random_look_around_cooldown"/>：<Version add="1.19.50" inline/> 再次触发前的冷却时间，单位为秒。默认值为`0`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -12170,7 +12269,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.random_search_and_dig`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对嗅探兽可用。"/> <br/>
+<Usable type="all"/> <Version add="1.19.70"/> <Highlight text="限定实体类型" tooltip="该组件仅对嗅探兽可用。"/> <br/>
 
 使实体在附近寻找符合条件的方块，前往挖掘并按战利品表产出物品。
 
@@ -12189,7 +12288,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="int" name="find_valid_position_retries"/>：在搜索范围内寻找有效目标位置的尝试次数。默认值为`5`。
   - <DataType type="float" name="goal_radius"/>：距目标多近即视为到达，单位为方块。默认值为`1.5`。
-  - <DataType type="string" name="item_table"/>：产出物品所用的战利品表路径，相对于行为包根目录。
+  - <DataType type="string" name="item_table"/>：<Version add="1.20.40" inline/> 产出物品所用的战利品表路径，相对于行为包根目录。
   - <DataType type="object" name="on_digging_start"/>：开始挖掘时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
     - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](./filters)。
@@ -12204,9 +12303,9 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="spawn_item_after_seconds"/>：挖掘开始后经过多少秒产出物品。默认值为`0`。
   - <DataType type="float" name="spawn_item_pos_offset"/>：物品生成位置沿实体朝向前移的距离，单位为方块。默认值为`0`。
   - <DataType type="float" name="speed_multiplier"/>：搜索阶段的移动速度乘数。默认值为`1`。
-  - <DataType type="array" name="target_blocks"/>：允许挖掘的方块列表，会覆盖默认列表。默认值为空数组。
+  - <DataType type="array" name="target_blocks"/>：<Version add="1.20.40" inline/> 允许挖掘的方块列表，会覆盖默认列表。默认值为空数组。
     - <DataType type="string"/>：方块 ID，也可写成含`name`、`states`、`tags`的对象。
-  - <DataType type="float" name="target_dig_position_offset"/>：挖掘判定点沿实体朝向前移的距离，单位为方块。默认值为`2.25`。
+  - <DataType type="float" name="target_dig_position_offset"/>：<Version add="1.20.10" inline/> 挖掘判定点沿实体朝向前移的距离，单位为方块。默认值为`2.25`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -12254,7 +12353,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.random_sitting`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.8.0"/> <br/>
 
 使实体随机坐下一段时间。
 
@@ -12291,7 +12390,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.random_stroll`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体随机四处闲逛。
 
@@ -12302,8 +12401,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="int" name="interval"/>：每刻以`1/interval`的概率触发该行为。默认值为`120`。
-  - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
+  - <DataType type="int" name="interval"/>：<Version add="1.4.0" inline/> 每刻以`1/interval`的概率触发该行为。默认值为`120`。
+  - <DataType type="float" name="speed_multiplier"/>：<Version add="1.4.0" inline/> 执行该行为时的移动速度乘数。默认值为`1`。
   - <DataType type="int" name="xz_dist"/>：水平方向上搜索目标位置的距离，单位为方块，至少为`1`。默认值为`10`。
   - <DataType type="int" name="y_dist"/>：垂直方向上搜索目标位置的距离，单位为方块，至少为`1`。默认值为`7`。
 </treeview>
@@ -12325,7 +12424,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.random_swim`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.4.0"/> <br/>
 
 使实体在水中随机游动。
 
@@ -12336,7 +12435,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="boolean" name="avoid_surface"/>：为`true`时实体从水面下方游过，不会浮到水面。默认值为`true`。
+  - <DataType type="boolean" name="avoid_surface"/>：<Version add="1.15.0" inline/> 为`true`时实体从水面下方游过，不会浮到水面。默认值为`true`。
   - <DataType type="int" name="interval"/>：每刻以`1/interval`的概率触发该行为。默认值为`120`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
   - <DataType type="int" name="xz_dist"/>：水平方向上搜索目标位置的距离，单位为方块，至少为`1`。默认值为`10`。
@@ -12362,7 +12461,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.ranged_attack`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:shooter组件。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:shooter组件。"/> <br/>
 
 使实体通过远程射击攻击目标。启用蓄力连发时，`charge_shoot_trigger`必须大于`0`。
 
@@ -12375,7 +12474,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="object" name="attack_interval"/>：两次攻击之间的间隔区间，单位为秒。
+  - <DataType type="object" name="attack_interval"/>：<Version add="1.15.0" inline/> 两次攻击之间的间隔区间，单位为秒。
     - <DataType type="float" name="min"/>：区间下限。默认值为`0`。
     - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="object" name="attack_range"/>：可以发起攻击的距离区间，单位为方块。
@@ -12386,13 +12485,13 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="charge_charged_trigger"/>：在`charge_shoot_trigger`基础上再蓄力多少秒才算蓄满。默认值为`0`。
   - <DataType type="float" name="charge_shoot_trigger"/>：开始筹备连发前需要蓄力多少秒（随后翻倍）。目标离开视线时蓄力会衰减。默认值为`0`。
   - <DataType type="string" name="in_range_movement_mode"/>：进入攻击距离后如何移动。可选值为`hold_position`（原地不动）、`follow_target`（跟随目标）。
-  - <DataType type="float" name="ranged_fov"/>：用于发现目标的视野角度，单位为度。默认值为`90`。
-  - <DataType type="boolean" name="set_persistent"/>：为`true`时瞄准玩家后不再被自然清除。默认值为`false`。
+  - <DataType type="float" name="ranged_fov"/>：<Version add="1.6.0" inline/> 用于发现目标的视野角度，单位为度。默认值为`90`。
+  - <DataType type="boolean" name="set_persistent"/>：<Version add="1.18.30" inline/> 为`true`时瞄准玩家后不再被自然清除。默认值为`false`。
   - <DataType type="float" name="speed_multiplier"/>：追击目标时的移动速度乘数。默认值为`1`。
-  - <DataType type="boolean" name="swing"/>：为`true`时开火会触发手臂摆动动画（依赖`variable.attack_time`）。默认值为`false`。
-  - <DataType type="float" name="target_in_sight_time"/>：发现目标后需要持续看见多少秒才会开始追击。默认值为`1`。
-  - <DataType type="float" name="x_max_rotation"/>：瞄准时每次最多旋转的角度（X 轴），单位为度。默认值为`30`。
-  - <DataType type="float" name="y_max_head_rotation"/>：瞄准时头部每次最多旋转的角度（Y 轴），单位为度。默认值为`30`。
+  - <DataType type="boolean" name="swing"/>：<Version add="1.18.30" inline/> 为`true`时开火会触发手臂摆动动画（依赖`variable.attack_time`）。默认值为`false`。
+  - <DataType type="float" name="target_in_sight_time"/>：<Version add="1.15.0" inline/> 发现目标后需要持续看见多少秒才会开始追击。默认值为`1`。
+  - <DataType type="float" name="x_max_rotation"/>：<Version add="1.15.0" inline/> 瞄准时每次最多旋转的角度（X 轴），单位为度。默认值为`30`。
+  - <DataType type="float" name="y_max_head_rotation"/>：<Version add="1.15.0" inline/> 瞄准时头部每次最多旋转的角度（Y 轴），单位为度。默认值为`30`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -12422,7 +12521,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.receive_love`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对村民可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对村民可用。"/> <br/>
 
 使村民停下等待其他村民前来繁殖。
 
@@ -12451,7 +12550,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.restrict_open_door`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体在夜间留在室内，不去开关门。
 
@@ -12480,7 +12579,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.restrict_sun`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体在晴朗的白天自动躲避阳光。
 
@@ -12511,7 +12610,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.rise_to_liquid_level`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
 
 使实体在液体中维持在距液面固定深度的位置。
 
@@ -12522,9 +12621,9 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="liquid_y_offset"/>：目标位置距液面下沉的距离，单位为方块。正值使目标位置更靠下。默认值为`0`。
-  - <DataType type="float" name="rise_delta"/>：低于目标位置时每刻向上移动的距离。默认值为`0`。
-  - <DataType type="float" name="sink_delta"/>：高于目标位置时每刻向下移动的距离。默认值为`0`。
+  - <DataType type="float" name="liquid_y_offset"/>：<Version add="1.18.10" inline/> 目标位置距液面下沉的距离，单位为方块。正值使目标位置更靠下。默认值为`0`。
+  - <DataType type="float" name="rise_delta"/>：<Version add="1.18.10" inline/> 低于目标位置时每刻向上移动的距离。默认值为`0`。
+  - <DataType type="float" name="sink_delta"/>：<Version add="1.18.10" inline/> 高于目标位置时每刻向下移动的距离。默认值为`0`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -12546,7 +12645,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.roar`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 使实体依据`minecraft:anger_level`中的数据向其他实体咆哮，怒气值越过阈值后触发。
 
@@ -12577,7 +12676,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.roll`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.8.0"/> <br/>
 
 使实体向前翻滚。
 
@@ -12608,7 +12707,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.run_around_like_crazy`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体漫无目的地狂奔。
 
@@ -12639,7 +12738,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.scared`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.10"/> <br/>
 
 使实体在雷雨天气时表现出害怕。
 
@@ -12669,7 +12768,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.send_event`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体向另一个实体发送事件。常用于施展法术。
 
@@ -12686,7 +12785,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
       - <DataType type="float" name="cooldown_time"/>：该方案的冷却时间，单位为秒。默认值为`0`。
       - <DataType type="boolean" name="do_casting"/>：为`true`时播放施法动作。默认值为`true`。
       - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](./filters)。
-      - <DataType type="boolean" name="look_at_target"/>：为`true`时施法期间注视目标。默认值为`true`。
+      - <DataType type="boolean" name="look_at_target"/>：<Version add="1.16.100" inline/> 为`true`时施法期间注视目标。默认值为`true`。
       - <DataType type="float" name="max_activation_range"/>：触发该方案的最大距离，单位为方块。默认值为`32`。
       - <DataType type="float" name="min_activation_range"/>：触发该方案的最小距离，单位为方块。默认值为`1`。
       - <DataType type="string" name="particle_color"/>：施法粒子的颜色，可写十六进制颜色字符串或`[R, G, B]`数组。
@@ -12747,7 +12846,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.share_items`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体把身上的物品分给其他实体。
 
@@ -12804,7 +12903,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.silverfish_merge_with_stone`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对蠹虫可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对蠹虫可用。"/> <br/>
 
 使实体像蠹虫一样钻入石头方块。
 
@@ -12833,7 +12932,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.silverfish_wake_up_friends`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对蠹虫可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对蠹虫可用。"/> <br/>
 
 使实体惊动附近方块中的同类，让它们钻出来。
 
@@ -12862,7 +12961,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.skeleton_horse_trap`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对马、骡、驴与骷髅马可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对马、骡、驴与骷髅马可用。"/> <br/>
 
 使实体像骷髅马陷阱一样，在玩家靠近时召唤闪电与一群骷髅马。
 
@@ -12895,7 +12994,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.sleep`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
 
 使拥有床的实体前往床上睡觉。
 
@@ -12906,13 +13005,13 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="boolean" name="can_sleep_while_riding"/>：为`true`时骑乘其他实体也能执行该行为。默认值为`false`。
+  - <DataType type="boolean" name="can_sleep_while_riding"/>：<Version add="1.19.0" inline/> 为`true`时骑乘其他实体也能执行该行为。默认值为`false`。
   - <DataType type="float" name="cooldown_time"/>：再次使用该行为前的冷却时间，单位为秒。默认值为`0`。
   - <DataType type="float" name="sleep_collider_height"/>：睡觉时碰撞箱的高度。默认值为`1`。
   - <DataType type="float" name="sleep_collider_width"/>：睡觉时碰撞箱的宽度。默认值为`1`。
   - <DataType type="float" name="sleep_y_offset"/>：睡觉时碰撞箱在垂直方向上的偏移。默认值为`1`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`1`。
-  - <DataType type="float" name="timeout_cooldown"/>：内部超时或失败后重新使用该行为前的冷却，单位为秒。默认值为`8`。
+  - <DataType type="float" name="timeout_cooldown"/>：<Version add="1.11.0" inline/> 内部超时或失败后重新使用该行为前的冷却，单位为秒。默认值为`8`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -12936,7 +13035,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.slime_attack`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体在攻击过程中周期性进入疲惫状态。
 
@@ -12948,7 +13047,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
   - <DataType type="float" name="grow_tired_cooldown_time"/>：两次进入疲惫状态之间的冷却，单位为秒。默认值为`15`。
-  - <DataType type="boolean" name="set_persistent"/>：为`true`时瞄准玩家后不再被自然清除。默认值为`false`。
+  - <DataType type="boolean" name="set_persistent"/>：<Version add="1.16.0" inline/> 为`true`时瞄准玩家后不再被自然清除。默认值为`false`。
   - <DataType type="float" name="speed_multiplier"/>：追击目标时的移动速度乘数。默认值为`1`。
   - <DataType type="float" name="x_max_rotation"/>：瞄准时每次最多旋转的角度（X 轴），单位为度。默认值为`10`。
   - <DataType type="float" name="y_max_rotation"/>：瞄准时每次最多旋转的角度（Y 轴），单位为度。默认值为`10`。
@@ -12970,7 +13069,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.slime_float`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对史莱姆与岩浆怪可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对史莱姆与岩浆怪可用。"/> <br/>
 
 使史莱姆与岩浆怪在水中或熔岩中浮起。
 
@@ -12981,8 +13080,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="jump_chance_percentage"/>：在液体中跳跃的概率。默认值为`0.8`。
-  - <DataType type="float" name="speed_multiplier"/>：在液体中移动时的速度乘数。默认值为`1.2`。
+  - <DataType type="float" name="jump_chance_percentage"/>：<Version add="1.15.0" inline/> 在液体中跳跃的概率。默认值为`0.8`。
+  - <DataType type="float" name="speed_multiplier"/>：<Version add="1.15.0" inline/> 在液体中移动时的速度乘数。默认值为`1.2`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -13001,7 +13100,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.slime_keep_on_jumping`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体像史莱姆一样持续跳跃前进。
 
@@ -13012,7 +13111,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="speed_multiplier"/>：跳跃时的移动速度乘数。默认值为`1`。
+  - <DataType type="float" name="speed_multiplier"/>：<Version add="1.15.0" inline/> 跳跃时的移动速度乘数。默认值为`1`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -13031,7 +13130,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.slime_random_direction`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体像史莱姆一样随机改变移动方向。
 
@@ -13042,9 +13141,9 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="int" name="add_random_time_range"/>：在`min_change_direction_time`基础上随机追加的时间上限，单位为秒。默认值为`3`。
-  - <DataType type="float" name="min_change_direction_time"/>：两次改变方向之间的最短时间，单位为秒。默认值为`2`。
-  - <DataType type="int" name="turn_range"/>：改变方向时的最大转角，单位为度。默认值为`360`。
+  - <DataType type="int" name="add_random_time_range"/>：<Version add="1.15.0" inline/> 在`min_change_direction_time`基础上随机追加的时间上限，单位为秒。默认值为`3`。
+  - <DataType type="float" name="min_change_direction_time"/>：<Version add="1.15.0" inline/> 两次改变方向之间的最短时间，单位为秒。默认值为`2`。
+  - <DataType type="int" name="turn_range"/>：<Version add="1.15.0" inline/> 改变方向时的最大转角，单位为度。默认值为`360`。
 </treeview>
 
 > **备注**：原版未显式写出任何参数，全部使用默认值。
@@ -13065,7 +13164,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.snacking`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.8.0"/> <br/>
 
 使实体停下来吃附近找到的食物。
 
@@ -13110,7 +13209,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.sneeze`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.8.0"/> <br/>
 
 使实体打喷嚏，并掉落物品、惊吓附近的生物。
 
@@ -13188,7 +13287,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.sniff`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 使实体探测`sniffing_radius`范围内最近的玩家，并更新`minecraft:suspect_tracking`组件的状态。
 
@@ -13232,7 +13331,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.sonic_boom`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 使实体发动音波攻击。
 
@@ -13282,7 +13381,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.squid_dive`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对鱿鱼可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对鱿鱼可用。"/> <br/>
 
 允许鱿鱼在水中下潜。
 
@@ -13311,7 +13410,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.squid_flee`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对鱿鱼可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对鱿鱼可用。"/> <br/>
 
 使鱿鱼向外游走逃离。
 
@@ -13340,7 +13439,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.squid_idle`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对鱿鱼可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对鱿鱼可用。"/> <br/>
 
 使鱿鱼在原地附近游动徘徊。
 
@@ -13369,7 +13468,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.squid_move_away_from_ground`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对鱿鱼可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对鱿鱼可用。"/> <br/>
 
 允许鱿鱼离开地面方块并回到水中。
 
@@ -13398,7 +13497,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.squid_out_of_water`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对鱿鱼可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对鱿鱼可用。"/> <br/>
 
 使鱿鱼离开水面后紧贴地面不动。
 
@@ -13427,7 +13526,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.stalk_and_pounce_on_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
 
 使实体悄悄接近目标，进入范围后扑向目标，落地时若仍足够接近则造成伤害。
 
@@ -13443,7 +13542,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="leap_height"/>：扑击时跃起的高度，单位为方块。默认值为`0.9`。
   - <DataType type="float" name="max_stalk_dist"/>：放弃追踪的最大距离，单位为方块。默认值为`10`。
   - <DataType type="float" name="pounce_max_dist"/>：可以开始扑击的最大距离，单位为方块。默认值为`5`。
-  - <DataType type="boolean" name="set_persistent"/>：为`true`时瞄准玩家后不再被自然清除。默认值为`false`。
+  - <DataType type="boolean" name="set_persistent"/>：<Version add="1.16.0" inline/> 为`true`时瞄准玩家后不再被自然清除。默认值为`false`。
   - <DataType type="float" name="stalk_speed"/>：接近目标时的移动速度。默认值为`1.2`。
   - <DataType type="float" name="strike_dist"/>：落地后仍能造成伤害的最大距离，单位为方块。默认值为`2`。
   - <DataType type="object" name="stuck_blocks"/>：扑击失败时会陷进去的方块条件。见[实体过滤器](./filters)。
@@ -13480,7 +13579,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.stay_near_noteblock`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 使实体在听到最近敲响的 note block 后靠近它，并尝试把手上的物品丢过去。
 
@@ -13516,7 +13615,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.stay_while_sitting`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体处于坐下状态时待在原地，不执行其他行为。
 
@@ -13545,7 +13644,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.stomp_attack`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体通过踩踏造成范围伤害。
 
@@ -13556,31 +13655,31 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="boolean" name="attack_once"/>：为`true`时该行为在实体整个生命周期内只触发一次。默认值为`false`。
+  - <DataType type="boolean" name="attack_once"/>：<Version add="1.6.0" inline/> 为`true`时该行为在实体整个生命周期内只触发一次。默认值为`false`。
   - <DataType type="string" name="attack_types"/>：该实体会攻击的实体类型。
-  - <DataType type="boolean" name="can_spread_on_fire"/>：为`true`时着火的空手实体命中后会点燃目标。默认值为`false`。
-  - <DataType type="float" name="cooldown_time"/>：两次攻击之间的冷却，单位为秒。默认值为`1`。
-  - <DataType type="float" name="inner_boundary_time_increase"/>：目标超出`path_inner_boundary`时，寻路重算间隔的增量，单位为秒。默认值为`0.25`。
-  - <DataType type="float" name="max_path_time"/>：寻路重算间隔的基础上限，单位为秒。默认值为`0.55`。
-  - <DataType type="float" name="min_path_time"/>：寻路重算间隔的基础下限，单位为秒。默认值为`0.2`。
-  - <DataType type="float" name="no_damage_range_multiplier"/>：与实体基础体积相乘得到「无伤害范围」，目标处于该范围内时该行为进入冷却。默认值为`2`。
-  - <DataType type="object" name="on_attack"/>：攻击命中时触发的事件。
+  - <DataType type="boolean" name="can_spread_on_fire"/>：<Version add="1.20.30" inline/> 为`true`时着火的空手实体命中后会点燃目标。默认值为`false`。
+  - <DataType type="float" name="cooldown_time"/>：<Version add="1.15.0" inline/> 两次攻击之间的冷却，单位为秒。默认值为`1`。
+  - <DataType type="float" name="inner_boundary_time_increase"/>：<Version add="1.15.0" inline/> 目标超出`path_inner_boundary`时，寻路重算间隔的增量，单位为秒。默认值为`0.25`。
+  - <DataType type="float" name="max_path_time"/>：<Version add="1.15.0" inline/> 寻路重算间隔的基础上限，单位为秒。默认值为`0.55`。
+  - <DataType type="float" name="min_path_time"/>：<Version add="1.15.0" inline/> 寻路重算间隔的基础下限，单位为秒。默认值为`0.2`。
+  - <DataType type="float" name="no_damage_range_multiplier"/>：<Version add="1.15.0" inline/> 与实体基础体积相乘得到「无伤害范围」，目标处于该范围内时该行为进入冷却。默认值为`2`。
+  - <DataType type="object" name="on_attack"/>：<Version add="1.15.0" inline/> 攻击命中时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
       - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](./filters)。
       - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
-  - <DataType type="object" name="on_kill"/>：击杀目标时触发的事件，结构同上。
-  - <DataType type="float" name="outer_boundary_time_increase"/>：目标超出`path_outer_boundary`时，寻路重算间隔的增量，单位为秒。默认值为`0.5`。
-  - <DataType type="float" name="path_fail_time_increase"/>：无法沿当前路径移动时，寻路重算间隔的增量，单位为秒。默认值为`0.75`。
-  - <DataType type="float" name="path_inner_boundary"/>：超过该距离时按`inner_boundary_time_increase`增加间隔，单位为方块。默认值为`16`。
-  - <DataType type="float" name="path_outer_boundary"/>：超过该距离时按`outer_boundary_time_increase`增加间隔，单位为方块。默认值为`32`。
+  - <DataType type="object" name="on_kill"/>：<Version add="1.21.80" inline/> 击杀目标时触发的事件，结构同上。
+  - <DataType type="float" name="outer_boundary_time_increase"/>：<Version add="1.15.0" inline/> 目标超出`path_outer_boundary`时，寻路重算间隔的增量，单位为秒。默认值为`0.5`。
+  - <DataType type="float" name="path_fail_time_increase"/>：<Version add="1.15.0" inline/> 无法沿当前路径移动时，寻路重算间隔的增量，单位为秒。默认值为`0.75`。
+  - <DataType type="float" name="path_inner_boundary"/>：<Version add="1.15.0" inline/> 超过该距离时按`inner_boundary_time_increase`增加间隔，单位为方块。默认值为`16`。
+  - <DataType type="float" name="path_outer_boundary"/>：<Version add="1.15.0" inline/> 超过该距离时按`outer_boundary_time_increase`增加间隔，单位为方块。默认值为`32`。
   - <DataType type="int" name="random_stop_interval"/>：以`1/N`的概率中断当前攻击，`N`取该值。默认值为`0`。
   - <DataType type="float" name="reach_multiplier"/>：与实体基础体积相乘得到造成伤害前的最小目标距离。默认值为`2`。
-  - <DataType type="boolean" name="require_complete_path"/>：为`true`时必须存在从实体到目标的完整寻路路径。默认值为`false`。
+  - <DataType type="boolean" name="require_complete_path"/>：<Version add="1.9.0" inline/> 为`true`时必须存在从实体到目标的完整寻路路径。默认值为`false`。
   - <DataType type="float" name="speed_multiplier"/>：追击目标时的移动速度乘数。默认值为`1`。
-  - <DataType type="float" name="stomp_range_multiplier"/>：与实体基础体积相乘得到踩踏的范围伤害半径。默认值为`2`。
+  - <DataType type="float" name="stomp_range_multiplier"/>：<Version add="1.15.0" inline/> 与实体基础体积相乘得到踩踏的范围伤害半径。默认值为`2`。
   - <DataType type="boolean" name="track_target"/>：为`true`时即使没有硬编码的感知组件也会追踪目标。默认值为`false`。
-  - <DataType type="float" name="x_max_rotation"/>：瞄准时每次最多旋转的角度（X 轴），单位为度。默认值为`30`。
-  - <DataType type="float" name="y_max_head_rotation"/>：瞄准时头部每次最多旋转的角度（Y 轴），单位为度。默认值为`30`。
+  - <DataType type="float" name="x_max_rotation"/>：<Version add="1.15.0" inline/> 瞄准时每次最多旋转的角度（X 轴），单位为度。默认值为`30`。
+  - <DataType type="float" name="y_max_head_rotation"/>：<Version add="1.15.0" inline/> 瞄准时头部每次最多旋转的角度（Y 轴），单位为度。默认值为`30`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -13603,7 +13702,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.stomp_turtle_egg`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.5.0"/> <br/>
 
 使实体前往踩踏海龟蛋。
 
@@ -13643,7 +13742,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.stroll_towards_village`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.13.3"/> <br/>
 
 使实体在搜索范围内前往村庄中的随机位置。
 
@@ -13682,7 +13781,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.summon_entity`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体通过召唤其他实体来攻击目标。
 
@@ -13782,7 +13881,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.swell`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对苦力怕可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对苦力怕可用。"/> <br/>
 
 使苦力怕在玩家靠近时膨胀。
 
@@ -13817,7 +13916,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.swim_idle`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.15.0"/> <br/>
 
 使处于水中的实体原地停留一段时间。
 
@@ -13850,7 +13949,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.swim_up_for_breath`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:breathable组件。"/> <br/>
+<Usable type="all"/> <Version add="1.21.20"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:breathable组件。"/> <br/>
 
 使实体在氧气即将耗尽时游向空气。
 
@@ -13885,7 +13984,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.swim_wander`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.4.0"/> <br/>
 
 使实体在游泳且未寻路时随意游动。
 
@@ -13896,10 +13995,10 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="interval"/>：未寻路时开始游动的概率。默认值为`0.00833`。
-  - <DataType type="float" name="look_ahead"/>：游动时向前探测障碍的距离。默认值为`5`。
+  - <DataType type="float" name="interval"/>：<Version add="1.15.0" inline/> 未寻路时开始游动的概率。默认值为`0.00833`。
+  - <DataType type="float" name="look_ahead"/>：<Version add="1.15.0" inline/> 游动时向前探测障碍的距离。默认值为`5`。
   - <DataType type="float" name="speed_multiplier"/>：游动时的移动速度乘数。默认值为`1`。
-  - <DataType type="float" name="wander_time"/>：一次游动持续的时间，单位为秒。默认值为`5`。
+  - <DataType type="float" name="wander_time"/>：<Version add="1.15.0" inline/> 一次游动持续的时间，单位为秒。默认值为`5`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -13920,7 +14019,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.swim_with_entity`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.15.0"/> <br/>
 
 使实体在水中跟随另一类实体一起游动。
 
@@ -13989,7 +14088,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.swoop_attack`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.6.0"/> <br/>
 
 使实体俯冲攻击目标，适合飞行生物。发生水平碰撞或目标远离时行为结束。
 
@@ -14000,7 +14099,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="float" name="damage_reach"/>：与实体基础体积相加，得到造成伤害时允许的最大目标距离。默认值为`0.2`。
+  - <DataType type="float" name="damage_reach"/>：<Version add="1.15.0" inline/> 与实体基础体积相加，得到造成伤害时允许的最大目标距离。默认值为`0.2`。
   - <DataType type="object" name="delay_range"/>：两次俯冲之间的延迟区间，单位为秒。
     - <DataType type="float" name="min"/>：区间下限。默认值为`0`。
     - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
@@ -14023,7 +14122,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.take_block`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.21.100"/> <br/>
 
 使实体从世界中取走方块并携带在身上。
 
@@ -14088,7 +14187,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.take_flower`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体接受另一实体通过`minecraft:behavior.offer_flower`递来的花。
 
@@ -14099,18 +14198,18 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="object" name="filters"/>：接受花朵需满足的条件。见[实体过滤器](./filters)。
-  - <DataType type="float" name="max_head_rotation_y"/>：抬头注视目标时的最大 Y 轴旋转角度，单位为度。默认值为`30`。
-  - <DataType type="float" name="max_rotation_x"/>：注视目标时的最大 X 轴旋转角度，单位为度。默认值为`30`。
-  - <DataType type="float" name="max_wait_time"/>：接花前随机等待时间的上限，单位为秒。默认值为`20`。
-  - <DataType type="float" name="min_distance_to_target"/>：视为已到达目标的最小距离，单位为方块。默认值为`2`。
-  - <DataType type="float" name="min_wait_time"/>：接花前随机等待时间的下限，单位为秒。默认值为`4`。
-  - <DataType type="object" name="on_take_flower"/>：接到花时触发的事件。
+  - <DataType type="object" name="filters"/>：<Version add="1.19.50" inline/> 接受花朵需满足的条件。见[实体过滤器](./filters)。
+  - <DataType type="float" name="max_head_rotation_y"/>：<Version add="1.19.50" inline/> 抬头注视目标时的最大 Y 轴旋转角度，单位为度。默认值为`30`。
+  - <DataType type="float" name="max_rotation_x"/>：<Version add="1.19.50" inline/> 注视目标时的最大 X 轴旋转角度，单位为度。默认值为`30`。
+  - <DataType type="float" name="max_wait_time"/>：<Version add="1.19.50" inline/> 接花前随机等待时间的上限，单位为秒。默认值为`20`。
+  - <DataType type="float" name="min_distance_to_target"/>：<Version add="1.19.50" inline/> 视为已到达目标的最小距离，单位为方块。默认值为`2`。
+  - <DataType type="float" name="min_wait_time"/>：<Version add="1.19.50" inline/> 接花前随机等待时间的下限，单位为秒。默认值为`4`。
+  - <DataType type="object" name="on_take_flower"/>：<Version add="1.21.110" inline/> 接到花时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
       - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](./filters)。
       - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
-  - <DataType type="array" name="search_area"/>：搜索递花对象的范围，写作`[x, y, z]`，也可写成含`x`、`y`、`z`的对象。
-  - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`0.5`。
+  - <DataType type="array" name="search_area"/>：<Version add="1.19.50" inline/> 搜索递花对象的范围，写作`[x, y, z]`，也可写成含`x`、`y`、`z`的对象。
+  - <DataType type="float" name="speed_multiplier"/>：<Version add="1.19.50" inline/> 执行该行为时的移动速度乘数。默认值为`0.5`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -14208,7 +14307,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.teleport_to_owner`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.21.20"/> <br/>
 
 使实体传送到其主人身边。
 
@@ -14251,7 +14350,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.tempt`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使实体被手持特定物品的玩家吸引并跟随。移动依赖寻路。
 
@@ -14263,8 +14362,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
   - <DataType type="boolean" name="can_get_scared"/>：为`true`时玩家在极近距离内快速移动会让实体停止被吸引。默认值为`false`。
-  - <DataType type="boolean" name="can_tempt_vertically"/>：为`true`时计算与玩家的垂直距离。默认值为`false`。
-  - <DataType type="boolean" name="can_tempt_while_ridden"/>：为`true`时被骑乘也能被吸引。默认值为`false`。
+  - <DataType type="boolean" name="can_tempt_vertically"/>：<Version add="1.18.10" inline/> 为`true`时计算与玩家的垂直距离。默认值为`false`。
+  - <DataType type="boolean" name="can_tempt_while_ridden"/>：<Version add="1.18.10" inline/> 为`true`时被骑乘也能被吸引。默认值为`false`。
   - <DataType type="array" name="items"/>：可以吸引该实体的物品列表。默认值为空数组。
     - <DataType type="string"/>：物品 ID，也可写成含`name`的对象。
   - <DataType type="object" name="on_tempt_end"/>：停止被吸引时触发的事件。
@@ -14272,12 +14371,12 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
       - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](./filters)。
       - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](./filters#测试主体)。默认值为`self`。
   - <DataType type="object" name="on_tempt_start"/>：开始被吸引时触发的事件，结构同上。
-  - <DataType type="object" name="sound_interval"/>：吸引期间播放音效的间隔区间，单位为刻。
+  - <DataType type="object" name="sound_interval"/>：<Version add="1.18.10" inline/> 吸引期间播放音效的间隔区间，单位为刻。
     - <DataType type="float" name="min"/>：区间下限。默认值为`0`。
     - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="float" name="speed_multiplier"/>：跟随玩家时的移动速度乘数。默认值为`1`。
-  - <DataType type="float" name="stop_distance"/>：距玩家多近时停止跟随，单位为方块。
-  - <DataType type="string" name="tempt_sound"/>：吸引期间播放的音效事件名。
+  - <DataType type="float" name="stop_distance"/>：<Version add="1.21.80" inline/> 距玩家多近时停止跟随，单位为方块。
+  - <DataType type="string" name="tempt_sound"/>：<Version add="1.18.10" inline/> 吸引期间播放的音效事件名。
   - <DataType type="float" name="within_radius"/>：玩家手持物品时可以吸引该实体的距离，单位为方块。默认值为`0`。
 </treeview>
 
@@ -14302,7 +14401,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.timer_flag_1`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.20.40"/> <br/>
 
 启动时触发事件并等待随机时长后结束，结束或被打断时再次触发事件。与`timer_flag_2`、`timer_flag_3`结构相同，编号只用于让同一实体挂载多个独立计时器。
 
@@ -14356,7 +14455,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.timer_flag_2`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.20.40"/> <br/>
 
 结构同`timer_flag_1`，编号不同，用于在同一实体上挂载第二个独立计时器。
 
@@ -14411,7 +14510,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.timer_flag_3`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.20.40"/> <br/>
 
 结构同`timer_flag_1`，编号不同，用于在同一实体上挂载第三个独立计时器。
 
@@ -14463,7 +14562,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.trade_interest`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
 
 使实体注视手持可交易物品的玩家。
 
@@ -14502,7 +14601,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.trade_with_player`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 允许玩家与该实体交易。行为开始时实体会停止寻路。
 
@@ -14513,8 +14612,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="object" name="filters"/>：允许交易需满足的条件。见[实体过滤器](./filters)。
-  - <DataType type="float" name="max_distance_from_player"/>：距玩家超过该距离时退出交易行为，单位为方块。默认值为`8`。
+  - <DataType type="object" name="filters"/>：<Version add="1.19.60" inline/> 允许交易需满足的条件。见[实体过滤器](./filters)。
+  - <DataType type="float" name="max_distance_from_player"/>：<Version add="1.19.60" inline/> 距玩家超过该距离时退出交易行为，单位为方块。默认值为`8`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -14702,7 +14801,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.vex_copy_owner_target`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使恼鬼把主人当前的攻击目标设为自己的目标。
 
@@ -14733,7 +14832,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.vex_random_move`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使恼鬼随机移动。
 
@@ -14764,7 +14863,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.wither_random_attack_pos_goal`
 
-<Usable type="all"/> <Version add="?"/> <Highlight text="限定实体类型" tooltip="该组件仅对凋灵可用。"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <Highlight text="限定实体类型" tooltip="该组件仅对凋灵可用。"/> <br/>
 
 使凋灵随机发起攻击。
 
@@ -14793,7 +14892,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.wither_target_highest_damage`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 使凋灵优先攻击对它造成伤害最多的实体。
 
@@ -14837,7 +14936,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.work`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.10"/> <br/>
 
 使 NPC 前往并使用其工作站点方块。
 
@@ -14890,7 +14989,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 ### `minecraft:behavior.work_composter`
 
-<Usable type="all"/> <Version add="?"/> <br/>
+<Usable type="all"/> <Version add="1.18.30"/> <br/>
 
 使 NPC 使用堆肥桶，把多余的种子转化为骨粉。
 

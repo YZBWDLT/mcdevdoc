@@ -161,8 +161,8 @@ import Image from "/src/components/image/standard"
 
 :::info[练习 1.1]
 
-1. 已知`/help`命令的其中一条语法为`/help <页码：int>`，请在游戏内写一条命令查看第 17 页的帮助页面。
-2. `/help`命令的另一条语法为`/help [命令条目：CommandName]`。请查询`/difficulty`的用法，并根据其给出的用法尝试自学该命令。
+1. 已知`/help`命令的其中一条语法为`/help <页码: int>`，请在游戏内写一条命令查看第 17 页的帮助页面。
+2. `/help`命令的另一条语法为`/help [命令条目: CommandName]`。请查询`/difficulty`的用法，并根据其给出的用法尝试自学该命令。
 
 :::
 

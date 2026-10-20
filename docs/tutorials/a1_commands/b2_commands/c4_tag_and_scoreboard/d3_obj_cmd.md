@@ -180,7 +180,7 @@ sidebar_position: 3
 
 遇到这种需求，并不需要移除记分板再重新创建，那很麻烦。我们注意到，`[记分项: string]`是一个可选参数，如果不写会发生什么呢？
 
-:::tip[实验 2.4-8]
+:::tip[实验 2.4-6]
 
 执行命令`/scoreboard objectives setdisplay sidebar`。观察侧边栏的记分板的变化。
 
@@ -227,10 +227,10 @@ sidebar_position: 3
 
 | 命令 | 含义 | 备注 |
 | --- | --- | --- |
-| `/scoreboard objectives add <记分项: string> dummy [显示名称: string]` | 添加显示为`显示名称`的`记分项`记分项 | |
-| `/scoreboard objectives remove <记分项: string>` | 移除`记分项`记分项 | |
-| `/scoreboard objectives setdisplay <list\|sidebar> [记分项: string] [ascending\|descending]` | 在玩家列表（`list`）或侧边栏（`sidebar`）按升序（`ascending`）或降序（`descending`，默认）显示`记分项`记分项 | `记分项`为空时，清空对应显示位置 |
-| `/scoreboard objectives setdisplay belowname [记分项: string]` | 在玩家名牌下显示`记分项`记分项 | 只能显示真实玩家的分数 |
+| `/scoreboard objectives add <记分项: string> dummy [显示名称: string]` | 添加显示为`显示名称`的`记分项` | |
+| `/scoreboard objectives remove <记分项: string>` | 移除`记分项` | |
+| `/scoreboard objectives setdisplay <list\|sidebar> [记分项: string] [ascending\|descending]` | 在玩家列表（`list`）或侧边栏（`sidebar`）按升序（`ascending`）或降序（`descending`，默认）显示`记分项` | `记分项`为空时，清空对应显示位置 |
+| `/scoreboard objectives setdisplay belowname [记分项: string]` | 在玩家名牌下显示`记分项` | 只能显示真实玩家的分数 |
 | `/scoreboard objectives list` | 在聊天栏列举所有记分项的信息 | |
 
 - 在创建记分项时，需要注意`记分项`为了不影响正常运行和便于后续大量调用，命名应当采用驼峰命名法（例：`isOnline`）或下划线命名法（例：`is_online`），除非有必要使用其他方法命名。

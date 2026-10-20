@@ -53,7 +53,7 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 **对象（Object）是一种键值对的集合**，换言之，里面的内容应该是一个个的键值对。**这些键值对的外围，用一个花括号`{}`包裹，并且键值对与键值对之间，需要用逗号分隔**。例如：
 
 ```json
-{"name":"Steve","age":15,"isAlive":true}
+{ "name": "Steve", "age": 15, "isAlive": true }
 ```
 
 这就是一个有效的 JSON 了，它是一个对象。这个对象由三个键值对`"name":"Steve"`、`"age":15`、`"isAlive":true`组成，并且这三个键值对中间以逗号分隔。对象在本站和 Wiki 的记号为<DataType type="object"/>。
@@ -61,7 +61,7 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 对象本身也是一种基本数据类型，所以对象也可以成为键值对的值，比如：
 
 ```json
-{"playerInfo":{"name":"Steve"}}
+{ "playerInfo": { "name": "Steve" } }
 ```
 
 这同样也是一个有效的 JSON，它是一个对象。这个对象由一个键值对`"playerInfo":{"name":"Steve"}`组成，其中这个键值对的值就是一个对象`{"name":"Steve"}`，由键值对`"name":"Steve"`组成。
@@ -71,8 +71,8 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 <treeview>
 
 - <DataType type="object"/>：根对象
-  - <DataType type="object" name="playerInfo"/>
-    - <DataType type="string" name="name"/>
+    - <DataType type="object" name="playerInfo"/>
+      - <DataType type="string" name="name"/>
 
 <br/>
 </treeview>
@@ -84,7 +84,7 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 在专门的 JSON 文件中，是**允许在 JSON 中出现任意的换行和空格的**，这时同样是能够解析的。例如还是这个例子：
 
 ```json
-{"name":"Steve","age":15,"isAlive":true}
+{ "name": "Steve", "age": 15, "isAlive": true }
 ```
 
 在`{`、`:`和`,`的后面添加一个空格，然后在`}`的前面添加一个空格，也是正确的：
@@ -110,7 +110,7 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 而对于下面的 JSON：
 
 ```json
-{"playerInfo":{"Steve":{"age":15,"isAlive":true},"Alex":{"age":17,"isAlive":false}}}
+{ "playerInfo": { "Steve": { "age": 15, "isAlive": true }, "Alex": { "age": 17, "isAlive": false } } }
 ```
 
 我们也可以用类似的方法，在`:`后面插入一个空格，插入换行和 4 空格的缩进：
@@ -139,7 +139,7 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 **数组（Array）和对象是类似的，只不过它是值的集合**。这些值的外围，用一个方括号`[]`包裹，并且值与值之间，需要用逗号分隔。例如：
 
 ```json
-[ "Beijing", "Shanghai", "Guangzhou", "Shenzhen" ]
+["Beijing", "Shanghai", "Guangzhou", "Shenzhen"]
 ```
 
 这里，就是由 4 个值：`"Beijing"`、`"Shanghai"`、`"Guangzhou"`、`"Shenzhen"`所组成的，这 4 个值都是字符串。
@@ -158,11 +158,7 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
         "example2": "1-2",
         "example3": "1-3"
     },
-    [
-        "2-1",
-        "2-2",
-        "2-3"
-    ]
+    ["2-1", "2-2", "2-3"]
 ]
 ```
 
@@ -172,13 +168,13 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 - 数字`2`；
 - 布尔值`true`；
 - 对象`{ "example1": "1-1", "example2": "1-2", "example3": "1-3" }`，它拥有 3 个键值对作为元素：
-  - `"example1": "1-1"`；
-  - `"example2": "1-2"`；
-  - `"example3": "1-3"`。
+    - `"example1": "1-1"`；
+    - `"example2": "1-2"`；
+    - `"example3": "1-3"`。
 - 数组`[ "2-1", "2-2", "2-3" ]`，它拥有 3 个值作为元素：
-  - 字符串`"2-1"`；
-  - 字符串`"2-2"`；
-  - 字符串`"2-3"`。
+    - 字符串`"2-1"`；
+    - 字符串`"2-2"`；
+    - 字符串`"2-3"`。
 
 ## 命令中的 JSON
 
@@ -189,7 +185,13 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 文本组件以`rawtext`打头，然后用`text`、`translate`和`with`、`selector`和`score` 4 种可用的文本组件显示特定文本。格式分别如下：
 
 ```json
-{"rawtext":[{"text":"你好，"},{"selector":"@s"},{"translate":"，你的分数是 %%s。","with":{"rawtext":[{"score":{"objective":"data","name":"@s"}}]}}]}
+{
+    "rawtext": [
+        { "text": "你好，" },
+        { "selector": "@s" },
+        { "translate": "，你的分数是 %%s。", "with": { "rawtext": [{ "score": { "objective": "data", "name": "@s" } }] } }
+    ]
+}
 ```
 
 因为命令并不支持换行，所以在当时我们并没有将它换行来写。实际上如果换行的话，这段 JSON 的层级关系就将一清二楚。
@@ -230,9 +232,7 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
         {
             "translate": "，你的分数是 %%s。",
             "with": {
-                "rawtext": [
-                    { "score": { "objective": "data", "name": "@s" } }
-                ]
+                "rawtext": [{ "score": { "objective": "data", "name": "@s" } }]
             }
         }
     ]
@@ -252,7 +252,12 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
 物品组件就要更加简单。我们曾经学过 4 个物品组件：`can_place_on`、`can_destroy`、`item_lock`、`keep_on_death`。我们来回顾一下它们的写法。
 
 ```json
-{"can_place_on":{"blocks":["grass_block"]},"can_destroy":{"blocks":["dirt","gravel"]},"item_lock":{"mode":"lock_in_inventory"},"keep_on_death":{}}
+{
+    "can_place_on": { "blocks": ["grass_block"] },
+    "can_destroy": { "blocks": ["dirt", "gravel"] },
+    "item_lock": { "mode": "lock_in_inventory" },
+    "keep_on_death": {}
+}
 ```
 
 我们同样地换行空格大法，一眼便能看出它们的层级关系。
@@ -263,7 +268,7 @@ JSON 的全称是 JavaScript Object Notation，它脱胎于常常用于网址开
         "blocks": ["grass_block"]
     },
     "can_destroy": {
-        "blocks": ["dirt","gravel"]
+        "blocks": ["dirt", "gravel"]
     },
     "item_lock": {
         "mode": "lock_in_inventory"
@@ -351,12 +356,12 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
         "blocks": ["grass_block"]
     },
     "can_destroy": {
-        "blocks": ["dirt","gravel"]
+        "blocks": ["dirt", "gravel"]
     },
     "item_lock": {
         "mode": "lock_in_inventory"
     },
-    "keep_on_death": {},
+    "keep_on_death": {}
 }
 ```
 
@@ -376,12 +381,12 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
         "blocks": ["grass_block"]
     },
     "can_destroy": {
-        "blocks": ["dirt","gravel"]
+        "blocks": ["dirt", "gravel"]
     },
     "item_lock": {
         "mode": "lock_in_inventory"
     },
-    "keep_on_death": {},    // <- 解析失败：“,”后没有元素
+    "keep_on_death": {} // <- 解析失败：“,”后没有元素
 }
 ```
 
@@ -508,7 +513,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 ```json
 {
     "can_place_on": {
-        "blocks": [ "grass_block", "dirt", "gravel" ]
+        "blocks": ["grass_block", "dirt", "gravel"]
     }
 }
 ```
@@ -567,7 +572,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 
 ### JSON 的注释
 
-在前面你可以看到我们在答案里添加了类似于`// <- 解析错误：……`的内容，这其实就是公认的 JSON 的注释。JSON 的注释以`//`打头，后面的内容都不会读取。
+在前面你可以看到我们在答案里添加了类似于`// <- 解析错误：……`的内容，这就是 JSONC（带注释的 JSON）里常见的注释写法。它同样以`//`打头，后面的内容都不会被读取。遗憾的是 Minecraft 并不支持 JSONC……
 
 按理来讲，**我们都是不推荐读者在 JSON 中添加注释的，因为原则上 JSON 本来也就不支持注释**，在上面的示例中，也只是为了说明错误出现的位置而已。有一个好消息是，Minecraft 基岩版是专门支持了这东西的。所以读者如果需要的话，可以在附加包的文件内添加注释。但是我们后面使用的文本编辑器可能会对注释疯狂报错，所以如果不想看着心烦的话，就尽量不要用了。
 
@@ -580,59 +585,68 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 ### JSON 中的数据类型
 
 - **数字**（`number`）：包括整数`int`和浮点数`float`，例如：`3`、`-1`、`1.5`、`0.0`。
-  - 虽然 JSON 中并不区分整数和浮点数，但是在实际运用中常常还是要注意区分。
-  - 本教程和 Minecraft Wiki 中，使用<DataType type="int" />代表整数，<DataType type="float" />代表浮点数。
+    - 虽然 JSON 中并不区分整数和浮点数，但是在实际运用中常常还是要注意区分。
+    - 本教程和 Minecraft Wiki 中，使用<DataType type="int" />代表整数，<DataType type="float" />代表浮点数。
 - **布尔值**（`boolean`）：`true`和`false`。
-  - 本教程和 Minecraft Wiki 中，使用<DataType type="boolean" />代表布尔值。
+    - 本教程和 Minecraft Wiki 中，使用<DataType type="boolean" />代表布尔值。
 - **字符串**（`string`）：用双引号`"`包裹起来的任意文本。
-  - 有一些转义方法，例如`\n`、`\\`、`\"`等在 JSON 中是适用的。
-  - 本教程和 Minecraft Wiki 中，使用<DataType type="string" />代表字符串。
+    - 有一些转义方法，例如`\n`、`\\`、`\"`等在 JSON 中是适用的。
+    - 本教程和 Minecraft Wiki 中，使用<DataType type="string" />代表字符串。
 - **对象**（`object`）：用花括号（`{}`）包裹起来的**键值对的集合**。
-  - **键值对**是由一个**键**（Key）和一个**值**（Value）配对组成的。
-    - 格式为`key:value`。
-    - `key`必须是一个字符串，代表对象的属性。
-    - `value`可以是 JSON 中的任意的数据类型。
-  - 键值对之间必须用逗号`,`分隔。
-  - 本教程和 Minecraft Wiki 中，使用<DataType type="object" />代表对象。
+    - **键值对**是由一个**键**（Key）和一个**值**（Value）配对组成的。
+        - 格式为`key:value`。
+        - `key`必须是一个字符串，代表对象的属性。
+        - `value`可以是 JSON 中的任意的数据类型。
+    - 键值对之间必须用逗号`,`分隔。
+    - 本教程和 Minecraft Wiki 中，使用<DataType type="object" />代表对象。
 - **数组**（`array`）：用方括号（`[]`）包裹起来的**值的集合**。
-  - 值之间必须用逗号`,`分隔。
-  - 本教程和 Minecraft Wiki 中，使用<DataType type="array" />代表数组。
+    - 值之间必须用逗号`,`分隔。
+    - 本教程和 Minecraft Wiki 中，使用<DataType type="array" />代表数组。
 
 ### 命令中的 JSON
 
-- 文本组件：由一个对象组成。其中的内容为：
-  <treeview>
-  - <DataType type="object" />：根对象
-    - <DataType type="array" name="rawtext" isRequired />：代表一个原始 JSON 文本，允许以下 4 种组件。至少应指定一种组件。
-      - <DataType type="object" />：代表一个普通文本组件（Text）。
-        - <DataType type="string" name="text" isRequired />：显示为写入的文本。
-      - <DataType type="object" />：代表一个选择器文本组件（Selector）。
-        - <DataType type="string" name="selector" isRequired />：填入目标选择器。显示为符合选择器的实体的名称。
-      - <DataType type="object" />：代表一个分数文本组件（Score）。
-        - <DataType type="object" name="score" isRequired />：显示为特定目标的分数。
-          - <DataType type="string" name="objective" isRequired />：填入该目标的记分项。
-          - <DataType type="string" name="name" isRequired />：填入该目标的名称或特定的目标选择器。
-      - <DataType type="object" />：代表一个翻译文本组件（Translate）。
-        - <DataType type="string" name="translate" isRequired />：要翻译的文本或翻译的键名。
-        - <DataType type="array" name="with" />：（写法 1）代入的格式化文本。
-        - <DataType type="object" name="with" />：（写法 2）代入的格式化文本。
-          - <DataType type="array" name="rawtext" isRequired />：代表一个原始 JSON 文本。允许以上 4 种组件。至少应指定一种组件。
-            - ……
-  </treeview>
-  - 但事实上，文本组件的 JSON 语法树要更复杂一些。更通用的情况可见[文本组件 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/文本组件#基岩版)。
-- 物品组件：由一个对象组成。其中允许的内容为：
-  <treeview>
-  - <DataType type="object" />：根对象，允许以下 4 种组件，至少应指定一种。
+第一类是文本组件：由一个对象组成。其中的内容为：
+
+<treeview>
+
+- <DataType type="object" />：根对象
+    - <DataType type="object" />：根对象
+        - <DataType type="array" name="rawtext" isRequired />：代表一个原始 JSON 文本，允许以下 4 种组件。至少应指定一种组件。
+            - <DataType type="object" />：代表一个普通文本组件（Text）。
+                - <DataType type="string" name="text" isRequired />：显示为写入的文本。
+            - <DataType type="object" />：代表一个选择器文本组件（Selector）。
+                - <DataType type="string" name="selector" isRequired />：填入目标选择器。显示为符合选择器的实体的名称。
+            - <DataType type="object" />：代表一个分数文本组件（Score）。
+                - <DataType type="object" name="score" isRequired />：显示为特定目标的分数。
+                    - <DataType type="string" name="objective" isRequired />：填入该目标的记分项。
+                    - <DataType type="string" name="name" isRequired />：填入该目标的名称或特定的目标选择器。
+            - <DataType type="object" />：代表一个翻译文本组件（Translate）。
+                - <DataType type="string" name="translate" isRequired />：要翻译的文本或翻译的键名。
+                - <DataType type="array" name="with" />：（写法 1）代入的格式化文本。
+                - <DataType type="object" name="with" />：（写法 2）代入的格式化文本。
+                    - <DataType type="array" name="rawtext" isRequired />：代表一个原始 JSON 文本。允许以上 4 种组件。至少应指定一种组件。
+                        - ……
+
+</treeview>
+
+但事实上，文本组件的 JSON 语法树要更复杂一些。更通用的情况可见[文本组件 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/文本组件#基岩版)。
+
+第二类是物品组件：由一个对象组成。其中允许的内容为：
+
+<treeview>
+
+- <DataType type="object" />：根对象，允许以下 4 种组件，至少应指定一种。
     - <DataType type="object" name="can_place_on" />：可放置到的方块。可添加`minecraft:`命名空间。
-      - <DataType type="array" name="blocks" isRequired />
-        - <DataType type="string" isRequired />：填入方块 ID，代表物品可放置到的方块。
+        - <DataType type="array" name="blocks" isRequired />
+          - <DataType type="string" isRequired />：填入方块 ID，代表物品可放置到的方块。
     - <DataType type="object" name="can_destroy" />：可破坏的方块。可添加`minecraft:`命名空间。
-      - <DataType type="array" name="blocks" isRequired />
-        - <DataType type="string" isRequired />：填入方块 ID，代表物品可破坏的方块。
+        - <DataType type="array" name="blocks" isRequired />
+          - <DataType type="string" isRequired />：填入方块 ID，代表物品可破坏的方块。
     - <DataType type="object" name="item_lock" />：物品锁定方法。可添加`minecraft:`命名空间。
-      - <DataType type="string" name="mode" isRequired />：仅允许`"lock_in_inventory"`、`"lock_in_slot"`，表示物品锁定方法
+        - <DataType type="string" name="mode" isRequired />：仅允许`"lock_in_inventory"`、`"lock_in_slot"`，表示物品锁定方法
     - <DataType type="object" name="keep_on_death" />：物品在死亡后保留。可添加`minecraft:`命名空间。
-  </treeview>
+
+</treeview>
 
 ### 常见错误
 
@@ -654,7 +668,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 ```json showLineNumbers
 {
     "message": "Hello, world!",
-    "players": [ "YZBWDLT", "Andy7343" ]
+    "players": ["YZBWDLT", "Andy7343"]
 }
 ```
 
@@ -697,15 +711,14 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 
 ```json showLineNumbers
 {
-  "format_version": "1.20.50",
-  "minecraft:item": {
-    "description": {
-      "identifier": "minecraft:apple",
-      "category": "nature"
-    },
-    "components": {
+    "format_version": "1.20.50",
+    "minecraft:item": {
+        "description": {
+            "identifier": "minecraft:apple",
+            "category": "nature"
+        },
+        "components": {}
     }
-  }
 }
 ```
 
@@ -723,7 +736,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
                     "value": true
                 },
                 "cause": "lava",
-                "damage_per_tick": 4,
+                "damage_per_tick": 4
             }
         ]
     }
@@ -816,14 +829,14 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 ```json showLineNumbers
 {
     "distance": {
-            "water": {
-                "fog_start": 0.0,
-                "fog_end": 60.0,
-                "fog_color": "#157cab",
-                "render_distance_type": "fixed"
-            }
+        "water": {
+            "fog_start": 0.0,
+            "fog_end": 60.0,
+            "fog_color": "#157cab",
+            "render_distance_type": "fixed"
         }
-    } 
+    }
+}
 ```
 
 :::
@@ -858,23 +871,22 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 
 ```json showLineNumbers
 {
-  "format_version": "1.20.50",
-  "minecraft:item": {
-    "description": {
-      "identifier": "minecraft:apple",
-      "category": "nature"
-    },
-    "components": {
+    "format_version": "1.20.50",
+    "minecraft:item": {
+        "description": {
+            "identifier": "minecraft:apple",
+            "category": "nature"
+        },
+        "components": {}
     }
-  }
 }
 ```
 
 这是一个有效的 JSON 对象。其含有一个`format_version`字符和一个`minecraft:item`对象。
 
 - 在`minecraft:item`对象中含有一个`description`对象和`components`对象。
-  - 在`description`对象中，含有一个`identifier`字符串和一个`category`字符串。
-  - 在`components`对象中，不含有任何键值对。
+    - 在`description`对象中，含有一个`identifier`字符串和一个`category`字符串。
+    - 在`components`对象中，不含有任何键值对。
 
 4.
 
@@ -890,7 +902,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
                     "value": true
                 },
                 "cause": "lava",
-                "damage_per_tick": 4,   // <- 出现了尾随逗号。
+                "damage_per_tick": 4 // <- 出现了尾随逗号。
             }
         ]
     }
@@ -991,14 +1003,14 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 ```json showLineNumbers
 {
     "distance": {
-            "water": {
-                "fog_start": 0.0,
-                "fog_end": 60.0,
-                "fog_color": "#157cab",
-                "render_distance_type": "fixed"
-            }
+        "water": {
+            "fog_start": 0.0,
+            "fog_end": 60.0,
+            "fog_color": "#157cab",
+            "render_distance_type": "fixed"
         }
-    } 
+    }
+}
 ```
 
 这是一个有效的 JSON 对象，虽然它的缩进混乱，但确实所有括号都能对应的上。不正确的缩进来源于`water`对象多了一个缩进，改成下面这样就是合理的缩进了：
@@ -1013,7 +1025,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
             "render_distance_type": "fixed"
         }
     }
-} 
+}
 ```
 
 其含有一个`distance`对象，对象中含有一个`water`对象。在这个对象中含有`fog_start`和`fog_end`浮点数，和`fog_color`和`render_distance_type`字符串。
