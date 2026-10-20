@@ -1,0 +1,211 @@
+/* ================================================================
+   设计令牌（tokens）—— OreUI 主题的颜色、字体与字体模式
+   ================================================================
+   本文件只做两件事：
+   1. 声明 @font-face 与 --oreui-* 语义变量，并把它们映射到 --ifm-*。
+   2. 定义 data-font 字体的几套切换模式。
+
+   组件层面的样式（按钮、导航栏、代码块、滚动条、Tooltip 等）
+   全部放在 oreui-core.css，两者由 custom.css 按顺序引入。
+   ================================================================ */
+
+/* ================================================================
+   OreUI 暗色主题 —— 适用于 Docusaurus
+   ================================================================
+   设计理念：
+   1. 所有颜色使用 CSS 自定义属性（变量），便于统一调整。
+   2. 样式基于 Minecraft / OreUI 风格：直角、立体感、像素字体。
+   3. 支持多种字体切换（通过 data-font 属性）。
+   4. 已强制启用暗色模式，无亮色主题。
+   ================================================================ */
+
+/* ================================================================
+   第一部分：字体加载（@font-face）
+   ================================================================
+   这些字体用于实现 Minecraft 风格的文字显示。
+   其中 Minecraft Ten/Seven 是像素风格字体。
+   Unifont 用于支持 CJK 字符（中文、日文等）。
+   ================================================================ */
+
+/* Minecraft 标题字体（粗像素） */
+@font-face {
+    font-family: "Minecraft Ten";
+    src: url("/fonts/Minecraft-Ten.otf") format("opentype");
+    font-display: swap;
+    size-adjust: 120%; /* 适当放大，使英文与中文视觉大小协调 */
+}
+
+/* Minecraft 正文字体（标准像素） */
+@font-face {
+    font-family: "Minecraft Seven";
+    src: url("/fonts/Minecraft-Seven.otf") format("opentype");
+    font-display: swap;
+    size-adjust: 120%;
+}
+
+/* NotoSans 粗体（用于中文回退及部分标题） */
+@font-face {
+    font-family: "NotoSans Bold";
+    src: url("/fonts/NotoSans-Bold.ttf") format("truetype");
+    font-display: swap;
+}
+
+/* MiSans 常规体（小米字体，适合现代中文显示） */
+@font-face {
+    font-family: "MiSans";
+    src: url("/fonts/misans_normal.woff2") format("woff2");
+    font-display: swap;
+}
+
+/* MiSans 粗体 */
+@font-face {
+    font-family: "MiSans Bold";
+    src: url("/fonts/misans_bold.woff2") format("woff2");
+    font-display: swap;
+}
+
+/*
+ * Unifont —— 源自中文 Minecraft Wiki
+ * 来源：https://zh.minecraft.wiki/w/File:Unifont.woff2
+ * 该字体全面支持 CJK 字符，用于 Minecraft 风格中文显示。
+ */
+@font-face {
+    font-family: "Unifont";
+    src: url("/fonts/Unifont.woff2") format("woff2");
+    font-display: swap;
+}
+
+/* ================================================================
+   第二部分：全局 CSS 变量（语义化颜色与字体配置）
+   ================================================================
+   --oreui-*      ：语义变量，定义颜色、字体等
+   --ifm-*        ：Docusaurus / Infima 官方变量，引用 --oreui-*
+   这样设计使主题变量集中管理，便于维护。
+   ================================================================ */
+
+:root {
+    /* ---- 2.1 基础颜色（暗色主题） ---- */
+    --oreui-bg: #48494a; /* 页面主背景 */
+    --oreui-surface: #3b3c3d; /* 卡片、面板等次级背景 */
+    --oreui-surface-2: #313233; /* 更深一级背景（如导航栏、侧边栏） */
+    --oreui-text: #ffffff; /* 主文字颜色 */
+    --oreui-text-dim: #c5c6c9; /* 次级文字（较暗） */
+    --oreui-code-text: #ffffff; /* 行内代码文字颜色 */
+    --oreui-border-light: #5a5b5c; /* 边框亮色（用于立体感上边缘） */
+    --oreui-border-dark: #323334; /* 边框暗色（用于立体感下边缘） */
+    --oreui-border-dark2: #1e1e1f; /* 边框暗色（用于立体感下边缘） */
+    --oreui-line: #dbdbe2; /* 分割线颜色 */
+    --oreui-code-inline-bg: #1f1f1f; /* 行内代码背景 */
+    --oreui-panel-bg: rgba(0, 0, 0, 0.13); /* 面板半透明背景（用于悬浮效果） */
+    --oreui-scroll-track: #313233; /* 滚动条轨道 */
+    --oreui-scroll-thumb: #6d6d6e; /* 滚动条滑块 */
+    --oreui-link: #6cc349; /* 链接颜色（绿色） */
+    --oreui-link-hover: #8fd673; /* 链接悬停颜色（亮绿） */
+    --oreui-navbar-background: #e6e8eb; /* 导航栏背景 */
+    --oreui-navbar-border-bottom: #b1b2b5; /* 导航栏底部颜色 */
+    color-scheme: dark; /* 告知浏览器此页面为暗色模式 */
+
+    /* ---- 2.2 字体家族 ---- */
+    --oreui-font-title: "Minecraft Ten", "NotoSans Bold", "MiSans Bold", "Segoe UI", sans-serif;
+    --oreui-font-subtitle: "Minecraft Seven", "NotoSans Bold", "MiSans Bold", "Segoe UI", sans-serif;
+    --oreui-font-body: "Minecraft Seven", "NotoSans Bold", "MiSans", "Segoe UI", Tahoma, sans-serif;
+
+    /* ---- 2.3 主题色（绿色系） ---- */
+    --oreui-accent: #3c8527; /* 主色 */
+    --oreui-accent-dark: #2a641c;
+    --oreui-accent-darker: #1d4d13;
+    --oreui-accent-bright: #57b539;
+
+    /* ---- 2.4 Docusaurus / Infima 变量映射 ---- */
+    /* 主色 */
+    --ifm-color-primary: #3c8527;
+    --ifm-color-primary-dark: #357623;
+    --ifm-color-primary-darker: #2a641c;
+    --ifm-color-primary-darkest: #1d4d13;
+    --ifm-color-primary-light: #4a9e30;
+    --ifm-color-primary-lighter: #57b539;
+    --ifm-color-primary-lightest: #6cc349;
+
+    /* 字体 */
+    --ifm-font-family-base: var(--oreui-font-body);
+    --ifm-heading-font-family: var(--oreui-font-subtitle);
+
+    /* 背景 / 文字 */
+    --ifm-background-color: var(--oreui-bg);
+    --ifm-background-surface-color: var(--oreui-surface);
+    --ifm-font-color-base: var(--oreui-text);
+    --ifm-heading-color: var(--oreui-text);
+    --ifm-color-content: var(--oreui-text);
+    --ifm-color-content-secondary: var(--oreui-text-dim);
+
+    /* 链接 */
+    --ifm-link-color: var(--oreui-link);
+    --ifm-link-hover-color: var(--oreui-link-hover);
+
+    /* 导航栏 */
+    --ifm-navbar-background-color: var(--oreui-navbar-background);
+    --ifm-navbar-link-color: var(--oreui-border-dark2);
+    --ifm-navbar-link-hover-color: var(--oreui-accent);
+    --ifm-navbar-search-input-background-color: var(--oreui-border-dark2);
+
+    /* 侧边栏菜单 */
+    --ifm-menu-color: var(--oreui-text-dim);
+    --ifm-menu-color-active: var(--oreui-text);
+    --ifm-menu-color-background-active: transparent;
+    --ifm-menu-color-background-hover: transparent;
+
+    /* 右侧目录（TOC） */
+    --ifm-toc-border-color: var(--oreui-border-dark2);
+    --ifm-toc-link-color: var(--oreui-text-dim);
+
+    /* 行内代码 */
+    --ifm-code-background: var(--oreui-code-inline-bg);
+
+    /* 表格 */
+    --ifm-table-border-color: var(--oreui-line);
+    --ifm-table-stripe-background: var(--oreui-panel-bg);
+    --ifm-table-head-background: var(--oreui-surface-2);
+
+    /* 引用 / 分割线 */
+    --ifm-blockquote-color: var(--oreui-text-dim);
+    --ifm-blockquote-border-color: var(--oreui-accent);
+    --ifm-hr-background-color: var(--oreui-line);
+
+    /* 强制直角（OreUI 风格） */
+    --ifm-global-radius: 0px;
+    --ifm-button-border-radius: 0px;
+
+    /* Docusaurus 代码高亮背景（透明绿色） */
+    --docusaurus-highlighted-code-line-bg: rgba(60, 133, 39, 0.16);
+}
+
+/* ================================================================
+   第三部分：字体切换模式（通过 data-font 属性）
+   ================================================================
+   用法：在 <html> 上设置 data-font="misans" 或 "official" 或 "unifont"
+   即可切换全局字体配置，无需重新加载页面。
+   ================================================================ */
+
+/* 模式1：MiSans 现代风（全站使用 MiSans 字体） */
+[data-font="misans"] {
+    --oreui-font-title: "MiSans Bold", "NotoSans Bold", "Segoe UI", sans-serif;
+    --oreui-font-subtitle: "MiSans Bold", "NotoSans Bold", "Segoe UI", sans-serif;
+    --oreui-font-body: "MiSans", "NotoSans Bold", "Segoe UI", Tahoma, sans-serif;
+}
+
+/* 模式2：官网风格（标题保留像素，正文使用 NotoSans） */
+[data-font="official"] {
+    --oreui-font-body: "NotoSans Bold", "Segoe UI", Tahoma, sans-serif;
+    --oreui-code-text: #c736ff; /* 行内代码变为紫色（官网特色） */
+}
+
+/* 模式3：Unifont 风格（全站使用像素字体 + Unifont 中文） */
+[data-font="unifont"] {
+    --oreui-font-title: "Minecraft Ten", "Unifont", "Segoe UI", sans-serif;
+    --oreui-font-subtitle: "Minecraft Ten", "Unifont", "Segoe UI", sans-serif;
+    --oreui-font-body: "Minecraft Seven", "Unifont", "Segoe UI", Tahoma, sans-serif;
+}
+
+[data-theme="dark"] {
+    --ifm-pre-background: var(--oreui-bg) !important;
+}

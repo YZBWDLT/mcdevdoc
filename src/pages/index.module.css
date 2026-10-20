@@ -1,133 +1,878 @@
 /**
- * OreUI 风格主页 hero + 特性卡片（亮 / 暗双模式）
- * 引用 custom.css 的语义变量
+ * 首页：整屏翻页（scroll-snap deck）
+ * ---------------------------------------------------------------
+ * 一屏一页，滚轮 / 触摸滑动 / 方向键 / 右侧页码条都能切页。
+ * 视觉上保持 OreUI：直角、上亮下暗的立体边、绿色强调色。
  */
 
-/* ===== Hero 区域 ===== */
-.heroBanner {
-  padding: 4rem 1rem 3rem;
-  text-align: center;
+/* ===== 容器 ===== */
+.deck {
+  /* 扣掉顶部导航栏，避免出现两层滚动条 */
+  height: calc(100vh - var(--ifm-navbar-height));
+  height: calc(100dvh - var(--ifm-navbar-height));
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: contain;
   position: relative;
+  background-color: var(--oreui-bg);
+}
+
+/* 环境光：右下与左上的绿色辉光，固定不随内容滚动 */
+.deck::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(56rem 38rem at 82% 8%, rgba(60, 133, 39, 0.22), transparent 62%),
+    radial-gradient(48rem 34rem at 8% 92%, rgba(60, 133, 39, 0.12), transparent 62%);
+}
+
+/* 像素网格底纹，中心可见、四周淡出 */
+.deck::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(circle at 50% 42%, #000 0%, transparent 76%);
+  mask-image: radial-gradient(circle at 50% 42%, #000 0%, transparent 76%);
+}
+
+/* ===== 单屏 ===== */
+.section {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 5vh, 4rem) clamp(1.5rem, 5vw, 4rem);
+  scroll-snap-align: start;
+  /* 一次只翻一屏，快速滚动不会连跳 */
+  scroll-snap-stop: always;
+  /* 裁掉封面层超出的那 10px（模糊羽化用） */
   overflow: hidden;
+}
+
+.sectionInner {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* 逐屏入场：内容块在所在屏激活时上浮淡入 */
+.section .sectionInner > * {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.section[data-active="true"] .sectionInner > * {
+  opacity: 1;
+  transform: none;
+}
+
+.section .sectionInner > *:nth-child(2) {
+  transition-delay: 0.09s;
+}
+
+.section .sectionInner > *:nth-child(3) {
+  transition-delay: 0.18s;
+}
+
+/* ===== 文字骨架 ===== */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1.1rem;
+  color: var(--oreui-accent-bright);
+  font-family: var(--oreui-font-subtitle);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  background-color: var(--oreui-accent-bright);
+}
+
+.title {
+  margin: 0;
+  color: var(--oreui-text);
+  font-family: var(--oreui-font-title);
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  line-height: 1.3;
+  letter-spacing: 1px;
+}
+
+.lead {
+  max-width: 34em;
+  margin: 1.1rem 0 0;
+  color: var(--oreui-text-dim);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.meta {
+  margin: 1.4rem 0 0;
+  color: var(--oreui-text-dim);
+  font-size: 0.88rem;
+  letter-spacing: 0.06em;
+}
+
+.textLink {
+  color: var(--oreui-link);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.textLink:hover {
+  color: var(--oreui-link-hover);
+  text-decoration: underline;
+}
+
+/* ===== 按钮 ===== */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  height: 54px;
+  padding: 0 1.9rem;
   background-color: var(--oreui-surface);
-  border-bottom: 2px solid var(--oreui-border-dark);
-  box-shadow: inset 0 -3px var(--oreui-border-light);
+  border: 2px solid var(--oreui-border-dark2);
+  border-top-color: var(--oreui-border-light);
+  color: var(--oreui-text);
+  font-family: var(--oreui-font-subtitle);
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
+}
+
+.button:hover {
+  background-color: var(--oreui-surface-2);
+  border-color: var(--oreui-accent);
+  border-top-color: var(--oreui-accent);
+  color: var(--oreui-text);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.button:active {
+  transform: translateY(2px);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--oreui-accent-bright);
+  outline-offset: 3px;
+}
+
+.buttonGreen {
+  background-color: var(--oreui-accent);
+  border-color: var(--oreui-accent-darker);
+  border-top-color: var(--oreui-accent-bright);
+  color: #ffffff;
+}
+
+.buttonGreen:hover {
+  background-color: var(--oreui-accent-bright);
+  border-color: var(--oreui-accent-darker);
+  border-top-color: #ffffff;
+  color: #ffffff;
+}
+
+/* ===== 每屏封面背景 =====
+   四屏各用一张实景 / 开发截图（static/site/home_*.webp），统一两层处理：
+
+   ① .cover  压暗、降饱和；信息密度高的图（代码编辑器）再高斯模糊，
+             让文字不可辨认、只留色块与光，避免和标题抢注意力。
+   ② .scrim  按文字所在的一侧加深，保证文字压着的那半边趋近纯色；
+             下缘统一渐变到页面底色，屏与屏之间不会硬切。 */
+.cover {
+  position: absolute;
+  inset: -10px; /* 比屏略大一点，模糊后的羽化边被裁掉 */
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+  filter: brightness(0.45) saturate(0.8);
+}
+
+.cover[data-tone="soft"] {
+  filter: brightness(0.36) saturate(0.75) blur(2px);
+}
+
+.cover[data-tone="blur"] {
+  filter: brightness(0.28) saturate(0.7) blur(7px);
+}
+
+/* 代码编辑器：只做轻度模糊——要让人一眼看出"那是在写代码"，
+   糊成色带就失去意义了；靠亮度和遮罩来控制它与文字的关系。 */
+.cover[data-tone="code"] {
+  filter: brightness(0.5) saturate(0.95) blur(2.5px);
+}
+
+/* 物品栏：满屏彩色方块，模糊成彩色光斑，压在深色面板底下当底纹 */
+.cover[data-tone="mosaic"] {
+  filter: brightness(0.34) saturate(1.15) blur(6px);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===== 第一屏：首屏 ===== */
+.sectionHero {
+  text-align: center;
+  overflow: hidden;
+}
+
+.sectionHero .cover {
+  background-position: center 40%;
+  filter: brightness(0.55) saturate(0.85);
+}
+
+.sectionHero .scrim {
+  /* 中心也压到 0.4：落日的太阳正对着标题，太亮会把白字吃掉，
+     留一点暖光即可 */
+  background:
+    radial-gradient(120% 95% at 50% 42%, rgba(24, 25, 26, 0.4) 0%, rgba(24, 25, 26, 0.8) 72%),
+    linear-gradient(180deg, rgba(24, 25, 26, 0.74) 0%, rgba(30, 31, 32, 0.52) 45%, var(--oreui-bg) 100%);
+}
+
+/* 教程：文字在左，右半边留给卡片 */
+.sectionTutorial .scrim {
+  background:
+    linear-gradient(90deg, rgba(24, 25, 26, 0.95) 0%, rgba(24, 25, 26, 0.9) 40%, rgba(24, 25, 26, 0.55) 100%),
+    linear-gradient(180deg, rgba(24, 25, 26, 0.35) 0%, transparent 25%, transparent 72%, var(--oreui-bg) 100%);
+}
+
+/* 文档：卡片在左，文字在右，遮罩方向与教程相反 */
+.sectionDocs .cover {
+  /* 这张图主体是居中的浅色表单，把画面推到左侧、藏到卡片后面，
+     右半边留给干净的深色环境 */
+  background-position: 22% center;
+}
+
+.sectionDocs .scrim {
+  background:
+    linear-gradient(270deg, rgba(24, 25, 26, 0.95) 0%, rgba(24, 25, 26, 0.9) 40%, rgba(24, 25, 26, 0.5) 100%),
+    linear-gradient(180deg, rgba(24, 25, 26, 0.35) 0%, transparent 25%, transparent 72%, var(--oreui-bg) 100%);
+}
+
+/* 更新：内容居中，整体压深。
+   中心遮罩比别屏浅一档，好让背后的代码看得出是代码。 */
+.sectionUpdates .scrim {
+  background:
+    radial-gradient(110% 90% at 50% 45%, rgba(24, 25, 26, 0.42) 0%, rgba(24, 25, 26, 0.88) 78%),
+    linear-gradient(180deg, rgba(24, 25, 26, 0.5) 0%, transparent 30%, transparent 70%, var(--oreui-bg) 100%);
+}
+
+/* 内容压在两层背景之上 */
+.sectionInner {
+  position: relative;
+  z-index: 2;
+}
+
+.hero {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.hero .eyebrow {
+  justify-content: center;
 }
 
 .heroTitle {
-  font-family: var(--oreui-font-title);
-  font-size: clamp(1.8rem, 5vw, 3.2rem);
-  line-height: 1.3;
-  letter-spacing: 1px;
+  margin: 0;
   color: var(--oreui-text);
-  margin-bottom: 1rem;
+  font-family: var(--oreui-font-title);
+  font-size: clamp(2rem, 5.6vw, 4rem);
+  line-height: 1.24;
+  letter-spacing: 1px;
+  /* 打字过程中行数变化时，减少下方内容跳动 */
+  min-height: 1.24em;
 }
 
-.heroSubtitle {
-  font-family: var(--oreui-font-body);
-  font-size: clamp(1rem, 2vw, 1.3rem);
-  line-height: 1.6;
+/* 打字光标 */
+.caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 0.95em;
+  margin-left: 0.12em;
+  background-color: var(--oreui-accent-bright);
+  vertical-align: -0.08em;
+  animation: caretBlink 1s steps(2, start) infinite;
+}
+
+@keyframes caretBlink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 标题打完之后依次浮现的两段内容 */
+.hero [data-show] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hero [data-show="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+.heroTagline {
+  max-width: 38em;
+  margin: 1.5rem auto 0;
   color: var(--oreui-text-dim);
-  max-width: 760px;
-  margin: 0 auto 1.75rem;
+  font-size: clamp(0.98rem, 1.9vw, 1.2rem);
+  line-height: 1.8;
 }
 
-.buttons {
+.heroButtons {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem 1rem;
+  gap: 1rem;
+  margin-top: 2.2rem;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2.5rem 1rem;
+.heroButtons[data-show="true"] {
+  transition-delay: 0.12s;
+}
+
+.heroMeta {
+  margin: 1.6rem 0 0;
+  color: var(--oreui-text-dim);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+.heroMeta[data-show="true"] {
+  transition-delay: 0.24s;
+}
+
+/* 底部「向下滚动」提示 */
+.scrollHint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.2rem, 3vh, 2.2rem);
+  transform: translateX(-50%);
+  /* 挂在屏幕底部，与 .sectionInner 的内容块脱钩 */
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--oreui-text-dim);
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+}
+
+.scrollHintArrow {
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--oreui-accent-bright);
+  border-bottom: 2px solid var(--oreui-accent-bright);
+  animation: hintBounce 1.9s ease-in-out infinite;
+}
+
+@keyframes hintBounce {
+  0%,
+  100% {
+    transform: rotate(45deg) translate(0, 0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: rotate(45deg) translate(4px, 4px);
+    opacity: 1;
   }
 }
 
-/* ===== 特性卡片区域（原 HomepageFeatures 样式） ===== */
-.features {
-  padding: 1rem 0 3rem;
+/* ===== 左右分栏（第二、三屏） ===== */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
 }
 
-.featuresRow {
+.splitText {
+  max-width: 30em;
+}
+
+/* ===== 第二屏：教程大按钮 ===== */
+.actionList {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
-  margin-top: 1.5rem;
 }
 
-/* 单个卡片：OreUI 立体面板（上边亮、其余暗），hover 时边框变绿 */
-.featureWrapper {
+.actionCard {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.1rem 1.4rem;
   background-color: var(--oreui-surface);
   border: 2px solid var(--oreui-border-dark);
   border-top-color: var(--oreui-border-light);
-  padding: 1.25rem;
-  flex: 0 0 calc(33.333% - 0.667rem);
-  box-sizing: border-box;
-  transition: border-color 0.12s ease;
+  color: var(--oreui-text);
+  text-decoration: none;
+  /* 逐条错开入场 */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.12s ease;
+  transition-delay: calc(var(--index) * 90ms + 150ms);
 }
 
-.featureWrapper:hover {
+.section[data-active="true"] .actionCard {
+  opacity: 1;
+  transform: none;
+}
+
+.section[data-active="true"] .actionCard:hover {
   border-color: var(--oreui-accent);
   border-top-color: var(--oreui-accent);
+  color: var(--oreui-text);
+  text-decoration: none;
+  transform: translateX(6px);
 }
 
-.featureContainer {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+.actionCard:focus-visible {
+  outline: 3px solid var(--oreui-accent-bright);
+  outline-offset: 2px;
 }
 
-.imageContainer {
+.actionIcon {
   flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  image-rendering: pixelated;
 }
 
-.featureImage {
-  width: 88px;
-  height: 88px;
-  image-rendering: pixelated; /* 保持 Minecraft 贴图的像素清晰 */
-}
-
-.textContainer {
+.actionBody {
+  display: flex;
   flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
-.textContainer h2 {
+.actionTitle {
+  font-family: var(--oreui-font-subtitle);
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+}
+
+.actionDesc {
+  color: var(--oreui-text-dim);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.actionArrow {
+  flex: 0 0 auto;
+  color: var(--oreui-accent-bright);
+  font-size: 1.15rem;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.actionCard:hover .actionArrow {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===== 第三屏：文档格子 ===== */
+.docGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.docCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1.5rem 0.8rem;
+  background-color: var(--oreui-surface);
+  border: 2px solid var(--oreui-border-dark);
+  border-top-color: var(--oreui-border-light);
   color: var(--oreui-text);
   font-family: var(--oreui-font-subtitle);
-  font-size: 1.2rem;
+  font-size: 0.98rem;
   letter-spacing: 0.5px;
-  margin-bottom: 0.5rem;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.12s ease;
+  transition-delay: calc(var(--index) * 70ms + 150ms);
 }
 
-.textContainer p {
+.section[data-active="true"] .docCard {
+  opacity: 1;
+  transform: none;
+}
+
+.section[data-active="true"] .docCard:hover {
+  border-color: var(--oreui-accent);
+  border-top-color: var(--oreui-accent);
+  color: var(--oreui-text);
+  text-decoration: none;
+  transform: translateY(-3px);
+}
+
+.docCard:focus-visible {
+  outline: 3px solid var(--oreui-accent-bright);
+  outline-offset: 2px;
+}
+
+.docIcon {
+  width: 44px;
+  height: 44px;
+  image-rendering: pixelated;
+}
+
+/* ===== 第四屏：最近更新 ===== */
+.updateWrap {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.updateWrap .eyebrow {
+  justify-content: center;
+}
+
+.updateWrap .title,
+.updateWrap .lead {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.updateList {
+  margin: 2.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.updateItem {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 2px solid var(--oreui-border-dark);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  transition-delay: calc(var(--index) * 70ms + 150ms);
+}
+
+.section[data-active="true"] .updateItem {
+  opacity: 1;
+  transform: none;
+}
+
+.updateItem:last-child {
+  border-bottom: none;
+}
+
+.updateVerb {
+  flex: 0 0 auto;
+  min-width: 3.4rem;
+  padding: 0.15rem 0.5rem;
+  background-color: var(--oreui-accent-dark);
+  color: #ffffff;
+  font-family: var(--oreui-font-subtitle);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.updateText {
+  flex: 1 1 auto;
   color: var(--oreui-text-dim);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.updateFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  padding-top: 1.1rem;
+  border-top: 2px solid var(--oreui-border-dark);
+}
+
+.updateFooter .meta {
+  margin: 0;
+}
+
+.closing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.6rem;
+}
+
+/* ===== 第五屏：关于与链接 =====
+   首页隐藏了页脚，原来页脚里的链接收进这一屏。
+   面板给到 84% 不透明度 + 轻背景模糊，保证在彩色底图上也能安稳阅读。 */
+.sectionAbout .scrim {
+  background:
+    radial-gradient(110% 95% at 50% 45%, rgba(24, 25, 26, 0.35) 0%, rgba(24, 25, 26, 0.82) 75%),
+    linear-gradient(180deg, rgba(24, 25, 26, 0.5) 0%, transparent 25%, transparent 75%, var(--oreui-bg) 100%);
+}
+
+.aboutPanel {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: clamp(1.4rem, 2.6vw, 2.4rem);
+  background-color: rgba(26, 27, 28, 0.84);
+  border: 2px solid var(--oreui-border-dark);
+  border-top-color: var(--oreui-border-light);
+  backdrop-filter: blur(3px);
+}
+
+.aboutHead {
+  margin-bottom: 1.5rem;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+}
+
+.aboutCol h3 {
+  margin: 0 0 0.7rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid var(--oreui-border-dark);
+  color: var(--oreui-text);
+  font-family: var(--oreui-font-subtitle);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+}
+
+.aboutCol ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aboutCol li {
+  margin: 0;
+}
+
+.aboutCol a {
+  display: inline-block;
+  padding: 0.12rem 0;
+  color: var(--oreui-text-dim);
+  font-size: 0.84rem;
+  line-height: 1.75;
+  text-decoration: none;
+  transition: color 0.12s ease, transform 0.12s ease;
+}
+
+.aboutCol a:hover {
+  color: var(--oreui-link-hover);
+  text-decoration: none;
+  transform: translateX(3px);
+}
+
+.aboutFooter {
+  margin-top: 1.6rem;
+  padding-top: 1.1rem;
+  border-top: 2px solid var(--oreui-border-dark);
+  color: var(--oreui-text-dim);
+  font-size: 0.8rem;
+  line-height: 1.9;
+}
+
+.aboutFooter p {
+  margin: 0 0 0.35rem;
+}
+
+.aboutFooter p:last-child {
   margin-bottom: 0;
 }
 
-.textContainer a {
+.aboutFooter a {
   color: var(--oreui-link);
-  text-decoration: none;
 }
 
-.textContainer a:hover {
-  text-decoration: underline;
+.aboutFooter a:hover {
+  color: var(--oreui-link-hover);
 }
 
-.noLink {
-  color: var(--oreui-text);
+.copyright {
+  opacity: 0.7;
 }
 
-@media (max-width: 996px) {
-  .featureWrapper {
-    flex: 0 0 calc(50% - 0.5rem);
+/* 镜像站的内联补充说明 */
+.mirrorNote {
+  color: var(--oreui-text-dim);
+  opacity: 0.8;
+}
+
+.mirrorSep {
+  margin: 0 0.45rem;
+  color: var(--oreui-border-light);
+}
+
+/* ===== 右侧页码条 ===== */
+.dots {
+  position: fixed;
+  top: 50%;
+  right: 1.5rem;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  transform: translateY(-50%);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  background-color: transparent;
+  border: 2px solid var(--oreui-border-light);
+  cursor: pointer;
+  transition: height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.dot:hover {
+  border-color: var(--oreui-accent-bright);
+}
+
+.dot:focus-visible {
+  outline: 2px solid var(--oreui-accent-bright);
+  outline-offset: 3px;
+}
+
+.dot[data-active="true"] {
+  height: 28px;
+  background-color: var(--oreui-accent-bright);
+  border-color: var(--oreui-accent-bright);
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* 手机上内容可能塞不下一屏，允许在屏内滚动 */
+  .section {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-items: flex-start;
+    padding-top: clamp(1.5rem, 6vh, 3rem);
+    padding-bottom: clamp(1.5rem, 6vh, 3rem);
+  }
+
+  .docGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .aboutGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .aboutPanel {
+    padding: 1.25rem;
+  }
+
+  .dots {
+    right: 0.6rem;
+  }
+
+  .scrollHint {
+    display: none;
   }
 }
 
-@media (max-width: 768px) {
-  .featureWrapper {
-    flex: 0 0 100%;
+/* 屏幕不够高时压缩第五屏，否则三列链接会顶出这一屏 */
+@media (max-height: 820px) {
+  .aboutPanel {
+    padding: 1.1rem 1.4rem;
+  }
+
+  .aboutHead {
+    margin-bottom: 0.9rem;
+  }
+
+  .aboutCol a {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    padding: 0.06rem 0;
+  }
+
+  .aboutFooter {
+    margin-top: 0.9rem;
+    padding-top: 0.75rem;
+    font-size: 0.74rem;
+    line-height: 1.7;
+  }
+
+  .aboutCol h3 {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
+    font-size: 0.88rem;
+  }
+}
+
+/* ===== 尊重「减少动效」设置 ===== */
+@media (prefers-reduced-motion: reduce) {
+  .section .sectionInner > *,
+  .actionCard,
+  .docCard,
+  .updateItem,
+  .hero [data-show] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .caret,
+  .scrollHintArrow {
+    animation: none;
+  }
+
+  .caret {
+    display: none;
   }
 }

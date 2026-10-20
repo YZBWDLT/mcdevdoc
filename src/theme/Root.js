@@ -10,7 +10,10 @@ function FontManager() {
   const applyFontSetting = () => {
     if (!isBrowser) return;
     const saved = localStorage.getItem('oreui-font-mode');
-    if (saved === 'misans' || saved === 'official') {
+    // 白名单式判断已改为「除默认 pixel 外一律应用」：
+    // 原先只认 misans / official，设置页里的 unifont（游戏内字体）刷新后会被丢弃。
+    // 这样写以后新增字体模式也不必同步维护这里。
+    if (saved && saved !== 'pixel') {
       document.documentElement.dataset.font = saved;
     } else {
       // 默认或 'pixel'

@@ -1,0 +1,643 @@
+/* ================================================================
+   OreUI 组件样式（core）—— 按钮、全站组件覆盖、滚动条、Tooltip
+   ================================================================
+   设计特点：
+   1. 直角优先，用内阴影模拟立体凸起；
+   2. 按下时整体下移，无过渡（OreUI 的即时反馈）；
+   3. 所有颜色引用 tokens.css 中的 --oreui-* 变量，不写死色值。
+
+   本文件不定义变量与字体，变量请改 tokens.css。
+   ================================================================ */
+
+/* ================================================================
+   第一部分：OreUI 按钮系统
+   ================================================================
+   设计特点：
+   - 使用内阴影模拟立体凸起效果
+   - 直角边框（无圆角）
+   - 支持多种尺寸和颜色变体
+   - 按下状态有 4px 下移效果
+   ================================================================ */
+
+/* ---- 1.1 基础按钮 ---- */
+.btn {
+    align-items: center;
+    border-radius: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: var(--oreui-font-body);
+    justify-content: center;
+    margin: 0;
+    text-decoration: none;
+    transition: none; /* 无过渡，瞬间响应 */
+    user-select: none;
+}
+.btn:hover {
+    text-decoration: none;
+}
+.btn:active:not(.disabled_btn) {
+    transform: translateY(4px); /* 按下时下移 4px */
+}
+
+/* ---- 1.2 按钮宽度（长度） ---- */
+.extra_small_btn {
+    width: 100px;
+}
+.small_btn {
+    width: 130px;
+}
+.middle_btn {
+    width: 200px;
+}
+.large_btn {
+    width: 272px;
+}
+.extra_large_btn {
+    width: 300px;
+}
+
+/* ---- 1.3 按钮高度 ---- */
+.btn_height_extra_small {
+    height: 20px;
+}
+.btn_height_small {
+    height: 40px;
+}
+.btn_height_middle {
+    height: 60px;
+}
+.btn_height_large {
+    height: 80px;
+}
+.btn_height_extra_large {
+    height: 100px;
+}
+
+/* ---- 1.4 文字大小 ---- */
+.font_size_extra_small {
+    font-size: 12px;
+}
+.font_size_small {
+    font-size: 14px;
+}
+.font_size_middle {
+    font-size: 16px;
+}
+.font_size_large {
+    font-size: 20px;
+}
+.font_size_extra_large {
+    font-size: 24px;
+}
+
+/* ---- 1.5 按钮颜色主题 ---- */
+
+/* 白色按钮（默认） */
+.white_btn {
+    background-color: #d0d1d4;
+    border: 2px solid #1e1e1f;
+    box-shadow: inset 0 -4px #58585a, inset 3px 3px rgba(255, 255, 255, 0.6),
+        inset -3px -7px rgba(255, 255, 255, 0.4);
+    color: #000000;
+    padding-bottom: 6px;
+}
+.white_btn:hover {
+    background-color: #b1b2b5;
+    box-shadow: inset 0 -4px #58585a, inset 3px 3px rgba(255, 255, 255, 0.8),
+        inset -3px -7px rgba(255, 255, 255, 0.6);
+    color: #000000;
+}
+.white_btn:active {
+    background-color: #b1b2b5;
+    box-shadow: inset 3px 3px rgba(255, 255, 255, 0.8),
+        inset -3px -3px rgba(255, 255, 255, 0.6);
+    color: #000000;
+}
+
+/* 绿色按钮（主要操作） */
+.green_btn {
+    background-color: #3c8527;
+    border: 2px solid #1e1e1f;
+    box-shadow: inset 0 -4px #1d4d13, inset 3px 3px rgba(255, 255, 255, 0.2),
+        inset -3px -7px rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding-bottom: 6px;
+}
+.green_btn:hover {
+    background-color: #2a641c;
+    box-shadow: inset 0 -4px #1d4d13, inset 3px 3px rgba(255, 255, 255, 0.4),
+        inset -3px -7px rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+.green_btn:active {
+    background-color: #1d4d13;
+    box-shadow: inset 3px 3px rgba(255, 255, 255, 0.4),
+        inset -3px -3px rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+/* 蓝色按钮（次要操作） */
+.blue_btn {
+    background-color: #1a56db;
+    border: 2px solid #1e1e1f;
+    box-shadow: inset 0 -4px #0f3a8a, inset 3px 3px rgba(255, 255, 255, 0.25),
+        inset -3px -7px rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding-bottom: 6px;
+}
+.blue_btn:hover {
+    background-color: #1e4fd0;
+    box-shadow: inset 0 -4px #0f3a8a, inset 3px 3px rgba(255, 255, 255, 0.45),
+        inset -3px -7px rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+}
+.blue_btn:active {
+    background-color: #0f3a8a;
+    box-shadow: inset 3px 3px rgba(255, 255, 255, 0.45),
+        inset -3px -3px rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+}
+
+/* ---- 1.6 按下状态的绿色按钮（用于设置页面选中状态） ---- */
+.green_btn_pressed {
+    background-color: #3c8527;
+    border: 2px solid #1e1e1f;
+    box-shadow: inset 3px 3px rgba(255, 255, 255, 0.2),
+        inset -3px -3px rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding-bottom: 0;
+    cursor: default;
+    pointer-events: none; /* 禁止交互 */
+    position: relative;
+}
+.green_btn_pressed::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 37.5%;
+    width: 25%;
+    height: 2px;
+    background-color: #ffffff;
+}
+
+/* 按下状态各高度版本（减去 4px 厚度，并用 transform 下移 4px 保持底部对齐） */
+.green_btn_pressed_extra_small {
+    height: 16px;
+    transform: translateY(4px);
+}
+.green_btn_pressed_small {
+    height: 36px;
+    transform: translateY(4px);
+}
+.green_btn_pressed_middle {
+    height: 56px;
+    transform: translateY(4px);
+}
+.green_btn_pressed_large {
+    height: 76px;
+    transform: translateY(4px);
+}
+.green_btn_pressed_extra_large {
+    height: 96px;
+    transform: translateY(4px);
+}
+
+/* ================================================================
+   第二部分：全局组件样式（Docusaurus 组件覆盖）
+   ================================================================
+   所有样式都引用语义变量，便于统一调整。
+   ================================================================ */
+
+/* ---- 2.1 强制背景色 ---- */
+html {
+    background-color: var(--oreui-bg);
+}
+body {
+    background-color: var(--oreui-bg);
+}
+
+/* ---- 2.2 导航栏 ---- */
+
+/* 基础导航栏样式 */
+.navbar {
+    border-bottom: 2px solid var(--oreui-border-dark);
+    box-shadow: inset 0 -3px var(--oreui-border-light), 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 标题和品牌名称 */
+.navbar__title,
+.navbar__brand {
+    font-family: var(--oreui-font-subtitle);
+    letter-spacing: 0.5px;
+}
+
+/* ------ 桌面端（> 996px）------ */
+@media (min-width: 997px) {
+    /* 使导航栏内部 flex 居中布局 */
+    .navbar__inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    /* 品牌（logo + 标题）绝对居中 */
+    .navbar__brand {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        color: #000000 !important;
+    }
+
+    /* 标题文字强制黑色 */
+    .navbar__title {
+        color: #000000 !important;
+    }
+
+    /* 左右两侧占满剩余空间，避免内容覆盖标题 */
+    .navbar__items--left,
+    .navbar__items--right {
+        flex: 1;
+        z-index: 2; /* 确保搜索按钮等位于标题之上 */
+    }
+    .navbar__items--left {
+        justify-content: flex-start;
+    }
+    .navbar__items--right {
+        justify-content: flex-end;
+    }
+}
+
+/* ------ 移动端（≤ 996px）------ */
+/* 移动端侧边栏菜单中的标题文字为白色 */
+.navbar-sidebar .navbar__brand,
+.navbar-sidebar .navbar__title {
+    color: #ffffff !important;
+}
+
+/* 如果侧边栏内也包含 SVG logo，一并改为白色 */
+.navbar-sidebar .navbar__brand {
+    display: none !important;
+}
+
+@media (max-width: 996px) {
+    /* 品牌回到左侧正常流 */
+    .navbar__brand {
+        position: static !important;
+        transform: none !important;
+        display: flex !important;
+        color: #000000 !important; /* 默认黑色 */
+    }
+
+    /* 汉堡菜单图标黑色 */
+    .navbar__toggle {
+        color: #000000 !important;
+    }
+    .navbar__toggle svg {
+        fill: #000000 !important;
+        color: #000000 !important;
+    }
+
+    /* 侧边菜单背景 */
+    .navbar-sidebar {
+        background-color: var(--oreui-surface-2) !important;
+    }
+
+    /* 当菜单打开时，品牌文字变为白色（因为背景深色） */
+    .navbar-sidebar--open .navbar__brand {
+        color: #ffffff !important;
+    }
+
+    .navbar__title {
+        font-size: clamp(0.75rem, 2.8vw, 1rem) !important;
+        white-space: nowrap;
+        max-width: 60vw; /* 防止溢出 */
+        overflow: hidden;
+        text-overflow: ellipsis; /* 太长显示省略号 */
+    }
+}
+
+/* ---- 2.3 下拉菜单 ---- */
+.dropdown__menu {
+    border: 2px solid var(--oreui-border-dark2);
+    border-top-color: var(--oreui-border-light);
+    border-radius: 0;
+    background-color: var(--oreui-surface-2);
+}
+.dropdown__link {
+    border-radius: 0;
+}
+.dropdown__link:hover {
+    background-color: var(--oreui-panel-bg);
+    color: var(--oreui-link);
+}
+
+/* ---- 2.4 侧边栏 ---- */
+.theme-doc-sidebar-container {
+    background-color: var(--oreui-surface-2);
+}
+.menu {
+    font-family: var(--oreui-font-body);
+    border-right: 2px solid var(--oreui-border-dark2);
+}
+.menu__link,
+.menu__caret,
+.menu__list-item-collapsible {
+    border-radius: 0;
+}
+.menu__link:hover,
+.menu__link--active:not(.menu__link--sublist),
+.menu__list-item-collapsible:hover {
+    background: #ffffff10;
+    box-shadow: inset 4px 0 0 var(--oreui-accent);
+}
+
+/* ---- 2.5 右侧目录（TOC） ---- */
+.table-of-contents {
+    font-family: var(--oreui-font-body);
+    border-left: 2px solid var(--oreui-line);
+}
+.table-of-contents__link--active,
+.table-of-contents__link:hover {
+    color: var(--oreui-link);
+}
+
+/* ---- 2.6 文档内容 ---- */
+/* 标题使用像素字体 */
+.markdown h1,
+.markdown h2 {
+    font-family: var(--oreui-font-title);
+    letter-spacing: 0.5px;
+}
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+    font-family: var(--oreui-font-subtitle);
+    letter-spacing: 0.5px;
+}
+
+/* 行内代码 */
+:not(pre) > code {
+    background-color: transparent;
+    border: transparent;
+    color: var(--oreui-code-text);
+}
+
+/* 代码块 */
+.theme-code-block,
+div[class*="codeBlockContainer"],
+pre[class*="language-"] {
+    border: 2px solid var(--oreui-border-dark);
+    border-top-color: var(--oreui-border-light);
+    border-radius: 0;
+}
+
+/* 表格表头 */
+.markdown table thead {
+    font-family: var(--oreui-font-subtitle);
+}
+
+/* 链接内的行内代码：颜色继承链接色 */
+.markdown a > code {
+    color: var(--ifm-link-color);
+}
+.markdown a:hover > code {
+    color: var(--ifm-link-hover-color);
+}
+
+/* ---- 2.7 分页按钮 ---- */
+.pagination-nav__link {
+    border: 2px solid var(--oreui-border-dark2);
+    border-top-color: var(--oreui-border-light);
+    border-radius: 0;
+    background-color: var(--oreui-panel-bg);
+}
+.pagination-nav__link:hover {
+    border-color: var(--oreui-accent);
+}
+
+/* ---- 2.8 卡片 / 面包屑 / 标签 ---- */
+.card {
+    border: 2px solid var(--oreui-border-dark2);
+    border-top-color: var(--oreui-border-light);
+    background-color: var(--oreui-surface);
+}
+.breadcrumbs__link {
+    border-radius: 0;
+    background: var(--oreui-panel-bg);
+}
+.badge {
+    border-radius: 0;
+}
+
+/* ---- 2.9 搜索框 ---- */
+.DocSearch-Button {
+    border: 2px solid var(--oreui-border-dark2) !important;
+    border-radius: 0 !important;
+    background: var(--oreui-code-inline-bg) !important;
+}
+
+/* ---- 2.10 提示框（Admonition） ---- */
+.theme-admonition,
+.alert {
+    background-color: var(--oreui-bg) !important;
+    border-top: 5px solid var(--oreui-border-light);
+    border-right: 5px solid var(--oreui-border-dark);
+    border-bottom: 5px solid var(--oreui-border-dark);
+    border-left: 5px solid var(--ifm-alert-border-color, var(--oreui-accent));
+    border-radius: 0;
+    color: var(--oreui-text);
+}
+.alert summary::before {
+    border-color: transparent transparent transparent var(--oreui-accent-bright);
+}
+/* 可折叠提示框展开后的内容区。
+   原先写作 .collapsibleContent_i85q，其中的 hash 由 Docusaurus 每次构建生成，
+   版本升级后会静默失效，故改用结构选择器。 */
+.alert details > div {
+    border-top: 2px solid var(--oreui-accent-darker);
+}
+em {
+    text-decoration: underline var(--oreui-accent-bright);
+}
+.theme-admonition a {
+    color: var(--oreui-link);
+}
+
+/* ---- 2.11 杂项 ---- */
+.tabs__item,
+details {
+    border-radius: 0;
+}
+kbd {
+    background-color: var(--oreui-code-inline-bg);
+    border: 2px solid var(--oreui-border-dark2);
+    border-top-color: var(--oreui-border-light);
+    border-radius: 0;
+    color: var(--oreui-text);
+    box-shadow: none;
+}
+
+/* ---- 2.12 页脚 ---- */
+.footer {
+    background-color: #313233;
+    border-top: 2px solid #1e1e1f;
+    box-shadow: inset 0 3px #5a5b5c;
+    color: #c5c6c9;
+}
+.footer__title,
+.footer__copyright,
+.footer__link-item {
+    color: #c5c6c9;
+}
+.footer__link-item:hover {
+    color: #6cc349;
+}
+
+/* ================================================================
+   第三部分：滚动条（OreUI 风格）
+   ================================================================
+   使用 webkit 伪元素定制滚动条样式，使其与按钮风格一致。
+   Firefox 使用 @supports 隔离回退方案。
+   ================================================================ */
+
+/* ---- 3.1 全局滚动条 ---- */
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+::-webkit-scrollbar-track {
+    background: var(--oreui-line);
+}
+::-webkit-scrollbar-corner {
+    background: var(--oreui-line);
+}
+::-webkit-scrollbar-thumb {
+    background-color: #d0d1d4;
+    border: 2px solid #1e1e1f;
+    box-shadow: inset 0 -3px #58585a, inset 2px 2px rgba(255, 255, 255, 0.6),
+        inset -2px -4px rgba(255, 255, 255, 0.4);
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #b1b2b5;
+    box-shadow: inset 0 -3px #58585a, inset 2px 2px rgba(255, 255, 255, 0.8),
+        inset -2px -4px rgba(255, 255, 255, 0.6);
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #b1b2b5;
+    box-shadow: inset 2px 2px rgba(255, 255, 255, 0.8),
+        inset -2px -2px rgba(255, 255, 255, 0.6);
+}
+
+/* ---- 3.2 Firefox 回退 ---- */
+@supports not selector(::-webkit-scrollbar-thumb) {
+    html {
+        scrollbar-width: thin;
+        scrollbar-color: #d0d1d4 var(--oreui-line);
+    }
+}
+
+/* ---- 3.3 Docusaurus .thin-scrollbar 覆盖 ---- */
+.thin-scrollbar {
+    scrollbar-width: auto;
+}
+.thin-scrollbar::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+.thin-scrollbar::-webkit-scrollbar-track {
+    background: var(--oreui-line);
+}
+.thin-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #d0d1d4;
+    border: 2px solid #1e1e1f;
+    box-shadow: inset 0 -3px #58585a, inset 2px 2px rgba(255, 255, 255, 0.6),
+        inset -2px -4px rgba(255, 255, 255, 0.4);
+}
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #b1b2b5;
+    box-shadow: inset 0 -3px #58585a, inset 2px 2px rgba(255, 255, 255, 0.8),
+        inset -2px -4px rgba(255, 255, 255, 0.6);
+}
+.thin-scrollbar::-webkit-scrollbar-thumb:active {
+    background-color: #b1b2b5;
+    box-shadow: inset 2px 2px rgba(255, 255, 255, 0.8),
+        inset -2px -2px rgba(255, 255, 255, 0.6);
+}
+
+/* 强制所有滚动条保持直角（无圆角） */
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track,
+.thin-scrollbar::-webkit-scrollbar-thumb,
+.thin-scrollbar::-webkit-scrollbar-track {
+    border-radius: 0;
+}
+
+/* ================================================================
+   第四部分：Minecraft 风格 Tooltip
+   ================================================================
+   来源：中文 Minecraft Wiki
+   https://zh.minecraft.wiki/w/MediaWiki:Common.css
+   特点：深紫色半透明背景 + 渐变边框 + 像素字体
+   ================================================================ */
+
+.minetip-tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #100010;
+    padding: 0.375em;
+    font-family: "Minecraft Seven", Unifont, sans-serif;
+    font-size: 16px;
+    word-spacing: 4px;
+    white-space: nowrap;
+    line-height: 1.25em;
+    margin: 0.125em 0.25em;
+    pointer-events: none;
+    z-index: 9999;
+    color: #fff;
+    /* 可见性由 JS 控制 */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease;
+}
+.minetip-tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 外边框（左右挤压效果） */
+.minetip-tooltip::before {
+    content: "";
+    position: absolute;
+    top: 0.125em;
+    right: -0.125em;
+    bottom: 0.125em;
+    left: -0.125em;
+    border: 0.15em solid #100010;
+    border-style: none solid;
+    border-color: rgba(16, 0, 16, 0.94);
+}
+
+/* 内边框（紫色渐变） */
+.minetip-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 0.125em;
+    right: 0;
+    bottom: 0.125em;
+    left: 0;
+    border: 0.125em solid #2d0a63;
+    border-image: -webkit-linear-gradient(rgba(80, 0, 255, 0.31), rgba(40, 0, 127, 0.31)) 1;
+    border-image: linear-gradient(rgba(80, 0, 255, 0.31), rgba(40, 0, 127, 0.31)) 1;
+}
+
+/* 支持描述段落（如多行提示） */
+.minetip-tooltip > .description,
+.minetip-tooltip > .minetip-description {
+    display: block;
+    margin-top: 0.25em;
+}
