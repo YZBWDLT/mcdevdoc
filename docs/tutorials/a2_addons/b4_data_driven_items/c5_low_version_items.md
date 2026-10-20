@@ -155,7 +155,7 @@ import FileType from "/src/components/type/file"
 
 进入游戏，我们看到物品确实是可以正常运行的：
 
-![effect_food_1](/img/tutorials/a2_addons/b4_data_driven_items/c5_low_version_items/effect_food_1.png)
+![effect_food_1](/img/tutorials/a2_addons/b4_data_driven_items/c5_low_version_items/effect_food_1.webp)
 
 :::info[思考 4.5-1]
 
@@ -208,7 +208,7 @@ import FileType from "/src/components/type/file"
 
 看，吃下之后，效果真不错（请无视那个抗火效果）！
 
-![effect_food_2](/img/tutorials/a2_addons/b4_data_driven_items/c5_low_version_items/effect_food_2.png)
+![effect_food_2](/img/tutorials/a2_addons/b4_data_driven_items/c5_low_version_items/effect_food_2.webp)
 
 ## `1.16.100`~`1.20.0`之间的格式版本断档是怎么回事？
 

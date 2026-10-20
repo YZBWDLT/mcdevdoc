@@ -15,11 +15,11 @@ import Image from "/src/components/image/standard"
 
 在现在的众多高端地图中，总是会有一些「公告板」来宣传作者和团队信息。例如，下图为著名的 *15 Years Journey* 地图中的公告板：
 
-<Image src="/img/dev_template/billboard/billboard_1.png" text="15 Years Journey 地图中的公告板" size="85%"/>
+<Image src="/img/dev_template/billboard/billboard_1.webp" text="15 Years Journey 地图中的公告板" size="85%"/>
 
 为此，我们创建了一个类似的实体模板，便于广大地图开发者使用。
 
-<Image src="/img/dev_template/billboard/billboard_2.png" text="效果图（开启 Vibrant Visuals）" size="85%"/>
+<Image src="/img/dev_template/billboard/billboard_2.webp" text="效果图（开启 Vibrant Visuals）" size="85%"/>
 
 本包为**行为包**和**资源包**组合的包。
 
@@ -139,7 +139,7 @@ execute as @e[type=template:billboard,rym=-92,ry=-88] at @s positioned ~~~-2 run
 
 我们提供的公告板模板中，有一个 PPT 文件<FileType type="file" name="模板PPT.pptx"/>，您可以在此文件中设计公告板的内容：
 
-![custom_content](/img/dev_template/billboard/custom_content.png)
+![custom_content](/img/dev_template/billboard/custom_content.webp)
 
 然后，截取一张 720×405（宽高比 16:9）的截图，并将此截图覆盖到公告板贴图<FileType type="image" name="billboard.png"/>的对应区域上即可。
 

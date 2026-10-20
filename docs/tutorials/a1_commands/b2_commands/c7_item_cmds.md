@@ -309,7 +309,7 @@ Java 版也同样存在物品组件这个概念。在 1.20.5 以前，Java 版�
 
 你可以在刚刚的箱子中，将第一个物品替换为钻石剑，然后执行`/replaceitem block 5 -60 5 slot.container 0 keep apple`，在`keep`模式下，钻石剑不会被替换，而在`destroy`模式下，钻石剑就会被替换为苹果。
 
-![replaceitem_2](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/replaceitem_2.png)
+![replaceitem_2](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/replaceitem_2.webp)
 
 *（命令反馈表述抽风也是常有的事，知道它什么意思就好了，毕竟汉字的序顺不影响读阅）*
 

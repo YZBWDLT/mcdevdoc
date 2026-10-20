@@ -72,7 +72,7 @@ sidebar_position: 4
 
 `/give`并不是万能的！虽然它可以给予创造模式物品栏中的所有物品，甚至可以给予物品栏中没有的物品，但不代表所有物品都能给予。例如，很少有人知道火是具有物品形式的，然而你使用`/give @s fire`，迎接你的只有报错。
 
-![无法给予fire](/img/tutorials/a1_commands/b1_concepts/c4_item/give_fire.png)
+![无法给予fire](/img/tutorials/a1_commands/b1_concepts/c4_item/give_fire.webp)
 
 再比如，有一些藏得更深的方块，例如下界反应核、隐形基岩等，目前事实上仍然存在于底层代码之中，但是我们无法通过`/give`获取它们。
 

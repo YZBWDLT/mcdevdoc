@@ -20,13 +20,13 @@ import ImageGroup from "/src/components/image/group"
 
 我们现在要制作玻璃楼梯，考虑到不能让内部产生多余的贴图，必须要把楼梯分成三部分处理，也就是如下图的三部分：
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/no_corner_1.png" text="将楼梯模型分为 3 部分" size="75%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/no_corner_1.webp" text="将楼梯模型分为 3 部分" size="75%"/>
 
 注意，根据原版的默认方块状态，缺口是指向西方的。
 
 和[制作玻璃板](./how_to_make_glass_pane)的过程类似，我们启用「面属性」，禁用这三个块的连接面，然后微调 UV 在贴图中的位置，得到下图所示的模型：
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/no_corner_2.png" text="微调玻璃贴图得到楼梯模型" size="75%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/no_corner_2.webp" text="微调玻璃贴图得到楼梯模型" size="75%"/>
 
 ### 行为包部分的定义 模型完善
 
@@ -61,7 +61,7 @@ import ImageGroup from "/src/components/image/group"
 
 第一，现在在物品栏显示的模型是倒置的，这可以通过 bb 的显示调整解决。
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/no_corner_3.png" text="纠正楼梯在 GUI 中的显示效果" size="100%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/no_corner_3.webp" text="纠正楼梯在 GUI 中的显示效果" size="100%"/>
 
 注意：**这必须使用`1.21.110`或更高格式版本的方块模型才可实现**！如果你现在正在使用中国版或更低版本，也可以通过复制该模型，并把方块模型整体翻转 180° 来解决问题。读者也可以利用这个方法纠正台阶的模型在物品栏中的问题（如果不调整，台阶在物品栏中是居中的）。
 
@@ -275,7 +275,7 @@ import ImageGroup from "/src/components/image/group"
 
 这样，我们无拐角的楼梯就制作完成了！它可以应付一些简单的情况，比如地图内的固定装饰就可以使用它。
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/no_corner_4.png" text="游戏内实际效果"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/no_corner_4.webp" text="游戏内实际效果"/>
 
 ## 有拐角版
 
@@ -285,11 +285,11 @@ import ImageGroup from "/src/components/image/group"
 
 参考[`minecraft:placement_direction`](/docs/docs/blocks/traits#minecraftplacement_direction)方块特征，我们知道下一步我们要把`minecraft:cardinal_direction`方块状态「升级」为`minecraft:corner_and_cardinal_direction`方块状态，这里存在几个额外的值：`inner_left`、`inner_right`、`outer_left`、`outer_right`，分别对应 4 个楼梯方向。我们注意到这些方向都是对上半部分的楼梯模型骨骼进行操作。
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_1.png" text="4 种方块状态的效果，白色为 inner_left，要在左下角缺口添加新骨骼；红色为 inner_right，要在右下角缺口添加新骨骼；绿色为 outer_left，只显示左上角骨骼；蓝色为 outer_right，只显示右上角骨骼" size="75%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_1.webp" text="4 种方块状态的效果，白色为 inner_left，要在左下角缺口添加新骨骼；红色为 inner_right，要在右下角缺口添加新骨骼；绿色为 outer_left，只显示左上角骨骼；蓝色为 outer_right，只显示右上角骨骼" size="75%"/>
 
 这样，我们就必须更改我们的模型，将`top`骨骼替换为`outer_left`和`outer_right`，然后缺口处新增`inner_left`和`inner_right`骨骼，调整 UV，使得贴图出现在应该出现的位置。
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_2.png" text="添加 4 种新骨骼" size="75%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_2.webp" text="添加 4 种新骨骼" size="75%"/>
 
 现在我们先不考虑面剔除问题，来关注如何改进我们的方块定义。
 
@@ -397,7 +397,7 @@ import ImageGroup from "/src/components/image/group"
 
 其中，66-85 行的代码是为了更好地显示不同方块状态的楼梯，读者可以无视。重新进入游戏，我们可以看到现在楼梯的模型可以正确地连接了：
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_3.png" text="骨骼已被成功隐藏" size="75%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_3.webp" text="骨骼已被成功隐藏" size="75%"/>
 
 现在还剩下两个问题有待解决：
 
@@ -432,7 +432,7 @@ import ImageGroup from "/src/components/image/group"
 
 现在，你的模型结构应该如图所示，我们合计新增了一个骨骼`bottom_to_inner_left`：
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_5.png" text="模型结构（处理完 inner_left）" size="75%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_5.webp" text="模型结构（处理完 inner_left）" size="75%"/>
 
 并且，我们可以给出新增的那一个`bottom_to_inner_left`的显示时机：
 
@@ -453,7 +453,7 @@ import ImageGroup from "/src/components/image/group"
 
 到最后，我们可以定义剩下的骨骼，如下图所示：
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_6.png" text="模型结构（完整版）" size="30%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_6.webp" text="模型结构（完整版）" size="30%"/>
 
 一共多了 8 个模型，我们需要分别定义：
 
@@ -1010,10 +1010,10 @@ import ImageGroup from "/src/components/image/group"
 通过这种方法制作的楼梯可能存在的问题有：
 
 1. 目前为止仍然不支持复合选择箱，因此在玩家事实上并没有面向楼梯时，仍然会导致选中楼梯。~*笑点：网易的`netease:aabb`组件早几年前就已经实现复合碰撞箱和复合选择箱了。*~  
-   <Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/issue_1.png" text="即使没有面向楼梯，仍然会选中这个楼梯"/>
+   <Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/issue_1.webp" text="即使没有面向楼梯，仍然会选中这个楼梯"/>
 2. 我们定义的楼梯和原版楼梯不能形成拐角。
 3. 我们定义的楼梯的 UV 会随着方块置换的旋转组件而旋转。这个问题或许可以通过优化模型解决，但不能通过`minecraft:geometry`的`uv_lock`参数解决。
-   <Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_7.png" text="UV 会随着方块置换的旋转组件而旋转"/>
+   <Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_7.webp" text="UV 会随着方块置换的旋转组件而旋转"/>
 
 import GiscusComment from "/src/components/comment/giscus.js"
 

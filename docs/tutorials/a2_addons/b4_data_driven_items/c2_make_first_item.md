@@ -47,7 +47,7 @@ import FileType from "/src/components/type/file"
 
 </treeview>
 
-![create_file_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/create_file_1.png)
+![create_file_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/create_file_1.webp)
 
 然后，我们就可以开始编写定义文件了！
 
@@ -189,13 +189,13 @@ import FileType from "/src/components/type/file"
 
 通过上面的学习，我们分别定义了物品的格式版本、基本信息和组件功能，已经可以让 Minecraft 识别到有这样的新物品存在。至此，行为包部分就定义完毕了！然而，如果你现在使用 VSC，可以看到这个文件却被直接标红了一处：
 
-![item_definition_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/item_definition_1.png)
+![item_definition_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/item_definition_1.webp)
 
 这并不是语法问题，而是我们没有指定`ruby`到底是什么贴图的缘故。是啊，自始至终我们就没有指定过`ruby`的贴图，Minecraft 内部也没有这样的贴图，这要 Minecraft 如何识别呢？
 
 此时读者可以试试进入游戏，我们看到不仅贴图没有成功显示，而且显示的名字也是“乱码”：
 
-![error_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/error_1.png)  
+![error_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/error_1.webp)  
 ![error_2](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/error_2.png)
 
 我们看到，因为这里已经变成了贴图和翻译问题，所以从现在开始，我们要开始捣鼓资源包了。让我们现在开始转换思路和战场，搞定物品显示的问题吧！
@@ -270,7 +270,7 @@ item.test:ruby=红宝石
 
 *备注：如果你的 VSC 现在还存在报错的话，请使用我们之前所讲过的方法忽略相关错误——这个插件真的很喜欢误报错误*。
 
-![create_file_2](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/create_file_2.png)
+![create_file_2](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/create_file_2.webp)
 
 ## 学会查文档
 
@@ -284,15 +284,15 @@ item.test:ruby=红宝石
 
 我们点参考文档（Reference Documentation）- 物品 JSON（Item JSON）：
 
-![learn_doc_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/learn_doc_1.png)
+![learn_doc_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/learn_doc_1.webp)
 
 进入一个新的页面，可以点击物品组件列表（Item Components List）查看所有组件：
 
-![learn_doc_2](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/learn_doc_2.png)
+![learn_doc_2](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/learn_doc_2.webp)
 
 我们以`minecraft:can_destroy_in_creative`组件为例，进入该组件的页面：
 
-![learn_doc_3](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/learn_doc_3.png)
+![learn_doc_3](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/learn_doc_3.webp)
 
 首先我们需要先知道一点就是，几乎所有组件接受的值都是对象，例如以`minecraft:can_destroy_in_creative`组件为例，它本身也接受一种对象的值：
 
@@ -331,7 +331,7 @@ item.test:ruby=红宝石
 
 Bedrock Wiki 的页面相对简洁易找许多了，我们直接点物品（Items）- 物品组件（Item Components），里面直接囊括了我们需要的所有物品组件。
 
-![learn_doc_4](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/learn_doc_4.png)
+![learn_doc_4](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/learn_doc_4.webp)
 
 这篇文档更多地从实用性的角度出发设计，因此去除了很多冗余的设计，比如 Bedrock Wiki 完全没有说到`minecraft:can_destroy_in_creative`组件接受对象值一事。因此，从实际工程角度来看，甚至 Bedrock Wiki 做的比官方文档还更易用。而且，该网站也包含了很多有意义的开发教程，对读者们应该会很有帮助。
 
@@ -349,7 +349,7 @@ Bedrock Wiki 的页面相对简洁易找许多了，我们直接点物品（Item
 
 嘿嘿，最后当然要来谈谈本站提供的文档啦！本站同时提供了国际版和中国版的物品组件文档，无论你是中国版还是国际版的开发者，相信我们的文档页面也能让你很舒服地得到你想要的信息。最关键的是——本文档十分适合中国宝宝的体质！UwU
 
-![learn_doc_5](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/learn_doc_5.png)
+![learn_doc_5](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/learn_doc_5.webp)
 
 我不敢说没有缺点，缺点当然是有的——人手不足啦，这就导致我们的文档更新可能不及时，有不少文档目前还处于空缺状态。但我至少敢保证已经完成的文档是绝对好用的！如果你感觉有改进点，欢迎在对应文档的评论区留言！
 

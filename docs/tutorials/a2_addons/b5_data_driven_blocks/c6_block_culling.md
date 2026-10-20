@@ -93,7 +93,7 @@ import FileType from "/src/components/type/file"
 
 现在我们进入游戏来看一下实际效果吧：
 
-![glass_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c6_block_culling/glass_1.png)
+![glass_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c6_block_culling/glass_1.webp)
 
 哦吼吼！雄兔脚扑朔，雌兔眼迷离；双兔傍地走，安能辨我是雄雌？
 

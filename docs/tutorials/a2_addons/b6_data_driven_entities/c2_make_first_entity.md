@@ -135,7 +135,7 @@ import Image from "/src/components/image/standard"
 
 现在，我们完成了最基本的定义。但问题来了——我们这个实体究竟需要什么模型、什么贴图，我们还从来没有指定过呢！如果直接进入游戏测试，会发现即使生成了实体也是空无一物：
 
-![rp_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/rp_1.png)
+![rp_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/rp_1.webp)
 
 看来，我们需要定义实体的渲染表现。渲染一个实体，最重要的要素自然还是我们曾经讲过的：材质（Material）、模型（Model）和贴图（Texture）。
 
@@ -173,7 +173,7 @@ import Image from "/src/components/image/standard"
 
 现在让我们再进入游戏试一下看看……
 
-![rp_2](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/rp_2.png)
+![rp_2](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/rp_2.webp)
 
 好，现在一个“史蒂夫”就出现在我们的眼前了！
 
@@ -185,7 +185,7 @@ _~btw，这里我加上了 Prizma 2.2 的光影特效——我真的很喜欢它
 
 不过，我们也发现，一个完全无组件的实体的默认行为显然是十分诡异的——我们打它一下，它居然会“原地飞升”！
 
-![vanilla_instance_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/vanilla_instance_1.png)
+![vanilla_instance_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/vanilla_instance_1.webp)
 
 显然这不是我们想要的效果。为了让实体拥有正常的行为，显然我们要做的第一件事情是为实体添加一个物理效果。
 
@@ -282,7 +282,7 @@ _*可能有一些好奇宝宝要问：这不是抄袭吗？这话说的，我们
 
 **小退重进（/reload all 即可）** 可以重新加载我们的实体的新行为。现在再打一次实体，可以发现没有问题了！虽然它的动画看起来还是有些怪异——或者更准确的说，压根没有动画，但那就是我们之后要解决的问题了。
 
-![vanilla_instance_2](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/vanilla_instance_2.png)
+![vanilla_instance_2](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/vanilla_instance_2.webp)
 
 ### 更进一步的实例——让实体拥有一个背包
 
@@ -340,7 +340,7 @@ _*可能有一些好奇宝宝要问：这不是抄袭吗？这话说的，我们
 
 - `minecraft:inventory`：这就是我们所需要的核心组件，它定义了一个实体拥有物品栏。根据其中的内容，我们还可以知道它能否被吸取物品、物品栏大小和容器类型。容器类型是什么我们先不用去管它，一般来说在相关文档里面都有记载。
 - `minecraft:is_stackable`：定义运输矿车可以堆叠。  
-  <Image src="/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/stacked_minecart_1.png" text="堆叠组件的效果，由下至上堆叠了 4 辆运输矿车，一般的实体是不可堆叠的" size="35%"/>
+  <Image src="/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/stacked_minecart_1.webp" text="堆叠组件的效果，由下至上堆叠了 4 辆运输矿车，一般的实体是不可堆叠的" size="35%"/>
 - `minecraft:pushable_by_entity`和`minecraft:pushable_by_block`：这就是我们前文提到过的被拆分的`minecraft:pushable`。什么时候使用拆分前或拆分后的组件，取决于你使用的格式版本。对于这个组件，`1.26.10`和之后的版本就要使用拆分后的组件了。这个在我们的文档中也是有记录的。事实上，现在有很多组件、或组件内的功能都和格式版本有关，读者在写实体文件时请务必注意。
 - `minecraft:rail_movement`：定义实体可以在铁轨上移动。不要小看这个（或这类，之后我们还会接触到许多运动组件）组件，没有这类运动组件，实体就是不可以移动的！
 
@@ -365,7 +365,7 @@ _*可能有一些好奇宝宝要问：这不是抄袭吗？这话说的，我们
 
 这里我们不希望 NPC 的物品可以被吸走，所以把`can_be_siphoned_from`删掉就好了（但删除的时候需要确保它不是一个必需参数）。现在我们再来试试效果：
 
-<Image src="/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/inventory_1.png" text="自定义 NPC 的物品栏"/>
+<Image src="/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/inventory_1.webp" text="自定义 NPC 的物品栏"/>
 
 看，现在我们就可以打开实体的物品栏了！
 
@@ -553,7 +553,7 @@ _*可能有一些好奇宝宝要问：这不是抄袭吗？这话说的，我们
 
 现在我们就得到一个自定义的盔甲架。
 
-![custom_armor_stand_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/custom_armor_stand_1.png)
+![custom_armor_stand_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/custom_armor_stand_1.webp)
 
 现在，请你尝试击打一下这个盔甲架，再试图给这个盔甲架装备物品，你立刻就能体会到为什么我们说「原版的数据驱动实体也不是完全由组件驱动的」。
 
@@ -577,7 +577,7 @@ _*可能有一些好奇宝宝要问：这不是抄袭吗？这话说的，我们
 
 在 /reload all 之后，我们立刻看到现在我们的盔甲架和原版的盔甲架已经别无二致。是的，运行时 ID 就是用来启用原版实体的硬编码功能的。
 
-![custom_armor_stand_2](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/custom_armor_stand_2.png)
+![custom_armor_stand_2](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/custom_armor_stand_2.webp)
 
 相信你也能够看得出来，使用运行时 ID 事实上有一个很致命的缺陷——它会添加一些多余的功能上去。例如，如果我们现在有还原盔甲架的放置装备的需求，但是受伤行为要和一般实体一致的需求时，使用运行时 ID 就无法做到这一点了——因为运行时 ID 只能两个功能都应用，不能选一个去应用。因此，要使用运行时 ID，必须充分考虑到运行时 ID 的缺陷。
 

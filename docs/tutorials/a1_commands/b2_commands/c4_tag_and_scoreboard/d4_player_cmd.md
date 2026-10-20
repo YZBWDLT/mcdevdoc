@@ -52,11 +52,11 @@ sidebar_position: 4
 
 我们看到，在执行`/scoreboard players add @s data 1`后，右侧的记分板显示我们的分数为 1 分。
 
-![player_add_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_add_1.png)
+![player_add_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_add_1.webp)
 
 而执行`/scoreboard players remove @s data 1`后，右侧的记分板则显示我们的分数为 0 分。
 
-![player_remove_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_remove_1.png)
+![player_remove_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_remove_1.webp)
 
 很简单吧？相信你已经理解了这个语法。和`/tag`类似，记分板同样作为一种标记，不会对实体的行为有任何影响。
 
@@ -77,7 +77,7 @@ sidebar_position: 4
 
 *事出反常必有妖*，我们来看看 Java 版`add` -1 的效果如何：
 
-![player_add_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_add_2.png)
+![player_add_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_add_2.webp)
 
 看来这就是 Mojang 添加`remove`语法的理由——因为 Java 版不支持添加负数。当然，如果你不放心，担心未来的基岩版会开倒车禁止填写为负数的话，那么在涉及减分操作时就用`remove`吧。
 
@@ -95,7 +95,7 @@ sidebar_position: 4
 
 我们清楚地看到，世界中并不存在任何一名名字叫做“test”的玩家，然而这条命令还是成功执行，并显示在了侧边栏上。这就是为一个假名添加分数的方法。
 
-![player_add_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_add_3.png)
+![player_add_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_add_3.webp)
 
 ### 针对所有追踪对象的操作
 
@@ -109,7 +109,7 @@ sidebar_position: 4
 
 我们看到，包括假名在内的所有被追踪对象都增加了 100 分，同时其他实体却不受影响。但是，**这么做也同时影响其他记分项上的被追踪对象**，例如在下图中，被`test`记分项追踪的假名也同样受到了影响并显现在`data`中。
 
-![player_add_4](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_add_4.png)
+![player_add_4](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_add_4.webp)
 
 实际情况下，`*`的使用应当慎之又慎，因为它不像目标选择器一样，它没有任何筛选手段。
 
@@ -145,7 +145,7 @@ sidebar_position: 4
 
 执行命令`/scoreboard players set test data 1`。这将指定一个假名分数`data.test`=`1`。
 
-![player_reset_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_reset_1.png)
+![player_reset_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_reset_1.webp)
 
 然后，用`/scoreboard players reset test data`移除它的分数。
 
@@ -153,7 +153,7 @@ sidebar_position: 4
 
 你会看到，`data.test`从记分板上消失，代表它不再被追踪。在某些情况下，这条命令是比较有用的，例如要抛弃一个变量或者处理“玩家下线”问题时，这些问题我们都会在下一节详细讲讲。
 
-![player_reset_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_reset_2.png)
+![player_reset_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_reset_2.webp)
 
 ## 随机分数
 
@@ -175,7 +175,7 @@ sidebar_position: 4
 
 可以看到，这次的执行随机取值为了 56。你也可以多尝试几次这条命令，感受随机取值的特点。
 
-![player_random_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_random_1.png)
+![player_random_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_random_1.webp)
 
 随机取值在许多情况下都拥有它独特的意义，例如幸运方块、抽奖机等需要涉及概率、随机事件的情况。从更底层一点的机制上来说，诸如苦力怕爆炸掉落方块、发射器投掷器发射物品、甚至于我们曾学过的`@r`都需要用到随机。可见，无论是实际工程中还是游戏中，随机都无处不在。
 
@@ -277,7 +277,7 @@ sidebar_position: 4
 /scoreboard players set y data 5
 ```
 
-![player_operation_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_1.png)
+![player_operation_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_1.webp)
 
 然后，执行下面的每一条命令，执行每一条命令结束后，观察两个变量发生的变化，然后**再执行一次上面的两条命令以复原原有的值**。
 

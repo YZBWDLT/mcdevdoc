@@ -48,7 +48,7 @@ sidebar_position: 1
 
 从 Mojang 给我们的模板中，好消息是，我们可以看到 Mojang 已经给了我们一些原版物品实例，这意味着我们仍然可以模仿官方的写法去写一个物品。坏消息是，显然这点物品并不是原版物品的全部。怎么回事？我们可以看到原版提供的物品只有食物、收纳袋和一些种子而已，类型十分有限：
 
-![vanilla_and_data_driven_1](/img/tutorials/a2_addons/b4_data_driven_items/c1_data_driven_items/vanilla_and_data_driven_1.png)
+![vanilla_and_data_driven_1](/img/tutorials/a2_addons/b4_data_driven_items/c1_data_driven_items/vanilla_and_data_driven_1.webp)
 
 这是因为，**原版的绝大多数物品并不是数驱物品，而是硬编码物品（Hard-Coded Items）**。硬编码物品是利用游戏内部代码强行实现的，并不是我们所说的「向游戏引擎提供数据，由游戏引擎自行按数据注册的物品」。因此，**绝大多数的原版物品的行为是不可通过数驱物品修改的**。
 
@@ -56,7 +56,7 @@ sidebar_position: 1
 
 同样地，读者需要注意，**我们是不被允许更改原版硬编码物品的——连使用`minecraft`命名空间都是不被允许的**。强行修改原版硬编码物品会导致内容日志报错：
 
-![vanilla_and_data_driven_2](/img/tutorials/a2_addons/b4_data_driven_items/c1_data_driven_items/vanilla_and_data_driven_2.png)
+![vanilla_and_data_driven_2](/img/tutorials/a2_addons/b4_data_driven_items/c1_data_driven_items/vanilla_and_data_driven_2.webp)
 
 不过经过实测，由模板给出的原版物品都是数据驱动的原版物品，比如苹果，这些物品是可以被修改的。所以，非必要情况下请勿修改原版物品。
 

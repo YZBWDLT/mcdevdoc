@@ -176,19 +176,19 @@ import Image from "/src/components/image/standard"
 
 MCS 的一个关键功能在于，你可以直接打开一个中国版测试版的开发实例，按下图操作即可。
 
-![mcs_1](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_1.png)
+![mcs_1](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_1.webp)
 
 在登录了 MCS 后，我们便可以开始写我们的附加包了。首先我们从一个空白模板出发进行设计：
 
-![mcs_2](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_2.png)
+![mcs_2](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_2.webp)
 
 注意指定命名空间，这里我们采用`test`命名空间，然后启动编辑：
 
-<Image src="/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_3.png"/>
+<Image src="/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_3.webp"/>
 
 在下载相关内容一段时间后，我们可以看到编辑器的界面如下：
 
-![mcs_4](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_4.png)
+![mcs_4](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_4.webp)
 
 我们现在来创建一个新物品吧，比如创建我们上一节创建的金面团，这是一个带药效的食物：
 
@@ -223,13 +223,13 @@ MCS 的一个关键功能在于，你可以直接打开一个中国版测试版�
 
 那么，我们在编辑器里可以新增一个物品：
 
-![mcs_5](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_5.png)  
-![mcs_6](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_6.png)  
+![mcs_5](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_5.webp)  
+![mcs_6](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_6.webp)  
 ![mcs_7](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_7.png)
 
 现在，MCS 就为我们创建了一个新的物品，其属性如右图所示：
 
-![mcs_8](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_8.png)
+![mcs_8](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_8.webp)
 
 属性里面所填写的内容是很简单的，读者在学习了前几节的内容后应该都可以看得懂。我们注意到 MCS 为我们添加了食物组件和使用时长的组件，其中我们可以为食物组件添加新的属性：
 
@@ -238,7 +238,7 @@ MCS 的一个关键功能在于，你可以直接打开一个中国版测试版�
 
 资源包方面，将金面团的图片从文件资源管理器拖拽到 MCS 里：
 
-![mcs_11](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_11.png)
+![mcs_11](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_11.webp)
 
 然后添加新的资源包组件：
 
@@ -246,15 +246,15 @@ MCS 的一个关键功能在于，你可以直接打开一个中国版测试版�
 
 经过一定的修改之后，现在读者右侧的属性界面如图所示。
 
-![mcs_13](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_13.png)
+![mcs_13](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_13.webp)
 
 看，我们这样就实现了在一行代码都没有编写的情况下完成了新物品的编写！当然，这样写出来的物品也是仅适用于中国版的。如果我们想要测试效果，就可以点击右上角的运行来进行测试，这会打开一个 ModPC 的开发包（也就是一个游戏实例）：
 
-![mcs_14](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_14.png)
+![mcs_14](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_14.webp)
 
 在完成附加包的编写后，我们还可以直接在 MCS 的主页面导出我们的包，实现一条龙服务，非常方便。
 
-![mcs_15](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_15.png)
+![mcs_15](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_15.webp)
 
 ---
 

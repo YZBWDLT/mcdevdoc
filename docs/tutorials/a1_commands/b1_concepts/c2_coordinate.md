@@ -18,21 +18,21 @@ sidebar_position: 2
 
 现在你可以想象一根绳，随便掐住一个点，如何描述你掐住的这个点的位置信息呢？你可以说，你掐住的这个点距离这根绳左端的长度是 x。你会发现，这个 x 唯一地确定了这个点，不再有任何其他的点与左端的距离也是 x，也就是说你只使用了一个参量 x 就描述了它的位置信息。
 
-![绳子距离](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/1_dimension.png)
+![绳子距离](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/1_dimension.webp)
 
 现在我们把这根绳扩展到一张纸，随便选一个点，如何描述它的位置信息？你可能会想到，像上面一样找到一个角落，并描述这个点到它的距离 x。但这样并不能准确描述它的位置信息，因为还有其它与这个角落距离相同的点存在，而且是无数个，如果将这些点连起来，将组成一个圆弧。我们这时候不妨假设这个点与这张纸的左侧和上侧的距离分别为 x 和 y，那么当这两个参量都确定的时候，你会发现只有唯一的一个点被确定。
 
-![纸张距离](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/2_dimension.png)
+![纸张距离](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/2_dimension.webp)
 
 同样地，我们扩展到一个房间里面，假设这个房间里面有一只飞虫，如何确定它的位置？也许聪明的你已经想到：假设这只飞虫与这个房间的左侧、下侧、底侧的距离分别为 x，y，z，这三个值才能够唯一地确定一个位置。
 
 上述三种情况中，绳子称为**一维**的。拉直这根绳，我们可以选取一个**参考点**，也就是上文所说的「这根绳左端」，我们将之称为**原点**，并根据原点规定一个**方向**，我们一般选取向右为正方向，向左为负方向。事实上，这基本就是**数轴**的概念。数轴是一维且无限长的，你可以用一个唯一的 x 确定一个点所在的位置。
 
-![数轴](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/number_axis.png)
+![数轴](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/number_axis.webp)
 
 而纸是二维的。如果我们取一个垂直于数轴 x 的数轴 y，并让这两个数轴相交于各自的原点，数轴 x 的正方向为右，数轴 y 的正方向为上，那么这时候，则构建了一个无穷大的平面，这是**二维**的**平面直角坐标系**。这时候，你想确定这个平面上一个点的位置，就要通过 x 和 y 来标记。
 
-![平面直角坐标系](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/rectangular_coordinates.png)
+![平面直角坐标系](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/rectangular_coordinates.webp)
 
 在平面直角坐标系的基础上，添加一个向上为正方向的数轴 z，这时候就出现了一个无穷大的空间，这叫做**三维**的**空间直角坐标系**。如果你要确定一个三维的物体的位置，你就需要 x，y，z 三个变量。特殊地，我们称如上构造的空间直角坐标系叫做**右手坐标系**。伸出你右手的拇指、食指和中指，中指向上，拇指指向你自己，而食指指向右边，那么这时候，如果这三个手指两两垂直，拇指的方向就是 x 轴正方向，食指的方向就是 y 轴正方向，而中指的方向就是 z 轴正方向。
 
@@ -52,21 +52,21 @@ sidebar_position: 2
 
 现在，你可以进入你的世界设置，并开启**坐标显示**。
 
-![坐标显示设置](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/settings.png)
+![坐标显示设置](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/settings.webp)
 
 回到游戏，你会看到左上角多出来了一个`位置：xx xx xx`。这就是你所处的**坐标**。注意，打开坐标显示后，这个坐标表示的是你的**脚部的位置**信息。
 
-![游戏中玩家的坐标](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/coordinates.png)
+![游戏中玩家的坐标](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/coordinates.webp)
 
 Minecraft 的坐标以东为 x 轴正方向，以南为 z 轴正方向，而**向上则为 y 轴正方向**。请务必注意这一点，尤其是在数学上我们一般将竖轴设为 z 轴而非 y 轴。
 
-![Minecraft的坐标示意](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/coordinates_in_mc.png)
+![Minecraft的坐标示意](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/coordinates_in_mc.webp)
 
 注：图片来源于中文 Minecraft Wiki。
 
 为了方便地获取你的坐标或你所面向的方块的坐标，你可以打开“设置 - 创作者 - 启用复制坐标 UI”，然后在聊天栏界面快速复制粘贴你的坐标或者你所面向的方块的坐标。如果你使用 Windows，你还可以通过 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>X</kbd> 快捷键来快速获取你所面向的方块坐标，通过 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> 快捷键快速获取你的坐标。
 
-![启用复制坐标UI](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/enable_ui.png)
+![启用复制坐标UI](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/enable_ui.webp)
 
 ---
 
@@ -86,13 +86,13 @@ Minecraft 的坐标以东为 x 轴正方向，以南为 z 轴正方向，而**�
 
 在创造模式下飞起来，然后执行`/tp 50 -58 50`。执行此命令后，观察你的位置变化。
 
-![执行tp命令](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/tp_command.png)
+![执行tp命令](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/tp_command.webp)
 
 :::
 
 做完上述实验后可以看到，你会被直接传送到这个位置上。
 
-![执行tp命令的效果](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/tp_command_executed.png)
+![执行tp命令的效果](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/tp_command_executed.webp)
 
 ---
 
@@ -104,13 +104,13 @@ Minecraft 的坐标以东为 x 轴正方向，以南为 z 轴正方向，而**�
 
 在创造模式下飞起来，执行`/tp ~5~~`。你可以多次执行这条命令。
 
-![相对坐标](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/relative_world_coordinates.png)
+![相对坐标](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/relative_world_coordinates.webp)
 
 :::
 
 做完上述实验后，你将被传送到你原来位置的东边 5 格上。这种用波浪线和一个数字来表示相对位置的坐标叫做**相对坐标（Relative World Coordinates）**。如果命令的参数要求填写为`x y z`类型，相对坐标也是允许的。
 
-![相对坐标执行多次的结果](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/relative_world_coordinates_executed.png)
+![相对坐标执行多次的结果](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/relative_world_coordinates_executed.webp)
 
 ### 相对坐标的表示方法
 
@@ -128,7 +128,7 @@ Minecraft 的坐标以东为 x 轴正方向，以南为 z 轴正方向，而**�
 
 如何把你立刻传送上天？你可以执行`/tp ~ 256 ~`。注意这次三个坐标之间必须要有空格！
 
-![相对坐标与绝对坐标的混用](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/relative_world_coordinates_and_absolute_world_coordinates.png)
+![相对坐标与绝对坐标的混用](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/relative_world_coordinates_and_absolute_world_coordinates.webp)
 
 :::info[思考 1.2-1]
 
@@ -174,7 +174,7 @@ Minecraft 的坐标以东为 x 轴正方向，以南为 z 轴正方向，而**�
 
 **注意：局部坐标不能和相对坐标、绝对坐标混用**！例如，如果我们执行`/tp ^5 -60 ~2`，游戏将会报错：
 
-![混用后的报错](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/error.png)
+![混用后的报错](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/error.webp)
 
 顺便一提，这种报错格式`语法错误：意外的“xxx”，出现在“... >>xxx<< ...”`代表你写的命令中存在语法错误。看到这种报错格式，应当检查你的命令中是否存在语法问题。
 

@@ -14,7 +14,7 @@ sidebar_position: 5
 
 世界规则，就是能够影响到世界运行方式的规则。其实，在你创建世界时，你所看到的一些“作弊选项”本质上就是更改了这些规则。
 
-![gamerule_1](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_1.png)
+![gamerule_1](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_1.webp)
 
 在基岩版中，世界规则主要由两条命令控制：`/gamerule`和`/mobevent`。其中，`/gamerule`是我们这一节的重点内容，而`/mobevent`相对来说，使用频次就要低得多了。
 
@@ -32,13 +32,13 @@ sidebar_position: 5
 
 第一种，可以直接写为`/gamerule`，来**查询当前所有的游戏规则**。
 
-![gamerule_2](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_2.png)
+![gamerule_2](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_2.webp)
 
 我们看到可用的游戏规则还是很多的。第二种，就是语法 2 和 3 的含义：`/gamerule <规则> [值]`，**将`规则`改为`值`，如果`值`未指定就改为查询**。只是规则分为布尔值的规则和整数的规则，所以值也对应地调整为布尔值和整数。
 
 这些游戏规则都有什么用处呢？现在，请你在 [Wiki 给出的所有游戏规则](https://zh.minecraft.wiki/w/游戏规则#基岩版)的表里面查看更具体的细节，Wiki 给出的列表可谓十分详细，无需我们再额外强调什么。这张表怎么看？很简单，我们只需要关注“游戏规则 ID”、“默认值”和“效果”这几列就行。
 
-![gamerule_3](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_3.png)
+![gamerule_3](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_3.webp)
 
 当然，这个表格中有些规则你可能目前还看不懂，比如`commandBlockOutPut`、或者`functionCommandLimit`等涉及到你还没有接触到的概念，如果看不懂，就直接跳过去，我们在讲到相关内容的时候会简单谈谈这些游戏规则。但是，其中的大多数内容，你应该已经能看懂了。
 
@@ -97,7 +97,7 @@ sidebar_position: 5
 
 在创建世界时，我们可以看到这个世界在一开始就要求我们指定一个模拟距离。很多人并不理解怎么回事，然而你现在可能已经有了一点头绪。是的，**模拟距离控制着玩家附近的范围，有多远的区块会被加载，有多远的生物会不断地运行**。如果你是生电（生存电路）玩家，对这个名词必然不陌生。模拟距离如果不特别指定，一般是 4 个区块，代表玩家所在区块以外延伸的 4 个区块都会加载。下图来源于[模拟距离 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/模拟距离)，可能对你理解这个概念有所帮助。
 
-![simulation_distance](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/simulation_distance.png)
+![simulation_distance](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/simulation_distance.webp)
 
 我们再来扩展一点小知识，关于实体的自然生成、自然消失和持久性。
 
@@ -170,7 +170,7 @@ sidebar_position: 5
 
 需要注意的一点是，每次添加常加载区域，不能超过 100 个区块，否则会执行失败。而对于语法 2 而言，因为半径超过 5 会导致添加的区块数量超过 100，因此`半径`最大为 4。这也就导致我们通常使用添加矩形常加载区域的语法 1，而非实际上添加很少常加载区域的语法 2。
 
-![tickingarea_3](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/tickingarea_3.png)
+![tickingarea_3](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/tickingarea_3.webp)
 
 *备注：本图仅为示意*。
 

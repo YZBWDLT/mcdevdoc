@@ -186,7 +186,7 @@ import Version from '/src/components/highlight/version';
 /gamemode <游戏模式: int|GameMode> [玩家: target]
 ```
 
-![/gamemode](/img/tutorials/a1_commands/b2_commands/c2_simple_cmds/gamemode.png)
+![/gamemode](/img/tutorials/a1_commands/b2_commands/c2_simple_cmds/gamemode.webp)
 
 **这条命令将把`玩家`调整为`游戏模式`**。特别简单易懂的命令！
 
@@ -240,7 +240,7 @@ import Version from '/src/components/highlight/version';
 
 旁观模式是一种允许玩家进行世界旁观的模式。在该模式下，玩家将能够飞行、允许穿墙、不能对世界进行任何操作等诸多重要特性。如果你正在做一张多人地图、或者希望玩家能够参观此地图、或者就是单纯地想找找地下的一些结构，等等需求，那么你很可能会用到这个模式！
 
-![旁观模式](/img/tutorials/a1_commands/b2_commands/c2_simple_cmds/spectator_mode.png)
+![旁观模式](/img/tutorials/a1_commands/b2_commands/c2_simple_cmds/spectator_mode.webp)
 
 :::note[扩展：Java 版的旁观模式]
 
@@ -315,7 +315,7 @@ m=<游戏模式: int|GameMode>
 
 `/time`是用于调整时间的命令。这条命令之所以“人尽皆知”，主要是因为基岩版有一个快速的自动命令输入功能：
 
-![/time命令的UI](/img/tutorials/a1_commands/b2_commands/c2_simple_cmds/time_ui.png)
+![/time命令的UI](/img/tutorials/a1_commands/b2_commands/c2_simple_cmds/time_ui.webp)
 
 这个界面可以让一名完全不懂命令的玩家也能轻易地更改时间。但是，我们现在并不能说自己完全不懂命令，我们的目标不应当局限于此。我们来看一下这条命令的语法：
 
@@ -326,7 +326,7 @@ m=<游戏模式: int|GameMode>
 /time set <时间: TimeSpec>
 ```
 
-![/time](/img/tutorials/a1_commands/b2_commands/c2_simple_cmds/time.png)
+![/time](/img/tutorials/a1_commands/b2_commands/c2_simple_cmds/time.webp)
 
 上面我们给出的语法中，和游戏内并不完全一致，这是因为`TimeQuery`类型是一个穷举参数，仅支持 3 种穷举条目：`day`、`daytime`和`gametime`，所以我们直接展开写。
 
@@ -532,7 +532,7 @@ m=<游戏模式: int|GameMode>
 
 我们如何用 2 个值就确定玩家的朝向？现在我们不妨先只考虑平视的情况。在 Minecraft 中，玩家的视角可以用一个单位向量（也就是一个长度为 1 的有方向的量）去表示，我们看到*在平视的状态*下，无论玩家如何旋转自己的视角，**这个朝向的向量永远是绕着 y 轴旋转的**。选定向南为 0°，顺时针方向记为正，这个向量与 0° 所成的夹角就是`y旋转`（`yRot`，y Rotation）：
 
-![yRot](/img/tutorials/a1_commands/b2_commands/c2_simple_cmds/yrot.png)
+![yRot](/img/tutorials/a1_commands/b2_commands/c2_simple_cmds/yrot.webp)
 
 这样，向西就是 90°，向北就是 180°，向东就是 270°。因为角绕始边转一圈后，终边位置不变，所以加减 360° 的结果是一样的，比如向东还可以表示为 -90°。
 

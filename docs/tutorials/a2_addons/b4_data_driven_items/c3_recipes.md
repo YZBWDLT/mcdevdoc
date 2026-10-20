@@ -55,7 +55,7 @@ import FileType from "/src/components/type/file"
 
 ```
 
-![ruby_sword_3](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword_3.png)
+![ruby_sword_3](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword_3.webp)
 
 目前，我们还没有专门讲过那些组件的作用。然而读者如果拥有比较强大的自学能力的话，应该能写出这把剑的雏形来，至少伤害功能应该是没什么问题的。目前来说，我们先实现它基本的显示功能，而不着重考虑功能问题——功能问题就留到下一节去实现吧！
 
@@ -81,7 +81,7 @@ import FileType from "/src/components/type/file"
 
 顺便一提，我们是利用取色器取走了红宝石的一个颜色，然后在铁剑上直接使用颜色模式涂画画出来的——没有任何水准的做法，但至少在项目的前期，这么做是很有效的 >wO
 
-![ruby_sword_2](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword_2.png)
+![ruby_sword_2](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword_2.webp)
 
 然后，改一下物品贴图的定义文件<FileType type="file" name="item_texture.json" />，加上一行红宝石剑贴图路径：
 
@@ -95,7 +95,7 @@ import FileType from "/src/components/type/file"
 
 ```
 
-![ruby_sword_4](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword_4.png)
+![ruby_sword_4](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword_4.webp)
 
 最后改一下语言文件<FileType type="file" name="en_US.lang" />和<FileType type="file" name="zh_CN.lang" />，各自加上对应翻译：
 
@@ -104,13 +104,13 @@ item.test:ruby_sword=Ruby Sword
 item.test:ruby_sword=红宝石剑
 ```
 
-![ruby_sword_5](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword_5.png)
+![ruby_sword_5](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword_5.webp)
 
 其实，可以看到，自定义物品的实现过程中，资源包的实现过程是高度重复的。在后续的自定义物品实现中，为了简化表述，除了必要情况之外，我们日后将只展示物品行为包的定义和物品的贴图，而剩下的过程就交给读者自己完成。
 
 可以看到，目前这把剑和我们预期的差距还是不小的。先不要着急，我们后续会解决这个问题。至少我们得先有这个物品嘛 :)
 
-![ruby_sword_6](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword_6.png)
+![ruby_sword_6](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword_6.webp)
 
 :::
 
@@ -636,7 +636,7 @@ S
 }
 ```
 
-![recipe_furnace_2](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/recipe_furnace_2.png)
+![recipe_furnace_2](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/recipe_furnace_2.webp)
 
 它的效果如下图所示，是的，我们亲手把曾经的“诈骗”配方变成了现实！
 
@@ -840,14 +840,14 @@ recipe take @a *
 1. 按照上文所介绍的方法（红宝石颜色 + bb 颜色画笔法）分别画出如下所示的图像：  
    红宝石剑：![ruby_sword](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword.png) 红宝石镐：![ruby_pickaxe](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_pickaxe.png) 红宝石斧：![ruby_axe](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_axe.png) 红宝石锹：![ruby_shovel](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_shovel.png) 红宝石锄：![ruby_hoe](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_hoe.png) 红宝石头盔：![ruby_helmet](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_helmet.png) 红宝石胸甲：![ruby_chestplate](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_chestplate.png) 红宝石护腿：![ruby_leggings](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_leggings.png) 红宝石靴子：![ruby_boots](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_boots.png)  
    然后，分别定义其他 8 种物品。注意为它们分别加上对应的标签，有些标签是具有特定功能的。  
-   ![practice_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_1.png)
-   ![practice_2](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_2.png)  
+   ![practice_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_1.webp)
+   ![practice_2](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_2.webp)  
    请不要嫌麻烦！定义物品，尤其是一次性定义很多物品的时候就是这样枯燥的过程！再加上翻译，我们的定义就完成了。  
-   ![practice_3](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_3.png)  
+   ![practice_3](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_3.webp)  
 
 2. 基于第 1 问的结果，现在我们为它们分别添加配方。它们使用的配方均为有序配方。
-   ![practice_4](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_4.png)  
-   ![practice_5](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_5.png)  
+   ![practice_4](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_4.webp)  
+   ![practice_5](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_5.webp)  
    下面是两个我们定义的结果。读者可以看到，对于对称配方，斧头和我们上面定义的摆放方式是对称的，所以也可以合成。如果使用`"assume_symmetry": false`，那么这样就合成不出东西了。
    ![practice_6](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_6.png)  
    ![practice_7](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_7.png)  
@@ -877,10 +877,10 @@ recipe take @a *
    读者也可以做 2 下界石英 + 4 圆石 → 4 安山岩的配方。
 
 4. 1. 如图，定义这两个新物品：
-      ![practice_9](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_9.png)  
+      ![practice_9](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_9.webp)  
       ![practice_10](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_10.png)  
    2. 按照题意，定义三个新配方：
-      ![practice_11](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_11.png)  
+      ![practice_11](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_11.webp)  
       ![practice_12](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_12.png)  
       遗憾的是，我们的自定义配方和原版的蛋糕仍然有不同，这个操作会把桶吞掉，且没有补救措施。
 

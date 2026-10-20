@@ -41,7 +41,7 @@ import FileType from "/src/components/type/file"
 
 js 和其他的编程语言并不太一样。因为 js 通常是专门用于浏览器的，广泛用于网页的逻辑编写，一般不需要进行额外编译，这和 C、Python 等语言还是有些不同的。自然解析 js 代码的“编译器”就是 —— 浏览器了！我们打开浏览器，这里以 Edge 浏览器为例，按下<kbd>F12</kbd>就可以打开开发工具啦，我们点击控制台：
 
-![console_1](/img/tutorials/a3_scripts/b1_programming_language/c1_js/console_1.png)
+![console_1](/img/tutorials/a3_scripts/b1_programming_language/c1_js/console_1.webp)
 
 现在让我们以经典的输出`Hello,world!`作为开篇吧！我们在控制台输入以下代码，按下回车<kbd>Enter</kbd>：
 
@@ -122,7 +122,7 @@ PI = 4;
 
    相比于第一种注释，它还支持 [JSDoc](https://www.jsdoc.com.cn/)，方便编辑器（例如 VSC）判断具体代码的具体含义：
 
-   ![comments_1](/img/tutorials/a3_scripts/b1_programming_language/c1_js/comments_1.png)
+   ![comments_1](/img/tutorials/a3_scripts/b1_programming_language/c1_js/comments_1.webp)
 
    为了使编辑器能够认出 JSDoc，我们后面使用的第二类注释将使用两星的`/** */`。
 
@@ -1362,7 +1362,7 @@ class JSUtil {
 JSUtil.randomInt(5, 10);
 ```
 
-![static_method_1](/img/tutorials/a3_scripts/b1_programming_language/c1_js/static_method_1.png)
+![static_method_1](/img/tutorials/a3_scripts/b1_programming_language/c1_js/static_method_1.webp)
 
 做一点解释：
 

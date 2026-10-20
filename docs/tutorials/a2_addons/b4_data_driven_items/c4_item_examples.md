@@ -91,7 +91,7 @@ import FileType from "/src/components/type/file"
 
 进入游戏试试看，这个面团就能吃下去了！
 
-![food_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/food_1.png)
+![food_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/food_1.webp)
 
 其中，第 15\~24 行就是我们新加的内容。我们来简单分析一下：
 
@@ -200,7 +200,7 @@ import FileType from "/src/components/type/file"
 
 好吧好吧，我承认，加的东西有点多了，不过效果很好啊！
 
-![sword_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/sword_1.png)
+![sword_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/sword_1.webp)
 
 加了这么多东西，当然要一一解释一下，不然你一定会头晕眼花的。
 
@@ -215,7 +215,7 @@ import FileType from "/src/components/type/file"
   - 根据[中文 Minecraft Wiki 关于剑的记载](https://zh.minecraft.wiki/w/%E5%89%91#%E6%8C%96%E6%8E%98%E5%B7%A5%E5%85%B7)，剑可以加速很多方块的挖掘。然而，`speed`参数并不能设定为浮点数，所以我们就只保留了竹子、竹笋和蜘蛛网这三个挖掘速度加成比较明显的数据。关于挖掘速度，读者可以参考[挖掘 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E6%8C%96%E6%8E%98#%E6%8C%96%E6%8E%98%E9%80%9F%E5%BA%A6)的内容。
 - `minecraft:enchantable`组件规定了这个物品使用什么样的附魔。我们在这里设定此物品使用剑的附魔，同时设定了此物品的附魔能力。有关附魔能力，读者也可以参考[附魔 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/附魔（物品修饰）#附魔能力)，简单来说，这个值越高，在附魔台附出更好属性的可能性就更高。
 - `minecraft:hand_equipped`组件规定了这个物品在手持时直立在手上，也就是如图所示的效果：
-  ![sword_2](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/sword_2.png)
+  ![sword_2](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/sword_2.webp)
 - `minecraft:repairable`组件规定了这个物品可以在铁砧中通过原材料修复。我们在这里设定为了红宝石，并且每次修复回复的耐久都是最大耐久值的 1/4（375 点耐久值）。
 
 所以，这些就是我们的剑所用到的组件了！虽然用了很多组件，但好在这些组件相对来说都是很好理解的。除了耐久值问题之外，这把剑已经和原版的剑已经几乎一致了！至于这问题，我们将在讲到脚本时再介绍。
@@ -275,7 +275,7 @@ import FileType from "/src/components/type/file"
 
 不过，细心的读者一定发现了一个问题——破坏其他镐子本能破坏的方块的时候，比如石头，是不能加速的。原则上，这可通过添加方块列表来实现，不过仔细看一下镐子可加速破坏方块的列表，读者会立刻发现这么做不现实：我们有几百种镐子可加速破坏的方块（详见[镐 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E9%95%90)）！
 
-![pickaxe_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/pickaxe_1.png)
+![pickaxe_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/pickaxe_1.webp)
 
 这个问题可以引入**方块标签（Block Tags）** 来解决，然而这不是我们本节的重点，请容我们暂且按下不表，在下一章讲到数驱方块的时候，我们会回过头来看这个问题。在本节的练习题中，我们也只会让读者解决特定方块的加速破坏问题，而不是一类方块的加速破坏问题。
 
@@ -545,7 +545,7 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
 
 如果一切正常，读者便可以获得一个带有表情包的陶罐！
 
-![pottery_3](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/pottery_3.png)
+![pottery_3](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/pottery_3.webp)
 
 ---
 
@@ -797,7 +797,7 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
     }
    ```
 
-   ![practice_5](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_5.png)  
+   ![practice_5](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_5.webp)  
    ![practice_6](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_6.png)  
 
 4. ```json showLineNumbers title="炸药包定义文件"
@@ -818,7 +818,7 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
     }
    ```
 
-   ![practice_7](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_7.png)  
+   ![practice_7](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_7.webp)  
 
 5. 我们提供一个参考贴图如图：![golden_dough](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/golden_dough.png)，以下为使用的代码：
 
@@ -865,7 +865,7 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
     }
    ```
 
-   ![practice_9](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_9.png)  
+   ![practice_9](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_9.webp)  
    这里投出的箭速度很快，而且没有动画，读者可以根据`minecraft:throwable`进行修改。可以用这段代码做类似于飞刀一样的物品！
 
 7. ```json showLineNumbers title="不会消失的铁锭定义文件"

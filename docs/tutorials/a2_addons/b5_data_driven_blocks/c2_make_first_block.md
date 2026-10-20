@@ -117,7 +117,7 @@ import FileType from "/src/components/type/file"
 
 现在，如果读者正常照做，在 VSC 中会发现存在报错：
 
-![resource_pack_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/resource_pack_1.png)
+![resource_pack_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/resource_pack_1.webp)
 
 这种情况和当时在定义物品时使用`minecraft:icon`类似，因为`black_block`贴图是什么东西没人知道。这样，**我们就同样需要让游戏知道这个 ID 为`black_block`的贴图是什么东西，这时候`terrain_texture.json`就可以派上用场了**。好在，它的结构和`item_texture.json`是高度类似的，我们也可以类似地给出它的定义：
 
@@ -136,7 +136,7 @@ import FileType from "/src/components/type/file"
 
 现在进入游戏，我们可以得到一个完全黑色的方块：
 
-![resource_pack_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/resource_pack_2.png)
+![resource_pack_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/resource_pack_2.webp)
 
 剩下的工作，想必读者已经很清楚了——同步翻译文件。我们注意到，对于方块，其键名的格式为
 
@@ -482,7 +482,7 @@ tile.test:black_block.name=黑色方块
     ```
 
     最终效果：  
-    ![practice_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_2.png)
+    ![practice_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_2.webp)
 
 3. ```json title="BP_test/blocks/test/blast_proof_glass.block.json 行为包定义" showLineNumbers
     {
@@ -510,7 +510,7 @@ tile.test:black_block.name=黑色方块
     ```
 
     最终效果（为 TNT 炸过一次的效果，左侧防爆玻璃耐炸但不透明，之后我们会介绍如何使其透明）：  
-    ![practice_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_3.png)
+    ![practice_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_3.webp)
 
 4. ```json title="BP_test/blocks/test/custom_crafting_table.block.json 行为包定义" showLineNumbers
     {
@@ -572,7 +572,7 @@ tile.test:black_block.name=黑色方块
     ```
 
     最终效果：  
-    ![practice_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_5.png)
+    ![practice_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_5.webp)
 
 6. ```json title="BP_test/blocks/test/custom_crafting_table.block.json 行为包定义" showLineNumbers
     {

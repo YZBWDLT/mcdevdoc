@@ -54,7 +54,7 @@ sidebar_position: 5
 
 现在我们再进入游戏试一下，会发现除了不能合成双台阶形态外，我们定义的泥土台阶已经能够工作地很好了！至于如何把台阶变为双台阶……这就是我们的脚本要完成的任务了！
 
-![dirt_slab_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c5_block_traits/dirt_slab_1.png)
+![dirt_slab_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c5_block_traits/dirt_slab_1.webp)
 
 ---
 

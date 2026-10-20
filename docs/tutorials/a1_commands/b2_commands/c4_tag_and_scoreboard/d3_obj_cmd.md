@@ -92,7 +92,7 @@ sidebar_position: 3
 
 在 Java 版的同名命令中，这第 4 个参数不止可以填写为`dummy`，事实上它能填写的东西甚至五花八门，用鼠标划半天都划不到头。
 
-![obj_add_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_add_3.png)
+![obj_add_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_add_3.webp)
 
 这个参数，叫做**准则（Criteria）**。准则决定了这个记分板如何追踪玩家和实体的分数。例如，`deathCount`准则可以追踪玩家的死亡次数、`totalKillCount`准则可以追踪玩家杀死了多少实体、`health`准则追踪玩家的血量等等。[^2]
 
@@ -127,7 +127,7 @@ sidebar_position: 3
 
 最后，它将把`test`显示在你的屏幕右侧：
 
-![obj_setdisplay_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_2.png)
+![obj_setdisplay_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_2.webp)
 
 然而，它现在因为没有追踪任何玩家或实体的分数，所以只是很单调地显示一个 test。
 
@@ -149,11 +149,11 @@ sidebar_position: 3
 
 - 玩家列表（`list`），它会把分数排名写在前面，并在右下角显示分数。
 
-  ![obj_setdisplay_5](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_5.png)
+  ![obj_setdisplay_5](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_5.webp)
 
 - 玩家名下方（`belowname`，Below Name），它会把分数和记分板名称显示在玩家名牌的下方。也就是说，**只有实际玩家的分数会显示出来，而实体和假名的分数则都无法显示**。
 
-  ![obj_setdisplay_6](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_6.png)
+  ![obj_setdisplay_6](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_6.webp)
 
 ### `显示名称`的效果
 
@@ -170,7 +170,7 @@ sidebar_position: 3
 
 看，这样就可以保证记分项`data`显示为“数据”：
 
-![obj_setdisplay_7](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_7.png)
+![obj_setdisplay_7](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_7.webp)
 
 这就是能同时保证`记分项`简洁的同时还能保证显示名称符合要求的“秘诀”，只是一个参数的事。然而，一些经验相对丰富的开发者不知道这回事的情况也并不鲜见。
 

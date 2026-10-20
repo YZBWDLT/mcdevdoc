@@ -273,9 +273,9 @@ camera <玩家> set <预设> [缓动] [位置] [朝向]
 - `/camera @s set minecraft:free`：自由相机（默认）。
     - 此时你会发现，你的相机和你操控的玩家之间已经没有任何必然联系。
 - `/camera @s set minecraft:free pos 5 -30 5 facing 5 -60 5`：从(5,-30,5)面向(5,-60,5)的相机视角。  
-  ![camera_set_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_set_1.png)
+  ![camera_set_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_set_1.webp)
 - `/camera @s set minecraft:free pos ^-2^2^-4 facing ^^^5`：这是 Wiki 给出的示例，实现越肩视角！
-  ![camera_set_2](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_set_2.png)
+  ![camera_set_2](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_set_2.webp)
 
 :::
 
@@ -301,7 +301,7 @@ camera <玩家> set <预设> [缓动] [位置] [朝向]
 
 这些缓动函数中，`in_xxx`是在动画的一开始有一个较慢的渐变，但在动画结束的时候往往速度很快，在`/camera`中就表现为一开始运镜较慢，但越来越快；而`out_xxx`则相反，一开始比较快，但最后比较慢；`in_out_xxx`则代表中间过程可能比较快，而开始和结束时都比较慢。
 
-![easing_function_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/easing_function_1.png)
+![easing_function_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/easing_function_1.webp)
 
 当然，我们还有一种函数，`linear`，为全程的线性变化。如果你觉得其他的缓动函数不好把控，可以考虑使用单纯的线性变化函数`linear`。
 
@@ -426,7 +426,7 @@ camera @s set minecraft:follow_orbit view_offset 0 1
 
 执行`/camera @s set minecraft:follow_orbit rot 90 0 view_offset 2 2`后的效果：
 
-![camera_set_3](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_set_3.png)
+![camera_set_3](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_set_3.webp)
 
 :::
 
@@ -485,7 +485,7 @@ camera <玩家: target> target_entity <实体: target> target_center_offset <x�
 
 通过实验我们观测到，相机的焦点会一直指向玩家的位置，这就是`target_entity`所带来的效果。如果改写为`target_entity @e[c=1,type=!player]`，就将观测玩家附近的一个生物。
 
-![camera_set_4](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_set_4.png)
+![camera_set_4](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_set_4.webp)
 
 而`target_center_offset`用法，则是指定相机观测位置相对于特定实体位置的偏移如何。
 
@@ -541,7 +541,7 @@ camera <玩家: target> fov_set <视场角值: float> [视场角缓动时间: fl
 
 这条命令可以把轨道相机的焦点从你的身上转移到最近的一只羊身上。记得先生成一只羊哦！
 
-![相机语法：附着到实体 1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_attach_1.png)
+![相机语法：附着到实体 1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_attach_1.webp)
 
 然后，使用
 
@@ -618,14 +618,14 @@ hud <玩家: target> <hide|reset> [HUD元素: HudElement]
 :::tip[实验 2.9-19]
 
 - 执行命令`/hud @s hide hotbar`，你会发现你的快捷栏不再显示。  
-  ![hud_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/hud_1.png)
+  ![hud_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/hud_1.webp)
 - 执行命令`/hud @s hide crosshair`，十字准心也不再显示。  
-  ![hud_2](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/hud_2.png)
+  ![hud_2](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/hud_2.webp)
 - 执行命令`/hud @s hide all`，隐藏所有 HUD。  
-  ![hud_3](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/hud_3.png)
+  ![hud_3](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/hud_3.webp)
     - 其实，还是可以看到有一些内容并没有隐藏，这是因为`/hud`只能隐藏自己支持的项目，不能把 UI 中的每一个元素都隐藏。
 - 最后，执行命令`/hud @s reset all`，复原所有 HUD。
-  ![hud_4](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/hud_4.png)
+  ![hud_4](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/hud_4.webp)
 
 :::
 

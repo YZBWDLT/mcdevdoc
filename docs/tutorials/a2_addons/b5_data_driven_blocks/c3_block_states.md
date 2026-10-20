@@ -134,9 +134,9 @@ import FileType from "/src/components/type/file"
 
 现在让我们进入游戏实操一波吧！目前，我们暂时还没有办法自主地控制何时放置特定状态的方块，只能用`/setblock`命令了。在未来，我们在学习了脚本系统之后，就可以灵活地控制在发生何事件时使用特定的方块状态，比如和方块交互后切换方块状态！
 
-![block_permutation_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c3_block_states/block_permutation_1.png)
+![block_permutation_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c3_block_states/block_permutation_1.webp)
 
-![block_permutation_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c3_block_states/block_permutation_2.png)
+![block_permutation_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c3_block_states/block_permutation_2.webp)
 
 看，现在我们之前的定义黑色方块也可以正确发光了！
 
@@ -194,7 +194,7 @@ import FileType from "/src/components/type/file"
 
     读者可以发现，对于摩擦因数小于 0.4 的方块，会表现得更加光滑，但最终会在无动力后导致实体停止。而对于摩擦因数大于 0.4 的方块，则越容易导致实体停止运动。
 
-    ![practice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c3_block_states/practice_1.png)
+    ![practice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c3_block_states/practice_1.webp)
 
     然而，读者若做进一步实验会发现，更大摩擦因数的方块反而会导致玩家的移速变的非常的快。很有趣，不是吗？
 
@@ -217,7 +217,7 @@ import FileType from "/src/components/type/file"
 
     这时候，如果读者在`blocks.json`使用`stone`贴图，会发现使用`false`方块状态时，方块使用了花岗岩的贴图：
 
-    ![practice_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c3_block_states/practice_2.png)
+    ![practice_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c3_block_states/practice_2.webp)
 
     这事实上是 Minecraft 远古代码的“*史山*”导致的。我们可以观察`stone`贴图的定义：
 
@@ -274,7 +274,7 @@ import FileType from "/src/components/type/file"
     }
     ```
 
-    ![practice_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c3_block_states/practice_3.png)
+    ![practice_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c3_block_states/practice_3.webp)
 
     *备注：截止本文截稿时，网易的基础游戏版本为 1.21.90，这意味着网易目前不能使用[`minecraft:redstone_producer`](/docs/docs/blocks/components#minecraftredstone_producer)组件，读者在使用此组件时应当注意游戏版本。然而，读者可以使用[`netease:redstone`](/docs/docs/blocks/components#neteaseredstone)组件代替。*
 

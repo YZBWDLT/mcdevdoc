@@ -26,11 +26,11 @@ import FileType from "/src/components/type/file"
 
 首先，我们需要下载 node.js。简单来说，它允许我们在除了浏览器之外的地方编写 JavaScript 代码并运行。我们下载它的目的也很简单，**就是为了使用一个官方提供的自动补全包**。我们进入它的官网：[https://nodejs.org/zh-cn](https://nodejs.org/zh-cn)：
 
-![node_js_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/node_js_1.png)
+![node_js_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/node_js_1.webp)
 
 点击**获取 Node.js**，选择**Windows 安装程序 (.msi)**，这会自动下载 node.js 的安装程序。如果你是用的不是 Windows，可以按需下载。
 
-![node_js_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/node_js_2.png)
+![node_js_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/node_js_2.webp)
 
 我们打开刚下载好的安装程序，稍等一会儿后点 Next，接受协议并一路点 Next 安装即可。继续稍等一会儿，在 Node.js 安装过后点击 Finish，我们就可以关掉 Node.js 了。
 
@@ -58,7 +58,7 @@ npm i @minecraft/server
 
 在稍等一会儿后，node.js 应该会为你自动安装服务端脚本的补全包。
 
-![npm_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/npm_1.png)
+![npm_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/npm_1.webp)
 
 这些补全包是安装在 Windows 的`C:\Users\(你的用户名)\node_modules\@minecraft\server\`文件夹里的，如果读者感兴趣可以看看这些文件。最核心的文件就是其中的<FileType type="file" name="index.d.ts"/>了，它是用于自动补全的重要文件。
 
@@ -70,7 +70,7 @@ npm i @minecraft/server
 npm i @minecraft/server-ui
 ```
 
-![npm_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/npm_2.png)
+![npm_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/npm_2.webp)
 
 这样，我们就把两个核心补全包给安装好了！现在我们就可以关闭命令提示符了。
 
@@ -201,7 +201,7 @@ world.afterEvents.itemUse.subscribe(event => {});
 
 顺带一提，如果一切正常，读者应当能够看到自动补全：
 
-![first_program_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/first_program_1.png)
+![first_program_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/first_program_1.webp)
 
 借助自动补全，我们同样可以看`event`有哪些可访问的属性：
 
@@ -225,7 +225,7 @@ world.afterEvents.itemUse.subscribe(event => {
 
 现在我们进入游戏，来拿出木棍试一试效果：
 
-![first_program_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/first_program_3.png)
+![first_program_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/first_program_3.webp)
 
 啊哈！你看，这就成功了，是不是其实并不算难呢？我们刚刚使用后事件写出了一段简洁而优雅的代码哦，不需要什么动画控制器，也不需要什么实体文件，更没有任何物品限制，连原版物品都照样适用！这就是脚本系统的威力！
 
@@ -235,7 +235,7 @@ world.afterEvents.itemUse.subscribe(event => {
 
 现在我们再来编写一个世界前事件的例子。比如各路服务器中都十分常见的——禁止生存模式破坏方块！显然，这是一个需要我们阻止事件发生的要求，这就必须要使用世界前事件了。我们来看世界前事件有什么能用的……
 
-![before_events_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_1.png)
+![before_events_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_1.webp)
 
 嗯，这个`playerBreakBlock`就不错！显然，它应该是玩家破坏方块的前事件，只要我们阻止这个事件，玩家就不再能够破坏方块。这样，我们就可以来订阅这个事件：
 
@@ -279,7 +279,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {
 
 然后，我们只需要`/reload`即可重载我们的脚本，同样十分方便！现在读者会发现自己连一株向日葵都无法破坏：
 
-![before_events_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_3.png)
+![before_events_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_3.webp)
 
 当然了，什么都无法破坏肯定不好。我们可以更进一步，当玩家空手时才无法破坏。这样，我们就需要获取玩家破坏方块使用的物品`itemStack`。注意到这个属性是`itemStack?`，**后面带了一个`?`，表示这个属性是可选值**，它有可能返回`undefined`。不难猜测，返回`undefined`的时候应该就是玩家空手的时候，我们就可以利用这一点：
 
@@ -296,7 +296,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {
 
 现在我们再来`/reload`，会发现只要我们手里有东西就可以破坏方块了，而空手就不能破坏：
 
-![before_events_4](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_4.png)
+![before_events_4](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_4.webp)
 
 ### 执行权限 `system`常量
 
@@ -314,7 +314,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {
 
 然而，我们发现游戏出现了报错：
 
-![before_events_5](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_5.png)
+![before_events_5](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_5.webp)
 
 ```text
 [Scripting][error]-[实验行为包] ReferenceError: Native function [Player::playSound] cannot be used in restricted execution.    at <anonymous> (main.js:16)
@@ -354,7 +354,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {
 - 其次，简单介绍一下 **`run`方法**，这个方法可以**在本游戏刻内的前事件执行完毕后执行其中的代码**，或者**在后一个游戏刻等待执行代码**，即**延迟执行代码**。因此，只要前事件执行完毕并退出受限执行，在`run`里头的函数就可以正常执行。
 - 此外，我们看到`run`方法接收一个回调函数并返回一个数值，数值是取消这个延迟队列用的，我们在后面的教程中会详细介绍。
 
-![before_events_6](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_6.png)
+![before_events_6](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_6.webp)
 
 现在就可以看到，它不会再有问题了！
 
@@ -370,7 +370,7 @@ world.sendMessage("Hello, world");
 
 很遗憾，这段代码将会直接报错：
 
-![early_execution_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/early_execution_1.png)
+![early_execution_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/early_execution_1.webp)
 
 ```text
 [Scripting][error]-[实验行为包] ReferenceError: Native function [World::sendMessage] cannot be used in early execution.    at <anonymous> (main.js:21)
@@ -420,7 +420,7 @@ system.runInterval(() => {
 
 现在我们来检查玩家是否潜行，我们发现`Player`类下面可以直接获取`isSneaking`属性：
 
-![loop_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/loop_1.png)
+![loop_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/loop_1.webp)
 
 看，这就是脚本相比于命令的优势，获取玩家的相关属性就是如此简单粗暴！那么，我们可以用最简单粗暴的`if - else`语句来判断玩家是否潜行：
 
@@ -438,11 +438,11 @@ system.runInterval(() => {
 
 而对玩家使用快捷栏标题，则需要使用`Player`类中的`onScreenDisplay`属性，我们看到里面有一个`setActionBar`的方法：
 
-![loop_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/loop_2.png)
+![loop_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/loop_2.webp)
 
 鼠标指向`setActionBar`就可以查看它的类型、信息、报错条件等，包括其他变量和方法都可以这样，十分方便，因此我们以后非必要也就不再强调参数类型了。
 
-![loop_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/loop_3.png)
+![loop_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/loop_3.webp)
 
 我们来写入：
 
@@ -458,7 +458,7 @@ system.runInterval(() => {
 });
 ```
 
-![loop_4](/img/tutorials/a3_scripts/b2_guide/c1_sapi/loop_4.png)
+![loop_4](/img/tutorials/a3_scripts/b2_guide/c1_sapi/loop_4.webp)
 
 所以，编写这种功能，使用脚本就是十分甚至九分的简单！
 
@@ -482,11 +482,11 @@ system.runInterval(() => {
 
 目前来说，最好用的 SAPI 文档是 [JaylyMC 的 SAPI 文档](https://jaylydev.github.io/scriptapi-docs/)，这份文档详细记载了各个游戏版本下的可用 API：
 
-![doc_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/doc_1.png)
+![doc_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/doc_1.webp)
 
 并且还拥有非常好用的搜索功能：
 
-![doc_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/doc_2.png)
+![doc_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/doc_2.webp)
 
 此外，各个类型间的链接也都做得很好，属性和方法之间的分隔，以及接口、枚举、类和变量之间的分隔做的也都相对不错。
 
@@ -498,7 +498,7 @@ system.runInterval(() => {
 
 其次，国内也拥有一个相对好用的 SAPI 文档，是[命令助手和 MCBEID 表的作者 Xero 所搭建的 SAPI 文档](https://projectxero.top/sapi/index.html)。这份文档采用了和 JaylyMC 的 SAPI 文档同样的构建技术，并且国内的访问也很快，部分 API 甚至有中文介绍。
 
-![doc_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/doc_3.png)
+![doc_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/doc_3.webp)
 
 美中不足的是，它缺少了旧版本的接口列表，这意味着部分旧版无法使用的新版接口是无法给出的，比如如果使用此文档发现`EntityEnderInventoryComponent`类可用，但在 1.21.90 试图访问这个类时就会报错，因为这是 26.30 才开放的接口。此外，本文档主要锚定的版本是最新的`beta`版本，这也同时意味着文档里含有大量的预览版接口，在未使用实验性玩法时是不能访问的，读者应注意甄别。
 
@@ -506,7 +506,7 @@ system.runInterval(() => {
 
 最后是[微软的官方文档](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/minecraft-server?view=minecraft-bedrock-stable)。
 
-![doc_4](/img/tutorials/a3_scripts/b2_guide/c1_sapi/doc_4.png)
+![doc_4](/img/tutorials/a3_scripts/b2_guide/c1_sapi/doc_4.webp)
 
 官方文档肯定还是相对权威的，而且还能查到过往版本的更新日志。最大的问题就是难看。对。
 
@@ -674,7 +674,7 @@ npm i @minecraft/server-ui
     });
     ```
 
-    ![practice_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_2.png)
+    ![practice_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_2.webp)
 
 3. 这里使用完成使用物品后事件。和我们上面的使用物品后事件相比，这里更强调 **Complete**，也就是**完成**使用，典例就是吃掉食物。思路很简单，检查玩家吃掉的是不是苹果，是的话就给 1 级。
 
@@ -722,7 +722,7 @@ npm i @minecraft/server-ui
 
     解构的写法是很常见的，解构也不止这一种写法。我们后面也会经常使用这个写法。
 
-    ![practice_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_3.png)
+    ![practice_3](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_3.webp)
 
 4. 思路很简单，用`hasTag`方法筛选就可以了。因为需要实时更改，所以循环执行。
 
@@ -802,7 +802,7 @@ npm i @minecraft/server-ui
 
     现在我们就得到了一个同时拥有 lore 和死亡不掉落标签的物品了！
 
-    ![practice_6](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_6.png)
+    ![practice_6](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_6.webp)
 
     对代码部分做一些解释：
 
@@ -885,7 +885,7 @@ npm i @minecraft/server-ui
 
     - 第 10 行的`redStainedGlass?.typeId`就用到了我们以前介绍过的可选链。因为`getBlock()`可能返回`undefined`，这是一种保护代码的措施。如果读者仍在使用`// @ts-check`，这个可选链是会由 VSC 帮你自动补全的，很方便。
 
-    ![practice_7](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_7.png)
+    ![practice_7](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_7.webp)
 
 8. 思路是，当玩家攻击其他实体时，先进行条件判断，成功后直接`remove()`即可：
 
@@ -919,7 +919,7 @@ npm i @minecraft/server-ui
     });
     ```
 
-    ![practice_9](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_9.png)
+    ![practice_9](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_9.webp)
 
 10. 这里需要使用玩家与实体交互前事件，因为正常情况下牛也不是可交互的实体。
 
@@ -935,7 +935,7 @@ npm i @minecraft/server-ui
     });
     ```
 
-    ![practice_10](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_10.png)
+    ![practice_10](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_10.webp)
 
 </details>
 
@@ -962,7 +962,7 @@ npm i @minecraft/server-ui
     );
     ```
 
-    ![practice_11](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_11.png)
+    ![practice_11](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_11.webp)
 
 12. 这里我们使用了`EntityDamageCause`枚举，`EntityDamageCause.void`等效于`"void"`。
 
@@ -1017,7 +1017,7 @@ npm i @minecraft/server-ui
     });
     ```
 
-    ![practice_14](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_14.png)
+    ![practice_14](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_14.webp)
 
 15. 因为要尝试阻止玩家打开箱子，故而使用玩家与方块交互*前*事件。
 
@@ -1060,7 +1060,7 @@ npm i @minecraft/server-ui
     - 这里我们创建了一个有关坐标的工具类`Vector3Util`，之后里面的方法也可以用得到，循环利用。同时，避免将函数定义在事件内，防止每次触发事件都需要定义函数，降低性能，这也是一个优化性能的方法。
     - `chestTeam`可能相对复杂一些，这里做的是对所有队伍名遍历，一旦找到相同坐标的队伍就返回，如果找不到则为`undefined`。
 
-    ![practice_15](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_15.png)
+    ![practice_15](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_15.webp)
 
 </details>
 
@@ -1110,7 +1110,7 @@ npm i @minecraft/server-ui
     });
     ```
 
-    ![practice_17](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_17.png)
+    ![practice_17](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_17.webp)
 
 18. 代码如下。这就是一个很简单的数学运算了。
 
@@ -1142,7 +1142,7 @@ npm i @minecraft/server-ui
     });
     ```
 
-    ![practice_19](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_19.png)
+    ![practice_19](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_19.webp)
 
 20. 注意使用玩家与方块交互前事件，因为台阶几乎都不具有交互属性。
 
@@ -1169,7 +1169,7 @@ npm i @minecraft/server-ui
 
     基于类似的逻辑，做推广处理后便可以开发调试棒的模组了！
 
-    ![practice_20](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_20.png)
+    ![practice_20](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_20.webp)
 
 </details>
 

@@ -20,11 +20,11 @@ import ImageGroup from "/src/components/image/group"
 
 指定一个`center`骨骼，代表中心处的玻璃板模型，显然这个模型无论在任何情况下都应该存在。再指定一个`north`骨骼，代表和北方连接时显示`north`骨骼，读者会在创建时在面板上看到一个`^N`的符号，那就是北方，请将`north`创立在中心骨骼的北侧。其他骨骼同理，但目前我们暂时不急于建立其他方向的骨骼，之后我们会解释为什么。
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/1.png" text="建立中间模型和北侧玻璃板模型" size="75%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/1.webp" text="建立中间模型和北侧玻璃板模型" size="75%"/>
 
 然后，我们从原版的文件中找到玻璃的贴图（<FileType type="image" name="glass.png"/>）和玻璃板顶部（<FileType type="image" name="glass_pane_top.png"/>）的贴图，导入到 Blockbench 中，方便我们后续调试。
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/2.png" text="导入玻璃板贴图" size="75%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/2.webp" text="导入玻璃板贴图" size="75%"/>
 
 导入好之后，先隐藏`north`骨骼可见性，调`center`骨骼。这里我们来看左侧的「面属性」，点击顶和底的贴图，将其改为 glass_pane_top.png，这样顶和底就会在预览时使用玻璃板顶部的贴图。并且，在顶和底使用`top`的材质实例，方便我们后续使用[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件。
 
@@ -49,11 +49,11 @@ import ImageGroup from "/src/components/image/group"
 
 然后，复制`north`骨骼，粘贴为`south`、`west`、`east`骨骼。现在粘贴是为了应用对`north`骨骼细调的每个面的更改。然后调整每个骨骼的位置和旋转值，注意`west`放在西侧，`east`放在东侧，`south`放在南侧。然后，调整三个骨骼的 y 轴旋转值分别为`90`、`-90`、`-180`。
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/9.png" text="玻璃板模型" size="75%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/9.webp" text="玻璃板模型" size="75%"/>
 
 到这里事情还没有结束。在有连接状态下，我们如此定义会导致玻璃板中间出现多余的像素，因此必须进行剔除。我们把`center`复制 4 次，分别叫`center_east`、`center_west`、`center_south`、`center_north`，代表东西南北面的中间部分贴图。在北侧有连接时，我们就把`center_north`骨骼禁用，以此类推。然后，我们把`center`的东西南北面全部禁用，改名叫`center_top_bottom`，代表中间部分的顶底贴图。
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/10.png" text="玻璃板模型（完整版）" size="75%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/10.webp" text="玻璃板模型（完整版）" size="75%"/>
 
 这还并不是全部！注意到物品栏内的玻璃板是有边缘的，因此我们还必须增加`edge_east`、`edge_west`、`edge_south`、`edge_north`骨骼，只需要全部复制`north`、`south`、`west`、`east`骨骼并粘贴，然后在「面属性」中启用北面贴图并使用`top`的材质实例即可。
 
@@ -780,9 +780,9 @@ import ImageGroup from "/src/components/image/group"
 通过这种方法制作的玻璃板可能存在两个问题：
 
 1. 对原版其他方块的连接性不太好，尤其是在玻璃板、栅栏、墙连接时，会无法产生正确的连接。
-  <Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/issue_1.png" text="自定义玻璃板（右）没有办法和原版玻璃板（左）正确地产生连接"/>
+  <Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/issue_1.webp" text="自定义玻璃板（右）没有办法和原版玻璃板（左）正确地产生连接"/>
 2. 无法像原版的玻璃板一样，靠近后贴图淡化。
-  <Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/issue_2.png" text="自定义玻璃板（右）无法像原版玻璃板（左）一样贴图淡化"/>
+  <Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/issue_2.webp" text="自定义玻璃板（右）无法像原版玻璃板（左）一样贴图淡化"/>
 
 import GiscusComment from "/src/components/comment/giscus.js"
 

@@ -26,14 +26,14 @@ import DownloadButton from "/src/components/button/download"
 
 下图为同一个 UI 的对比：
 
-<Image src="/img/dev_template/force_mojangles_v2/pack_2.png" text="使用此包的效果" size="85%"/>
-<Image src="/img/dev_template/force_mojangles_v2/default_2.png" text="默认的效果" size="85%"/>
+<Image src="/img/dev_template/force_mojangles_v2/pack_2.webp" text="使用此包的效果" size="85%"/>
+<Image src="/img/dev_template/force_mojangles_v2/default_2.webp" text="默认的效果" size="85%"/>
 
 ### 注意事项：在切换或卸载资源包时可能会导致的间距错乱
 
 在退出装载了此包的地图后，您可能会看到英文、数字等被更改的字体在转换后会以不正确的间距显示的问题。
 
-<Image src="/img/dev_template/force_mojangles_v2/issue_1.png" text="卸载资源包的效果，数字以不正确的间距显示" size="85%"/>
+<Image src="/img/dev_template/force_mojangles_v2/issue_1.webp" text="卸载资源包的效果，数字以不正确的间距显示" size="85%"/>
 
 这是因为，本包更改了这些字体会不可避免地更改它们的宽度，所以在本包被卸载后将会以 Mojangles 字体的宽度显示默认的字体。这个问题可通过重启游戏解决，但是如果您不能忍受此问题，请勿装载此包。
 

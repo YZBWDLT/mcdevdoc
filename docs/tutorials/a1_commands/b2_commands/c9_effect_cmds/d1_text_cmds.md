@@ -60,7 +60,7 @@ sidebar_position: 1
 
 下图展现了 MC 中可用的三种标题：主标题（屏幕中央）、副标题（主标题下方）和快捷栏标题（快捷栏上方）。
 
-![title_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/title_1.png)
+![title_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/title_1.webp)
 
 标题命令的语法如下所示：
 

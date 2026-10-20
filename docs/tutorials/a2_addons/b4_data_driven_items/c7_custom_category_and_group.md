@@ -180,7 +180,7 @@ import '/src/css/treeview.css';
 
 读者可以发现，和国际版的定义相比，我们都定义了物品组的名称、图标和物品列表，而国际版还需要额外指定物品分类。要注意，只有`test:dough`和`test:golden_dough`均为中国版物品且处于同一个物品分类时，才能正确创建物品组。有关中国版的物品组定义方法，读者可见[我们提供的这篇文档](/docs/docs/items/item_category_and_group#物品组)。
 
-![item_group_3](/img/tutorials/a2_addons/b4_data_driven_items/c7_custom_category_and_group/item_group_3.png)
+![item_group_3](/img/tutorials/a2_addons/b4_data_driven_items/c7_custom_category_and_group/item_group_3.webp)
 
 ## 物品分类定义
 
@@ -218,7 +218,7 @@ import '/src/css/treeview.css';
 
 这段代码的效果如下：
 
-![item_category_1](/img/tutorials/a2_addons/b4_data_driven_items/c7_custom_category_and_group/item_category_1.png)
+![item_category_1](/img/tutorials/a2_addons/b4_data_driven_items/c7_custom_category_and_group/item_category_1.webp)
 
 这段代码是很好解释的。我们定义了一个名为`test`的物品分类，就像原版的`nature`、`equipment`等一样。同时，通过`labelText`字段定义了物品分类的显示名称，并用`icon`定义了它的图标。注意这里的图标应该定义完整的文件路径，而不再是某个特殊的物品。
 

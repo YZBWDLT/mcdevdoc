@@ -2818,7 +2818,7 @@ in <维度: Dimension> -> execute
 
 使用`x角度`来指定玩家视角水平方向的锥底面轴长，`y角度`来指定玩家视角垂直方向的锥底面轴长，而`最远距离`指定玩家视角锥面的母线长。这三个变量所组成的锥面如下图所示：
 
-<Image src="/img/docs/commands/all_commands/aim_assist.png" text="x 角度、y 角度和最远距离组成的锥面图"/>
+<Image src="/img/docs/commands/all_commands/aim_assist.webp" text="x 角度、y 角度和最远距离组成的锥面图"/>
 
 `瞄准模式`的默认值为`angle`，可选值为：
 

@@ -27,29 +27,29 @@ import Image from "/src/components/image/standard"
 
 在新建一栏选择 Bedrock 版方块：
 
-![bb_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_1.png)
+![bb_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_1.webp)
 
 我们定义我们的模型 ID 为`geometry.test_slab_bottom`，代表下半砖模型，这样我们就给我们的模型标识符填写为`test_slab_bottom`。文件名习惯上也填写为同一个名字。
 
-![bb_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_2.png)
+![bb_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_2.webp)
 
 现在就正式进入到我们的模型构造环节了。有很多人看到这个界面不知该如何下手，那就先跟着我们的步骤走吧。首先第一步，我们先定义一个**骨骼（Bone）**：
 
-![bb_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_3.png)
+![bb_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_3.webp)
 
 有必要解释一下，新增骨骼不是说我们搞了一根骨头或者头骨之类的东西，骨骼是一个抽象出来的概念，就好像动物的运动实际上可以只追踪骨骼一样，骨骼的运动会带动肌肉的运动，进而相当于动物体的运动，我们这里定义的骨骼也是类似的概念。一个方块模型可能由多个**部件（Cube）** 组成，为了使多个部件以同一种方式运动，我们就会把这些部件放到同一个骨骼里面去。到后面，有不少操作也是针对于特定骨骼进行操作的，比如部件的隐藏、方块面的剔除等。
 
 我们可以右键刚创建的骨骼`bone`，将它重命名为`block`。然后，点一下“+”号，创建一个新的部件：
 
-![bb_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_4.png)
+![bb_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_4.webp)
 
 现在，你的界面上应该出现了一个新的块。我们可以按住<kbd>鼠标中键</kbd>来旋转界面，按住<kbd>Shift</kbd> + <kbd>鼠标中键</kbd>来平移界面。上方和右侧都有可以控制这个部件大小的工具。
 
-![bb_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_5.png)
+![bb_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_5.webp)
 
 我们现在把它拉伸到半砖的大小（注意这里的 1 格代表的是方块的一个像素，也就是这里 16×16×16 的大小才对应原版一个完整方块的大小），读者可以自行尝试：
 
-![bb_6](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_6.png)
+![bb_6](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_6.webp)
 
 现在我们其实就可以保存这个模型了！在保存之前，先回到我们的资源包，在资源包下新建<FileType type="folder" name="models"/>，再在<FileType type="folder" name="models"/>下新建<FileType type="folder" name="blocks"/>：
 
@@ -63,7 +63,7 @@ import Image from "/src/components/image/standard"
 
 然后，我们把模型导出到刚刚新建的文件夹里：
 
-![bb_7](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_7.png)
+![bb_7](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/bb_7.webp)
 
 现在如果一切正常，你的资源包应该长成这个样子：
 
@@ -215,11 +215,11 @@ import Image from "/src/components/image/standard"
 
 现在，我们来进入游戏实测一下效果吧！
 
-![dirt_slab_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/dirt_slab_1.png)
+![dirt_slab_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/dirt_slab_1.webp)
 
 当然，如果正常放置的话，只能放置下半砖，这时候我们就可以用`/setblock`命令放置上半砖。
 
-![dirt_slab_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/dirt_slab_2.png)
+![dirt_slab_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/dirt_slab_2.webp)
 
 或者，像半砖、旋转方块、可连接方块这些特殊方块，我们也可以用下一节会学到的方块特征来解决这种不便的问题！
 
@@ -276,18 +276,18 @@ import Image from "/src/components/image/standard"
 
 读者在画贴图时也可以注意 bb 的这个不透明度设置，事实上这就是在指定`A`通道了。
 
-![alpha_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/alpha_1.png)
+![alpha_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/alpha_1.webp)
 
 当然，`blend`材质还有一个特别的点，就是存在**背面剔除（Backface Culling）**。我们都知道，对于一个立方体，以我们的视角只能看到它的 3 个面，而另外 3 个面则是不可见的。这样，我们就可以想方设法，不要让这些不可见的面渲染出来，毕竟渲染一个面是需要消耗性能的，更何况游戏内往往存在无穷无尽的方块，这就意味着无穷无尽的面要渲染，会大幅度提升渲染压力，降低客户端的性能。这种**只渲染前面，而背面的方块面全部剔除掉，以提升性能的剔除方法**，就叫做背面剔除。
 
-<Image src="/img/docs/blocks/culling/backface_culling_1.png" text="面剔除示例"/>
+<Image src="/img/docs/blocks/culling/backface_culling_1.webp" text="面剔除示例"/>
 
 对于不透明的完整方块，这么做是不存在什么问题的，但对于透明方块来讲，情况就不是这样了。因为**背面剔除是建立在玩家不可见背面的基础上的，但是透明方块却使得玩家可以看到背面**！这样，是否存在背面剔除就会影响方块的渲染效果。有一个比较好的例子是玻璃和刷怪笼的渲染方法并不相同。读者可以看到：
 
 - 对于玻璃来说，它使用的是`blend`材质，存在背面剔除，故而我们看不到它的背面。
 - 而刷怪笼使用的是`alpha_test`材质（我们一会儿就会细说），而`alpha_test`材质是不会进行背面剔除的，所以刷怪笼的背面是清晰可见的。
 
-<Image src="/img/docs/blocks/culling/backface_culling_2.png" text="背面剔除（左）与背面不剔除（右）的对比" size="75%"/>
+<Image src="/img/docs/blocks/culling/backface_culling_2.webp" text="背面剔除（左）与背面不剔除（右）的对比" size="75%"/>
 
 现在我们定义了方块的材质和贴图，但不要忘记方块模型！**不要忘记，`minecraft:material_instances`组件是必须配套`minecraft:geometry`组件的**。但是我们这时候不希望引用特殊的方块模型该怎么办呢？这时候我们就可以使用官方为我们内置的模型了：
 
@@ -347,11 +347,11 @@ import Image from "/src/components/image/standard"
 
 这样便大功告成了，我们来打开游戏实测一下效果！
 
-![blast_proof_glass_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/blast_proof_glass_1.png)
+![blast_proof_glass_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/blast_proof_glass_1.webp)
 
 嗯……看起来还是有所不同，显然相比于原版玻璃，内部的面全被渲染出来了！不是说有背面剔除吗，难道背面剔除失效了？事实上，如果我们只放一个玻璃的话，不难发现除了稍微暗点之外，背面剔除是在正常运行的：
 
-![blast_proof_glass_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/blast_proof_glass_2.png)
+![blast_proof_glass_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/blast_proof_glass_2.webp)
 
 也就是说，现在我们所见的所有的玻璃面都被认为是前面而不是背面。背面确实已经被剔除掉了，但我们期望的效果是内部的面也应该要剔除掉。这就涉及到我们之后要介绍的**方块面剔除（Block Culling）** 了。
 
@@ -391,17 +391,17 @@ import Image from "/src/components/image/standard"
 
 可以看到，对于`alpha_test`材质而言，背面剔除便不再生效。
 
-![alpha_test_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/alpha_test_1.png)
+![alpha_test_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/alpha_test_1.webp)
 
 在查阅过文档后，我们还会发现`alpha_test`存在**远距面剔除（Distant Culling）**。所谓远距面剔除，其实就是指**在距离过远时，是否还要渲染这个方块**。对于`alpha_test`材质，在距离过远时就不再渲染这个方块了，这可以通过望远镜来观察：
 
-![alpha_test_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/alpha_test_2.png)
+![alpha_test_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/alpha_test_2.webp)
 
 因为全透明需要消耗的性能大，在距离过远时就停止渲染，这也是理所当然的，这可以提升客户端的性能。
 
 以及，全透明和半透明的最大区别在于，**全透明是不支持`A`通道的**，我们只要把贴图换成白色染色玻璃就能立刻看到这一点：
 
-![alpha_test_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/alpha_test_3.png)
+![alpha_test_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/alpha_test_3.webp)
 
 可以看到，`blend`能够正确地渲染半透明的部分，而`alpha_test`就只能够将半透明的部分渲染为全透明。
 
@@ -527,7 +527,7 @@ import Image from "/src/components/image/standard"
 2. 实现每个 MC 玩家都梦寐以求的——竖半砖（先做出木制的`test:oak_vertical_slab`）！哇咔咔！定义`test:cardinal_direction`方块状态，可选值为`north`、`south`、`west`、`east`，分别对应玩家在面向北方、南方、西方、东方时放置的方块。注意灵活使用[`minecraft:transformation`](/docs/docs/blocks/components#minecrafttransformation)组件。我们在下一节就会介绍如何不依赖`/setblock`自动放置它们。
 3. 试阅读[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件的文档，探究如何使得我们定义的防爆玻璃相比于原版玻璃不会偏暗。
 4. 之前我们定义的假石头，读者不难发现存在一个问题：在进入假石头后会将底部的方块面剔除，连带自己的方块面也被一并剔除。请使用合适的材质，使得这些面能够被渲染出来。
-![practice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_1.png)
+![practice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_1.webp)
 5. 将我们之前定义的所有方块的贴图全部改用[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件表达，而非<FileType type="file" name="blocks.json"/>。对于完整方块而言，可以采用原版的完整方块模型`minecraft:geometry.full_block`。
 6. 为我们在练习 5.1 定义的骰子添加一个方块状态`test:point`，允许值为从`1`到`6`，分别代表骰子最上面的点数。
 7. 定义一种隐形基岩`test:invisible_bedrock`，具有无法选中、耐爆炸、耐挖掘、贴图透明的性质，在物品栏中显示为屏障的贴图。贴图自备。提示：可定义一个同名的物品，并使用`minecraft:block_placer`组件中的`replace_block_item`解决。使用此思路也可以修改方块在物品栏中的性质。
@@ -571,16 +571,16 @@ import Image from "/src/components/image/standard"
 
     （这里我们禁用了方块面调暗的效果）
 
-    ![practice_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_2.png)
+    ![practice_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_2.webp)
 
     我们可以注意到侧面的方块面不太自然，在这里我们可以做进一步的处理。根据[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件的文档我们知道，我们可以定义模型时给特定的面分组。我们右键模型文件打开文件管理器，打开 bb，再将模型文件拖动到 bb 上即可打开模型：
 
-    ![practice_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_3.png)  
-    ![practice_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_4.png)
+    ![practice_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_3.webp)  
+    ![practice_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_4.webp)
 
     因为我们要编辑的是侧面的贴图，我们对台阶做进一步的材质贴图实例编辑，将东西南北面均定义为`side`，这样我们就可以在[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件中直接定义为`side`面，确认后按下<kbd>Ctrl</kbd> + <kbd>S</kbd>保存模型：
 
-    ![practice_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_5.png)  
+    ![practice_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_5.webp)  
     ![practice_6](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_6.png)
 
     我们来根据玻璃的贴图绘制一个新的贴图（参考贴图在这里 ![glass_slab_side](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/glass_slab_side.png)），在<FileType type="file" name="terrain_texture.json"/>定义为`glass_slab_side`后，更改行为包定义如下，再大退重进即可：
@@ -619,7 +619,7 @@ import Image from "/src/components/image/standard"
     }
     ```
 
-    ![practice_7](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_7.png)
+    ![practice_7](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_7.webp)
 
     这回，我们就有了一个比较满意的效果了。
 
@@ -696,7 +696,7 @@ import Image from "/src/components/image/standard"
     }
     ```
 
-    ![practice_8](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_8.png)
+    ![practice_8](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_8.webp)
 
 3. 实测关闭环境光遮蔽（`ambient_ocllusion`为`0.0`）即可解决，使得防爆玻璃的渲染效果和原版玻璃效果相同。
 
@@ -736,7 +736,7 @@ import Image from "/src/components/image/standard"
     }
     ```
 
-    ![practice_9](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_9.png)
+    ![practice_9](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_9.webp)
 
 5. 我们以曾经写过的黑色方块为例：
 
@@ -813,7 +813,7 @@ import Image from "/src/components/image/standard"
     }
     ```
 
-    ![practice_10](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_10.png)
+    ![practice_10](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_10.webp)
 
 7. 这个方块需要同时定义方块和对应物品。注意物品中使用的`barrier`贴图必须单独在`item_texture.json`定义。
 

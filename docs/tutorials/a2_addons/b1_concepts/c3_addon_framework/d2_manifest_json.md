@@ -104,7 +104,7 @@ import DataType from "/src/components/type/data"
 
 使用 VSC 的话，则还有一个比较好用的扩展可以用，叫做“UUID Generator”。
 
-![uuid_generator_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/uuid_generator_1.png)
+![uuid_generator_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/uuid_generator_1.webp)
 
 安装这个扩展之后，只需要在编辑器里右键，就能看到这个选项，然后自动生成一个 UUID，十分方便。
 

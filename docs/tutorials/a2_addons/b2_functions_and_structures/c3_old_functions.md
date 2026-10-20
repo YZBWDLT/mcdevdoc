@@ -69,11 +69,11 @@ Minecraft 的命令事实上很早就已经应用到类似的更改了，但最�
 execute @a ~~~ setblock ~~-1~ diamond_block
 ```
 
-![function_1](/img/tutorials/a2_addons/b2_functions_and_structures/c3_old_functions/function_1.png)
+![function_1](/img/tutorials/a2_addons/b2_functions_and_structures/c3_old_functions/function_1.webp)
 
 如果读者熟悉旧语法应该知道，这是往玩家脚下放钻石块的命令（*甚至我写这命令的时候已经很生疏了，不本能地写个`run`都算我在思考了orz*），进入游戏后效果应该如图所示：
 
-![function_2](/img/tutorials/a2_addons/b2_functions_and_structures/c3_old_functions/function_2.png)
+![function_2](/img/tutorials/a2_addons/b2_functions_and_structures/c3_old_functions/function_2.webp)
 
 读者可以看到图中的 Vibrant Visuals 的效果，证明确实是新版本，而我们成功在新版本运行了旧语法，证明这确实是可行的！
 

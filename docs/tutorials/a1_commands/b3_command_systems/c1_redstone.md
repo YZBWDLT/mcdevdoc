@@ -22,15 +22,15 @@ Minecraft 中，有各种各样形形色色的方块，可以搭建红石电路�
 
 在 Java 版中，创造模式的物品栏已经有了一个专门的红石元件分类。
 
-![redstone_components_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_components_1.png)
+![redstone_components_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_components_1.webp)
 
 例如，读者应当已经知道，拉杆和铁门之间可以连接红石线，从而实现通过电路开门的效果。我们注意到，MC 中的电路并不像现实生活中一样要求闭合，只要信号能够通过传输元件传输过去，就能够组成一个完整的红石电路。
 
-![circuit_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/circuit_1.png)
+![circuit_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/circuit_1.webp)
 
 红石灯也是一种检测红石信号的常用方块。接收到信号之后，红石灯就会亮起，而未接收到信号时，红石灯就会熄灭。
 
-![circuit_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/circuit_2.png)
+![circuit_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/circuit_2.webp)
 
 在现实生活中，我们知道有*电源插孔*、*电池*等可以提供电能的电源。在 MC 中，类似地，**能够提供红石信号（类比于电能）的元件，称为电源（Source Components）**。例如，上面的两个示例中，拉杆能够提供红石信号，就是一种电源。
 
@@ -48,7 +48,7 @@ Minecraft 中，有各种各样形形色色的方块，可以搭建红石电路�
 
 在地上放一个拉杆，连接红石粉，红石粉的末端放置一个平滑石头，上面放一个红石灯。再如法炮制造另一个电路，只把平滑石头换成玻璃。
 
-![conductor_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/conductor_1.png)
+![conductor_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/conductor_1.webp)
 
 拉下拉杆，观察实验现象。
 
@@ -56,7 +56,7 @@ Minecraft 中，有各种各样形形色色的方块，可以搭建红石电路�
 
 我们注意到：垫上玻璃的红石灯并没有亮，而垫上了平滑石头的红石灯却亮了起来。
 
-![conductor_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/conductor_2.png)
+![conductor_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/conductor_2.webp)
 
 这种没有直接将红石信号作用到红石灯上，却能让红石灯亮起来的现象，正是**充能（Power）** 所引起的。许多方块（尤其是许多不透明方块）在被红石信号作用后，能够激活毗邻（上下东西南北）的红石元件，这时我们称这个方块为**红石导体（Redstone Conductive Block）**，这个方块正处于**被充能（Powered）** 的状态。而许多方块（尤其是许多透明方块）被红石信号作用后，不能激活毗邻的红石元件，这时我们称这个方块为**红石绝缘体（或非红石导体，Redstone Non-conductive Block）**。
 
@@ -72,7 +72,7 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 按照下图的方式搭建两个红石电路。其中，一个为通过拉杆连接红石线对平滑石头充能（下图左，情况 A），另一个为拉杆直接放在平滑石头上面（下图右，情况 B）。
 
-![powered_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/powered_1.png)
+![powered_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/powered_1.webp)
 
 拉下两个拉杆，观察实验现象。
 
@@ -80,7 +80,7 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 我们立刻观察到，情况 B （右）能够点亮红石灯，而情况 A （左）却不能。
 
-![powered_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/powered_2.png)
+![powered_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/powered_2.webp)
 
 在情况 A 中，红石粉的红石信号作用于平滑石头，可见其应该处于被充能状态；而在情况 B 中，拉杆本身就是电源，它的红石信号也作用于平滑石头，平滑石头也是被充能状态。看来，即使两种情况的平滑石头都是被充能状态，也有差别，很明显，情况 B 的充能是更强的，强到足以在中间阻隔了一个方块的情况下继续传导红石信号。
 
@@ -98,13 +98,13 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 现在我们来探究红石信号的衰减规律。使用拉杆作为电源，不同长度的红石粉作为传输电路。不断加长红石粉的长度，观察加长到什么时候不再能使红石灯被点亮。
 
-![signal_decrease_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/signal_decrease_1.png)
+![signal_decrease_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/signal_decrease_1.webp)
 
 :::
 
 我们观察到，无论红石粉的线路怎么拐，怎么摆，都会在长度到达 16 格的时候衰减到无信号的状态。看来，这个红石信号只能传输 15 格远。
 
-![signal_decrease_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/signal_decrease_2.png)
+![signal_decrease_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/signal_decrease_2.webp)
 
 这样，我们便可以定义**电源所提供的红石信号的强度（Redstone Signal Strength），是这个红石信号所能传输的最远的格数**，并且，**红石粉每传输 1 格，信号就衰减 1 级**。红石信号强度也经常被简述为红石信号，例如社区经常说“15 级红石信号”甚至“15 级信号”，读者应当能看懂这说的便是红石信号强度。
 
@@ -130,7 +130,7 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 红石块也是在命令方块系统中应用最多的一种信号源。
 
-![redstone_block](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_block.png)  
+![redstone_block](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_block.webp)  
 
 ### 拉杆
 
@@ -138,7 +138,7 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 拉杆是最简单的电源之一，*有些类似于现实世界的电源和单刀单掷开关的合体*。
 
-![lever](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/lever.png)
+![lever](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/lever.webp)
 
 ### 按钮
 
@@ -146,7 +146,7 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 按钮分为木质按钮和石质按钮。**石质按钮提供信号的时间短（1 秒），木质按钮提供信号的时间长（1.5 秒）。箭和三叉戟在射中木质按钮后还能提供更持久的信号（长达 1 分钟）**。
 
-![button](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/button.png)  
+![button](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/button.webp)  
 箭射中木质按钮后会持续激活木质按钮
 
 ### 压力板
@@ -164,17 +164,17 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 压力板会为毗邻元件提供信号，还会强充能附着的（下方的）红石导体。
 
-![pressure_plate_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/pressure_plate_1.png)  
+![pressure_plate_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/pressure_plate_1.webp)  
 1 个盔甲架踩踏 4 种压力板的表现
 
-![pressure_plate_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/pressure_plate_2.png)  
+![pressure_plate_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/pressure_plate_2.webp)  
 15 根箭（非生物）踩踏 4 种压力板的表现
 
 ### 侦测器
 
 侦测器**在检测（脸）端检查到方块有变化的时候，在输出端输出一个时长为 0.1 秒的瞬时信号，强度为 15**。侦测器只会为输出端面对的红石元件提供信号，也只强充能输出端面对的红石导体。
 
-![observer](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/observer.png)  
+![observer](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/observer.webp)  
 一种高频输出信号的简易装置，即两个侦测器的脸部正对
 
 ### 陷阱箱
@@ -183,7 +183,7 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 陷阱箱常常用于下方埋 TNT 或者隔一个方块埋 TNT 做陷阱。因为往往只输出 1 的信号强度（毕竟大多数时候只有 1 人开箱），如果使用陷阱箱做机关应该务必注意到这点。
 
-![trapped_chest](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/trapped_chest.png)
+![trapped_chest](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/trapped_chest.webp)
 
 ### 绊线钩
 
@@ -191,14 +191,14 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 绊线钩在实体离开后会过段时间恢复回原状，并停止提供信号。此外，绊线钩还会在绊线被非剪刀破坏时，输出一个 0.5 秒的瞬时信号。
 
-![tripwire_hook](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/tripwire_hook.png)  
+![tripwire_hook](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/tripwire_hook.webp)  
 绊线钩上卡着一个掉落物，触发信号
 
 ### 讲台
 
 讲台**在翻页时输出一个 0.1 秒的瞬时信号，强度为 15**。讲台会为毗邻元件提供信号，还会强充能下方的红石导体。
 
-![lectern](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/lectern.png)
+![lectern](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/lectern.webp)
 
 ### 标靶
 
@@ -206,19 +206,19 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 瞬时信号时长由弹射物类型决定，箭和三叉戟为 1 秒，其余为 0.4 秒。
 
-![target_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/target_1.png)  
+![target_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/target_1.webp)  
 击中了标靶的三叉戟，但因为是瞬时信号，所以此时已不输出
 
 此外，标靶还常常用于改变红石线路走向的红石导体。只要标靶不被弹射物击中，有时也可以认为标靶也是一种良好的传输元件。
 
-![target_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/target_2.png)  
+![target_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/target_2.webp)  
 标靶可以改变线路走向
 
 ### 探测铁轨
 
 探测铁轨**在有矿车经过时提供信号，强度为 15**。探测铁轨会为毗邻元件提供信号，还会强充能下方的红石导体。
 
-![detector_rail](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/detector_rail.png)
+![detector_rail](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/detector_rail.webp)
 
 ---
 
@@ -246,21 +246,21 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 对于竖直信号的传递，主要分两种情况：爬升（向上传输）和降落（向下传输）。红石粉的爬升是比较简单的，例如：
 
-![redstone_wire_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_wire_1.png)
+![redstone_wire_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_wire_1.webp)
 
 但是，红石粉在爬升的时候，如果上方出现不透明方块阻挡，则会中断；而类似于树叶、玻璃等透明方块阻挡则不会中断。例如：
 
-![redstone_wire_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_wire_2.png)
+![redstone_wire_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_wire_2.webp)
 
 所以，一种常见的省空间的红石信号爬升方式就如下图所示：
 
-![redstone_wire_3](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_wire_3.png)
+![redstone_wire_3](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_wire_3.webp)
 
 红石粉还可以放在不完整方块的上表面，例如台阶或者楼梯，使用这些也可以实现信号的爬升。
 
 对于红石粉的降落，基岩版和 Java 版则存在一些差异，这里我们只谈基岩版。红石粉的降落必须要保证其侧面不能是中断的。红石导体自不必多说，对于红石绝缘体来说，常用的侧面不中断的方块是玻璃。读者也可以在下面这张图中看到信号爬升和信号降落之间的区别。
 
-![redstone_wire_4](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_wire_4.png)  
+![redstone_wire_4](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_wire_4.webp)  
 楼梯和台阶可以胜任信号爬升的工作，然而因为侧面中断，所以信号不能降落；玻璃的侧面则是良好连接的，所以信号可以正确降落。*这点和 Java 版是不一样的，Java 版只要是红石绝缘体，信号就都不能降落（因此这张图是在基岩版截的，没有光影）*。
 
 ### 红石火把
@@ -269,18 +269,18 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 我们现在来快速阐述一下红石火把的作为电源的性质。红石火把**输出 15 信号**，会激活**除附着之外的毗邻红石元件**，并**强充能其上方的红石导体**。
 
-![redstone_torch_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_torch_1.png)
+![redstone_torch_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_torch_1.webp)
 
-![redstone_torch_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_torch_2.png)  
+![redstone_torch_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_torch_2.webp)  
 左 1 我们看到红石火把所附着的红石灯并没有亮，而其上方和侧边的红石灯却亮了起来；左 2 和左 3 则表明，不论如何摆放红石火把，都是强充能其上方的红石导体，而侧面的红石导体则不会被充能。
 
 红石火把作为传输元件的基本特性在于**充能熄灭**。**如果其所附着的红石导体被充能，那么红石火把就会熄灭**。
 
-![redstone_torch_3](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_torch_3.png)
+![redstone_torch_3](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_torch_3.webp)
 
 这个特性是极其有意义的，它已延伸出诸多有用的特性，例如信号中继，利用两个红石火把延续信号；竖直传递信号，尤其是高度差较高的时候；以及取逻辑非，等等情况。
 
-![redstone_torch_4](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_torch_4.png)
+![redstone_torch_4](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/redstone_torch_4.webp)
 
 读者应当注意一个很关键的问题：**红石火把熄灭与重燃的响应时间是 0.1 秒，也就是 1 红石刻**。例如在上图的中继器的设计中，拉下拉杆后需要 2 红石刻才能点亮红石灯；而上图的竖直爬升的设计则需要 4 红石刻才能点亮红石灯。这在红石系统领域中有一个专门的领域叫做**延迟（Delay）**，例如上面两个例子就分别是 2 红石刻的延迟和 4 红石刻的延迟。
 
@@ -290,27 +290,27 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 在了解它的作用之前，我们必须先看懂它。下面是一个红石中继器，我们看到有两个火把状的东西。固定火把的一端称为**输出端（Output）**，而可变火把的一端称为**输入端（Input）**。你也可以通过中继器的一个形似三角形的图案看到它的端口。
 
-![repeater_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/repeater_1.png)
+![repeater_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/repeater_1.webp)
 
 现在我们就可以了解它的作用了。第一个作用，是**中继信号**。它能够将任意的信号扩大到 15 信号并继续传播。通过上面红石火把的例子，读者应该已经能轻松地了解这个作用。
 
-![repeater_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/repeater_2.png)
+![repeater_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/repeater_2.webp)
 
 第二个作用就是**引入延迟**。在红石火把的例子中，我们提到引入那样一个中继装置需要引入 2 刻的延迟。对于红石中继器而言，则要更加灵活。它一共有 4 个档位，通过调整火把之间的间距来控制档位，每调高一个档位就会多引入 1 刻的延迟，而最低的 1 档是 1 刻的延迟。对应关系如下图所示。所以，常用 2 个 4 档的中继器和 1 个 2 档的中继器来制作一个 1 秒的延时器。
 
-![repeater_3](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/repeater_3.png)
+![repeater_3](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/repeater_3.webp)
 
 第三个作用是**单向传输**。中继器只能从输入端接收信号并在输出端输出，不能从输出端接收信号。这个阻止反向信号的特性十分类似于现实世界的二极管，只是中继器还同时兼备了放大信号的作用。例如在下图中，我们只希望信号从左向右传输，就可以通过引入一个中继器的方法来阻止反向信号的输入。
 
-![repeater_4](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/repeater_4.png)
+![repeater_4](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/repeater_4.webp)
 
 第四个作用是**锁存信号**。当它的侧面有一个红石中继器或红石比较器来输入信号的时候，就会进入**锁存状态（Signal Locking）**。这种状态下，无论输入端是开是关，都不影响中继器本身的状态，而是锁定为这个中继器在锁定之前的状态。
 
-![repeater_5](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/repeater_5.png)
+![repeater_5](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/repeater_5.webp)
 
 此外，作为第一种方法的扩展，红石中继器作为一种非红石粉的红石元件，自然能够**从充能的红石导体获得信号**。所以，借助红石中继器的这些性质，可以造出各种各样的传输装置。
 
-![repeater_6](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/repeater_6.png)
+![repeater_6](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/repeater_6.webp)
 
 ### 红石比较器
 
@@ -318,7 +318,7 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 和红石中继器类似，我们要先看懂红石比较器的构造。红石比较器有 **3 种端口：靠近两根火把的主输入端 I、侧边的副输入端 C、靠近一根火把的输出端 O**。你也可以看到类似于红石中继器的三角图案，指代方向。
 
-![comparator_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_1.png)
+![comparator_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_1.webp)
 
 红石比较器有两种模式，**比较模式和减法模式**，两种模式依靠手动切换。比较模式下输出端的红石火把是熄灭状态，而减法模式则是亮起状态。
 
@@ -328,30 +328,30 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 现在我们来关注比较器的作用。比较器的第一种作用是**比较信号**，这需要比较器在**比较模式**下工作。如果在主输入端输入一个强度为 I 的信号，而在副输入端输入一个强度为 C 的信号，那么比较器会比较 I 和 C 的大小。如果在副输入端的信号过于“强势”，就会阻止主输入端的信号输出，也就是说，**当 I \< C 的时候，输出信号为 0**。而如果副输入端的信号没有那么强，那么主输入端的信号就全部输出，也就是说**当 I > C 的时候，输出信号为 I**。
 
-![comparator_3](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_3.png)  
+![comparator_3](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_3.webp)  
 上图中，主输入 I=14，副输入 C=13，因为 I>C，所以输出信号为 14。
 
-![comparator_4](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_4.png)  
+![comparator_4](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_4.webp)  
 上图中，主输入 I=14，副输入 C=15，因为 I\<C，所以输出信号为 0。
 
 作为比较模式的一种特殊应用，**如果副输入端不输入任何信号，也不接入任何线路，这时比较器将原样地输出其接受的信号**。也许你并不理解为什么要单独拿出这种特殊情况提一下，但事实上这个应用在红石领域有着很专业而深入的应用，它可以保证输入的信号能够通过远距离传输而不衰减。此外，使用多个比较器串联还可以引入延迟，有些计时器就是通过大量的比较器而制成的，这种计时器具备随输入信号大小而控制时长的特点。
 
-![comparator_5](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_5.png)  
+![comparator_5](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_5.webp)  
 上图中，拉杆处于关闭状态，这个装置内的信号会不断衰减，一段时间过后才不再输出信号。这比较类似于现实世界的储能元件，例如电容或电感。
 
 第二种作用是进行**信号运算**。在上面的两个例子中，如果我们把比较器换为**减法模式**，就将得到完全不一样的输出效果。在减法模式下，比较器**将运算主输入端减去副输入端的信号，并输出到输出端上**，也就是说输出的信号为 I-C。当然，输出信号不可能小于 0。
 
-![comparator_6](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_6.png)  
+![comparator_6](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_6.webp)  
 上图中，主输入 I=14，副输入 C=13，所以输出信号为 14-13=1。
 
-![comparator_7](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_7.png)  
+![comparator_7](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_7.webp)  
 上图中，主输入 I=14，副输入 C=15，输出信号本应为 14-15=-1，但输出信号不可能为负数，所以无输出。
 
 这两种运算方式将仅基于红石系统的计算机变成可能。通过不同的信号输入和运算，理论上可以通过减法的逆运算实现加法，再将加减法升级为乘除法等，理论上是可以实现完全的计算机系统的，但是这需要一些数字电路、模拟电路的专业知识，限于本教程的用途和笔者的专业水平，这里便不再赘述。感兴趣的读者可以在 Wiki 中进行学习。
 
 第三种作用，也是比较器在命令系统中最常见的作用，就是**检查容器装载状态和方块状态**，当然，这个检查是有局限性的，不可能做到任何方块的方块状态都能被红石比较器检测。容器就是指那些可以存储物品的方块，包括但不限于箱子、木桶、漏斗、熔炉等。红石比较器可以检查它们装填的进度，从而输出红石信号，并且还可以隔墙检测。
 
-![comparator_8](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_8.png)  
+![comparator_8](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_8.webp)  
 上图展示了两种不同的检测方法，其中一种是直接检测，另一种是隔墙检测，二者的输出效果等效。并且，上方的箱子只放了一个拉杆，而下方的箱子充满拉杆，读者可以看到两个输出效果是天差地别的。
 
 部分方块的方块状态也可以通过红石比较器检测，例如讲台、物品展示框、甚至命令方块。除了命令方块的输出是我们下一节的重点之外，其他方块如果读者感兴趣，可以在 Wiki 中自学，这里不再过多强调。
@@ -376,11 +376,11 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 活塞**在接收到红石信号的时候，会伸展活塞臂，并把其前方的方块或实体推开**。在接收不到红石信号的时候，就会收回活塞臂。黏性活塞与活塞类似，但不同的是，**在收回活塞臂的时候，黏性活塞会把前方的方块给拉回来**。
 
-![piston_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/piston_1.png)
+![piston_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/piston_1.webp)
 
 然而，一些方块是不能被活塞推走的，比如基岩、黑曜石等，这些方块挡在活塞前面的时候，即使是接收了红石信号活塞也不会响应。如果活塞前面有多个方块，会把它们一起推开，但是这是有上限的，活塞不能推动超过 12 个方块。
 
-![piston_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/piston_2.png)
+![piston_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/piston_2.webp)
 
 使用黏液块可以使活塞推动临近的方块，但是这在命令系统中应用并不广泛。读者可以自行尝试。
 
@@ -394,7 +394,7 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 铜灯和其他的铜制品一样有 4 种氧化版本和 2 种涂蜡版本，随着氧化进程的增加可以发出不同强度的光。和红石灯不一样，铜灯并不是有信号就亮没信号就灭，而是随着信号的输入改变状态。熄灭的铜灯在接收到一次信号之后变亮，再接收到一次信号就熄灭。而且，铜灯的状态可以被红石比较器检测到，凭借其小巧的体积，它可以大幅简化以前占地较大的锁存器设计，成为新一代的锁存器、数据存储器的良好材料。
 
-![copper_bulb](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/copper_bulb.png)  
+![copper_bulb](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/copper_bulb.webp)  
 铜灯的亮灭与当前是否有信号无关，只取决于信号脉冲
 
 ### 铁轨、动力铁轨与激活铁轨
@@ -403,19 +403,19 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 在丁字路口处对铁轨施加红石信号，可以令其转向。
 
-![rail_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/rail_1.png)
+![rail_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/rail_1.webp)
 
 而动力铁轨和激活铁轨都是需要接收信号才能工作的。动力铁轨如果没有信号，会成为阻碍矿车运动的铁轨，使矿车大幅减速；施加信号则会成为促进矿车运动的铁轨，使矿车大幅加速。激活铁轨在没有信号的时候和普通铁轨类似，而在有信号的时候则会触发矿车的特殊功能，例如会让普通的矿车卸下运送的乘客、或者引爆 TNT 矿车等。
 
 激活的动力铁轨或激活铁轨会同时激活临近的动力铁轨或激活铁轨，最远可以激活 8 个动力铁轨或激活铁轨。
 
-![rail_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/rail_2.png)
+![rail_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/rail_2.webp)
 
 ### 发射器与投掷器
 
 发射器与投掷器是一种特殊的容器，在接收到信号的时候会将存储的物品随机地投掷出去一次。因此，在需要处理大量物品的时候应当高频率地启动关闭发射器或投掷器。
 
-![dispenser_dropper](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/dispenser_dropper.png)
+![dispenser_dropper](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/dispenser_dropper.webp)
 
 这两个东西的最大不同点在于，发射器不只是简单地投掷物品，对于一些特殊物品，它可能会以实体的形式发射出去，例如箭、船、TNT 或者各种刷怪蛋；而且一些物品可能会对实体进行一些操作，例如穿上盔甲、剪掉羊毛等操作。所以，发射器也是陷阱的常客。在生电领域里面，投掷器是运输装置的常客，因为它一视同仁地喷出物品，而不会进行额外的操作。
 
@@ -429,13 +429,13 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 所以，常常采用按钮搭配门、或者压力板搭配门的方式来开关门，尤其是铁门。具体原理的话，**就是按钮可以强充能背后的红石导体，从而激活临近的红石元件，也就是门，达到开门的效果**。所以哪怕是你可能早已熟知的一个操作，背后的原理可能也并不那么显然，毕竟还需要用到充能的原理来解释。
 
-![door](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/door.png)
+![door](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/door.webp)
 
 ### 漏斗
 
 漏斗是一种容器，它可以将内容物漏向其所指向的容器、或者将上方的容器的内容物漏向自己、或者吸收上方的掉落物。在 MC 知名 UP 主籽岷的视频中经常出现的“倒斗”一词，就是利用漏斗从底部吸收大箱子的内容物的方法。
 
-![hopper](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/hopper.png)  
+![hopper](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/hopper.webp)  
 漏斗运输物品的三种常见方法，从左到右第一种吸收上面的箱子的物品并漏向下面的箱子；第二种上面的漏斗吸收箱子的物品，同时下面的漏斗吸收上面的漏斗的物品，最终送到最下面的箱子；第三种则是直接吸收掉落物。
 
 当漏斗接收到红石信号的时候，它就不再会吸收物品，这时称漏斗为**锁定状态**。利用这个原理，在生电领域常常用来做物品分类机。
@@ -458,7 +458,7 @@ TNT 在接受到红石信号后会点燃，从发射器射出的 TNT 也是点�
 
 一种基于红石火把特性的高频电路如图所示：
 
-![high_frequency_circuit_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/high_frequency_circuit_1.png)
+![high_frequency_circuit_1](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/high_frequency_circuit_1.webp)
 
 原理是，红石火把强充能上方的方块，导致红石中继器获得信号，强充能其输出端的方块，激活下方的红石粉，所以弱充能临近的方块，导致红石火把熄灭，红石中继器熄灭，红石粉熄灭，红石火把重新点亮，如此循环往复成为高频。
 
@@ -472,7 +472,7 @@ TNT 在接受到红石信号后会点燃，从发射器射出的 TNT 也是点�
 
 一种基于红石比较器的减法模式的高频电路如图所示：
 
-![high_frequency_circuit_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/high_frequency_circuit_2.png)
+![high_frequency_circuit_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/high_frequency_circuit_2.webp)
 
 原理是，红石比较器在主输入端接收到 I=15 的信号，此时侧端信号为 C=0，所以输出信号为 O=15；然后，输出信号将信号反馈给侧端，导致此时侧端有 13 的信号，结果导致输出信号变为 O=2，此时侧端信号衰减为 C=0，所以继续输出 O=15，如此往复循环。
 
@@ -482,7 +482,7 @@ TNT 在接受到红石信号后会点燃，从发射器射出的 TNT 也是点�
 
 在介绍侦测器的时候，我们曾说过可以令侦测器脸对脸产生高频。
 
-![high_frequency_circuit_3](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/high_frequency_circuit_3.png)
+![high_frequency_circuit_3](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/high_frequency_circuit_3.webp)
 
 原理是，当放下第二个侦测器的一瞬间，第一个侦测器检查到有方块变化，输出红石信号，同时自身产生变化，被第二个侦测器检测到，所以第二个侦测器也开始输出红石信号，同时自身产生变化，如此循环，输出稳定高频。
 
@@ -504,19 +504,19 @@ TNT 在接受到红石信号后会点燃，从发射器射出的 TNT 也是点�
 
 非门（NOT Gate）是一种满足“非”关系的逻辑电路。它的构造原理是很简单的。假设拉杆是输入端，而红石灯是输出端，那么中间蓝色的电路就是一种典型的非门电路。这时，没有落下拉杆时代表输入为`0`（无信号），结果红石灯亮起，代表输出为`1`（有信号）。
 
-![not_gate](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/not_gate.png)
+![not_gate](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/not_gate.webp)
 
 ### 或门
 
 或门（OR Gate）是一种满足“或”关系的逻辑电路，它的构造原理也很简单。这种电路甚至都不需要什么额外的元件，直接连接就能满足“或”的关系。这样，只要有`1`的输入，就有`1`的输出。中间绿色部分的电路就是或门。
 
-![or_gate](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/or_gate.png)
+![or_gate](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/or_gate.webp)
 
 ### 与门
 
 与门（AND Gate）是一种满足“和”关系的逻辑电路，它的构造原理稍微复杂一些，占地面积也稍微大一些。这样，只有全都有`1`的输入，才有`1`的输出。中间黄色部分的电路就是与门。
 
-![and_gate](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/and_gate.png)
+![and_gate](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/and_gate.webp)
 
 将非门、或门、与门进行组合，就可以得到另外三种逻辑门：或非门、与非门、与或门。读者可以自行尝试构建这几种逻辑门。逻辑门在命令方块系统中的应用还是比较常见的，所以读者要清楚这几种逻辑门的含义以及电路的构造方法。
 
