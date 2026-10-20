@@ -63,7 +63,7 @@ const DocList = [
         title: "脚本文档",
         image: require("@site/static/site/jigsaw_block.png").default,
         description: <>查看脚本的文档，包括 ScriptAPI。</>,
-        link: "docs/docs/scripts/sapi/world",
+        link: "docs/docs/scripts/sapi/server/world/main",
     },
 ];
 

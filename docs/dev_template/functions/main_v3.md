@@ -298,7 +298,7 @@ execute if score timeline time matches 101 run function lib/modify_data/states/t
 
 - 提升最低版本需求为 1.20.50。
 - 移除和拆分了其中的绝大多数内容，仅保留时间线。
-  - 但是，被移除的内容存储在[常用方法合集](./useful_methods)中，可供开发者需要时再取用。
+  - 但是，被移除的内容存储在[常用功能与算法](/docs/docs/commands/commonly_used_algorithm)中，可供开发者需要时再取用。
 - 移除了时间线的`_keep`类函数，使用`data.keepValue`代替。
 - 将`lib/modify_states/`移动到了`lib/modify_data/states/`。
 - 随着`/camera`的更新，锁定视角已不再需要，因此移除了`data.lockCamera`变量。

@@ -343,7 +343,7 @@ Bedrock Wiki 的页面相对简洁易找许多了，我们直接点物品（Item
 
 缺点是他们的文档散落在各处，难以整理，教程等表述也十分抽象，并不利于新手学习。但遗憾的是，中国版的文档几乎是一家独大，要获得中国版相关的有用信息，很多信息只能硬着头皮去官方文档找了。而且，中国版还有一个重大问题在于——对于国际版更新的新内容来说，更新十分不及时。尤其是对于 1.19 之后加入的方块组件和 1.20 之后加入的物品组件，你在中国版是很难看到有相关记载的，只能硬着头皮去看英文版的教程啦。
 
-中国版的链接是[https://mc.163.com/dev/guide.html](https://mc.163.com/dev/guide.html)，在 [4.7](./c7_china_edition_items) 我们还要进一步来讲中国版的物品。
+中国版的链接是[https://mc.163.com/dev/guide.html](https://mc.163.com/dev/guide.html)，在 [4.6](./c6_china_edition_items) 我们还要进一步来讲中国版的物品。
 
 ### 本站
 
@@ -382,7 +382,7 @@ Bedrock Wiki 的页面相对简洁易找许多了，我们直接点物品（Item
         - <DataType type="string" name="group"/>：定义物品在创造模式物品栏中置于何物品组中。可用的物品组见[数据驱动物品文档](/docs/docs/items/item_category_and_group#原版使用的物品组)。
         - <DataType type="boolean" name="is_hidden_in_commands"/>：定义物品是否隐藏在命令中。
     - <DataType type="object" name="components"/>：物品组件，定义物品的功能。
-      - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件文档](/docs/docs/items/components)。
+      - `minecraft:(component)`：物品组件，可用的物品组件见[数据驱动物品组件文档](/docs/docs/items/components)。
 </treeview>
 
 其中，几乎所有的物品都需要`minecraft:icon`组件，用于定义物品的图标，此外物品的名称使用默认键名`item.(namespace):(identifier)`，因此需要我们定义物品的贴图和译名。总体上来说，资源包的文件结构图通常如下图所示：

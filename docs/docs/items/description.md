@@ -125,7 +125,7 @@ import Version from "/src/components/highlight/version"
         在格式版本为`1.21.50`或更低时，不能添加命名空间；在格式版本为`1.21.60`或更高时，必须添加命名空间。
         - <DataType type="boolean" name="is_hidden_in_commands"/>：定义物品是否隐藏在命令中。默认值为`false`。
     - <DataType type="object" name="components"/>：物品组件，定义物品的功能。
-      - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件](./components)。
+      - `minecraft:(component)`：物品组件，可用的物品组件见[数据驱动物品组件](./components)。
 
 </treeview>
 
@@ -164,7 +164,7 @@ import Version from "/src/components/highlight/version"
       - <DataType type="string" name="identifier" isRequired/>：定义物品的命名空间和物品 ID。
       - <DataType type="string" name="category"/>：定义物品在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）。
     - <DataType type="object" name="components" isRequired/>：物品组件，定义物品的功能。
-      - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件](./components)。
+      - `minecraft:(component)`：物品组件，可用的物品组件见[数据驱动物品组件](./components)。
 
 </treeview>
 
@@ -178,7 +178,7 @@ import Version from "/src/components/highlight/version"
     - <DataType type="object" name="description" isRequired/>：物品描述，定义物品的基本属性。
       - <DataType type="string" name="identifier" isRequired/>：定义物品的命名空间和物品 ID。
     - <DataType type="object" name="components" isRequired/>：物品组件，定义物品的功能。
-      - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件（弃用组件）](./components#弃用组件)。
+      - `minecraft:(component)`：物品组件，可用的物品组件见[数据驱动物品组件（弃用组件）](./components#弃用组件)。
 
 </treeview>
 
@@ -195,7 +195,7 @@ import Version from "/src/components/highlight/version"
       - <DataType type="boolean" name="register_to_create_menu"/>：是否注册到创造模式物品栏中。
       - <DataType type="string" name="custom_item_type"/>：自定义物品类别，可选值有`weapon`、`armor`、`egg`、`ranged_weapon`、`bucket`、`projectile_item`、`shield`。
     - <DataType type="object" name="components" isRequired/>：物品组件，定义物品的功能。
-      - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件（中国版）](./components#中国版组件)。
+      - `minecraft:(component)`：物品组件，可用的物品组件见[数据驱动物品组件（中国版）](./components#中国版组件)。
 
 </treeview>
 
@@ -220,7 +220,7 @@ import Version from "/src/components/highlight/version"
       - <DataType type="string" name="identifier" isRequired/>：定义物品的命名空间和物品 ID。
       - <DataType type="string" name="category"/>：定义物品在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）。
     - <DataType type="object" name="components" isRequired/>：物品组件，定义物品的功能。
-      - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件（弃用组件）](./components#弃用组件)。
+      - `minecraft:(component)`：物品组件，可用的物品组件见[数据驱动物品组件（弃用组件）](./components#弃用组件)。
 
 </treeview>
 
@@ -234,7 +234,7 @@ import Version from "/src/components/highlight/version"
     - <DataType type="object" name="description" isRequired/>：物品描述，定义物品的基本属性。
       - <DataType type="string" name="identifier" isRequired/>：定义物品的命名空间和物品 ID。
     - <DataType type="object" name="components" isRequired/>：物品组件，定义物品的功能。
-      - <DataType name="minecraft:(component)"/>：物品组件，可用的物品组件见[数据驱动物品组件（中国版）](./components#中国版组件)。
+      - `minecraft:(component)`：物品组件，可用的物品组件见[数据驱动物品组件（中国版）](./components#中国版组件)。
 
 </treeview>
 
