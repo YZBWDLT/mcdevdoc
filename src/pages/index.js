@@ -12,19 +12,19 @@ import styles from "./index.module.css";
 const TUTORIALS = [
     {
         title: "模块 1：命令",
-        desc: "用命令方块与函数搭出可复用的机关",
-        image: require("@site/static/site/command_block.gif").default,
+        desc: "从选择器、记分板到 /execute，把命令串成能用的机关",
+        image: require("@site/static/site/command_block.webp").default,
         link: "/docs/tutorials/a1_commands/b0_introduction",
     },
     {
         title: "模块 2：附加包",
-        desc: "改方块、改物品、改实体，从清单文件开始",
-        image: require("@site/static/site/creeper_head.png").default,
+        desc: "数据驱动物品、方块、实体，附加包从入门到入土",
+        image: require("@site/static/site/creeper_head.webp").default,
         link: "/docs/tutorials/a2_addons/b0_introduction",
     },
     {
         title: "模块 3：脚本",
-        desc: "用 JavaScript 编写真正跑得起来的玩法",
+        desc: "用脚本写玩法逻辑，分别讲解国际版和中国版的脚本逻辑",
         image: require("@site/static/site/js.png").default,
         link: "/docs/tutorials/a3_scripts/b0_introduction",
     },
@@ -33,7 +33,7 @@ const TUTORIALS = [
 const DOCUMENTS = [
     {
         title: "命令",
-        image: require("@site/static/site/command_block.gif").default,
+        image: require("@site/static/site/command_block.webp").default,
         link: "/docs/docs/commands/all_commands",
     },
     {
@@ -53,7 +53,7 @@ const DOCUMENTS = [
     },
     {
         title: "实体",
-        image: require("@site/static/site/slime.png").default,
+        image: require("@site/static/site/slime.webp").default,
         link: "/docs/docs/entities/description",
     },
     {
@@ -106,8 +106,11 @@ function usePrefersReducedMotion() {
 
 /**
  * 逐字打字机。
- * 初始值取全文，保证服务端渲染出的 HTML 里标题是完整的（利于 SEO 与无 JS 场景）；
- * 然后在首帧绘制前清空并逐字回填，用户看不到闪烁。
+ *
+ * 关键设计：**标题以外的东西不依赖这个状态**。
+ * 初始值取全文，保证服务端渲染的 HTML 里标题完整；随后在首帧绘制前清空逐字回填。
+ * 另外挂一个兜底计时器：一旦计时器被浏览器节流或异常中断，到点直接补全，
+ * 不会让标题停在半截。
  */
 function useTypewriter(text, { startDelay = 500, speed = 95 } = {}) {
     const reduced = usePrefersReducedMotion();
@@ -120,8 +123,8 @@ function useTypewriter(text, { startDelay = 500, speed = 95 } = {}) {
         }
 
         setCount(0);
-        let timer;
         let shown = 0;
+        let timer;
 
         const tick = () => {
             shown += 1;
@@ -132,10 +135,21 @@ function useTypewriter(text, { startDelay = 500, speed = 95 } = {}) {
         };
 
         timer = setTimeout(tick, startDelay);
-        return () => clearTimeout(timer);
+        // 兜底：无论计时器发生什么，这里一定让标题补全
+        const failsafe = setTimeout(() => setCount(text.length), startDelay + text.length * speed + 1500);
+
+        return () => {
+            clearTimeout(timer);
+            clearTimeout(failsafe);
+        };
     }, [text, speed, startDelay, reduced]);
 
-    return { done: count >= text.length, shown: text.slice(0, count) };
+    return {
+        shown: text.slice(0, count),
+        done: count >= text.length,
+        // 标题打完的时刻，供下方内容安排入场延迟（纯 CSS 动画用，不参与可见性判断）
+        revealMs: startDelay + text.length * speed,
+    };
 }
 
 /**
@@ -161,7 +175,7 @@ function useDeck(sectionCount) {
                     }
                 });
             },
-            { root: container, threshold: 0.55 }
+            { root: container, threshold: 0.55 },
         );
 
         sections.forEach(section => observer.observe(section));
@@ -172,11 +186,17 @@ function useDeck(sectionCount) {
         index => {
             const container = containerRef.current;
             if (!container) return;
-            const target = Math.max(0, Math.min(index, sectionCount - 1));
-            container.scrollTo({ top: target * container.clientHeight, behavior: "smooth" });
-            setActive(target);
+            const sections = Array.from(container.querySelectorAll("[data-deck-section]"));
+            const target = sections[Math.max(0, Math.min(index, sectionCount - 1))];
+            if (!target) return;
+
+            // 用真实位置而不是「序号 × 视口高」：手机上每屏高度随内容变化，不能整除
+            const top = target.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop;
+
+            container.scrollTo({ top, behavior: "smooth" });
+            setActive(index);
         },
-        [sectionCount]
+        [sectionCount],
     );
 
     // 键盘：上下方向键 / PageUp、PageDown / Home、End
@@ -230,12 +250,7 @@ function Section({ active, children, className = "", cover, tone = "plain", over
         <section className={`${styles.section} ${className}`} data-deck-section data-active={active}>
             {cover ? (
                 <>
-                    <div
-                        className={styles.cover}
-                        data-tone={tone}
-                        style={{ backgroundImage: `url(${cover})` }}
-                        aria-hidden="true"
-                    />
+                    <div className={styles.cover} data-tone={tone} style={{ backgroundImage: `url(${cover})` }} aria-hidden="true" />
                     <div className={styles.scrim} aria-hidden="true" />
                 </>
             ) : undefined}
@@ -284,7 +299,7 @@ function DeckDots({ count, active, onSelect }) {
 // ================================================================
 
 function HeroSection({ active, title, tagline, total, tutorialCount }) {
-    const { shown, done } = useTypewriter(title);
+    const { shown, done, revealMs } = useTypewriter(title);
 
     return (
         <Section
@@ -298,7 +313,9 @@ function HeroSection({ active, title, tagline, total, tutorialCount }) {
                 </div>
             }
         >
-            <div className={styles.hero}>
+            {/* 入场延迟写进 CSS 变量，交给纯 CSS 动画执行；
+                即便 JS 状态没更新到位，这些内容也只是"晚点出现"，不会永久消失 */}
+            <div className={styles.hero} style={{ "--reveal-delay": `${revealMs}ms` }}>
                 <Eyebrow>MINECRAFT BEDROCK · 中文开发文档</Eyebrow>
 
                 <h1 className={styles.heroTitle}>
@@ -306,11 +323,9 @@ function HeroSection({ active, title, tagline, total, tutorialCount }) {
                     {!done && <span className={styles.caret} aria-hidden="true" />}
                 </h1>
 
-                <p className={styles.heroTagline} data-show={done}>
-                    {tagline}
-                </p>
+                <p className={styles.heroTagline}>{tagline}</p>
 
-                <div className={styles.heroButtons} data-show={done}>
+                <div className={styles.heroButtons}>
                     <Link className={`${styles.button} ${styles.buttonGreen}`} to="/docs/tutorials/a1_commands/b0_introduction">
                         开始学习
                     </Link>
@@ -319,7 +334,7 @@ function HeroSection({ active, title, tagline, total, tutorialCount }) {
                     </Link>
                 </div>
 
-                <p className={styles.heroMeta} data-show={done}>
+                <p className={styles.heroMeta}>
                     共 {total} 篇文档 · 教程 {tutorialCount} 篇
                 </p>
             </div>
@@ -333,22 +348,15 @@ function TutorialSection({ active, tutorialCount }) {
             <div className={styles.split}>
                 <div className={styles.splitText}>
                     <Eyebrow>教程 · TUTORIALS</Eyebrow>
-                    <SectionTitle hint="查看我们精心准备的教程，帮助你零基础快速上手 Minecraft 基岩版开发！">
-                        从零开始，一步步做出来
+                    <SectionTitle hint="从命令到附加包再到脚本，循序渐进，从零入手，保证小白也能看得懂！:)">
+                        全面而易懂的教程
                     </SectionTitle>
-                    <p className={styles.meta}>
-                        三个模块 · 共 {tutorialCount} 篇
-                    </p>
+                    <p className={styles.meta}>三个模块 · 共 {tutorialCount} 篇</p>
                 </div>
 
                 <div className={styles.actionList}>
                     {TUTORIALS.map((item, index) => (
-                        <Link
-                            key={item.link}
-                            to={item.link}
-                            className={styles.actionCard}
-                            style={{ "--index": index }}
-                        >
+                        <Link key={item.link} to={item.link} className={styles.actionCard} style={{ "--index": index }}>
                             <img src={item.image} alt="" className={styles.actionIcon} loading="lazy" />
                             <span className={styles.actionBody}>
                                 <span className={styles.actionTitle}>{item.title}</span>
@@ -371,12 +379,7 @@ function DocumentSection({ active, docCount }) {
             <div className={`${styles.split} ${styles.splitReverse}`}>
                 <div className={styles.docGrid}>
                     {DOCUMENTS.map((item, index) => (
-                        <Link
-                            key={item.link}
-                            to={item.link}
-                            className={styles.docCard}
-                            style={{ "--index": index }}
-                        >
+                        <Link key={item.link} to={item.link} className={styles.docCard} style={{ "--index": index }}>
                             <img src={item.image} alt="" className={styles.docIcon} loading="lazy" />
                             <span>{item.title}</span>
                         </Link>
@@ -385,8 +388,8 @@ function DocumentSection({ active, docCount }) {
 
                 <div className={styles.splitText}>
                     <Eyebrow>文档 · REFERENCE</Eyebrow>
-                    <SectionTitle hint="查看我们专门整理的文档，帮助你快速查阅 Minecraft 开发中的更多接口细节。">
-                        查得到，才写得下去
+                    <SectionTitle hint="从物品方块实体到脚本，你需要的不少信息都可以在这里找到。除此之外，适用版本、内部链接、外部参考文档也一应俱全。UwU">
+                        细节且丰富的文档
                     </SectionTitle>
                     <p className={styles.meta}>六大分类 · 共 {docCount} 篇</p>
                 </div>
@@ -400,9 +403,7 @@ function UpdateSection({ active, data }) {
         <Section active={active} className={styles.sectionUpdates} cover={COVERS.updates} tone="code">
             <div className={styles.updateWrap}>
                 <Eyebrow>更新 · CHANGELOG</Eyebrow>
-                <SectionTitle hint="站点内容的最新改动，每期的完整记录都在更新日志里。">
-                    最近在做什么
-                </SectionTitle>
+                <SectionTitle hint="在这里可以查看我们对文档的更改和修正，证明我们真的在努力！=P">最近的更新</SectionTitle>
 
                 <ul className={styles.updateList}>
                     {data.items.map((item, index) => (
@@ -497,7 +498,7 @@ function AboutSection({ active }) {
             <div className={styles.aboutPanel}>
                 <div className={styles.aboutHead}>
                     <Eyebrow>关于 · LINKS</Eyebrow>
-                    <h2 className={styles.title}>除了文档，还有这些地方</h2>
+                    <h2 className={styles.title}>常用链接和工具</h2>
                 </div>
 
                 <div className={styles.aboutGrid}>
@@ -531,8 +532,8 @@ function AboutSection({ active }) {
                         ))}
                     </p>
                     <p className={styles.copyright}>
-                        版权归 © 2019 - {new Date().getFullYear()} 一只卑微的量筒所有。除特殊声明外，本站中的内容均使用 CC
-                        BY-NC-SA 4.0 授权。
+                        版权归 © 2019 - {new Date().getFullYear()} 一只卑微的量筒所有。除特殊声明外，本站中的内容均使用 CC BY-NC-SA 4.0
+                        授权。
                     </p>
                 </div>
             </div>

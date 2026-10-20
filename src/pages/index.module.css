@@ -333,16 +333,27 @@
   }
 }
 
-/* 标题打完之后依次浮现的两段内容 */
-.hero [data-show] {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+/* 标题打完之后依次浮现。
+   关键：这里的**基态是「可见」**，动画只负责让它从下方浮上来。
+   早先的写法是 `opacity: 0` + 由 JS 状态改成 1，一旦那个状态没到位
+   （比如线上计时器没跑完），按钮和副标题就会永久消失、只剩标题。
+   现在换成交互无关的 CSS 动画，最坏情况也只是"晚一点出现"。 */
+.heroTagline,
+.heroButtons,
+.heroMeta {
+  animation: heroRise 0.65s ease both;
+  animation-delay: var(--reveal-delay, 0s);
 }
 
-.hero [data-show="true"] {
-  opacity: 1;
-  transform: none;
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .heroTagline {
@@ -362,8 +373,8 @@
   margin-top: 2.2rem;
 }
 
-.heroButtons[data-show="true"] {
-  transition-delay: 0.12s;
+.heroButtons {
+  animation-delay: calc(var(--reveal-delay, 0s) + 90ms);
 }
 
 .heroMeta {
@@ -371,10 +382,7 @@
   color: var(--oreui-text-dim);
   font-size: 0.85rem;
   letter-spacing: 0.08em;
-}
-
-.heroMeta[data-show="true"] {
-  transition-delay: 0.24s;
+  animation-delay: calc(var(--reveal-delay, 0s) + 180ms);
 }
 
 /* 底部「向下滚动」提示 */
@@ -794,14 +802,20 @@
     gap: 2rem;
   }
 
-  /* 手机上内容可能塞不下一屏，允许在屏内滚动 */
+  /* 手机上不要每屏自己滚：那会和外层 .deck 抢滚动条（右侧出现两条），
+     而且封面是相对「屏」绝对定位的，屏内一滚动，图就跟着走、盖不满。
+     改成：屏高随内容自适应，唯一的滚动容器是 .deck，封面自然覆盖整屏。 */
+  .deck {
+    /* 手机上一屏装不下全部内容，强制吸附会导致滚不动，改成「靠近才吸」 */
+    scroll-snap-type: y proximity;
+  }
+
   .section {
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    align-items: flex-start;
-    padding-top: clamp(1.5rem, 6vh, 3rem);
-    padding-bottom: clamp(1.5rem, 6vh, 3rem);
+    height: auto;
+    min-height: calc(100vh - var(--ifm-navbar-height));
+    min-height: calc(100dvh - var(--ifm-navbar-height));
+    padding-top: clamp(2rem, 7vh, 3.5rem);
+    padding-bottom: clamp(2rem, 7vh, 3.5rem);
   }
 
   .docGrid {
@@ -860,11 +874,17 @@
   .section .sectionInner > *,
   .actionCard,
   .docCard,
-  .updateItem,
-  .hero [data-show] {
+  .updateItem {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+
+  /* 首屏的入场动画整段取消：基态本来就是可见的，取消后内容立即出现 */
+  .heroTagline,
+  .heroButtons,
+  .heroMeta {
+    animation: none !important;
   }
 
   .caret,
