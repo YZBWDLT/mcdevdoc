@@ -139,23 +139,18 @@ const config = {
             footer: {
                 style: "dark",
                 links: [
-                    {
-                        title: `我们的作品`,
-                        items: [],
-                    },
-                    {
-                        title: `常用文档`,
-                        items: [
-                            { label: "命令", to: "docs/docs/commands/all_commands" },
-                            { label: "物品组件", to: "docs/docs/items/components" },
-                            { label: "方块组件", to: "docs/docs/blocks/components" },
-                        ],
-                    },
+                    // {
+                    //     title: `我们的作品`,
+                    //     items: [],
+                    // },
                     {
                         title: `友情链接`,
                         items: [
                             { label: "量筒测试群群文档", href: "https://docs.nekoawa.com" },
                             { label: "祉语的个人主页", href: "https://xiaozhiyuqwq.top" },
+                            { label: "苦力怕论坛", href: "https://klpbbs.com/" },
+                            { label: "MineBBS", href: "https://www.minebbs.com/" },
+                            { label: "TITAIKE", href: "https://www.titaike.cn/" },
                             { label: "小飞侠的博客", href: "https://wstd.pages.dev/" },
                             { label: "Xero的个人主页", href: "https://projectxero.top" },
                             { label: "萝卜的ModSAPI项目", href: "https://modsapi.nekoawa.com/" },
@@ -165,12 +160,18 @@ const config = {
                         title: `相关外部文档与常用链接`,
                         items: [
                             { label: "中文 Minecraft Wiki", href: "https://zh.minecraft.wiki/" },
+                            { label: "Bedrock Wiki", href: "https://wiki.bedrock.dev/" },
                             {
-                                label: "微软文档",
+                                label: "Microsoft Learn",
                                 href: "https://learn.microsoft.com/en-us/minecraft/creator/?view=minecraft-bedrock-stable",
                             },
+                            { label: "我的世界开发者官网", href: "https://mc.163.com/dev/guide.html" },
+                            { label: "JaylyMC 的 SAPI 文档", href: "https://jaylydev.github.io/scriptapi-docs/" },
+                            { label: "智韵清风的 JSONUI 文档", href: "https://mcbeui.netlify.app/" },
+                            { label: "MCBEID 表", href: "https://idlist.projectxero.top/" },
+                            { label: "原版附加包模板 GitHub 仓库", href: "https://github.com/Mojang/bedrock-samples" },
+                            { label: "Chunker", href: "https://chunker.app" },
                             { label: "基岩版开发 Wiki", href: "https://wiki.mcbe-dev.net/p/Minecraft基岩版开发Wiki" },
-                            { label: "Bedrock Wiki", href: "https://wiki.bedrock.dev/" },
                         ],
                     },
                     {
@@ -180,9 +181,12 @@ const config = {
                                 label: "授权：CC BY-NC-SA 4.0",
                                 href: "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans",
                             },
-                            { label: "字体：MiSans", href: "https://hyperos.mi.com/font" },
                             { label: "网站构建：Docusaurus", href: "https://docusaurus.io/" },
-                            { label: "GitHub", href: "https://github.com/YZBWDLT/mcdevdoc" },
+                            { label: "Bilibili：一只卑微的量筒", href: "https://space.bilibili.com/241650193" },
+                            { label: "GitHub：YZBWDLT", href: "https://github.com/YZBWDLT/mcdevdoc" },
+                            { label: "苦力怕论坛：YZBWDLT", href: "https://klpbbs.com/home.php?mod=space&uid=175998" },
+                            { label: "MineBBS：一只卑微的量筒", href: "https://www.minebbs.com/members/65092/" },
+                            { label: "TITAIKE：YZBWDLT", href: "https://www.titaike.cn/author/30276" },
                             { label: "联系我们：QQ 群 673941729", href: "https://qm.qq.com/q/CAJQrm3Rao" },
                         ],
                     },
