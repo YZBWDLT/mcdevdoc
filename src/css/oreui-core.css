@@ -839,6 +839,24 @@ kbd {
     color: #ffffff;
 }
 
+/* 标题后面的小标签（如「实验性」）：深色板面小方块 */
+.oreui-tag {
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    margin-left: 0.6rem;
+    padding: 0 0.45rem;
+    border: 2px solid #5a5b5c;
+    background-color: #313233;
+    color: #d0d1d4;
+    font-family: var(--oreui-font-body);
+    font-size: 0.78rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+}
+
 .oreui-row__control {
     flex: 0 0 auto;
     display: flex;
@@ -1586,6 +1604,259 @@ kbd {
 .oreui-accordion__content > :last-child {
     margin-bottom: 0;
 }
+
+
+/* ---- 5.10 资源卡 ----
+   封面 + 左下角模式标签 + 信息栏（左：名称与日期；右：编辑）。
+   外观属于板面语言：深色外框、上边一条亮线，没有厚度。 */
+.oreui-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 420px;
+    background-color: #48494a;
+    border: 3px solid #1e1e1f;
+    color: var(--oreui-text);
+}
+
+/* 封面：固定 16:9，图片按 cover 裁切 */
+.oreui-card__cover {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: #313233;
+    border-bottom: 3px solid #1e1e1f;
+}
+
+.oreui-card__cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 左下角的标签组：类型 / 适用版本 / 状态，紧贴图片底边排一行 */
+.oreui-card__tags {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.oreui-card__tag {
+    padding: 0.1rem 0.65rem 0.15rem;
+    border: 2px solid #1e1e1f;
+    background-color: #313233;
+    color: #ffffff;
+    font-family: var(--oreui-font-body);
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+/* 左上角的 NEW 角标：绿底白字，同样带黑边 */
+.oreui-card__flag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.1rem 0.65rem 0.15rem;
+    border: 2px solid #1e1e1f;
+    border-top: 0;
+    border-left: 0;
+    background-color: #3c8c34;
+    color: #ffffff;
+    font-family: var(--oreui-font-body);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+/* 右上角的作者标签：深底白字，与左上 NEW 对角 */
+.oreui-card__author {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 60%;
+    padding: 0.1rem 0.65rem 0.15rem;
+    border: 2px solid #1e1e1f;
+    border-top: 0;
+    border-right: 0;
+    background-color: #313233;
+    color: #ffffff;
+    font-family: var(--oreui-font-body);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 相邻标签的边框重叠，分隔只剩一条 2px 黑线 */
+.oreui-card__tag + .oreui-card__tag {
+    margin-left: -2px;
+}
+
+/* 适用版本：浅蓝底深色字 */
+.oreui-card__tag--version {
+    background-color: #8ec6e6;
+    color: #1e1e1f;
+}
+
+/* 状态（已停更等）：黄底深字 —— 停更不等于不能玩，别用红色示警 */
+.oreui-card__tag--status {
+    background-color: #e0b841;
+    color: #1e1e1f;
+}
+
+/* 信息栏：本身不画线，光暗由左右两个格子各自的斜面提供 */
+.oreui-card__bar {
+    display: flex;
+    align-items: stretch;
+    /* 两格同高：加高到接近实机比例 */
+    min-height: 84px;
+}
+
+.oreui-card__meta {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+    padding: 0.55rem 1rem 0.65rem;
+    /* 光从左上来：上/左亮，下/右暗 */
+    box-shadow: inset 3px 3px #5a5b5c, inset -3px -3px #333334;
+    color: var(--oreui-text);
+    text-decoration: none;
+}
+
+.oreui-card__meta:hover,
+.oreui-card__meta:focus,
+.oreui-card__meta:visited {
+    color: var(--oreui-text);
+    text-decoration: none;
+}
+
+/* 左格同样是按钮：悬停提亮、按下压暗 */
+.oreui-card__meta:hover {
+    background-color: #525355;
+    box-shadow: inset 3px 3px #65666a, inset -3px -3px #333334;
+}
+
+/* 按下：主体压到 #313233。
+   必须写成 :active:hover —— 按住时 :hover 同时生效且特异性相同，
+   只写 :active 会被悬停那条规定压过去（打包后顺序还可能调换），看不出变化。 */
+.oreui-card__meta:active,
+.oreui-card__action:active,
+.oreui-card__meta:hover:active,
+.oreui-card__action:hover:active {
+    background-color: #313233;
+}
+
+/* 没有 href 时这两块会渲染成 <button>，先清掉按钮的默认外观 */
+button.oreui-card__cover,
+button.oreui-card__meta {
+    border: 0;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+button.oreui-card__cover {
+    padding: 0;
+}
+
+button.oreui-card__meta {
+    width: 100%;
+    background-color: transparent;
+}
+
+.oreui-card__name {
+    min-width: 0;
+    overflow: hidden;
+    font-family: var(--oreui-font-body);
+    font-size: 1.3rem;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 信息栏第 2、3 行：资源版本 与 日期 各占一行，互不挤压 */
+.oreui-card__version {
+    min-width: 0;
+    overflow: hidden;
+    color: #d8d9db;
+    font-family: var(--oreui-font-body);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.oreui-card__date {
+    min-width: 0;
+    overflow: hidden;
+    color: #b6b7b9;
+    font-family: var(--oreui-font-body);
+    font-size: 1.1rem;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+}
+
+/* 右侧下载按钮：与左格同一套斜角 */
+.oreui-card__action {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    border: 0;
+    background-color: transparent;
+    box-shadow: inset 3px 3px #5a5b5c, inset -3px -3px #333334;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* 右侧也可能是 <a>（外链到论坛），要把链接的默认样式压掉 */
+a.oreui-card__action,
+a.oreui-card__action:hover,
+a.oreui-card__action:focus,
+a.oreui-card__action:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* 图标下的「获取」：不写具体平台，多平台分发交给详情页说明 */
+.oreui-card__actionLabel {
+    color: #d0d1d4;
+    font-family: var(--oreui-font-body);
+    font-size: 0.9rem;
+    line-height: 1;
+    letter-spacing: 0.5px;
+}
+
+/* 下载图标是 10×10 像素图，放大到 20px 保持锐利 */
+.oreui-card__action img {
+    display: block;
+    width: 20px;
+    height: 20px;
+    image-rendering: pixelated;
+}
+
+.oreui-card__action:hover {
+    background-color: #525355;
+    box-shadow: inset 3px 3px #65666a, inset -3px -3px #333334;
+}
+
+.oreui-card__action:focus-visible {
+    outline: 3px solid var(--oreui-accent-bright);
+    outline-offset: -3px;
+}
+
 
 /* ---- 5.9 「减少首页动态效果」 ----
    属性挂在首页容器（.deck）上，**只影响首页内部**，

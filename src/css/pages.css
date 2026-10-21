@@ -1,18 +1,30 @@
 /* ================================================================
-   settings.module.css
-   设置页版式（控件本身的样式在 src/css/oreui-core.css 第五部分）
+   页面外壳（pages.css）
    ---------------------------------------------------------------
-   版式照实机：内容区是**通栏**的浅灰板面，分组标题放在板面之外、
-   左对齐，标题下带一句说明。
+   给 src/pages/ 下的独立页面（设置、更新日志……）共用的一套版式：
+   通栏的浅灰板面 + 板面之外的分组标题。
+
+   结构约定：
+     <div class="page">
+       <h1 class="page__title">标题</h1>
+       <p class="page__intro">说明</p>
+       <section class="page__group">
+         <h2 class="page__groupTitle">分组</h2>
+         <p class="page__groupDesc">分组说明</p>
+         <div class="page__panel oreui-panel oreui-panel--light">…</div>
+       </section>
+     </div>
+
+   板面外观来自 .oreui-panel（板面语言），这里只管排版。
    ================================================================ */
 
-.container {
+.page {
     /* 不加 max-width、不留左右内边距：板面要通栏 */
     padding: 2.5rem 0 4rem;
     box-sizing: border-box;
 }
 
-.title {
+.page__title {
     margin: 0 2rem 0.5rem;
     color: var(--oreui-text);
     font-family: var(--oreui-font-title);
@@ -20,20 +32,19 @@
     letter-spacing: 1px;
 }
 
-.intro {
+.page__intro {
     margin: 0 2rem 2.5rem;
     color: var(--oreui-text-dim);
     font-size: 1.05rem;
     line-height: 1.7;
 }
 
-/* 一个分组 = 标题 + 说明 + 通栏板面 */
-.group {
+.page__group {
     margin-bottom: 2.5rem;
 }
 
 /* 分组标题：不加粗、白色，放在板面外 */
-.groupTitle {
+.page__groupTitle {
     margin: 0 2rem 0.3rem;
     color: #ffffff;
     font-family: var(--oreui-font-body);
@@ -42,34 +53,34 @@
     letter-spacing: 0.5px;
 }
 
-.groupDesc {
+.page__groupDesc {
     margin: 0 2rem 0.8rem;
     color: var(--oreui-text-dim);
     font-size: 0.95rem;
 }
 
-.panel {
+.page__panel {
     padding: 0;
 }
 
 @media (max-width: 768px) {
-    .container {
+    .page {
         padding: 1.5rem 0 3rem;
     }
 
-    .title,
-    .intro,
-    .groupTitle,
-    .groupDesc {
+    .page__title,
+    .page__intro,
+    .page__groupTitle,
+    .page__groupDesc {
         margin-right: 1rem;
         margin-left: 1rem;
     }
 
-    .intro {
+    .page__intro {
         margin-bottom: 1.8rem;
     }
 
-    .group {
+    .page__group {
         margin-bottom: 1.8rem;
     }
 }

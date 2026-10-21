@@ -4,6 +4,8 @@ import useGlobalData from "@docusaurus/useGlobalData";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import OreButton from "../components/oreui/button";
+import ResourceCard from "../components/oreui/resourceCard";
+import { RESOURCES, toCardProps } from "../data/resources";
 import styles from "./index.module.css";
 
 // ================================================================
@@ -64,13 +66,14 @@ const DOCUMENTS = [
     },
 ];
 
-// 每屏封面（由 home_1 ~ home_5 转换的 webp）
+// 每屏封面：编号与屏序一致（home_1 首屏 … home_6 关于）
 const COVERS = {
     hero: require("@site/static/site/home_1.webp").default,
     tutorial: require("@site/static/site/home_2.webp").default,
-    docs: require("@site/static/site/home_5.webp").default,
-    updates: require("@site/static/site/home_4.webp").default,
-    about: require("@site/static/site/home_3.webp").default,
+    docs: require("@site/static/site/home_3.webp").default,
+    resources: require("@site/static/site/home_4.webp").default,
+    updates: require("@site/static/site/home_5.webp").default,
+    about: require("@site/static/site/home_6.webp").default,
 };
 
 // ================================================================
@@ -81,8 +84,9 @@ const SECTION_INDEX = {
     hero: 0,
     tutorial: 1,
     docs: 2,
-    updates: 3,
-    about: 4,
+    resources: 3,
+    updates: 4,
+    about: 5,
 };
 
 // ================================================================
@@ -405,6 +409,88 @@ function DocumentSection({ active, docCount }) {
     );
 }
 
+/**
+ * 资源屏：卡片在上、标题与描述在下。
+ * 卡片数据来自 src/data/resources.js，加资源只改那个文件。
+ */
+function ResourceSection({ active }) {
+    const scrollerRef = useRef(null);
+    const [atStart, setAtStart] = useState(true);
+    const [atEnd, setAtEnd] = useState(false);
+
+    // 记录能否左右翻，用于禁用箭头与显隐边缘遮罩
+    const syncScrollState = useCallback(() => {
+        const el = scrollerRef.current;
+        if (!el) {
+            return;
+        }
+        setAtStart(el.scrollLeft <= 4);
+        setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4);
+    }, []);
+
+    // 用 layout effect：首帧就量好宽度，避免右侧遮罩闪一下
+    useIsomorphicLayoutEffect(() => {
+        syncScrollState();
+        window.addEventListener("resize", syncScrollState);
+        return () => window.removeEventListener("resize", syncScrollState);
+    }, [syncScrollState, active]);
+
+    const scrollByPage = direction => {
+        const el = scrollerRef.current;
+        if (!el) {
+            return;
+        }
+        // 一次翻大约八成可视宽度，留一点重叠便于对照
+        el.scrollBy({ left: direction * el.clientWidth * 0.8, behavior: "smooth" });
+    };
+
+    return (
+        <Section active={active} className={styles.sectionResources} cover={COVERS.resources} tone="soft">
+            <div className={styles.resourceWrap}>
+                <div className={styles.resourceScroller} data-at-start={atStart} data-at-end={atEnd}>
+                    <div className={styles.resourceGrid} ref={scrollerRef} onScroll={syncScrollState}>
+                        {RESOURCES.map(item => (
+                            <ResourceCard key={item.name} {...toCardProps(item)} />
+                        ))}
+                    </div>
+                </div>
+
+                <div className={styles.resourceHead}>
+                    <div className={styles.resourceText}>
+                        <SectionTitle
+                            en="RESOURCES"
+                            hint="同时，也欢迎来看看我们近些年来制作的高质量资源！&gt;w&lt;"
+                        >
+                            资源
+                        </SectionTitle>
+                    </div>
+
+                    <div className={styles.resourceNav}>
+                        <button
+                            type="button"
+                            className={styles.resourceArrow}
+                            aria-label="往前翻"
+                            disabled={atStart}
+                            onClick={() => scrollByPage(-1)}
+                        >
+                            ‹
+                        </button>
+                        <button
+                            type="button"
+                            className={styles.resourceArrow}
+                            aria-label="往后翻"
+                            disabled={atEnd}
+                            onClick={() => scrollByPage(1)}
+                        >
+                            ›
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </Section>
+    );
+}
+
 function UpdateSection({ active, data }) {
     return (
         <Section active={active} className={styles.sectionUpdates} cover={COVERS.updates} tone="code">
@@ -556,13 +642,15 @@ export default function Home() {
     const tutorialCount = countOf("tutorials");
     const docCount = countOf("docs");
 
-    const updates = globalData["recent-updates"]?.default;
+    // 更新日志数据由 plugins/update-log 提供（读 update-log/*.md）
+    const updates = globalData["update-log"]?.default?.latest;
 
     // 有更新数据时四屏，否则退回三屏
     const hasUpdates = Boolean(updates?.items?.length);
     // 更新数据缺失时「关于」顺位上移，总屏数随之减一
+    // 资源屏常在；更新屏缺数据时「关于」顺位上移一屏
     const aboutIndex = hasUpdates ? SECTION_INDEX.about : SECTION_INDEX.updates;
-    const sectionCount = hasUpdates ? 5 : 4;
+    const sectionCount = hasUpdates ? 6 : 5;
 
     const { active, containerRef, goTo } = useDeck(sectionCount);
     // 属性挂在 deck 上，CSS 里的压制动效规则因此只命中首页内部
@@ -584,6 +672,7 @@ export default function Home() {
                 />
                 <TutorialSection active={active === SECTION_INDEX.tutorial} tutorialCount={tutorialCount} />
                 <DocumentSection active={active === SECTION_INDEX.docs} docCount={docCount} />
+                <ResourceSection active={active === SECTION_INDEX.resources} />
                 {hasUpdates && <UpdateSection active={active === SECTION_INDEX.updates} data={updates} />}
                 <AboutSection active={active === aboutIndex} />
             </div>

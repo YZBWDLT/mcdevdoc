@@ -42,8 +42,8 @@ const config = {
     },
 
     // 本地插件：把最新一期「文档更新日志」抽成全局数据，供首页「最近更新」区块使用。
-    // 源码见 plugins/recent-updates/index.js。
-    plugins: ["./plugins/recent-updates"],
+    // 源码见 plugins/update-log/index.js：读 update-log/*.md。
+    plugins: ["./plugins/update-log"],
 
     presets: [
         [

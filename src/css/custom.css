@@ -7,6 +7,7 @@
                       data-font 的几套字体模式。改颜色、改字体只动这里。
    2. oreui-core.css  组件样式：按钮系统、导航栏、侧边栏、代码块、表格、
                       滚动条、Minecraft Tooltip 等具体外观。
+   3. pages.css       独立页面（设置、更新日志）共用的版式外壳。
 
    注意：@import 必须位于文件最前面，且顺序不能颠倒
    （oreui-core.css 依赖 tokens.css 里定义的变量）。
@@ -14,3 +15,4 @@
 
 @import "./tokens.css";
 @import "./oreui-core.css";
+@import "./pages.css";

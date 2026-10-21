@@ -603,6 +603,208 @@
   margin: 0;
 }
 
+
+/* ===== 资源屏 =====
+   卡片在上、标题与描述在下。
+   横向排布 + 横向滚动：卡片可以做得足够大，也不用担心数量超过一屏。 */
+.sectionResources .sectionInner {
+  /* 比其它屏宽一档，一屏能看到 4 张整卡 */
+  max-width: 1480px;
+}
+
+.sectionResources .scrim {
+  background:
+    radial-gradient(110% 90% at 50% 38%, rgba(24, 25, 26, 0.42) 0%, rgba(24, 25, 26, 0.9) 78%),
+    linear-gradient(180deg, rgba(24, 25, 26, 0.45) 0%, transparent 35%, transparent 62%, var(--oreui-bg) 100%);
+}
+
+.resourceWrap {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.4vh, 1.8rem);
+  width: 100%;
+}
+
+/* 两侧渐隐遮罩：能继续翻的时候才出现，提示"还有" */
+.resourceScroller {
+  position: relative;
+}
+
+.resourceScroller::before,
+.resourceScroller::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0.6rem;
+  width: 56px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.resourceScroller::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--oreui-bg) 10%, transparent);
+}
+
+.resourceScroller::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--oreui-bg) 10%, transparent);
+}
+
+.resourceScroller[data-at-start="false"]::before {
+  opacity: 1;
+}
+
+.resourceScroller[data-at-end="false"]::after {
+  opacity: 1;
+}
+
+.resourceGrid {
+  display: flex;
+  gap: clamp(0.8rem, 1.2vw, 1.1rem);
+  padding-bottom: 0.6rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* 横向吸附：一次滑一张卡 */
+  scroll-snap-type: x proximity;
+}
+
+/* 每张卡固定宽度、固定高度：封面 16:9 + 信息栏 84px。
+   min-width / max-width 必须一起写死 —— flex 子项默认 min-width: auto，
+   内容（比如长版本号）比基准宽时会把它整个撑大。 */
+.resourceGrid > * {
+  flex: 0 0 auto;
+  width: clamp(300px, 24vw, 360px);
+  min-width: 0;
+  max-width: clamp(300px, 24vw, 360px);
+  align-self: flex-start;
+  scroll-snap-align: start;
+}
+
+/* 首页里的卡片：比默认略收一档，但比之前大 */
+.resourceGrid :global(.oreui-card) {
+  max-width: none;
+}
+
+.resourceGrid :global(.oreui-card__bar) {
+  height: 96px;
+  overflow: hidden;
+}
+
+.resourceGrid :global(.oreui-card__meta) {
+  padding: 0.5rem 0.95rem 0.6rem;
+}
+
+.resourceGrid :global(.oreui-card__name) {
+  font-size: 1.2rem;
+}
+
+.resourceGrid :global(.oreui-card__date) {
+  font-size: 0.95rem;
+}
+
+.resourceGrid :global(.oreui-card__version) {
+  font-size: 0.9rem;
+}
+
+.resourceGrid :global(.oreui-card__action) {
+  width: 84px;
+  gap: 4px;
+}
+
+.resourceGrid :global(.oreui-card__action img) {
+  width: 22px;
+  height: 22px;
+}
+
+.resourceGrid :global(.oreui-card__actionLabel) {
+  font-size: 0.85rem;
+}
+
+.resourceGrid :global(.oreui-card__tag) {
+  padding: 0.1rem 0.55rem 0.15rem;
+  font-size: 0.85rem;
+}
+
+.resourceGrid :global(.oreui-card__flag) {
+  padding: 0.1rem 0.55rem 0.15rem;
+  font-size: 0.85rem;
+}
+
+.resourceHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.resourceText {
+  min-width: 0;
+}
+
+/* 翻页箭头：46px 方块，和凸面按钮同一套明暗 */
+.resourceNav {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.5rem;
+  padding-bottom: 0.3rem;
+}
+
+.resourceArrow {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0 0 4px;
+  border: 3px solid #1e1e1f;
+  border-top-color: #5a5b5c;
+  background-color: #313233;
+  color: #ffffff;
+  font-family: var(--oreui-font-body);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.resourceArrow:hover:not(:disabled) {
+  background-color: #3a3b3c;
+}
+
+.resourceArrow:active:not(:disabled) {
+  border-color: #39393a;
+  border-top-color: #070707;
+  background-color: #242425;
+}
+
+.resourceArrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.resourceArrow:focus-visible {
+  outline: 3px solid var(--oreui-accent-bright);
+  outline-offset: 2px;
+}
+
+.resourceHead .title,
+.resourceHead .lead {
+  text-align: left;
+}
+
+.resourceHead .lead {
+  margin-top: 0.7rem;
+}
+
+@media (max-width: 900px) {
+  /* 窄屏：一屏一张多一点，滑动提示更强 */
+  .resourceGrid > * {
+    width: min(78vw, 340px);
+    max-width: min(78vw, 340px);
+  }
+}
+
 /* ===== 第五屏：关于与链接 =====
    首页隐藏了页脚，原来页脚里的链接收进这一屏。
    面板给到 84% 不透明度 + 轻背景模糊，保证在彩色底图上也能安稳阅读。 */

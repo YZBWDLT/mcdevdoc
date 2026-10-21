@@ -13,7 +13,6 @@ import OreSegmented from "../components/oreui/segmented";
 import OreSlider from "../components/oreui/slider";
 import OreSwitch from "../components/oreui/switch";
 import OreButton from "../components/oreui/button";
-import styles from "./settings.module.css";
 
 // ================================================================
 // 配置与常量
@@ -157,16 +156,16 @@ export default function Settings() {
 
     return (
         <Layout title="设置" description="对本站的外观、动画等进行设置。">
-            <div className={styles.container}>
-                <h1 className={styles.title}>设置</h1>
-                <p className={styles.intro}>对本站的外观、动画等进行设置。</p>
+            <div className="page">
+                <h1 className="page__title">设置</h1>
+                <p className="page__intro">对本站的外观、动画等进行设置。</p>
 
                 {/* ---- 显示 ---- */}
-                <section className={styles.group}>
-                    <h2 className={styles.groupTitle}>显示</h2>
-                    <p className={styles.groupDesc}>调整本站的外观。</p>
+                <section className="page__group">
+                    <h2 className="page__groupTitle">显示</h2>
+                    <p className="page__groupDesc">调整本站的外观。</p>
 
-                    <div className={`${styles.panel} oreui-panel oreui-panel--light`}>
+                    <div className={"page__panel oreui-panel oreui-panel--light"}>
                         <SettingRow
                             stack
                             title="字体风格"
@@ -182,9 +181,14 @@ export default function Settings() {
 
                         <SettingRow
                             stack
-                            title="界面缩放"
+                            title={
+                                <>
+                                    界面缩放
+                                    <span className="oreui-tag">实验性</span>
+                                </>
+                            }
                             titleAside={`${scale}%`}
-                            description="调整页面的字号与间距。"
+                            description="调整页面的字号与间距。请注意：网站可能会随着本设置的更改出现排版错乱。"
                         >
                             <OreSlider
                                 value={scale}
@@ -199,11 +203,11 @@ export default function Settings() {
                 </section>
 
                 {/* ---- 动效 ---- */}
-                <section className={styles.group}>
-                    <h2 className={styles.groupTitle}>动效</h2>
-                    <p className={styles.groupDesc}>调整本站的动画效果。</p>
+                <section className="page__group">
+                    <h2 className="page__groupTitle">动效</h2>
+                    <p className="page__groupDesc">调整本站的动画效果。</p>
 
-                    <div className={`${styles.panel} oreui-panel oreui-panel--light`}>
+                    <div className={"page__panel oreui-panel oreui-panel--light"}>
                         <SettingRow
                             title="减少首页动态效果"
                             description="关闭首页标题的逐字打出、内容上浮与页面切换动画。其它页面的动画不受影响。"
@@ -218,11 +222,25 @@ export default function Settings() {
                 </section>
 
                 {/* ---- 恢复默认 ---- */}
-                <section className={styles.group}>
-                    <div className={`${styles.panel} oreui-panel oreui-panel--light`}>
+                <section className="page__group">
+                    <div className="page__panel oreui-panel oreui-panel--light">
                         <SettingRow title="恢复默认设置">
                             <OreButton variant="light" onClick={handleReset}>
                                 恢复
+                            </OreButton>
+                        </SettingRow>
+                    </div>
+                </section>
+
+                {/* ---- 更新日志 ---- */}
+                <section className="page__group">
+                    <div className="page__panel oreui-panel oreui-panel--light">
+                        <SettingRow
+                            title="更新日志"
+                            description="查看本站有记载以来的修改记录。"
+                        >
+                            <OreButton variant="light" to="/update_log">
+                                查看
                             </OreButton>
                         </SettingRow>
                     </div>

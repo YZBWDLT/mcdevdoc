@@ -1,0 +1,112 @@
+/* ================================================================
+   update_log.module.css
+   更新日志页的条目排版（页面外壳见 src/css/pages.css）
+   ================================================================ */
+
+.list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.entry {
+    padding: 0.8rem 2rem;
+    border-bottom: 2px solid #333334;
+}
+
+.entry:last-child {
+    border-bottom: 0;
+}
+
+.entryHead {
+    display: flex;
+    gap: 0.9rem;
+    align-items: baseline;
+}
+
+/* 动词标签 */
+.verb {
+    flex: 0 0 auto;
+    min-width: 2.6rem;
+    color: var(--oreui-accent-bright);
+    font-family: var(--oreui-font-body);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.text {
+    flex: 1 1 auto;
+    min-width: 0;
+    color: var(--oreui-text);
+    font-size: 0.98rem;
+    line-height: 1.75;
+}
+
+/* 子项：缩进 + 一个小方点 */
+.subList {
+    margin: 0.35rem 0 0 3.5rem;
+    padding: 0;
+    list-style: none;
+}
+
+.subItem {
+    position: relative;
+    padding-left: 0.95rem;
+    color: var(--oreui-text-dim);
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.subItem::before {
+    content: "";
+    position: absolute;
+    top: 0.72em;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    background-color: #8c8d90;
+}
+
+/* 过往更新：每天一小段 */
+.day {
+    padding: 0.4rem 0;
+}
+
+.day + .day {
+    border-top: 1px dashed rgba(255, 255, 255, 0.12);
+}
+
+.dayDate {
+    margin: 0.4rem 0 0.6rem;
+    color: #ffffff;
+    font-family: var(--oreui-font-body);
+    font-weight: 400;
+    font-size: 0.98rem;
+    letter-spacing: 0.5px;
+}
+
+/* 过往更新里嵌在折叠栏正文中，左右内边距交给外层，分隔线也换细一点 */
+.day .entry {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.day .entry:last-child {
+    border-bottom: 0;
+}
+
+.empty {
+    margin: 0;
+    padding: 1.2rem 2rem;
+    color: var(--oreui-text-dim);
+}
+
+@media (max-width: 768px) {
+    .entry {
+        padding: 0.7rem 1rem;
+    }
+
+    .subList {
+        margin-left: 0.4rem;
+    }
+}
