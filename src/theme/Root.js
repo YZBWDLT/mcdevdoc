@@ -1,58 +1,70 @@
 // src/theme/Root.js
-import React, { useEffect } from 'react';
-import useIsBrowser from '@docusaurus/useIsBrowser';
+import React, { useEffect } from "react";
+import useIsBrowser from "@docusaurus/useIsBrowser";
 
-// 这个组件负责初始化字体并监听跨标签页变更
-function FontManager() {
-  const isBrowser = useIsBrowser();
+// ================================================================
+// 用户偏好的启动期恢复
+// ---------------------------------------------------------------
+// 设置页把偏好写进 localStorage，这里在每次进入站点时读回来并应用到 <html>：
+//   oreui-font-mode → data-font（字体风格）
+//   oreui-scale     → 根字号百分比（界面缩放）
+//   （oreui-motion 不在这里处理：它只作用于首页，由首页自己读取）
+// 同时监听跨标签页的变更，保证多标签一致。
+// ================================================================
 
-  // 读取 localStorage 并应用到 document.documentElement
-  const applyFontSetting = () => {
-    if (!isBrowser) return;
-    const saved = localStorage.getItem('oreui-font-mode');
-    // 白名单式判断已改为「除默认 pixel 外一律应用」：
-    // 原先只认 misans / official，设置页里的 unifont（游戏内字体）刷新后会被丢弃。
-    // 这样写以后新增字体模式也不必同步维护这里。
-    if (saved && saved !== 'pixel') {
-      document.documentElement.dataset.font = saved;
+const KEY_FONT = "oreui-font-mode";
+const KEY_SCALE = "oreui-scale";
+
+function applyAllPreferences() {
+    const root = document.documentElement;
+
+    // 字体：除默认的 pixel 外一律写入 data-font
+    const font = localStorage.getItem(KEY_FONT);
+    if (font && font !== "pixel") {
+        root.dataset.font = font;
     } else {
-      // 默认或 'pixel'
-      delete document.documentElement.dataset.font;
+        delete root.dataset.font;
     }
-  };
 
-  useEffect(() => {
-    if (!isBrowser) return;
+    // 界面缩放
+    const scale = Number(localStorage.getItem(KEY_SCALE));
+    if (scale && scale !== 100) {
+        root.style.fontSize = `${scale}%`;
+    } else {
+        root.style.removeProperty("font-size");
+    }
 
-    // 1. 页面加载时应用
-    applyFontSetting();
-
-    // 2. 监听其他标签页的 localStorage 变化
-    const handleStorageChange = (e) => {
-      if (e.key === 'oreui-font-mode') {
-        // 当其他标签页修改了该键值时，重新应用
-        applyFontSetting();
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-
-    // 3. 清理事件
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, [isBrowser]);
-
-  // 此组件不渲染任何 UI
-  return null;
+    // 「减少首页动态效果」不加在 <html> 上，否则会压掉全站动画
+    delete root.dataset.motion;
 }
 
-// 默认导出 Root，包裹 children
+function PreferenceManager() {
+    const isBrowser = useIsBrowser();
+
+    useEffect(() => {
+        if (!isBrowser) return undefined;
+
+        applyAllPreferences();
+
+        const handleStorageChange = event => {
+            if (event.key === KEY_FONT || event.key === KEY_SCALE) {
+                applyAllPreferences();
+            }
+        };
+
+        window.addEventListener("storage", handleStorageChange);
+        return () => window.removeEventListener("storage", handleStorageChange);
+    }, [isBrowser]);
+
+    // 此组件不渲染任何 UI
+    return null;
+}
+
 export default function Root({ children }) {
-  return (
-    <>
-      <FontManager />
-      {children}
-    </>
-  );
+    return (
+        <>
+            <PreferenceManager />
+            {children}
+        </>
+    );
 }

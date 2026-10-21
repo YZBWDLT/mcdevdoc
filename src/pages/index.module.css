@@ -16,6 +16,13 @@
   overscroll-behavior-y: contain;
   position: relative;
   background-color: var(--oreui-bg);
+  /* 右侧已有页码条负责定位，滚动条只会白占宽度，全端隐藏。
+     只作用于首页容器，不影响文档页那些 OreUI 方块滚动条 */
+  scrollbar-width: none;
+}
+
+.deck::-webkit-scrollbar {
+  display: none;
 }
 
 /* 环境光：右下与左上的绿色辉光，固定不随内容滚动 */
@@ -89,23 +96,18 @@
 }
 
 /* ===== 文字骨架 ===== */
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin: 0 0 1.1rem;
-  color: var(--oreui-accent-bright);
+/* 首屏标题上方那行小字。
+   原来是「中文 · ENGLISH」的绿色标签，已按量筒意见去掉；
+   只留一行更小、更淡的英文作为呼吸位——字号比原标签小，
+   中文标题的字号不动。 */
+.kicker {
+  margin: 0 0 1.5rem;
+  color: var(--oreui-text-dim);
   font-family: var(--oreui-font-subtitle);
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-}
-
-.eyebrow::before {
-  content: "";
-  width: 26px;
-  height: 2px;
-  background-color: var(--oreui-accent-bright);
+  opacity: 0.72;
 }
 
 .title {
@@ -115,6 +117,18 @@
   font-size: clamp(1.6rem, 3.4vw, 2.6rem);
   line-height: 1.3;
   letter-spacing: 1px;
+}
+
+/* 标题里跟在中文后面的英文：整体缩小到一半以下，
+   中文标题的字号不动，两者共用同一行基线 */
+.titleEn {
+  margin-left: 0.5em;
+  color: var(--oreui-text-dim);
+  font-family: var(--oreui-font-subtitle);
+  font-size: 0.42em;
+  letter-spacing: 0.18em;
+  opacity: 0.65;
+  white-space: nowrap;
 }
 
 .lead {
@@ -143,57 +157,9 @@
   text-decoration: underline;
 }
 
-/* ===== 按钮 ===== */
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 160px;
-  height: 54px;
-  padding: 0 1.9rem;
-  background-color: var(--oreui-surface);
-  border: 2px solid var(--oreui-border-dark2);
-  border-top-color: var(--oreui-border-light);
-  color: var(--oreui-text);
-  font-family: var(--oreui-font-subtitle);
-  font-size: 1rem;
-  letter-spacing: 0.5px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
-}
-
-.button:hover {
-  background-color: var(--oreui-surface-2);
-  border-color: var(--oreui-accent);
-  border-top-color: var(--oreui-accent);
-  color: var(--oreui-text);
-  text-decoration: none;
-  transform: translateY(-2px);
-}
-
-.button:active {
-  transform: translateY(2px);
-}
-
-.button:focus-visible {
-  outline: 3px solid var(--oreui-accent-bright);
-  outline-offset: 3px;
-}
-
-.buttonGreen {
-  background-color: var(--oreui-accent);
-  border-color: var(--oreui-accent-darker);
-  border-top-color: var(--oreui-accent-bright);
-  color: #ffffff;
-}
-
-.buttonGreen:hover {
-  background-color: var(--oreui-accent-bright);
-  border-color: var(--oreui-accent-darker);
-  border-top-color: #ffffff;
-  color: #ffffff;
-}
+/* ===== 按钮 =====
+   已全部换成 src/components/oreui/button.js 的凸面按钮（.oreui-button），
+   这里不再保留旧的 .button 样式。 */
 
 /* ===== 每屏封面背景 =====
    四屏各用一张实景 / 开发截图（static/site/home_*.webp），统一两层处理：
@@ -294,10 +260,6 @@
 .hero {
   max-width: 940px;
   margin: 0 auto;
-}
-
-.hero .eyebrow {
-  justify-content: center;
 }
 
 .heroTitle {
@@ -574,10 +536,6 @@
   margin: 0 auto;
 }
 
-.updateWrap .eyebrow {
-  justify-content: center;
-}
-
 .updateWrap .title,
 .updateWrap .lead {
   text-align: center;
@@ -643,14 +601,6 @@
 
 .updateFooter .meta {
   margin: 0;
-}
-
-.closing {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2.6rem;
 }
 
 /* ===== 第五屏：关于与链接 =====

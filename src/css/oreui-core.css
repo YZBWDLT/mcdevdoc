@@ -10,6 +10,82 @@
    ================================================================ */
 
 /* ================================================================
+   第零部分：两套设计语言（2026-10-21 定名）
+   ================================================================
+   站内所有"面"都归到下面两种之一。判据只有一条：
+   **底部有没有那条 4px 的厚度条** —— 有就是凸面，没有就是板面。
+   跟"能不能点"无关，两者都可以是交互控件。
+
+   ① 凸面 raised —— 有厚度（实体）
+      「脸 → 亮边（上/左/右 + 底，两种颜色）→ 厚度条 → 描边」四层。
+      按下：厚度条消失、整体矮 4px —— 从"凸"变成"平"。
+      使用者：分段按钮、滑动条与开关的滑块、普通按钮、下拉框。
+
+   ② 板面 flat —— 无厚度（薄板）
+      只有四边明暗：**上亮、左右与下暗**。
+      按下：明暗反转（上边变得比主体还暗、其余三边变亮），视觉上向内凹
+      —— 从"平"变成"凹"。三态配色见下方变量。
+      使用者：折叠栏的每一行、设置页分组面板、各类提示框。
+
+   两者不要混用：凸面永远带厚度条，板面永远不带。
+   ================================================================ */
+
+/* 板面：上亮、左右底暗。
+   三态配色（量筒 2026-10-21 给定）：
+     常态  主体 #313233  上 #454647  其他 #1d1e1f
+     悬停  主体 #48494a  上 #5a5b5c  其他 #2b2c2c
+     按下  主体 #242425  上 #070707  其他 #39393a   ← 明暗反转 = 内凹
+   注意按下态：上高亮变得比主体还暗、其余三边变亮，视觉上就是"凹进去"。 */
+:root {
+    --oreui-panel-face: #313233;
+    --oreui-panel-top: #454647;
+    --oreui-panel-edge: #1d1e1f;
+
+    --oreui-panel-face-hover: #48494a;
+    --oreui-panel-top-hover: #5a5b5c;
+    --oreui-panel-edge-hover: #2b2c2c;
+
+    --oreui-panel-face-active: #242425;
+    --oreui-panel-top-active: #070707;
+    --oreui-panel-edge-active: #39393a;
+}
+
+/* 板面：一圈 3px 边框，**上边用亮色、左右与下用深色**。
+   亮暗分界就是"受光"的暗示，不需要再做第二圈。 */
+.oreui-panel {
+    background-color: var(--oreui-panel-face);
+    border: 3px solid var(--oreui-panel-edge);
+    border-top-color: var(--oreui-panel-top);
+}
+
+/* 浅灰板面：与页面背景同色系，用在设置页这种"通栏内容区"上。
+   主体 #48494a / 上高亮 #5a5b5c / 其他高亮 #333334 */
+.oreui-panel--light {
+    background-color: #48494a;
+    border: 3px solid #333334;
+    border-top-color: #5a5b5c;
+}
+
+/* 浅灰板面里的行分隔线也跟着调成这组色 */
+.oreui-panel--light .oreui-row {
+    border-bottom-color: #333334;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 可交互的板面（如折叠栏的每一行）才需要下面两种状态 */
+.oreui-panel--clickable:hover {
+    background-color: var(--oreui-panel-face-hover);
+    border: 3px solid var(--oreui-panel-edge-hover);
+    border-top-color: var(--oreui-panel-top-hover);
+}
+
+.oreui-panel--clickable:active {
+    background-color: var(--oreui-panel-face-active);
+    border: 3px solid var(--oreui-panel-edge-active);
+    border-top-color: var(--oreui-panel-top-active);
+}
+
+/* ================================================================
    第一部分：OreUI 按钮系统
    ================================================================
    设计特点：
@@ -433,11 +509,58 @@ pre[class*="language-"] {
     border-radius: 0;
 }
 
-/* ---- 2.9 搜索框 ---- */
+/* ---- 2.9 搜索框 ----
+   外观与站内的文本输入框完全一致：深色内凹、2px 暗描边、
+   顶部压暗的 inset 阴影；聚焦/悬停只把底色提亮一档。 */
 .DocSearch-Button {
-    border: 2px solid var(--oreui-border-dark2) !important;
+    height: 44px;
+    padding: 0 0.75rem !important;
+    border: 2px solid var(--oreui-knob-border) !important;
     border-radius: 0 !important;
-    background: var(--oreui-code-inline-bg) !important;
+    background-color: #313233 !important;
+    box-shadow: inset 0 2px #232425, inset 0 -1px rgba(255, 255, 255, 0.06) !important;
+    color: var(--oreui-text) !important;
+}
+
+.DocSearch-Button:hover {
+    background-color: #353637 !important;
+    box-shadow: inset 0 2px #232425, inset 0 -1px rgba(255, 255, 255, 0.06) !important;
+}
+
+.DocSearch-Button:focus,
+.DocSearch-Button:focus-visible {
+    background-color: #3a3b3c !important;
+    outline: none !important;
+}
+
+/* 占位文字与放大镜跟着变灰，和输入框的 placeholder 一致 */
+.DocSearch-Button-Placeholder {
+    color: #8c8d90 !important;
+    font-family: var(--oreui-font-body);
+    font-size: 0.95rem;
+}
+
+.DocSearch-Search-Icon {
+    color: #8c8d90 !important;
+}
+
+/* 快捷键提示（⌘K）做成小暗块 */
+.DocSearch-Button-Keys {
+    gap: 3px;
+}
+
+.DocSearch-Button-Key {
+    min-width: 20px;
+    height: 20px;
+    padding: 0 4px !important;
+    border: 1px solid #1d1e1f !important;
+    border-radius: 0 !important;
+    background: #242425 !important;
+    box-shadow: none !important;
+    color: #8c8d90 !important;
+    font-family: var(--oreui-font-body);
+    font-size: 0.72rem;
+    line-height: 18px;
 }
 
 /* ---- 2.10 提示框（Admonition） ---- */
@@ -640,4 +763,839 @@ kbd {
 .minetip-tooltip > .minetip-description {
     display: block;
     margin-top: 0.25em;
+}
+
+/* ================================================================
+   第五部分：OreUI 表单控件
+   ================================================================
+   形态取自基岩版实机截图（设置页 / 开始游戏页），共同特征：
+   - 全部直角，没有任何圆角；
+   - 控件本身常用**浅灰底 + 近黑描边**，压在深色面板上形成强对比；
+   - 选中 / 开启态用绿色 #3c8527，辅以白色标记（滑块白方块、按钮白下划线）。
+
+   这些类名是全局的（不经过 CSS Modules），页面里直接写 className 即可。
+   ================================================================ */
+
+/* ---- 5.1 设置行 ----
+   分割线照着实机做：一条深线 + 紧贴其下的一条浅线（上深下浅），
+   并且横向铺满整个面板，所以水平内边距放在行上、面板本身不再留白。 */
+.oreui-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+    /* 上深下浅的双线，2px 深线 + 1px 浅线 */
+    border-bottom: 2px solid #242526;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.oreui-row:last-child {
+    border-bottom: none;
+    box-shadow: none;
+}
+
+.oreui-row__text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.oreui-row__title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0 0 0.35rem;
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-body);
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+/* 标题行右侧的当前值（如「100%」），与标题同高 */
+.oreui-row__value {
+    flex: 0 0 auto;
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-body);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.oreui-row__desc {
+    margin: 0;
+    color: var(--oreui-text-dim);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.oreui-row__desc a {
+    color: var(--oreui-accent-bright);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.oreui-row__desc a:hover {
+    color: #ffffff;
+}
+
+.oreui-row__control {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* 控件较宽（分段按钮、滑块）时换到下一行、铺满整行 */
+.oreui-row--stack {
+    flex-wrap: wrap;
+}
+
+.oreui-row--stack .oreui-row__control {
+    flex: 1 1 100%;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .oreui-row {
+        gap: 1rem;
+        padding: 0.9rem 1rem;
+    }
+}
+
+/* 滑块 / 按钮共用配色 —— 它们是同一个骨架，只是尺寸不同：
+     脸 → 亮边（上/左/右）→ 底亮边 → 厚度条 → 描边（由内到外）
+   实机里「上左右」与「底」的高亮是两种颜色，这里分列成两组变量。 */
+:root {
+    --oreui-knob-face: #d0d1d4;
+    --oreui-knob-face-hover: #b1b2b5;
+    --oreui-knob-edge: #ecedee;
+    --oreui-knob-strip: #58585a;
+    --oreui-knob-border: #1b1c1d;
+
+    --oreui-fill-face: #3c8527;
+    --oreui-fill-highlight: #639d52;
+    --oreui-fill-highlight-bottom: #4f913c;
+    --oreui-fill-strip: #1d4d13;
+
+    --oreui-track-face: #8c8d90;
+    --oreui-track-highlight: #a3a4a6;
+    --oreui-track-highlight-bottom: #97989b;
+}
+
+/* ---- 5.2 开关 ---- */
+.oreui-switch {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.oreui-switch__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 轨道：宽度**正好是滑块的两倍**（56 = 2 × 28）。
+   高度 22px —— 比滑块矮但明显有厚度，滑块底边与之齐平、只向上冒出 8px。
+   顶边压一条亮线、底边压一条暗线，做出凹槽的边缘高亮。 */
+.oreui-switch__track {
+    position: relative;
+    display: block;
+    width: 56px;
+    height: 24px;
+    background-color: var(--oreui-track-face);
+    border: 2px solid var(--oreui-knob-border);
+    /* 上、下、左、右四条高亮：露出哪一边就该有哪一边的亮边 */
+    box-shadow:
+        inset 0 2px var(--oreui-track-highlight),
+        inset 0 -2px var(--oreui-track-highlight-bottom),
+        inset 2px 0 var(--oreui-track-highlight),
+        inset -2px 0 var(--oreui-track-highlight);
+    transition: background-color 0.12s ease;
+}
+
+.oreui-switch__input:checked ~ .oreui-switch__track {
+    background-color: var(--oreui-fill-face);
+    box-shadow:
+        inset 0 2px var(--oreui-fill-highlight),
+        inset 0 -2px var(--oreui-fill-highlight-bottom),
+        inset 2px 0 var(--oreui-fill-highlight),
+        inset -2px 0 var(--oreui-fill-highlight);
+}
+
+/* ---- 5.2.1 滑块外观（开关与滑动条共用） ----
+   三层 background 的顺序**必须是「脸 → 亮边 → 厚度条」**：
+   多层 background 是「先写的盖在上面」，脸若写在最后会被亮边整个盖掉。 */
+.oreui-switch__knob {
+    position: absolute;
+    /* 底边与轨道底边齐平（外扩 2px 抵消轨道描边），只向上冒出；
+       左右同样外扩 2px 盖住轨道描边，否则会叠出 4px 黑边 */
+    top: -6px;
+    bottom: -2px;
+    left: -2px;
+    width: 28px;
+    background-color: transparent;
+    background-image:
+        linear-gradient(var(--oreui-knob-face), var(--oreui-knob-face)),
+        linear-gradient(var(--oreui-knob-edge), var(--oreui-knob-edge)),
+        linear-gradient(var(--oreui-knob-strip), var(--oreui-knob-strip));
+    background-repeat: no-repeat;
+    background-size:
+        calc(100% - 4px) calc(100% - 8px),
+        100% calc(100% - 4px),
+        100% 4px;
+    background-position:
+        2px 2px,
+        top center,
+        bottom center;
+    border: 2px solid var(--oreui-knob-border);
+    transition: left 0.16s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.oreui-switch__input:checked ~ .oreui-switch__track .oreui-switch__knob {
+    left: calc(100% - 26px);
+}
+
+/* 状态标记：关 = 露出的半边居中一个空心方框（用 static/ui/toggle_o.png 贴图，
+   8×8 像素图放大两倍以内保持锐利）；开 = 另一侧一根白色竖条「|」。 */
+.oreui-switch__track::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+    border: 0;
+    background-image: url("/ui/toggle_o.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+    transform: translateY(-50%);
+}
+
+.oreui-switch__input:checked ~ .oreui-switch__track::after {
+    right: auto;
+    left: 12px;
+    width: 2px;
+    height: 12px;
+    background-image: none;
+    background-color: #ffffff;
+}
+
+/* 悬停：只把「脸」换成 #b1b2b5，厚度条与亮边不动 */
+.oreui-switch:hover .oreui-switch__knob {
+    background-image:
+        linear-gradient(var(--oreui-knob-face-hover), var(--oreui-knob-face-hover)),
+        linear-gradient(var(--oreui-knob-edge), var(--oreui-knob-edge)),
+        linear-gradient(var(--oreui-knob-strip), var(--oreui-knob-strip));
+}
+
+.oreui-switch__input:focus-visible ~ .oreui-switch__track {
+    outline: 3px solid var(--oreui-accent-bright);
+    outline-offset: 3px;
+}
+
+/* ---- 5.3 滑块 ----
+   轨道 14px，无边框（描边用外阴影画，避免影响滑块居中的计算）。
+   左侧填充段用绿色按钮那一组色，右侧未填充段用轨道色；两边各有一条高亮线。
+   填充宽度的计算要把滑块自身的半宽算进去，否则填充末端会落后于滑块中心。 */
+.oreui-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: 36px;
+    background: transparent;
+    cursor: pointer;
+    /* 滑块宽 28：两端各留 14px，填充从 14px 走到 100%-14px */
+    --fill: calc(var(--ratio, 0) * (100% - 28px) + 14px);
+}
+
+.oreui-slider::-webkit-slider-runnable-track {
+    height: 8px;
+    border: 0;
+    background:
+        /* 上边高亮：绿 / 灰两段各取一色 */
+        linear-gradient(
+                90deg,
+                var(--oreui-fill-highlight) 0 var(--fill),
+                var(--oreui-track-highlight) var(--fill) 100%
+            )
+            top center / 100% 1px no-repeat,
+        /* 底边高亮：同样是两种颜色 */
+        linear-gradient(
+                90deg,
+                var(--oreui-fill-highlight-bottom) 0 var(--fill),
+                var(--oreui-track-highlight-bottom) var(--fill) 100%
+            )
+            bottom center / 100% 1px no-repeat,
+        linear-gradient(
+            90deg,
+            var(--oreui-fill-face) 0 var(--fill),
+            var(--oreui-track-face) var(--fill) 100%
+        );
+    box-shadow: 0 0 0 2px var(--oreui-knob-border);
+}
+
+/* 拇指：与开关滑块同一套三层 background，宽度也一致（28px） */
+.oreui-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    margin-top: -10px;
+    background-color: transparent;
+    background-image:
+        linear-gradient(var(--oreui-knob-face), var(--oreui-knob-face)),
+        linear-gradient(var(--oreui-knob-edge), var(--oreui-knob-edge)),
+        linear-gradient(var(--oreui-knob-strip), var(--oreui-knob-strip));
+    background-repeat: no-repeat;
+    background-size:
+        calc(100% - 4px) calc(100% - 8px),
+        100% calc(100% - 4px),
+        100% 4px;
+    background-position:
+        2px 2px,
+        top center,
+        bottom center;
+    border: 2px solid var(--oreui-knob-border);
+}
+
+.oreui-slider:hover::-webkit-slider-thumb {
+    background-image:
+        linear-gradient(var(--oreui-knob-face-hover), var(--oreui-knob-face-hover)),
+        linear-gradient(var(--oreui-knob-edge), var(--oreui-knob-edge)),
+        linear-gradient(var(--oreui-knob-strip), var(--oreui-knob-strip));
+}
+
+.oreui-slider:focus-visible {
+    outline: 3px solid var(--oreui-accent-bright);
+    outline-offset: 3px;
+}
+
+/* Firefox */
+.oreui-slider::-moz-range-track {
+    height: 8px;
+    border: 0;
+    background:
+        /* 上边高亮：绿 / 灰两段各取一色 */
+        linear-gradient(
+                90deg,
+                var(--oreui-fill-highlight) 0 var(--fill),
+                var(--oreui-track-highlight) var(--fill) 100%
+            )
+            top center / 100% 1px no-repeat,
+        /* 底边高亮：同样是两种颜色 */
+        linear-gradient(
+                90deg,
+                var(--oreui-fill-highlight-bottom) 0 var(--fill),
+                var(--oreui-track-highlight-bottom) var(--fill) 100%
+            )
+            bottom center / 100% 1px no-repeat,
+        linear-gradient(
+            90deg,
+            var(--oreui-fill-face) 0 var(--fill),
+            var(--oreui-track-face) var(--fill) 100%
+        );
+    box-shadow: 0 0 0 2px var(--oreui-knob-border);
+}
+
+.oreui-slider::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 0;
+    background-color: transparent;
+    background-image:
+        linear-gradient(var(--oreui-knob-face), var(--oreui-knob-face)),
+        linear-gradient(var(--oreui-knob-edge), var(--oreui-knob-edge)),
+        linear-gradient(var(--oreui-knob-strip), var(--oreui-knob-strip));
+    background-repeat: no-repeat;
+    background-size:
+        calc(100% - 4px) calc(100% - 8px),
+        100% calc(100% - 4px),
+        100% 4px;
+    background-position:
+        2px 2px,
+        top center,
+        bottom center;
+    border: 2px solid var(--oreui-knob-border);
+}
+
+/* ---- 5.4 分段选择 ----
+   与滑块、开关共用同一套「脸 → 亮边 → 厚度条」结构，只是尺寸更大。
+   选中项比其它按钮**矮 4px 且底边对齐**，看起来就是被按下去的那一颗；
+   高度不写死，文字换行时整体长高。 */
+.oreui-segmented {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+}
+
+.oreui-segmented button {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 0.75rem;
+    background-color: transparent;
+    background-image:
+        linear-gradient(var(--oreui-knob-face), var(--oreui-knob-face)),
+        linear-gradient(180deg, #ecedee 0 calc(100% - 2px), #e3e3e5 calc(100% - 2px) 100%),
+        linear-gradient(#58585a, #58585a);
+    background-repeat: no-repeat;
+    background-size:
+        calc(100% - 4px) calc(100% - 8px),
+        100% calc(100% - 4px),
+        100% 4px;
+    background-position:
+        2px 2px,
+        top center,
+        bottom center;
+    border: 2px solid var(--oreui-knob-border);
+    border-left-width: 0;
+    color: #1b1c1d;
+    font-family: var(--oreui-font-body);
+    font-size: 1rem;
+    line-height: 1.35;
+    letter-spacing: 0.5px;
+    text-align: center;
+    cursor: pointer;
+    transition: none;
+}
+
+.oreui-segmented button:first-child {
+    border-left-width: 2px;
+}
+
+/* 悬停与滑块一致：只把「脸」压暗到 #b1b2b5，亮边与厚度不动 */
+.oreui-segmented button:hover:not([aria-pressed="true"]) {
+    background-image:
+        linear-gradient(var(--oreui-knob-face-hover), var(--oreui-knob-face-hover)),
+        linear-gradient(180deg, #ecedee 0 calc(100% - 2px), #e3e3e5 calc(100% - 2px) 100%),
+        linear-gradient(#58585a, #58585a);
+}
+
+/* 选中项：顶边下沉 4px、底边与其它按钮对齐 → 视觉上被压下去。
+   已经是"按下"状态，所以**整条厚度都不要**（只剩脸 + 亮边两层），
+   脸一直延伸到底边。 */
+.oreui-segmented button[aria-pressed="true"] {
+    margin-top: 4px;
+    background-image:
+        linear-gradient(var(--oreui-fill-face), var(--oreui-fill-face)),
+        linear-gradient(
+            180deg,
+            var(--oreui-fill-highlight) 0 calc(100% - 2px),
+            var(--oreui-fill-highlight-bottom) calc(100% - 2px) 100%
+        );
+    background-size:
+        calc(100% - 4px) calc(100% - 4px),
+        100% 100%;
+    background-position:
+        2px 2px,
+        top center;
+    color: #ffffff;
+    cursor: default;
+}
+
+/* 选中项底部正中的白色短横线 */
+.oreui-segmented button[aria-pressed="true"]::after {
+    content: "";
+    position: absolute;
+    right: 30%;
+    bottom: 2px;
+    left: 30%;
+    height: 3px;
+    background-color: #ffffff;
+}
+
+.oreui-segmented button:focus-visible {
+    outline: 3px solid var(--oreui-accent-bright);
+    outline-offset: -3px;
+}
+
+/* ---- 5.5 下拉选择 ---- */
+.oreui-dropdown {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+}
+
+/* 收起态：浅灰方块 + 近黑描边 + 右侧三角 */
+.oreui-dropdown__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 46px;
+    padding: 0.5rem 0.9rem;
+    background-color: #d0d1d4;
+    border: 2px solid var(--oreui-border-dark2);
+    color: #1b1c1d;
+    font-family: var(--oreui-font-body);
+    font-size: 0.95rem;
+    line-height: 1.35;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: inset 0 -3px #b1b2b5;
+}
+
+.oreui-dropdown__button:hover {
+    background-color: #e3e4e6;
+}
+
+.oreui-dropdown__button:focus-visible {
+    outline: 3px solid var(--oreui-accent-bright);
+    outline-offset: 2px;
+}
+
+.oreui-dropdown__placeholder {
+    color: #4a4b4d;
+}
+
+/* 右侧箭头：static/ui/dropdown_drop.png（8×8 像素图，放大两倍） */
+.oreui-dropdown__chevron {
+    flex: 0 0 auto;
+    display: block;
+    width: 16px;
+    height: 16px;
+    image-rendering: pixelated;
+}
+
+/* 展开列表：底色 #58585a、行间分割线 #8c8d90、当前项右侧打勾 */
+.oreui-dropdown__list {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    left: 0;
+    z-index: 30;
+    max-height: 264px;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    list-style: none;
+    background-color: #58585a;
+    border: 2px solid #8c8d90;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.oreui-dropdown__option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.55rem 0.9rem;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #8c8d90;
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-body);
+    font-size: 0.9rem;
+    text-align: left;
+    cursor: pointer;
+}
+
+.oreui-dropdown__list li:last-child .oreui-dropdown__option {
+    border-bottom: none;
+}
+
+.oreui-dropdown__option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 选中项的对勾：static/ui/dropdown_chosen.png */
+.oreui-dropdown__check {
+    flex: 0 0 auto;
+    display: block;
+    width: 16px;
+    height: 16px;
+    image-rendering: pixelated;
+}
+
+/* ---- 5.6 文本输入框 ----
+   和按钮的「凸起」正好相反：输入框是**内凹**的，
+   所以顶部压暗、底部提亮，底色比面板更深一点。 */
+.oreui-input {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    padding: 0.5rem 0.9rem;
+    background-color: #313233;
+    border: 2px solid var(--oreui-knob-border);
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-body);
+    font-size: 1rem;
+    line-height: 1.4;
+    box-shadow: inset 0 2px #232425, inset 0 -1px rgba(255, 255, 255, 0.06);
+}
+
+.oreui-input::placeholder {
+    color: #8c8d90;
+}
+
+.oreui-input:hover {
+    background-color: #353637;
+}
+
+/* 聚焦不加绿框：只把底色提亮一点点，保持"正在输入"的感知 */
+.oreui-input:focus {
+    outline: none;
+    background-color: #3a3b3c;
+}
+
+/* ---- 5.7 普通按钮 ----
+   与滑块、开关、分段按钮同一套四层结构：
+     脸 → 亮边（上/左/右 + 底）→ 厚度条 → 描边
+   两种形态用变量区分，文档里的绿色下载按钮以后可以换成 --green。
+   ---------------------------------------------------------------- */
+.oreui-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    /* 52 = 脸 40 + 亮边 4 + 厚度 4 + 描边 4 */
+    min-height: 52px;
+    padding: 0.55rem 2rem;
+    background-color: transparent;
+    background-image:
+        linear-gradient(var(--btn-face), var(--btn-face)),
+        linear-gradient(
+            180deg,
+            var(--btn-edge) 0 calc(100% - 2px),
+            var(--btn-edge-bottom) calc(100% - 2px) 100%
+        ),
+        linear-gradient(var(--btn-strip), var(--btn-strip));
+    background-repeat: no-repeat;
+    background-size:
+        calc(100% - 4px) calc(100% - 8px),
+        100% calc(100% - 4px),
+        100% 4px;
+    background-position:
+        2px 2px,
+        top center,
+        bottom center;
+    border: 2px solid var(--oreui-knob-border);
+    color: var(--btn-text);
+    font-family: var(--oreui-font-body);
+    font-size: 1.05rem;
+    line-height: 1.35;
+    letter-spacing: 0.5px;
+    text-align: center;
+    cursor: pointer;
+    transition: none;
+}
+
+/* 绿色：与分段按钮的选中态、滑块的填充段同色 */
+.oreui-button--green {
+    --btn-face: #3c8527;
+    --btn-face-hover: #35761f;
+    --btn-edge: #639d52;
+    --btn-edge-bottom: #4f913c;
+    --btn-strip: #1d4d13;
+    --btn-text: #ffffff;
+}
+
+/* 浅色：与滑块的本体同色 */
+.oreui-button--light {
+    --btn-face: #d0d1d4;
+    --btn-face-hover: #b1b2b5;
+    --btn-edge: #ecedee;
+    --btn-edge-bottom: #e3e3e5;
+    --btn-strip: #58585a;
+    --btn-text: #1b1c1d;
+}
+
+/* 悬停：只压暗「脸」，亮边与厚度不动。
+   文字颜色必须写死 —— Infima 的 `a:hover` 特异性高于 .oreui-button，
+   不显式声明的话链接式按钮悬停会变蓝。 */
+.oreui-button,
+.oreui-button:hover,
+.oreui-button:focus,
+.oreui-button:visited {
+    color: var(--btn-text);
+    /* 同理，链接的悬停下划线也要显式关掉 */
+    text-decoration: none;
+}
+
+.oreui-button:hover {
+    background-image:
+        linear-gradient(var(--btn-face-hover), var(--btn-face-hover)),
+        linear-gradient(
+            180deg,
+            var(--btn-edge) 0 calc(100% - 2px),
+            var(--btn-edge-bottom) calc(100% - 2px) 100%
+        ),
+        linear-gradient(var(--btn-strip), var(--btn-strip));
+}
+
+/* 按下：厚度整条消失，按钮**整体矮 4px**（顶边下沉、底边不动），
+   与分段按钮选中态是同一套逻辑 */
+.oreui-button:active {
+    margin-top: 4px;
+    min-height: 48px;
+    background-image:
+        linear-gradient(var(--btn-face-hover), var(--btn-face-hover)),
+        linear-gradient(
+            180deg,
+            var(--btn-edge) 0 calc(100% - 2px),
+            var(--btn-edge-bottom) calc(100% - 2px) 100%
+        );
+    background-size:
+        calc(100% - 4px) calc(100% - 4px),
+        100% 100%;
+    background-position:
+        2px 2px,
+        top center;
+}
+
+.oreui-button:focus-visible {
+    outline: 3px solid var(--oreui-accent-bright);
+    outline-offset: 3px;
+}
+
+/* 按钮内可选的小图标（如文档里的下载按钮） */
+.oreui-button__icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    width: 1.25em;
+    height: 1.25em;
+}
+
+.oreui-button__icon > img,
+.oreui-button__icon > svg {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+}
+
+/* 两个按钮并排时的容器 */
+.oreui-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+}
+
+/* ---- 5.8 折叠栏（详情 / FAQ） ----
+   每一行都是一块「板面」：常态 / 悬停 / 按下三套配色见第零部分的变量。
+
+   结构上把板面画在**表头（summary）**上、正文单独一块：
+   - 悬停与按下的反馈只作用于可点的那一行，不会波及展开后的正文；
+   - 展开后正文是更浅的一块（#48494a），与深色表头形成对比。
+   基于原生 <details>，不需要 JS。 */
+.oreui-accordion {
+    /* 不设 max-width：放在通栏板面里时要能铺满整行（56rem 上限会截断） */
+    width: 100%;
+}
+
+/* 分组标题：紫色小条 */
+.oreui-accordion__title {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background-color: #7445df;
+    color: #ffffff;
+    font-family: var(--oreui-font-subtitle);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.oreui-accordion__list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+/* 容器本身不画任何边框，视觉全部由表头与正文提供 */
+.oreui-accordion__item {
+    background: transparent;
+}
+
+/* 表头 = 板面本体（上高亮 3px，其余 2px 暗边） */
+.oreui-accordion__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 1rem;
+    background-color: var(--oreui-panel-face);
+    border: 3px solid var(--oreui-panel-edge);
+    border-top-color: var(--oreui-panel-top);
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+    cursor: pointer;
+    list-style: none;
+}
+
+/* 去掉浏览器默认的小三角 */
+.oreui-accordion__summary::-webkit-details-marker {
+    display: none;
+}
+
+.oreui-accordion__summary:hover {
+    background-color: var(--oreui-panel-face-hover);
+    border: 3px solid var(--oreui-panel-edge-hover);
+    border-top-color: var(--oreui-panel-top-hover);
+}
+
+/* 按下：明暗反转 = 内凹。只作用于表头 */
+.oreui-accordion__summary:active {
+    background-color: var(--oreui-panel-face-active);
+    border: 3px solid var(--oreui-panel-edge-active);
+    border-top-color: var(--oreui-panel-top-active);
+}
+
+.oreui-accordion__chevron {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    image-rendering: pixelated;
+    transition: transform 0.15s ease;
+}
+
+.oreui-accordion__item[open] .oreui-accordion__chevron {
+    transform: rotate(180deg);
+}
+
+/* 正文：比表头更浅的一块，不参与悬停/按下 */
+.oreui-accordion__content {
+    padding: 0.85rem 1rem 1rem;
+    background-color: #48494a;
+    border: 2px solid var(--oreui-panel-edge);
+    color: #cccdd0;
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+/* 正文里的第一个/最后一个段落不要多出空行 */
+.oreui-accordion__content > :first-child {
+    margin-top: 0;
+}
+
+.oreui-accordion__content > :last-child {
+    margin-bottom: 0;
+}
+
+/* ---- 5.9 「减少首页动态效果」 ----
+   属性挂在首页容器（.deck）上，**只影响首页内部**，
+   文档页、设置页等其它地方的动画不受这个开关影响。 */
+[data-motion="reduced"] *,
+[data-motion="reduced"] *::before,
+[data-motion="reduced"] *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
 }

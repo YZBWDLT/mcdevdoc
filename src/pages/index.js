@@ -3,6 +3,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useGlobalData from "@docusaurus/useGlobalData";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import OreButton from "../components/oreui/button";
 import styles from "./index.module.css";
 
 // ================================================================
@@ -91,16 +92,23 @@ const SECTION_INDEX = {
 /** SSR 阶段没有 layout effect，用它做「首帧前执行」的安全版本 */
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
-/** 用户是否要求减少动效 */
+/**
+ * 首页是否要减少动效：系统的「减少动态效果」或设置页里的开关，任一开启即生效。
+ * 注意这个开关**只作用于首页**，所以只看 localStorage，不再改 <html> 上的属性。
+ */
 function usePrefersReducedMotion() {
     const [reduced, setReduced] = useState(false);
+
     useEffect(() => {
         const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-        setReduced(media.matches);
-        const handler = event => setReduced(event.matches);
-        media.addEventListener("change", handler);
-        return () => media.removeEventListener("change", handler);
+        const manual = localStorage.getItem("oreui-motion") === "reduced";
+        const sync = () => setReduced(media.matches || manual);
+
+        sync();
+        media.addEventListener("change", sync);
+        return () => media.removeEventListener("change", sync);
     }, []);
+
     return reduced;
 }
 
@@ -260,16 +268,17 @@ function Section({ active, children, className = "", cover, tone = "plain", over
     );
 }
 
-/** 小标签：一条短横 + 字距放大的小字 */
-function Eyebrow({ children }) {
-    return <p className={styles.eyebrow}>{children}</p>;
-}
-
-/** 每屏标题，进入视口时上浮淡入 */
-function SectionTitle({ children, hint }) {
+/**
+ * 每屏标题，进入视口时上浮淡入。
+ * `en` 是跟在中文后面的英文，单独缩小一档渲染（中文标题字号不受影响）。
+ */
+function SectionTitle({ children, en, hint }) {
     return (
         <>
-            <h2 className={styles.title}>{children}</h2>
+            <h2 className={styles.title}>
+                {children}
+                {en ? <span className={styles.titleEn}>{en}</span> : undefined}
+            </h2>
             {hint ? <p className={styles.lead}>{hint}</p> : undefined}
         </>
     );
@@ -316,7 +325,7 @@ function HeroSection({ active, title, tagline, total, tutorialCount }) {
             {/* 入场延迟写进 CSS 变量，交给纯 CSS 动画执行；
                 即便 JS 状态没更新到位，这些内容也只是"晚点出现"，不会永久消失 */}
             <div className={styles.hero} style={{ "--reveal-delay": `${revealMs}ms` }}>
-                <Eyebrow>MINECRAFT BEDROCK · 中文开发文档</Eyebrow>
+                <p className={styles.kicker}>Minecraft Bedrock Edition</p>
 
                 <h1 className={styles.heroTitle}>
                     <span>{shown}</span>
@@ -326,12 +335,12 @@ function HeroSection({ active, title, tagline, total, tutorialCount }) {
                 <p className={styles.heroTagline}>{tagline}</p>
 
                 <div className={styles.heroButtons}>
-                    <Link className={`${styles.button} ${styles.buttonGreen}`} to="/docs/tutorials/a1_commands/b0_introduction">
+                    <OreButton variant="green" to="/docs/tutorials/a1_commands/b0_introduction">
                         开始学习
-                    </Link>
-                    <Link className={styles.button} to="/blog">
+                    </OreButton>
+                    <OreButton variant="light" to="/blog">
                         个人博客
-                    </Link>
+                    </OreButton>
                 </div>
 
                 <p className={styles.heroMeta}>
@@ -347,9 +356,8 @@ function TutorialSection({ active, tutorialCount }) {
         <Section active={active} className={styles.sectionTutorial} cover={COVERS.tutorial} tone="soft">
             <div className={styles.split}>
                 <div className={styles.splitText}>
-                    <Eyebrow>教程 · TUTORIALS</Eyebrow>
-                    <SectionTitle hint="从命令到附加包再到脚本，循序渐进，从零入手，保证小白也能看得懂！:)">
-                        全面而易懂的教程
+                    <SectionTitle en="TUTORIALS" hint="从命令到附加包再到脚本，循序渐进，从零入手，保证小白也能看得懂！:)">
+                        教程
                     </SectionTitle>
                     <p className={styles.meta}>三个模块 · 共 {tutorialCount} 篇</p>
                 </div>
@@ -387,9 +395,8 @@ function DocumentSection({ active, docCount }) {
                 </div>
 
                 <div className={styles.splitText}>
-                    <Eyebrow>文档 · REFERENCE</Eyebrow>
-                    <SectionTitle hint="从物品方块实体到脚本，你需要的不少信息都可以在这里找到。除此之外，适用版本、内部链接、外部参考文档也一应俱全。UwU">
-                        细节且丰富的文档
+                    <SectionTitle en="DOCUMENTS" hint="从物品方块实体到脚本，你需要的不少信息都可以在这里找到。除此之外，适用版本、内部链接、外部参考文档也一应俱全。UwU">
+                        文档
                     </SectionTitle>
                     <p className={styles.meta}>六大分类 · 共 {docCount} 篇</p>
                 </div>
@@ -402,8 +409,7 @@ function UpdateSection({ active, data }) {
     return (
         <Section active={active} className={styles.sectionUpdates} cover={COVERS.updates} tone="code">
             <div className={styles.updateWrap}>
-                <Eyebrow>更新 · CHANGELOG</Eyebrow>
-                <SectionTitle hint="在这里可以查看我们对文档的更改和修正，证明我们真的在努力！=P">最近的更新</SectionTitle>
+                <SectionTitle en="UPDATE LOG" hint="在这里可以查看我们对文档的更改和修正，证明我们真的在努力！=P">更新日志</SectionTitle>
 
                 <ul className={styles.updateList}>
                     {data.items.map((item, index) => (
@@ -421,14 +427,6 @@ function UpdateSection({ active, data }) {
                     </Link>
                 </div>
 
-                <div className={styles.closing}>
-                    <Link className={`${styles.button} ${styles.buttonGreen}`} to="/docs/tutorials/a1_commands/b0_introduction">
-                        开始学习
-                    </Link>
-                    <Link className={styles.button} to="https://mcdevdoc.nekoawa.com/">
-                        镜像站 nekoawa
-                    </Link>
-                </div>
             </div>
         </Section>
     );
@@ -479,6 +477,7 @@ const LINK_GROUPS = [
             },
             { label: "网站构建：Docusaurus", href: "https://docusaurus.io/" },
             { label: "GitHub 仓库", href: "https://github.com/YZBWDLT/mcdevdoc" },
+            { label: "Bilibili：一只卑微的量筒", href: "https://space.bilibili.com/241650193" },
             { label: "苦力怕论坛：YZBWDLT", href: "https://klpbbs.com/home.php?mod=space&uid=175998" },
             { label: "MineBBS：一只卑微的量筒", href: "https://www.minebbs.com/members/65092/" },
             { label: "TITAIKE：YZBWDLT", href: "https://www.titaike.cn/author/30276" },
@@ -497,8 +496,10 @@ function AboutSection({ active }) {
         <Section active={active} className={styles.sectionAbout} cover={COVERS.about} tone="mosaic">
             <div className={styles.aboutPanel}>
                 <div className={styles.aboutHead}>
-                    <Eyebrow>关于 · LINKS</Eyebrow>
-                    <h2 className={styles.title}>常用链接和工具</h2>
+                    <h2 className={styles.title}>
+                        常用链接
+                        <span className={styles.titleEn}>LINKS</span>
+                    </h2>
                 </div>
 
                 <div className={styles.aboutGrid}>
@@ -564,10 +565,16 @@ export default function Home() {
     const sectionCount = hasUpdates ? 5 : 4;
 
     const { active, containerRef, goTo } = useDeck(sectionCount);
+    // 属性挂在 deck 上，CSS 里的压制动效规则因此只命中首页内部
+    const motionReduced = usePrefersReducedMotion();
 
     return (
         <Layout title="主页" description={siteConfig.tagline} noFooter>
-            <div className={styles.deck} ref={containerRef}>
+            <div
+                className={styles.deck}
+                ref={containerRef}
+                data-motion={motionReduced ? "reduced" : undefined}
+            >
                 <HeroSection
                     active={active === SECTION_INDEX.hero}
                     title={siteConfig.title}
