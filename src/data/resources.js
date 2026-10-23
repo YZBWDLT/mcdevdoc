@@ -80,7 +80,7 @@ export const RESOURCES = [
         retired: true,
         isNew: false,
         author: "绿叶",
-        downloadHref: "https://klpbbs.com/thread-159914-1-1.html",
+        downloadHref: "https://greeleaf.cn/blog/trigger",
         pageHref: "",
     },
     {

@@ -211,6 +211,184 @@ function useDeck(sectionCount) {
         [sectionCount],
     );
 
+    // 触屏：一次手势最多翻一屏。
+    // 手机上为了能读完整屏，CSS 用的是 scroll-snap: proximity（靠近才吸），
+    // 快速一划会顺着惯性连跳好几屏；这里用手势接管，把「一划 = 一屏」钉死。
+    // 两种情况分开处理：
+    //   · 本屏内容放得下 → 完全不让原生滚动，松手直接翻一屏
+    //   · 本屏内容比屏幕高 → 允许在本屏内滚动，但夹在屏内不越界；
+    //     只有已经顶到本屏边缘时，再划一下才翻页
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) {
+            return undefined;
+        }
+
+        let startY = 0;
+        let startX = 0;
+        let startScroll = 0;
+        let decided = false; // 是否已判定这次手势的意图
+        let native = false; // 交给原生滚动（横向滑动、屏内阅读）
+        let pageTurn = false; // 这次手势只用于翻页
+        let fits = true;
+        let rangeTop = 0;
+        let rangeBottom = 0;
+        let clamping = false;
+        let clampTimer = 0;
+
+        const sectionsOf = () => Array.from(container.querySelectorAll("[data-deck-section]"));
+
+        /** 量出「当前屏」以及本屏允许的滚动范围 */
+        const measure = () => {
+            const sections = sectionsOf();
+            const box = container.getBoundingClientRect();
+            const viewH = container.clientHeight;
+            const scroll = container.scrollTop;
+
+            // 优先取「当前滚动位置正落在其中」的那一屏；
+            // 长屏滚到一半时按最近距离会误判成下一屏，所以不能只比距离
+            let index = -1;
+            let best = Infinity;
+            sections.forEach((section, i) => {
+                const top = section.getBoundingClientRect().top - box.top + scroll;
+                const height = section.offsetHeight;
+                if (scroll >= top - 2 && scroll < top + height - 2) {
+                    index = i;
+                    best = 0;
+                    return;
+                }
+                if (index >= 0) {
+                    return;
+                }
+                const distance = Math.abs(scroll - top);
+                if (distance < best) {
+                    best = distance;
+                    index = i;
+                }
+            });
+            if (index < 0) {
+                index = 0;
+            }
+
+            const section = sections[index];
+            const top = section.getBoundingClientRect().top - box.top + scroll;
+            const height = section.offsetHeight;
+
+            return {
+                index,
+                fits: height <= viewH + 2,
+                rangeTop: top,
+                // 本屏能滚动的下界：滚到这儿时本屏刚好露完
+                rangeBottom: Math.max(top, top + height - viewH),
+            };
+        };
+
+        const onTouchStart = event => {
+            if (event.touches.length !== 1) {
+                return;
+            }
+            const info = measure();
+            startY = event.touches[0].clientY;
+            startX = event.touches[0].clientX;
+            startScroll = container.scrollTop;
+            decided = false;
+            native = false;
+            pageTurn = false;
+            fits = info.fits;
+            rangeTop = info.rangeTop;
+            rangeBottom = info.rangeBottom;
+
+            // 手势期间 + 惯性阶段把滚动夹在本屏内
+            clamping = true;
+            window.clearTimeout(clampTimer);
+            clampTimer = window.setTimeout(() => {
+                clamping = false;
+            }, 900);
+        };
+
+        const onTouchMove = event => {
+            if (event.touches.length !== 1) {
+                return;
+            }
+            const dy = startY - event.touches[0].clientY;
+            const dx = startX - event.touches[0].clientX;
+
+            if (!decided) {
+                if (Math.abs(dx) < 8 && Math.abs(dy) < 8) {
+                    return;
+                }
+                decided = true;
+                // 横向意图更强（资源卡横滑等）：整段手势交给原生
+                native = Math.abs(dx) > Math.abs(dy);
+                if (native) {
+                    clamping = false;
+                    return;
+                }
+                // 本屏放得下，或者已经顶到本屏边缘：这次手势只用来翻页
+                pageTurn =
+                    fits ||
+                    (dy > 0 && startScroll >= rangeBottom - 2) ||
+                    (dy < 0 && startScroll <= rangeTop + 2);
+            }
+
+            if (native) {
+                return;
+            }
+
+            if (pageTurn) {
+                // 完全掐掉原生滚动，避免惯性把画面带到下一屏
+                event.preventDefault();
+            }
+        };
+
+        const onScroll = () => {
+            if (!clamping) {
+                return;
+            }
+            if (container.scrollTop > rangeBottom + 1) {
+                container.scrollTop = rangeBottom;
+            } else if (container.scrollTop < rangeTop - 1) {
+                container.scrollTop = rangeTop;
+            }
+        };
+
+        const finish = event => {
+            window.clearTimeout(clampTimer);
+            clamping = false;
+
+            if (!decided || native) {
+                return;
+            }
+
+            const touch = event.changedTouches?.[0];
+            if (!touch) {
+                return;
+            }
+            const dy = startY - touch.clientY;
+            if (!pageTurn || Math.abs(dy) < 24) {
+                return;
+            }
+
+            const { index } = measure();
+            goTo(index + (dy > 0 ? 1 : -1));
+        };
+
+        container.addEventListener("touchstart", onTouchStart, { passive: true });
+        container.addEventListener("touchmove", onTouchMove, { passive: false });
+        container.addEventListener("touchend", finish);
+        container.addEventListener("touchcancel", finish);
+        container.addEventListener("scroll", onScroll, { passive: true });
+
+        return () => {
+            window.clearTimeout(clampTimer);
+            container.removeEventListener("touchstart", onTouchStart);
+            container.removeEventListener("touchmove", onTouchMove);
+            container.removeEventListener("touchend", finish);
+            container.removeEventListener("touchcancel", finish);
+            container.removeEventListener("scroll", onScroll);
+        };
+    }, [goTo]);
+
     // 键盘：上下方向键 / PageUp、PageDown / Home、End
     useEffect(() => {
         const handler = event => {
