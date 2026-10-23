@@ -1,29 +1,53 @@
 /**
-代码来源于中文 Minecraft Wiki，有删改：
-https://zh.minecraft.wiki/w/MediaWiki:Common.css
-*/
+ * 参数树（treeview）的连线样式。
+ *
+ * 最初照抄中文 Minecraft Wiki 的 Common.css，在本站有两个问题：
+ *   1. 竖线断开 —— `.markdown li + li { margin-top: … }` 优先级更高，
+ *      相邻列表项之间被塞进上外边距。
+ *   2. 拐角错位 —— 每层 `li` 用 `margin-left: 7px` 缩进，竖线逐层右移，
+ *      而横臂只从「自己那条线」往右伸，于是和上层的线对不齐。
+ *
+ * 现在改成几何自洽的写法：
+ *   · 缩进交给 `li > ul` 的 padding，每层只加一次；
+ *   · 连线只画在**深层** `li` 上，竖线贴在它自己的左边缘；
+ *   · 横臂从这条竖线向右伸 `--tree-arm-x`，正好接到文字起点；
+ *   · 末项的竖线只画到横臂高度，形成「└」，上方不会有悬空的线。
+ *
+ * 横臂的纵向位置用 `0.5lh`（首行垂直居中）；老浏览器回退到 `0.8em`。
+ */
 
 treeview {
 	margin-top: 0.3em;
-	display: flow-root;
 	margin-bottom: 1em;
+	display: flow-root;
+	--tree-line: #636363;
+	--tree-arm-y: 0.8em;
+	/* 竖线相对上级文字起点的偏移：FileType 图标 18px 宽，取一半正好穿过图标中心 */
+	--tree-line-x: 9px;
+	/* 横臂长度：从竖线水平伸到子项文字起点 */
+	--tree-arm-x: 16px;
 }
 
+@supports (height: 1lh) {
+	treeview {
+		--tree-arm-y: 0.5lh;
+	}
+}
+
+/* ---- 标题行（Wiki 的 treeview-header） ---- */
 treeview treeview-header {
 	padding-left: 3px;
 	font-weight: bold;
 }
 treeview treeview-header:last-child {
-	border-color: #636363 !important;
+	border-color: var(--tree-line) !important;
 	border-left-style: dotted;
 }
 treeview treeview-header:not(:last-child)::before {
 	content: none;
 }
-treeview treeview-header:last-child::before {
-	border-bottom: 0;
-}
 
+/* ---- 列表基础 ---- */
 treeview ul,
 treeview li {
 	margin: 0;
@@ -32,34 +56,62 @@ treeview li {
 	list-style-image: none;
 }
 
-treeview-identblock {
-	position: relative;
-	padding-left: 13px;
-	margin-left: 7px;
+/* 关键：Docusaurus 的 `.markdown li + li` 会给相邻项加上外边距，导致竖线断开 */
+treeview li + li,
+.markdown treeview li + li {
+	margin-top: 0;
 }
-treeview li li,
-treeview-block {
-	position: relative;
-	padding-left: 13px;
-	margin-left: 7px;
-	border-left: 1px solid #636363;
+
+treeview li > p,
+.markdown treeview li > p {
+	margin-top: 0;
+	margin-bottom: 0;
 }
-treeview li li::before {
+
+treeview li {
+	position: relative;
+}
+
+/* 子列表先缩进到「竖线位置」——这条线要穿过上级图标的中线 */
+treeview li > ul {
+	padding-left: var(--tree-line-x);
+}
+
+/* 深层项：给横臂留出位置，横臂长度就是这段 padding */
+treeview li > ul > li {
+	padding-left: var(--tree-arm-x);
+}
+
+/* ---- 连线：只画在深层 li 上 ---- */
+
+/* 非末项：竖线贯穿整个列表项，和下一个兄弟的竖线首尾相接 */
+treeview li > ul > li:not(:last-child)::before {
 	content: "";
 	position: absolute;
 	top: 0;
-	left: -1px;
-	width: 11px;
-	height: 11px;
-	border-bottom: 1px solid #636363;
+	bottom: 0;
+	left: 0;
+	border-left: 1px solid var(--tree-line);
 }
 
-treeview li li:last-child:not(treeview-continue) {
-	border-color: transparent;
+/* 横臂：从竖线向右伸到文字起点 */
+treeview li > ul > li::after {
+	content: "";
+	position: absolute;
+	top: var(--tree-arm-y);
+	left: 0;
+	width: var(--tree-arm-x);
+	border-top: 1px solid var(--tree-line);
 }
-treeview li li:last-child:not(treeview-continue)::before {
-	border-left: 1px solid #636363;
-	width: 10px;
+
+/* 末项：竖线只画到横臂处（形成「└」），下方不留悬空的线 */
+treeview li > ul > li:last-child::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: var(--tree-arm-y);
+	border-left: 1px solid var(--tree-line);
 }
 
 treeview dl,

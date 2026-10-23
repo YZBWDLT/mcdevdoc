@@ -54,8 +54,8 @@
    亮暗分界就是"受光"的暗示，不需要再做第二圈。 */
 .oreui-panel {
     background-color: var(--oreui-panel-face);
-    border: 3px solid var(--oreui-panel-edge);
-    border-top-color: var(--oreui-panel-top);
+    border: 0;
+    border-bottom: 2px solid var(--oreui-panel-edge);
 }
 
 /* 浅灰板面：与页面背景同色系，用在设置页这种"通栏内容区"上。
@@ -482,6 +482,117 @@ pre[class*="language-"] {
 }
 .markdown a:hover > code {
     color: var(--ifm-link-hover-color);
+}
+
+/* ---- 2.6.1 文档内的折叠块（<details>） ----
+   外观照折叠栏，但**只靠 CSS**：文档里 100 多处 <details> 不可能逐个换成组件。
+
+   结构上由"整个折叠块一层外框"来保证对齐：
+     <summary>  ← 表头：完整 3px 边框，上沿亮
+       <div>      ← 内容：2px 边框，上边不画（表头的下边就是分隔线）
+   如果让表头和内容各自带边框，开合时任何 1px 差异都会变成"没接上"，
+   这样写就不存在对不齐的可能。
+
+   Docusaurus 会把 markdown 里的 details 渲染成 .alert 折叠块
+   （内容还包了 <div><div class="collapsibleContent">），自带的内边距、蓝底、
+   左侧三角和 collapsibleContent 的 border-top 都要清掉。
+   选择器写成 .markdown.markdown 是为了压过主题样式（主题 CSS 在本文件里排在后面）。 */
+
+.markdown.markdown details {
+    margin: 1rem 0;
+    padding: 0;
+    background-color: transparent;
+    /* 外框交给表头自己画（3px），内容那块用 2px */
+    border: 0;
+    color: var(--oreui-text);
+}
+
+/* 表头：只有底色 + 下边一条线，左右上下都交给外框 */
+.markdown.markdown details > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 1rem;
+    background-color: var(--oreui-panel-face);
+    /* 表头自带完整 3px 边框（上沿亮） */
+    border: 3px solid var(--oreui-panel-edge);
+    border-top-color: var(--oreui-panel-top);
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+    cursor: pointer;
+    list-style: none;
+}
+
+.markdown.markdown details > summary::-webkit-details-marker {
+    display: none;
+}
+
+/* 干掉 Docusaurus 自带的三角（改用右侧像素箭头） */
+.markdown.markdown details > summary::before {
+    display: none;
+}
+
+/* 右侧箭头 */
+.markdown.markdown details > summary::after {
+    content: "";
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    background-image: url("/ui/dropdown_drop.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+    image-rendering: pixelated;
+    transition: transform 0.15s ease;
+}
+
+.markdown.markdown details[open] > summary::after {
+    transform: rotate(180deg);
+}
+
+.markdown.markdown details > summary:hover {
+    background-color: var(--oreui-panel-face-hover);
+}
+
+.markdown.markdown details > summary:active {
+    background-color: var(--oreui-panel-face-active);
+}
+
+/* 内容：无左右边框，靠外框；上下留白用内容自身 margin，跟着折叠高度一起收放 */
+.markdown.markdown details > div {
+    display: flow-root;
+    background-color: #48494a;
+    /* 内容比表头细一档：表头 3px、内容 2px，上边不画线（表头的下边当分隔线）。
+       这里只留左右内边距，上下留白交给里面那层 —— 原因见下一条注释。 */
+    border: 2px solid var(--oreui-panel-edge);
+    border-top: 0;
+    padding: 0 1rem;
+    color: #cccdd0;
+}
+
+/* 这一层是动画内部的内容层：
+   - 清掉自带的那条 border-top（就是之前的蓝线）
+   - 上下留白改成 padding。
+   **不能用子元素的 margin**：动画结束后 Docusaurus 会把内联样式改成
+   display:block / overflow:visible（内联样式压过我们的 flow-root），
+   首元素的 margin 会塌陷到外面，把整块往下推 ——
+   表现就是"动画播放时接得好好的，播完就断了"。 */
+.markdown.markdown details [class*="collapsibleContent"] {
+    margin-top: 0;
+    padding: 0.9rem 0 1rem;
+    border-top: 0;
+}
+
+/* 内容首尾不要多出空行（留白已由上面那层的 padding 提供） */
+.markdown.markdown details [class*="collapsibleContent"] > :first-child {
+    margin-top: 0;
+}
+
+.markdown.markdown details [class*="collapsibleContent"] > :last-child {
+    margin-bottom: 0;
 }
 
 /* ---- 2.7 分页按钮 ---- */
