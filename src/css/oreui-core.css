@@ -430,14 +430,59 @@ body {
     box-shadow: inset 4px 0 0 var(--oreui-accent);
 }
 
-/* ---- 2.5 右侧目录（TOC） ---- */
-.table-of-contents {
-    font-family: var(--oreui-font-body);
-    border-left: 2px solid var(--oreui-line);
+/* ---- 2.5 右侧目录（TOC） ----
+   整个目录是**一大块板面**（一圈 3px 边框、上沿亮），
+   章节是板里的行：常态扁平，悬停整行提亮，当前阅读位置带左侧强调条。 */
+/* 板面画在外壳上：外壳本身不滚动（滚动的是里面的 ul），
+   这样上下边框固定不动，只有内容在框里滚。
+   配色沿用「浅色板面」（.oreui-panel--light）：面 #48494a、边 #333334、上沿 #5a5b5c。 */
+.theme-doc-toc-desktop {
+    background-color: #48494a;
+    border: 3px solid #333334;
+    /* 受光边：顶部 + 左侧都用亮色。这块面板特别长，
+       只亮顶部的话，长边看起来就和普通边框没区别 */
+    border-top-color: #5a5b5c;
+    border-left-color: #5a5b5c;
+    border-radius: 0;
 }
-.table-of-contents__link--active,
+
+.table-of-contents {
+    margin: 0;
+    padding: 0.4rem;
+    background: transparent;
+    border: 0;
+    font-family: var(--oreui-font-body);
+    font-size: 0.85rem;
+}
+
+.table-of-contents ul {
+    margin: 0;
+    padding-left: 0.6rem;
+}
+
+.table-of-contents li {
+    margin: 0;
+}
+
+.table-of-contents__link {
+    display: block;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0;
+    color: #f2f3f5;
+    transition: background-color 0.12s ease, color 0.12s ease;
+}
+
 .table-of-contents__link:hover {
-    color: var(--oreui-link);
+    background-color: #5a5b5c;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* 当前阅读位置：比板面更深的底 + 左侧强调条（用亮色，在浅板上才跳得出来） */
+.table-of-contents__link--active {
+    background-color: #313233;
+    box-shadow: inset 4px 0 0 var(--oreui-accent-bright);
+    color: #ffffff;
 }
 
 /* ---- 2.6 文档内容 ---- */
@@ -474,6 +519,19 @@ pre[class*="language-"] {
 /* 表格表头 */
 .markdown table thead {
     font-family: var(--oreui-font-subtitle);
+}
+
+/* 分割线：与设置页的行分隔同一套「上深下浅」双线。
+   Infima 默认用 background-color 画一条实心线，这里把高度清零、改用
+   border-bottom + box-shadow，才能做出两层的效果。 */
+.markdown hr {
+    height: 0;
+    background-color: transparent;
+    border: 0;
+    border-bottom: var(--oreui-divider-dark-w) solid var(--oreui-divider-dark);
+    box-shadow: 0 var(--oreui-divider-light-w) 0 var(--oreui-divider-light);
+    /* 通栏：抵消 .docItemContainer 的左右内边距（0.3rem），让线贴到内容区两端 */
+    margin: 2rem -0.3rem;
 }
 
 /* 链接内的行内代码：颜色继承链接色 */
@@ -738,68 +796,273 @@ kbd {
    Firefox 使用 @supports 隔离回退方案。
    ================================================================ */
 
-/* ---- 3.1 全局滚动条 ---- */
+/* ---- 3.1 全局滚动条 ----
+   四层结构照 5.7 凸面按钮：
+     描边（3px）→ 脸 → 底部厚度条 → 顶部高光
+   三态也照按钮来：
+     常态  白脸 + 厚度条
+     悬停  **只压暗脸**，亮边与厚度不动
+     按下  **厚度条整条消失**，看起来被压进去
+   轨道是一条比滑块窄的细线，底色透明（不挡住身后内容）。 */
 ::-webkit-scrollbar {
-    width: 14px;
-    height: 14px;
-}
-::-webkit-scrollbar-track {
-    background: var(--oreui-line);
-}
-::-webkit-scrollbar-corner {
-    background: var(--oreui-line);
-}
-::-webkit-scrollbar-thumb {
-    background-color: #d0d1d4;
-    border: 2px solid #1e1e1f;
-    box-shadow: inset 0 -3px #58585a, inset 2px 2px rgba(255, 255, 255, 0.6),
-        inset -2px -4px rgba(255, 255, 255, 0.4);
-}
-::-webkit-scrollbar-thumb:hover {
-    background-color: #b1b2b5;
-    box-shadow: inset 0 -3px #58585a, inset 2px 2px rgba(255, 255, 255, 0.8),
-        inset -2px -4px rgba(255, 255, 255, 0.6);
-}
-::-webkit-scrollbar-thumb:active {
-    background-color: #b1b2b5;
-    box-shadow: inset 2px 2px rgba(255, 255, 255, 0.8),
-        inset -2px -2px rgba(255, 255, 255, 0.6);
+    width: 16px;
+    height: 16px;
 }
 
-/* ---- 3.2 Firefox 回退 ---- */
-@supports not selector(::-webkit-scrollbar-thumb) {
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    background-image: linear-gradient(
+        to right,
+        transparent 6px,
+        #5a5b5c 6px,
+        #5a5b5c 10px,
+        transparent 10px
+    );
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #e6e8eb;
+    border: 3px solid #1e1e1f;
+    box-shadow:
+        inset 0 2px 0 #ffffff,
+        inset 0 -5px 0 #96979a;
+}
+
+/* 悬停：只压暗脸 */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #cfd0d2;
+}
+
+/* 按下：照凸面按钮的规矩 —— **底边不动，顶边下沉 4px**，厚度条消失。
+   滚动条的盒子改不了尺寸，所以让**顶部 4px 变成透明**：那一截露出后面的轨道，
+   滑块看起来就整体下移了一格；底部边框原地不动。
+   注意必须 `background-clip: padding-box`，否则背景会填满透明边框那块、看不出下沉。 */
+::-webkit-scrollbar-thumb:active {
+    background-color: #cfd0d2;
+    background-clip: padding-box;
+    border: 3px solid #1e1e1f;
+    border-top-width: 4px;
+    border-top-color: transparent;
+    box-shadow: none;
+}
+
+/* ---- 3.2 Firefox 回退（只在 Firefox 生效） ---- */
+@supports (-moz-appearance: none) {
     html {
         scrollbar-width: thin;
-        scrollbar-color: #d0d1d4 var(--oreui-line);
+        scrollbar-color: #e6e8eb #48494a;
     }
 }
 
-/* ---- 3.3 Docusaurus .thin-scrollbar 覆盖 ---- */
-.thin-scrollbar {
+/* ---- 3.3 修正 Docusaurus 的 .thin-scrollbar ----
+   左侧边栏与右侧目录都带这个类，Infima 给它配了一整套**自己的**滚动条样式：
+     `.thin-scrollbar::-webkit-scrollbar{width:var(--ifm-scrollbar-size)}`（7px）
+     `.thin-scrollbar::-webkit-scrollbar-thumb{background:silver;border-radius:10px}`
+   这些规则在产物里排在自定义样式之后，把它俩的滚动条全盖成了原生细条。
+   这里用「叠类名」把特异性提到 (0,3,0) 以上，逐个改回我们那套四层滑块。 */
+.thin-scrollbar.thin-scrollbar {
     scrollbar-width: auto;
 }
-.thin-scrollbar::-webkit-scrollbar {
-    width: 14px;
-    height: 14px;
+
+.thin-scrollbar.thin-scrollbar::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
 }
-.thin-scrollbar::-webkit-scrollbar-track {
-    background: var(--oreui-line);
+
+.thin-scrollbar.thin-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+    background-image: linear-gradient(
+        to right,
+        transparent 6px,
+        #5a5b5c 6px,
+        #5a5b5c 10px,
+        transparent 10px
+    );
+    border-radius: 0;
 }
-.thin-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #d0d1d4;
-    border: 2px solid #1e1e1f;
-    box-shadow: inset 0 -3px #58585a, inset 2px 2px rgba(255, 255, 255, 0.6),
-        inset -2px -4px rgba(255, 255, 255, 0.4);
+
+.thin-scrollbar.thin-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #e6e8eb;
+    background-image: none;
+    border: 3px solid #1e1e1f;
+    border-radius: 0;
+    box-shadow:
+        inset 0 2px 0 #ffffff,
+        inset 0 -5px 0 #96979a;
 }
-.thin-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: #b1b2b5;
-    box-shadow: inset 0 -3px #58585a, inset 2px 2px rgba(255, 255, 255, 0.8),
-        inset -2px -4px rgba(255, 255, 255, 0.6);
+
+.thin-scrollbar.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #cfd0d2;
 }
-.thin-scrollbar::-webkit-scrollbar-thumb:active {
-    background-color: #b1b2b5;
-    box-shadow: inset 2px 2px rgba(255, 255, 255, 0.8),
-        inset -2px -2px rgba(255, 255, 255, 0.6);
+
+.thin-scrollbar.thin-scrollbar::-webkit-scrollbar-thumb:active {
+    background-color: #cfd0d2;
+    background-clip: padding-box;
+    border: 3px solid #1e1e1f;
+    border-top-width: 4px;
+    border-top-color: transparent;
+    box-shadow: none;
+}
+
+/* ---- 3.4 主滚动条从导航栏下沿开始 ----
+   文档级滚动条是从视口顶端画起的，而实机里滚动条只在标题栏下方。
+   做法：把滚动容器从文档根挪到内容区 —— 导航栏留在外面，内容区自己滚，
+   滚动条自然就从导航栏下沿开始了。
+   连带要补偿两处「假设滚动容器是文档」的定位：
+     · 右侧目录的吸顶偏移（原来是 navbar + 1rem）
+     · 侧边栏 sticky 视口高度与那个 -navbar 的上边距 */
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* 滚动容器 = 根节点本身（它同时包着正文和页脚），
+   用 margin-top 把它的盒子推到导航栏下方 —— 于是滚动条从导航栏下沿开始，
+   页脚也仍然在滚动范围里（之前把 .main-wrapper 当容器，页脚在它外面，直接看不见了）。 */
+#__docusaurus {
+    height: calc(100vh - var(--ifm-navbar-height));
+    margin-top: var(--ifm-navbar-height);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-padding-top: 0.5rem;
+}
+
+/* 导航栏跟着调成固定定位：它已经不在滚动容器里，sticky 就没意义了 */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+/* 导航栏已不在滚动容器内，吸顶偏移改回 1rem */
+.theme-doc-toc-desktop {
+    top: 1rem;
+}
+
+/* 侧边栏的三处补偿。
+   主题里对应的是 `.docSidebarContainer_xxx`、`.sidebarViewport_xxx`、`.sidebar_njMd`
+   这种单类选择器（0,1,0），而它们在产物里排在自定义样式之后 ——
+   属性选择器也是 (0,1,0)，打平就会输，所以这里把属性选择器叠两遍提到 (0,2,0)。 */
+
+/* 视口高度：原来的 100vh 会把「收起按钮」顶到可视区之外，改成扣掉导航栏的确切高度 */
+[class*="sidebarViewport"][class*="sidebarViewport"] {
+    max-height: calc(100vh - var(--ifm-navbar-height));
+    top: 0;
+}
+
+[class*="docSidebarContainer"][class*="docSidebarContainer"] {
+    margin-top: 0;
+}
+
+/* 侧边栏内部原本预留了「导航栏高度」的上内边距（为了让内容躲开悬浮导航栏），
+   现在导航栏在滚动容器外，这段留白就变成顶部一条空带。
+   **必须限定在桌面侧边栏里**：移动端抽屉的 `navbar-sidebar__item` 类名里也含 `sidebar_`，
+   不限定会把抽屉顶部的留白一起清掉，「← 回到主菜单」就被压到可见区外。 */
+.theme-doc-sidebar-container [class*="sidebar_"][class*="sidebar_"] {
+    padding-top: 0;
+}
+
+/* 菜单占满剩余高度，但要允许它**收缩** —— 少了 min-height: 0，
+   flex 子项的最小高度是内容高度，长目录会把下面的「收起按钮」
+   （position: sticky; bottom: 0）挤出可视区 */
+.theme-doc-sidebar-container [class*="sidebar_"] > .menu {
+    min-height: 0;
+}
+
+/* 锚点落位：主题按「导航栏悬浮在内容之上」给的偏移是 navbar + .5rem，
+   但现在导航栏在滚动容器外，再多算一个导航栏高度就会把标题推下去。
+   属性选择器叠两遍压过主题（主题那条在产物里更靠后）。 */
+[class*="anchorTargetStickyNavbar"][class*="anchorTargetStickyNavbar"] {
+    scroll-margin-top: 0.5rem;
+}
+
+/* ---- 3.5 主滚动容器改用自绘滚动条 ----
+   原生的画在滚动槽里（内容框之外），轨道再怎么透明，透出来的也是**容器自己的底色**，
+   滚到页脚那种深色区域就会露出一条亮带。
+   自绘的浮在内容之上，轨道区域完全透明 —— 内容（包括页脚）真正透过来。
+   组件见 src/components/oreui/OverlayScrollbar.js。 */
+#__docusaurus {
+    scrollbar-width: none;
+}
+
+#__docusaurus::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.oreui-scrollbar {
+    position: fixed;
+    top: var(--ifm-navbar-height);
+    right: 0;
+    bottom: 0;
+    width: 16px;
+    z-index: 300;
+    /* 只有滑块和轨道可点，其余区域让点击穿过去 */
+    pointer-events: none;
+}
+
+/* 轨道：居中的 4px 细线，和原生那套一致 */
+.oreui-scrollbar__track {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 6px;
+    width: 4px;
+    background-color: #5a5b5c;
+    pointer-events: auto;
+}
+
+/* 滑块：四层凸面 */
+.oreui-scrollbar__thumb {
+    position: absolute;
+    left: 0;
+    width: 16px;
+    background-color: #e6e8eb;
+    border: 3px solid #1e1e1f;
+    box-shadow:
+        inset 0 2px 0 #ffffff,
+        inset 0 -5px 0 #96979a;
+    box-sizing: border-box;
+    pointer-events: auto;
+    cursor: default;
+}
+
+.oreui-scrollbar__thumb:hover {
+    background-color: #cfd0d2;
+}
+
+/* 拖拽：厚度条消失 + 顶边下沉 4px（与凸面按钮按下同一套） */
+.oreui-scrollbar__thumb--dragging {
+    background-color: #cfd0d2;
+    background-clip: padding-box;
+    border-top-width: 4px;
+    border-top-color: transparent;
+    box-shadow: none;
+}
+
+/* 触屏设备用系统自带的浮层滚动条，不显示自绘的那条 */
+@media (pointer: coarse) {
+    .oreui-scrollbar {
+        display: none;
+    }
+}
+
+/* 移动端抽屉打开时，抽屉自己有滚动条，页面这条要藏起来，否则会出现「双滚动条」。
+   Docusaurus 把 navbar-sidebar--show 挂在 <nav class="navbar"> 上，
+   用 :has() 从根节点判断即可。 */
+#__docusaurus:has(.navbar-sidebar--show) .oreui-scrollbar {
+    display: none;
+}
+
+/* 抽屉打开期间，背后的内容也不该被滚轮/触摸带着动 */
+#__docusaurus:has(.navbar-sidebar--show) {
+    overscroll-behavior: contain;
 }
 
 /* 强制所有滚动条保持直角（无圆角） */
@@ -895,9 +1158,9 @@ kbd {
     align-items: center;
     gap: 1.5rem;
     padding: 1rem 2rem;
-    /* 上深下浅的双线，2px 深线 + 1px 浅线 */
-    border-bottom: 2px solid #242526;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07);
+    /* 上深下浅的双线 */
+    border-bottom: var(--oreui-divider-dark-w) solid var(--oreui-divider-dark);
+    box-shadow: 0 var(--oreui-divider-light-w) 0 var(--oreui-divider-light);
 }
 
 .oreui-row:last-child {

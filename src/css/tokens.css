@@ -95,10 +95,15 @@
     --oreui-border-dark: #323334; /* 边框暗色（用于立体感下边缘） */
     --oreui-border-dark2: #1e1e1f; /* 边框暗色（用于立体感下边缘） */
     --oreui-line: #dbdbe2; /* 分割线颜色 */
+    /* 分隔线（设置页行分隔 + 文档 <hr> 共用）：深线 + 紧贴其下的浅线，上深下浅 */
+    --oreui-divider-dark: #242526;
+    --oreui-divider-light: rgba(255, 255, 255, 0.07);
+    --oreui-divider-dark-w: 3px;
+    --oreui-divider-light-w: 2px;
     --oreui-code-inline-bg: #1f1f1f; /* 行内代码背景 */
     --oreui-panel-bg: rgba(0, 0, 0, 0.13); /* 面板半透明背景（用于悬浮效果） */
-    --oreui-scroll-track: #313233; /* 滚动条轨道 */
-    --oreui-scroll-thumb: #6d6d6e; /* 滚动条滑块 */
+    --oreui-scroll-track: #313233; /* 滚动条轨道（深灰窄条） */
+    --oreui-scroll-thumb: #e6e8eb; /* 滚动条滑块（白色方块） */
     --oreui-link: #6cc349; /* 链接颜色（绿色） */
     --oreui-link-hover: #8fd673; /* 链接悬停颜色（亮绿） */
     --oreui-navbar-background: #e6e8eb; /* 导航栏背景 */

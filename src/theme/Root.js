@@ -1,6 +1,7 @@
 // src/theme/Root.js
 import React, { useEffect } from "react";
 import useIsBrowser from "@docusaurus/useIsBrowser";
+import OverlayScrollbar from "@site/src/components/oreui/OverlayScrollbar";
 
 // ================================================================
 // 用户偏好的启动期恢复
@@ -65,6 +66,7 @@ export default function Root({ children }) {
         <>
             <PreferenceManager />
             {children}
+            <OverlayScrollbar />
         </>
     );
 }
