@@ -13,7 +13,9 @@
   overflow-y: auto;
   overflow-x: hidden;
   scroll-snap-type: y mandatory;
-  overscroll-behavior-y: contain;
+  /* none 比 contain 更狠：连回弹/发光都不给，配合 JS 的越界夹紧，
+     彻底杜绝「滑到不存在的上一屏/下一屏」 */
+  overscroll-behavior-y: none;
   position: relative;
   background-color: var(--oreui-bg);
   /* 右侧已有页码条负责定位，滚动条只会白占宽度，全端隐藏。
@@ -958,8 +960,11 @@
      而且封面是相对「屏」绝对定位的，屏内一滚动，图就跟着走、盖不满。
      改成：屏高随内容自适应，唯一的滚动容器是 .deck，封面自然覆盖整屏。 */
   .deck {
-    /* 手机上一屏装不下全部内容，强制吸附会导致滚不动，改成「靠近才吸」 */
-    scroll-snap-type: y proximity;
+    /* 手机上翻页完全由 JS 接管（useDeck 里的触屏手势），
+       CSS 吸附必须关掉：否则脚本把 scrollTop 改到屏内某处后，
+       浏览器在滚动结束时又把它吸回最近的吸附点（也就是本屏顶部），
+       表现为「长屏怎么拖都被弹回顶部」。 */
+    scroll-snap-type: none;
   }
 
   .section {

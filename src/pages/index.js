@@ -170,6 +170,8 @@ function useTypewriter(text, { startDelay = 500, speed = 95 } = {}) {
  */
 function useDeck(sectionCount) {
     const containerRef = useRef(null);
+    // 平滑翻页的目标位置：手势打断动画时用它瞬间落位（null 表示没在动画）
+    const animRef = useRef(null);
     const [active, setActive] = useState(0);
 
     // 用 IntersectionObserver 监听哪一屏进入视口，作为当前页
@@ -205,19 +207,38 @@ function useDeck(sectionCount) {
             // 用真实位置而不是「序号 × 视口高」：手机上每屏高度随内容变化，不能整除
             const top = target.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop;
 
+            animRef.current = top;
             container.scrollTo({ top, behavior: "smooth" });
             setActive(index);
+
+            // 动画大约 300~500ms，留点余量后清掉标记
+            window.setTimeout(() => {
+                if (animRef.current === top) {
+                    animRef.current = null;
+                }
+            }, 700);
         },
         [sectionCount],
     );
 
-    // 触屏：一次手势最多翻一屏。
-    // 手机上为了能读完整屏，CSS 用的是 scroll-snap: proximity（靠近才吸），
-    // 快速一划会顺着惯性连跳好几屏；这里用手势接管，把「一划 = 一屏」钉死。
-    // 两种情况分开处理：
-    //   · 本屏内容放得下 → 完全不让原生滚动，松手直接翻一屏
-    //   · 本屏内容比屏幕高 → 允许在本屏内滚动，但夹在屏内不越界；
-    //     只有已经顶到本屏边缘时，再划一下才翻页
+    // 首页只有一屏一屏地翻，body 本身不需要滚动。
+    // 锁掉它能彻底杜绝「从导航栏/页码条上拉起，整页被拉动露出空白」的情况。
+    useEffect(() => {
+        const { style } = document.body;
+        const previous = style.overflow;
+        style.overflow = "hidden";
+        return () => {
+            style.overflow = previous;
+        };
+    }, []);
+
+    // 触屏翻页：完全由脚本接管，保证「一次手势最多翻一屏」。
+    //
+    // 为什么不用原生滚动 + 夹紧：手机上的惯性一旦起来，scroll 事件按帧回调，
+    // 夹紧总是慢半拍；再加上 CSS 的 proximity 吸附，快速一划仍然会连跳好几屏。
+    // 所以这里直接 preventDefault 掐掉原生滚动，自己按手指位移写 scrollTop：
+    //   · 本屏放得下 → 手指怎么动都不滚，松手按方向翻一屏
+    //   · 本屏比屏幕高 → 手指能在本屏内拖（1:1 跟手），拖过底部再拉一段才翻页
     useEffect(() => {
         const container = containerRef.current;
         if (!container) {
@@ -227,167 +248,276 @@ function useDeck(sectionCount) {
         let startY = 0;
         let startX = 0;
         let startScroll = 0;
-        let decided = false; // 是否已判定这次手势的意图
-        let native = false; // 交给原生滚动（横向滑动、屏内阅读）
-        let pageTurn = false; // 这次手势只用于翻页
-        let fits = true;
-        let rangeTop = 0;
-        let rangeBottom = 0;
-        let clamping = false;
-        let clampTimer = 0;
+        let bound = false;
+        let surrendered = false;
+        // 手势是否起点在「横向滚动区」里（资源卡那一排）
+        let inScroller = false;
+        let index = 0;
+        let top = 0;
+        let max = 0;
+        let deckMax = 0;
 
-        const sectionsOf = () => Array.from(container.querySelectorAll("[data-deck-section]"));
-
-        /** 量出「当前屏」以及本屏允许的滚动范围 */
-        const measure = () => {
-            const sections = sectionsOf();
-            const box = container.getBoundingClientRect();
-            const viewH = container.clientHeight;
-            const scroll = container.scrollTop;
-
-            // 优先取「当前滚动位置正落在其中」的那一屏；
-            // 长屏滚到一半时按最近距离会误判成下一屏，所以不能只比距离
-            let index = -1;
-            let best = Infinity;
-            sections.forEach((section, i) => {
-                const top = section.getBoundingClientRect().top - box.top + scroll;
-                const height = section.offsetHeight;
-                if (scroll >= top - 2 && scroll < top + height - 2) {
-                    index = i;
-                    best = 0;
-                    return;
-                }
-                if (index >= 0) {
-                    return;
-                }
-                const distance = Math.abs(scroll - top);
-                if (distance < best) {
-                    best = distance;
-                    index = i;
-                }
-            });
-            if (index < 0) {
-                index = 0;
-            }
-
-            const section = sections[index];
-            const top = section.getBoundingClientRect().top - box.top + scroll;
-            const height = section.offsetHeight;
-
-            return {
-                index,
-                fits: height <= viewH + 2,
-                rangeTop: top,
-                // 本屏能滚动的下界：滚到这儿时本屏刚好露完
-                rangeBottom: Math.max(top, top + height - viewH),
-            };
-        };
 
         const onTouchStart = event => {
             if (event.touches.length !== 1) {
                 return;
             }
-            const info = measure();
+            // 上一屏的平滑动画还没走完就摸屏：先瞬间落到目标位置，避免卡在半途
+            if (animRef.current !== null) {
+                container.scrollTop = animRef.current;
+                animRef.current = null;
+            }
+
+            const info = measureDeck();
+            index = info.index;
+            top = info.top;
+            max = info.max;
+            deckMax = info.deckMax;
+
             startY = event.touches[0].clientY;
             startX = event.touches[0].clientX;
             startScroll = container.scrollTop;
-            decided = false;
-            native = false;
-            pageTurn = false;
-            fits = info.fits;
-            rangeTop = info.rangeTop;
-            rangeBottom = info.rangeBottom;
-
-            // 手势期间 + 惯性阶段把滚动夹在本屏内
-            clamping = true;
-            window.clearTimeout(clampTimer);
-            clampTimer = window.setTimeout(() => {
-                clamping = false;
-            }, 900);
+            bound = true;
+            surrendered = false;
+            inScroller = Boolean(event.target?.closest?.("[data-hscroll]"));
         };
 
         const onTouchMove = event => {
-            if (event.touches.length !== 1) {
+            if (!bound || event.touches.length !== 1) {
                 return;
             }
             const dy = startY - event.touches[0].clientY;
             const dx = startX - event.touches[0].clientX;
 
-            if (!decided) {
-                if (Math.abs(dx) < 8 && Math.abs(dy) < 8) {
-                    return;
-                }
-                decided = true;
-                // 横向意图更强（资源卡横滑等）：整段手势交给原生
-                native = Math.abs(dx) > Math.abs(dy);
-                if (native) {
-                    clamping = false;
-                    return;
-                }
-                // 本屏放得下，或者已经顶到本屏边缘：这次手势只用来翻页
-                pageTurn =
-                    fits ||
-                    (dy > 0 && startScroll >= rangeBottom - 2) ||
-                    (dy < 0 && startScroll <= rangeTop + 2);
-            }
-
-            if (native) {
+            if (surrendered) {
                 return;
             }
 
-            if (pageTurn) {
-                // 完全掐掉原生滚动，避免惯性把画面带到下一屏
+            // 横向明显占优（资源卡横滑）：这次手势交还原生，别抢
+            const horizontal = Math.abs(dx) > Math.abs(dy);
+            if (horizontal && Math.abs(dx) > 10) {
+                surrendered = true;
+                return;
+            }
+
+            // 关键：不等门槛，第一条竖向 move 就掐掉原生滚动。
+            // 哪怕让浏览器先滚 1 帧，iOS 的橡皮筋就已经起了，之后再拦也回不去。
+            // 横向滚动区内宽容一点，避免卡片的横向拖动被误杀。
+            if (inScroller && horizontal) {
+                return;
+            }
+
+            if (event.cancelable) {
                 event.preventDefault();
             }
-        };
-
-        const onScroll = () => {
-            if (!clamping) {
-                return;
-            }
-            if (container.scrollTop > rangeBottom + 1) {
-                container.scrollTop = rangeBottom;
-            } else if (container.scrollTop < rangeTop - 1) {
-                container.scrollTop = rangeTop;
-            }
+            const next = Math.min(max, deckMax, Math.max(top, startScroll + dy));
+            container.scrollTop = Math.max(0, next);
         };
 
         const finish = event => {
-            window.clearTimeout(clampTimer);
-            clamping = false;
-
-            if (!decided || native) {
+            if (!bound) {
+                return;
+            }
+            bound = false;
+            if (surrendered) {
+                surrendered = false;
                 return;
             }
 
             const touch = event.changedTouches?.[0];
-            if (!touch) {
-                return;
-            }
-            const dy = startY - touch.clientY;
-            if (!pageTurn || Math.abs(dy) < 24) {
+            const dy = touch ? startY - touch.clientY : 0;
+            const scroll = container.scrollTop;
+
+            // 到首屏/末屏就停住：越界的序号不翻页
+            const turn = turnBy;
+
+            // 本屏基本放得下（多出 24px 以内也算）：够 30px 就翻一屏
+            if (max - top <= 24) {
+                if (Math.abs(dy) > 30) {
+                    turn(dy > 0 ? 1 : -1);
+                }
                 return;
             }
 
-            const { index } = measure();
-            goTo(index + (dy > 0 ? 1 : -1));
+            // 长屏：拖过本屏底部还继续拉，才翻页
+            if (dy > 0 && scroll >= max - 2 && dy > max - startScroll + 60) {
+                turn(1);
+                return;
+            }
+            if (dy < 0 && scroll <= top + 2 && -dy > startScroll - top + 60) {
+                turn(-1);
+            }
+        };
+
+        // 兜底：少数情况下（横向手势被交还原生后继续竖拉、iOS 的橡皮筋回弹）
+        // 滚动位置会越出内容边界，表现为「滑出到不存在的上一屏/下一屏，文字全没了」。
+        // 这里持续把 scrollTop 夹在 [0, 末屏底] 之间，一旦越界立刻拉回。
+        let clampFrame = 0;
+        const clampToContent = () => {
+            clampFrame = 0;
+            const max = Math.max(0, container.scrollHeight - container.clientHeight);
+            if (container.scrollTop < 0) {
+                container.scrollTop = 0;
+            } else if (container.scrollTop > max) {
+                container.scrollTop = max;
+            }
+        };
+        const onScrollGuard = () => {
+            if (!clampFrame) {
+                clampFrame = window.requestAnimationFrame(clampToContent);
+            }
         };
 
         container.addEventListener("touchstart", onTouchStart, { passive: true });
         container.addEventListener("touchmove", onTouchMove, { passive: false });
         container.addEventListener("touchend", finish);
         container.addEventListener("touchcancel", finish);
-        container.addEventListener("scroll", onScroll, { passive: true });
+        container.addEventListener("scroll", onScrollGuard, { passive: true });
 
         return () => {
-            window.clearTimeout(clampTimer);
+            window.cancelAnimationFrame(clampFrame);
             container.removeEventListener("touchstart", onTouchStart);
             container.removeEventListener("touchmove", onTouchMove);
             container.removeEventListener("touchend", finish);
             container.removeEventListener("touchcancel", finish);
-            container.removeEventListener("scroll", onScroll);
+            container.removeEventListener("scroll", onScrollGuard);
         };
     }, [goTo]);
+
+    const sectionsOf = useCallback(
+        () => Array.from(containerRef.current?.querySelectorAll("[data-deck-section]") ?? []),
+        [],
+    );
+
+    /**
+     * 量出「当前屏」：先找滚动位置正落在其中的那一屏；
+     * 都落不进去（比如已经蹭到所有屏之外）时取距离最近的一屏，
+     * 绝不能默认回第 0 屏 —— 否则末屏继续下拉会被拉回首屏。
+     */
+    const measureDeck = useCallback(() => {
+        const container = containerRef.current;
+        const sections = sectionsOf();
+        if (!container || sections.length === 0) {
+            return { index: 0, total: 0, top: 0, max: 0, deckMax: 0 };
+        }
+
+        const box = container.getBoundingClientRect();
+        const viewH = container.clientHeight;
+        const scroll = container.scrollTop;
+
+        let current = -1;
+        let nearest = 0;
+        let best = Infinity;
+
+        for (let i = 0; i < sections.length; i += 1) {
+            const t = sections[i].getBoundingClientRect().top - box.top + scroll;
+            if (scroll >= t - 2 && scroll < t + sections[i].offsetHeight - 2) {
+                current = i;
+                break;
+            }
+            const distance = Math.abs(scroll - t);
+            if (distance < best) {
+                best = distance;
+                nearest = i;
+            }
+        }
+
+        if (current < 0) {
+            current = nearest;
+        }
+
+        const section = sections[current];
+        const t = section.getBoundingClientRect().top - box.top + scroll;
+        const h = section.offsetHeight;
+
+        // 整页允许的滚动范围：不超过首屏顶、不超过末屏底
+        const lastSection = sections[sections.length - 1];
+        const lastTop = lastSection.getBoundingClientRect().top - box.top + scroll;
+
+        return {
+            index: current,
+            total: sections.length,
+            top: Math.max(0, t),
+            max: Math.max(t, t + h - viewH),
+            deckMax: Math.max(0, lastTop + lastSection.offsetHeight - viewH),
+        };
+    }, [sectionsOf]);
+
+    // 只翻一屏，越界就不动（避免 goTo 把序号夹回本屏后重置到屏顶）
+    const turnBy = useCallback(
+        step => {
+            const { index, total } = measureDeck();
+            const target = index + step;
+            if (total === 0 || target < 0 || target >= total) {
+                return;
+            }
+            goTo(target);
+        },
+        [goTo, measureDeck],
+    );
+
+    // 滚轮：一次滚动只翻一屏。
+    // 桌面每屏高度固定，所以不做屏内滚动；一整段滚动（一次滚轮 / 一次触控板甩动）
+    // 只算一次翻页，避免「滚得远一点就跳两屏」。
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) {
+            return undefined;
+        }
+
+        let lastWheelAt = 0;
+
+        const onWheel = event => {
+            // Ctrl + 滚轮是浏览器缩放，别拦
+            if (event.ctrlKey) {
+                return;
+            }
+            // 横向为主（资源卡横滚等）交给原生
+            if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+                return;
+            }
+
+            const info = measureDeck();
+
+            // 本屏比视口高（桌面一般不会，手机竖屏时才有）：先在屏内滚
+            if (info.max - info.top > 24) {
+                const down = event.deltaY > 0;
+                const atEdge = down
+                    ? container.scrollTop >= info.max - 2
+                    : container.scrollTop <= info.top + 2;
+
+                if (!atEdge) {
+                    event.preventDefault();
+                    container.scrollTop = Math.min(
+                        info.max,
+                        Math.max(info.top, container.scrollTop + event.deltaY),
+                    );
+                    return;
+                }
+            }
+
+            event.preventDefault();
+
+            // 上一屏还在动画里：这段时间的滚轮全部吞掉，
+            // 否则 measureDeck() 量到的是半途位置，会连翻两屏
+            if (animRef.current !== null) {
+                return;
+            }
+
+            // 触控板会连续发很多小 delta：间隔够近就归为同一段滚动，只翻一次
+            const now = performance.now();
+            if (now - lastWheelAt < 320) {
+                lastWheelAt = now;
+                return;
+            }
+            lastWheelAt = now;
+
+            turnBy(event.deltaY > 0 ? 1 : -1);
+        };
+
+        container.addEventListener("wheel", onWheel, { passive: false });
+        return () => container.removeEventListener("wheel", onWheel);
+    }, [measureDeck, turnBy]);
 
     // 键盘：上下方向键 / PageUp、PageDown / Home、End
     useEffect(() => {
@@ -625,7 +755,12 @@ function ResourceSection({ active }) {
     return (
         <Section active={active} className={styles.sectionResources} cover={COVERS.resources} tone="soft">
             <div className={styles.resourceWrap}>
-                <div className={styles.resourceScroller} data-at-start={atStart} data-at-end={atEnd}>
+                <div
+                    className={styles.resourceScroller}
+                    data-at-start={atStart}
+                    data-at-end={atEnd}
+                    data-hscroll
+                >
                     <div className={styles.resourceGrid} ref={scrollerRef} onScroll={syncScrollState}>
                         {RESOURCES.map(item => (
                             <ResourceCard key={item.name} {...toCardProps(item)} />
