@@ -423,11 +423,17 @@ body {
 .menu__list-item-collapsible {
     border-radius: 0;
 }
-.menu__link:hover,
-.menu__link--active:not(.menu__link--sublist),
-.menu__list-item-collapsible:hover {
+.menu__link--active:not(.menu__link--sublist) {
     background: #ffffff10;
     box-shadow: inset 4px 0 0 var(--oreui-accent);
+}
+
+@media (hover: hover) {
+    .menu__link:hover,
+    .menu__list-item-collapsible:hover {
+        background: #ffffff10;
+        box-shadow: inset 4px 0 0 var(--oreui-accent);
+    }
 }
 
 /* ---- 2.5 右侧目录（TOC） ----
@@ -472,10 +478,12 @@ body {
     transition: background-color 0.12s ease, color 0.12s ease;
 }
 
-.table-of-contents__link:hover {
-    background-color: #5a5b5c;
-    color: #ffffff;
-    text-decoration: none;
+@media (hover: hover) {
+    .table-of-contents__link:hover {
+        background-color: #5a5b5c;
+        color: #ffffff;
+        text-decoration: none;
+    }
 }
 
 /* 当前阅读位置：比板面更深的底 + 左侧强调条（用亮色，在浅板上才跳得出来） */
@@ -611,8 +619,12 @@ pre[class*="language-"] {
     transform: rotate(180deg);
 }
 
-.markdown.markdown details > summary:hover {
-    background-color: var(--oreui-panel-face-hover);
+/* 触屏设备上 :hover 会在点按后「粘住」，表头会一直亮着；
+   用 (hover: hover) 限定，只有真正能悬停的设备才应用 */
+@media (hover: hover) {
+    .markdown.markdown details > summary:hover {
+        background-color: var(--oreui-panel-face-hover);
+    }
 }
 
 .markdown.markdown details > summary:active {
@@ -1046,10 +1058,14 @@ body {
     box-shadow: none;
 }
 
-/* 触屏设备用系统自带的浮层滚动条，不显示自绘的那条 */
+/* 触屏设备同样显示这条滚动条（原生那条已经被关掉了，不显示就彻底没有），
+   但**只作为指示器**：轨道与滑块都不接收指针事件。
+   触屏本来就用系统手势滚动，保留点按跳转只会在边缘误触。 */
 @media (pointer: coarse) {
-    .oreui-scrollbar {
-        display: none;
+    .oreui-scrollbar,
+    .oreui-scrollbar__track,
+    .oreui-scrollbar__thumb {
+        pointer-events: none;
     }
 }
 
