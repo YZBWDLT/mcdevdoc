@@ -733,7 +733,7 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:addrider"/>：根对象。
-  - <DataType type="array" name="riders"/>：要添加的骑乘者列表。
+  - <DataType type="array" name="riders"/>：<Version add="1.21.130" inline/>要添加的骑乘者列表，可以同时指定多名骑乘者，数量不能超过[`minecraft:rideable`](#minecraftrideable)的`seat_count`。
     - <DataType type="object"/>：一个骑乘者。
       - <DataType type="string" name="entity_type"/>：骑乘者的实体 ID。
       - <DataType type="string" name="spawn_event"/>：<Version add="1.11.0" inline/>生成骑乘者时触发的事件 ID。
@@ -1610,6 +1610,7 @@ import Version from "/src/components/highlight/version"
   - <DataType type="int" name="suffocate_time"/>：两次窒息伤害之间的秒数。默认值为`-20`。
   - <DataType type="float" name="inhale_time"/>：把憋气量恢复到上限所需的秒数。默认值为`0`。
   - <DataType type="boolean" name="generates_bubbles"/>：在水中是否显示气泡。默认值为`true`。
+  - <DataType type="boolean" name="can_dehydrate"/>：<Version add="1.21.130" inline/>为`true`时，只能在水下呼吸的实体在脱离水后会受到脱水伤害。默认值为`false`，以保持原有的呼吸行为。
 </treeview>
 
 > **备注**：原版有 2 个文件写作`totalSupply`、`suffocateTime`，其余 80 个文件均为下划线写法。
@@ -1803,7 +1804,7 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:burns_in_daylight"/>：根对象。
-  - <DataType type="string" name="protection_slot"/>：可挡住阳光的装备槽位。可选值为`slot.weapon.mainhand`、`slot.weapon.offhand`、`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`、`slot.armor.body`。默认值为`slot.armor.head`。
+  - <DataType type="string" name="protection_slot"/>：<Version add="1.21.130" inline/>可挡住阳光的装备槽位。可选值为`slot.weapon.mainhand`、`slot.weapon.offhand`、`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`、`slot.armor.body`。默认值为`slot.armor.head`。
 </treeview>
 
 > **备注**：官方文档未列出该组件的参数，`protection_slot`取自 26.60 的 schema。

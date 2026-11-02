@@ -9,12 +9,14 @@ import OverlayScrollbar from "@site/src/components/oreui/OverlayScrollbar";
 // 设置页把偏好写进 localStorage，这里在每次进入站点时读回来并应用到 <html>：
 //   oreui-font-mode → data-font（字体风格）
 //   oreui-scale     → 根字号百分比（界面缩放）
+//   oreui-code-bg   → data-code-bg（行内代码背景）
 //   （oreui-motion 不在这里处理：它只作用于首页，由首页自己读取）
 // 同时监听跨标签页的变更，保证多标签一致。
 // ================================================================
 
 const KEY_FONT = "oreui-font-mode";
 const KEY_SCALE = "oreui-scale";
+const KEY_CODE_BG = "oreui-code-bg";
 
 function applyAllPreferences() {
     const root = document.documentElement;
@@ -35,6 +37,13 @@ function applyAllPreferences() {
         root.style.removeProperty("font-size");
     }
 
+    // 行内代码背景（默认开启，只有被显式关掉时才挂 off）
+    if (localStorage.getItem(KEY_CODE_BG) === "0") {
+        root.dataset.codeBg = "off";
+    } else {
+        delete root.dataset.codeBg;
+    }
+
     // 「减少首页动态效果」不加在 <html> 上，否则会压掉全站动画
     delete root.dataset.motion;
 }
@@ -48,7 +57,7 @@ function PreferenceManager() {
         applyAllPreferences();
 
         const handleStorageChange = event => {
-            if (event.key === KEY_FONT || event.key === KEY_SCALE) {
+            if (event.key === KEY_FONT || event.key === KEY_SCALE || event.key === KEY_CODE_BG) {
                 applyAllPreferences();
             }
         };

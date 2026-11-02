@@ -65,11 +65,13 @@ const SCALE_STEP = 10;
 const DEFAULT_FONT_MODE = "pixel";
 const DEFAULT_SCALE = 100;
 const DEFAULT_MOTION_REDUCED = false;
+const DEFAULT_CODE_BG = true;
 
 /** localStorage 键名 */
 const KEY_FONT = "oreui-font-mode";
 const KEY_SCALE = "oreui-scale";
 const KEY_MOTION = "oreui-motion";
+const KEY_CODE_BG = "oreui-code-bg";
 
 // ================================================================
 // 应用到 <html>
@@ -109,6 +111,18 @@ function applyMotion(reduced) {
     delete document.documentElement.dataset.motion;
 }
 
+/** 行内代码背景：默认开启，所以「开」= 不挂属性、也不存键；
+    「关」才给 <html> 挂 data-code-bg="off" 并写 localStorage。 */
+function applyCodeBg(enabled) {
+    if (enabled) {
+        delete document.documentElement.dataset.codeBg;
+        localStorage.removeItem(KEY_CODE_BG);
+    } else {
+        document.documentElement.dataset.codeBg = "off";
+        localStorage.setItem(KEY_CODE_BG, "0");
+    }
+}
+
 // ================================================================
 // 页面
 // ================================================================
@@ -117,11 +131,13 @@ export default function Settings() {
     const [fontMode, setFontMode] = useState(DEFAULT_FONT_MODE);
     const [scale, setScale] = useState(DEFAULT_SCALE);
     const [motionReduced, setMotionReduced] = useState(DEFAULT_MOTION_REDUCED);
+    const [codeBg, setCodeBg] = useState(DEFAULT_CODE_BG);
 
     // 首次挂载时把已保存的偏好读回界面
     useEffect(() => {
         setFontMode(document.documentElement.dataset.font || DEFAULT_FONT_MODE);
         setMotionReduced(localStorage.getItem(KEY_MOTION) === "reduced");
+        setCodeBg(document.documentElement.dataset.codeBg !== "off");
 
         const savedScale = Number(localStorage.getItem(KEY_SCALE));
         if (savedScale >= SCALE_MIN && savedScale <= SCALE_MAX) {
@@ -139,6 +155,11 @@ export default function Settings() {
         applyScale(value);
     };
 
+    const handleCodeBgChange = enabled => {
+        setCodeBg(enabled);
+        applyCodeBg(enabled);
+    };
+
     const handleMotionChange = reduced => {
         setMotionReduced(reduced);
         applyMotion(reduced);
@@ -152,6 +173,8 @@ export default function Settings() {
         applyScale(DEFAULT_SCALE);
         setMotionReduced(DEFAULT_MOTION_REDUCED);
         applyMotion(DEFAULT_MOTION_REDUCED);
+        setCodeBg(DEFAULT_CODE_BG);
+        applyCodeBg(DEFAULT_CODE_BG);
     };
 
     return (
@@ -197,6 +220,16 @@ export default function Settings() {
                                 step={SCALE_STEP}
                                 onChange={handleScaleChange}
                                 label="界面缩放"
+                            />
+                        </SettingRow>
+                        <SettingRow
+                            title="代码文本背景"
+                            description="为代码文本启用一个深色背景。"
+                        >
+                            <OreSwitch
+                                checked={codeBg}
+                                onChange={handleCodeBgChange}
+                                label="代码文本背景"
                             />
                         </SettingRow>
                     </div>

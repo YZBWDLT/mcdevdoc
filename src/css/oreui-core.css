@@ -508,11 +508,25 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* 行内代码 */
+/* 行内代码：默认只有颜色、没有背景。
+   设置页开启「代码文本背景」后会在 <html> 上挂 data-code-bg="on"，
+   这里再给它加深色底 + 浅色描边（只作用于文档正文里的行内代码）。 */
 :not(pre) > code {
     background-color: transparent;
     border: transparent;
     color: var(--oreui-code-text);
+}
+
+/* 默认开启：不给 <html> 挂任何属性时就已经是这个样子（避免首屏闪一下无背景）。
+   在设置页关掉后，<html> 会被挂上 data-code-bg="off"，这里再还原成无背景。 */
+.markdown :not(pre) > code {
+    background-color: #0f0e0e;
+    border: 1px solid #dddddd;
+}
+
+html[data-code-bg="off"] .markdown :not(pre) > code {
+    background-color: transparent;
+    border: transparent;
 }
 
 /* 代码块 */
@@ -952,9 +966,14 @@ body {
     right: 0;
 }
 
-/* 导航栏已不在滚动容器内，吸顶偏移改回 1rem */
-.theme-doc-toc-desktop {
-    top: 1rem;
+/* 导航栏已不在滚动容器内，吸顶偏移不该再算导航栏高度。
+   主题那条是 `top: calc(navbar + 1rem)`（≈76px），而且 `.tableOfContents_*`
+   在产物里排得更靠后、特异性同为 (0,1,0)，之前那条 `top: 1rem` 根本没生效，
+   结果整块目录被往下推了 68px，目录一长就显示不全。
+   叠一个类名提到 (0,2,0)，同时把 max-height 改成「铺满滚动容器」的高度。 */
+.theme-doc-toc-desktop.theme-doc-toc-desktop {
+    top: 0.5rem;
+    max-height: calc(100vh - var(--ifm-navbar-height) - 1rem);
 }
 
 /* 侧边栏的三处补偿。

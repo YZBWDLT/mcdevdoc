@@ -203,6 +203,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_family`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否为指定实体家族的成员。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -234,6 +236,8 @@ import Version from "/src/components/highlight/version"
 
 ### `has_biome_tag`
 
+<Usable type="all"/> <Version add="1.8.0"/> <br/>
+
 测试主体所在生物群系是否带有指定标签。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -263,6 +267,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `has_equipment`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试主体指定装备槽位中是否存在指定物品。
 
@@ -297,6 +303,8 @@ import Version from "/src/components/highlight/version"
 
 ### `in_lava`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否处于熔岩中。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -327,6 +335,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_difficulty`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试当前游戏难度。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -356,6 +366,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `enum_property`
+
+<Usable type="all"/> <Version add="1.19.40"/> <br/>
 
 测试实体的枚举型属性是否为指定值。
 
@@ -389,6 +401,8 @@ import Version from "/src/components/highlight/version"
 
 ### `has_component`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否含有指定组件。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -419,6 +433,8 @@ import Version from "/src/components/highlight/version"
 
 ### `has_ranged_weapon`
 
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
+
 测试主体是否手持弓、弩等远程武器。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -448,6 +464,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `has_ability`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试主体是否具有指定能力。
 
@@ -494,6 +512,8 @@ import Version from "/src/components/highlight/version"
 
 ### `in_water`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否位于水中。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -524,6 +544,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_underwater`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试主体是否完全浸没在水中。
 
@@ -557,6 +579,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_daytime`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试当前是否为白天。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -586,6 +610,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_riding`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试主体是否骑乘在其他实体上。
 
@@ -618,6 +644,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_underground`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否位于地下。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -647,6 +675,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_controlling_passenger_family`
+
+<Usable type="all"/> <Version add="1.21.130"/> <br/>
 
 测试主体的控制乘客是否为指定实体家族的成员。
 
@@ -678,6 +708,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_moving`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试主体是否正在移动。
 
@@ -711,6 +743,8 @@ import Version from "/src/components/highlight/version"
 
 ### `rider_count`
 
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
+
 测试主体身上的骑乘者数量。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -743,6 +777,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_variant`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体的变种编号是否为指定值。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -774,6 +810,8 @@ import Version from "/src/components/highlight/version"
 
 ### `in_block`
 
+<Usable type="all"/> <Version add="1.17.0"/> <br/>
+
 测试主体是否位于指定方块中。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -803,6 +841,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_sneak_held`
+
+<Usable type="all"/> <Version add="1.20.10"/> <br/>
 
 测试主体是否按住潜行键。
 
@@ -835,6 +875,8 @@ import Version from "/src/components/highlight/version"
 
 ### `on_ground`
 
+<Usable type="all"/> <Version add="1.4.0"/> <br/>
+
 测试主体是否站在地面上。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -864,6 +906,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_brightness`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试主体所在位置的亮度。
 
@@ -895,6 +939,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_game_rule`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试指定游戏规则是否开启。
 
@@ -928,6 +974,8 @@ import Version from "/src/components/highlight/version"
 
 ### `in_contact_with_water`
 
+<Usable type="all"/> <Version add="1.17.0"/> <br/>
+
 测试主体是否接触水，包括水、雨水与喷溅水瓶。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -959,6 +1007,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_sneaking`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否正在潜行。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -989,6 +1039,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `all_slots_empty`
+
+<Usable type="all"/> <Version add="1.20.0"/> <br/>
 
 测试主体指定装备区域是否完全为空。
 
@@ -1035,6 +1087,8 @@ import Version from "/src/components/highlight/version"
 
 ### `bool_property`
 
+<Usable type="all"/> <Version add="1.19.40"/> <br/>
+
 测试实体的布尔型属性是否为指定值。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1067,6 +1121,8 @@ import Version from "/src/components/highlight/version"
 
 ### `has_target`
 
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
+
 测试主体是否有有效目标。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1098,6 +1154,8 @@ import Version from "/src/components/highlight/version"
 
 ### `in_caravan`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否处于商队中。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1127,6 +1185,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_leashed`
+
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
 
 测试主体是否被拴绳拴住。
 
@@ -1159,6 +1219,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_snow_covered`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否处于积雪区域。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1188,6 +1250,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_temperature_value`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试主体所在生物群系的温度。
 
@@ -1220,6 +1284,8 @@ import Version from "/src/components/highlight/version"
 
 ### `has_mob_effect`
 
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
+
 测试主体是否具有指定状态效果。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1251,6 +1317,8 @@ import Version from "/src/components/highlight/version"
 
 ### `in_water_or_rain`
 
+<Usable type="all"/> <Version add="1.4.0"/> <br/>
+
 测试主体是否位于水中或雨中。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1281,6 +1349,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_biome`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试主体是否位于指定生物群系。
 
@@ -1333,6 +1403,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_in_village`
 
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
+
 测试主体是否位于村庄范围内。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1364,6 +1436,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_missing_health`
 
+<Usable type="all"/> <Version add="1.18.10"/> <br/>
+
 测试主体是否未处于满血状态。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1392,6 +1466,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_navigating`
+
+<Usable type="all"/> <Version add="1.21.20"/> <br/>
 
 测试主体是否正在寻路。需要`minecraft:navigation`组件。
 
@@ -1423,6 +1499,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_owner`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否为调用者的主人。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1453,6 +1531,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_panicking`
 
+<Usable type="all"/> <Version add="1.20.60"/> <br/>
+
 测试主体是否处于惊慌状态。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1481,6 +1561,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `owner_distance`
+
+<Usable type="all"/> <Version add="1.21.20"/> <br/>
 
 测试主体与其主人之间的距离。主体没有主人时返回`false`。
 
@@ -1513,6 +1595,8 @@ import Version from "/src/components/highlight/version"
 
 ### `target_distance`
 
+<Usable type="all"/> <Version add="1.19.60"/> <br/>
+
 调用者与其目标之间的距离。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1544,6 +1628,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `actor_has_item_with_enchantment_in_slot`
+
+<Usable type="all"/> <Version add="1.26.40"/> <br/>
 
 测试主体指定装备槽位中的物品是否带有指定附魔。
 
@@ -1579,6 +1665,8 @@ import Version from "/src/components/highlight/version"
 
 ### `actor_health`
 
+<Usable type="all"/> <Version add="1.19.60"/> <br/>
+
 测试主体的血量。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1610,6 +1698,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `any_slot_empty`
+
+<Usable type="all"/> <Version add="1.20.0"/> <br/>
 
 测试主体指定装备区域是否存在空槽位。
 
@@ -1656,6 +1746,8 @@ import Version from "/src/components/highlight/version"
 
 ### `clock_time`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试当前时间，以`0.0`至`1.0`表示。`0.0`为正午，`0.25`为日落，`0.5`为午夜，`0.75`为日出。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1688,6 +1780,8 @@ import Version from "/src/components/highlight/version"
 
 ### `distance_to_nearest_player`
 
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
+
 测试与最近玩家之间的距离。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1719,6 +1813,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `float_property`
+
+<Usable type="all"/> <Version add="1.19.40"/> <br/>
 
 测试实体的浮点型属性是否为指定值。
 
@@ -1754,6 +1850,8 @@ import Version from "/src/components/highlight/version"
 
 ### `has_container_open`
 
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
+
 测试玩家主体是否打开了容器。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1785,6 +1883,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `has_damage`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试主体是否受到指定类型的伤害。
 
@@ -1848,6 +1948,8 @@ import Version from "/src/components/highlight/version"
 
 ### `has_damaged_equipment`
 
+<Usable type="all"/> <Version add="1.20.80"/> <br/>
+
 测试主体指定装备槽位中是否存在受损的指定物品。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1882,6 +1984,8 @@ import Version from "/src/components/highlight/version"
 
 ### `has_equipment_block_tag`
 
+<Usable type="all"/> <Version add="未知"/> <br/>
+
 测试主体指定装备槽位中是否存在带有指定方块标签的方块物品。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1911,6 +2015,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `has_equipment_tag`
+
+<Usable type="all"/> <Version add="1.21.80"/> <br/>
 
 测试主体指定装备槽位中是否存在带有指定标签的物品。
 
@@ -1946,6 +2052,8 @@ import Version from "/src/components/highlight/version"
 
 ### `has_item_with_component`
 
+<Usable type="all"/> <Version add="1.21.130"/> <br/>
+
 测试主体手持物品是否带有指定组件。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -1977,6 +2085,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `has_nametag`
+
+<Usable type="all"/> <Version add="1.18.0"/> <br/>
 
 测试主体是否已被命名。
 
@@ -2010,6 +2120,8 @@ import Version from "/src/components/highlight/version"
 
 ### `has_property`
 
+<Usable type="all"/> <Version add="1.19.40"/> <br/>
+
 测试主体是否具有指定属性。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2041,6 +2153,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `has_same_equipment_in_slot_as`
+
+<Usable type="all"/> <Version add="1.26.20"/> <br/>
 
 测试主体指定槽位中的物品是否与调用者相同。仅支持`main_hand`、`head`、`torso`、`leg`、`feet`与`body`。
 
@@ -2076,6 +2190,8 @@ import Version from "/src/components/highlight/version"
 
 ### `has_silk_touch`
 
+<Usable type="all"/> <Version add="1.18.30"/> <br/>
+
 测试主体手持物品是否带有精准采集。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2108,6 +2224,8 @@ import Version from "/src/components/highlight/version"
 
 ### `has_tag`
 
+<Usable type="all"/> <Version add="1.9.0"/> <br/>
+
 测试主体是否带有指定标签。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2138,6 +2256,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `has_trade_supply`
+
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
 
 测试目标是否还有剩余交易次数。目标无法交易时返回`false`。
 
@@ -2171,6 +2291,8 @@ import Version from "/src/components/highlight/version"
 
 ### `home_distance`
 
+<Usable type="all"/> <Version add="1.21.60"/> <br/>
+
 测试主体与其家园之间的距离。主体没有家园或家园不在同一维度时返回`false`。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2202,6 +2324,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `hourly_clock_time`
+
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
 
 测试当前的 24 小时制时间，取值范围为`0`-`24000`。
 
@@ -2235,6 +2359,8 @@ import Version from "/src/components/highlight/version"
 
 ### `in_clouds`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否位于云层中。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2266,6 +2392,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `in_nether`
+
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
 
 测试主体是否位于下界。
 
@@ -2299,6 +2427,8 @@ import Version from "/src/components/highlight/version"
 
 ### `in_overworld`
 
+<Usable type="all"/> <Version add="1.20.40"/> <br/>
+
 测试主体是否位于主世界。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2331,6 +2461,8 @@ import Version from "/src/components/highlight/version"
 
 ### `inactivity_timer`
 
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
+
 测试主体是否已达到指定的无活动消失时间。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2362,6 +2494,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `int_property`
+
+<Usable type="all"/> <Version add="1.19.40"/> <br/>
 
 测试实体的整数型属性是否为指定值。
 
@@ -2397,6 +2531,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_altitude`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体的高度。`0`为基岩层高度。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2428,6 +2564,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_avoiding_mobs`
+
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
 
 测试主体是否正在逃离其他生物。
 
@@ -2461,6 +2599,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_baby`
 
+<Usable type="all"/> <Version add="1.19.40"/> <br/>
+
 测试主体是否为幼年体。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2492,6 +2632,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_block`
+
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
 
 测试方块是否为指定方块。
 
@@ -2525,6 +2667,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_bound_to_creaking_heart`
 
+<Usable type="all"/> <Version add="1.21.60"/> <br/>
+
 测试生成该嘎枝的嘎枝之心是否仍然存在。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2557,6 +2701,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_climbing`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否正在攀爬。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2588,6 +2734,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_color`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试主体是否为指定颜色。
 
@@ -2640,6 +2788,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_humid`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否处于潮湿区域。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2671,6 +2821,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_immobile`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试主体是否不可移动。
 
@@ -2704,6 +2856,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_in_same_vehicle`
 
+<Usable type="all"/> <Version add="1.21.130"/> <br/>
+
 测试主体是否与调用者乘坐同一载具。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2735,6 +2889,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_leashed_to`
+
+<Usable type="all"/> <Version add="1.13.3"/> <br/>
 
 测试主体是否被拴在调用者身上。
 
@@ -2768,6 +2924,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_mark_variant`
 
+<Usable type="all"/> <Version add="1.10.0"/> <br/>
+
 测试主体的标记变种编号是否为指定值。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2799,6 +2957,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_persistent`
+
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
 
 测试主体的持久性是否为指定值。
 
@@ -2832,6 +2992,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_raider`
 
+<Usable type="all"/> <Version add="1.19.80"/> <br/>
+
 测试主体是否为袭击者。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2863,6 +3025,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_riding_self`
+
+<Usable type="all"/> <Version add="1.21.90"/> <br/>
 
 测试主体是否骑乘在调用者身上。
 
@@ -2896,6 +3060,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_sitting`
 
+<Usable type="all"/> <Version add="1.20.80"/> <br/>
+
 测试主体是否正在坐下。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2927,6 +3093,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_skin_id`
+
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
 
 测试主体的皮肤编号是否为指定值。
 
@@ -2960,6 +3128,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_sleeping`
 
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
+
 测试主体是否正在睡觉。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -2991,6 +3161,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_sprinting`
+
+<Usable type="all"/> <Version add="1.20.60"/> <br/>
 
 测试主体是否正在疾跑。
 
@@ -3024,6 +3196,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_tamed`
 
+<Usable type="all"/> <Version add="1.26.10"/> <br/>
+
 测试主体是否已被驯服。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3055,6 +3229,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_target`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试主体是否为调用者的目标。
 
@@ -3088,6 +3264,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_temperature_type`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试当前温度是否为指定类别。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3119,6 +3297,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_vehicle_family`
+
+<Usable type="all"/> <Version add="1.21.90"/> <br/>
 
 测试主体所乘坐的载具是否为指定实体家族的成员。
 
@@ -3152,6 +3332,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_visible`
 
+<Usable type="all"/> <Version add="1.12.0"/> <br/>
+
 测试主体是否可见。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3183,6 +3365,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `is_waterlogged`
+
+<Usable type="all"/> <Version add="1.19.0"/> <br/>
 
 测试主体方块是否被水浸没。
 
@@ -3216,6 +3400,8 @@ import Version from "/src/components/highlight/version"
 
 ### `is_weather`
 
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
+
 已弃用。请改用`weather`。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3247,6 +3433,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `light_level`
+
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
 
 测试主体所在位置的光照等级是否在指定范围外，范围为`0`-`16`。
 
@@ -3280,6 +3468,8 @@ import Version from "/src/components/highlight/version"
 
 ### `moon_intensity`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试当前月光强度，取值范围为`0.0`-`1.0`。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3311,6 +3501,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `moon_phase`
+
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
 
 测试当前月相，取值范围为`0`-`7`。
 
@@ -3344,6 +3536,8 @@ import Version from "/src/components/highlight/version"
 
 ### `on_fire`
 
+<Usable type="all"/> <Version add="1.19.60"/> <br/>
+
 测试主体是否着火。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3375,6 +3569,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `on_hot_block`
+
+<Usable type="all"/> <Version add="1.19.60"/> <br/>
 
 测试主体是否站在热方块上。
 
@@ -3408,6 +3604,8 @@ import Version from "/src/components/highlight/version"
 
 ### `on_ladder`
 
+<Usable type="all"/> <Version add="1.2.0"/> <br/>
+
 测试主体是否在梯子上。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3439,6 +3637,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `random_chance`
+
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
 
 以`1/value`的概率返回`true`。
 
@@ -3472,6 +3672,8 @@ import Version from "/src/components/highlight/version"
 
 ### `redstone_strength_at_position`
 
+<Usable type="all"/> <Version add="1.26.30"/> <br/>
+
 测试主体所在位置的红石信号强度。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3503,6 +3705,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `surface_mob`
+
+<Usable type="all"/> <Version add="1.16.0"/> <br/>
 
 测试主体是否为地表生物。
 
@@ -3536,6 +3740,8 @@ import Version from "/src/components/highlight/version"
 
 ### `taking_fire_damage`
 
+<Usable type="all"/> <Version add="1.19.80"/> <br/>
+
 测试主体是否正在受到火焰伤害。需要`minecraft:damage_sensor`组件。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3567,6 +3773,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `trusts`
+
+<Usable type="all"/> <Version add="1.13.0"/> <br/>
 
 测试主体是否被调用者信任。
 
@@ -3600,6 +3808,8 @@ import Version from "/src/components/highlight/version"
 
 ### `was_last_hurt_by`
 
+<Usable type="all"/> <Version add="1.20.70"/> <br/>
+
 测试主体是否为最近攻击该实体的对象。对玩家为 400 秒内，对生物为 60 秒内。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3631,6 +3841,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `weather`
+
+<Usable type="all"/> <Version add="1.15.0"/> <br/>
 
 测试当前天气。
 
@@ -3664,6 +3876,8 @@ import Version from "/src/components/highlight/version"
 
 ### `weather_at_position`
 
+<Usable type="all"/> <Version add="1.15.0"/> <br/>
+
 测试主体所在位置的天气。
 
 <Tabs><TabItem value="参数" label="参数" default>
@@ -3695,6 +3909,8 @@ import Version from "/src/components/highlight/version"
 ---
 
 ### `y_rotation`
+
+<Usable type="all"/> <Version add="1.21.110"/> <br/>
 
 测试主体的 Y 轴旋转角。
 
