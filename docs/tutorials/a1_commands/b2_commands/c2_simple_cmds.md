@@ -206,7 +206,7 @@ import Version from '/src/components/highlight/version';
 
 例如，调整 Alex 为生存模式，就可以用`/gamemode survival Alex`。当然，`/gamemode s Alex`和`/gamemode 0 Alex`都是可以的。试执行下面的命令，体验一下这条命令。如果害怕被史莱姆攻击影响输入命令，可以开和平。
 
-```text
+```
 /gamemode survival @s
 ```
 
@@ -415,7 +415,7 @@ m=<游戏模式: int|GameMode>
 
 更新的内容是有点多的，但不需要担心许多——`of <时钟>`目前对于我们而言，只能更改主世界的时间，因此这些命令会等到我们模块 3 的脚本中，在学习到时钟的定义方法之后再谈。我们这里主要关注的语法只有两条：
 
-```text
+```
 /time pause
 /time resume
 ```

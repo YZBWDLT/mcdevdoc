@@ -20,7 +20,7 @@ import FileType from "/src/components/type/file"
 
 首先第一步，我们要找到游戏存储数据的路径。读者可以打开文件管理器，并将下面的路径粘贴到文件管理器的导航栏上：
 
-```text
+```
 %appdata%\Minecraft Bedrock\Users
 ```
 
@@ -91,13 +91,13 @@ import FileType from "/src/components/type/file"
 
 以前，游戏数据统一存储在<FileType type="folder" name="com.mojang"/>中，路径为
 
-```text
+```
 %localappdata%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang
 ```
 
 如果是预览版，则为
 
-```text
+```
 %localappdata%\Packages\Microsoft.MinecraftWindowsBeta_8wekyb3d8bbwe\LocalState\games\com.mojang
 ```
 
@@ -253,7 +253,7 @@ import FileType from "/src/components/type/file"
 
 对于中国版来说，我们同样也要找到类似于<FileType type="folder" name="com.mojang"/>的数据文件夹。路径如下：
 
-```text
+```
 %appdata%\MinecraftPE_Netease
 ```
 

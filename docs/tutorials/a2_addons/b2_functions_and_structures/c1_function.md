@@ -100,7 +100,7 @@ say Hello,world!
 
 按照上述步骤新建函数，然后执行下面的命令：
 
-```text
+```
 /function test
 ```
 
@@ -147,7 +147,7 @@ say Hello,world!
 
 执行下面的命令：
 
-```text
+```
 /schedule delay add test 1s
 ```
 
@@ -165,14 +165,14 @@ say Hello,world!
 
 **快速**执行下面的两条命令：
 
-```text
+```
 /schedule delay add test 10s
 /schedule delay add test 10s replace
 ```
 
 在服务器返回消息后，再**快速**执行下面的两条命令：
 
-```text
+```
 /schedule delay add test 10s
 /schedule delay add test 10s append
 ```

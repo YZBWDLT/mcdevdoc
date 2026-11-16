@@ -210,7 +210,7 @@ effect @e[name=facingPos] invisibility 1 0 true
 
 语法错误是最容易解决的错误。因为语法错误都会明确地给出错误原因和错误位置，比如下面这种语法错误：
 
-```text
+```
 effect give @a invisibility
 ```
 
@@ -218,7 +218,7 @@ effect give @a invisibility
 
 有时候，命令也会因为拼写错误而报错，例如
 
-```text
+```
 effect @a invisibilty
 ```
 
@@ -226,7 +226,7 @@ effect @a invisibilty
 
 有时候我们也会遇到所谓的未知命令的问题，常常出现在越级执行命令的时候，例如用命令方块执行
 
-```text
+```
 op @a
 ```
 

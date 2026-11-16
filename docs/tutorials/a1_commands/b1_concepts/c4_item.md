@@ -40,7 +40,7 @@ sidebar_position: 4
 
 你可能早已听说过这条命令的鼎鼎大名！可能在你查阅其他的命令教程的时候，就已经知道有这样一条命令：`/give @s command_block`。但我们先不管这些，先来研究它的语法：
 
-```text
+```
 /give <玩家: target> <物品: Item>
 ```
 

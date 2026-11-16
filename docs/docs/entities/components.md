@@ -1692,11 +1692,21 @@ import Version from "/src/components/highlight/version"
         - <DataType type="string"/>：方块 ID。
       - <DataType type="int" name="count"/>：需要的方块数量。
       - <DataType type="float" name="radius"/>：搜索半径，取值`0`-`16`。
+  - <DataType type="string" name="mutation_strategy"/>：<Version add="1.19.70" deprecated="1.26.0" inline/> 后代变种与额外变种的变异方式。可选值为`none`（不主动变异）、`random`（随机变异）。默认值为`none`。
+  - <DataType type="object" name="deny_parents_variant"/>：<Version add="1.14.0" deprecated="1.26.0" inline/> 亲代变种相同时，后代改用随机变种的概率与范围。
+    - <DataType type="float" name="chance"/>：改用随机变种的概率。默认值为`0`。
+    - <DataType type="int" name="min_variant"/>：随机变种范围的下限（含）。默认值为`0`。
+    - <DataType type="int" name="max_variant"/>：随机变种范围的上限（含）。默认值为`0`。
+  - <DataType type="array" name="parent_centric_attribute_blending"/>：<Version add="1.19.70" deprecated="1.26.0" inline/> 采用父母双亲混合方式的属性列表。
+    - <DataType type="string"/>：属性名，如`minecraft:health`。
+  - <DataType type="array" name="property_inheritance"/>：<Version add="1.21.60" deprecated="1.26.0" inline/> 需要从亲代继承、并可能发生变异的实体属性。
+  - <DataType type="array" name="random_variant_mutation_interval"/>：<Version add="1.19.70" deprecated="1.26.0" inline/> 每次繁殖额外随机变种次数的区间，写作`[最小值, 最大值]`。默认值为`[0, 0]`。
+  - <DataType type="array" name="random_extra_variant_mutation_interval"/>：<Version add="1.19.70" deprecated="1.26.0" inline/> 每次繁殖额外随机「额外变种」次数的区间，写作`[最小值, 最大值]`。默认值为`[0, 0]`。
 </treeview>
 
 > **备注**：原版中这些值均为空对象。
 
-> **备注**：1.19.70 至 1.26.0 之间的文档还列有`mutation_strategy`、`parent_centric_attribute_blending`、`property_inheritance`、`random_variant_mutation_interval`、`random_extra_variant_mutation_interval`与`deny_parents_variant`，26.60 的文档已不再列出，但原版实体仍在沿用，此处暂未展开。
+> **备注**：上表最后六项在`1.26.0`起改由[`minecraft:offspring`](#minecraftoffspring)组件承载，写在`breedable`里不再生效。
 
 </TabItem><TabItem value="示例" label="示例">
 

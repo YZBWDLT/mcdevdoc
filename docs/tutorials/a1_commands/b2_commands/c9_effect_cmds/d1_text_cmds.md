@@ -333,25 +333,25 @@ titleraw @a actionbar {"rawtext":[{"text":"§"},{"score":{"objective":"data","na
 
 我们的重点在于后面的那个文本格式化。什么叫格式化？你可能在清空一整个硬盘的时候听说过格式化这个名字，知道把硬盘格式化的时候就代表里面所有的数据都灰飞烟灭了。但是在字符串中，格式化却不是消灭所有字符的意思。它代表的是按照特定的格式和模板输出字符串，你可以把格式化理解为模板化。如果你有一张中国移动的 SIM 卡，你经常会收到这样的提示消息：
 
-```text
+```
 【流量提醒】尊敬的客户，您好！截止(xx)月(xx)日(xx)点(xx)分，您(xxx)本月移动上网流量已使用(xx.xx)GB，……
 ```
 
 对于这种高度模板化的消息，不难发现我们只需要插入一些特定的数值，就能够组成一句语意通畅、数据清晰的话。再比如上文我们用来恶搞的那个字符串，也可以总结出一个模板：
 
-```text
+```
 §e(xxx) 退出了游戏
 ```
 
 这里，我们只需要插入一个玩家的名字，然而我们却插入了 3 个文本组件用来表达这个意思，难免会降低易读性。这里还是只插入一个名字，万一你要显示的是插入一堆数值的字符串呢？
 
-```text
+```
 §l§b 关卡 (xx)-(xx) | 怪物数 (xx) | 玩家数 (xx) | 波数 (xx) | ……
 ```
 
 这种情况下，插入 5 个值，你就要引入 11 个文本组件，实现起来的效果类似于
 
-```text
+```
 titleraw @a actionbar {"rawtext":[{"text":"§l§b 关卡 "},{"score":{"objective":"...","name":"..."}},{"text":"-"},{"score":{"objective":"...","name":"..."}},{"text":" | 怪物数 "},{"score":{"objective":"...","name":"..."}},{"text":" | 玩家数 "},{"score":{"objective":"...","name":"..."}},{"text":" | 波数 "},{"score":{"objective":"...","name":"..."}},{"text":" | ……"}]}
 ```
 
@@ -425,19 +425,19 @@ titleraw @a actionbar {"rawtext":[{"text":"§l§b 关卡 "},{"score":{"objective
 
 例如，在一开头的例子中，我们提到下面的字符串模板
 
-```text
+```
 §l§b 关卡 (xx)-(xx) | 怪物数 (xx) | 玩家数 (xx) | 波数 (xx) | ……
 ```
 
 在以前写为
 
-```text
+```
 titleraw @a actionbar {"rawtext":[{"text":"§l§b 关卡 "},{"score":{"objective":"...","name":"..."}},{"text":"-"},{"score":{"objective":"...","name":"..."}},{"text":" | 怪物数 "},{"score":{"objective":"...","name":"..."}},{"text":" | 玩家数 "},{"score":{"objective":"...","name":"..."}},{"text":" | 波数 "},{"score":{"objective":"...","name":"..."}},{"text":" | ……"}]}
 ```
 
 而现在，我们则可以写为
 
-```text
+```
 titleraw @a actionbar {"rawtext":[{"translate":"§l§b 关卡 %%s-%%s | 怪物数 %%s | 玩家数 %%s | 波数 %%s | ……","with":{"rawtext":[{"score":{"objective":"...","name":"..."}},{"score":{"objective":"...","name":"..."}},{"score":{"objective":"...","name":"..."}},{"score":{"objective":"...","name":"..."}},{"score":{"objective":"...","name":"..."}}]}}]}
 ```
 
@@ -600,7 +600,7 @@ titleraw @a actionbar {"rawtext":[{"translate":"§l§b 关卡 %%s-%%s | 怪物�
 
 8. 定义`coin.@s`为玩家的金币数、`killAmount.@s`为玩家的击杀数、`deathCount.@s`为玩家的死亡数、`team.@s`为玩家所在队伍，`0`=红队，`1`=蓝队。现在需要计算不同队伍的金币数总和并进行比对，在动作栏标题上输出玩家信息和优势队伍如下：
 
-    ```text
+    ```
     你的名字 (玩家名) | 金币 (金币数) | 击杀 (击杀数) | 死亡 (死亡数) | 优势队伍 (红队|蓝队)
     ```
 

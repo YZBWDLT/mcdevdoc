@@ -68,13 +68,13 @@ say Hello,world!
 
 那么，当您使用下面的命令后
 
-```text
+```
 scoreboard players set timeline active 1
 ```
 
 您将看见服务器不断的发送“Hello,world!”的消息。您可以**关闭时间线**来关闭这条命令：
 
-```text
+```
 scoreboard players set timeline active 0
 ```
 
@@ -86,7 +86,7 @@ execute if score timeline time matches 150 run say success!
 
 然后，使用下面的命令**启用时间线和时间流逝**：
 
-```text
+```
 ## 启用时间线
 scoreboard players set timeline active 1
 ## 启用时间流逝
@@ -97,7 +97,7 @@ scoreboard players set timeLapse data 1
 
 如果要关闭时间流逝，您可以关闭时间线和时间流逝，但**注意不要忘记把时间值也归零**：
 
-```text
+```
 ## 启用时间线
 scoreboard players set timeline active 0
 ## 启用时间流逝
@@ -126,7 +126,7 @@ execute if score timeline time matches 240 run say 3
 
 这代表着，当时间线被启用后，在特定的时间执行`/say`命令。显然，这需要开启时间流逝。您可以使用下面的命令启用时间线、时间流逝和**视角锁定**：
 
-```text
+```
 ## 启用时间线
 scoreboard players set timeline active 1
 ## 启用时间流逝
@@ -137,15 +137,15 @@ scoreboard players set lockCamera data 1
 
 若如此做，您将会在执行这两条命令后的 4 秒、 8 秒、 12 秒分别看到服务器发送的消息。同时，**您的视角将被固定，无法移动**。您可以分别尝试一下这些命令，或许会对您理解这个机制有积极作用：
 
-```text
+```
 /tp @e[name=playerPosition] 0 64 0
 ```
 
-```text
+```
 /tp @e[name=facingPosition] 10 64 10
 ```
 
-```text
+```
 ## 改变玩家位置
 tp @e[name=playerPosition] ???
 ## 改变玩家朝向
@@ -336,7 +336,7 @@ execute as @a at @s run fill  -5 -5 -5 5 5 5 air replace end_portal
 
 例如，您可以使用下面的命令来延时播放`random.orb`音效
 
-```text
+```
 function lib/modify_states/sound/random_orb
 ```
 
@@ -400,7 +400,7 @@ scoreboard players set sound time 3
 
 时间参数是您可以自定义的。这样，您便可以通过使用下面的命令延时播放这个音效：
 
-```text
+```
 function lib/modify_states/sound/random_levelup
 ```
 

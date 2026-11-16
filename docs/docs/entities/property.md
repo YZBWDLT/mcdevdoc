@@ -135,7 +135,7 @@ import Version from "/src/components/highlight/version"
 
 脚本 API 中可通过_[Entity.getProperty 方法](/docs/docs/scripts/sapi/server/entity_and_player/entity#getproperty-方法)_读取属性值，用_[Entity.setProperty 方法](/docs/docs/scripts/sapi/server/entity_and_player/entity#setproperty-方法)_写入。
 
-```ts showLineNumbers
+```typescript showLineNumbers
 customEntity.getProperty("minecraft:climate_variant");
 ```
 

@@ -34,7 +34,7 @@ sidebar_position: 8
 
 **方块状态通常是写在`block states`参数类型里面的**。知道了一个方块有何种类型的方块状态之后，接下来就该了解这个参数的格式该怎么写了。例如对于红石火把，它的方块状态`torch_facing_direction`允许的值有`west`、`east`、`south`、`north`、`top`、`unknown`，其中的含义 Wiki 已经给得很清楚。那么，如果要表达它面朝西方，就写为
 
-```text
+```
 ["torch_facing_direction"="west"]
 ```
 
@@ -46,7 +46,7 @@ sidebar_position: 8
 
 可以看到，它允许两种方块状态：`button_pressed_bit`和`facing_direction`。假设我们要检测特定朝向的已经按下的按钮，就可以写为
 
-```text
+```
 ["button_pressed_bit"=true,"facing_direction"=0]
 ```
 
@@ -150,7 +150,7 @@ sidebar_position: 8
 
 而再来看语法 1 和语法 2 的差别，只在`[旧方块处理]`和`replace [替换方块] [替换方块状态]`上。在学过前面的`/setblock`之后，你可能已经猜到——`replace`本身也是一种旧方块处理方式，只不过只有它支持后续参数而已。那这样的话，我们大体上就知道了`/fill`的语法结构：
 
-```text
+```
 /fill <区域> <方块> [旧方块处理方式]
 ```
 

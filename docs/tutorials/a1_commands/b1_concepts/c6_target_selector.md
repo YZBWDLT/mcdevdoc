@@ -27,13 +27,13 @@ import Image from "/src/components/image/standard"
 
 没错！下面的命令都多出来了一个`<victim: target>`参数！也就是说，我们以前所学的命令
 
-```text
+```
 /tp <位置: x y z>
 ```
 
 可以扩展为
 
-```text
+```
 /tp <目标: target> <位置: x y z>
 ```
 
@@ -43,7 +43,7 @@ import Image from "/src/components/image/standard"
 
 然而，我们如何利用`target`指代一个实体呢？难道是直接写`sheep`？且不说就算它能生效，原则上也是对所有的绵羊生效，不能指定到我们希望传送的那只羊身上，实际这样写也是根本无法生效的。让我们来分析这样一条命令：
 
-```text
+```
 /tp sheep 0 256 0
 ```
 
@@ -73,7 +73,7 @@ import Image from "/src/components/image/standard"
 
 在正式开始介绍目标选择器之前，我们需要先插入一个额外的话题……下面我们将要探讨对实体的操作命令，然而到目前为止我们只学习了两条对实体的操作命令：`/tp`和`/give`。这两条命令都并不方便我们进行各种各样的实验，所以，我们在这里引入一条新的，能够检测实体是否存在的命令——`/testfor`！它的语法如下：
 
-```text
+```
 /testfor <目标: target>
 ```
 
@@ -93,7 +93,7 @@ import Image from "/src/components/image/standard"
 
 `@a`中的`a`代表的是 **A**ll Players 的 A，因此，**使用`@a`将选中所有玩家**。我们来回顾一下`/give`命令的语法：
 
-```text
+```
 /give <玩家: target> <物品: Item>
 ```
 
@@ -161,7 +161,7 @@ import Image from "/src/components/image/standard"
 
 `@s`中的`s`代表的是 **S**elf 中的 S，因此，**使用`@s`将选中执行者本身**。显然，`/tp <位置>`和`/tp @s <位置>`的效果是完全等同的，因此，扩展的语法完全能够代替我们以前所学的语法，从今以后，我们讨论`/tp`时，就将讨论扩展的语法：
 
-```text
+```
 /tp <目标: target> <位置: x y z>
 ```
 
@@ -242,7 +242,7 @@ import Image from "/src/components/image/standard"
 
 然后，我们来执行下面这条命令：
 
-```text
+```
 /testfor @e[dx=5,dz=5]
 ```
 
@@ -270,7 +270,7 @@ import Image from "/src/components/image/standard"
 
 考虑这么一种情况：现在我们到(10,-50,10)的位置上去，如果我们再使用上面的命令
 
-```text
+```
 /testfor @e[dx=5,dz=5]
 ```
 
@@ -280,7 +280,7 @@ import Image from "/src/components/image/standard"
 
 显然，每一次使用`r`、`rm`、`dx`、`dy`、`dz`时，所选取的基准坐标都是相对于我们的。如何选定一个确定位置的检测区域，而不是让检测区域的位置和我们的位置相关呢？这时我们就需要用`x`、`y`、`z`来额外确定一个基准坐标。`x`、`y`、`z`的默认值均为执行者当前的位置。在上面的例子中，我们就可以用
 
-```text
+```
 /testfor @e[x=0,y=-60,z=0,dx=5,dz=5]
 ```
 
@@ -356,7 +356,7 @@ import Image from "/src/components/image/standard"
 
 然而，很多开发者都对`c`的理解有一个误区：他们会习惯性地应用`c`去检测实体的数目。我们来举一个例子：假设你希望在拥有 100 只羊后检测成功，进而执行新的命令，很多开发者在一开始都会错误地写为
 
-```text
+```
 /testfor @e[type=sheep,c=100]
 ```
 
@@ -428,7 +428,7 @@ import Image from "/src/components/image/standard"
 
 因此，如果我们使用`@e[type=item]`来检测，我们虽然知道这是一个掉落物，但是并不知道这是什么掉落物——它是钻石剑？还是纸？还是什么别的东西？这时候我们的方法是：再加一个`name`参数做具体的限定！例如要检测钻石剑：
 
-```text
+```
 /testfor @e[type=item,name="钻石剑"]
 ```
 

@@ -14,7 +14,7 @@ sidebar_position: 5
 
 现在我们来了解一下这个新的目标选择器参数`scores`。它的语法如下：
 
-```text
+```
 scores={<记分项: string>=<值: integer range>,...}
 ```
 

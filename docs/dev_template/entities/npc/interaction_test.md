@@ -84,12 +84,12 @@ say Hello, world!
 
 记得设置聊天按钮的文本：
 
-```lang showLineNumbers title="RP_npc/texts/en_US.lang"
+```text showLineNumbers title="RP_npc/texts/en_US.lang"
 ## ===== Interaction Buttons =====
 action.interact.chat=Chat
 ```
 
-```lang showLineNumbers title="RP_npc/texts/zh_CN.lang"
+```text showLineNumbers title="RP_npc/texts/zh_CN.lang"
 ## ===== 聊天按钮 =====
 action.interact.chat=聊天
 ```

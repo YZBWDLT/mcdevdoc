@@ -546,13 +546,136 @@ html[data-code-bg="off"] .markdown :not(pre) > code {
     border: transparent;
 }
 
-/* 代码块 */
+/* ---- 2.6 代码块：输入框（Text Field）的形状 ----
+   官方那张 Text Field 状态表就是三层：一张卡片，上面一行 Label，
+   中间一块**凹进去的**输入区。代码块照这个拆：
+     卡片   `.codeBlockContainer` —— 比页面、比标签板面都亮一档（--oreui-surface）
+     Label  有 title 时就是它，小字、无底色，压在卡片左上角
+     井     pre 本身 —— 面 #1e1e1f、四面一圈近黑描边、上沿再压 2px 内影
+   右上角再挂一个语言标签（TEXT / JSON / PYTHON…），像输入框的单位提示。
+   凸面的按钮与面板正相反（上亮下暗），这两套语言不能混用。 */
 .theme-code-block,
-div[class*="codeBlockContainer"],
-pre[class*="language-"] {
-    border: 2px solid var(--oreui-border-dark);
+div[class*="codeBlockContainer"] {
+    /* 外面这块是输入框的「卡片」：比页面、也比标签板面都亮一档，
+       两种底（页面 / 板面）上都看得出是一层单独的壳 */
+    background: var(--oreui-surface);
+    border: 2px solid var(--oreui-panel-edge);
     border-top-color: var(--oreui-border-light);
+    padding: 0.5rem;
+    box-shadow: none;
+}
+
+/* 没有标题、也没有语言（裸 ``` ，Docusaurus 会给它 language-text）的块，
+   外面那层凸面卡片就不画了 —— 只剩井，干净 */
+.theme-code-block:not(:has([class*="codeBlockTitle"])):has(pre[class*="language-text"]) {
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+
+div[class*="codeBlockTitle"] {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0 0.2rem 0.35rem;
+    background: transparent;
+    border: 0;
+    color: var(--oreui-text-dim);
+    font-family: var(--oreui-font-body);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+/* ---- 语言标签 ----
+   名字存在 --code-lang 里，content 取到 none 时这块根本不生成，
+   所以没写进下面名单的语言（text、mcfunction 之外的杂项）不会留空行。
+   text 故意不列：文档里的 text 只是「没有类型」，标个 TEXT 反而多嘴。 */
+.theme-code-block {
+    --code-lang: none;
+}
+
+.theme-code-block:has(pre[class*="language-python"]) { --code-lang: "PYTHON"; }
+.theme-code-block:has(pre[class*="language-typescript"]) { --code-lang: "TYPESCRIPT"; }
+.theme-code-block:has(pre[class*="language-javascript"]) { --code-lang: "JAVASCRIPT"; }
+.theme-code-block:has(pre[class*="language-json"]) { --code-lang: "JSON"; }
+.theme-code-block:has(pre[class*="language-mcfunction"]) { --code-lang: "MCFUNCTION"; }
+.theme-code-block:has(pre[class*="language-bat"]) { --code-lang: "BAT"; }
+
+/* 没有标题：标签自己占一行，右对齐压在井的上方 */
+.theme-code-block::before {
+    content: var(--code-lang);
+    display: block;
+    padding: 0 0.2rem 0.35rem;
+    color: #8c8d90;
+    font-family: var(--oreui-font-body);
+    font-size: 0.72rem;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-align: right;
+}
+
+/* 有标题：标签并进标题那一行的右边，不再另起一行 */
+.theme-code-block:has([class*="codeBlockTitle"])::before {
+    content: none;
+}
+
+div[class*="codeBlockTitle"]::after {
+    content: var(--code-lang);
+    margin-left: auto;
+    padding-left: 0.75rem;
+    color: #8c8d90;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+}
+
+.theme-code-block pre,
+div[class*="codeBlockContainer"] pre,
+pre[class*="language-"] {
+    /* 压掉 prism 主题自带的那层底色（#282a36），换成站内的「凹面」三色 */
+    background-color: #1e1e1f !important;
+    border: 2px solid #0b0b0c;
     border-radius: 0;
+    box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.55);
+}
+
+/* 行号：底改成与井同色（主题默认用的是 prism 的 #282a36，比井亮一档，
+   看着像井里插了一条浅色板）；右侧一条与描边同色的分界线，
+   数字本身用暗灰、不再靠 40% 透明度去压 */
+span[class*="codeLineNumber"] {
+    background: #1e1e1f;
+    color: #7c7d80;
+}
+
+span[class*="codeLineNumber"]::before {
+    opacity: 1;
+}
+
+/* 高亮行（`{1,3}` 或 highlight-next-line 标出来的那几行）：
+   底色是 tokens 里的 --docusaurus-highlighted-code-line-bg（26% 绿），
+   这里再补左边一条强调色竖条，让它在深井里有个起点 */
+.theme-code-block-highlighted-line {
+    box-shadow: inset 3px 0 0 var(--oreui-accent-bright);
+}
+
+/* 有行号时竖条画在代码格上（行号那格不透明，盖住了整行上的竖条）。
+   代码格比行矮 4px（行高被行尾那个 <br> 撑着），竖条会断成一节一节，
+   所以给它补 4px 下内边距，把格子撑到与行等高 */
+.theme-code-block-highlighted-line span[class*="codeLineContent"] {
+    padding-bottom: 4px;
+    box-shadow: inset 3px 0 0 var(--oreui-accent-bright);
+}
+
+/* 复制 / 换行按钮：贴在井壁右上角的一个小方键 */
+div[class*="buttonGroup"] button {
+    background: var(--oreui-panel-face);
+    border: 1px solid #1e1e1f;
+    border-radius: 0;
+    color: var(--oreui-text-dim);
+}
+
+div[class*="buttonGroup"] button:hover {
+    background: var(--oreui-panel-face-hover);
+    color: var(--oreui-text);
 }
 
 /* 表格表头 */

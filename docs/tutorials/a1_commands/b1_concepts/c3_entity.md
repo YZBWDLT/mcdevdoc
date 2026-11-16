@@ -49,7 +49,7 @@ sidebar_position: 3
 
 `/summon`命令是一条用于直接生成实体的命令，它的语法为
 
-```text
+```
 /summon <实体：EntityType>
 ```
 

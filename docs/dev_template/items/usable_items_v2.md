@@ -238,7 +238,7 @@ const usableItems = [ "template:usable_item" ];
 
 2. 在中国版服务端脚本注册您要指定的可使用物品的 ID（带命名空间，可以指定原版物品），位于该文件第 7 行：
 
-```Python title="BP/scripts/(???)Server.js" showLineNumbers
+```python title="BP/scripts/(???)Server.js" showLineNumbers
 usableItems = [ "template:usable_item" ]
 ```
 
@@ -348,7 +348,7 @@ usableItems = [ "template:usable_item" ]
 const usableItems = [ "template:usable_item", "minecraft:stick" ];
 ```
 
-```Python title="BP/scripts/(???)Server.js" showLineNumbers
+```python title="BP/scripts/(???)Server.js" showLineNumbers
 usableItems = [ "template:usable_item", "minecraft:stick" ]
 ```
 

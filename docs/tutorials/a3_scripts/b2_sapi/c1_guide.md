@@ -158,7 +158,7 @@ npm i @minecraft/server-ui@2.0.0
 
 我们来写入脚本吧！首先，我们可以启用 TypeScript 级别的类型检查：
 
-```js showLineNumbers title="main.js"
+```javascript showLineNumbers title="main.js"
 // @ts-check
 ```
 
@@ -166,7 +166,7 @@ npm i @minecraft/server-ui@2.0.0
 
 现在，我们来导入 Minecraft 的`server`模块，使用其中的`world`常量：
 
-```js showLineNumbers title="main.js" {3}
+```javascript showLineNumbers title="main.js" {3}
 // @ts-check
 
 import { world } from "@minecraft/server";
@@ -176,7 +176,7 @@ import { world } from "@minecraft/server";
 
 例如，对于我们的需求，我们需要让玩家在使用木棍时执行代码，这样的话，我们就可以这么写：
 
-```js showLineNumbers title="main.js" {5}
+```javascript showLineNumbers title="main.js" {5}
 // @ts-check
 
 import { world } from "@minecraft/server";
@@ -207,7 +207,7 @@ world.afterEvents.itemUse.subscribe(event => {});
 
 可以看到，我们可以访问`itemStack`，也就是使用的物品的信息；同时也可以获取`source`，获取使用者的信息。我们来写代码：
 
-```js showLineNumbers title="main.js" {6-8}
+```javascript showLineNumbers title="main.js" {6-8}
 // @ts-check
 
 import { world } from "@minecraft/server";
@@ -237,7 +237,7 @@ world.afterEvents.itemUse.subscribe(event => {
 
 嗯，这个`playerBreakBlock`就不错！显然，它应该是玩家破坏方块的前事件，只要我们阻止这个事件，玩家就不再能够破坏方块。这样，我们就可以来订阅这个事件：
 
-```js showLineNumbers title="main.js" {11}
+```javascript showLineNumbers title="main.js" {11}
 // @ts-check
 
 import { world } from "@minecraft/server";
@@ -257,7 +257,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {});
 
 看起来，可以获取的有：方块信息`block`、是否取消这个事件`cancel`、维度信息`dimension`、破坏方块使用的物品`itemStack`，以及破坏方块的玩家`player`。我们正是需要`cancel`属性！所以，直接把`cancel`指定为`true`：
 
-```js showLineNumbers title="main.js" {12}
+```javascript showLineNumbers title="main.js" {12}
 // @ts-check
 
 import { world } from "@minecraft/server";
@@ -279,7 +279,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {
 
 当然了，什么都无法破坏肯定不好。我们可以更进一步，当玩家空手时才无法破坏。这样，我们就需要获取玩家破坏方块使用的物品`itemStack`。注意到这个属性是`itemStack?`，**后面带了一个`?`，表示这个属性是可选值**，它有可能返回`undefined`。不难猜测，返回`undefined`的时候应该就是玩家空手的时候，我们就可以利用这一点：
 
-```js showLineNumbers title="main.js" {2}
+```javascript showLineNumbers title="main.js" {2}
 world.beforeEvents.playerBreakBlock.subscribe(event => {
     if (event.itemStack) return;
     event.cancel = true;
@@ -298,7 +298,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {
 
 我们不妨再来加一些新功能，比如提醒玩家并播放音效：
 
-```js showLineNumbers title="main.js" {4-6}
+```javascript showLineNumbers title="main.js" {4-6}
 world.beforeEvents.playerBreakBlock.subscribe(event => {
     if (event.itemStack) return;
     event.cancel = true;
@@ -312,7 +312,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {
 
 ![before_events_5](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_5.webp)
 
-```text
+```
 [Scripting][error]-[实验行为包] ReferenceError: Native function [Player::playSound] cannot be used in restricted execution.    at <anonymous> (main.js:16)
 ```
 
@@ -330,7 +330,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {
 
 难道受限执行就意味着我们就什么都做不了了吗？当然不是，既然在事件发生前不能执行，我们可以延后到事件发生之后执行嘛。这就需要使用 **`system`常量**了。和`world`类似，`system`也是从[`System`](/docs/docs/scripts/sapi/server/system/main#system-类)类经过游戏实例化之后得到的常量，**用来控制游戏引擎的行为**。从`system`中，我们可以得到游戏运行到多少刻的信息，以及延迟或循环执行代码。这里，我们使用`system`常量的`run(callback: () => void): number`方法：
 
-```js showLineNumbers title="main.js" {1,8,12}
+```javascript showLineNumbers title="main.js" {1,8,12}
 import { world, system } from "@minecraft/server";
 
 ...
@@ -358,7 +358,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {
 
 在`2.0.0`脚本更新之前，如果我们把脚本直接写在脚本的根位置，脚本可以正常运行，不会出现问题。然而，刚刚我们提过，为了脚本能够正确运行，`2.0.0`引入了早期执行，这就导致只有一小部分的 API 可以写在脚本的根位置，主要是前事件、后事件、以及各类运行函数（`system.run*`），而其他的 API 几乎都没有直接早期执行的权限。例如：
 
-```js showLineNumbers title="main.js"
+```javascript showLineNumbers title="main.js"
 import { world, system } from "@minecraft/server";
 
 world.sendMessage("Hello, world");
@@ -368,7 +368,7 @@ world.sendMessage("Hello, world");
 
 ![early_execution_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/early_execution_1.webp)
 
-```text
+```
 [Scripting][error]-[实验行为包] ReferenceError: Native function [World::sendMessage] cannot be used in early execution.    at <anonymous> (main.js:21)
 [Scripting][error]-Plugin [实验行为包 - 1.0.0] - [main.js] ran with error: [ReferenceError: Native function [World::sendMessage] cannot be used in early execution.    at <anonymous> (main.js:21)
 ```
@@ -379,7 +379,7 @@ world.sendMessage("Hello, world");
 
 因此，我们必须使用世界加载后事件，这样写完的代码就不会再出现问题了。
 
-```js showLineNumbers title="main.js" {3-5}
+```javascript showLineNumbers title="main.js" {3-5}
 import { world, system } from "@minecraft/server";
 
 world.afterEvents.worldLoad.subscribe(event => {
@@ -400,13 +400,13 @@ world.afterEvents.worldLoad.subscribe(event => {
 
 我们还是一步一步来。首先先使用间隔执行的方法：
 
-```js showLineNumbers title="main.js"
+```javascript showLineNumbers title="main.js"
 system.runInterval(() => {});
 ```
 
 写入逻辑，我们可以看到`world`类并没有什么直接播放动作栏标题的方法，因此我们需要先获取玩家的信息才行：
 
-```js showLineNumbers title="main.js"
+```javascript showLineNumbers title="main.js"
 system.runInterval(() => {
     world.getPlayers().forEach(player => {});
 });
@@ -420,7 +420,7 @@ system.runInterval(() => {
 
 看，这就是脚本相比于命令的优势，获取玩家的相关属性就是如此简单粗暴！那么，我们可以用最简单粗暴的`if - else`语句来判断玩家是否潜行：
 
-```js showLineNumbers title="main.js" {3-7}
+```javascript showLineNumbers title="main.js" {3-7}
 system.runInterval(() => {
     world.getPlayers().forEach(player => {
         if (player.isSneaking) {
@@ -442,7 +442,7 @@ system.runInterval(() => {
 
 我们来写入：
 
-```js showLineNumbers title="main.js" {4,6}
+```javascript showLineNumbers title="main.js" {4,6}
 system.runInterval(() => {
     world.getPlayers().forEach(player => {
         if (player.isSneaking) {
@@ -460,7 +460,7 @@ system.runInterval(() => {
 
 此外，注意到两段代码事实上都是相同的内容，都在调用`setActionBar`方法，那我们其实可以继续简化这段代码：
 
-```js showLineNumbers title="main.js" {3}
+```javascript showLineNumbers title="main.js" {3}
 system.runInterval(() => {
     world.getPlayers().forEach(player => {
         player.onScreenDisplay.setActionBar(player.isSneaking ? "你正在潜行！" : "你没在潜行！");
@@ -544,7 +544,7 @@ npm i @minecraft/server-ui
 - **私有（Private）**：是指类内部可访问，外部不可访问的特性。这意味着我们是不能够随意实例化原版的类的，只有少量的原版的类可供我们实例化。
     - 遗憾的是，我们自己写代码时，只有 TypeScript 脚本才能用`private`字段。例如，在 JS 中我们不能这么写，只有在 TS 中我们才能这么做：
 
-        ```js title="main.js" {2}
+        ```javascript title="main.js" {2}
         class TestClass {
             private constructor() { // 会报错
                 this.myVar = "awa";
@@ -556,7 +556,7 @@ npm i @minecraft/server-ui
 - 还有一个是**只读（Read Only）**：是指只可访问，但不可修改的属性。尝试修改原版的只读属性会导致报错。SAPI 中有很多属性都是这种只读属性。
     - 同样，只有 TypeScript 脚本才能用`readonly`字段：
 
-        ```js title="main.js" {2}
+        ```javascript title="main.js" {2}
         class TestClass {
             readonly myVar = "awa"; // 会报错
         }
@@ -598,7 +598,7 @@ npm i @minecraft/server-ui
 13. 当玩家进入游戏时，令该玩家执行命令`function events/player_join`。可以考虑使用玩家生成事件，不使用玩家加入事件主要是因为目前还得不到玩家的完整`Player`对象。
 14. 当按下金块上的石按钮时，给予随机一名玩家金锭。使用按下按钮后事件。  
     注意：这里你可能需要额外定义一个生成随机整数的函数`randomInt(min: number, max: number): number`。可以考虑把它放到一个工具类里，并将它设置为静态方法。举例：
-    ```js
+    ```javascript
     class JSUtil {
         /** 生成在[min, max]之间的整数（含）
          * @param {number} min
@@ -610,7 +610,7 @@ npm i @minecraft/server-ui
     这里使用了 JSDoc，是为了声明这些变量的类型，防止`@ts-check`报错，并且有助于我们后续做相关处理和提供自动补全。  
     你会需要使用数学库`Math`的两个静态方法。你也可以用 AI 直接生成类似算法。
 15. 现在给定一个对象：
-    ```js
+    ```javascript
     /** @type {Record<string, import("@minecraft/server").Vector3>} */
     const teamChest = {
         red: { x: 0, y: 60, z: 60 },
@@ -634,7 +634,7 @@ npm i @minecraft/server-ui
 
 1. 注意，题里强调了是玩家执行命令，这样我们就需要筛选是不是玩家死亡了。筛选的办法是检查死亡实体的类型。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.afterEvents.entityDie.subscribe(event => {
         // 判断是否为玩家死亡
         const player = event.deadEntity;
@@ -646,7 +646,7 @@ npm i @minecraft/server-ui
 
     这个问题还有另一个解法。注意到这个事件的订阅方法实际上是一个双参数方法，接收第二个参数`options?: EntityEventOptions`，我们可以在这里事先确定究竟监听哪些实体死亡。查阅文档，跟随自动补全的写法，就可以很快给出解法二：
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.afterEvents.entityDie.subscribe(
         event => {
             event.deadEntity.runCommand(`function events/player_die`);
@@ -661,7 +661,7 @@ npm i @minecraft/server-ui
 
 2. 这里使用爆炸前事件。观察事件属性，我们可以通过`setImpactedBlocks(blocks: Block[])`方法设定将被影响的方块。实现思路是，首先判断爆炸源是不是 TNT，然后获取将被影响的方块，筛选出玻璃，最后设定影响玻璃就可以了。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.beforeEvents.explosion.subscribe(event => {
         // 检查爆炸源是否是 TNT
         const tnt = event.source;
@@ -678,7 +678,7 @@ npm i @minecraft/server-ui
 
 3. 这里使用完成使用物品后事件。和我们上面的使用物品后事件相比，这里更强调 **Complete**，也就是**完成**使用，典例就是吃掉食物。思路很简单，检查玩家吃掉的是不是苹果，是的话就给 1 级。
 
-    ```js showLineNumbers {2}
+    ```javascript showLineNumbers {2}
     world.afterEvents.itemCompleteUse.subscribe(event => {
         const { source: player, itemStack: apple } = event;
         if (apple.typeId !== "minecraft:apple") return;
@@ -688,20 +688,20 @@ npm i @minecraft/server-ui
 
     注意，这里第 2 行我们用了一个 JS 的**解构（Destructuring）** 的写法。解构可以快速地把对象、数组中的元素提取出来赋给对应的值。在这个例子中，我们知道`event`具有 3 个属性：`source`、`itemStack`、`useDuration`。我们在左侧也定义一个带有`source`和`itemStack`属性的对象，值分别是`player`和`apple`，这样的话这两个值就会分别被对应赋值。因此，
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     const { source: player, itemStack: apple } = event;
     ```
 
     是等效于
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     const player = event.source;
     const apple = event.itemStack;
     ```
 
     的。类似地，数组也可以这么做，例如
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     const [command, player, itemId] = ["/give", "YZBWDLT", "apple"];
     console.log(command); // '/give'
     console.log(player); // 'YZBWDLT'
@@ -710,7 +710,7 @@ npm i @minecraft/server-ui
 
     也等效于
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     const commandArray = ["/give", "YZBWDLT", "apple"];
     const command = commandArray[0];
     const player = commandArray[1];
@@ -726,7 +726,7 @@ npm i @minecraft/server-ui
 
 4. 思路很简单，用`hasTag`方法筛选就可以了。因为需要实时更改，所以循环执行。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     system.runInterval(() => {
         world.getPlayers().forEach(player => {
             if (player.hasTag("red")) player.nameTag = `§c${player.name}`;
@@ -736,7 +736,7 @@ npm i @minecraft/server-ui
 
 5. 思路很简单，首先检查玩家的游戏模式是不是冒险模式，其次检查交互的方块是不是花盆。这两个条件都符合之后再阻止交互。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     import { world, system, GameMode } from "@minecraft/server";
 
     world.beforeEvents.playerInteractWithBlock.subscribe(event => {
@@ -761,7 +761,7 @@ npm i @minecraft/server-ui
 
 6. 思路是，先检查玩家是否有交互物品，然后对物品做更改。然而，这里我们可以发现，如果直接按照下面这么写是没有效果的：
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.beforeEvents.playerInteractWithBlock.subscribe(event => {
         const { itemStack: item, isFirstEvent, block: diamondBlock, player } = event;
         // 若不是首次交互，终止运行
@@ -780,7 +780,7 @@ npm i @minecraft/server-ui
 
     这是因为，**我们现在手上的物品已经是被实例化的物品，而已经被实例化的物品的属性是固定死的，不能更改**。虽然这确实很令人困惑，但好在我们还有一个略微绕弯子的方法，就是复制物品信息后，清除该物品并重新给予一个更改过的物品。因此，我们要做一些改进：
 
-    ```js showLineNumbers {11-15}
+    ```javascript showLineNumbers {11-15}
     world.beforeEvents.playerInteractWithBlock.subscribe(event => {
         const { itemStack: item, isFirstEvent, block: diamondBlock, player } = event;
         // 若不是首次交互，终止运行
@@ -811,7 +811,7 @@ npm i @minecraft/server-ui
 
     读者可以尝试把前事件`beforeEvents`改成后事件`afterEvents`，会发现这段代码未能执行。**这里有一个常见的调试方法：读者可以在待适配的地方写一个断点（例如`world.sendMessage("Test");`或`console.log("Test");`），检查在什么地方未能执行**。可以发现，我们就算写到第一句上也是没有用的：
 
-    ```js showLineNumbers {2}
+    ```javascript showLineNumbers {2}
     world.afterEvents.playerInteractWithBlock.subscribe(event => {
         world.sendMessage("Test");
         const { itemStack: item, isFirstEvent, block: diamondBlock, player } = event;
@@ -836,7 +836,7 @@ npm i @minecraft/server-ui
 
 7. 思路是，先检查是否为酿造台，然后检查酿造台下方的方块是否为红色染色玻璃。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.beforeEvents.playerInteractWithBlock.subscribe(event => {
         const { isFirstEvent, block: brewingStand, player } = event;
         // 若不是首次交互，终止运行
@@ -859,21 +859,21 @@ npm i @minecraft/server-ui
     对代码做一些解释：
     - 我们看这里的第 9 行，这叫做**展开语法（Spread Syntax）**。展开语法可以将对象、数组中的元素快速展开为多个值。例如
 
-        ```js
+        ```javascript
         const location = { x: 0, y: 0, z: 0 };
         const locationWithDimension = { ...location, dimension: "overworld" };
         ```
 
         就等效于
 
-        ```js
+        ```javascript
         const location = { x: 0, y: 0, z: 0 };
         const locationWithDimension = { x: location.x, y: location.y, z: location.z, dimension: "overworld" };
         ```
 
         对于数组也是类似的，可以快速展开其中的元素：
 
-        ```js
+        ```javascript
         const numberList1 = [1, 2, 3];
         const numberList2 = [...numberList1, 4, 5, 6]; // [1, 2, 3, 4, 5, 6]
         const numberList3 = [4, 5, ...numberList1, 6]; // [4, 5, 1, 2, 3, 6]
@@ -887,7 +887,7 @@ npm i @minecraft/server-ui
 
 8. 思路是，当玩家攻击其他实体时，先进行条件判断，成功后直接`remove()`即可：
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.afterEvents.entityHurt.subscribe(event => {
         const { hurtEntity, damageSource } = event;
         const sourcePlayer = damageSource.damagingEntity;
@@ -904,7 +904,7 @@ npm i @minecraft/server-ui
 
 9. 注意这里同样需要使用玩家与方块交互前事件。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.beforeEvents.playerInteractWithBlock.subscribe(event => {
         const { isFirstEvent, itemStack: gunpowder, block } = event;
         // 条件判断，不符合条件的情况终止运行
@@ -921,7 +921,7 @@ npm i @minecraft/server-ui
 
 10. 这里需要使用玩家与实体交互前事件，因为正常情况下牛也不是可交互的实体。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.beforeEvents.playerInteractWithEntity.subscribe(event => {
         const { itemStack: noteblock, player, target: cow } = event;
         // 判断条件
@@ -943,7 +943,7 @@ npm i @minecraft/server-ui
 
 11. 需要注意这里我们在获取记分项的时候可能返回`undefined`，如果该记分板未定义就直接终止运行即可。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.afterEvents.entityDie.subscribe(
         event => {
             const player = event.damageSource.damagingEntity;
@@ -964,7 +964,7 @@ npm i @minecraft/server-ui
 
 12. 这里我们使用了`EntityDamageCause`枚举，`EntityDamageCause.void`等效于`"void"`。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.afterEvents.entityHurt.subscribe(
         event => {
             const { damageSource, hurtEntity: player } = event;
@@ -980,7 +980,7 @@ npm i @minecraft/server-ui
 
 13. 代码如下。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.afterEvents.playerSpawn.subscribe(event => {
         const { initialSpawn, player } = event;
         // 如果不是进入游戏的生成（例如玩家重生后也会触发事件），终止代码
@@ -991,7 +991,7 @@ npm i @minecraft/server-ui
 
 14. 代码如下。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     class JSUtil {
         /** 生成在[min, max]之间的整数（含）
          * @param {number} min
@@ -1019,7 +1019,7 @@ npm i @minecraft/server-ui
 
 15. 因为要尝试阻止玩家打开箱子，故而使用玩家与方块交互*前*事件。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     class Vector3Util {
         /** 两坐标是否为同一个坐标
          * @param {import("@minecraft/server").Vector3} location1
@@ -1065,7 +1065,7 @@ npm i @minecraft/server-ui
 
 16. 这里需要使用投掷物击中方块后事件。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.afterEvents.projectileHitBlock.subscribe(event => {
         const { projectile: snowball, source: player } = event;
         if (snowball.typeId !== "minecraft:snowball") return;
@@ -1091,7 +1091,7 @@ npm i @minecraft/server-ui
 
 17. 这里使用使用物品后事件。前面已用过多次，这题没有什么要额外解释的了。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.afterEvents.itemUse.subscribe(event => {
         const { itemStack: woodenSword, source: player } = event;
         // 检查是不是木剑
@@ -1108,7 +1108,7 @@ npm i @minecraft/server-ui
 
 18. 代码如下。这就是一个很简单的数学运算了。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     class Vector3Util {
         /** 获取两坐标间的距离
          * @param {import("@minecraft/server").Vector3} location1
@@ -1124,7 +1124,7 @@ npm i @minecraft/server-ui
 
 19. 这里需要循环执行代码。当然了，如果我们使用脚本系统的话，其实也很少使用记分板了。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     system.runInterval(() => {
         const player = world.getPlayers()[0];
         const { x, y, z } = player.location;
@@ -1140,7 +1140,7 @@ npm i @minecraft/server-ui
 
 20. 注意使用玩家与方块交互前事件，因为台阶几乎都不具有交互属性。
 
-    ```js showLineNumbers
+    ```javascript showLineNumbers
     world.beforeEvents.playerInteractWithBlock.subscribe(event => {
         const { block, isFirstEvent, itemStack: stick, player } = event;
         // 检查条件

@@ -134,13 +134,13 @@ _备注：我这里安装了 Wiki 的标准译名包，所以内容会有些不�
 
 其中，这里的`%s`就相当于我们当时讲的`%%s`。这样，我们在写命令时就可以不写成
 
-```text
+```
 /tellraw @s {"rawtext":[{"translate":"§eYZBWDLT 加入了游戏"}]}
 ```
 
 而是
 
-```text
+```
 /tellraw @s {"rawtext":[{"translate":"multiplayer.player.joined","with":["§eYZBWDLT"]}]}
 ```
 
@@ -148,7 +148,7 @@ _备注：我这里安装了 Wiki 的标准译名包，所以内容会有些不�
 
 我们也可以自己添加键名，例如：
 
-```mclanguage text="zh_CN.lang" {4}
+```text text="zh_CN.lang" {4}
 tile.lightning_rod.name=避雷针
 tile.diamond_ore.name=石头
 
@@ -158,7 +158,7 @@ text.your_score=§b你的分数是 %s ！
 
 然后**小退**应用你的更改，将命令写为
 
-```text
+```
 /tellraw @s {"rawtext":[{"translate":"text.your_score","with":["10"]}]}
 ```
 
@@ -261,7 +261,7 @@ text.your_score=§b你的分数是 %s ！
    text.hello_world=你好，世界！
    ```
 
-    ```mclanguage title="en_US.lang" showLineNumbers
+    ```text title="en_US.lang" showLineNumbers
     text.hello_world=Hello,world!
     ```
 

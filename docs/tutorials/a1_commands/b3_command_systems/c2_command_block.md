@@ -46,7 +46,7 @@ sidebar_position: 2
 
 放下一个命令方块，在“控制台命令”下输入
 
-```text
+```
 say 1
 ```
 
@@ -123,11 +123,11 @@ say 1
 say 2
 ```
 
-```text
+```
 give @a apple
 ```
 
-```text
+```
 give @s apple
 ```
 
@@ -365,7 +365,7 @@ _提示：RCB 的简写也是社区内的惯用写法，请牢记 RCB 指代循�
 
 首先，我们要使用`hasitem`目标选择器参数确认玩家是否有那么多的绿宝石，所以第一个命令方块可以写为：
 
-```text
+```
 execute as @p if entity @s[hasitem={item=emerald,quantity=3..}]
 ```
 

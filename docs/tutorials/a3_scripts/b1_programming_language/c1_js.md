@@ -785,7 +785,7 @@ for (let property in player) {
 
 这段代码的执行结果是：
 
-```text
+```
 player 对象里有属性 name，它的值为 YZBWDLT
 player 对象里有属性 health，它的值为 20
 player 对象里有属性 hunger，它的值为 20
@@ -1397,7 +1397,7 @@ letters[letters.length - 1]; // 'g'
 
 **用于获取一个数据是否为数组**：
 
-```ts
+```typescript
 Array.isArray(value: any): boolean
 ```
 
@@ -1412,7 +1412,7 @@ Array.isArray({ a: 1, b: 2, c: 3 }); // false
 
 **用于使数组内的所有元素都执行一次函数**。这个方法接收一个回调函数和任意一个值作为参数，大多数情况下，只用到第一个参数。
 
-```ts
+```typescript
 Array<T>.forEach(callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any): void
 ```
 
@@ -1433,7 +1433,7 @@ letters.forEach((letter, index) => {
 
 它得到下面的结果：
 
-```text
+```
 当前正遍历第 0 个元素，遍历的元素是 a
 当前正遍历第 1 个元素，遍历的元素是 b
 当前正遍历第 2 个元素，遍历的元素是 c
@@ -1455,7 +1455,7 @@ letters.forEach((letter, index) => {
 
 **用于检查数组内是否含有符合特定元素**。这个方法接收一个待查找元素和查找起点索引，但多数情况下只用第一个参数。
 
-```ts
+```typescript
 Array<T>.includes(searchElement: T, fromIndex?: number): boolean
 ```
 
@@ -1477,7 +1477,7 @@ breakableVanillaBlocks.includes("minecraft:grass_block"); // false
 
 **用于查找数组内符合条件的第一个元素**。这个方法接收一个回调函数和任意一个值作为参数，大多数情况下，只用到第一个参数。这个语法和`forEach()`方法是很类似的。
 
-```ts
+```typescript
 Array<T>.find(predicate: (value: T, index: number, obj: T[]) => unknown, thisArg?: any): T | undefined
 ```
 
@@ -1507,7 +1507,7 @@ numbers.find((num) => {
 
 **用于过滤出数组内符合要求的元素**。这个方法接收一个回调函数和任意一个值作为参数，大多数情况下，只用到第一个参数。这个语法和`forEach()`方法也是很类似的。
 
-```ts
+```typescript
 Array<T>.filter(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): T[]
 ```
 
@@ -1525,7 +1525,7 @@ numbers.filter(num => num > 11); // []
 
 **用于对数组内所有元素进行计算，并输出为特定的值**。这个方法接收一个回调函数和任意一个值作为参数，大多数情况下，只用到第一个参数。这个语法和`forEach()`方法还是很类似的。
 
-```ts
+```typescript
 Array<T>.map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[]
 ```
 
@@ -1542,13 +1542,13 @@ numbers.map(num => 2 * num + 1); // [3, 5, 7, 9, 11, 13, 15, 17, 19, 21]
 
 **用于对数组的末尾添加新的元素，并返回新数组的长度**。**注意：这个方法会修改原来的数组**！
 
-```ts
+```typescript
 Array<T>.push(...items: T[]): number;
 ```
 
 这里，`...items`是一种**剩余参数（Rest Parameters）**，它代表你可以输入多个参数进去，然后这些参数将以数组的形式传递到函数内部。比如：
 
-```js
+```javascript
 function testFunc(...values) {
     console.log(values);
 };
@@ -1570,7 +1570,7 @@ numbers; // [1, 2, 3, 4, 5, 6, 7, 8]，此时原数组已被修改
 
 **用于查找数组内是否有符合条件的元素**。这个方法接收一个回调函数和任意一个值作为参数，大多数情况下，只用到第一个参数。这个语法和`find()`方法是很类似的。
 
-```ts
+```typescript
 Array<T>.some(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): boolean
 ```
 
@@ -1590,13 +1590,13 @@ numbers.some(num => num > 11); // false
 
 **用于检查字符串内是否含有符合特定子字符串**。和数组类似，这个方法接收一个待查找子字符串和查找起点索引，但多数情况下只用第一个参数。
 
-```ts
+```typescript
 String.includes(searchString: string, position?: number): boolean
 ```
 
 例如下面这个例子，因为提供的物品 ID 中含有子字符串`"minecraft:"`，所以`includes()`会返回`true`。这通常用于判断返回的物品、方块、实体信息是否为原版的。
 
-```js
+```javascript
 const itemTypeId = "minecraft:stick";
 itemTypeId.includes("minecraft:"); // true
 ```
@@ -1605,13 +1605,13 @@ itemTypeId.includes("minecraft:"); // true
 
 **用于将字符串在特定子字符串的位置处分割，并输出为剩余子字符串的数组**。它接收两个参数，第一个`seperator`表示从何字符串切割，而第二个`limit`则表示切割的字符串数组最长应为多长。通常，我们只需要第一个参数就足够了。
 
-```ts
+```typescript
 String.split(separator: string | RegExp, limit?: number): string[]
 ```
 
 其中`RegExp`是正则表达式，在某些情况正则表达式可以很好地做字符串的筛选，但这不是我们目前关心的问题，感兴趣的读者可以自行研究。示例：
 
-```js
+```javascript
 const itemTypeId = "minecraft:stick";
 itemTypeId.split(":"); // ['minecraft', 'stick']
 ```
@@ -1624,13 +1624,13 @@ itemTypeId.split(":"); // ['minecraft', 'stick']
 
 **这个方法会把对象的键值对的键和值同时打包到一个数组里**。
 
-```ts
+```typescript
 Object.entries<T>(o: { [s: string]: T }): [string, T][]
 ```
 
 示例：
 
-```js
+```javascript
 let player = {
     name: "YZBWDLT",
     health: 20,
@@ -1642,7 +1642,7 @@ let a = Object.entries(player);
 
 最后的`a`为下面这个数组。一目了然了吧？
 
-```js
+```javascript
 [
     ['name', 'YZBWDLT'],
     ['health', 20],
@@ -1655,13 +1655,13 @@ let a = Object.entries(player);
 
 **这个方法会把对象的键值对的键打包到一个数组里**。
 
-```ts
+```typescript
 Object.keys(o: {}): string[]
 ```
 
 还是拿上面的`player`对象做示例，不同的是现在返回的是几个键名了。**一般用`Object.keys()`更多，因为事实上我们可以直接通过键名得到对象内对应的值**。
 
-```js
+```javascript
 let player = {
     name: "YZBWDLT",
     health: 20,
@@ -1675,13 +1675,13 @@ Object.keys(player); // ['name', 'health', 'hunger', 'inventory']
 
 和`keys()`类似，**这个方法会把对象的键值对的值打包到一个数组里**。
 
-```ts
+```typescript
 Object.values<T>(o: { [s: string]: T }): T[]
 ```
 
 还是拿上面的`player`对象做示例。
 
-```js
+```javascript
 let player = {
     name: "YZBWDLT",
     health: 20,
@@ -1709,7 +1709,7 @@ Object.values(player); // ['YZBWDLT', 20, 20, ["minecraft:stick"]]
 
 **js 文件也是可以用 VSC 打开的，并且拥有十分完备的自动补全和纠错机制**。我们在<FileType type="file" name="lib.js" />里面写一些有用的东西进去，比如还是这个生成随机数：
 
-```js showLineNumbers {1}
+```javascript showLineNumbers {1}
 class JSUtil {
 
     /** 在[a, b]取随机整数
@@ -1729,7 +1729,7 @@ class JSUtil {
 
 现在，我们在<FileType type="file" name="main.js" />导入我们刚刚写的模块，并调用其中的方法：
 
-```js showLineNumbers
+```javascript showLineNumbers
 import { JSUtil } from "./lib"; // 从当前目录的lib.js中导入JSUtil类
 JSUtil.randomInt(1, 10);
 ```
@@ -1740,7 +1740,7 @@ JSUtil.randomInt(1, 10);
 
 导入的写法很多，如果一个文件内可导入的内容过多的话，我们还可以换一种写法：
 
-```js showLineNumbers
+```javascript showLineNumbers
 import * as lib from "./lib"; // 将 lib.js 中所有的导出内容全部导入，并且后续可以用 lib.xxx 获取它们
 lib.JSUtil.randomInt(1, 10);
 ```
@@ -1755,13 +1755,13 @@ lib.JSUtil.randomInt(1, 10);
 
 生成器函数的定义方法和普通函数类似，唯一的区别在于它需要用`function*`来定义：
 
-```js
+```javascript
 function* doSomething() { };
 ```
 
 我们使用`yield`字段来中断这个函数的运行，后面接上这次中断后所返回的内容：
 
-```js
+```javascript
 /** @param {number} value */
 function* doSomething(value) {
     yield value;
@@ -1775,7 +1775,7 @@ doSomething(1); // [object Generator]
 
 现在，如果我们直接调用这个函数，会发现我们得到了一个奇怪的东西`[object Generator]`，这是因为它现在是一个生成器函数，类型是一个`Generator`，我们直接这么看它的结果是不行的。为了使它按我们预期的一点点往外蹦结果，我们需要先做一个这个函数的引用（也就是赋值），然后调用它的`next()`方法：
 
-```js
+```javascript
 /** @param {number} value */
 function* doSomething(value) {
     yield value;
@@ -1805,13 +1805,13 @@ justDoIt.next(); // { value: undefined, done: true }
 
 在 VSC 的类型提示中，我们看到这个函数的类型是
 
-```ts
+```typescript
 function doSomething(value: number): Generator<number, void, unknown>
 ```
 
 事实上，尖括号内的这三个类型各有来头。生成器的泛型参数含义如下：
 
-```ts
+```typescript
 Generator<YieldType, ReturnType, NextType> 
 ```
 
@@ -1821,7 +1821,7 @@ Generator<YieldType, ReturnType, NextType>
 
 是的，`next()`方法其实支持输入一个参数，并传递给中断的`yield`。例如下面的`function adder(): Generator<"Give me a value!" | "Give me another value!", number, number>`：
 
-```js
+```javascript
 function* adder() {
     /** @type {number} */
     let a = yield "Give me a value!";
@@ -1846,7 +1846,7 @@ add.next(50); // { value: undefined, done: true }
 
 因为生成器函数的特殊性，我们可以在这里写无跳出条件的循环语句，来使得每次调用它时就生成一个值。我们来写一个随机数生成器吧！基于线性同余生成器（LCG）写一个伪随机数算法。读者可以在网上搜索线性同余生成器来了解更多。
 
-```js
+```javascript
 /** 生成一个随机数（基于线性同余生成器（LCG）算法）
  * @param {number} seed 
  */
@@ -1874,7 +1874,7 @@ randomGenerator.next().value; // 1536089047
 
 我们用`async`创建一个新的异步函数，它代表其中的内容会按照异步的方式执行。
 
-```js
+```javascript
 async function doSomething() {};
 ```
 
@@ -1884,7 +1884,7 @@ async function doSomething() {};
 
 那么现在，我们以这个接口为例写一段代码。可以看到，我们使用`await`来等待一段代码的执行：
 
-```js
+```javascript
 import { system } from "@minecraft/server"; // 这里是导入 Minecraft 的模块，之后我们会详细介绍
 async function doSomething() {
     console.log("Started!"); // 执行到doSomething()的时候，这段代码不耗时，立刻执行
@@ -1901,7 +1901,7 @@ async function doSomething() {
 
 例如，对于上面的`function doSomething(): Promise<void>`，我们可以这么做来处理这段代码的后续：
 
-```js
+```javascript
 doSomething().then(
     value => { }, // 这里是doSomething()执行成功后执行的回调函数，并将返回值返回给 value
     reason => { } // 这里是doSomething()执行失败后执行的回调函数，并将失败原因返回给 reason
@@ -1918,7 +1918,7 @@ doSomething().then(
 
 这就是`try catch`语句的作用了。它可以对`try`中的代码块做执行测试，一旦测试出现问题就会跳到`catch`语句内部。`try catch`还支持一个`finally`，用于指代这段代码无论最终运行成什么样都需要执行。具体语法是：
 
-```js
+```javascript
 try {
     tryStatements
 } catch (exceptionVar) {
@@ -1930,13 +1930,13 @@ try {
 
 例如，我们前面曾介绍到，试图调用`undefined`的属性时会报错：
 
-```js
+```javascript
 (void 0).hello; // Uncaught TypeError: Cannot read properties of undefined (reading 'hello')
 ```
 
 如果把它放到`try catch`语句内，读者便能看到这串代码的运行逻辑：
 
-```js
+```javascript
 try {
     (void 0).hello;
 } catch (error) {
@@ -1948,7 +1948,7 @@ try {
 
 此外，我们也可以自己在代码运行有问题的情况下尝试抛出报错，当然了，这只在内部调试时用得比较多。抛出错误需要使用`throw`语句，并实例化一个`Error`类或`Error`的子类：
 
-```js
+```javascript
 try {
     throw new TypeError("这段代码会抛出一个 TypeError 报错！");
 } catch (error) {
@@ -1959,7 +1959,7 @@ try {
 
 请读者不要过度依赖`try catch`语句，尤其是`catch`语句内什么也没有的情况，如果代码会出现问题，应该从逻辑上去解决它，而不是“撒手不管”，在非必要的情况下，这样的处理方法都是很糟糕的：
 
-```js
+```javascript
 try {
     (statements)
 } catch (error) { };

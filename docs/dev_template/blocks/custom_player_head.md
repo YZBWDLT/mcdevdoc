@@ -207,7 +207,7 @@ import DownloadButton from "/src/components/button/download"
     <details>
     <summary>语言文件</summary>
 
-    ```lang showLineNumbers title="en_US.lang" {8}
+    ```text showLineNumbers title="en_US.lang" {8}
     ## ===== Blocks =====
     tile.player_head:yzbwdlt.name=YZBWDLT's Head
     tile.player_head:andy7343.name=Andy7343's Head
@@ -218,7 +218,7 @@ import DownloadButton from "/src/components/button/download"
     tile.player_head:playername.name=PlayerName's Head
     ```
 
-    ```lang showLineNumbers title="zh_CN.lang" {8}
+    ```text showLineNumbers title="zh_CN.lang" {8}
     ## ===== Blocks =====
     tile.player_head:yzbwdlt.name=YZBWDLT 的头
     tile.player_head:andy7343.name=Andy7343 的头

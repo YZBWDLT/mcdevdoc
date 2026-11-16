@@ -469,13 +469,13 @@ camera <玩家: target> target_entity <实体: target> target_center_offset <x�
 
 将自由相机架设在自己的头上：
 
-```text
+```
 /camera @s set minecraft:free pos ~~10~
 ```
 
 然后，执行下面的命令
 
-```text
+```
 /camera @s target_entity @s
 ```
 
@@ -506,7 +506,7 @@ camera <玩家: target> fov_set <视场角值: float> [视场角缓动时间: fl
 
 依次执行下面的命令，观察现象。
 
-```text
+```
 /camera @s fov_set 30
 /camera @s fov_set 110 10 in_out_sine
 /camera @s fov_clear 10 in_out_sine
@@ -522,7 +522,7 @@ camera <玩家: target> fov_set <视场角值: float> [视场角缓动时间: fl
 
 接下来让我们再来关注一种相机：附着到实体上的相机。我们先来看看语法：
 
-```text
+```
 /camera <玩家: target> attach_to_entity <实体: target>
 /camera <玩家: target> detach_from_entity
 ```
@@ -535,7 +535,7 @@ camera <玩家: target> fov_set <视场角值: float> [视场角缓动时间: fl
 
 现在，我们使用下面这条命令：
 
-```text
+```
 /camera @s attach_to_entity @n[type=sheep]
 ```
 
@@ -545,7 +545,7 @@ camera <玩家: target> fov_set <视场角值: float> [视场角缓动时间: fl
 
 然后，使用
 
-```text
+```
 /camera @s detach_from_entity
 ```
 

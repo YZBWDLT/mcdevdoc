@@ -39,7 +39,7 @@
 
 这里我们需要使用[`ScriptEventCommandMessageAfterEvent`](/docs/docs/scripts/sapi/server/system/after_events#scripteventcommandmessageafterevent-类)，也就是使用`/scriptevent`。这条命令常常用于进行命令系统和脚本系统之间的通讯。我们来基于脚本事件写一个“自定义命令”：
 
-```js showLineNumbers {1-6}
+```javascript showLineNumbers {1-6}
 // @ts-check
 
 import * as minecraft from "@minecraft/server";
@@ -53,7 +53,7 @@ minecraft.system.afterEvents.scriptEventReceive.subscribe(event => {
 
 因为脚本事件的发送者可能是任意的东西，我们规定**只有玩家可以执行代码**。为此，我们要加入一定的类型检查：
 
-```js showLineNumbers {6-9}
+```javascript showLineNumbers {6-9}
 // @ts-check
 
 import * as minecraft from "@minecraft/server";
@@ -70,7 +70,7 @@ minecraft.system.afterEvents.scriptEventReceive.subscribe(event => {
 
 接下来要做的就很简单了，我们可以调用`system.runTimeout()`实现延时，然后调用`player.playSound()`播放音效。
 
-```js showLineNumbers {11-13}
+```javascript showLineNumbers {11-13}
 // @ts-check
 
 import * as minecraft from "@minecraft/server";
@@ -95,7 +95,7 @@ minecraft.system.afterEvents.scriptEventReceive.subscribe(event => {
 
 就可以延时播放音效。注意到`音效 ID`是属于脚本消息的，我们可以这么写：
 
-```js showLineNumbers {11-15}
+```javascript showLineNumbers {11-15}
 // @ts-check
 
 import * as minecraft from "@minecraft/server";
@@ -124,7 +124,7 @@ minecraft.system.afterEvents.scriptEventReceive.subscribe(event => {
 
 那么，上面的代码必须相应地更改，否则这段代码的脚本消息将包含延时信息，导致音效无法播放。我们可以调用 js 字符串内置的`split()`方法，将提供的消息拆分为几个参数。
 
-```js showLineNumbers {13-15}
+```javascript showLineNumbers {13-15}
 // @ts-check
 
 import * as minecraft from "@minecraft/server";
@@ -155,7 +155,7 @@ minecraft.system.afterEvents.scriptEventReceive.subscribe(event => {
 /scriptevent test:playSound <音效 ID> [延时] [音调]
 ```
 
-```js showLineNumbers {15-16}
+```javascript showLineNumbers {15-16}
 // @ts-check
 
 import * as minecraft from "@minecraft/server";

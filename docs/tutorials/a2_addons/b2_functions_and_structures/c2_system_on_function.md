@@ -170,7 +170,7 @@ effect @s instant_health 1 20 true
 5. **单复数统一**。同一级内，要么全是单数，要么全是复数。例如：
     - ✔️ 下面的同级目录中，`ability`和`event`全是单数，而`players`和`worlds`则全是复数，命名统一。
 
-      ```text
+      ```
       BP/functions/wiki/ability/ice_blast.mcfunction
       BP/functions/wiki/ability/fire_trail.mcfunction
       BP/functions/wiki/event/players/on_death.mcfunction
@@ -179,7 +179,7 @@ effect @s instant_health 1 20 true
 
     - ❌ 下面的同级目录中，`abilities`和`event`、`players`和`world`单复数不统一，命名混乱。
 
-      ```text
+      ```
       BP/functions/wiki/abilities/ice_blast.mcfunction
       BP/functions/wiki/abilities/fire_trail.mcfunction
       BP/functions/wiki/event/players/on_death.mcfunction

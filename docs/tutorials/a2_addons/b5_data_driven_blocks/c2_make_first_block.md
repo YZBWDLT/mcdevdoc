@@ -140,17 +140,17 @@ import FileType from "/src/components/type/file"
 
 剩下的工作，想必读者已经很清楚了——同步翻译文件。我们注意到，对于方块，其键名的格式为
 
-```lang
+```
 tile.(命名空间):(方块 ID).name
 ```
 
 这和数驱物品还是有一定区别的，（高版本）物品的键名是不带`.name`的。我们可以把它起名为「黑色方块」：
 
-```lang title="en_US.lang"
+```text title="en_US.lang"
 tile.test:black_block.name=Black Block
 ```
 
-```lang title="zh_CN.lang"
+```text title="zh_CN.lang"
 tile.test:black_block.name=黑色方块
 ```
 
@@ -445,11 +445,11 @@ tile.test:black_block.name=黑色方块
     }
     ```
 
-    ```lang title="en_US.lang"
+    ```text title="en_US.lang"
     tile.test:white_block.name=White Block
     ```
 
-    ```lang title="zh_CN.lang"
+    ```text title="zh_CN.lang"
     tile.test:white_block.name=白色方块
     ```
 

@@ -206,7 +206,7 @@ sidebar_position: 3
 
 参考命令如下：
 
-```text
+```
 /execute as @e[type=item] at @s align xz positioned ~0.5~~0.5 run tp @s ~~~
 ```
 
@@ -263,7 +263,7 @@ sidebar_position: 3
 
 这是因为，我们刚刚保存的结构中是包含了空气的，所以在加载的时候，原有位置的方块就会被加载为空气，也就是“被掏空”。有什么办法可以防止原来的位置被替换为空气呢？我们可以用**结构空位（Structure Void）**，它是一种**标记加载结构时不替换某一位置的方块**。和结构方块、命令方块类似，结构空位也必须依靠命令获取，我们给一条参考命令，读者可以执行之：
 
-```text
+```
 /give @s structure_void
 ```
 

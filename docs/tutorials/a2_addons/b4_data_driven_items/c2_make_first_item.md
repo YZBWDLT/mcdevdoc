@@ -250,11 +250,11 @@ import FileType from "/src/components/type/file"
 
 还有一个问题亟待解决，也就是翻译问题。在 [3.4](./../b3_textures_and_texts/c4_translations) 中，我们讲过如何添加翻译，这里也如法炮制，它目前显示什么，我们就写什么的对应翻译：
 
-```mclanguage showLineNumbers title="en_US.lang"
+```text showLineNumbers title="en_US.lang"
 item.test:ruby=Ruby
 ```
 
-```mclanguage showLineNumbers title="zh_CN.lang"
+```text showLineNumbers title="zh_CN.lang"
 item.test:ruby=红宝石
 ```
 
@@ -472,12 +472,12 @@ Bedrock Wiki 的页面相对简洁易找许多了，我们直接点物品（Item
     }
     ```
 
-    ```mclanguage title="RP_test/texts/en_US.lang" showLineNumbers {2}
+    ```text title="RP_test/texts/en_US.lang" showLineNumbers {2}
     item.test:ruby=Ruby
     item.tutorial:green_apple=Green Apple
     ```
 
-    ```mclanguage title="RP_test/texts/zh_CN.lang" showLineNumbers {2}
+    ```text title="RP_test/texts/zh_CN.lang" showLineNumbers {2}
     item.test:ruby=红宝石
     item.tutorial:green_apple=青苹果
     ```
@@ -526,13 +526,13 @@ Bedrock Wiki 的页面相对简洁易找许多了，我们直接点物品（Item
     }
     ```
 
-    ```mclanguage title="RP_test/texts/en_US.lang" showLineNumbers {3}
+    ```text title="RP_test/texts/en_US.lang" showLineNumbers {3}
     item.test:ruby=Ruby
     item.tutorial:green_apple=Green Apple
     item.tutorial:battery=Battery
     ```
 
-    ```mclanguage title="RP_test/texts/zh_CN.lang" showLineNumbers {3}
+    ```text title="RP_test/texts/zh_CN.lang" showLineNumbers {3}
     item.test:ruby=红宝石
     item.tutorial:green_apple=青苹果
     item.tutorial:battery=电池

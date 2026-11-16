@@ -99,7 +99,7 @@ import FileType from "/src/components/type/file"
 
 最后改一下语言文件<FileType type="file" name="en_US.lang" />和<FileType type="file" name="zh_CN.lang" />，各自加上对应翻译：
 
-```mclang showLineNumbers title="en_US.lang, zh_CN.lang"
+```text showLineNumbers title="en_US.lang, zh_CN.lang"
 item.test:ruby_sword=Ruby Sword
 item.test:ruby_sword=红宝石剑
 ```
@@ -116,7 +116,7 @@ item.test:ruby_sword=红宝石剑
 
 好，现在我们来着手实现红宝石剑的合成配方！读者可能已经知道，对于工作台配方，有**有序配方（Shaped Recipe）** 和**无序配方（Shapeless Recipe）** 之分。所谓**有序配方**，是指**你必须使用这种配方的摆放方式，不能使用其他的摆放方式**，比如镐子永远都是：
 
-```text
+```
 M M M
   S
   S
@@ -124,7 +124,7 @@ M M M
 
 其中`M`代表对应材料，比如钻石、铁锭等，而`S`代表木棍。使用
 
-```text
+```
     M
 S S M
     M
@@ -132,7 +132,7 @@ S S M
 
 就得不到任何东西，乱放就更得不到任何东西。而**无序配方**就和有序配方不同，**只要有所需材料即可合成**，例如打火石：
 
-```text
+```
 I S
 
 
@@ -140,7 +140,7 @@ I S
 
 其中`I`代表铁锭，而`S`代表燧石。无论如何摆放，你都能得到一个打火石。包括混凝土粉末，也是同理的。显然，剑是属于有序配方一类的，因为你肯定不希望这样乱放也能得到一把剑：
 
-```text
+```
 R
   S  
     R
@@ -148,7 +148,7 @@ R
 
 其中`R`代表红宝石，而`S`代表木棍。我们预期的组合应该是
 
-```text
+```
 R
 R
 S
@@ -367,7 +367,7 @@ S
 
 除此之外，我们还可以规定配方是否允许对称，用<DataType type="boolean" name="assume_symmetry"/>表示。例如对于锄头，我们知道
 
-```text
+```
 M M
   S
   S
@@ -375,7 +375,7 @@ M M
 
 和
 
-```text
+```
 M M
 S
 S
@@ -763,7 +763,7 @@ S
 
 Minecraft 是有一些和配方相关的命令的，也就是命令`/recipe`。来简单看一眼这条命令的使用方法吧：
 
-```text
+```
 /recipe give <玩家: target> <配方: string>
 /recipe take <玩家: target> <配方: string>
 ```

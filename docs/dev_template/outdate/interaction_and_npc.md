@@ -47,7 +47,7 @@
 
 您可以在生成时为其命名，便于您筛选合适的交互实体。例：
 
-```text
+```
 summon template:interaction "bookshelf_interaction"
 ```
 
@@ -115,7 +115,7 @@ say 我被攻击了！
 
 3. 然后，您可以使用下面的命令生成这样的实体：
 
-   ```text
+   ```
    summon template:interaction <坐标> <旋转> "w1_h2" [名称]
    ```
 
@@ -163,7 +163,7 @@ NPC 可以通过刷怪蛋生成，您可以在物品栏中找到名为「NPC 刷
 
 在手机版，与 NPC 交互时会在屏幕的下方展现一个交互的按钮。您可以在`RP/texts/en_US.lang`和`RP/texts/zh_CN.lang`中找到下面的内容：
 
-```text
+```
 action.interact.chat=聊天
 ```
 

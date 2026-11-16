@@ -42,7 +42,7 @@ sidebar_position: 5
 
 `/setblock`是一条非常常用的命令，可以在特定位置放置方块，它的语法为
 
-```text
+```
 /setblock <位置：x y z> <方块：Block>
 ```
 

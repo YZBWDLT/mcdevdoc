@@ -180,8 +180,10 @@
     --ifm-global-radius: 0px;
     --ifm-button-border-radius: 0px;
 
-    /* Docusaurus 代码高亮背景（透明绿色） */
-    --docusaurus-highlighted-code-line-bg: rgba(60, 133, 39, 0.16);
+    /* Docusaurus 代码高亮背景（透明绿色）。
+       16% 压在深井（#1e1e1f）上几乎看不出，提到 26% 才读得出来；
+       左边那条强调色竖条在 oreui-core.css 里补。 */
+    --docusaurus-highlighted-code-line-bg: rgba(60, 133, 39, 0.26);
 }
 
 /* ================================================================

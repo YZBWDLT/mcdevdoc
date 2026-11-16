@@ -272,7 +272,7 @@ import Usable from "/src/components/highlight/usable"
 
 渲染时按以下公式混合：
 
-```text
+```
 输出颜色 = 当前片元颜色 × blendSrc + 颜色缓冲颜色 × blendDst
 ```
 

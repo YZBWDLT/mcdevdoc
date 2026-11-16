@@ -112,13 +112,13 @@ import Image from "/src/components/image/standard"
 
 那么`名称: 类型`代表什么呢？我们从上面的`/camera`命令的一个语法来入手说明：
 
-```text
+```
 /camera <players: target> fade time <fadeInSeconds: float> <holdSeconds: float> <fadeOutSeconds: float>
 ```
 
 我们现在关注它的`名称`。它的四个必选参数的含义分别是`players`→`玩家`、`fadeInSeconds`→`淡入秒数`、`holdSeconds`→`维持秒数`、`fadeOutSeconds`→`淡出秒数`，如果我们不关注它的类型，上面的命令可以写为
 
-```text
+```
 /camera <玩家> fade time <淡入秒数> <维持秒数> <淡出秒数>
 ```
 

@@ -14,7 +14,7 @@ sidebar_position: 4
 
 屏障的 ID 是`barrier`，所以要获得屏障可以使用下面的命令：
 
-```text
+```
 /give @s barrier
 ```
 
@@ -46,7 +46,7 @@ sidebar_position: 4
 
 光源方块的 ID 是`light_block_(光照强度)`，所以要获得光源方块（例如 15 级）可以使用下面的命令：
 
-```text
+```
 /give @s light_block_15
 ```
 
@@ -54,13 +54,13 @@ sidebar_position: 4
 
 该方块的 ID 于基岩版 1.21.20 拆分。所以，使用更低版本的玩家应当使用更旧的物品 ID 为`light_block`，使用数据值指定其光照强度。例如
 
-```text
+```
 /give @s light_block 1 15
 ```
 
 光源方块曾使用方块状态`block_light_level`，允许从`0`~`15`的整数值。例如，放置一个光照强度为 15 的光源方块为
 
-```text
+```
 /setblock ~~~ light_block ["block_light_level"=15]
 ```
 
@@ -80,11 +80,11 @@ sidebar_position: 4
 
 二者的 ID 分别为`allow`和`deny`。下面的两条命令可供参考。
 
-```text
+```
 /give @s allow
 ```
 
-```text
+```
 /give @s deny
 ```
 
@@ -106,7 +106,7 @@ sidebar_position: 4
 
 边界的 ID 比较特殊，为`border_block`。下面的两条命令可供参考。
 
-```text
+```
 /give @s border_block
 ```
 

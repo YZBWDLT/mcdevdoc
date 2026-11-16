@@ -34,7 +34,7 @@ import Version from '/src/components/highlight/version';
 
 <TabItem value="page" label="页码帮助" default>
 
-```text
+```
 /help [页码: int]
 ```
 
@@ -48,7 +48,7 @@ import Version from '/src/components/highlight/version';
 
 <TabItem value="command" label="命令帮助">
 
-```text
+```
 /help <命令: CommandName>
 ```
 
@@ -77,7 +77,7 @@ import Version from '/src/components/highlight/version';
 
 <TabItem value="execute_run" label="运行子命令" default>
 
-```text
+```
 run <命令: command>
 ```
 
@@ -93,7 +93,7 @@ run <命令: command>
 
 <TabItem value="execute_as" label="as" default>
 
-```text
+```
 as <源目标: target> -> execute
 ```
 
@@ -103,7 +103,7 @@ as <源目标: target> -> execute
 
 <TabItem value="execute_at" label="at">
 
-```text
+```
 at <源目标: target> -> execute
 ```
 
@@ -113,13 +113,13 @@ at <源目标: target> -> execute
 
 <TabItem value="execute_positioned" label="positioned">
 
-```text
+```
 positioned <位置: x y z> -> execute
 ```
 
 更改命令的执行位置为`位置`。
 
-```text
+```
 positioned as <源目标: target> -> execute
 ```
 
@@ -129,7 +129,7 @@ positioned as <源目标: target> -> execute
 
 <TabItem value="execute_align" label="align">
 
-```text
+```
 align <坐标轴: string> -> execute
 ```
 
@@ -141,7 +141,7 @@ align <坐标轴: string> -> execute
 
 <TabItem value="execute_anchored" label="anchored">
 
-```text
+```
 anchored <eyes|feet> -> execute
 ```
 
@@ -151,13 +151,13 @@ anchored <eyes|feet> -> execute
 
 <TabItem value="execute_facing" label="facing">
 
-```text
+```
 facing <位置: x y z> -> execute
 ```
 
 更改执行朝向为面向`位置`。
 
-```text
+```
 facing entity <源目标: target> <eyes|feet> -> execute
 ```
 
@@ -167,13 +167,13 @@ facing entity <源目标: target> <eyes|feet> -> execute
 
 <TabItem value="execute_rotated" label="rotated">
 
-```text
+```
 rotated <y旋转: value> <x旋转: value> -> execute
 ```
 
 更改执行朝向为指定的旋转角度。
 
-```text
+```
 rotated as <源目标: target> -> execute
 ```
 
@@ -183,7 +183,7 @@ rotated as <源目标: target> -> execute
 
 <TabItem value="execute_in" label="in">
 
-```text
+```
 in <维度: Dimension> -> execute
 ```
 
@@ -205,7 +205,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="execute_if_entity" label="entity" default>
 
-```text
+```
 <if|unless> entity <目标: target> -> execute
 ```
 
@@ -215,7 +215,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="execute_if_block" label="block">
 
-```text
+```
 <if|unless> block <位置: x y z> <方块: Block> [方块状态: block states] -> execute
 ```
 
@@ -227,7 +227,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="execute_if_blocks" label="blocks">
 
-```text
+```
 <if|unless> blocks <起点: x y z> <终点: x y z> <目标点: x y z> <扫描模式: all|masked> -> execute
 ```
 
@@ -239,7 +239,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="execute_if_score" label="score">
 
-```text
+```
 <if|unless> score <目标: target> <记分项: string> <操作方法: compare operator> <源目标: target> <记分项: string> -> execute
 ```
 
@@ -247,7 +247,7 @@ in <维度: Dimension> -> execute
 
 `操作方法`允许的值为：`=`、`>`、`>=`、`<`、`<=`。
 
-```text
+```
 <if|unless> score <目标: target> <记分项: string> matches <范围: integer range> -> execute
 ```
 
@@ -272,7 +272,7 @@ in <维度: Dimension> -> execute
 
 执行函数。
 
-```text
+```
 /function <路径: filepath>
 ```
 
@@ -301,7 +301,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="obj_add" label="add" default>
 
-```text
+```
 /scoreboard objectives add <记分项: string> dummy [显示名称: string]
 ```
 
@@ -313,7 +313,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="obj_remove" label="remove">
 
-```text
+```
 /scoreboard objectives remove <记分项: string>
 ```
 
@@ -323,7 +323,7 @@ in <维度: Dimension> -> execute
   
 <TabItem value="obj_setdisplay" label="setdisplay">
 
-```text
+```
 /scoreboard objectives setdisplay <list|sidebar> [记分项: string] [ascending|descending]
 ```
 
@@ -331,7 +331,7 @@ in <维度: Dimension> -> execute
 
 `记分项`为空时，清空对应显示位置。`ascending|descending`的默认值为`descending`。
 
-```text
+```
 /scoreboard objectives setdisplay belowname [记分项: string]
 ```
 
@@ -345,7 +345,7 @@ in <维度: Dimension> -> execute
   
 <TabItem value="obj_list" label="list">
 
-```text
+```
 /scoreboard objectives list
 ```
 
@@ -367,7 +367,7 @@ in <维度: Dimension> -> execute
   
 <TabItem value="pla_set" label="set" default>
 
-```text
+```
 /scoreboard players set <玩家: target> <记分项: string> <数值: int>
 ```
 
@@ -377,7 +377,7 @@ in <维度: Dimension> -> execute
   
 <TabItem value="pla_add" label="add">
 
-```text
+```
 /scoreboard players add <玩家: target> <记分项: string> <数值: int>
 ```
 
@@ -387,7 +387,7 @@ in <维度: Dimension> -> execute
   
 <TabItem value="pla_remove" label="remove">
 
-```text
+```
 /scoreboard players remove <玩家: target> <记分项: string> <数值: int>
 ```
 
@@ -399,7 +399,7 @@ in <维度: Dimension> -> execute
   
 <TabItem value="pla_random" label="random">
 
-```text
+```
 /scoreboard players random <玩家: target> <记分项: string> <最小值: int> <最大值: int>
 ```
 
@@ -409,7 +409,7 @@ in <维度: Dimension> -> execute
   
 <TabItem value="pla_operator" label="operator">
 
-```text
+```
 /scoreboard players operation <目标名称: target> <目标记分项: string> <操作: operator> <选择器: target> <记分项: string>
 ```
 
@@ -433,7 +433,7 @@ in <维度: Dimension> -> execute
   
 <TabItem value="pla_reset" label="reset">
 
-```text
+```
 /scoreboard players reset <玩家: target> [记分项: string]
 ```
 
@@ -445,7 +445,7 @@ in <维度: Dimension> -> execute
   
 <TabItem value="pla_list" label="list">
 
-```text
+```
 /scoreboard players list [玩家名称: target]
 ```
 
@@ -459,7 +459,7 @@ in <维度: Dimension> -> execute
   
 <TabItem value="pla_test" label="test">
 
-```text
+```
 /scoreboard players test <玩家: target> <记分项: string> <最小值: wildcard int> [最大值: wildcard int]
 ```
 
@@ -490,7 +490,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="summon_1" label="仅命名" default>
 
-```text
+```
 /summon <实体: EntityType> <名称: string> [生成位置: x y z]
 ```
 
@@ -504,7 +504,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.19.70"/>
 
-```text
+```
 /summon <实体: EntityType> [生成位置: x y z] [y旋转: value] [x旋转: value] [生成事件: string] [名称: string]
 ```
 
@@ -518,7 +518,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.19.80"/>
 
-```text
+```
 /summon <实体: EntityType> [生成位置: x y z] facing <面向实体: target> [生成事件: string] [名称: string]
 ```
 
@@ -532,7 +532,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.19.80"/>
 
-```text
+```
 /summon <实体: EntityType> [生成位置: x y z] facing <面向位置: x y z> [生成事件: string] [名称: string]
 ```
 
@@ -555,7 +555,7 @@ in <维度: Dimension> -> execute
 
 对特定玩家的聊天栏发送原始 JSON 文本。
 
-```text
+```
 /tellraw <玩家: target> <原始JSON文本: json>
 ```
 
@@ -578,7 +578,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="tag_1" label="add" default>
 
-```text
+```
 /tag <实体: target> add <名称: string>
 ```
 
@@ -588,7 +588,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="tag_2" label="remove">
 
-```text
+```
 /tag <实体: target> remove <名称: string>
 ```
 
@@ -598,7 +598,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="tag_3" label="list">
 
-```text
+```
 /tag <实体: target> list
 ```
 
@@ -625,7 +625,7 @@ in <维度: Dimension> -> execute
 
 <Tabs><TabItem value="tp_1_1" label="传送到实体" default>
 
-```text
+```
 /tp <位置: target>
 ```
 
@@ -633,7 +633,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="tp_1_2" label="常规">
 
-```text
+```
 /tp <位置: x y z> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
@@ -645,7 +645,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="tp_1_3" label="常规（旋转角度）">
 
-```text
+```
 /tp <位置: x y z> [y旋转: value] [x旋转: value] [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
@@ -659,7 +659,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.2.0"/>
 
-```text
+```
 /tp <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
@@ -673,7 +673,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.2.0"/>
 
-```text
+```
 /tp <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
@@ -689,7 +689,7 @@ in <维度: Dimension> -> execute
 
 <Tabs><TabItem value="tp_2_1" label="传送到实体" default>
 
-```text
+```
 /tp <目标: target> <位置: target> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
@@ -701,7 +701,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="tp_2_2" label="常规">
 
-```text
+```
 /tp <目标: target> <位置: x y z> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
@@ -713,7 +713,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="tp_2_3" label="常规（旋转角度）">
 
-```text
+```
 /tp <目标: target> <位置: x y z> [y旋转: value] [x旋转: value] [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
@@ -727,7 +727,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.2.0"/>
 
-```text
+```
 /tp <目标: target> <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
@@ -741,7 +741,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.2.0"/>
 
-```text
+```
 /tp <目标: target> <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
 ```
 
@@ -765,7 +765,7 @@ in <维度: Dimension> -> execute
 
 对 [system](/docs/docs/scripts/sapi/server/system/main) 类发送一个 scriptEventReceive 后事件。
 
-```text
+```
 /scriptevent <消息ID: string> <消息: message>
 ```
 
@@ -788,7 +788,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="titleraw_pos" label="title | subtitle | actionbar" default>
 
-```text
+```
 /titleraw <玩家: target> <标题位置: TitleRawSet> <原始JSON标题文本: json>
 ```
 
@@ -804,7 +804,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="titleraw_clear" label="clear">
 
-```text
+```
 /titleraw <玩家: target> clear
 ```
 
@@ -816,7 +816,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="titleraw_reset" label="reset">
 
-```text
+```
 /titleraw <玩家: target> reset
 ```
 
@@ -828,7 +828,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="titleraw_times" label="times">
 
-```text
+```
 /titleraw <玩家: target> times <淡入: int> <停留: int> <淡出: int>
 ```
 
@@ -851,7 +851,7 @@ in <维度: Dimension> -> execute
 
 对玩家播放音效。
 
-```text
+```
 /playsound <音效: string> [玩家: target] [位置: x y z] [音量: float] [音调: float] [最低音量: float]
 ```
 
@@ -876,7 +876,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="setblock_1" label="有方块状态" default>
 
-```text
+```
 /setblock <位置: x y z> <方块: Block> <方块状态: block states> [replace|destroy|keep]
 ```
 
@@ -892,7 +892,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="setblock_2" label="无方块状态">
 
-```text
+```
 /setblock <位置: x y z> <方块: Block> [replace|destroy|keep]
 ```
 
@@ -919,7 +919,7 @@ in <维度: Dimension> -> execute
 
 触发一个实体的生成事件。
 
-```text
+```
 /event entity <目标: target> <生成事件: string>
 ```
 
@@ -938,7 +938,7 @@ in <维度: Dimension> -> execute
 
 释放粒子。
 
-```text
+```
 /particle <粒子效果: string> [位置: x y z]
 ```
 
@@ -959,7 +959,7 @@ in <维度: Dimension> -> execute
 
 清除玩家的物品。
 
-```text
+```
 /clear [玩家: target] [物品: Item] [数据值: int] [最大数量: int]
 ```
 
@@ -984,7 +984,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="clone_1" label="非 filtered" default>
 
-```text
+```
 /clone <起点: x y z> <终点: x y z> <目的地: x y z> [过滤模式: MaskMode] [复制模式: CloneMode]
 ```
 
@@ -1005,7 +1005,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="clone_2" label="filtered">
 
-```text
+```
 /clone <起点: x y z> <终点: x y z> <目的地: x y z> filtered <复制模式: CloneMode> <方块: Block> [方块状态: block states]
 ```
 
@@ -1038,7 +1038,7 @@ in <维度: Dimension> -> execute
 
 清除相机语法。
 
-```text
+```
 /camera <玩家: target> clear
 ```
 
@@ -1048,7 +1048,7 @@ in <维度: Dimension> -> execute
 
 渐变相机语法，将玩家的相机设定为某个颜色。
 
-```text
+```
 /camera <玩家: target> fade [渐变时间] [颜色]
 ```
 
@@ -1069,7 +1069,7 @@ in <维度: Dimension> -> execute
 
 <Tabs><TabItem value="1" label="通用" default>
 
-```text
+```
 /camera <玩家: target> set <预设: string>
 ```
 
@@ -1084,7 +1084,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="2" label="自由视角相机">
 
-```text
+```
 /camera <玩家: target> set minecraft:free [缓动] [位置] [朝向]
 ```
 
@@ -1106,7 +1106,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.21.40"/>
 
-```text
+```
 /camera <玩家: target> set <预设: string> [缓动] [朝向] [视角偏移] [实体偏移]
 ```
 
@@ -1135,7 +1135,7 @@ in <维度: Dimension> -> execute
 
 <Tabs><TabItem value="target_entity" label="target_entity" default>
 
-```text
+```
 /camera <玩家: target> target_entity <实体: target> [实体中心偏移]
 ```
 
@@ -1153,7 +1153,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="remove_target" label="remove_target">
 
-```text
+```
 /camera <玩家: target> remove_target
 ```
 
@@ -1169,7 +1169,7 @@ in <维度: Dimension> -> execute
 
 <Tabs><TabItem value="fov_clear" label="fov_clear" default>
 
-```text
+```
 /camera <玩家: target> fov_clear [视场角缓动时间: float] [视场角缓动类型: Easing]
 ```
 
@@ -1179,7 +1179,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="fov_set" label="fov_set">
 
-```text
+```
 /camera <玩家: target> fov_set <视场角值: float> [视场角缓动时间: float] [视场角缓动类型: Easing]
 ```
 
@@ -1197,7 +1197,7 @@ in <维度: Dimension> -> execute
 
 <Tabs><TabItem value="attach_to_entity" label="attach_to_entity" default>
 
-```text
+```
 /camera <玩家: target> attach_to_entity <实体: target>
 ```
 
@@ -1205,7 +1205,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="detach_from_entity" label="detach_from_entity">
 
-```text
+```
 /camera <玩家: target> detach_from_entity
 ```
 
@@ -1219,7 +1219,7 @@ in <维度: Dimension> -> execute
 
 样条语法，按照特定样条路径播放相机。
 
-```text
+```
 /camera <玩家: target> play_spline <名称: string>
 ```
 
@@ -1248,7 +1248,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="save_1" label="标准" default>
 
-```text
+```
 /structure save <名称: string> <起点: x y z> <终点: x y z> [存储模式: StructureSaveMode]
 ```
 
@@ -1263,7 +1263,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="save_2" label="扩展">
 
-```text
+```
 /structure save <名称: string> <起点: x y z> <终点: x y z> [包含实体: Boolean] [存储模式: StructureSaveMode] [包含方块: Boolean]
 ```
 
@@ -1288,7 +1288,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="load_1" label="标准" default>
 
-```text
+```
 /structure load <名称: string> <目的地: x y z> [旋转: Rotation] [镜像: Mirror] [包含实体: Boolean] [包含方块: Boolean] [含水: Boolean] [完整度: float] [种子: string]
 ```
 
@@ -1314,7 +1314,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="load_2" label="带动画">
 
-```text
+```
 /structure load <名称: string> <目的地: x y z> [旋转: Rotation] [镜像: Mirror] [动画模式: StructureAnimationMode] [动画秒数: float] [包含实体: Boolean] [包含方块: Boolean] [含水: Boolean] [完整度: float] [种子: string]
 ```
 
@@ -1349,7 +1349,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="structure_delete" label="delete">
 
-```text
+```
 /structure delete <名称: string>
 ```
 
@@ -1374,7 +1374,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="gamerule_1" label="查询" default>
 
-```text
+```
 /gamerule
 ```
 
@@ -1386,7 +1386,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="gamerule_2" label="设置">
 
-```text
+```
 /gamerule <规则: BoolGameRule> [值: Boolean]
 /gamerule <规则: IntGameRule> [值: int]
 ```
@@ -1420,7 +1420,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="1" label="有限时长" default>
 
-```text
+```
 /effect <实体: target> <状态效果: Effect> [秒数: int] [放大倍率: int] [隐藏粒子: Boolean]
 ```
 
@@ -1438,7 +1438,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.21.40"/>
 
-```text
+```
 /effect <实体: target> <状态效果: Effect> infinite [放大倍率: int] [隐藏粒子: Boolean]
 ```
 
@@ -1456,7 +1456,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="clear" label="clear">
 
-```text
+```
 /effect <实体: target> clear [状态效果: Effect]
 ```
 
@@ -1487,7 +1487,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="1" label="不检查旧物品" default>
 
-```text
+```
 /replaceitem block <位置: x y z> slot.container <槽位ID: int> <物品: Item> [数量: int] [数据值: int] [组件: json]
 ```
 
@@ -1501,7 +1501,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.16.0"/>
 
-```text
+```
 /replaceitem block <位置: x y z> slot.container <槽位ID: int> <旧物品处理: ReplaceMode> <物品: Item> [数量: int] [数据值: int] [组件: json]
 ```
 
@@ -1526,7 +1526,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="1" label="不检查旧物品" default>
 
-```text
+```
 /replaceitem entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> <物品: Item> [数量: int] [数据值: int] [组件: json]
 ```
 
@@ -1542,7 +1542,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.16.0"/>
 
-```text
+```
 /replaceitem entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> <旧物品处理: ReplaceMode> <物品: Item> [数量: int] [数据值: int] [组件: json]
 ```
 
@@ -1576,7 +1576,7 @@ in <维度: Dimension> -> execute
 
 清除实体。
 
-```text
+```
 /kill <实体: target>
 ```
 
@@ -1593,7 +1593,7 @@ in <维度: Dimension> -> execute
 
 给予玩家物品。
 
-```text
+```
 /give <玩家: target> <物品: Item> [数量: int] [数据值: int] [组件: json]
 ```
 
@@ -1612,7 +1612,7 @@ in <维度: Dimension> -> execute
 
 设置玩家的重生点。
 
-```text
+```
 /spawnpoint [玩家: target] [重生点: x y z]
 ```
 
@@ -1637,7 +1637,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="query" label="query" default>
 
-```text
+```
 /inputpermission query <玩家: target> <权限: permission> [状态: state]
 ```
 
@@ -1649,7 +1649,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="set" label="set">
 
-```text
+```
 /inputpermission set <玩家: target> <权限: permission> <状态: state>
 ```
 
@@ -1678,7 +1678,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="1" label="有方块状态" default>
 
-```text
+```
 /fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states> [旧方块处理: FillMode]
 ```
 
@@ -1696,7 +1696,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="2" label="无方块状态">
 
-```text
+```
 /fill <起点: x y z> <终点: x y z> <方块: Block> [旧方块处理: FillMode]
 ```
 
@@ -1722,7 +1722,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="1" label="有方块状态" default>
 
-```text
+```
 /fill <起点: x y z> <终点: x y z> <方块: Block> <方块状态: block states> replace [替换方块: Block] [替换方块状态: block states]
 ```
 
@@ -1734,7 +1734,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="2" label="无方块状态">
 
-```text
+```
 /fill <起点: x y z> <终点: x y z> <方块: Block> replace [替换方块: Block] [替换方块状态: block states]
 ```
 
@@ -1761,7 +1761,7 @@ in <维度: Dimension> -> execute
 
 调整玩家的游戏模式。
 
-```text
+```
 /gamemode <游戏模式: GameMode> [玩家: target]
 /gamemode <游戏模式: int> [玩家: target]
 ```
@@ -1793,7 +1793,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="play" label="play" default>
 
-```text
+```
 /music play <音轨名: string> [音量: float] [淡入淡出秒数: float] [循环模式: MusicRepeatMode]
 ```
 
@@ -1812,7 +1812,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="queue" label="queue">
 
-```text
+```
 /music queue <音轨名: string> [音量: float] [淡入淡出秒数: float] [循环模式: MusicRepeatMode]
 ```
 
@@ -1833,7 +1833,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="stop" label="stop">
 
-```text
+```
 /music stop [淡出秒数: float]
 ```
 
@@ -1845,7 +1845,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="volume" label="volume">
 
-```text
+```
 /music volume <音量: float>
 ```
 
@@ -1870,7 +1870,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="title_pos" label="title | subtitle | actionbar" default>
 
-```text
+```
 /title <玩家: target> <title|subtitle|actionbar> <标题文本: message>
 ```
 
@@ -1886,7 +1886,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="title_clear" label="clear">
 
-```text
+```
 /title <玩家: target> clear
 ```
 
@@ -1898,7 +1898,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="title_reset" label="reset">
 
-```text
+```
 /title <玩家: target> reset
 ```
 
@@ -1910,7 +1910,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="title_times" label="times">
 
-```text
+```
 /title <玩家: target> times <淡入: int> <停留: int> <淡出: int>
 ```
 
@@ -1937,7 +1937,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="push" label="push" default>
 
-```text
+```
 /fog <玩家: target> push <迷雾设定ID: string> <用户提供ID: string>
 ```
 
@@ -1947,7 +1947,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="pop | remove" label="pop | remove">
 
-```text
+```
 /fog <玩家: target> <模式: pop|remove> <用户提供ID: string>
 ```
 
@@ -1973,7 +1973,7 @@ in <维度: Dimension> -> execute
 
 隐藏或恢复 HUD 的可用性。
 
-```text
+```
 /hud <玩家: target> <可见性: HudVisibility> [HUD元素: HudElement]
 ```
 
@@ -2015,7 +2015,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="open" label="open" default>
 
-```text
+```
 /dialogue open <NPC: target> <玩家: target> [场景: string]
 ```
 
@@ -2029,7 +2029,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="change" label="change">
 
-```text
+```
 /dialogue change <NPC: target> <场景: string> [玩家: target]
 ```
 
@@ -2055,7 +2055,7 @@ in <维度: Dimension> -> execute
 
 令实体运行动画。
 
-```text
+```
 /playanimation <实体: target> <动画: string> [下个状态: string] [淡出时间: float] [终止表达式: string] [控制器: string]
 ```
 
@@ -2072,7 +2072,7 @@ in <维度: Dimension> -> execute
 
 在服务器公告消息。
 
-```text
+```
 /say <消息: message>
 ```
 
@@ -2091,7 +2091,7 @@ in <维度: Dimension> -> execute
 
 设置世界的出生点。
 
-```text
+```
 /setworldspawn [出生点: x y z]
 ```
 
@@ -2114,7 +2114,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="add" label="add" default>
 
-```text
+```
 /tickingarea add <起点: x y z> <终点: x y z> [名称: string] [预加载: Boolean]
 ```
 
@@ -2122,7 +2122,7 @@ in <维度: Dimension> -> execute
 
 `名称`的默认值为`AreaX`，其中`X`为从`0`开始的第 n-1 个常加载区域。`预加载`的默认值为`false`。
 
-```text
+```
 /tickingarea add circle <中心: x y z> <半径: int> [名称: string] [预加载: Boolean]
 ```
 
@@ -2136,19 +2136,19 @@ in <维度: Dimension> -> execute
 
 <TabItem value="remove" label="remove">
 
-```text
+```
 /tickingarea remove <位置: x y z>
 ```
 
 移除包含`位置`的常加载区域。
 
-```text
+```
 /tickingarea remove <名称: string>
 ```
 
 移除名为`名称`的常加载区域。
 
-```text
+```
 /tickingarea remove_all
 ```
 
@@ -2160,7 +2160,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.18.30"/>
 
-```text
+```
 /tickingarea preload <名称: string> [预加载: Boolean]
 ```
 
@@ -2168,7 +2168,7 @@ in <维度: Dimension> -> execute
 
 `预加载`为空时，返回符合条件的常加载区域的预加载信息。会受到游戏规则`sendCommandFeedBack`的影响。
 
-```text
+```
 /tickingarea preload <位置: x y z> [预加载: Boolean]
 ```
 
@@ -2180,7 +2180,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="list" label="list">
 
-```text
+```
 /tickingarea list [全维度: AllDimensions]
 ```
 
@@ -2203,7 +2203,7 @@ in <维度: Dimension> -> execute
 
 私聊玩家。
 
-```text
+```
 /tell <玩家: target> <消息: message>
 /msg <玩家: target> <消息: message>
 /w <玩家: target> <消息: message>
@@ -2226,7 +2226,7 @@ in <维度: Dimension> -> execute
 
 <Tabs><TabItem value="add" label="add" default>
 
-```text
+```
 /time add <数值: int>
 /time of <时钟: string> add <数值: int>
 ```
@@ -2237,7 +2237,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="query" label="query">
 
-```text
+```
 /time query <daytime|gametime|day|time>
 /time of <时钟: string> query time
 ```
@@ -2250,7 +2250,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="set" label="set">
 
-```text
+```
 /time set <数值: int>
 /time of <时钟: string> set <数值: int>
 ```
@@ -2259,7 +2259,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
 
-```text
+```
 /time set <时间标记: timemarker name> [时间标记出现方式: TimeMarkerOccurrence]
 /time of <时钟: string> set <时间标记: timemarker name> [时间标记出现方式: TimeMarkerOccurrence]
 ```
@@ -2282,7 +2282,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="26.60"/>
 
-```text
+```
 /time pause
 /time of <时钟: string> pause
 ```
@@ -2293,7 +2293,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="26.60"/>
 
-```text
+```
 /time resume
 /time of <时钟: string> resume
 ```
@@ -2317,7 +2317,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="1" label="经验点数" default>
 
-```text
+```
 /xp <数值: int> [玩家: target]
 ```
 
@@ -2331,7 +2331,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="2" label="经验等级">
 
-```text
+```
 /xp <数值: int>L [玩家: target]
 ```
 
@@ -2355,7 +2355,7 @@ in <维度: Dimension> -> execute
 
 生成、给予、插入、替换战利品。
 
-```text
+```
 /loot <目标> <来源>
 ```
 
@@ -2390,7 +2390,7 @@ in <维度: Dimension> -> execute
 
 设置游戏难度。
 
-```text
+```
 /difficulty <难度: Difficulty>
 /difficulty <难度: int>
 ```
@@ -2419,7 +2419,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="set" label="set" default>
 
-```text
+```
 /weather <clear|rain|thunder> [时长: int]
 ```
 
@@ -2431,7 +2431,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="query" label="query">
 
-```text
+```
 /weather query
 ```
 
@@ -2454,7 +2454,7 @@ in <维度: Dimension> -> execute
 
 附魔玩家手里的物品。
 
-```text
+```
 /enchant <玩家: target> <附魔: int> [等级: int]
 /enchant <玩家: target> <附魔: Enchant> [等级: int]
 ```
@@ -2482,7 +2482,7 @@ in <维度: Dimension> -> execute
 
 <Tabs><TabItem value="1" label="add (游戏刻)" default>
 
-```text
+```
 /schedule delay add <函数: filepath> <时间: int> [replace|append]
 /schedule delay add <函数: filepath> <时间: int>T [replace|append]
 ```
@@ -2496,7 +2496,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="2" label="add (秒)">
 
-```text
+```
 /schedule delay add <函数: filepath> <时间: int>S [replace|append]
 ```
 
@@ -2509,7 +2509,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="3" label="add (游戏天数)">
 
-```text
+```
 /schedule delay add <函数: filepath> <时间: int>D [replace|append]
 ```
 
@@ -2522,7 +2522,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="4" label="clear">
 
-```text
+```
 /schedule delay clear <函数: filepath>
 ```
 
@@ -2534,7 +2534,7 @@ in <维度: Dimension> -> execute
 
 <Tabs><TabItem value="add" label="add" default>
 
-```text
+```
 /schedule on_area_loaded add <起点: x y z> <终点: x y z> <函数: filepath>
 ```
 
@@ -2542,7 +2542,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="add circle" label="add circle">
 
-```text
+```
 /schedule on_area_loaded add circle <中心: x y z> <半径: int> <函数: filepath>
 ```
 
@@ -2550,7 +2550,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="add tickingarea" label="add tickingarea">
 
-```text
+```
 /schedule on_area_loaded add tickingarea <名称: string> <函数: filepath>
 ```
 
@@ -2558,7 +2558,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="clear function" label="clear function">
 
-```text
+```
 /schedule on_area_loaded clear function <函数: filepath>
 ```
 
@@ -2566,7 +2566,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="clear tickingarea" label="clear tickingarea">
 
-```text
+```
 /schedule on_area_loaded clear tickingarea <名称: string> [函数: filepath]
 ```
 
@@ -2578,7 +2578,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.21.40"/>
 
-```text
+```
 /schedule clear <函数: filepath>
 ```
 
@@ -2601,7 +2601,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="start_riding" label="start_riding" default>
 
-```text
+```
 /ride <乘客: target> start_riding <坐骑: target> [传送规则: TeleportRules] [填充规则: FillType]
 ```
 
@@ -2623,7 +2623,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="stop_riding" label="stop_riding">
 
-```text
+```
 /ride <乘客: target> stop_riding
 ```
 
@@ -2633,7 +2633,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="evict_riders" label="evict_riders">
 
-```text
+```
 /ride <坐骑: target> evict_riders
 ```
 
@@ -2643,7 +2643,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="summon_rider" label="summon_rider">
 
-```text
+```
 /ride <坐骑: target> summon_rider <乘客: EntityType> [生成事件: string] [名称: string]
 ```
 
@@ -2657,7 +2657,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="summon_ride" label="summon_ride">
 
-```text
+```
 /ride <乘客: target> summon_ride <坐骑: EntityType> [骑乘规则: RideRules] [生成事件: string] [名称: string]
 ```
 
@@ -2688,7 +2688,7 @@ in <维度: Dimension> -> execute
 
 停止播放音效。
 
-```text
+```
 /stopsound <玩家: target> [音效: string]
 ```
 
@@ -2711,7 +2711,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="entity" label="实体伤害" default>
 
-```text
+```
 /damage <目标: target> <伤害值: int> <成因: DamageCause> entity <伤害者: target>
 ```
 
@@ -2721,7 +2721,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="executor" label="执行者伤害">
 
-```text
+```
 /damage <目标: target> <伤害值: int> [成因: DamageCause]
 ```
 
@@ -2746,7 +2746,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="add" label="add" default>
 
-```text
+```
 /camerashake add <玩家: target> [强度: float] [秒数: float] [摇晃类型: CameraShakeType]
 ```
 
@@ -2765,7 +2765,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.16.210"/>
 
-```text
+```
 /camerashake stop [玩家: target]
 ```
 
@@ -2788,7 +2788,7 @@ in <维度: Dimension> -> execute
 
 更改世界生物生成事件。
 
-```text
+```
 /mobevent <事件: MobEvent> [值: Boolean]
 ```
 
@@ -2810,7 +2810,7 @@ in <维度: Dimension> -> execute
 
 <Tabs><TabItem value="set" label="set" default>
 
-```text
+```
 /aimassist <玩家: target> set [x角度: float] [y角度: float] [最远距离: float] [瞄准模式: AimAssistTargetMode] [预设ID: string]
 ```
 
@@ -2829,7 +2829,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="clear" label="clear">
 
-```text
+```
 /aimassist <玩家: target> clear
 ```
 
@@ -2851,7 +2851,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="feature" label="feature" default>
 
-```text
+```
 /place feature <地物: features> [位置: x y z]
 ```
 
@@ -2863,7 +2863,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="featurerule" label="featurerule">
 
-```text
+```
 /place featurerule <地物规则: featureRules> [位置: x y z]
 ```
 
@@ -2877,7 +2877,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.21.80"/>
 
-```text
+```
 /place jigsaw <pool: filepath> <jigsawTarget: string> <maxDepth: int> [pos: x y z] [keepJigsaws: Boolean] [includeEntities: Boolean] [liquidSettings: LiquidSettings]
 ```
 
@@ -2891,7 +2891,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="1.21.80"/>
 
-```text
+```
 /place structure <structure: string> [pos: x y z] [ignoreStartHeight: Boolean] [keepJigsaws: Boolean] [includeEntities: Boolean] [liquidSettings: LiquidSettings]
 ```
 
@@ -2919,7 +2919,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="set" label="set" default>
 
-```text
+```
 /controlscheme <玩家: target> set <控制方案: controlscheme>
 ```
 
@@ -2944,7 +2944,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="clear" label="clear">
 
-```text
+```
 /controlscheme <玩家: target> clear
 ```
 
@@ -2967,7 +2967,7 @@ in <维度: Dimension> -> execute
 
 设置终为白日。
 
-```text
+```
 /alwaysday [锁定: Boolean]
 /daylock [锁定: Boolean]
 ```
@@ -2987,7 +2987,7 @@ in <维度: Dimension> -> execute
 
 清除玩家的重生点。
 
-```text
+```
 /clearspawnpoint [玩家: target]
 ```
 
@@ -3005,7 +3005,7 @@ in <维度: Dimension> -> execute
 
 触发 Gametest 测试。
 
-```text
+```
 gametest runthis
 gametest run <测试名: string> [旋转步数: int]
 gametest run <测试名: string> <失败时停止: Boolean> <重复次数: int> [旋转步数: int]
@@ -3042,7 +3042,7 @@ gametest create <测试名: string> [宽度: int] [高度: int] [深度: int]
 
 启用或禁用此设备上的游戏提示。
 
-```text
+```
 gametips <disable|enable>
 ```
 
@@ -3065,7 +3065,7 @@ gametips <disable|enable>
 
 <TabItem value="biome" label="biome" default>
 
-```text
+```
 /locate biome <生物群系: Biome>
 ```
 
@@ -3077,7 +3077,7 @@ gametips <disable|enable>
 
 <TabItem value="structure" label="structure">
 
-```text
+```
 /locate structure <结构: Structure> [只使用新区块: Boolean]
 ```
 
@@ -3091,7 +3091,7 @@ gametips <disable|enable>
 
 <Version type="game" add="26.60" experimental="兴趣点（POI）"/>
 
-```text
+```
 /locate poi <兴趣点: poi type>
 /locate poi <兴趣点标签: poi tag>
 ```
@@ -3115,7 +3115,7 @@ gametips <disable|enable>
 
 公告自身状态。
 
-```text
+```
 /me <消息: message>
 ```
 
@@ -3138,7 +3138,7 @@ gametips <disable|enable>
 
 <TabItem value="give" label="give" default>
 
-```text
+```
 /recipe give <玩家: target> <配方: string>
 ```
 
@@ -3150,7 +3150,7 @@ gametips <disable|enable>
 
 <TabItem value="take" label="take">
 
-```text
+```
 /recipe take <玩家: target> <配方: string>
 ```
 
@@ -3172,7 +3172,7 @@ gametips <disable|enable>
 
 调试脚本。
 
-```text
+```
 script debugger listen <端口: int>
 script debugger connect [主机: string] [端口: int]
 script debugger close
@@ -3205,7 +3205,7 @@ script diagnostics stopcapture
 
 随机扩散实体到地表。
 
-```text
+```
 /spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: float> <实体: target> [最高高度: value]
 ```
 
@@ -3226,7 +3226,7 @@ script diagnostics stopcapture
 
 检查实体是否存在。
 
-```text
+```
 /testfor <实体: target>
 ```
 
@@ -3245,7 +3245,7 @@ script diagnostics stopcapture
 
 检查方块是否存在。
 
-```text
+```
 /testforblock <位置: x y z> <方块: Block> [方块状态: block states]
 ```
 
@@ -3266,7 +3266,7 @@ script diagnostics stopcapture
 
 检查一个区域是否和另一个区域一致。
 
-```text
+```
 /testforblocks <起点: x y z> <终点: x y z> <目标点: x y z> [all|masked]
 ```
 
@@ -3290,7 +3290,7 @@ script diagnostics stopcapture
 
 切换天气。
 
-```text
+```
 /toggledownfall
 ```
 
@@ -3306,7 +3306,7 @@ script diagnostics stopcapture
 
 输出当前附加包的数据。
 
-```text
+```
 /packstack <包类型: stackType> [详细输出: verbose] [是否排除原版包: exclude-vanilla]
 ```
 
@@ -3332,7 +3332,7 @@ script diagnostics stopcapture
 
 将玩家设置为管理员。
 
-```text
+```
 /op <玩家: target>
 ```
 
@@ -3351,7 +3351,7 @@ script diagnostics stopcapture
 
 夺走玩家的管理员权限。
 
-```text
+```
 /deop <玩家: target>
 ```
 
@@ -3368,7 +3368,7 @@ script diagnostics stopcapture
 
 移出玩家。
 
-```text
+```
 /kick <玩家: target> <理由: message>
 ```
 
@@ -3387,7 +3387,7 @@ script diagnostics stopcapture
 
 列出玩家列表。
 
-```text
+```
 /list
 ```
 
@@ -3403,7 +3403,7 @@ script diagnostics stopcapture
 
 连接到 WebSocket 服务器。
 
-```text
+```
 /connect <服务器URI: text>
 ```
 
@@ -3421,7 +3421,7 @@ script diagnostics stopcapture
 
 在专用服务器上连接到 WebSocket 服务器。
 
-```text
+```
 dedicatedwsserver <服务器地址: string> <端口: int>
 ```
 
@@ -3440,7 +3440,7 @@ dedicatedwsserver <服务器地址: string> <端口: int>
 
 重新加载函数和脚本（仅限 [Script API](/docs/tutorials/a3_scripts/b2_sapi/c1_guide)）。
 
-```text
+```
 /reload [全部: reload_all]
 ```
 
@@ -3456,7 +3456,7 @@ dedicatedwsserver <服务器地址: string> <端口: int>
 
 重新加载与权限、变量等相关的配置文件。
 
-```text
+```
 reloadconfig
 ```
 
@@ -3474,7 +3474,7 @@ reloadconfig
 
 重新加载数据包限制的配置文件。
 
-```text
+```
 reloadpacketlimitconfig
 ```
 
@@ -3491,7 +3491,7 @@ reloadpacketlimitconfig
 
 关闭服务器。
 
-```text
+```
 stop
 ```
 
@@ -3512,7 +3512,7 @@ stop
 
 <TabItem value="hold" label="hold" default>
 
-```text
+```
 save hold
 ```
 
@@ -3522,7 +3522,7 @@ save hold
 
 <TabItem value="query" label="query">
 
-```text
+```
 save query
 ```
 
@@ -3532,7 +3532,7 @@ save query
 
 <TabItem value="resume" label="resume">
 
-```text
+```
 save resume
 ```
 
@@ -3552,7 +3552,7 @@ save resume
 
 在服务器运行期间更改专用服务器的设置。该命令只能在 BDS 控制台执行。
 
-```text
+```
 changesetting allow-cheats <允许作弊: Boolean>
 changesetting difficulty <难度: Difficulty>
 changesetting difficulty <难度: int>
@@ -3574,7 +3574,7 @@ changesetting difficulty <难度: int>
 
 将玩家转移到另一个服务器。
 
-```text
+```
 transfer <玩家ID: string> <服务器: string> [端口: int]
 ```
 
@@ -3595,7 +3595,7 @@ transfer <玩家ID: string> <服务器: string> [端口: int]
 
 设置房间内允许的最大玩家数。
 
-```text
+```
 /setmaxplayers <最大玩家数: int>
 ```
 
@@ -3616,7 +3616,7 @@ transfer <玩家ID: string> <服务器: string> [端口: int]
 
 <TabItem value="add" label="add" default>
 
-```text
+```
 allowlist add <玩家: string>
 ```
 
@@ -3626,7 +3626,7 @@ allowlist add <玩家: string>
 
 <TabItem value="remove" label="remove">
 
-```text
+```
 allowlist remove <玩家: string>
 ```
 
@@ -3636,7 +3636,7 @@ allowlist remove <玩家: string>
 
 <TabItem value="list" label="list">
 
-```text
+```
 allowlist list
 ```
 
@@ -3646,7 +3646,7 @@ allowlist list
 
 <TabItem value="reload" label="reload">
 
-```text
+```
 allowlist reload
 ```
 
@@ -3672,7 +3672,7 @@ allowlist reload
 
 <TabItem value="set" label="set" default>
 
-```text
+```
 permission set <玩家: target> [权限等级: PermissionLevel]
 ```
 
@@ -3688,7 +3688,7 @@ permission set <玩家: target> [权限等级: PermissionLevel]
 
 <TabItem value="list" label="list">
 
-```text
+```
 permission list
 ```
 
@@ -3698,7 +3698,7 @@ permission list
 
 <TabItem value="reload" label="reload">
 
-```text
+```
 permission reload
 ```
 
@@ -3718,7 +3718,7 @@ permission reload
 
 保存、删除或查询专用服务器的标识符密钥文件。
 
-```text
+```
 serveridentity save
 serveridentity delete
 serveridentity status
@@ -3738,7 +3738,7 @@ serveridentity status
 
 在组队中发送消息。
 
-```text
+```
 /party <消息: message>
 ```
 
@@ -3757,7 +3757,7 @@ serveridentity status
 
 启用 NPC。
 
-```text
+```
 /enableedunpc <启用NPC: Boolean>
 ```
 
@@ -3776,7 +3776,7 @@ serveridentity status
 
 移除全部 NPC。
 
-```text
+```
 /removeedunpc
 ```
 
