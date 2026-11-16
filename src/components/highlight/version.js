@@ -3,8 +3,8 @@ import BaseHighlight from "./base";
 
 /**
  * 各版本类型对应的中国版当前支持版本与显示文案。
- * - `format`：格式版本
- * - `game`：游戏版本
+ * - `format`：格式版本，即`format_version`字段的写法
+ * - `game`：游戏版本（默认）。26.0 起格式版本为`1.xx.yy`、游戏版本为`xx.yy`，显示时会自动去掉前缀`1.`
  * - `script`：`server` 模块脚本版本
  * - `script-ui`：`server-ui` 模块脚本版本
  * @type {Record<"format"|"game"|"script"|"script-ui", {label: string, china: string}>}
@@ -15,6 +15,36 @@ const VERSION_TYPES = {
     script: { label: "server模块脚本版本", china: "2.4.0" },
     "script-ui": { label: "server-ui模块脚本版本", china: "2.0.0" },
 };
+
+/**
+ * 26.0 起格式版本写作`1.xx.yy`、游戏版本写作`xx.yy`；
+ * 游戏版本显示时统一去掉前缀`1.`，这样作者可以直接沿用`format_version`的数字。
+ * @param {string} version
+ * @param {"format"|"game"|"script"|"script-ui"} type
+ * @returns {string}
+ */
+function toDisplayVersion(version, type) {
+    if (type !== "game" || !version) return version;
+    const parts = String(version).split(".");
+    if (parts.length >= 3 && parts[0] === "1" && Number(parts[1]) >= 26) {
+        return parts.slice(1).join(".");
+    }
+    return version;
+}
+
+/**
+ * 游戏版本`xx.yy`对应的格式版本为`1.xx.yy`（26.0 起）。
+ * @param {string} version
+ * @returns {string}
+ */
+function toFormatVersion(version) {
+    if (!version) return version;
+    const parts = String(version).split(".");
+    if (parts.length === 2 && Number(parts[0]) >= 26) {
+        return `1.${version}`;
+    }
+    return version;
+}
 
 /**
  * 比较两个语义化版本号，返回 version1 > version2 布尔值
@@ -37,7 +67,7 @@ function isVersionGreater(v1, v2) {
 
 /**
  * @typedef VersionHighlightOptions
- * @property {"format"|"game"|"script"|"script-ui"} [type] 版本类型。`format` 为格式版本（默认），`game` 为游戏版本，`script` 为`server`模块脚本版本，`script-ui` 为`server-ui`模块脚本版本。
+ * @property {"format"|"game"|"script"|"script-ui"} [type] 版本类型。`game` 为游戏版本（默认），`format` 为格式版本，两者均可直接填`format_version`里的数字；`script` 为`server`模块脚本版本，`script-ui` 为`server-ui`模块脚本版本。
  * @property {string} add 版本信息。
  * @property {string} [experimental] 需要开启的实验性玩法。
  * @property {boolean} [removed] 是否被移除。
@@ -50,7 +80,7 @@ function isVersionGreater(v1, v2) {
  * @param {VersionHighlightOptions} param0
  */
 export default function VersionHighlight({
-    type = "format",
+    type = "game",
     add = "",
     experimental = "",
     removed = false,
@@ -58,12 +88,21 @@ export default function VersionHighlight({
     tooltip = "",
     inline = false,
 }) {
-    const { label, china } = VERSION_TYPES[type] || VERSION_TYPES.format;
+    const { label, china } = VERSION_TYPES[type] || VERSION_TYPES.game;
+    const shownAdd = toDisplayVersion(add, type);
+    const shownDeprecated = toDisplayVersion(deprecated, type);
+
+    // 游戏版本与格式版本写法不同时，在提示里补上格式版本的对应值
+    const formatAdd = toFormatVersion(add);
+    const formatHint =
+        type === "game" && formatAdd !== add && add !== "未知"
+            ? `（对应格式版本${formatAdd}+）`
+            : "";
 
     // 正常颜色
     let color = "yellowgreen";
-    let text = `${add}+`;
-    let newTooltip = `该特性在${label}${add}+下可用。${tooltip}`;
+    let text = `${shownAdd}+`;
+    let newTooltip = `该特性在${label}${shownAdd}+下可用。${formatHint}${tooltip}`;
 
     // 已查找但无法确定加入版本
     if (add === "未知") {
@@ -74,7 +113,7 @@ export default function VersionHighlight({
 
     if (add && add !== "未知" && isVersionGreater(add, china)) {
         color = "gold";
-        newTooltip = `该特性在${label}${add}+下可用，但该版本对于当前的中国版版本过高。${tooltip}`;
+        newTooltip = `该特性在${label}${shownAdd}+下可用，但该版本对于当前的中国版版本过高。${formatHint}${tooltip}`;
     }
 
     // 如果是实验性玩法
@@ -87,8 +126,8 @@ export default function VersionHighlight({
     // 如果是弃用特性
     if (deprecated) {
         color = "red";
-        text = `已弃用：${add}-${deprecated}`;
-        newTooltip = `该特性已被弃用，只能在${label}${add}-${deprecated}下使用。${tooltip}`;
+        text = `已弃用：${shownAdd}-${shownDeprecated}`;
+        newTooltip = `该特性已被弃用，只能在${label}${shownAdd}-${shownDeprecated}下使用。${tooltip}`;
     }
 
     // 如果是移除特性

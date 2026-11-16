@@ -24,6 +24,7 @@ interface BlockRaycastOptions {
     includeLiquidBlocks?: boolean;
     includePassableBlocks?: boolean;
     maxDistance?: number;
+    usePreciseRaycast?: boolean;
 }
 ```
 
@@ -32,6 +33,7 @@ interface BlockRaycastOptions {
 - <Optional/> includeLiquidBlocks: boolean，设为`true`时，液体方块也会被视为阻挡射线的方块。
 - <Optional/> includePassableBlocks: boolean，设为`true`时，藤蔓、鲜花等可穿过方块也会被视为阻挡射线的方块。
 - <Optional/> maxDistance: number，射线的最远距离，以方块为单位。
+- <Version type="script" experimental="测试版API" inline/> <Optional/> usePreciseRaycast: boolean，设为`true`时保留小数距离并检测完整射线。默认值为`false`。
 
 ### BlockRaycastHit 接口
 
@@ -69,6 +71,7 @@ interface EntityRaycastOptions {
     includeLiquidBlocks?: boolean;
     includePassableBlocks?: boolean;
     maxDistance?: number;
+    usePreciseRaycast?: boolean;
 }
 ```
 
@@ -78,6 +81,7 @@ interface EntityRaycastOptions {
 - <Version type="script" add="1.12.0" inline/> <Optional/> includeLiquidBlocks: boolean，设为`true`时，液体方块也会被视为阻挡射线的方块。
 - <Version type="script" add="1.12.0" inline/> <Optional/> includePassableBlocks: boolean，设为`true`时，藤蔓、鲜花等可穿过方块也会被视为阻挡射线的方块。
 - <Optional/> maxDistance: number，射线的最远距离，以方块为单位。
+- <Version type="script" experimental="测试版API" inline/> <Optional/> usePreciseRaycast: boolean，设为`true`时保留小数距离并检测完整射线。默认值为`false`。
 
 ### EntityRaycastHit 接口
 

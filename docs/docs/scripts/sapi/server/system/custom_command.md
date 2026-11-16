@@ -251,8 +251,11 @@ enum CustomCommandErrorReason {
     ParameterLimit = "ParameterLimit", // 定义了过多参数
     RegistryInvalid = "RegistryInvalid", // 世界初始化后不能注册
     RegistryReadOnly = "RegistryReadOnly", // reload 不能重新定义参数，只能重新定义逻辑
+    UnexpectedEnumName = "UnexpectedEnumName", // 非枚举类型的命令参数不能使用 enumName
 }
 ```
+
+> **注意**：`UnexpectedEnumName` 目前为测试版 API，需要开启「测试版API」实验性玩法。
 
 ---
 

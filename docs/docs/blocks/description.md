@@ -55,30 +55,30 @@ import Version from "/src/components/highlight/version"
 <treeview>
 
 - <DataType type="object"/>：根对象。
-  - <DataType type="string" name="format_version" isRequired/>：格式版本，决定方块可用的功能。格式版本与游戏版本一一对应，且固定以`1.`开头：游戏版本`1.21.120`对应`1.21.120`，游戏版本`26.50`对应`1.26.50`。填写较低的格式版本时，方块会按该版本的功能解析。
-  - <DataType type="object" name="minecraft:block" isRequired/>：定义数驱方块。
-    - <DataType type="object" name="description" isRequired/>：方块描述，定义方块的基本属性。
-      - <DataType type="string" name="identifier" isRequired/>：定义方块的命名空间和方块 ID。必须带有命名空间，且不能使用`minecraft`命名空间。
-      - <DataType type="object" name="menu_category"/>：<Version add="1.19.30" inline/>定义方块的分类和组别。
-        - <DataType type="string" name="category" isRequired/>：定义方块在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`none`（空）。
-        - <DataType type="string" name="group"/>：定义方块在创造模式物品栏中置于何物品组中，详见[物品组与物品分类](../items/item_category_and_group#物品组)。  
-                  在格式版本为`1.21.50`或更低时，不能添加命名空间；在格式版本为`1.21.60`或更高时，必须添加命名空间。
-        - <DataType type="boolean" name="is_hidden_in_commands"/>：<Version add="1.19.40" inline/>定义方块是否隐藏在命令中。
-      - <DataType type="object" name="states"/>[^1]：<Version add="1.20.10" inline tooltip="在1.19.70-1.20.0格式版本中，使用properties参数而非states。"/>定义方块状态。
-        - <DataType type="array" name="(方块状态 ID)"/>：方块状态，需注意每种方块状态允许的状态值不能超过 16 种，第一个值会作为方块状态的默认值。
-          - <DataType type="string"/><DataType type="boolean"/><DataType type="int"/>：方块状态枚举
-      - <DataType type="object" name="traits"/>：<Version add="1.20.20" inline/>定义方块特征，以引用原版的方块特征并应用原版的方块状态。
-        - <DataType type="object" name="minecraft:(traits)"/>：方块特征，可用的方块特征详见[方块特征](./traits)。
-      - <DataType type="string" name="category"/>：<Usable type="onlyChina" inline/>定义方块在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`commands`（只有命令和 API 可获取）、`none`（只有 API 可获取）。也可设置为自定义分类，详见[物品组与物品分类](../items/item_category_and_group#物品分类)。
-      - <DataType type="boolean" name="register_to_create_menu"/>：<Usable type="onlyChina" inline/>是否注册到创造模式物品栏中。
-      - <DataType type="string" name="base_block"/>：<Usable type="onlyChina" inline/>定义方块的基础行为，可选值有`mob_spawner`（刷怪笼）、`portal`（传送门）、`custom_crop_block`（农作物）、`custom_heavy_block`（重力方块）、`liquid`（静态流体）、`flowing_liquid`（流动流体）、`netease_container`（容器）。
-    - <DataType type="object" name="components" isRequired/>：方块组件，定义方块的功能。
-      - `minecraft:(component)`：方块组件，可用的方块组件见[数据驱动方块组件](./components)。
-    - <DataType type="array" name="permutations"/>：<Version add="1.19.70" inline/>方块置换，定义方块在满足特定条件时使用何种特定功能。
-      - <DataType type="object"/>
-        - <DataType type="string" name="condition" isRequired/>：使用该方块置换的条件。应填写为一个 [Molang 表达式](./molang)（常用`query.block_state()`）。
-        - <DataType type="object" name="components" isRequired/>：使用此置换时使用的方块组件，定义方块的功能。
-          - `minecraft:(component)`：方块组件，可用的方块组件见[数据驱动方块组件](./components)。
+    - <DataType type="string" name="format_version" isRequired/>：格式版本，决定方块可用的功能。格式版本与游戏版本一一对应，且固定以`1.`开头：游戏版本`1.21.120`对应`1.21.120`，游戏版本`26.50`对应`1.26.50`。填写较低的格式版本时，方块会按该版本的功能解析。
+    - <DataType type="object" name="minecraft:block" isRequired/>：定义数驱方块。
+        - <DataType type="object" name="description" isRequired/>：方块描述，定义方块的基本属性。
+            - <DataType type="string" name="identifier" isRequired/>：定义方块的命名空间和方块 ID。必须带有命名空间，且不能使用`minecraft`命名空间。
+            - <DataType type="object" name="menu_category"/>：<Version add="1.19.30" inline/>定义方块的分类和组别。
+                - <DataType type="string" name="category" isRequired/>：定义方块在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`none`（空）。
+                - <DataType type="string" name="group"/>：定义方块在创造模式物品栏中置于何物品组中，详见[物品组与物品分类](../items/item_category_and_group#物品组)。  
+                   在格式版本为`1.21.50`或更低时，不能添加命名空间；在格式版本为`1.21.60`或更高时，必须添加命名空间。
+                - <DataType type="boolean" name="is_hidden_in_commands"/>：<Version add="1.19.40" inline/>定义方块是否隐藏在命令中。
+            - <DataType type="object" name="states"/>[^1]：<Version add="1.20.10" inline tooltip="在1.19.70-1.20.0格式版本中，使用properties参数而非states。"/>定义方块状态。
+                - <DataType type="array" name="(方块状态 ID)"/>：方块状态，需注意每种方块状态允许的状态值不能超过 16 种，第一个值会作为方块状态的默认值。
+                    - <DataType type="string"/><DataType type="boolean"/><DataType type="int"/>：方块状态枚举
+            - <DataType type="object" name="traits"/>：<Version add="1.20.20" inline/>定义方块特征，以引用原版的方块特征并应用原版的方块状态。
+                - <DataType type="object" name="minecraft:(traits)"/>：方块特征，可用的方块特征详见[方块特征](./traits)。
+            - <DataType type="string" name="category"/>：<Usable type="onlyChina" inline/>定义方块在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`commands`（只有命令和 API 可获取）、`none`（只有 API 可获取）。也可设置为自定义分类，详见[物品组与物品分类](../items/item_category_and_group#物品分类)。
+            - <DataType type="boolean" name="register_to_create_menu"/>：<Usable type="onlyChina" inline/>是否注册到创造模式物品栏中。
+            - <DataType type="string" name="base_block"/>：<Usable type="onlyChina" inline/>定义方块的基础行为，可选值有`mob_spawner`（刷怪笼）、`portal`（传送门）、`custom_crop_block`（农作物）、`custom_heavy_block`（重力方块）、`liquid`（静态流体）、`flowing_liquid`（流动流体）、`netease_container`（容器）。
+        - <DataType type="object" name="components" isRequired/>：方块组件，定义方块的功能。
+            - `minecraft:(component)`：方块组件，可用的方块组件见[数据驱动方块组件](./components)。
+        - <DataType type="array" name="permutations"/>：<Version add="1.19.70" inline/>方块置换，定义方块在满足特定条件时使用何种特定功能。
+            - <DataType type="object"/>
+              - <DataType type="string" name="condition" isRequired/>：使用该方块置换的条件。应填写为一个 [Molang 表达式](./molang)（常用`query.block_state()`）。
+              - <DataType type="object" name="components" isRequired/>：使用此置换时使用的方块组件，定义方块的功能。
+                - `minecraft:(component)`：方块组件，可用的方块组件见[数据驱动方块组件](./components)。
 
 </treeview>
 
@@ -125,18 +125,14 @@ import Version from "/src/components/highlight/version"
             {
                 "condition": "query.block_state('minecraft:vertical_half') == 'bottom'",
                 "components": {
-                    "minecraft:collision_box": [
-                        { "min": [0, 0, 0], "max": [16, 8, 16] }
-                    ],
+                    "minecraft:collision_box": [{ "origin": [-8, 0, -8], "size": [16, 8, 16] }],
                     "minecraft:selection_box": { "origin": [-8, 0, -8], "size": [16, 8, 16] }
                 }
             },
             {
                 "condition": "query.block_state('minecraft:vertical_half') == 'top'",
                 "components": {
-                    "minecraft:collision_box": [
-                        { "min": [0, 8, 0], "max": [16, 16, 16] }
-                    ],
+                    "minecraft:collision_box": [{ "origin": [-8, 8, -8], "size": [16, 8, 16] }],
                     "minecraft:selection_box": { "origin": [-8, 8, -8], "size": [16, 8, 16] }
                 }
             }
@@ -207,25 +203,25 @@ import Version from "/src/components/highlight/version"
 <treeview>
 
 - <DataType type="object"/>：根对象。
-  - <DataType type="string" name="format_version" isRequired/>：格式版本，默认为`1.1.0`。最高为`1.21.40`。
-  - <DataType type="object" name="(方块 ID)" isRequired/>：定义方块使用的资源。`方块 ID`应是带命名空间的 ID。
-    - <DataType type="string" name="textures"/>：定义方块使用的贴图（写法 1），使方块六面全部使用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。
-    - <DataType type="object" name="textures"/>：定义方块使用的贴图（写法 2）。使用此写法时将定义方块顶底侧面各采用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。
-      - <DataType type="string" name="up"/>：方块顶面贴图 ID。
-      - <DataType type="string" name="down"/>：方块底面贴图 ID。
-      - <DataType type="string" name="side"/>：方块侧面贴图 ID。
-    - <DataType type="object" name="textures"/>：定义方块使用的贴图（写法 3）。使用此写法时将定义方块顶底东西南北面各采用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。
-      - <DataType type="string" name="up"/>：方块顶面贴图 ID。
-      - <DataType type="string" name="down"/>：方块底面贴图 ID。
-      - <DataType type="string" name="east"/>：方块东面贴图 ID。
-      - <DataType type="string" name="west"/>：方块西面贴图 ID。
-      - <DataType type="string" name="south"/>：方块南面贴图 ID。
-      - <DataType type="string" name="north"/>：方块北面贴图 ID。
-    - <DataType type="string" name="sound"/>：定义方块的音效。音效可以在<FileType type="file" name="sounds.json"/>中定义，也可以使用原版正在使用的音效（见 [Bedrock Wiki](https://wiki.bedrock.dev/blocks/vanilla-block-sounds)）。默认值为`stone`。
-    - <DataType type="string"/><DataType type="object" name="carried_textures"/>：定义在手持此方块时，在手中所显示的贴图。同样允许类似于<DataType type="object" name="textures"/>的 3 种写法。
-    - <DataType type="boolean"/><DataType type="object" name="isotropic"/>：定义方块面是各向同性的。指定为`true`或确定哪些面使用各向同性后，贴图将会随机旋转。这可用于防止方块贴图过于一致使得世界外观过于单调，常常被用在大量生成的地形方块中，例如草方块或深板岩。默认值为`false`。同样允许类似于<DataType type="object" name="textures"/>的 3 种写法，以确定哪些面使用各向同性。
-    - <DataType type="float" name="brightness_gamma"/>：<Version add="未知" deprecated="1.21.60" inline tooltip="请使用ambient_occlusion_exponent代替之。"/>定义方块的 gamma 值。
-    - <DataType type="float" name="ambient_occlusion_exponent"/>：<Version add="1.21.60" inline/>定义方块的环境光遮挡指数。
+    - <DataType type="string" name="format_version" isRequired/>：格式版本，默认为`1.1.0`。最高为`1.21.40`。
+    - <DataType type="object" name="(方块 ID)" isRequired/>：定义方块使用的资源。`方块 ID`应是带命名空间的 ID。
+        - <DataType type="string" name="textures"/>：定义方块使用的贴图（写法 1），使方块六面全部使用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。
+        - <DataType type="object" name="textures"/>：定义方块使用的贴图（写法 2）。使用此写法时将定义方块顶底侧面各采用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。
+            - <DataType type="string" name="up"/>：方块顶面贴图 ID。
+            - <DataType type="string" name="down"/>：方块底面贴图 ID。
+            - <DataType type="string" name="side"/>：方块侧面贴图 ID。
+        - <DataType type="object" name="textures"/>：定义方块使用的贴图（写法 3）。使用此写法时将定义方块顶底东西南北面各采用[`terrain_texture.json`](#terrain_texturejson)中对应的贴图路径。
+            - <DataType type="string" name="up"/>：方块顶面贴图 ID。
+            - <DataType type="string" name="down"/>：方块底面贴图 ID。
+            - <DataType type="string" name="east"/>：方块东面贴图 ID。
+            - <DataType type="string" name="west"/>：方块西面贴图 ID。
+            - <DataType type="string" name="south"/>：方块南面贴图 ID。
+            - <DataType type="string" name="north"/>：方块北面贴图 ID。
+        - <DataType type="string" name="sound"/>：定义方块的音效。音效可以在<FileType type="file" name="sounds.json"/>中定义，也可以使用原版正在使用的音效（见 [Bedrock Wiki](https://wiki.bedrock.dev/blocks/vanilla-block-sounds)）。默认值为`stone`。
+        - <DataType type="string"/><DataType type="object" name="carried_textures"/>：定义在手持此方块时，在手中所显示的贴图。同样允许类似于<DataType type="object" name="textures"/>的 3 种写法。
+        - <DataType type="boolean"/><DataType type="object" name="isotropic"/>：定义方块面是各向同性的。指定为`true`或确定哪些面使用各向同性后，贴图将会随机旋转。这可用于防止方块贴图过于一致使得世界外观过于单调，常常被用在大量生成的地形方块中，例如草方块或深板岩。默认值为`false`。同样允许类似于<DataType type="object" name="textures"/>的 3 种写法，以确定哪些面使用各向同性。
+        - <DataType type="float" name="brightness_gamma"/>：<Version add="未知" deprecated="1.21.60" inline tooltip="请使用ambient_occlusion_exponent代替之。"/>定义方块的 gamma 值。
+        - <DataType type="float" name="ambient_occlusion_exponent"/>：<Version add="1.21.60" inline/>定义方块的环境光遮挡指数。
 
 </treeview>
 
@@ -257,14 +253,14 @@ import Version from "/src/components/highlight/version"
 <treeview>
 
 - <DataType type="object"/>：根对象。
-  - <DataType type="string" name="resource_pack_name"/>：资源包的包名。原版使用`vanilla`。[^3]
-  - <DataType type="string" name="texture_name"/>：贴图名。原版使用`atlas.terrain`。[^3]
-  - <DataType type="int" name="padding"/>：填充，指纹理周围的拉伸区域，可以防止纹理因不精确的渲染而相互渗进。默认值为`8`。参见[Bedrock Wiki](https://wiki.bedrock.dev/concepts/texture-atlases#padding)。
-  - <DataType type="int" name="num_mip_levels"/>：多级渐远纹理等级，通过降低远处方块的分辨率，以提升性能和视觉效果。默认值为`4`。参见[Bedrock Wiki](https://wiki.bedrock.dev/concepts/texture-atlases#mipmapping)。
-  - <DataType type="object" name="texture_data" isRequired/>：贴图数据。
-    - <DataType type="object" name="(短 ID)"/>：`短 ID`对应的实际贴图。`短 ID`由方块定义的[`minecraft:material_instances`组件](./components#minecraftmaterial_instances)或资源包方块定义[`blocks.json`](#blocksjson)指定。
-      - <DataType type="array"/><DataType type="string" name="textures"/>：贴图路径，从`textures/`开始，不带后缀，例如`textures/blocks/barrel_top`。  
-              使用数组类型时代表该贴图 ID 可能存在多个贴图对应，具体使用何种贴图由方块状态的索引决定。
+    - <DataType type="string" name="resource_pack_name"/>：资源包的包名。原版使用`vanilla`。[^3]
+    - <DataType type="string" name="texture_name"/>：贴图名。原版使用`atlas.terrain`。[^3]
+    - <DataType type="int" name="padding"/>：填充，指纹理周围的拉伸区域，可以防止纹理因不精确的渲染而相互渗进。默认值为`8`。参见[Bedrock Wiki](https://wiki.bedrock.dev/concepts/texture-atlases#padding)。
+    - <DataType type="int" name="num_mip_levels"/>：多级渐远纹理等级，通过降低远处方块的分辨率，以提升性能和视觉效果。默认值为`4`。参见[Bedrock Wiki](https://wiki.bedrock.dev/concepts/texture-atlases#mipmapping)。
+    - <DataType type="object" name="texture_data" isRequired/>：贴图数据。
+        - <DataType type="object" name="(短 ID)"/>：`短 ID`对应的实际贴图。`短 ID`由方块定义的[`minecraft:material_instances`组件](./components#minecraftmaterial_instances)或资源包方块定义[`blocks.json`](#blocksjson)指定。
+            - <DataType type="array"/><DataType type="string" name="textures"/>：贴图路径，从`textures/`开始，不带后缀，例如`textures/blocks/barrel_top`。  
+               使用数组类型时代表该贴图 ID 可能存在多个贴图对应，具体使用何种贴图由方块状态的索引决定。
 
 </treeview>
 
@@ -296,15 +292,15 @@ import Version from "/src/components/highlight/version"
 <treeview>
 
 - <DataType type="array"/>：根数组。
-  - <DataType type="object"/>：翻书动画。
-    - <DataType type="string" name="flipbook_texture" isRequired/>：翻书动画使用的贴图。
-    - <DataType type="string" name="atlas_tile" isRequired/>：翻书动画使用的方块贴图 ID。见[`terrain_texture.json`](#terrain_texturejson)。
-    - <DataType type="string" name="atlas_index"/>：翻书动画使用的方块贴图 ID 下的纹理数组索引。见[`terrain_texture.json`](#terrain_texturejson)。
-    - <DataType type="string" name="atlas_tile_variant"/>：翻书动画使用的方块贴图 ID 下的纹理变种数组索引。见[`terrain_texture.json`](#terrain_texturejson)。
-    - <DataType type="int" name="ticks_per_frame"/>：每一帧维持多久，单位：游戏刻。
-    - <DataType type="array"/><DataType type="int" name="frames"/>：指定图片中各帧的索引（数组形式，应为<DataType type="int"/>的数组）或帧总数（整数形式）。
-    - <DataType type="int" name="replicate"/>：每帧使用的像素大小，设置为`n`时则每帧取原本像素的 1/`n`²。默认值为`1`。
-    - <DataType type="boolean" name="blend_frames"/>：每帧是否平滑过渡。默认值为`true`。
+    - <DataType type="object"/>：翻书动画。
+        - <DataType type="string" name="flipbook_texture" isRequired/>：翻书动画使用的贴图。
+        - <DataType type="string" name="atlas_tile" isRequired/>：翻书动画使用的方块贴图 ID。见[`terrain_texture.json`](#terrain_texturejson)。
+        - <DataType type="string" name="atlas_index"/>：翻书动画使用的方块贴图 ID 下的纹理数组索引。见[`terrain_texture.json`](#terrain_texturejson)。
+        - <DataType type="string" name="atlas_tile_variant"/>：翻书动画使用的方块贴图 ID 下的纹理变种数组索引。见[`terrain_texture.json`](#terrain_texturejson)。
+        - <DataType type="int" name="ticks_per_frame"/>：每一帧维持多久，单位：游戏刻。
+        - <DataType type="array"/><DataType type="int" name="frames"/>：指定图片中各帧的索引（数组形式，应为<DataType type="int"/>的数组）或帧总数（整数形式）。
+        - <DataType type="int" name="replicate"/>：每帧使用的像素大小，设置为`n`时则每帧取原本像素的 1/`n`²。默认值为`1`。
+        - <DataType type="boolean" name="blend_frames"/>：每帧是否平滑过渡。默认值为`true`。
 
 </treeview>
 
@@ -329,24 +325,24 @@ import Version from "/src/components/highlight/version"
 <treeview>
 
 - <DataType type="object"/>：根对象。
-  - <DataType type="object" name="block_sounds"/>：全部方块基本事件的音效注册
-    - <DataType type="object" name="(方块音效 ID)"/>：在[`blocks.json`](#blocksjson)中指定使用的方块音效。
-      - <DataType type="float" name="pitch"/>：音效音调。应大于等于`0.0`。
-      - <DataType type="float" name="volume"/>：音效音量。应大于等于`0.0`。
-      - <DataType type="object" name="events"/>：音效事件，当方块触发对应事件时播放音效。每个事件都应指定为<FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="sounds"/> - <FileType type="file" name="sound_definitions.json"/>中定义的音效 ID。
-        - <DataType type="string" name="break"/>：当方块被破坏后播放音效。
-        - <DataType type="string" name="hit"/>：当方块被击打或正在破坏时播放的音效。
-        - <DataType type="string" name="place"/>：当方块被放置后播放音效。
-  - <DataType type="object" name="interactive_sounds"/>：交互事件的音效注册
-    - <DataType type="object" name="block_sounds"/>：全部方块交互事件的音效注册
-      - <DataType type="object" name="(方块音效 ID)"/>：在[`blocks.json`](#blocksjson)中指定使用的方块音效。
-        - <DataType type="float" name="pitch"/>：音效音调。应大于等于`0.0`。
-        - <DataType type="float" name="volume"/>：音效音量。应大于等于`0.0`。
-        - <DataType type="object" name="events"/>：音效事件，当方块触发对应事件时播放音效。每个事件都应指定为<FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="sounds"/> - <FileType type="file" name="sound_definitions.json"/>中定义的音效 ID。
-          - <DataType type="string" name="fall"/>：当有实体落到此方块后播放音效（从 3 格或更高的高度落下）。
-          - <DataType type="string" name="jump"/>：当有实体在此方块上跳跃时播放音效。
-          - <DataType type="string" name="land"/>：当有实体落到此方块后播放音效（从 3 格或更低的高度落下）。
-          - <DataType type="string" name="step"/>：当有实体在此方块上走动时播放音效。
+    - <DataType type="object" name="block_sounds"/>：全部方块基本事件的音效注册
+        - <DataType type="object" name="(方块音效 ID)"/>：在[`blocks.json`](#blocksjson)中指定使用的方块音效。
+            - <DataType type="float" name="pitch"/>：音效音调。应大于等于`0.0`。
+            - <DataType type="float" name="volume"/>：音效音量。应大于等于`0.0`。
+            - <DataType type="object" name="events"/>：音效事件，当方块触发对应事件时播放音效。每个事件都应指定为<FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="sounds"/> - <FileType type="file" name="sound_definitions.json"/>中定义的音效 ID。
+                - <DataType type="string" name="break"/>：当方块被破坏后播放音效。
+                - <DataType type="string" name="hit"/>：当方块被击打或正在破坏时播放的音效。
+                - <DataType type="string" name="place"/>：当方块被放置后播放音效。
+    - <DataType type="object" name="interactive_sounds"/>：交互事件的音效注册
+        - <DataType type="object" name="block_sounds"/>：全部方块交互事件的音效注册
+            - <DataType type="object" name="(方块音效 ID)"/>：在[`blocks.json`](#blocksjson)中指定使用的方块音效。
+                - <DataType type="float" name="pitch"/>：音效音调。应大于等于`0.0`。
+                - <DataType type="float" name="volume"/>：音效音量。应大于等于`0.0`。
+                - <DataType type="object" name="events"/>：音效事件，当方块触发对应事件时播放音效。每个事件都应指定为<FileType type="folder" name="resource_packs"/> - <FileType type="folder" name="sounds"/> - <FileType type="file" name="sound_definitions.json"/>中定义的音效 ID。
+                    - <DataType type="string" name="fall"/>：当有实体落到此方块后播放音效（从 3 格或更高的高度落下）。
+                    - <DataType type="string" name="jump"/>：当有实体在此方块上跳跃时播放音效。
+                    - <DataType type="string" name="land"/>：当有实体落到此方块后播放音效（从 3 格或更低的高度落下）。
+                    - <DataType type="string" name="step"/>：当有实体在此方块上走动时播放音效。
 
 </treeview>
 

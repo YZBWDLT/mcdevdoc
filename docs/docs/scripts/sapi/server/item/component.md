@@ -517,8 +517,10 @@ class ItemBlockEntityStorageComponent extends ItemComponent {
     static readonly componentId = 'minecraft:block_entity_storage';
     getEntities(): BlockEntityStorageInfo[];
     release(entityId: string, location: DimensionLocation): Entity;
+    remove(entityId: string): void;
     size(): number;
     store(entity: Entity): string;
+    totalSize(): number;
     transfer(entityId: string, targetBlock: Block): void;
 }
 ```
@@ -544,6 +546,18 @@ release(entityId: string, location: DimensionLocation): Entity
 
 **返回值**：[Entity](../../server/entity_and_player/entity#entity-类)，释放并生成到世界中的实体。
 
+#### remove 方法
+
+<RestrictedMode inline/>
+
+永久移除该物品堆叠存储的某个实体，不将其释放到世界中，也不会生成实体、经验或物品掉落。移除结果会保存到物品堆叠上。
+
+```typescript
+remove(entityId: string): void
+```
+
+- entityId: string，要移除实体的唯一 ID，即 store 方法的返回值或 [BlockEntityStorageInfo](../../server/block/component#blockentitystorageinfo-类)的 uniqueId。
+
 #### size 方法
 
 ```typescript
@@ -563,6 +577,16 @@ store(entity: Entity): string
 - entity: [Entity](../../server/entity_and_player/entity#entity-类)，要序列化存储的实体。
 
 **返回值**：string，实体的唯一 ID。
+
+#### totalSize 方法
+
+返回该物品堆叠上由所有内容包存入的实体总数。
+
+```typescript
+totalSize(): number
+```
+
+**返回值**：number，所有内容包存入的实体总数。
 
 #### transfer 方法
 

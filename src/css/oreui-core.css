@@ -102,6 +102,12 @@
     box-sizing: border-box;
     cursor: pointer;
     display: inline-flex;
+    /* 行内盒默认按**基线**对齐。inline-flex 的基线取自它的第一个子项：
+       纯文字按钮取文字基线，而带图标（<img>）的按钮第一个子项是图片，
+       基线变成了图片下边缘（比文字基线低约 4px）—— 于是同一行里带图标的按钮
+       会被整体抬高几像素，看起来「高矮不一致」。
+       统一改成按垂直中线对齐，两者高度相同，就必然齐平。 */
+    vertical-align: middle;
     font-family: var(--oreui-font-body);
     justify-content: center;
     margin: 0;
@@ -434,6 +440,17 @@ body {
         background: #ffffff10;
         box-shadow: inset 4px 0 0 var(--oreui-accent);
     }
+}
+
+/* 底部的收起按钮（«）：主题只给了 1px 的淡边框（--ifm-toc-border-color），
+   在这块深色侧栏里几乎看不见。统一成本站的描边色 1E1E1F、2px ——
+   与普通按钮、标签同一档。底色与悬停仍交给主题，这里只补边框。
+
+   选择器必须限定 `button`：图标那个元素叫 collapseSidebarButtonIcon_*，
+   类名里同样含 "collapseSidebarButton"，不限定会顺手给箭头也描一圈黑边。 */
+button[class*="collapseSidebarButton"] {
+    border: 2px solid #1e1e1f;
+    border-radius: 0;
 }
 
 /* ---- 2.5 右侧目录（TOC） ----
@@ -944,7 +961,13 @@ kbd {
 html,
 body {
     height: 100%;
+    /* 两行是有意的：老浏览器用 hidden 兜底，现代浏览器用 clip。
+       **必须用 clip**：hidden 虽然不显示滚动条，元素仍然是「可编程滚动」的滚动容器，
+       于是 `element.scrollIntoView()`（Docusaurus 跨页跳锚点时就用它）会把**根节点**也滚一段，
+       整个视口被顶上去；而 overflow:hidden 的根节点不响应滚轮，用户再也回不到最上端。
+       clip 的盒子不是滚动容器，scrollIntoView 会直接跳过它，根节点就不可能被滚动。 */
     overflow: hidden;
+    overflow: clip;
 }
 
 /* 滚动容器 = 根节点本身（它同时包着正文和页脚），
@@ -1821,24 +1844,49 @@ body {
     transition: none;
 }
 
+/* 每个变体给六个值：常态 / 悬停 / 按下的面，常态 / 按下的两条亮边，厚度条。
+   按下的两条亮边必须单独给 —— 官方按下时亮边会一起压暗，整块才有「沉下去」的感觉。
+   （官方原值见每组末尾注释；悬停方向站内沿用「变暗」，与原版手感一致。） */
+
 /* 绿色：与分段按钮的选中态、滑块的填充段同色 */
 .oreui-button--green {
     --btn-face: #3c8527;
     --btn-face-hover: #35761f;
+    --btn-face-pressed: #2a641c;
     --btn-edge: #639d52;
     --btn-edge-bottom: #4f913c;
+    --btn-edge-pressed: #558349;
+    --btn-edge-bottom-pressed: #3f7332;
     --btn-strip: #1d4d13;
     --btn-text: #ffffff;
+    /* 官方：悬停面 #52a535、顶亮 #75b75d、底亮 #63ae49 */
 }
 
 /* 浅色：与滑块的本体同色 */
 .oreui-button--light {
     --btn-face: #d0d1d4;
     --btn-face-hover: #b1b2b5;
+    --btn-face-pressed: #b1b2b5;
     --btn-edge: #ecedee;
     --btn-edge-bottom: #e3e3e5;
+    --btn-edge-pressed: #e0e0e1;
+    --btn-edge-bottom-pressed: #d0d1d3;
     --btn-strip: #58585a;
     --btn-text: #1b1c1d;
+}
+
+/* 危险操作：官方 Destructive。悬停同样按站内约定取「变暗」，
+   官方那张图上是变亮（#ff8080），值记在这里备用。 */
+.oreui-button--red {
+    --btn-face: #ca3636;
+    --btn-face-hover: #b52f2f;
+    --btn-face-pressed: #a02828;
+    --btn-edge: #d55e5e;
+    --btn-edge-bottom: #cf4a4a;
+    --btn-edge-pressed: #cd5757;
+    --btn-edge-bottom-pressed: #c64242;
+    --btn-strip: #ad1d1d;
+    --btn-text: #ffffff;
 }
 
 /* 悬停：只压暗「脸」，亮边与厚度不动。
@@ -1870,11 +1918,11 @@ body {
     margin-top: 4px;
     min-height: 48px;
     background-image:
-        linear-gradient(var(--btn-face-hover), var(--btn-face-hover)),
+        linear-gradient(var(--btn-face-pressed), var(--btn-face-pressed)),
         linear-gradient(
             180deg,
-            var(--btn-edge) 0 calc(100% - 2px),
-            var(--btn-edge-bottom) calc(100% - 2px) 100%
+            var(--btn-edge-pressed) 0 calc(100% - 2px),
+            var(--btn-edge-bottom-pressed) calc(100% - 2px) 100%
         );
     background-size:
         calc(100% - 4px) calc(100% - 4px),
@@ -1884,9 +1932,34 @@ body {
         top center;
 }
 
+/* 官方聚焦态：白色外环，**紧贴边框、没有间隙**（图里总高 109 → 119，两侧各 5px）。
+   换成白色是因为绿/白/红三种面都要能看清，白环是唯一通用的。 */
 .oreui-button:focus-visible {
-    outline: 3px solid var(--oreui-accent-bright);
-    outline-offset: 3px;
+    outline: 2px solid #ffffff;
+    outline-offset: 0;
+}
+
+/* 禁用态：只留 描边 → 面 → 厚度条，**不画两条亮边**，整体灰掉。
+   放在 :hover 之后，否则悬停的面会把它盖回去。 */
+.oreui-button:disabled,
+.oreui-button--disabled {
+    border-color: #8c8d90;
+    background-image:
+        linear-gradient(#d0d1d4, #d0d1d4),
+        linear-gradient(#b1b2b5, #b1b2b5);
+    background-repeat: no-repeat;
+    background-size:
+        100% calc(100% - 4px),
+        100% 4px;
+    background-position:
+        0 0,
+        bottom center;
+    color: #b1b2b5;
+    cursor: default;
+    /* 禁用的按钮不参与「按下上移」
+       这一条要写死，否则基类的 margin-top 会被沿用 */
+    margin-top: 0;
+    min-height: 52px;
 }
 
 /* 按钮内可选的小图标（如文档里的下载按钮） */
@@ -2012,6 +2085,222 @@ body {
 
 .oreui-accordion__content > :last-child {
     margin-bottom: 0;
+}
+
+
+/* ---- 5.9 标签页 ----
+   取自官方 Tab 状态表（First tab button）：一排像按键的方块，选中的一块陷下去、
+   底边压一条白色短线；未选中的脚下留 4px 空隙，看上去是被抬起来的那一块。
+
+   标签行与下面的内容算一个整体：标签行占满内容列，下面接一块板面，
+   板面的顶边就是标签行的底线 —— 未选中的标签浮在这条线之上，
+   选中的那块落下来贴住它，与板面同色。
+
+   官方尺寸按「5px → 2px」折算：描边 2、内侧亮/暗线 2、空隙 4。
+   每块都占 46px 高，键在里面上下挪：未选中贴顶（脚下留 4px），选中落到底。
+   **行高始终是 46** —— 切换标签时下面的内容不会跟着跳动。
+
+   颜色按原图取，只有未选中这一档整组上提了一级：
+   原图的页面底色是 #313233、未选中的面是 #48494a，而本站页面底色正好是
+   #48494a —— 照抄的话未选中的标签与页面同色，看上去只是一圈空框。
+   于是三档排成 #5a5b5c → #48494a → #313233（页面在中间那一档），
+   悬停与按下正好落在原图的「未选中」与「选中」两组颜色上：
+     未选中  面 #5a5b5c  上/左 #79797b  右/下 #6d6d6e
+     悬停    面 #48494a  上/左 #6d6d6e  右/下 #5a5b5c
+     按下    面 #313233  上/左/右 #5a5b5c  下 #454647
+     选中    同按下，底边多一条白线
+   选中的一块悬停和按下都不变色 —— 它已经按下去了，没有更深的层次。
+   ---------------------------------------------------------------- */
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0;
+    margin-bottom: 0;
+    padding: 0;
+    /* Infima 用 overflow-x: auto，会把聚焦白环裁掉 */
+    overflow: visible;
+    color: var(--oreui-text);
+    font-weight: normal;
+}
+
+/* 内容所在的那块板面。顶边就是标签行的底线，所以左边框从标签行的左下角起 */
+.tabs-container > div:last-child {
+    /* 抵掉 Docusaurus 自带的 .margin-top--md（那份带 !important） */
+    margin-top: 0 !important;
+    padding: 1rem 1.25rem 1.25rem;
+    background-color: var(--oreui-panel-face);
+    border: 2px solid var(--oreui-panel-edge);
+    border-top-color: var(--oreui-panel-top);
+}
+
+.tabs-container > div:last-child > :first-child {
+    margin-top: 0;
+}
+
+.tabs-container > div:last-child > :last-child {
+    margin-bottom: 0;
+}
+
+.tabs__item {
+    /* 默认 = 未选中：键的闭合盒从盒子上沿起，脚下留 4px 的缝 */
+    --tab-face: #5a5b5c;
+    --tab-top: #79797b;
+    --tab-left: #79797b;
+    --tab-right: #6d6d6e;
+    --tab-bottom: #6d6d6e;
+    --tab-key-top: 0px;
+    --tab-hole: 4px;
+
+    position: relative;
+    /* 建一层层叠上下文，让 ::before 的 z-index: -1 停在文字之下、页面之上 */
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    /* 每块都 46px 高：切换时行高不变，下面的内容不会跟着位移 */
+    height: 46px;
+    /* 文字跟着键走 —— 键贴顶时文字上移 2px */
+    padding: 0 1.4rem 4px;
+    margin: 0;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-body);
+    font-size: 0.95rem;
+    font-weight: normal;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    /* 高度是写死的，标签名不换行，标签多了整排换行 */
+    white-space: nowrap;
+    list-style: none;
+    cursor: pointer;
+    transition: none;
+}
+
+/* 键本体：一个**闭合的盒子**（描边四面都有），面与四条内线画在盒子里。
+   未选中时面往上收 4px：那道缝夹在「下内线」与「底描边」之间 ——
+   底下那条描边还在，所以看上去是实心的键被垫高，而不是被切掉了底 */
+.tabs__item::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: var(--tab-key-top);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* 未选中留 4px 缝；选中填满 */
+    padding-bottom: var(--tab-hole);
+    border: 2px solid #1e1e1f;
+    background-color: var(--tab-face);
+    background-image:
+        linear-gradient(var(--tab-top), var(--tab-top)),
+        linear-gradient(var(--tab-left), var(--tab-left)),
+        linear-gradient(var(--tab-right), var(--tab-right)),
+        linear-gradient(var(--tab-bottom), var(--tab-bottom));
+    background-repeat: no-repeat;
+    background-size:
+        100% 2px,
+        2px 100%,
+        2px 100%,
+        100% 2px;
+    background-position:
+        left top,
+        left top,
+        right top,
+        left bottom;
+    /* 内线贴着「面」的四条边画（内容盒），不是描边内侧 ——
+       未选中时那条下内线必须留在缝的上方 */
+    background-origin: content-box;
+    background-clip: content-box;
+}
+
+/* 悬停只对未选中的一块生效；同时要把 Infima 的白色悬停蒙层盖回去。
+   用 (hover: hover) 限定，触屏上点过的标签才不会一直停在悬停态 */
+@media (hover: hover) {
+    .tabs__item:hover:not(.tabs__item--active):not([aria-selected="true"]) {
+        --tab-face: #48494a;
+        --tab-top: #6d6d6e;
+        --tab-left: #6d6d6e;
+        --tab-right: #5a5b5c;
+        --tab-bottom: #5a5b5c;
+
+        background-color: transparent;
+    }
+}
+
+/* 按下未选中的一块：缝收掉、整块落下去，配色变成选中态的样子 */
+.tabs__item:active:not(.tabs__item--active):not([aria-selected="true"]) {
+    --tab-face: #313233;
+    --tab-top: #5a5b5c;
+    --tab-left: #5a5b5c;
+    --tab-right: #5a5b5c;
+    --tab-bottom: #454647;
+    --tab-key-top: 4px;
+    --tab-hole: 0px;
+
+    padding-top: 4px;
+    padding-bottom: 0;
+}
+
+/* 选中态：键落到底，与下面的板面同色 */
+.tabs__item--active,
+.tabs__item[aria-selected="true"] {
+    --tab-face: #313233;
+    --tab-top: #5a5b5c;
+    --tab-left: #5a5b5c;
+    --tab-right: #5a5b5c;
+    --tab-bottom: #454647;
+    --tab-key-top: 4px;
+    --tab-hole: 0px;
+
+    padding-top: 4px;
+    padding-bottom: 0;
+    background-color: transparent;
+    color: var(--oreui-text);
+}
+
+/* 白线画在底边内侧那条暗线的位置，长度约为整块的 40%（原图 108/276） */
+.tabs__item--active::after,
+.tabs__item[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    /* 键的描边占掉最下面 2px，白线正好盖住它上面那条内线 */
+    bottom: 2px;
+    left: 50%;
+    width: 40%;
+    height: 2px;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+}
+
+/* 聚焦：白色外环紧贴键的描边（画在键上，不是那个 46px 的空盒子） */
+.tabs__item:focus-visible::before {
+    outline: 2px solid #ffffff;
+    outline-offset: 0;
+}
+
+/* Infima 会给 .markdown li + li 加 4px 上外边距，标签之间必须贴紧 */
+.tabs .tabs__item + .tabs__item {
+    margin-top: 0;
+}
+
+/* 打印时浏览器默认不印背景，白字会落在白纸上 —— 改成白底黑框 */
+@media print {
+    .tabs__item {
+        color: #1e1e1f;
+    }
+    .tabs__item::before {
+        background-image: none;
+        background-color: #ffffff;
+        border-color: #1e1e1f;
+    }
+    .tabs__item--active::after,
+    .tabs__item[aria-selected="true"]::after {
+        background-color: #1e1e1f;
+    }
 }
 
 
@@ -2267,7 +2556,7 @@ a.oreui-card__action:visited {
 }
 
 
-/* ---- 5.9 「减少首页动态效果」 ----
+/* ---- 5.11 「减少首页动态效果」 ----
    属性挂在首页容器（.deck）上，**只影响首页内部**，
    文档页、设置页等其它地方的动画不受这个开关影响。 */
 [data-motion="reduced"] *,

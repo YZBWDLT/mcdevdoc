@@ -18,73 +18,76 @@ import RestrictedMode from "/src/components/highlight/restrictedMode"
 
 **世界后事件（World After Events）** 是指事件实际发生后执行的代码，无法阻止事件的发生。
 
-| 事件                     |                                                                      事件类                                                                       |                                                          是否支持筛选项                                                          | [脚本版本](../../version_table) |
-| :----------------------- | :-----------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :-------------------------: |
-| 玩家加入游戏             |                          [`PlayerJoinAfterEvent`](#playerjoinafterevent-类)                          |                                                              不支持                                                              |           `1.3.0`           |
-| 玩家离开游戏             |                         [`PlayerLeaveAfterEvent`](#playerleaveafterevent-类)                         |                                                              不支持                                                              |           `1.3.0`           |
-| **玩家生成**             |                         [`PlayerSpawnAfterEvent`](#playerspawnafterevent-类)                         |                                                              不支持                                                              |           `1.3.0`           |
-| **实体死亡**             |                           [`EntityDieAfterEvent`](#entitydieafterevent-类)                           |                  [`EntityEventOptions`](./event_types#entityeventoptions-接口)                  |           `1.4.0`           |
-| 实体生命值改变           |                 [`EntityHealthChangedAfterEvent`](#entityhealthchangedafterevent-类)                 |              [`EntityHealEventOptions`](./event_types#entityhealeventoptions-接口)              |           `1.4.0`           |
-| 实体击打方块             |                      [`EntityHitBlockAfterEvent`](#entityhitblockafterevent-类)                      |                  [`EntityEventOptions`](./event_types#entityeventoptions-接口)                  |           `1.4.0`           |
-| 实体击打实体             |                     [`EntityHitEntityAfterEvent`](#entityhitentityafterevent-类)                     |                  [`EntityEventOptions`](./event_types#entityeventoptions-接口)                  |           `1.4.0`           |
-| **实体受伤**             |                          [`EntityHurtAfterEvent`](#entityhurtafterevent-类)                          |         [`EntityHurtAfterEventOptions`](./event_types#entityhurtaftereventoptions-接口)         |           `1.4.0`           |
-| 物品完成使用             |                     [`ItemCompleteUseAfterEvent`](#itemcompleteuseafterevent-类)                     |                                                              不支持                                                              |           `1.4.0`           |
-| 物品释放使用             |                      [`ItemReleaseUseAfterEvent`](#itemreleaseuseafterevent-类)                      |                                                              不支持                                                              |           `1.4.0`           |
-| 物品开始使用             |                        [`ItemStartUseAfterEvent`](#itemstartuseafterevent-类)                        |                                                              不支持                                                              |           `1.4.0`           |
-| 物品开始对方块使用       |                      [`ItemStartUseOnAfterEvent`](#itemstartuseonafterevent-类)                      |                                                              不支持                                                              |           `1.4.0`           |
-| 物品停止使用             |                         [`ItemStopUseAfterEvent`](#itemstopuseafterevent-类)                         |                                                              不支持                                                              |           `1.4.0`           |
-| 物品停止对方块使用       |                       [`ItemStopUseOnAfterEvent`](#itemstopuseonafterevent-类)                       |                                                              不支持                                                              |           `1.4.0`           |
-| **物品使用**             |                             [`ItemUseAfterEvent`](#itemuseafterevent-类)                             |                                                              不支持                                                              |           `1.4.0`           |
-| **弹射物击中方块**       |                  [`ProjectileHitBlockAfterEvent`](#projectilehitblockafterevent-类)                  |                                                              不支持                                                              |           `1.5.0`           |
-| **弹射物击中实体**       |                 [`ProjectileHitEntityAfterEvent`](#projectilehitentityafterevent-类)                 |                                                              不支持                                                              |           `1.5.0`           |
-| 实体加载                 |                          [`EntityLoadAfterEvent`](#entityloadafterevent-类)                          |                                                              不支持                                                              |           `1.6.0`           |
-| 实体移除                 |                        [`EntityRemoveAfterEvent`](#entityremoveafterevent-类)                        |                  [`EntityEventOptions`](./event_types#entityeventoptions-接口)                  |           `1.6.0`           |
-| 实体生成                 |                         [`EntitySpawnAfterEvent`](#entityspawnafterevent-类)                         |                                                              不支持                                                              |           `1.6.0`           |
-| **玩家破坏方块**         |                    [`PlayerBreakBlockAfterEvent`](#playerbreakblockafterevent-类)                    |                   [`BlockEventOptions`](./event_types#blockeventoptions-接口)                   |           `1.6.0`           |
-| 玩家维度更改             |               [`PlayerDimensionChangeAfterEvent`](#playerdimensionchangeafterevent-类)               |                                                              不支持                                                              |           `1.6.0`           |
-| **玩家放置方块**         |                    [`PlayerPlaceBlockAfterEvent`](#playerplaceblockafterevent-类)                    |                   [`BlockEventOptions`](./event_types#blockeventoptions-接口)                   |           `1.6.0`           |
-| 数据驱动实体触发实体事件 |             [`DataDrivenEntityTriggerAfterEvent`](#datadrivenentitytriggerafterevent-类)             |                                                              不支持                                                              |           `1.8.0`           |
-| 添加状态效果             |                           [`EffectAddAfterEvent`](#effectaddafterevent-类)                           |                                                              不支持                                                              |           `1.9.0`           |
-| **爆炸**                 |                           [`ExplosionAfterEvent`](#explosionafterevent-类)                           |                                                              不支持                                                              |           `1.9.0`           |
-| 天气更改                 |                       [`WeatherChangeAfterEvent`](#weatherchangeafterevent-类)                       |                                                              不支持                                                              |           `1.9.0`           |
-| 游戏规则更改             |                      [`GameRuleChangeAfterEvent`](#gamerulechangeafterevent-类)                      |                                                              不支持                                                              |          `1.11.0`           |
-| 玩家游戏模式更改         |                [`PlayerGameModeChangeAfterEvent`](#playergamemodechangeafterevent-类)                |                                                              不支持                                                              |          `1.11.0`           |
-| 玩家输入权限分类更改     | [`PlayerInputPermissionCategoryChangeAfterEvent`](#playerinputpermissioncategorychangeafterevent-类) |                                                              不支持                                                              |          `1.12.0`           |
-| 方块爆炸                 |                        [`BlockExplodeAfterEvent`](#blockexplodeafterevent-类)                        |                                                              不支持                                                              |          `1.12.0`           |
-| 玩家发送表情             |                         [`PlayerEmoteAfterEvent`](#playeremoteafterevent-类)                         |                                                              不支持                                                              |          `1.14.0`           |
-| **玩家和方块交互**       |             [`PlayerInteractWithBlockAfterEvent`](#playerinteractwithblockafterevent-类)             |                                                              不支持                                                              |          `1.15.0`           |
-| **玩家和实体交互**       |            [`PlayerInteractWithEntityAfterEvent`](#playerinteractwithentityafterevent-类)            |                                                              不支持                                                              |          `1.15.0`           |
-| 玩家输入模式更改         |               [`PlayerInputModeChangeAfterEvent`](#playerinputmodechangeafterevent-类)               |                                                              不支持                                                              |          `1.17.0`           |
-| 玩家输入按钮更改         |                   [`PlayerButtonInputAfterEvent`](#playerbuttoninputafterevent-类)                   |                   [`InputEventOptions`](./event_types#inputeventoptions-接口)                   |          `1.18.0`           |
-| **世界加载**             |                           [`WorldLoadAfterEvent`](#worldloadafterevent-类)                           |                                                              不支持                                                              |           `2.0.0`           |
-| 玩家快捷栏选择槽位更改   |      [`PlayerHotbarSelectedSlotChangeAfterEvent`](#playerhotbarselectedslotchangeafterevent-类)      |                  [`HotbarEventOptions`](./event_types#hotbareventoptions-接口)                  |           `2.1.0`           |
-| 玩家物品栏物品更改       |           [`PlayerInventoryItemChangeAfterEvent`](#playerinventoryitemchangeafterevent-类)           |           [`InventoryItemEventOptions`](./event_types#inventoryitemeventoptions-接口)           |           `2.1.0`           |
-| 玩家开始挥舞             |                    [`PlayerSwingStartAfterEvent`](#playerswingstartafterevent-类)                    |             [`PlayerSwingEventOptions`](./event_types#playerswingeventoptions-接口)             |           `2.5.0`           |
-| **实体回复生命**         |                          [`EntityHealAfterEvent`](#entityhealafterevent-类)                          |              [`EntityHealEventOptions`](./event_types#entityhealeventoptions-接口)              |           `2.6.0`           |
-| 物品实体掉落             |                      [`EntityItemDropAfterEvent`](#entityitemdropafterevent-类)                      |          [`EntityItemDropEventOptions`](./event_types#entityitemdropeventoptions-接口)          |           `2.6.0`           |
-| 实体拾取物品             |                    [`EntityItemPickupAfterEvent`](#entityitempickupafterevent-类)                    |        [`EntityItemPickupEventOptions`](./event_types#entityitempickupeventoptions-接口)        |           `2.6.0`           |
-| **方块容器关闭**         |                [`BlockContainerClosedAfterEvent`](#blockcontainerclosedafterevent-类)                |    [`BlockContainerAccessEventOptions`](./event_types#blockcontaineraccesseventoptions-接口)    |           `2.8.0`           |
-| **方块容器打开**         |                [`BlockContainerOpenedAfterEvent`](#blockcontaineropenedafterevent-类)                |    [`BlockContainerAccessEventOptions`](./event_types#blockcontaineraccesseventoptions-接口)    |           `2.8.0`           |
-| **实体容器关闭**         |               [`EntityContainerClosedAfterEvent`](#entitycontainerclosedafterevent-类)               |   [`EntityContainerAccessEventOptions`](./event_types#entitycontaineraccesseventoptions-接口)   |           `2.8.0`           |
-| **实体容器打开**         |               [`EntityContainerOpenedAfterEvent`](#entitycontaineropenedafterevent-类)               |   [`EntityContainerAccessEventOptions`](./event_types#entitycontaineraccesseventoptions-接口)   |           `2.8.0`           |
-| 实体更新                 |                       [`EntityUpgradeAfterEvent`](#entityupgradeafterevent-类)                       | [`EntityDataDrivenTriggerEventOptions`](./event_types#entitydatadriventriggereventoptions-接口) |           `2.8.0`           |
-| 世界时钟暂停             |                  [`WorldClockOnPausedAfterEvent`](#worldclockonpausedafterevent-类)                  |              [`WorldClockEventOptions`](./event_types#worldclockeventoptions-接口)              |          `2.11.0`           |
-| 世界时钟恢复             |                 [`WorldClockOnResumedAfterEvent`](#worldclockonresumedafterevent-类)                 |              [`WorldClockEventOptions`](./event_types#worldclockeventoptions-接口)              |          `2.11.0`           |
-| 世界时钟时间标记         |              [`WorldClockOnTimeMarkerAfterEvent`](#worldclockontimemarkerafterevent-类)              |    [`WorldClockTimeMarkerEventOptions`](./event_types#worldclocktimemarkereventoptions-接口)    |          `2.11.0`           |
-| 世界时钟时间更改         |            [`WorldClockOnTimeModifiedAfterEvent`](#worldclockontimemodifiedafterevent-类)            |              [`WorldClockEventOptions`](./event_types#worldclockeventoptions-接口)              |          `2.11.0`           |
-| 发送聊天消息             |                            [`ChatSendAfterEvent`](#chatsendafterevent-类)                            |                                                              不支持                                                              |           `beta`            |
-| 实体开始潜行             |                 [`EntityStartSneakingAfterEvent`](#entitystartsneakingafterevent-类)                 |   [`EntitySneakingChangedEventOptions`](./event_types#entitysneakingchangedeventoptions-接口)   |          `2.10.0`           |
-| 实体停止潜行             |                  [`EntityStopSneakingAfterEvent`](#entitystopsneakingafterevent-类)                  |   [`EntitySneakingChangedEventOptions`](./event_types#entitysneakingchangedeventoptions-接口)   |          `2.10.0`           |
-| 实体被驯服               |                         [`EntityTamedAfterEvent`](#entitytamedafterevent-类)                         |             [`EntityTamedEventOptions`](./event_types#entitytamedeventoptions-接口)             |          `2.10.0`           |
-| 附加包设置更改           |                   [`PackSettingChangeAfterEvent`](#packsettingchangeafterevent-类)                   |                                                              不支持                                                              |           `beta`            |
-| 玩家取消破坏方块         |           [`PlayerCancelBreakingBlockAfterEvent`](#playercancelbreakingblockafterevent-类)           |     [`PlayerBreakingBlockEventOptions`](./event_types#playerbreakingblockeventoptions-接口)     |           `2.9.0`           |
-| 玩家开始破坏方块         |            [`PlayerStartBreakingBlockAfterEvent`](#playerstartbreakingblockafterevent-类)            |     [`PlayerBreakingBlockEventOptions`](./event_types#playerbreakingblockeventoptions-接口)     |           `2.9.0`           |
-| 玩家使用命名牌           |                    [`PlayerUseNameTagAfterEvent`](#playerusenametagafterevent-类)                    |                                                              不支持                                                              |           `beta`            |
-| 音效播放完毕             |                      [`SoundCompletedAfterEvent`](#soundcompletedafterevent-类)                      |                                                              不支持                                                              |          `2.10.0`           |
-| 玩家合成配方             |                   [`PlayerCraftRecipeAfterEvent`](#playercraftrecipeafterevent-类)                   |       [`PlayerCraftRecipeEventOptions`](./event_types#playercraftrecipeeventoptions-接口)       |           `beta`            |
-| 玩家光标抓取物品         |                [`PlayerCursorItemGrabAfterEvent`](#playercursoritemgrabafterevent-类)                |                                                              不支持                                                              |           `beta`            |
-| 玩家光标释放物品         |             [`PlayerCursorItemReleaseAfterEvent`](#playercursoritemreleaseafterevent-类)             |                                                              不支持                                                              |           `beta`            |
-| 服务器接收消息           |                      [`MessageReceiveAfterEvent`](#messagereceiveafterevent-类)                      |                                                              不支持                                                              |           `beta`            |
+| 事件                     |                                                事件类                                                |                                         是否支持筛选项                                          | [脚本版本](../../version_table) |
+| :----------------------- | :--------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------: | :-----------------------------: |
+| 玩家加入游戏             |                          [`PlayerJoinAfterEvent`](#playerjoinafterevent-类)                          |                                             不支持                                              |             `1.3.0`             |
+| 玩家离开游戏             |                         [`PlayerLeaveAfterEvent`](#playerleaveafterevent-类)                         |                                             不支持                                              |             `1.3.0`             |
+| **玩家生成**             |                         [`PlayerSpawnAfterEvent`](#playerspawnafterevent-类)                         |                                             不支持                                              |             `1.3.0`             |
+| **实体死亡**             |                           [`EntityDieAfterEvent`](#entitydieafterevent-类)                           |                  [`EntityEventOptions`](./event_types#entityeventoptions-接口)                  |             `1.4.0`             |
+| 实体生命值改变           |                 [`EntityHealthChangedAfterEvent`](#entityhealthchangedafterevent-类)                 |              [`EntityHealEventOptions`](./event_types#entityhealeventoptions-接口)              |             `1.4.0`             |
+| 实体击打方块             |                      [`EntityHitBlockAfterEvent`](#entityhitblockafterevent-类)                      |                  [`EntityEventOptions`](./event_types#entityeventoptions-接口)                  |             `1.4.0`             |
+| 实体击打实体             |                     [`EntityHitEntityAfterEvent`](#entityhitentityafterevent-类)                     |                  [`EntityEventOptions`](./event_types#entityeventoptions-接口)                  |             `1.4.0`             |
+| **实体受伤**             |                          [`EntityHurtAfterEvent`](#entityhurtafterevent-类)                          |         [`EntityHurtAfterEventOptions`](./event_types#entityhurtaftereventoptions-接口)         |             `1.4.0`             |
+| 物品完成使用             |                     [`ItemCompleteUseAfterEvent`](#itemcompleteuseafterevent-类)                     |                                             不支持                                              |             `1.4.0`             |
+| 物品释放使用             |                      [`ItemReleaseUseAfterEvent`](#itemreleaseuseafterevent-类)                      |                                             不支持                                              |             `1.4.0`             |
+| 物品开始使用             |                        [`ItemStartUseAfterEvent`](#itemstartuseafterevent-类)                        |                                             不支持                                              |             `1.4.0`             |
+| 物品开始对方块使用       |                      [`ItemStartUseOnAfterEvent`](#itemstartuseonafterevent-类)                      |                                             不支持                                              |             `1.4.0`             |
+| 物品停止使用             |                         [`ItemStopUseAfterEvent`](#itemstopuseafterevent-类)                         |                                             不支持                                              |             `1.4.0`             |
+| 物品停止对方块使用       |                       [`ItemStopUseOnAfterEvent`](#itemstopuseonafterevent-类)                       |                                             不支持                                              |             `1.4.0`             |
+| **物品使用**             |                             [`ItemUseAfterEvent`](#itemuseafterevent-类)                             |                                             不支持                                              |             `1.4.0`             |
+| **弹射物击中方块**       |                  [`ProjectileHitBlockAfterEvent`](#projectilehitblockafterevent-类)                  |                                             不支持                                              |             `1.5.0`             |
+| **弹射物击中实体**       |                 [`ProjectileHitEntityAfterEvent`](#projectilehitentityafterevent-类)                 |                                             不支持                                              |             `1.5.0`             |
+| 实体加载                 |                          [`EntityLoadAfterEvent`](#entityloadafterevent-类)                          |                                             不支持                                              |             `1.6.0`             |
+| 实体移除                 |                        [`EntityRemoveAfterEvent`](#entityremoveafterevent-类)                        |                  [`EntityEventOptions`](./event_types#entityeventoptions-接口)                  |             `1.6.0`             |
+| 实体生成                 |                         [`EntitySpawnAfterEvent`](#entityspawnafterevent-类)                         |                                             不支持                                              |             `1.6.0`             |
+| **玩家破坏方块**         |                    [`PlayerBreakBlockAfterEvent`](#playerbreakblockafterevent-类)                    |                   [`BlockEventOptions`](./event_types#blockeventoptions-接口)                   |             `1.6.0`             |
+| 玩家维度更改             |               [`PlayerDimensionChangeAfterEvent`](#playerdimensionchangeafterevent-类)               |                                             不支持                                              |             `1.6.0`             |
+| **玩家放置方块**         |                    [`PlayerPlaceBlockAfterEvent`](#playerplaceblockafterevent-类)                    |                   [`BlockEventOptions`](./event_types#blockeventoptions-接口)                   |             `1.6.0`             |
+| 数据驱动实体触发实体事件 |             [`DataDrivenEntityTriggerAfterEvent`](#datadrivenentitytriggerafterevent-类)             |                                             不支持                                              |             `1.8.0`             |
+| 添加状态效果             |                           [`EffectAddAfterEvent`](#effectaddafterevent-类)                           |                                             不支持                                              |             `1.9.0`             |
+| **爆炸**                 |                           [`ExplosionAfterEvent`](#explosionafterevent-类)                           |                                             不支持                                              |             `1.9.0`             |
+| 天气更改                 |                       [`WeatherChangeAfterEvent`](#weatherchangeafterevent-类)                       |                                             不支持                                              |             `1.9.0`             |
+| 游戏规则更改             |                      [`GameRuleChangeAfterEvent`](#gamerulechangeafterevent-类)                      |                                             不支持                                              |            `1.11.0`             |
+| 玩家游戏模式更改         |                [`PlayerGameModeChangeAfterEvent`](#playergamemodechangeafterevent-类)                |                                             不支持                                              |            `1.11.0`             |
+| 玩家输入权限分类更改     | [`PlayerInputPermissionCategoryChangeAfterEvent`](#playerinputpermissioncategorychangeafterevent-类) |                                             不支持                                              |            `1.12.0`             |
+| 方块爆炸                 |                        [`BlockExplodeAfterEvent`](#blockexplodeafterevent-类)                        |                                             不支持                                              |            `1.12.0`             |
+| 玩家发送表情             |                         [`PlayerEmoteAfterEvent`](#playeremoteafterevent-类)                         |                                             不支持                                              |            `1.14.0`             |
+| **玩家和方块交互**       |             [`PlayerInteractWithBlockAfterEvent`](#playerinteractwithblockafterevent-类)             |                                             不支持                                              |            `1.15.0`             |
+| **玩家和实体交互**       |            [`PlayerInteractWithEntityAfterEvent`](#playerinteractwithentityafterevent-类)            |                                             不支持                                              |            `1.15.0`             |
+| 玩家输入模式更改         |               [`PlayerInputModeChangeAfterEvent`](#playerinputmodechangeafterevent-类)               |                                             不支持                                              |            `1.17.0`             |
+| 玩家输入按钮更改         |                   [`PlayerButtonInputAfterEvent`](#playerbuttoninputafterevent-类)                   |                   [`InputEventOptions`](./event_types#inputeventoptions-接口)                   |            `1.18.0`             |
+| **世界加载**             |                           [`WorldLoadAfterEvent`](#worldloadafterevent-类)                           |                                             不支持                                              |             `2.0.0`             |
+| 玩家快捷栏选择槽位更改   |      [`PlayerHotbarSelectedSlotChangeAfterEvent`](#playerhotbarselectedslotchangeafterevent-类)      |                  [`HotbarEventOptions`](./event_types#hotbareventoptions-接口)                  |             `2.1.0`             |
+| 玩家物品栏物品更改       |           [`PlayerInventoryItemChangeAfterEvent`](#playerinventoryitemchangeafterevent-类)           |           [`InventoryItemEventOptions`](./event_types#inventoryitemeventoptions-接口)           |             `2.1.0`             |
+| 玩家开始挥舞             |                    [`PlayerSwingStartAfterEvent`](#playerswingstartafterevent-类)                    |             [`PlayerSwingEventOptions`](./event_types#playerswingeventoptions-接口)             |             `2.5.0`             |
+| **实体回复生命**         |                          [`EntityHealAfterEvent`](#entityhealafterevent-类)                          |              [`EntityHealEventOptions`](./event_types#entityhealeventoptions-接口)              |             `2.6.0`             |
+| 物品实体掉落             |                      [`EntityItemDropAfterEvent`](#entityitemdropafterevent-类)                      |          [`EntityItemDropEventOptions`](./event_types#entityitemdropeventoptions-接口)          |             `2.6.0`             |
+| 实体拾取物品             |                    [`EntityItemPickupAfterEvent`](#entityitempickupafterevent-类)                    |        [`EntityItemPickupEventOptions`](./event_types#entityitempickupeventoptions-接口)        |             `2.6.0`             |
+| **方块容器关闭**         |                [`BlockContainerClosedAfterEvent`](#blockcontainerclosedafterevent-类)                |    [`BlockContainerAccessEventOptions`](./event_types#blockcontaineraccesseventoptions-接口)    |             `2.8.0`             |
+| **方块容器打开**         |                [`BlockContainerOpenedAfterEvent`](#blockcontaineropenedafterevent-类)                |    [`BlockContainerAccessEventOptions`](./event_types#blockcontaineraccesseventoptions-接口)    |             `2.8.0`             |
+| **实体容器关闭**         |               [`EntityContainerClosedAfterEvent`](#entitycontainerclosedafterevent-类)               |   [`EntityContainerAccessEventOptions`](./event_types#entitycontaineraccesseventoptions-接口)   |             `2.8.0`             |
+| **实体容器打开**         |               [`EntityContainerOpenedAfterEvent`](#entitycontaineropenedafterevent-类)               |   [`EntityContainerAccessEventOptions`](./event_types#entitycontaineraccesseventoptions-接口)   |             `2.8.0`             |
+| 实体更新                 |                       [`EntityUpgradeAfterEvent`](#entityupgradeafterevent-类)                       | [`EntityDataDrivenTriggerEventOptions`](./event_types#entitydatadriventriggereventoptions-接口) |             `2.8.0`             |
+| 世界时钟暂停             |                  [`WorldClockOnPausedAfterEvent`](#worldclockonpausedafterevent-类)                  |              [`WorldClockEventOptions`](./event_types#worldclockeventoptions-接口)              |            `2.11.0`             |
+| 世界时钟恢复             |                 [`WorldClockOnResumedAfterEvent`](#worldclockonresumedafterevent-类)                 |              [`WorldClockEventOptions`](./event_types#worldclockeventoptions-接口)              |            `2.11.0`             |
+| 世界时钟时间标记         |              [`WorldClockOnTimeMarkerAfterEvent`](#worldclockontimemarkerafterevent-类)              |    [`WorldClockTimeMarkerEventOptions`](./event_types#worldclocktimemarkereventoptions-接口)    |            `2.11.0`             |
+| 世界时钟时间更改         |            [`WorldClockOnTimeModifiedAfterEvent`](#worldclockontimemodifiedafterevent-类)            |              [`WorldClockEventOptions`](./event_types#worldclockeventoptions-接口)              |            `2.11.0`             |
+| 发送聊天消息             |                            [`ChatSendAfterEvent`](#chatsendafterevent-类)                            |                                             不支持                                              |             `beta`              |
+| 实体开始潜行             |                 [`EntityStartSneakingAfterEvent`](#entitystartsneakingafterevent-类)                 |   [`EntitySneakingChangedEventOptions`](./event_types#entitysneakingchangedeventoptions-接口)   |            `2.10.0`             |
+| 实体停止潜行             |                  [`EntityStopSneakingAfterEvent`](#entitystopsneakingafterevent-类)                  |   [`EntitySneakingChangedEventOptions`](./event_types#entitysneakingchangedeventoptions-接口)   |            `2.10.0`             |
+| 实体被驯服               |                         [`EntityTamedAfterEvent`](#entitytamedafterevent-类)                         |             [`EntityTamedEventOptions`](./event_types#entitytamedeventoptions-接口)             |            `2.10.0`             |
+| 附加包设置更改           |                   [`PackSettingChangeAfterEvent`](#packsettingchangeafterevent-类)                   |                                             不支持                                              |             `beta`              |
+| 玩家取消破坏方块         |           [`PlayerCancelBreakingBlockAfterEvent`](#playercancelbreakingblockafterevent-类)           |     [`PlayerBreakingBlockEventOptions`](./event_types#playerbreakingblockeventoptions-接口)     |             `2.9.0`             |
+| 玩家开始破坏方块         |            [`PlayerStartBreakingBlockAfterEvent`](#playerstartbreakingblockafterevent-类)            |     [`PlayerBreakingBlockEventOptions`](./event_types#playerbreakingblockeventoptions-接口)     |             `2.9.0`             |
+| 玩家使用命名牌           |                    [`PlayerUseNameTagAfterEvent`](#playerusenametagafterevent-类)                    |                                             不支持                                              |             `beta`              |
+| 音效播放完毕             |                      [`SoundCompletedAfterEvent`](#soundcompletedafterevent-类)                      |                                             不支持                                              |            `2.10.0`             |
+| 玩家合成配方             |                   [`PlayerCraftRecipeAfterEvent`](#playercraftrecipeafterevent-类)                   |       [`PlayerCraftRecipeEventOptions`](./event_types#playercraftrecipeeventoptions-接口)       |             `beta`              |
+| 玩家光标抓取物品         |                [`PlayerCursorItemGrabAfterEvent`](#playercursoritemgrabafterevent-类)                |                                             不支持                                              |             `beta`              |
+| 玩家光标释放物品         |             [`PlayerCursorItemReleaseAfterEvent`](#playercursoritemreleaseafterevent-类)             |                                             不支持                                              |             `beta`              |
+| 服务器接收消息           |                      [`MessageReceiveAfterEvent`](#messagereceiveafterevent-类)                      |                                             不支持                                              |             `beta`              |
+| 传送门激活               |                      [`PortalActivateAfterEvent`](#portalactivateafterevent-类)                      |                                             不支持                                              |             `beta`              |
+| 虚拟容器关闭             |               [`VirtualContainerCloseAfterEvent`](#virtualcontainercloseafterevent-类)               |        [`VirtualContainerEventOptions`](./event_types#virtualcontainereventoptions-接口)        |             `beta`              |
+| 虚拟容器物品更改         |          [`VirtualContainerItemChangeAfterEvent`](#virtualcontaineritemchangeafterevent-类)          |        [`VirtualContainerEventOptions`](./event_types#virtualcontainereventoptions-接口)        |             `beta`              |
 
 **备注**：
 
@@ -98,15 +101,15 @@ import RestrictedMode from "/src/components/highlight/restrictedMode"
 
 这里专门记录红石元件触发的世界后事件。
 
-| 事件       |                                                    事件类                                                     | [脚本版本](../../version_table) |
-| :--------- | :-----------------------------------------------------------------------------------------------------------: | :-------------------------: |
-| 按下按钮   |        [`ButtonPushAfterEvent`](#buttonpushafterevent-类)        |           `1.3.0`           |
-| 拉杆活动   |       [`LeverActionAfterEvent`](#leveractionafterevent-类)       |           `1.3.0`           |
-| 压力板弹出 |  [`PressurePlatePopAfterEvent`](#pressureplatepopafterevent-类)  |           `1.4.0`           |
-| 压力板压下 | [`PressurePlatePushAfterEvent`](#pressureplatepushafterevent-类) |           `1.4.0`           |
-| 击中标靶   |    [`TargetBlockHitAfterEvent`](#targetblockhitafterevent-类)    |           `1.4.0`           |
-| 绊线钩触发 |      [`TripWireTripAfterEvent`](#tripwiretripafterevent-类)      |           `1.4.0`           |
-| 活塞激活   |    [`PistonActivateAfterEvent`](#pistonactivateafterevent-类)    |           `1.9.0`           |
+| 事件       |                              事件类                              | [脚本版本](../../version_table) |
+| :--------- | :--------------------------------------------------------------: | :-----------------------------: |
+| 按下按钮   |        [`ButtonPushAfterEvent`](#buttonpushafterevent-类)        |             `1.3.0`             |
+| 拉杆活动   |       [`LeverActionAfterEvent`](#leveractionafterevent-类)       |             `1.3.0`             |
+| 压力板弹出 |  [`PressurePlatePopAfterEvent`](#pressureplatepopafterevent-类)  |             `1.4.0`             |
+| 压力板压下 | [`PressurePlatePushAfterEvent`](#pressureplatepushafterevent-类) |             `1.4.0`             |
+| 击中标靶   |    [`TargetBlockHitAfterEvent`](#targetblockhitafterevent-类)    |             `1.4.0`             |
+| 绊线钩触发 |      [`TripWireTripAfterEvent`](#tripwiretripafterevent-类)      |             `1.4.0`             |
+| 活塞激活   |    [`PistonActivateAfterEvent`](#pistonactivateafterevent-类)    |             `1.9.0`             |
 
 ## 玩家加入游戏事件
 
@@ -528,6 +531,8 @@ class EntityHurtAfterEventSignal {
 <Version type="script" add="1.4.0"/>
 
 实体受伤后的事件信息。其筛选项见[EntityHurtAfterEventOptions](./event_types#entityhurtaftereventoptions-接口)。
+
+<Version type="script" add="2.5.0" inline/>：伤害量为`0`时也会触发此事件。
 
 ```typescript
 class EntityHurtAfterEvent {
@@ -1340,6 +1345,7 @@ class PlayerDimensionChangeAfterEvent {
     readonly fromDimension: Dimension;
     readonly fromLocation: Vector3;
     readonly player: Player;
+    readonly source: PlayerDimensionChangeSource;
     readonly toDimension: Dimension;
     readonly toLocation: Vector3;
 }
@@ -1350,8 +1356,68 @@ class PlayerDimensionChangeAfterEvent {
 - <ReadOnly/> fromDimension: [Dimension](../dimension/main#dimension-类)，玩家更改前所在的维度。
 - <ReadOnly/> fromLocation: [Vector3](../general#vector3-接口)，玩家更改维度前所在的位置。
 - <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，正在更改维度的玩家。
+- <Version type="script" experimental="测试版API" inline/> <ReadOnly/> source: [PlayerDimensionChangeSource](#playerdimensionchangesource-枚举)，玩家更改维度的原因。
 - <ReadOnly/> toDimension: [Dimension](../dimension/main#dimension-类)，玩家更改后的维度。
 - <ReadOnly/> toLocation: [Vector3](../general#vector3-接口)，玩家更改维度后生成的位置。
+
+### PlayerDimensionChangeSource 枚举
+
+<Version type="script" experimental="测试版API"/>
+
+玩家更改维度的原因。
+
+```typescript
+enum PlayerDimensionChangeSource {
+    PlayerRespawn = "PlayerRespawn", // 玩家死亡后在另一个维度重生
+    Portal = "Portal", // 玩家通过传送门更改维度
+    TeleportCommand = "TeleportCommand", // 玩家被命令（如 /tp、/execute）或脚本传送到另一个维度
+    Unknown = "Unknown", // 维度更改的原因未知
+}
+```
+
+---
+
+## 传送门激活事件
+
+### PortalActivateAfterEventSignal 类
+
+<Version type="script" experimental="测试版API"/>
+
+当下界传送门被成功激活时触发该事件信号。
+
+```typescript
+class PortalActivateAfterEventSignal {
+    private constructor();
+    subscribe(callback: (arg0: PortalActivateAfterEvent) => void): (arg0: PortalActivateAfterEvent) => void;
+    unsubscribe(callback: (arg0: PortalActivateAfterEvent) => void): void;
+}
+```
+
+#### 方法
+
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PortalActivateAfterEvent](#portalactivateafterevent-类)) => void) => (arg0: [PortalActivateAfterEvent](#portalactivateafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PortalActivateAfterEvent](#portalactivateafterevent-类)) => void) => void，取消订阅该事件。
+
+### PortalActivateAfterEvent 类
+
+<Version type="script" experimental="测试版API"/>
+
+下界传送门被成功激活后的事件信息，包含传送门所在的维度、点燃位置与发起玩家（已知时）。
+
+```typescript
+class PortalActivateAfterEvent {
+    private constructor();
+    readonly dimension: Dimension;
+    readonly location: Vector3;
+    readonly player?: Player;
+}
+```
+
+#### 属性
+
+- <ReadOnly/> dimension: [Dimension](../dimension/main#dimension-类)，传送门被激活时所在的维度，不是其目标维度。
+- <ReadOnly/> location: [Vector3](../general#vector3-接口)，用于激活传送门的点燃位置的坐标，不一定是传送门的中心或角。
+- <ReadOnly/> <Optional/> player: [Player](../entity_and_player/player#player-类)，直接使用物品激活传送门的玩家（已知时）。对于没有已知发起玩家的火焰激活（包括发射器发射的火焰弹）为`undefined`；不会将附近的玩家作为发起者。
 
 ---
 
@@ -3327,6 +3393,123 @@ class MessageReceiveAfterEvent {
 - <ReadOnly/> id: string，消息的标识符。
 - <ReadOnly/> message: string，消息内容。
 - <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，发送该消息的玩家。
+
+---
+
+## 虚拟容器关闭事件
+
+### VirtualContainerCloseAfterEventSignal 类
+
+<Version type="script" experimental="测试版API"/>
+
+当玩家的虚拟容器屏幕关闭时触发该事件信号。
+
+```typescript
+class VirtualContainerCloseAfterEventSignal {
+    private constructor();
+    subscribe(
+        callback: (arg0: VirtualContainerCloseAfterEvent) => void,
+        options?: VirtualContainerEventOptions,
+    ): (arg0: VirtualContainerCloseAfterEvent) => void;
+    unsubscribe(callback: (arg0: VirtualContainerCloseAfterEvent) => void): void;
+}
+```
+
+#### 方法
+
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [VirtualContainerCloseAfterEvent](#virtualcontainercloseafterevent-类)) => void, options?: [VirtualContainerEventOptions](./event_types#virtualcontainereventoptions-接口)) => (arg0: [VirtualContainerCloseAfterEvent](#virtualcontainercloseafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [VirtualContainerCloseAfterEvent](#virtualcontainercloseafterevent-类)) => void) => void，取消订阅该事件。
+
+### VirtualContainerCloseAfterEvent 类
+
+<Version type="script" experimental="测试版API"/>
+
+玩家的虚拟容器屏幕关闭后的事件信息，包含屏幕关闭时容器中的内容。
+
+```typescript
+class VirtualContainerCloseAfterEvent {
+    private constructor();
+    readonly container: VirtualContainer;
+    readonly items: (ItemStack | undefined)[];
+    readonly player: Player;
+    readonly reason: VirtualContainerCloseReason;
+}
+```
+
+#### 属性
+
+- <ReadOnly/> container: [VirtualContainer](../item/virtual_container#virtualcontainer-类)，屏幕被关闭的容器。
+- <ReadOnly/> items: ([ItemStack](../item/main#itemstack-类) | undefined)[]，屏幕关闭时容器中每个槽位的内容，空槽位为`undefined`。收纳袋等储物类物品保留的是该时刻的内容。
+- <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，屏幕被关闭的玩家。当原因为`PlayerLeft`时，该玩家已失效。
+- <ReadOnly/> reason: [VirtualContainerCloseReason](#virtualcontainerclosereason-枚举)，屏幕关闭的原因。
+
+### VirtualContainerCloseReason 枚举
+
+<Version type="script" experimental="测试版API"/>
+
+玩家的虚拟容器屏幕关闭的原因。
+
+```typescript
+enum VirtualContainerCloseReason {
+    PlayerClosed = "PlayerClosed", // 玩家关闭了屏幕，或其设备未能显示该屏幕
+    PlayerDied = "PlayerDied", // 屏幕打开时玩家死亡
+    PlayerLeft = "PlayerLeft", // 屏幕打开时玩家离开了游戏
+    PlayerSpectating = "PlayerSpectating", // 屏幕打开时玩家切换到了旁观模式
+    ServerClosed = "ServerClosed", // 屏幕被服务器关闭，例如调用了 close，或玩家切换了维度
+    UserBusy = "UserBusy", // 玩家设备因玩家正忙或尚未准备好而未显示屏幕
+}
+```
+
+---
+
+## 虚拟容器物品更改事件
+
+### VirtualContainerItemChangeAfterEventSignal 类
+
+<Version type="script" experimental="测试版API"/>
+
+当玩家通过屏幕更改虚拟容器的某个槽位时触发该事件信号。由脚本进行的更改不会触发该事件。
+
+```typescript
+class VirtualContainerItemChangeAfterEventSignal {
+    private constructor();
+    subscribe(
+        callback: (arg0: VirtualContainerItemChangeAfterEvent) => void,
+        options?: VirtualContainerEventOptions,
+    ): (arg0: VirtualContainerItemChangeAfterEvent) => void;
+    unsubscribe(callback: (arg0: VirtualContainerItemChangeAfterEvent) => void): void;
+}
+```
+
+#### 方法
+
+- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [VirtualContainerItemChangeAfterEvent](#virtualcontaineritemchangeafterevent-类)) => void, options?: [VirtualContainerEventOptions](./event_types#virtualcontainereventoptions-接口)) => (arg0: [VirtualContainerItemChangeAfterEvent](#virtualcontaineritemchangeafterevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
+- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [VirtualContainerItemChangeAfterEvent](#virtualcontaineritemchangeafterevent-类)) => void) => void，取消订阅该事件。
+
+### VirtualContainerItemChangeAfterEvent 类
+
+<Version type="script" experimental="测试版API"/>
+
+玩家通过屏幕更改虚拟容器槽位后的事件信息。
+
+```typescript
+class VirtualContainerItemChangeAfterEvent {
+    private constructor();
+    readonly beforeItemStack?: ItemStack;
+    readonly container: VirtualContainer;
+    readonly itemStack?: ItemStack;
+    readonly player: Player;
+    readonly slot: number;
+}
+```
+
+#### 属性
+
+- <ReadOnly/> <Optional/> beforeItemStack: [ItemStack](../item/main#itemstack-类)，更改前该槽位中的物品。收纳袋等储物类物品保留的是更改时的内容；若该物品被从槽位丢到了地上，其内容会归入被丢弃的物品。
+- <ReadOnly/> container: [VirtualContainer](../item/virtual_container#virtualcontainer-类)，被更改的容器。
+- <ReadOnly/> <Optional/> itemStack: [ItemStack](../item/main#itemstack-类)，更改后该槽位中的物品。收纳袋等储物类物品保留的是更改时的内容。
+- <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，进行该更改的玩家。
+- <ReadOnly/> slot: number，发生更改的槽位。
 
 ---
 

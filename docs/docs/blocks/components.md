@@ -44,32 +44,39 @@ import Button from '/src/components/button/base';
 数组型：
 
 <treeview>
-- <DataType type="array" name="minecraft:collision_box"/>：<Version add="1.26.0" inline/> 根数组，定义由多个子碰撞箱复合而成的复杂碰撞箱，最多可定义 16 个。
+- <DataType type="array" name="minecraft:collision_box"/>：<Version add="1.26.0" inline/> 根数组，定义由多个子碰撞箱复合而成的复杂碰撞箱，最多可定义 16 个。不接受空数组。
+  <Version add="1.26.70" inline/>：最多可定义 32 个子碰撞箱。
   - <DataType type="object"/>
-    - <DataType type="array" name="origin"/>：定义方块碰撞箱源坐标，`[0, 0, 0]`为底面中心点的坐标。默认值为`[-8, 0, -8]`。
+    - <DataType type="array" name="origin"/>：<Version add="1.26.0" deprecated="1.26.70" inline/>定义方块碰撞箱源坐标，`[0, 0, 0]`为底面中心点的坐标。默认值为`[-8, 0, -8]`。`1.26.70`起该写法不再可用，请改用`min`与`max`。
       - <DataType type="float" name="0"/>：基于源坐标的 X 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
       - <DataType type="float" name="1"/>：基于源坐标的 Y 坐标（像素）偏移值。必须在`0`~`16`之间（含）。
       - <DataType type="float" name="2"/>：基于源坐标的 Z 坐标（像素）偏移值。必须在`-8`~`8`之间（含）。
-    - <DataType type="array" name="size"/>：定义方块碰撞箱基于源坐标的大小。默认值为`[16, 16, 16]`。
+    - <DataType type="array" name="size"/>：<Version add="1.26.0" deprecated="1.26.70" inline/>定义方块碰撞箱基于源坐标的大小。默认值为`[16, 16, 16]`。`1.26.70`起该写法不再可用。
       - <DataType type="float" name="0"/>：X 方向的方块大小。与`origin`的 X 坐标相加后必须在`-8`~`8`之间（含）。
       - <DataType type="float" name="1"/>：Y 方向的方块大小。与`origin`的 Y 坐标相加后必须在`0`\~`24`之间（含）。格式版本低于`1.26.0`时范围缩小到`0`\~`16`之间（含）。
       - <DataType type="float" name="2"/>：Z 方向的方块大小。与`origin`的 Z 坐标相加后必须在`-8`~`8`之间（含）。
-    - <DataType type="array" name="min"/>：<Version add="1.26.60" inline/>子碰撞箱的最小坐标（像素），`[0, 0, 0]`为方块的左下前角。与`max`配对使用，用来代替`origin`与`size`的写法。
+    - <DataType type="array" name="min"/>：<Version add="1.26.70" inline/>子碰撞箱的最小坐标（像素），`[0, 0, 0]`为方块的左下前角。与`max`配对使用，用来代替`origin`与`size`的写法。
       - <DataType type="float" name="0"/>：X 坐标。
       - <DataType type="float" name="1"/>：Y 坐标。
       - <DataType type="float" name="2"/>：Z 坐标。
-    - <DataType type="array" name="max"/>：<Version add="1.26.60" inline/>子碰撞箱的最大坐标（像素），`[16, 16, 16]`为方块的右上后角。与`min`配对使用。
+    - <DataType type="array" name="max"/>：<Version add="1.26.70" inline/>子碰撞箱的最大坐标（像素），`[16, 16, 16]`为方块的右上后角。与`min`配对使用。
       - <DataType type="float" name="0"/>：X 坐标。
       - <DataType type="float" name="1"/>：Y 坐标。
       - <DataType type="float" name="2"/>：Z 坐标。
 </treeview>
 
-> **注意**：所有子碰撞箱覆盖的范围必须落在`(0, 0, 0)`到`(16, 24, 16)`之内。
+> **注意**：所有子碰撞箱覆盖的范围必须落在`(0, 0, 0)`到`(16, 24, 16)`之内；超出范围的部分会被裁剪，并在内容日志中输出警告。
 
 布尔型：
 
 <treeview>
 - <DataType type="boolean" name="minecraft:collision_box"/>：定义方块是否具有碰撞箱。默认为`true`，且使用 16×16×16 像素的碰撞箱大小。
+</treeview>
+
+字符串型（实验性）：
+
+<treeview>
+- <DataType type="string" name="minecraft:collision_box"/>：<Version add="1.26.70" experimental="实验性 Voxel 形状特征" inline/>直接指定一个体素形状作为碰撞箱，可填自定义体素形状的 ID、`minecraft:unit_cube`或`minecraft:empty`。详见[按体素剔除面](./culling#按体素剔除面)。
 </treeview>
 
 <Version add="1.19.50" deprecated="1.26.60" inline/> 对象型：
@@ -88,7 +95,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**自定义楼梯**（数组型）：上下两级台阶拼出阶梯形碰撞箱。
+**自定义楼梯**（数组型，`origin`/`size` 写法，<Version add="1.26.0" deprecated="1.26.70" inline/>）：上下两级台阶拼出阶梯形碰撞箱。
 
 ```json showLineNumbers
 "minecraft:collision_box": [
@@ -103,7 +110,7 @@ import Button from '/src/components/button/base';
 ]
 ```
 
-**自定义半砖**（数组型，`min`/`max` 写法，1.26.60+）：只占方块下半部分。
+**自定义半砖**（数组型，`min`/`max` 写法，<Version add="1.26.70" inline/>）：只占方块下半部分。
 
 ```json showLineNumbers
 "minecraft:collision_box": [
@@ -120,7 +127,13 @@ import Button from '/src/components/button/base';
 "minecraft:collision_box": true
 ```
 
-**自定义半砖**（对象型，已弃用，仅`1.26.60`之前的格式版本可用）：旧写法，效果与上一例相同。
+**自定义形状**（字符串型，<Version add="1.26.70" experimental="实验性 Voxel 形状特征" inline/>）：直接引用体素形状文件中定义的形状。
+
+```json showLineNumbers
+"minecraft:collision_box": "custom:collision_shape"
+```
+
+**自定义半砖**（对象型，<Version add="1.19.50" deprecated="1.26.60" inline/>）：旧写法，效果与上一例相同。
 
 ```json showLineNumbers
 "minecraft:collision_box": {
@@ -210,7 +223,8 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="minecraft:destructible_by_mining"/>：根对象。
-  - <DataType type="float" name="seconds_to_destroy" isRequired/>：定义方块的挖掘*破坏时长*。
+  - <DataType type="float" name="base_time_to_destroy" isRequired/>：<Version add="1.26.70" inline/>定义方块的*基准破坏时长*。
+  - <DataType type="float" name="seconds_to_destroy" isRequired/>：<Version add="1.19.20" deprecated="1.26.70" inline/>定义方块的*破坏时长*，`1.26.70`起由`base_time_to_destroy`取代。
   - <DataType type="array" name="item_specific_speeds"/>：<Version add="1.21.50" inline/>定义使用特定物品破坏此方块时的速度。
     - <DataType type="object"/>
       - <DataType type="string" name="item" isRequired/>：（写法 1）定义该物品的 ID。
@@ -220,7 +234,7 @@ import Button from '/src/components/button/base';
 
 </treeview>
 
-> **注意**：这里的*破坏时长*实际上为[**硬度**](https://zh.minecraft.wiki/w/挖掘#方块硬度)的概念，并不是指字面意义上的破坏秒数和挖掘速度（这里的起名实际上是相当糟糕的，具有很强的误导性）。在一般情况下，破坏时长（秒）是硬度的 1.5 倍，比如硬度为 1 时，需要 1.5 秒破坏。
+> **注意**：这里的*破坏时长*实际上为[**硬度**](https://zh.minecraft.wiki/w/挖掘#方块硬度)的概念，并不是指字面意义上的破坏秒数和挖掘速度。在一般情况下，破坏时长（秒）是硬度的 1.5 倍，比如硬度为 1 时，需要 1.5 秒破坏。正因如此，`1.26.70`起该参数由`seconds_to_destroy`更名为`base_time_to_destroy`。
 
 布尔型：
 
@@ -230,7 +244,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-**自定义石质方块**（对象型）：这里填写的值会被当作硬度参与计算，并不等于实际耗时。此处硬度为 1，徒手挖掘约需 1.5 秒。
+**自定义石质方块**（对象型，<Version add="1.19.20" deprecated="1.26.70" inline/>）：这里填写的值会被当作硬度参与计算，并不等于实际耗时。此处硬度为 1，徒手挖掘约需 1.5 秒。
 
 ```json showLineNumbers
 "minecraft:destructible_by_mining": {
@@ -703,7 +717,8 @@ import Button from '/src/components/button/base';
   - <DataType type="boolean" name="entity_storage"/>：<Version add="1.26.60" experimental="即将到来的创作者功能" inline/>是否允许通过脚本把实体序列化存储在该方块内，默认值为`false`。每个方块最多存储 4 个实体，详情见脚本接口的`minecraft:entity_storage`。
   - <DataType type="object" name="container"/>：允许方块像箱子一样存储物品。
     - <DataType type="int" name="slot_count" isRequired/>：定义槽位数量。可选值为`1`-`54`（含）。
-    - <DataType type="string" name="title"/>：<Version add="1.26.60" experimental="即将到来的创作者功能" inline/>定义容器界面的标题，可填纯文本或语言文件的键名，长度应为 1-256 个字符。不指定时标题处不显示任何文本。
+    - <DataType type="string" name="title"/>：定义容器界面的标题，可填纯文本或语言文件的键名，长度应为 1-256 个字符。不指定时标题处不显示任何文本。
+    - <DataType type="boolean" name="show_ui_on_interaction"/>：<Version add="1.26.70" experimental="即将到来的创作者功能" inline/>是否在与方块交互时打开内置的容器界面。默认值为`true`；设为`false`时禁用内置界面，并放行正常的方块交互事件（包括`onPlayerInteract`回调）。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -811,7 +826,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:enchantment_power_transmitter`
 
-<Usable type="all"/> <Version add="1.26.60" experimental="即将到来的创作者功能"/> <br/>
+<Usable type="all"/> <Version add="1.26.60"/> <br/>
 
 定义方块能否传递附魔能量。把该方块放在附魔台与书架之间的空位上时，附魔台仍能照常获得书架提供的附魔能量。
 
@@ -1016,6 +1031,32 @@ import Button from '/src/components/button/base';
 "minecraft:instrument_sound": {
     "down": "note.bell"
 }
+```
+
+</TabItem></Tabs>
+
+---
+
+### `minecraft:jukebox_playlist_source`
+
+<Usable type="all"/> <Version add="1.26.70" experimental="即将到来的创作者功能"/> <br/>
+
+允许该方块正下方的唱片机把该方块已有的容器当作唱片来源。该组件是一个空对象，本身不会创建容器；方块没有容器时它不起作用。
+
+> **注意**：若想只在特定置换下生效，应把它写在对应的置换里；但省略某条置换并不会让基础组件中的该组件失效。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:jukebox_playlist_source"/>：空对象，不接受任何参数。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+**自定义唱片来源方块**：让正下方的唱片机读取本方块容器里的唱片。
+
+```json showLineNumbers
+"minecraft:jukebox_playlist_source": {}
 ```
 
 </TabItem></Tabs>
@@ -1229,7 +1270,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:neighbor_change`
 
-<Usable type="all"/> <Version add="1.26.60" experimental="即将到来的创作者功能"/> <br/>
+<Usable type="all"/> <Version add="1.26.60"/> <br/>
 
 定义相邻方块发生置换变化时，是否触发 ScriptAPI 中方块自定义组件定义的[onNeighborChanged 事件](/docs/docs/scripts/sapi/server/system/custom_block_component#blockcustomcomponent-接口)，并可限定观察哪些方向。
 
@@ -1601,7 +1642,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:vibration_properties`
 
-<Usable type="all"/> <Version add="1.26.60" experimental="即将到来的创作者功能"/> <br/>
+<Usable type="all"/> <Version add="1.26.60"/> <br/>
 
 定义方块是否会减弱或阻挡振动（即幽匿感测体与幽匿尖啸体侦测的振动）。
 

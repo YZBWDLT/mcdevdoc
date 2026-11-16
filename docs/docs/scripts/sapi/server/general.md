@@ -187,6 +187,7 @@ interface EntityFilter {
     excludeFamilies?: string[];
     excludeGameModes?: GameMode[];
     excludeNames?: string[];
+    excludeNamespaces?: string[];
     excludeTags?: string[];
     excludeTypes?: string[];
     families?: string[];
@@ -198,6 +199,7 @@ interface EntityFilter {
     minLevel?: number;
     minVerticalRotation?: number;
     name?: string;
+    namespaces?: string[];
     propertyOptions?: EntityQueryPropertyOptions[];
     scoreOptions?: EntityQueryScoreOptions[];
     tags?: string[];
@@ -210,6 +212,7 @@ interface EntityFilter {
 - <Optional/> excludeFamilies: string[]，排除属于指定族系中任一族系的实体。
 - <Optional/> excludeGameModes: [GameMode](./entity_and_player/player#gamemode-枚举)[]，排除处于指定游戏模式的实体。
 - <Optional/> excludeNames: string[]，排除名称与指定值之一相同的实体。
+- <Version type="script" experimental="测试版API" inline/> <Optional/> excludeNamespaces: string[]，排除命名空间属于指定值之一的实体。
 - <Optional/> excludeTags: string[]，排除带有指定标签中任一标签的实体。
 - <Optional/> excludeTypes: string[]，排除属于指定类型之一的实体。
 - <Optional/> families: string[]，指定时只包含同时属于全部指定族系的实体。
@@ -221,6 +224,7 @@ interface EntityFilter {
 - <Optional/> minLevel: number，指定时只包含等级不低于该值的玩家。
 - <Optional/> minVerticalRotation: number，指定时只包含垂直旋转角不小于该值的实体。
 - <Optional/> name: string，只包含具有该名称的实体。
+- <Version type="script" experimental="测试版API" inline/> <Optional/> namespaces: string[]，只包含命名空间属于指定值之一的实体。
 - <Version type="script" add="1.14.0" inline/> <Optional/> propertyOptions: [EntityQueryPropertyOptions](./entity_and_player/entity#entityquerypropertyoptions-接口)[]，按实体属性筛选实体时使用的条件集合。
 - <Optional/> scoreOptions: [EntityQueryScoreOptions](./entity_and_player/entity#entityqueryscoreoptions-接口)[]，按记分项分数筛选实体时使用的条件集合。
 - <Optional/> tags: string[]，只包含同时带有全部指定标签的实体。
@@ -234,9 +238,11 @@ interface EntityFilter {
 
 ```typescript
 interface BlockFilter {
+    excludeNamespaces?: string[];
     excludePermutations?: BlockPermutation[];
     excludeTags?: string[];
     excludeTypes?: string[];
+    includeNamespaces?: string[];
     includePermutations?: BlockPermutation[];
     includeTags?: string[];
     includeTypes?: string[];
@@ -245,9 +251,11 @@ interface BlockFilter {
 
 #### 属性
 
+- <Version type="script" experimental="测试版API" inline/> <Optional/> excludeNamespaces: string[]，若属于其中的任意命名空间，则被该筛选条件排除。
 - <Optional/> excludePermutations: [BlockPermutation](./block/main#blockpermutation-类)[]，若与其中的任意方块置换匹配，则被该筛选条件排除。
 - <Optional/> excludeTags: string[]，若与其中的任意方块标签匹配，则被该筛选条件排除。
 - <Optional/> excludeTypes: string[]，若属于其中的任意方块类型，则被该筛选条件排除。
+- <Version type="script" experimental="测试版API" inline/> <Optional/> includeNamespaces: string[]，若属于其中的任意命名空间，则被该筛选条件选中。
 - <Optional/> includePermutations: [BlockPermutation](./block/main#blockpermutation-类)[]，若与其中的任意方块置换匹配，则被该筛选条件选中。
 - <Optional/> includeTags: string[]，若与其中的任意方块标签匹配，则被该筛选条件选中。
 - <Optional/> includeTypes: string[]，若属于其中的任意方块类型，则被该筛选条件选中。
@@ -326,6 +334,7 @@ interface SoundDefinitionMusicInfo {
 ```typescript
 class SoundInstance {
     private constructor();
+    readonly attachedEntity?: Entity;
     readonly durationInfo?: SoundDurationInfo;
     readonly id: string;
     readonly recipient?: Player;
@@ -342,6 +351,7 @@ class SoundInstance {
 
 #### 属性
 
+- <Version type="script" experimental="测试版API" inline/> <ReadOnly/> <Optional/> attachedEntity: [Entity](./entity_and_player/entity#entity-类)，该声音所附着的实体；声音未附着于实体时为`undefined`。
 - <Version type="script" add="2.10.0" inline/> <ReadOnly/> <Optional/> durationInfo: [SoundDurationInfo](#sounddurationinfo-类)，该声音的时长与播放信息；声音未声明时长时为`undefined`。
 - <Version type="script" add="2.10.0" inline/> <ReadOnly/> id: string，该声音实例的唯一标识符。
 - <Version type="script" add="2.10.0" inline/> <ReadOnly/> <Optional/> recipient: [Player](./entity_and_player/player#player-类)，播放该声音的玩家；声音向所有玩家广播时为`undefined`。

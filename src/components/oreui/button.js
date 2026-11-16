@@ -23,6 +23,7 @@ import Link from "@docusaurus/Link";
  * @param {string} [props.to] 站内链接
  * @param {string} [props.href] 外部链接
  * @param {"button" | "submit"} [props.type] 按钮类型
+ * @param {boolean} [props.disabled] 禁用（链接形态会加上 oreui-button--disabled 类并拦截点击）
  */
 export default function OreButton({
     children,
@@ -32,8 +33,11 @@ export default function OreButton({
     to,
     href,
     type = "button",
+    disabled = false,
 }) {
-    const className = `oreui-button oreui-button--${variant}`;
+    // 链接不能被真正禁用，用修饰类 + 拦截点击模拟按钮的 disabled
+    const className =
+        `oreui-button oreui-button--${variant}` + (disabled ? " oreui-button--disabled" : "");
     const content = (
         <>
             {icon ? <span className="oreui-button__icon">{icon}</span> : undefined}
@@ -43,7 +47,7 @@ export default function OreButton({
 
     if (to) {
         return (
-            <Link className={className} to={to}>
+            <Link className={className} to={to} onClick={disabled ? e => e.preventDefault() : undefined}>
                 {content}
             </Link>
         );
@@ -51,14 +55,20 @@ export default function OreButton({
 
     if (href) {
         return (
-            <a className={className} href={href} target="_blank" rel="noopener noreferrer">
+            <a
+                className={className}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={disabled ? e => e.preventDefault() : undefined}
+            >
                 {content}
             </a>
         );
     }
 
     return (
-        <button type={type} className={className} onClick={onClick}>
+        <button type={type} className={className} onClick={onClick} disabled={disabled}>
             {content}
         </button>
     );

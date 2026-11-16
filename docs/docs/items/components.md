@@ -14,7 +14,7 @@ import Usable from "/src/components/highlight/usable"
 import Version from "/src/components/highlight/version"
 import Button from '/src/components/button/base';
 
-> 适用版本：国际版 26.50，中国版 3.10（1.21.130）。
+> 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
 数据驱动物品组件（Data-Driven Item Components）用于规定物品的功能。将不同的物品组件组合在一起可以实现多种复杂的功能。
 
@@ -529,7 +529,7 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="minecraft:damage"/>：根对象。
-  - <DataType type="int" name="value"/>：物品的攻击伤害。
+  - <DataType type="int" name="value"/>：物品的攻击伤害，应在`0`-`32767`之间（含）。`1.26.0`之前的格式版本上限为`255`。
 </treeview>
 
 **整型**：
@@ -641,7 +641,8 @@ import Button from '/src/components/button/base';
     - <DataType type="object"/>：耐久度阈值
       - <DataType type="int" name="durability"/>：指定耐久度阈值，当物品耐久度低于此值时触发下面的事件。
       - <DataType type="string" name="particle_type"/>：低于耐久度阈值时释放的粒子。
-      - <DataType type="string" name="sound_event"/>：低于耐久度阈值时播放的音效。
+      - <DataType type="string" name="sound_event"/>：低于耐久度阈值时播放的音效。  
+      <Version add="1.26.50" inline/>：可填写资源包`sound_definitions.json`中定义的任意音效。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -1194,7 +1195,7 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="minecraft:projectile"/>：根对象。
-  - <DataType type="float" name="minimum_critical_power"/>：定义蓄力需要多久才能暴击。单位秒。
+  - <DataType type="float" name="minimum_critical_power"/>：定义蓄力需要多久才能暴击。单位秒。格式版本`1.26.70`之前默认值为`0`，`1.26.70`及更高默认值为`-1`；**填负数即关闭暴击**。
   - <DataType type="string" name="projectile_entity" isRequired/>：定义掷出何种实体。若未指定命名空间，默认为`minecraft`。
 </treeview>
 
@@ -1579,6 +1580,8 @@ import Button from '/src/components/button/base';
   - <DataType type="string" name="attack_critical_hit"/>：定义暴击时的音效。
 </treeview>
 
+<Version add="1.26.50" inline/>：三个音效字段均可填写资源包`sound_definitions.json`中定义的任意音效。
+
 </TabItem><TabItem value="example" label="示例">
 
 剑、斧：分别指定落空、命中与暴击时的音效。
@@ -1685,7 +1688,8 @@ import Button from '/src/components/button/base';
   - <DataType type="float" name="use_duration"/>：使用时长。例如苹果的该值为`1.6`。默认值为`0`。
   - <DataType type="float" name="movement_modifier"/>：定义玩家使用物品时的速度倍率，必须小于等于`1`。例如苹果的该值为`0.35`。
   - <DataType type="boolean" name="emit_vibrations"/>：<Version add="1.21.120" inline/>定义玩家使用物品时是否发出振动。
-  - <DataType type="string" name="start_sound"/>：<Version add="1.21.130" inline/>定义玩家在使用物品后播放何种音效。
+  - <DataType type="string" name="start_sound"/>：<Version add="1.21.130" inline/>定义玩家在使用物品后播放何种音效。  
+  <Version add="1.26.50" inline/>：可填写资源包`sound_definitions.json`中定义的任意音效。
   - <DataType type="string" name="start_using"/>：<Version add="1.26.30" inline/>定义该组件何时去抢占「开始使用物品」这一动作。可选值为`always`（无论是否有其他组件已经开始使用该物品，都尝试开始使用）和`if_first`（仅在没有其他组件尝试开始使用该物品时，才尝试开始使用）。格式版本低于`1.26.30`时默认值为`always`，`1.26.30`及更高时默认值为`if_first`。
 </treeview>
 
@@ -3233,7 +3237,7 @@ import Button from '/src/components/button/base';
 
 定义物品为武器。这会自动为物品添加伤害信息与攻击事件。
 
-另见：_[`minecraft:damage`](#minecraftdamage)组件_（在高版本中用于定义攻击伤害）、_[ItemCustomComponent 接口](/docs/docs/scripts/sapi/server/system/custom_component#itemcustomcomponent-接口)_（`onHitEntity`、`onMineBlock`回调）、_[物品事件响应](./event_responses)_、脚本事件_[EntityHitBlockAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitblockafterevent-类)_（对应`on_hit_block`）、_[EntityHurtAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhurtafterevent-类)_（对应`on_hurt_entity`）、_[EntityHitEntityAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitentityafterevent-类)_（对应`on_not_hurt_entity`）。
+另见：_[`minecraft:damage`](#minecraftdamage)组件_（在高版本中用于定义攻击伤害）、_[ItemCustomComponent 接口](/docs/docs/scripts/sapi/server/system/custom_component#itemcustomcomponent-接口)_（`onHitEntity`、`onMineBlock`回调）、_[物品事件响应](./event_responses)_、脚本事件 _[EntityHitBlockAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitblockafterevent-类)_（对应`on_hit_block`）、_[EntityHurtAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhurtafterevent-类)_（对应`on_hurt_entity`）、_[EntityHitEntityAfterEvent 类](/docs/docs/scripts/sapi/server/world/after_events#entityhitentityafterevent-类)_（对应`on_not_hurt_entity`）。
 
 <Tabs><TabItem value="parameters" label="参数" default>
 

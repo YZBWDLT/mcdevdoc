@@ -113,11 +113,14 @@ enum PlayerPermissionLevel {
 ```typescript
 enum InputMode {
     Gamepad = "Gamepad", // 手柄输入
+    GamepadAndMouse = "GamepadAndMouse", // 手柄与鼠标输入
     KeyboardAndMouse = "KeyboardAndMouse", // 键盘与鼠标输入
     MotionController = "MotionController", // 体感控制器输入
     Touch = "Touch", // 触摸输入
 }
 ```
+
+> **注意**：`GamepadAndMouse` 目前为测试版 API，需要开启「测试版API」实验性玩法。
 
 ### InputButton 枚举
 

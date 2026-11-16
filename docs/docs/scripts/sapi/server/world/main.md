@@ -45,6 +45,7 @@ class World {
     readonly soundDefinitionRegistry: SoundDefinitionRegistry;
     readonly structureManager: StructureManager;
     readonly tickingAreaManager: TickingAreaManager;
+    readonly virtualContainerManager: VirtualContainerManager;
     clearDynamicProperties(): void;
     getAbsoluteTime(): number;
     getAimAssist(): AimAssistRegistry;
@@ -529,6 +530,9 @@ class WorldAfterEvents {
     readonly playerCursorItemGrab: PlayerCursorItemGrabAfterEventSignal;
     readonly playerCursorItemRelease: PlayerCursorItemReleaseAfterEventSignal;
     readonly playerUseNameTag: PlayerUseNameTagAfterEventSignal;
+    readonly portalActivate: PortalActivateAfterEventSignal;
+    readonly virtualContainerClose: VirtualContainerCloseAfterEventSignal;
+    readonly virtualContainerItemChange: VirtualContainerItemChangeAfterEventSignal;
 }
 ```
 
@@ -561,7 +565,6 @@ class WorldBeforeEvents {
     readonly weatherChange: WeatherChangeBeforeEventSignal;
     readonly worldClockOnRestart: WorldClockOnRestartBeforeEventSignal;
     readonly chatSend: ChatSendBeforeEventSignal;
-    readonly playerItemAttackEntity: PlayerItemAttackEntityBeforeEventSignal;
     readonly playerPlaceBlock: PlayerPlaceBlockBeforeEventSignal;
 }
 ```

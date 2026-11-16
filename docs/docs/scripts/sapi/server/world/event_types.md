@@ -400,6 +400,26 @@ interface WorldClockTimeMarkerEventOptions {
 
 ---
 
+## 虚拟容器事件筛选项
+
+### VirtualContainerEventOptions 接口
+
+<Version type="script" experimental="测试版API"/>
+
+订阅虚拟容器事件时的筛选项。
+
+```typescript
+interface VirtualContainerEventOptions {
+    containers?: VirtualContainer[];
+}
+```
+
+#### 属性
+
+- <Optional/> containers: [VirtualContainer](../item/virtual_container#virtualcontainer-类)[]，设置后，事件只会对集合中的虚拟容器触发。
+
+---
+
 ## 伤害与治疗
 
 ### EntityDamageSource 接口

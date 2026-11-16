@@ -58,6 +58,7 @@ interface ItemCustomComponent {
     onConsume?: (arg0: ItemComponentConsumeEvent, arg1: CustomComponentParameters) => void;
     onHitEntity?: (arg0: ItemComponentHitEntityEvent, arg1: CustomComponentParameters) => void;
     onMineBlock?: (arg0: ItemComponentMineBlockEvent, arg1: CustomComponentParameters) => void;
+    onReleaseUse?: (arg0: ItemComponentReleaseUseEvent, arg1: CustomComponentParameters) => void;
     onUse?: (arg0: ItemComponentUseEvent, arg1: CustomComponentParameters) => void;
     onUseOn?: (arg0: ItemComponentUseOnEvent, arg1: CustomComponentParameters) => void;
 }
@@ -70,6 +71,7 @@ interface ItemCustomComponent {
 - <Optional/> onConsume: (arg0: [ItemComponentConsumeEvent](#itemcomponentconsumeevent-类), arg1: [CustomComponentParameters](../../server/system/custom_block_component#customcomponentparameters-类)) =&gt; void，当带有该组件的物品被实体食用时调用。
 - <Optional/> onHitEntity: (arg0: [ItemComponentHitEntityEvent](#itemcomponenthitentityevent-类), arg1: [CustomComponentParameters](../../server/system/custom_block_component#customcomponentparameters-类)) =&gt; void，当带有该组件的物品击中其他实体时调用。
 - <Optional/> onMineBlock: (arg0: [ItemComponentMineBlockEvent](#itemcomponentmineblockevent-类), arg1: [CustomComponentParameters](../../server/system/custom_block_component#customcomponentparameters-类)) =&gt; void，当带有该组件的物品用于挖掘方块时调用。
+- <Version type="script" experimental="测试版API" inline/> <Optional/> onReleaseUse: (arg0: [ItemComponentReleaseUseEvent](#itemcomponentreleaseuseevent-类), arg1: [CustomComponentParameters](../../server/system/custom_block_component#customcomponentparameters-类)) =&gt; void，当玩家松开正在使用的物品时调用。仅当物品具有`minecraft:use_duration`组件时才会调用。
 - <Optional/> onUse: (arg0: [ItemComponentUseEvent](#itemcomponentuseevent-类), arg1: [CustomComponentParameters](../../server/system/custom_block_component#customcomponentparameters-类)) =&gt; void，当带有该组件的物品被玩家使用时调用。
 - <Optional/> onUseOn: (arg0: [ItemComponentUseOnEvent](#itemcomponentuseonevent-类), arg1: [CustomComponentParameters](../../server/system/custom_block_component#customcomponentparameters-类)) =&gt; void，当带有该组件的物品被对方块使用时调用。
 
@@ -137,6 +139,27 @@ class ItemComponentUseEvent {
 
 - <ReadOnly/> <Optional/> itemStack: [ItemStack](../../server/item/main#itemstack-类)，使用该物品时的物品堆叠。
 - <ReadOnly/> source: [Player](../../server/entity_and_player/player#player-类)，使用该物品的玩家。
+
+### ItemComponentReleaseUseEvent 类
+
+<Version type="script" experimental="测试版API"/>
+
+玩家松开正在使用的物品时的事件信息。
+
+```typescript
+class ItemComponentReleaseUseEvent {
+    private constructor();
+    readonly itemStack: ItemStack;
+    readonly remainingUseDuration: number;
+    readonly source: Player;
+}
+```
+
+#### 属性
+
+- <ReadOnly/> itemStack: [ItemStack](../../server/item/main#itemstack-类)，被松开的物品堆叠。
+- <ReadOnly/> remainingUseDuration: number，物品被松开时剩余的使用时长，以游戏刻为单位。
+- <ReadOnly/> source: [Player](../../server/entity_and_player/player#player-类)，松开该物品的玩家。
 
 ### ItemComponentUseOnEvent 类
 

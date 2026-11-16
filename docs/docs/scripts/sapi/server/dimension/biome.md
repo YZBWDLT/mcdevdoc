@@ -109,8 +109,10 @@ static getAll(): BiomeType[]
 ```typescript
 interface BiomeFilter {
     excludeBiomes?: string[];
+    excludeNamespaces?: string[];
     excludeTags?: string[];
     includeBiomes?: string[];
+    includeNamespaces?: string[];
     includeTags?: string[];
 }
 ```
@@ -118,8 +120,10 @@ interface BiomeFilter {
 #### 属性
 
 - <Optional/> excludeBiomes: string[]，排除指定标识符的生物群系。
+- <Version type="script" experimental="测试版API" inline/> <Optional/> excludeNamespaces: string[]，排除指定命名空间下的生物群系。
 - <Optional/> excludeTags: string[]，排除带有指定标签的生物群系。
 - <Optional/> includeBiomes: string[]，只包含指定标识符的生物群系。
+- <Version type="script" experimental="测试版API" inline/> <Optional/> includeNamespaces: string[]，只包含指定命名空间下的生物群系。
 - <Optional/> includeTags: string[]，只包含带有指定标签的生物群系。
 
 ### BiomeSearchOptions 接口

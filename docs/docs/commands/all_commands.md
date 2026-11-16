@@ -763,7 +763,7 @@ in <维度: Dimension> -> execute
 
 <WikiButton item="命令/scriptevent"/>
 
-对`system`类发送一个`scriptEventReceive`的后事件。
+对 [system](/docs/docs/scripts/sapi/server/system/main) 类发送一个 scriptEventReceive 后事件。
 
 ```text
 /scriptevent <消息ID: string> <消息: message>
@@ -771,7 +771,7 @@ in <维度: Dimension> -> execute
 
 向脚本系统发送一个消息，拥有`消息ID`的 ID 和`消息`的消息属性。
 
-返回`ScriptEventCommandMessageAfterEvent`事件，脚本中可调用`id`属性获取命令中的`消息ID`，调用`message`属性获取命令中的`消息`。
+返回 [ScriptEventCommandMessageAfterEvent](/docs/docs/scripts/sapi/server/system/after_events#scripteventcommandmessageafterevent-类) 事件，脚本中可调用 id 属性获取命令中的`消息ID`，调用 message 属性获取命令中的`消息`。
 
 ---
 
@@ -2233,7 +2233,7 @@ in <维度: Dimension> -> execute
 
 加快世界时间或特定`时钟`的时间`数值`游戏刻。
 
-<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
+<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
 
 </TabItem><TabItem value="query" label="query">
 
@@ -2246,7 +2246,7 @@ in <维度: Dimension> -> execute
 
 <Version type="game" add="26.60" inline/>：`query`支持`time`参数。
 
-<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。当选择了特定时钟后，只能查询在该时钟内的时长。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
+<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。当选择了特定时钟后，只能查询在该时钟内的时长。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
 
 </TabItem><TabItem value="set" label="set">
 
@@ -2257,7 +2257,7 @@ in <维度: Dimension> -> execute
 
 设置世界的时间或特定`时钟`的时间为`数值`游戏刻。
 
-<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
+<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
 
 ```text
 /time set <时间标记: timemarker name> [时间标记出现方式: TimeMarkerOccurrence]
@@ -2268,9 +2268,9 @@ in <维度: Dimension> -> execute
 
 `时间标记`可选值为：`sunrise`（日出）、`day`（早上）、`noon`（中午）、`sunset`（日落）、`night`（晚上）、`midnight`（午夜）。
 
-<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本注册新的时钟。
+<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
 
-<Version type="game" add="26.60" inline/>：`时间标记`现在允许添加`minecraft:`命名空间。可通过脚本注册新的时间标记。
+<Version type="game" add="26.60" inline/>：`时间标记`现在允许添加`minecraft:`命名空间。可通过脚本[注册](/docs/docs/scripts/sapi/server/world/world_clock#addtimemarker-方法)新的时间标记。
 
 <Version type="game" add="26.60" inline/>：`时间标记出现方式`，指定寻找时间标记的方式。可选值为：
 
@@ -2841,7 +2841,7 @@ in <维度: Dimension> -> execute
 
 ### `/place`
 
-<Version type="game" add="1.21.70"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。但是，在SAPI中有Dimension.placeFeature()、StructureManager.placeJigsaw()等对应方法可用。"/><br/>
+<Version type="game" add="1.21.70"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/place"/>
 
@@ -2902,6 +2902,8 @@ in <维度: Dimension> -> execute
 </TabItem>
 
 </Tabs>
+
+在脚本中，可使用 [Dimension.placeFeature](/docs/docs/scripts/sapi/server/dimension/main#placefeature-方法)、[Dimension.placeFeatureRule](/docs/docs/scripts/sapi/server/dimension/main#placefeaturerule-方法)、[StructureManager.placeJigsaw](/docs/docs/scripts/sapi/server/world/structure#placejigsaw-方法) 等方法完成相同的操作。
 
 ---
 
@@ -3436,13 +3438,13 @@ dedicatedwsserver <服务器地址: string> <端口: int>
 <Button text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#重载函数文件的命令reload" color="green"/>
 <WikiButton item="命令/reload"/>
 
-重新加载函数和脚本（仅限Script API）。
+重新加载函数和脚本（仅限 [Script API](/docs/tutorials/a3_scripts/b2_sapi/c1_guide)）。
 
 ```text
 /reload [全部: reload_all]
 ```
 
-重新热加载函数和脚本（仅限国际版的 ScriptAPI）。如果`全部`（<Version type="game" add="1.21.30" inline/>）指定为`all`，则退出地图再重新加载。
+重新热加载函数和脚本（仅限国际版的 Script API）。如果`全部`（<Version type="game" add="1.21.30" inline/>）指定为`all`，则退出地图再重新加载。
 
 ---
 

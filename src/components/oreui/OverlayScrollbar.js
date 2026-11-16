@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import useIsBrowser from "@docusaurus/useIsBrowser";
+import { useLocation } from "@docusaurus/router";
 
 /**
  * 自绘滚动条（只服务页面主滚动容器 `#__docusaurus`）。
@@ -16,6 +17,29 @@ import useIsBrowser from "@docusaurus/useIsBrowser";
  */
 
 const MIN_THUMB = 40;
+
+/** 锚点落位时标题上方留的呼吸空间（px） */
+const ANCHOR_OFFSET = 8;
+
+/**
+ * 兜底：万一根节点还是被滚了，立刻归零。
+ *
+ * 根节点在 CSS 里已经是 `overflow: clip`（不可滚动），正常不会出现这种情况；
+ * 但 `clip` 有浏览器版本要求，老浏览器回落到 `hidden` 时——
+ * 而 `overflow: hidden` 的盒子**仍然是可编程滚动的滚动容器**，
+ * 一个 `scrollIntoView()` 就能把它滚一段，整个视口被顶上去、
+ * 而滚轮又滚不动它，用户就再也回不到最上端。
+ */
+function resetRootScroll() {
+    if (window.scrollX !== 0 || window.scrollY !== 0) {
+        window.scrollTo(0, 0);
+    }
+    const root = document.scrollingElement;
+    if (root && (root.scrollTop !== 0 || root.scrollLeft !== 0)) {
+        root.scrollTop = 0;
+        root.scrollLeft = 0;
+    }
+}
 
 export default function OverlayScrollbar() {
     const isBrowser = useIsBrowser();
@@ -56,6 +80,8 @@ export default function OverlayScrollbar() {
         // 这里在容器滚动时补发一次 scroll，订阅者随即用它自己的
         // getBoundingClientRect 重算位置，结果依然正确。
         const handleScroll = () => {
+            // 自愈：根节点一旦被别的脚本滚过，立刻归零
+            resetRootScroll();
             sync();
             document.dispatchEvent(new Event("scroll"));
             window.dispatchEvent(new Event("scroll"));
@@ -80,36 +106,95 @@ export default function OverlayScrollbar() {
         };
     }, [isBrowser, sync]);
 
+    const location = useLocation();
+
+    /**
+     * 把滚动容器滚到当前 hash 对应的标题处。
+     * 返回 false 表示页面上还没有这个元素（或不在浏览器环境）。
+     */
+    const scrollToHash = useCallback((behavior = "auto") => {
+        const node = getScroller();
+        const raw = window.location.hash.slice(1);
+        if (!node || !raw) return false;
+
+        const target = document.getElementById(decodeURIComponent(raw));
+        if (!target) return false;
+
+        // 先确保根节点没被滚过：rect 的基准歪了，落点就会整体偏移
+        resetRootScroll();
+
+        const top =
+            target.getBoundingClientRect().top -
+            node.getBoundingClientRect().top +
+            node.scrollTop -
+            ANCHOR_OFFSET;
+        node.scrollTo({ top: Math.max(0, top), behavior });
+        return true;
+    }, []);
+
+    /**
+     * 路由切换后的落位。
+     *
+     * 换了滚动容器之后，Docusaurus 原本做的两件事都失效了
+     * （见 ClientLifecyclesDispatcher.scrollAfterNavigation）：
+     *   · 没有 hash 时它调 `window.scrollTo(0, 0)` —— 滚的是文档，而文档已经不能滚了，
+     *     新页面会停在上一页的滚动位置上；
+     *   · 有 hash 时它调 `element.scrollIntoView()` —— 会**连根节点一起滚**，
+     *     整个视口被顶上去（CSS 已用 overflow: clip 堵住，这里再兜一层）。
+     */
+    useEffect(() => {
+        if (!isBrowser) return undefined;
+
+        const node = getScroller();
+        resetRootScroll();
+
+        if (!location.hash) {
+            node?.scrollTo({ top: 0, behavior: "auto" });
+            return undefined;
+        }
+
+        // 内容刚挂载，布局可能要到下一帧才稳定；再宽容地补一次，
+        // 照顾图片、代码块这种高度算得晚的元素。
+        let timer;
+        const frame = window.requestAnimationFrame(() => {
+            scrollToHash("auto");
+            timer = window.setTimeout(() => scrollToHash("auto"), 120);
+        });
+
+        return () => {
+            window.cancelAnimationFrame(frame);
+            window.clearTimeout(timer);
+        };
+    }, [isBrowser, location.pathname, location.hash, scrollToHash]);
+
     /**
      * 接管站内锚点跳转与「回到顶部」。
-     * 换了滚动容器之后，浏览器原生的锚点落位与 `window.scrollTo` 都会算错
-     * （前者按文档坐标、后者滚的是文档，而文档已经不能滚了），
-     * 所以统一由这里按「目标相对滚动容器」的位置来滚。
+     * 浏览器原生锚点按**文档坐标**落位，而文档已经不能滚了，必须自己算。
      */
     useEffect(() => {
         if (!isBrowser) return undefined;
 
         const handleAnchorClick = event => {
-            const node = getScroller();
             const link = event.target instanceof Element ? event.target.closest('a[href^="#"]') : null;
-            if (!node || !link) return;
+            if (!link) return;
 
             const hash = link.getAttribute("href");
             if (!hash || hash === "#") return;
 
-            const id = decodeURIComponent(hash.slice(1));
-            const target = document.getElementById(id);
+            const target = document.getElementById(decodeURIComponent(hash.slice(1)));
             if (!target) return;
 
             event.preventDefault();
+            resetRootScroll();
 
-            const offset = 8; // 标题上方留一点呼吸
+            const node = getScroller();
+            if (!node) return;
             const top =
                 target.getBoundingClientRect().top -
                 node.getBoundingClientRect().top +
                 node.scrollTop -
-                offset;
-            node.scrollTo({ top, behavior: "smooth" });
+                ANCHOR_OFFSET;
+            node.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
             window.history.replaceState(null, "", hash);
         };
 
@@ -121,34 +206,20 @@ export default function OverlayScrollbar() {
             node.scrollTo({ top: 0, behavior: "smooth" });
         };
 
-        // 带 hash 直接进站时，浏览器同样会按文档坐标落位一次，这里纠正回来
-        const correctInitialHash = () => {
-            const node = getScroller();
-            const id = decodeURIComponent(window.location.hash.slice(1));
-            if (!node || !id) return;
-            const target = document.getElementById(id);
-            if (!target) return;
-            const top =
-                target.getBoundingClientRect().top -
-                node.getBoundingClientRect().top +
-                node.scrollTop -
-                8;
-            node.scrollTo({ top, behavior: "auto" });
-        };
-        const initialTimer = window.setTimeout(correctInitialHash, 120);
-
-        // 路由内部（搜索、外部链接、浏览器前进后退）引起的 hash 变化同样要纠正
-        window.addEventListener("hashchange", correctInitialHash);
+        // 极少数绕过路由的 hash 变化（脚本改地址栏）也一并纠正。
+        // 用箭头函数包一层：直接把 scrollToHash 当监听器的话，
+        // 事件对象会被当成 behavior 参数传进去，scrollTo 会抛 TypeError。
+        const handleHashChange = () => scrollToHash("auto");
+        window.addEventListener("hashchange", handleHashChange);
 
         document.addEventListener("click", handleAnchorClick, true);
         document.addEventListener("click", handleBackToTop, true);
         return () => {
-            window.removeEventListener("hashchange", correctInitialHash);
-            window.clearTimeout(initialTimer);
+            window.removeEventListener("hashchange", handleHashChange);
             document.removeEventListener("click", handleAnchorClick, true);
             document.removeEventListener("click", handleBackToTop, true);
         };
-    }, [isBrowser]);
+    }, [isBrowser, scrollToHash]);
 
     /** 拖动滑块 */
     const handleThumbPointerDown = event => {

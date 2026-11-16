@@ -35,8 +35,8 @@ class Dimension {
     fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume;
     getBiome(location: Vector3): BiomeType;
     getBlock(location: Vector3): Block | undefined;
-    getBlockAbove(location: Vector3, options?: BlockRaycastOptions): Block | undefined;
-    getBlockBelow(location: Vector3, options?: BlockRaycastOptions): Block | undefined;
+    getBlockAbove(location: Vector3, options?: BlockSearchOptions): Block | undefined;
+    getBlockBelow(location: Vector3, options?: BlockSearchOptions): Block | undefined;
     getBlockFromRay(location: Vector3, direction: Vector3, options?: BlockRaycastOptions): BlockRaycastHit | undefined;
     getBlocks(volume: BlockVolumeBase, options: BlockQueryOptions, allowUnloadedChunks?: boolean): ListBlockVolume;
     getEntities(options?: EntityQueryOptions): Entity[];
@@ -222,11 +222,11 @@ getBlock(location: Vector3): Block | undefined
 根据给定选项，获取指定方块位置上方搜索到的第一个方块（默认查找第一个固体方块）。
 
 ```typescript
-getBlockAbove(location: Vector3, options?: BlockRaycastOptions): Block | undefined
+getBlockAbove(location: Vector3, options?: BlockSearchOptions): Block | undefined
 ```
 
 - location: [Vector3](../../server/general#vector3-接口)，搜索的起始坐标。
-- options?: [BlockRaycastOptions](../../server/dimension/raycast#blockraycastoptions-接口)，方块射线检测的选项。
+- options?: [BlockSearchOptions](#blocksearchoptions-接口)，方块搜索的选项。该参数在 2.13.0 前为 [BlockRaycastOptions](../../server/dimension/raycast#blockraycastoptions-接口)类型。
 
 **返回值**：[Block](../../server/block/main#block-类) | undefined，搜索到的第一个方块；未找到时为`undefined`。
 
@@ -237,11 +237,11 @@ getBlockAbove(location: Vector3, options?: BlockRaycastOptions): Block | undefin
 根据给定选项，获取指定方块位置下方搜索到的第一个方块（默认查找第一个固体方块）。
 
 ```typescript
-getBlockBelow(location: Vector3, options?: BlockRaycastOptions): Block | undefined
+getBlockBelow(location: Vector3, options?: BlockSearchOptions): Block | undefined
 ```
 
 - location: [Vector3](../../server/general#vector3-接口)，搜索的起始坐标。
-- options?: [BlockRaycastOptions](../../server/dimension/raycast#blockraycastoptions-接口)，方块射线检测的选项。
+- options?: [BlockSearchOptions](#blocksearchoptions-接口)，方块搜索的选项。该参数在 2.13.0 前为 [BlockRaycastOptions](../../server/dimension/raycast#blockraycastoptions-接口)类型。
 
 **返回值**：[Block](../../server/block/main#block-类) | undefined，搜索到的第一个方块；未找到时为`undefined`。
 
@@ -615,6 +615,26 @@ stopSound(soundId: string): void
 ```
 
 - soundId: string，要停止的声音标识符。
+
+### BlockSearchOptions 接口
+
+<Version type="script" experimental="测试版API"/>
+
+查找方块时的附加选项，除本接口自身的属性外，还继承了[BlockFilter](../../server/general#blockfilter-接口)的全部筛选属性。
+
+```typescript
+interface BlockSearchOptions extends BlockFilter {
+    includeLiquidBlocks?: boolean;
+    includePassableBlocks?: boolean;
+    maxDistance?: number;
+}
+```
+
+#### 属性
+
+- <Optional/> includeLiquidBlocks: boolean，设为`true`时包含液体方块。
+- <Optional/> includePassableBlocks: boolean，设为`true`时包含藤蔓、花等可穿过的方块。
+- <Optional/> maxDistance: number，最大搜索距离（单位：方块）。垂直搜索以整方块为单位。
 
 ### SpawnEntityOptions 接口
 

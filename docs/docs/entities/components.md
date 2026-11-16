@@ -3658,7 +3658,7 @@ import Version from "/src/components/highlight/version"
       - <DataType type="object" name="spawn_items"/>：交互时掉落的物品。
         - <DataType type="string" name="table"/>：战利品表路径，相对于行为包根目录。
         - <DataType type="float" name="y_offset"/>：掉落物的垂直偏移，单位为方块。默认值为`1`。
-      - <DataType type="boolean" name="swing"/>：为`true`时交互时手臂摆动。默认值为`true`。
+      - <DataType type="boolean" name="swing"/>：<Version add="1.26.0" inline/> 为`true`时交互时手臂摆动。默认值为`true`，格式版本低于`1.26.0`时默认为`false`。
       - <DataType type="boolean" name="take_item"/>：为`true`时取走玩家手中的物品。默认值为`false`。
       - <DataType type="string" name="transform_to_item"/>：把玩家的交互物品变成另一个物品。
       - <DataType type="boolean" name="use_item"/>：为`true`时使用玩家手中的物品。默认值为`false`。
@@ -8435,7 +8435,10 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="active_speed"/>：<Version add="1.15.0" inline/> 冲锋进行中或已开始时的移动速度。默认值为`3`。
   - <DataType type="float" name="flight_speed"/>：<Version add="1.15.0" inline/> 未冲锋时的飞行速度。默认值为`0.6`。
   - <DataType type="float" name="turn_speed"/>：<Version add="1.15.0" inline/> 执行该行为时的转向速度。默认值为`0.7`。
-  - <DataType type="array" name="target_zone"/>：<Version add="1.15.0" inline/> 可使用该行为的距离区间，写作`[最小值, 最大值]`，单位为方块。默认值为`[10, 150]`。
+  - <DataType type="array" name="target_zone"/>：<Version add="1.15.0" deprecated="1.26.0" inline/> 可使用该行为的距离区间，写作`[最小值, 最大值]`，单位为方块。默认值为`[10, 150]`。
+  - <DataType type="object" name="target_zone"/>：<Version add="1.26.0" inline/> 可使用该行为的距离区间，单位为方块。默认值为`{"min": 10, "max": 150}`。
+    - <DataType type="float" name="min"/>：区间下限。默认值为`10`。
+    - <DataType type="float" name="max"/>：区间上限。默认值为`150`。
   - <DataType type="float" name="continue_charge_threshold_time"/>：<Version add="1.15.0" inline/> 目标脱离`target_zone`超过该秒数后停止冲锋。默认值为`0.5`。
 </treeview>
 
@@ -8621,7 +8624,10 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="active_speed"/>：<Version add="1.15.0" inline/> 该行为进行中的移动速度。默认值为`0.6`。
   - <DataType type="float" name="flight_speed"/>：<Version add="1.15.0" inline/> 未执行该行为时的飞行速度。默认值为`0.6`。
   - <DataType type="float" name="turn_speed"/>：<Version add="1.15.0" inline/> 执行该行为时的转向速度。默认值为`0.7`。
-  - <DataType type="array" name="target_zone"/>：<Version add="1.15.0" inline/> 可使用该行为的距离区间，写作`[最小值, 最大值]`，单位为方块。默认值为`[10, 150]`。
+  - <DataType type="array" name="target_zone"/>：<Version add="1.15.0" deprecated="1.26.0" inline/> 可使用该行为的距离区间，写作`[最小值, 最大值]`，单位为方块。默认值为`[10, 150]`。
+  - <DataType type="object" name="target_zone"/>：<Version add="1.26.0" inline/> 可使用该行为的距离区间，单位为方块。默认值为`{"min": 10, "max": 150}`。
+    - <DataType type="float" name="min"/>：区间下限。默认值为`10`。
+    - <DataType type="float" name="max"/>：区间上限。默认值为`150`。
   - <DataType type="float" name="fireball_range"/>：<Version add="1.15.0" inline/> 盘旋时可发射火球的最大距离，单位为方块。默认值为`64`。
   - <DataType type="float" name="view_angle"/>：<Version add="1.15.0" inline/> 目标需处于当前朝向多少度以内才发射火球，单位为度。默认值为`10`。
   - <DataType type="float" name="target_in_range_and_in_view_time"/>：<Version add="1.15.0" inline/> 目标需持续处于射程与视野内的秒数。默认值为`0.25`。
@@ -10293,7 +10299,10 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="angle_of_view_horizontal"/>：水平方向的视场角，单位为度。默认值为`360`。
   - <DataType type="int" name="angle_of_view_vertical"/>：垂直方向的视场角，单位为度。默认值为`360`。
   - <DataType type="float" name="look_distance"/>：可注视的最远距离，单位为方块。默认值为`8`。
-  - <DataType type="array" name="look_time"/>：每次注视持续时间的区间，写作`[最小值, 最大值]`，单位为秒。默认值为`[2, 4]`。
+  - <DataType type="array" name="look_time"/>：<Version add="1.2.0" deprecated="1.26.0" inline/> 每次注视持续时间的区间，写作`[最小值, 最大值]`，单位为秒。默认值为`[2, 4]`。
+  - <DataType type="object" name="look_time"/>：<Version add="1.26.0" inline/> 每次注视持续时间的区间，单位为秒。默认值为`{"min": 2, "max": 4}`。
+    - <DataType type="float" name="min"/>：区间下限。默认值为`2`。
+    - <DataType type="float" name="max"/>：区间上限。默认值为`4`。
   - <DataType type="float" name="probability"/>：每刻开始注视的概率，取值`0.0`-`1.0`。默认值为`0.02`。
   - <DataType type="object" name="filters"/>：可以被注视的实体条件。见[实体过滤器](./filters)。
 </treeview>
@@ -10329,7 +10338,10 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="angle_of_view_horizontal"/>：水平方向的视场角，单位为度。默认值为`360`。
   - <DataType type="int" name="angle_of_view_vertical"/>：垂直方向的视场角，单位为度。默认值为`360`。
   - <DataType type="float" name="look_distance"/>：可注视的最远距离，单位为方块。默认值为`8`。
-  - <DataType type="array" name="look_time"/>：每次注视持续时间的区间，写作`[最小值, 最大值]`，单位为秒。默认值为`[2, 4]`。
+  - <DataType type="array" name="look_time"/>：<Version add="1.2.0" deprecated="1.26.0" inline/> 每次注视持续时间的区间，写作`[最小值, 最大值]`，单位为秒。默认值为`[2, 4]`。
+  - <DataType type="object" name="look_time"/>：<Version add="1.26.0" inline/> 每次注视持续时间的区间，单位为秒。默认值为`{"min": 2, "max": 4}`。
+    - <DataType type="float" name="min"/>：区间下限。默认值为`2`。
+    - <DataType type="float" name="max"/>：区间上限。默认值为`4`。
   - <DataType type="float" name="probability"/>：每刻开始注视的概率，取值`0.0`-`1.0`。默认值为`0.02`。
 </treeview>
 
@@ -10364,7 +10376,10 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="angle_of_view_horizontal"/>：水平方向的视场角，单位为度。默认值为`360`。
   - <DataType type="int" name="angle_of_view_vertical"/>：垂直方向的视场角，单位为度。默认值为`360`。
   - <DataType type="float" name="look_distance"/>：可注视的最远距离，单位为方块。默认值为`8`。
-  - <DataType type="array" name="look_time"/>：每次注视持续时间的区间，写作`[最小值, 最大值]`，单位为秒。默认值为`[2, 4]`。
+  - <DataType type="array" name="look_time"/>：<Version add="1.2.0" deprecated="1.26.0" inline/> 每次注视持续时间的区间，写作`[最小值, 最大值]`，单位为秒。默认值为`[2, 4]`。
+  - <DataType type="object" name="look_time"/>：<Version add="1.26.0" inline/> 每次注视持续时间的区间，单位为秒。默认值为`{"min": 2, "max": 4}`。
+    - <DataType type="float" name="min"/>：区间下限。默认值为`2`。
+    - <DataType type="float" name="max"/>：区间上限。默认值为`4`。
   - <DataType type="float" name="probability"/>：每刻开始注视的概率，取值`0.0`-`1.0`。默认值为`0.02`。
 </treeview>
 
@@ -10399,7 +10414,10 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="angle_of_view_horizontal"/>：水平方向的视场角，单位为度。默认值为`360`。
   - <DataType type="int" name="angle_of_view_vertical"/>：垂直方向的视场角，单位为度。默认值为`360`。
   - <DataType type="float" name="look_distance"/>：可注视的最远距离，单位为方块。默认值为`8`。
-  - <DataType type="array" name="look_time"/>：每次注视持续时间的区间，写作`[最小值, 最大值]`，单位为秒。默认值为`[2, 4]`。
+  - <DataType type="array" name="look_time"/>：<Version add="1.2.0" deprecated="1.26.0" inline/> 每次注视持续时间的区间，写作`[最小值, 最大值]`，单位为秒。默认值为`[2, 4]`。
+  - <DataType type="object" name="look_time"/>：<Version add="1.26.0" inline/> 每次注视持续时间的区间，单位为秒。默认值为`{"min": 2, "max": 4}`。
+    - <DataType type="float" name="min"/>：区间下限。默认值为`2`。
+    - <DataType type="float" name="max"/>：区间上限。默认值为`4`。
   - <DataType type="float" name="probability"/>：每刻开始注视的概率，取值`0.0`-`1.0`。默认值为`0.02`。
 </treeview>
 
@@ -11290,7 +11308,10 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="boolean" name="reselect_targets"/>：为`true`时允许改用更近的目标。默认值为`false`。
   - <DataType type="boolean" name="attack_owner"/>：<Version add="1.15.0" inline/> 为`true`时可以攻击自己的主人。默认值为`false`。
   - <DataType type="boolean" name="set_persistent"/>：<Version add="1.16.0" inline/> 为`true`时锁定玩家为目标后转为持久实体。默认值为`false`。
-  - <DataType type="array" name="attack_interval"/>：<Version add="1.21.130" inline/> 两次搜索目标之间的秒数区间，写作`[最小值, 最大值]`。默认值为`[0, 0]`。
+  - <DataType type="array" name="attack_interval"/>：<Version add="1.21.130" deprecated="1.26.0" inline/> 两次搜索目标之间的秒数区间，写作`[最小值, 最大值]`。默认值为`[0, 0]`。
+  - <DataType type="object" name="attack_interval"/>：<Version add="1.26.0" inline/> 两次搜索目标之间的秒数区间。默认值为`{"min": 0, "max": 0}`。
+    - <DataType type="float" name="min"/>：区间下限。默认值为`0`。
+    - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="int" name="scan_interval"/>：<Version add="1.6.0" inline/> 未设置`attack_interval`时的扫描间隔，单位为刻。默认值为`10`。
   - <DataType type="float" name="target_search_height"/>：<Version add="1.6.0" inline/> 搜索目标的垂直距离，`-1`表示不限。默认值为`-1`。
   - <DataType type="float" name="target_invisible_multiplier"/>：<Version add="1.15.0" inline/> 目标护甲覆盖率对该距离判定的修正系数。默认值为`0.7`。

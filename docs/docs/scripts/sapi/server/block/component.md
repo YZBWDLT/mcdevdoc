@@ -59,14 +59,16 @@ class BlockComponent extends Component {
 
 <Version type="script" add="1.10.0"/>
 
-可通过函数`Block.getComponent`访问的方块组件类型。
+可通过函数`Block.getComponent`访问的方块组件类型。其中`MapColor`、`Movable`、`PrecipitationInteractions`与`RedstoneProducer`四个成员为<Version type="script" add="2.5.0" inline/>新增。
 
 ```typescript
 enum BlockComponentTypes {
+    ClimbableProperties = "minecraft:climbable", // 方块可攀爬属性组件
     DynamicProperties = "minecraft:dynamic_properties", // 动态属性组件
     FluidContainer = "minecraft:fluid_container", // 流体容器组件
     Instrument = "minecraft:instrument_sound", // 乐器组件
     Inventory = "minecraft:inventory", // 世界中方块的物品栏，用于箱子等方块
+    ItemFrame = "minecraft:item_frame", // 方块物品展示框组件
     MapColor = "minecraft:map_color", // 方块在地图上显示时的颜色
     Movable = "minecraft:movable", // 可移动的方块（如活塞）
     Piston = "minecraft:piston", // 类活塞行为，含发现方块活塞状态的附加属性
@@ -798,8 +800,10 @@ class BlockEntityStorageComponent extends BlockComponent {
     static readonly componentId = 'minecraft:entity_storage';
     getEntities(): BlockEntityStorageInfo[];
     release(entityId: string): Entity;
+    remove(entityId: string): void;
     size(): number;
     store(entity: Entity): string;
+    totalSize(): number;
     transfer(entityId: string, targetBlock: Block): void;
 }
 ```
@@ -824,6 +828,18 @@ release(entityId: string): Entity
 
 **返回值**：[Entity](../../server/entity_and_player/entity#entity-类)，释放并重新生成到世界中的实体。
 
+#### remove 方法
+
+<RestrictedMode inline/>
+
+永久移除存储在该方块内的某个实体，不将其释放到世界中，也不会生成实体、经验或物品掉落。
+
+```typescript
+remove(entityId: string): void
+```
+
+- entityId: string，要移除的实体的唯一 ID，即 store 方法的返回值或[BlockEntityStorageInfo](#blockentitystorageinfo-类)的 uniqueId。
+
 #### size 方法
 
 ```typescript
@@ -843,6 +859,16 @@ store(entity: Entity): string
 - entity: [Entity](../../server/entity_and_player/entity#entity-类)，要存储的实体。
 
 **返回值**：string，实体的唯一 ID。
+
+#### totalSize 方法
+
+返回该方块实体存储中由所有内容包存入的实体总数。
+
+```typescript
+totalSize(): number
+```
+
+**返回值**：number，所有内容包存入的实体总数。
 
 #### transfer 方法
 
@@ -1110,6 +1136,125 @@ getCanOccludeVibrations(): boolean
 
 ---
 
+## 方块可攀爬属性组件
+
+### BlockClimbablePropertiesComponent 类
+
+<Version type="script" experimental="测试版API"/>
+
+方块可攀爬属性组件，用于查询方块的攀爬行为。
+
+继承自[BlockComponent](#blockcomponent-类)。
+
+```typescript
+class BlockClimbablePropertiesComponent extends BlockComponent {
+    private constructor();
+    static readonly componentId = 'minecraft:climbable';
+    readonly canClimb: boolean;
+    readonly canHoldPositionWhileSneaking: boolean;
+}
+```
+
+#### 属性
+
+- <ReadOnly/> canClimb: boolean，实体的脚与该方块处于同一位置时能否攀爬该方块。方块未定义`minecraft:climbable`组件时返回`false`。
+- <ReadOnly/> canHoldPositionWhileSneaking: boolean，位于该方块上的玩家潜行时能否停止下降并保持位置。方块未定义`minecraft:climbable`组件时返回`false`。
+
+---
+
+## 方块物品展示框组件
+
+### BlockItemFrameComponent 类
+
+<Version type="script" experimental="测试版API"/>
+
+方块物品展示框组件，用于读写展示框中的物品及其旋转角度。
+
+继承自[BlockComponent](#blockcomponent-类)。
+
+```typescript
+class BlockItemFrameComponent extends BlockComponent {
+    private constructor();
+    static readonly componentId = 'minecraft:item_frame';
+    dropFramedItem(): void;
+    getFramedItem(): ItemStack | undefined;
+    getRotation(): ItemFrameRotation;
+    setFramedItem(itemStack?: ItemStack): void;
+    setRotation(rotation: ItemFrameRotation): void;
+}
+```
+
+#### dropFramedItem 方法
+
+<RestrictedMode inline/>
+
+移除展示框中展示的物品，并将其掉落到世界中。
+
+```typescript
+dropFramedItem(): void
+```
+
+#### getFramedItem 方法
+
+```typescript
+getFramedItem(): ItemStack | undefined
+```
+
+**返回值**：[ItemStack](../item/main#itemstack-类) | undefined，展示框中当前展示的物品；展示框为空时为`undefined`。
+
+#### getRotation 方法
+
+```typescript
+getRotation(): ItemFrameRotation
+```
+
+**返回值**：[ItemFrameRotation](#itemframerotation-枚举)，展示框当前的旋转角度。
+
+#### setFramedItem 方法
+
+<RestrictedMode inline/>
+
+设置或替换展示框中展示的物品。
+
+```typescript
+setFramedItem(itemStack?: ItemStack): void
+```
+
+- itemStack?: [ItemStack](../item/main#itemstack-类)，要展示的物品。省略或传入`undefined`时，直接移除物品而不掉落。
+
+#### setRotation 方法
+
+<RestrictedMode inline/>
+
+设置展示框的旋转角度。
+
+```typescript
+setRotation(rotation: ItemFrameRotation): void
+```
+
+- rotation: [ItemFrameRotation](#itemframerotation-枚举)，要应用的旋转角度。
+
+### ItemFrameRotation 枚举
+
+<Version type="script" experimental="测试版API"/>
+
+展示框中物品的旋转角度。
+
+```typescript
+enum ItemFrameRotation {
+    Clockwise45 = "Clockwise45", // 顺时针旋转 45 度
+    Clockwise90 = "Clockwise90", // 顺时针旋转 90 度
+    Clockwise135 = "Clockwise135", // 顺时针旋转 135 度
+    Clockwise180 = "Clockwise180", // 顺时针旋转 180 度
+    Clockwise225 = "Clockwise225", // 顺时针旋转 225 度
+    Clockwise270 = "Clockwise270", // 顺时针旋转 270 度
+    Clockwise315 = "Clockwise315", // 顺时针旋转 315 度
+    None = "None", // 无额外旋转
+}
+```
+
+---
+
 ## 组件映射
 
 ### BlockComponentTypeMap 类型
@@ -1120,17 +1265,21 @@ getCanOccludeVibrations(): boolean
 
 ```typescript
 type BlockComponentTypeMap = {
+    climbable: BlockClimbablePropertiesComponent;
     dynamic_properties: BlockDynamicPropertiesComponent;
     entity_storage: BlockEntityStorageComponent;
     fluid_container: BlockFluidContainerComponent;
     instrument_sound: BlockInstrumentComponent;
     inventory: BlockInventoryComponent;
+    item_frame: BlockItemFrameComponent;
     map_color: BlockMapColorComponent;
+    'minecraft:climbable': BlockClimbablePropertiesComponent;
     'minecraft:dynamic_properties': BlockDynamicPropertiesComponent;
     'minecraft:entity_storage': BlockEntityStorageComponent;
     'minecraft:fluid_container': BlockFluidContainerComponent;
     'minecraft:instrument_sound': BlockInstrumentComponent;
     'minecraft:inventory': BlockInventoryComponent;
+    'minecraft:item_frame': BlockItemFrameComponent;
     'minecraft:map_color': BlockMapColorComponent;
     'minecraft:movable': BlockMovableComponent;
     'minecraft:piston': BlockPistonComponent;

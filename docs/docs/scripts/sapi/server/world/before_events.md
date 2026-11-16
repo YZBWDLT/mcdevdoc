@@ -39,7 +39,6 @@ import RestrictedMode from "/src/components/highlight/restrictedMode"
 | 世界时钟重启       |      [`WorldClockOnRestartBeforeEvent`](#worldclockonrestartbeforeevent-类)      |       [`WorldClockEventOptions`](./event_types#worldclockeventoptions-接口)       |     是     |          `2.11.0`           |
 | 发送聊天消息       |                 [`ChatSendBeforeEvent`](#chatsendbeforeevent-类)                 |                                                       不支持                                                       |     是     |           `beta`            |
 | 玩家放置方块       |         [`PlayerPlaceBlockBeforeEvent`](#playerplaceblockbeforeevent-类)         |            [`BlockEventOptions`](./event_types#blockeventoptions-接口)            |     是     |           `beta`            |
-| 玩家物品攻击实体   |   [`PlayerItemAttackEntityBeforeEvent`](#playeritemattackentitybeforeevent-类)   |                                                       不支持                                                       |     是     |           `beta`            |
 
 **备注**：
 
@@ -772,54 +771,6 @@ class ChatSendBeforeEvent {
 - <ReadOnly/> message: string，即将被广播的消息。
 - <ReadOnly/> sender: [Player](../entity_and_player/player#player-类)，发送该聊天消息的玩家。
 - <Optional/> targets: [Player](../entity_and_player/player#player-类)[]，即将接收该消息的玩家列表。若已定义，该消息将直接发送给一个或多个玩家（即不广播）。可修改该列表以更改消息的接收者。
-
----
-
-## 玩家物品攻击实体事件
-
-### PlayerItemAttackEntityBeforeEventSignal 类
-
-<Version type="script" experimental="测试版API"/>
-
-当玩家物品攻击实体前触发该事件信号。
-
-```typescript
-class PlayerItemAttackEntityBeforeEventSignal {
-    private constructor();
-    subscribe(callback: (arg0: PlayerItemAttackEntityBeforeEvent) => void): (arg0: PlayerItemAttackEntityBeforeEvent) => void;
-    unsubscribe(callback: (arg0: PlayerItemAttackEntityBeforeEvent) => void): void;
-}
-```
-
-#### 方法
-
-- <RestrictedMode inline/> <EarlyExecution/> subscribe: (callback: (arg0: [PlayerItemAttackEntityBeforeEvent](#playeritemattackentitybeforeevent-类)) => void) => (arg0: [PlayerItemAttackEntityBeforeEvent](#playeritemattackentitybeforeevent-类)) => void，订阅该事件，返回的函数可用于取消订阅。
-- <RestrictedMode inline/> <EarlyExecution/> unsubscribe: (callback: (arg0: [PlayerItemAttackEntityBeforeEvent](#playeritemattackentitybeforeevent-类)) => void) => void，取消订阅该事件。
-
-### PlayerItemAttackEntityBeforeEvent 类
-
-<Version type="script" experimental="测试版API"/>
-
-玩家物品攻击实体前的事件信息。
-
-```typescript
-class PlayerItemAttackEntityBeforeEvent {
-    private constructor();
-    readonly aimDirection?: Vector3;
-    cancel: boolean;
-    readonly itemStack?: ItemStack;
-    readonly player: Player;
-    readonly target: Entity;
-}
-```
-
-#### 属性
-
-- <ReadOnly/> <Optional/> aimDirection: [Vector3](../general#vector3-接口)，攻击所使用的归一化世界空间方向。对于标准的客户端发起的攻击，该方向由客户端提供的命中位置与玩家服务端的眼部位置计算得出。其它攻击路径可提供服务端推导出的方向。当攻击路径不提供瞄准方向时，该属性为`undefined`。
-- cancel: boolean，若设为`true`，该攻击不会造成伤害或其它权威的攻击效果。
-- <ReadOnly/> <Optional/> itemStack: [ItemStack](../item/main#itemstack-类)，发起攻击的玩家所持物品的快照。当玩家未持有物品时，该属性为`undefined`。
-- <ReadOnly/> player: [Player](../entity_and_player/player#player-类)，发起该攻击的玩家。
-- <ReadOnly/> target: [Entity](../entity_and_player/entity#entity-类)，被该攻击锁定的实体。
 
 ---
 
