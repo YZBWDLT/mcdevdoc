@@ -429,7 +429,7 @@ MSAA（多重采样抗锯齿）在每个像素上取多个采样点计算覆盖�
 - [Material Configuration Description | Bedrock Wiki](https://wiki.bedrock.dev/documentation/material-config-description)
 - [Bedrock Modeling | Bedrock Wiki](https://wiki.bedrock.dev/visuals/bedrock-modeling)
 - [手册:材质 | Minecraft 基岩版开发 Wiki](https://wiki.mcbe-dev.net/p/Manual:%E6%9D%90%E8%B4%A8)
-- [材质配置说明 | 我的世界开发者官网](https://mc.163.com/m/dev/mcmanual/mc-dev/mcguide/16-%E7%BE%8E%E6%9C%AF/7-%E6%9D%90%E8%B4%A8%E4%B8%8E%E7%9D%80%E8%89%B2%E5%99%A8/3-%E6%9D%90%E8%B4%A8%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E.html)
+- [材质配置说明 | 我的世界开发者官网](https://mc.163.com/newdev/docs/mcguide/16-meishu/7-caizhiyuzhuoseqi/3-caizhipeizhishuoming.html)
 
 import GiscusComment from "/src/components/comment/giscus.js"
 

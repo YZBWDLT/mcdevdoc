@@ -281,7 +281,7 @@ import Version from "/src/components/highlight/version"
 本文主要参考文档如下，读者可以在这些文档获得更多信息。
 
 - [物品定义属性 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemdefinition?view=minecraft-bedrock-stable)
-- [自定义基础物品 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1)
+- [自定义基础物品 | 我的世界开发者官网](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html)
 - [物品文档 | 1.16.20.3 | bedrock.dev](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item)
 
 import GiscusComment from "/src/components/comment/giscus.js"

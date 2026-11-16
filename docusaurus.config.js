@@ -169,7 +169,7 @@ const config = {
                                 label: "Microsoft Learn",
                                 href: "https://learn.microsoft.com/en-us/minecraft/creator/?view=minecraft-bedrock-stable",
                             },
-                            { label: "我的世界开发者官网", href: "https://mc.163.com/dev/guide.html" },
+                            { label: "我的世界开发者官网", href: "https://mc.163.com/newdev/" },
                             { label: "JaylyMC 的 SAPI 文档", href: "https://jaylydev.github.io/scriptapi-docs/" },
                             { label: "智韵清风的 JSONUI 文档", href: "https://mcbeui.netlify.app/" },
                             { label: "MCBEID 表", href: "https://idlist.projectxero.top/" },

@@ -166,7 +166,7 @@ function printHealth( entity, healthValue ) {
 
 <summary>中国版</summary>
 
-**服务端脚本**。参考事件[`HealthChangeServerEvent`](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E5%AE%9E%E4%BD%93.html?key=HealthChangeServerEvent&docindex=2&type=0)和[`AddEntityServerEvent`](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E4%B8%96%E7%95%8C.html?key=AddEntityServerEvent&docindex=2&type=0)。
+**服务端脚本**。参考事件[`HealthChangeServerEvent`](https://mc.163.com/newdev/docs/api/shijian/shiti.html)和[`AddEntityServerEvent`](https://mc.163.com/newdev/docs/api/shijian/shijie.html)。
 
 如果您需要，您可以扩展`entityTypes`中所指定的实体类型，以使这段代码对更多类型的实体生效。
 
@@ -242,7 +242,7 @@ world.afterEvents.itemUse.subscribe(event => {
 
 <summary>中国版</summary>
 
-**服务端脚本**。参考事件[`ItemUseAfterServerEvent`](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E7%89%A9%E5%93%81.html?key=ItemUseAfterServerEvent&docindex=2&type=0)。
+**服务端脚本**。参考事件[`ItemUseAfterServerEvent`](https://mc.163.com/newdev/docs/api/shijian/wupin.html)。
 
 如果您需要，您可以扩展`usableItems`中所指定的物品 ID，以使这段代码对更多类型的物品生效。
 
@@ -299,7 +299,7 @@ world.afterEvents.itemCompleteUse.subscribe(event => {
 
 <summary>中国版</summary>
 
-**服务端脚本**。参考事件[`ActorUseItemServerEvent`](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E7%89%A9%E5%93%81.html?catalog=1#actoruseitemserverevent)。
+**服务端脚本**。参考事件[`ActorUseItemServerEvent`](https://mc.163.com/newdev/docs/api/shijian/wupin.html#actoruseitemserverevent)。
 
 如果您需要，您可以扩展`usableItems`中所指定的物品 ID，以使这段代码对更多类型的物品生效。
 

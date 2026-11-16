@@ -34,7 +34,7 @@ import Image from "/src/components/image/standard"
 
 ## 编写中国版物品
 
-要让中国版的 Minecraft 识别出这是中国版物品，我们就不能再把物品放到<FileType type="folder" name="items" />文件夹里了。按照[网易所提供的文档](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/1-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%A9%E5%93%81/1-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%BA%E7%A1%80%E7%89%A9%E5%93%81.html?catalog=1)，我们要将物品的服务端文件放到行为包的<FileType type="folder" name="netease_items_beh" />里，而客户端文件放到资源包的<FileType type="folder" name="netease_items_res" />里，也就是：
+要让中国版的 Minecraft 识别出这是中国版物品，我们就不能再把物品放到<FileType type="folder" name="items" />文件夹里了。按照[网易所提供的文档](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html)，我们要将物品的服务端文件放到行为包的<FileType type="folder" name="netease_items_beh" />里，而客户端文件放到资源包的<FileType type="folder" name="netease_items_res" />里，也就是：
 
 <treeview>
 
@@ -172,7 +172,7 @@ import Image from "/src/components/image/standard"
 
 ## 中国版专属编辑器：MCStudio
 
-中国版还有一个很明显的优势在于 —— 网易专门为中国版的开发者开发了一套可视化的编程 IDE！它的全名叫 MCStudio，我们通常习惯称其为 MCS。你可以在中国版的官网找到 MCS 并下载，但需要注意使用 MCS 必须拥有一个开发者账号。本文不希望在如何注册开发者账号的问题上多费笔墨，读者可以自行阅读[网易给出的这篇教程](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/12-%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/10-%E6%B3%A8%E5%86%8C%E6%88%90%E4%B8%BA%E5%BC%80%E5%8F%91%E8%80%85.html?catalog=1)。
+中国版还有一个很明显的优势在于 —— 网易专门为中国版的开发者开发了一套可视化的编程 IDE！它的全名叫 MCStudio，我们通常习惯称其为 MCS。你可以在中国版的官网找到 MCS 并下载，但需要注意使用 MCS 必须拥有一个开发者账号。本文不希望在如何注册开发者账号的问题上多费笔墨，读者可以自行阅读[网易给出的这篇教程](https://mc.163.com/newdev/docs/mcguide/12-rumenjiaocheng/10-zhucechengweikaifazhe.html)。
 
 MCS 的一个关键功能在于，你可以直接打开一个中国版测试版的开发实例，按下图操作即可。
 

@@ -110,18 +110,15 @@ Wiki 中，给出下面的定义（但并不明晰）：
 在附加包领域，我们所常用的文档就**不能再只局限于中文 Minecraft Wiki**。因为 Wiki 并不是专门为了基岩版玩家编写的，更不是专门为了基岩版开发者编写的，但是附加包所涉及的领域非常之广泛，如果 Wiki 详细记载，恐怕 Wiki 的半壁江山都要记载这些细碎的东西。好在，官方为我们提供了文档，社区也有很多文档可以使用。我们现在把这些文档列出来，供你使用。
 
 - **[微软文档](https://learn.microsoft.com/en-us/minecraft/creator)（这是最官方、最权威的文档，出现各种问题应当优先找微软文档）**
-  - [创作者常用工具](https://learn.microsoft.com/en-us/minecraft/creator/documents/commonlyusedtools)
+    - [创作者常用工具](https://learn.microsoft.com/en-us/minecraft/creator/documents/commonlyusedtools)
 - [Bedrock Wiki](https://wiki.bedrock.dev/)
-  - [实用链接](https://wiki.bedrock.dev/meta/useful-links.html)  
-  - [自带附加包历代文档收录](https://bedrock.dev/)
-  - [附加包模板历代收录](https://bedrock.dev/packs)
+    - [实用链接](https://wiki.bedrock.dev/meta/useful-links.html)
+    - [自带附加包历代文档收录](https://bedrock.dev/)
+    - [附加包模板历代收录](https://bedrock.dev/packs)
 - [JaylyMC 的 SAPI 文档](https://jaylydev.github.io/scriptapi-docs/)
 - [中文 Minecraft Wiki](https://zh.minecraft.wiki/)
 - [Minecraft 基岩版开发 Wiki](https://wiki.mcbe-dev.net/)（仍处于开荒状态）
-- [MC 开发者文档](https://mc.163.com/mcstudio/mc-dev/)（多数仅网易可用）
-- 我的世界开发指南（多数仅网易可用）
-  - [电脑版](https://mc.163.com/dev/guide.html)
-  - [手机版](https://mc.163.com/m/dev/guide.html)
+- [我的世界开发者官网](https://mc.163.com/newdev/)（多数仅网易可用）
 - [Minecraft 基岩版开发文档](https://www.mcbe-dev.net/addons/)（理解难度高，仅作上述文档的补充）
 
 此外，还有很多常用工具可供我们使用，这些就等到我们讲到具体内容的时候再细说。
@@ -132,10 +129,10 @@ Wiki 中，给出下面的定义（但并不明晰）：
 
 - 附加包（Add-ons）是一种受到官方支持的包，主要分为 4 类：行为包、资源包、世界模板、皮肤包。
 - 几乎所有的游戏都有服务端（Server）和客户端（Client）。
-  - 在 Minecraft，服务端主要负责底层的逻辑和计算。
-  - 在 Minecraft，客户端主要负责画面的渲染和绘制。
-  - 服务端的卡顿，会造成 TPS 的降低，也就是“高延迟”。
-  - 客户端的卡顿，会造成 FPS 的降低，也就是“不流畅”。
+    - 在 Minecraft，服务端主要负责底层的逻辑和计算。
+    - 在 Minecraft，客户端主要负责画面的渲染和绘制。
+    - 服务端的卡顿，会造成 TPS 的降低，也就是“高延迟”。
+    - 客户端的卡顿，会造成 FPS 的降低，也就是“不流畅”。
 - 行为包（Behavior Pack，BP）是一种能够更改世界运行方式的附加包，行为包影响服务端，它定义部分方块、物品、实体，以及各种各样的配方、战利品、交易品的运行方式。
 - 资源包（Resource Pack，RP）是一种能够更改游戏界面、世界外观和渲染的附加包。资源包影响客户端，它决定方块、物品、实体如何显示、以及粒子、音效、翻译、界面等如何出现在你的屏幕上。
 - 世界模板（World Template）允许你在游戏内基于它创建一张地图。它有版本锁定、设置锁定、便于在游戏内重新创建地图等优点，但是中国版并不支持。

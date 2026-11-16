@@ -42,7 +42,7 @@ ScriptAPI 的**正式版**的包主要由两部分组成：
 
 - **服务端脚本，即`@minecraft/server`**（也称作`server`模块），专门用来处理游戏中的各种事件，或调用游戏的各种接口，是最核心的脚本内容。
 - **服务端 UI 脚本，即`@minecraft/server-ui`**（也称作`server-ui`模块），专门用来调用一个可供玩家操作、选择、输入的 UI，并根据玩家输入的内容处理逻辑。
-  - 是的，你没看错，**是直接调用一个新的 UI**！这就是非脚本手段无法实现的内容了。
+    - 是的，你没看错，**是直接调用一个新的 UI**！这就是非脚本手段无法实现的内容了。
 
 此外，ScriptAPI 还拥有大量的测试版的包，这些包必须开启「测试版 API」实验性玩法才能使用，比如`@minecraft/server-gametest`等，因为长期没有“转正”，在本教程系列中我们就不再过多赘述，感兴趣的读者可以自行查阅并学习。
 
@@ -150,9 +150,9 @@ npm i @minecraft/server-ui@2.0.0
 <treeview>
 
 - <FileType type="folder" name="BP_test" />：行为包
-  - ……
-  - <FileType type="folder" name="scripts" />：脚本
-    - <FileType type="file" name="main.js" />：主文件
+    - ……
+    - <FileType type="folder" name="scripts" />：脚本
+        - <FileType type="file" name="main.js" />：主文件
 
 </treeview>
 
@@ -160,7 +160,6 @@ npm i @minecraft/server-ui@2.0.0
 
 ```js showLineNumbers title="main.js"
 // @ts-check
-
 ```
 
 引入这个注释就可以启用 TypeScript 级别的类型检查了。TS 的类型检查是很严格的，它在检查到类型不正确、检查不到特定变量名等情况的时候就会出现报错，提醒开发者这里可能出现错误。而且，这个注释并不会影响程序的正常运行。使用 TS 级别的类型检查可以很大程度上避免程序运行时因为变量类型不当而发生报错。
@@ -171,7 +170,6 @@ npm i @minecraft/server-ui@2.0.0
 // @ts-check
 
 import { world } from "@minecraft/server";
-
 ```
 
 `world`常量代表这个世界，它是由[`World`](/docs/docs/scripts/sapi/server/world/main#world-类)类实例化而来的，可以用来获取这个世界的大量信息，并让这个世界做一些事情。需要注意，`World`类的构造函数是**私有（Private）** 属性，这意味着我们是不能够实例化`World`类的，而只能使用游戏本体通过`World`类实例化之后提供的`world`常量。
@@ -184,18 +182,18 @@ import { world } from "@minecraft/server";
 import { world } from "@minecraft/server";
 
 world.afterEvents.itemUse.subscribe(event => {});
-
 ```
 
 这里我们又添加了一行，但这一行需要做很多解释。我们现在在做的事情是在**订阅事件（Subscribe Event，也可以称为监听事件，Listen Event）**。游戏内有着形形色色的不同的事件，比如玩家使用物品、玩家破坏方块、玩家攻击生物等。在订阅了事件之后，游戏就会在这个事件发生之后执行我们预先就定义好的函数。
 
 - 首先，我们调用了`world`的`afterEvents`属性，也就是**世界后事件（World After Events）**。**后事件是指已经发生了的，无法阻止既定事实的事件，并且在这个事件发生之后能够返回这个事件的一些基本信息**。例如，玩家对一个方块交互也是一个事件，玩家和工作台交互后，游戏引擎会认定玩家与工作台交互过，然后再执行我们给出的代码。
 
-  与后事件相对的概念是**前事件（Before Events）**，即**在事件发生之前就可以返回事件的基本信息的事件**。并且**多数前事件都可控制是否允许这个事件发生**，例如同样是玩家对方块交互的事件，如果通过前事件取消这个事件的发生，游戏引擎就会认定玩家和工作台没有交互过，连工作台的 UI 都不会弹出！但是，**前事件的使用具有一定限制，不必要的话使用后事件会相对稳定一些**。因此，我们这个例子中，只需要使用后事件就可以了。
+    与后事件相对的概念是**前事件（Before Events）**，即**在事件发生之前就可以返回事件的基本信息的事件**。并且**多数前事件都可控制是否允许这个事件发生**，例如同样是玩家对方块交互的事件，如果通过前事件取消这个事件的发生，游戏引擎就会认定玩家和工作台没有交互过，连工作台的 UI 都不会弹出！但是，**前事件的使用具有一定限制，不必要的话使用后事件会相对稳定一些**。因此，我们这个例子中，只需要使用后事件就可以了。
+
 - 然后，我们调用了`afterEvents`的`itemUse`属性，这个属性所对应的就是使用物品的后事件。
 - 接下来，我们调用了`itemUse`的`subscribe`方法，这个方法接收一个参数`callback: (arg0: ItemUseAfterEvent) => void`，我们注意到这个参数的类型是一个函数。这种**函数 A 作为另一个函数 B 的参数的情况并不少见，我们将函数 A 称为回调函数（Callback Function）**。
 
-  这里的回调函数是一个单参数的函数，因此我们传入了一个匿名函数`event => {}`，参照回调函数的参数类型，我们知道这里的`event`的类型是[`ItemUseAfterEvent`](/docs/docs/scripts/sapi/server/world/after_events#itemuseafterevent-类)，这里的`ItemUseAfterEvent`就代表事件的基本信息。
+    这里的回调函数是一个单参数的函数，因此我们传入了一个匿名函数`event => {}`，参照回调函数的参数类型，我们知道这里的`event`的类型是[`ItemUseAfterEvent`](/docs/docs/scripts/sapi/server/world/after_events#itemuseafterevent-类)，这里的`ItemUseAfterEvent`就代表事件的基本信息。
 
 所以，这一行实际在做的事情是，**订阅玩家使用物品后事件，并把事件信息传递给回调函数内的`event`**。
 
@@ -251,7 +249,6 @@ world.afterEvents.itemUse.subscribe(event => {
 });
 
 world.beforeEvents.playerBreakBlock.subscribe(event => {});
-
 ```
 
 我们来看看这个事件有什么可以指定的：
@@ -274,7 +271,6 @@ world.afterEvents.itemUse.subscribe(event => {
 world.beforeEvents.playerBreakBlock.subscribe(event => {
     event.cancel = true;
 });
-
 ```
 
 然后，我们只需要`/reload`即可重载我们的脚本，同样十分方便！现在读者会发现自己连一株向日葵都无法破坏：
@@ -400,7 +396,7 @@ world.afterEvents.worldLoad.subscribe(event => {
 1. `callback`：接收一个函数，写入需要执行的逻辑。
 2. `tickInterval`：每次循环执行的间隔，单位是游戏刻。例如设置为 20 时，就会每 20 游戏刻执行一次`callback`函数的内容。
 
-那么，我们来写一个玩家潜行的检测吧！当玩家潜行时，我们就发送快捷栏标题：「你正在潜行！」，否则发送「你没在潜行！」，显然这是需要高频循环检测的。
+那么，我们来写一个玩家潜行的检测吧！当玩家潜行时，我们就发送动作栏标题：「你正在潜行！」，否则发送「你没在潜行！」，显然这是需要高频循环检测的。
 
 我们还是一步一步来。首先先使用间隔执行的方法：
 
@@ -408,7 +404,7 @@ world.afterEvents.worldLoad.subscribe(event => {
 system.runInterval(() => {});
 ```
 
-写入逻辑，我们可以看到`world`类并没有什么直接播放快捷栏标题的方法，因此我们需要先获取玩家的信息才行：
+写入逻辑，我们可以看到`world`类并没有什么直接播放动作栏标题的方法，因此我们需要先获取玩家的信息才行：
 
 ```js showLineNumbers title="main.js"
 system.runInterval(() => {
@@ -436,7 +432,7 @@ system.runInterval(() => {
 });
 ```
 
-而对玩家使用快捷栏标题，则需要使用`Player`类中的`onScreenDisplay`属性，我们看到里面有一个`setActionBar`的方法：
+而对玩家使用动作栏标题，则需要使用`Player`类中的`onScreenDisplay`属性，我们看到里面有一个`setActionBar`的方法：
 
 ![loop_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/loop_2.webp)
 
@@ -546,25 +542,25 @@ npm i @minecraft/server-ui
 除此之外，我们还很零散地提到了一些小概念：
 
 - **私有（Private）**：是指类内部可访问，外部不可访问的特性。这意味着我们是不能够随意实例化原版的类的，只有少量的原版的类可供我们实例化。
-  - 遗憾的是，我们自己写代码时，只有 TypeScript 脚本才能用`private`字段。例如，在 JS 中我们不能这么写，只有在 TS 中我们才能这么做：
+    - 遗憾的是，我们自己写代码时，只有 TypeScript 脚本才能用`private`字段。例如，在 JS 中我们不能这么写，只有在 TS 中我们才能这么做：
 
-    ```js title="main.js" {2}
-    class TestClass {
-        private constructor() { // 会报错
-            this.myVar = "awa";
+        ```js title="main.js" {2}
+        class TestClass {
+            private constructor() { // 会报错
+                this.myVar = "awa";
+            }
         }
-    }
-    ```
+        ```
 
 - **回调函数（Callback Function）**：是指作为另一个函数的参数的函数。通常为函数传入一个函数是为了实现一些相对复杂的逻辑。
 - 还有一个是**只读（Read Only）**：是指只可访问，但不可修改的属性。尝试修改原版的只读属性会导致报错。SAPI 中有很多属性都是这种只读属性。
-  - 同样，只有 TypeScript 脚本才能用`readonly`字段：
+    - 同样，只有 TypeScript 脚本才能用`readonly`字段：
 
-    ```js title="main.js" {2}
-    class TestClass {
-        readonly myVar = "awa"; // 会报错
-    }
-    ```
+        ```js title="main.js" {2}
+        class TestClass {
+            readonly myVar = "awa"; // 会报错
+        }
+        ```
 
 我们还介绍了一个获取所有玩家的方法，也就是使用`World.getPlayers(): Player[]`。
 
@@ -586,6 +582,7 @@ npm i @minecraft/server-ui
 现在我们正式开始练习吧。越到后面的题目，我们越会面对更加复杂的需求！
 
 <!--markdownlint-disable MD031-->
+
 1. 实现**玩家**死亡执行命令`function events/player_die`——但是注意，这回不要用循环代码！读者可以尝试使用实体死亡后事件，并且注意`Entity`类有`runCommand`方法。
 2. 让 TNT 除了能炸掉玻璃之外，其他一切方块都炸不掉！读者可以考虑使用爆炸前事件。
 3. 让玩家在吃掉苹果之后，增加 1 级的经验。读者可以考虑使用完成使用物品后事件。
@@ -627,7 +624,7 @@ npm i @minecraft/server-ui
 17. 当玩家使用木剑时，在玩家上方 5 格的位置生成 1 颗钻石，名为「§e木剑生成的钻石」。对，是直接生成掉落物！提示：`ItemStack`对象是可以实例化的。考虑使用`Dimension`的`spawnItem`方法。
 18. 现在给出一个坐标工具类`Vector3Util`，定义一个双参数的静态方法`distance(location1: Vector3, location2: Vector3)`，返回两坐标点的距离。提示：数学上定义两点间距离 d=√(Δx²+Δy²+Δz²)。编程领域，数学很重要哦！
 19. 只考虑单人游戏的情况下，将玩家的 xyz 位置分别*实时*打印到记分板`playerData`的`x`、`y`、`z`假名上，向下取整。例如当玩家位于(0.5, -60.5, 35)的时候，记载`playerData.x`为`0`，`playerData.y`为`-61`，`playerData.z`为`35`。现在可以和二分法取坐标说再见了！
-20. 第二十道题！！哈哈哈，SAPI 当然值得这个待遇啦！现在我们给小木棍升个级，当小木棍对一个方块使用后，当方块具有`minecraft:vertical_half`方块状态时，把该方块状态的值换成另一个，比如如果是下半砖，就在小木棍对其交互后改成上半砖；如果是上半砖就改成下半砖！这就是一个很简易的调试棒功能了。提示：可以使用`Block`类的`permutation`属性获取方块状态，然后用`withState()`方法定义一个新的[`BlockPermutation`](/docs/docs/scripts/sapi/server/block/main#blockpermutation-类)，再用`Block.setPermutation()`方法应用新`BlockPermutation`。别忘了再加个快捷栏标题，比如「已选择“minecraft:vertical_half”（"top"）」，这就更像了。
+20. 第二十道题！！哈哈哈，SAPI 当然值得这个待遇啦！现在我们给小木棍升个级，当小木棍对一个方块使用后，当方块具有`minecraft:vertical_half`方块状态时，把该方块状态的值换成另一个，比如如果是下半砖，就在小木棍对其交互后改成上半砖；如果是上半砖就改成下半砖！这就是一个很简易的调试棒功能了。提示：可以使用`Block`类的`permutation`属性获取方块状态，然后用`withState()`方法定义一个新的[`BlockPermutation`](/docs/docs/scripts/sapi/server/block/main#blockpermutation-类)，再用`Block.setPermutation()`方法应用新`BlockPermutation`。别忘了再加个动作栏标题，比如「已选择“minecraft:vertical_half”（"top"）」，这就更像了。
 
 :::
 
@@ -808,7 +805,6 @@ npm i @minecraft/server-ui
     ![practice_6](/img/tutorials/a3_scripts/b2_guide/c1_sapi/practice_6.webp)
 
     对代码部分做一些解释：
-
     - 因为玩家在交互时，事实上可能是连续按下鼠标右键的（即在一段时间内一直处于交互状态），这样就会导致事件会始终触发。我们这里使用`isFirstEvent`就是判断这是不是玩家首次进行交互。
     - 这里我们清空物品使用了命令`/replaceitem`，在学习组件之后我们会得到一个性能更高的写法。
     - 需要再次强调：**每当读者需要修改玩家的物品时，都应当先移除该物品之后再给予此物品，不能在原有物品的基础之上进行更改**。
@@ -861,30 +857,29 @@ npm i @minecraft/server-ui
     ```
 
     对代码做一些解释：
-
     - 我们看这里的第 9 行，这叫做**展开语法（Spread Syntax）**。展开语法可以将对象、数组中的元素快速展开为多个值。例如
 
-      ```js
-      const location = { x: 0, y: 0, z: 0 };
-      const locationWithDimension = { ...location, dimension: "overworld" };
-      ```
+        ```js
+        const location = { x: 0, y: 0, z: 0 };
+        const locationWithDimension = { ...location, dimension: "overworld" };
+        ```
 
-      就等效于
+        就等效于
 
-      ```js
-      const location = { x: 0, y: 0, z: 0 };
-      const locationWithDimension = { x: location.x, y: location.y, z: location.z, dimension: "overworld" };
-      ```
+        ```js
+        const location = { x: 0, y: 0, z: 0 };
+        const locationWithDimension = { x: location.x, y: location.y, z: location.z, dimension: "overworld" };
+        ```
 
-      对于数组也是类似的，可以快速展开其中的元素：
+        对于数组也是类似的，可以快速展开其中的元素：
 
-      ```js
-      const numberList1 = [1, 2, 3];
-      const numberList2 = [...numberList1, 4, 5, 6]; // [1, 2, 3, 4, 5, 6]
-      const numberList3 = [4, 5, ...numberList1, 6]; // [4, 5, 1, 2, 3, 6]
-      ```
+        ```js
+        const numberList1 = [1, 2, 3];
+        const numberList2 = [...numberList1, 4, 5, 6]; // [1, 2, 3, 4, 5, 6]
+        const numberList3 = [4, 5, ...numberList1, 6]; // [4, 5, 1, 2, 3, 6]
+        ```
 
-      和解构类似，展开语法也很实用。我们这里写的`{ ...location, y: location.y - 1 }`就代表继承原来`location`的属性，然后把`y`改为`location.y - 1`。
+        和解构类似，展开语法也很实用。我们这里写的`{ ...location, y: location.y - 1 }`就代表继承原来`location`的属性，然后把`y`改为`location.y - 1`。
 
     - 第 10 行的`redStainedGlass?.typeId`就用到了我们以前介绍过的可选链。因为`getBlock()`可能返回`undefined`，这是一种保护代码的措施。如果读者仍在使用`// @ts-check`，这个可选链是会由 VSC 帮你自动补全的，很方便。
 
@@ -1000,8 +995,8 @@ npm i @minecraft/server-ui
     class JSUtil {
         /** 生成在[min, max]之间的整数（含）
          * @param {number} min
-        * @param {number} max
-        */
+         * @param {number} max
+         */
         static randomInt(min, max) {
             return Math.floor(Math.random() * (max - min)) + min;
         }
@@ -1027,9 +1022,9 @@ npm i @minecraft/server-ui
     ```js showLineNumbers
     class Vector3Util {
         /** 两坐标是否为同一个坐标
-        * @param {import("@minecraft/server").Vector3} location1
-        * @param {import("@minecraft/server").Vector3} location2
-        */
+         * @param {import("@minecraft/server").Vector3} location1
+         * @param {import("@minecraft/server").Vector3} location2
+         */
         static isSame(location1, location2) {
             const { x: x1, y: y1, z: z1 } = location1;
             const { x: x2, y: y2, z: z2 } = location2;
@@ -1044,9 +1039,7 @@ npm i @minecraft/server-ui
         if (chest.typeId !== "minecraft:chest") return;
         // 判断玩家打开的箱子是哪个队伍的箱子，如果不是队伍箱子或同队玩家打开箱子则终止运行
         const chestLocation = chest.location;
-        const chestTeam = Object.keys(teamChest).find(team =>
-            Vector3Util.isSame(chestLocation, teamChest[team]),
-        );
+        const chestTeam = Object.keys(teamChest).find(team => Vector3Util.isSame(chestLocation, teamChest[team]));
         if (!chestTeam) return;
         if (player.hasTag(chestTeam)) return;
         // 阻止玩家打开箱子并警告玩家
@@ -1059,7 +1052,6 @@ npm i @minecraft/server-ui
     ```
 
     做一些解释。
-
     - 这里我们创建了一个有关坐标的工具类`Vector3Util`，之后里面的方法也可以用得到，循环利用。同时，避免将函数定义在事件内，防止每次触发事件都需要定义函数，降低性能，这也是一个优化性能的方法。
     - `chestTeam`可能相对复杂一些，这里做的是对所有队伍名遍历，一旦找到相同坐标的队伍就返回，如果找不到则为`undefined`。
 
@@ -1094,7 +1086,6 @@ npm i @minecraft/server-ui
     ```
 
     同样要做一些解释：
-
     - 这里我们使用`teleportLocations`，是为了防止多层`if else`嵌套。过多的`if else`不仅会降低可读性，也容易降低性能，而对象查询的效率却是比较高的。
     - 我们还需要使用`@type`的 JSDoc 来声明`teleportLocations`的类型，防止`// @ts-check`在`teleportLocations[face]`报错隐式的 any 类型。不要忘记导入`Direction`枚举！
 
@@ -1120,9 +1111,9 @@ npm i @minecraft/server-ui
     ```js showLineNumbers
     class Vector3Util {
         /** 获取两坐标间的距离
-        * @param {import("@minecraft/server").Vector3} location1
-        * @param {import("@minecraft/server").Vector3} location2
-        */
+         * @param {import("@minecraft/server").Vector3} location1
+         * @param {import("@minecraft/server").Vector3} location2
+         */
         static distance(location1, location2) {
             const { x: x1, y: y1, z: z1 } = location1;
             const { x: x2, y: y2, z: z2 } = location2;

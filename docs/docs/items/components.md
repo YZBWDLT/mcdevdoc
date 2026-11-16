@@ -1777,7 +1777,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="组件冲突" tooltip="使用该组件的物品，在放到副手后可能无法支持minecraft:foil、netease:render_offsets等组件。" color="red"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-allow-offhand"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-allow-offhand"/>
 
 允许玩家将物品放在副手。
 
@@ -1806,7 +1806,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-armor"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-armor"/>
 
 定义物品为盔甲。
 
@@ -1841,7 +1841,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为bucket。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-bucket"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-bucket"/>
 
 定义该物品为桶。
 
@@ -1870,7 +1870,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-compostable"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-compostable"/>
 
 定义物品可在堆肥桶中用于堆肥。
 
@@ -1896,7 +1896,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="组件冲突" tooltip="定义了食物组件minecraft:food的物品，其冷却需在食物组件中定义。" color="red"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-cooldown"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-cooldown"/>
 
 定义物品使用后的冷却。
 
@@ -1927,7 +1927,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-customtips"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-customtips"/>
 
 定义物品的描述信息。
 
@@ -1956,7 +1956,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为egg。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-egg"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-egg"/>
 
 定义物品可生成实体。
 
@@ -1985,7 +1985,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-enchant-material"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-enchant-material"/>
 
 定义物品为附魔材料，类似于青金石。
 
@@ -2014,7 +2014,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-fire-resistant"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-fire-resistant"/>
 
 定义物品防火，类似于下界合金物品。
 
@@ -2043,7 +2043,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为fishing_rod。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/1-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%A9%E5%93%81/9-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%B1%BC%E7%AB%BF.html"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/9-zidingyiyugan.html"/>
 
 定义物品是一种钓鱼竿。
 
@@ -2076,7 +2076,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_res/下的中国版物品。"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-anim-in-scene"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-frame-anim-in-scene"/>
 
 定义物品的序列帧。
 
@@ -2108,7 +2108,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_res/下的中国版物品。"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-frame-animation"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-frame-animation"/>
 
 定义蓄力物品的序列帧。
 
@@ -2141,7 +2141,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-fuel"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-fuel"/>
 
 定义该物品为燃料。
 
@@ -2170,7 +2170,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-initial-user-data"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-initial-user-data"/>
 
 定义物品的初始属性。
 
@@ -2230,7 +2230,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%81%E4%BD%93.html?catalog=1" />
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/5-zidingyiliuti.html" />
 
 定义是否可以和流体交互并触发对应的脚本事件。
 
@@ -2254,7 +2254,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-projectile"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-projectile"/>
 
 定义物品为弹射物。
 
@@ -2280,7 +2280,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-render-offsets"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-render-offsets"/>
 
 定义该物品在右手时的渲染偏移。
 
@@ -2319,7 +2319,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为shield。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-shield"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-shield"/>
 
 定义该物品为盾。
 
@@ -2354,7 +2354,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-show-in-hand"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-show-in-hand"/>
 
 手持时是否显示该物品。
 
@@ -2383,7 +2383,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为weapon。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#netease-weapon"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-weapon"/>
 
 定义该物品为武器。
 
@@ -2392,7 +2392,7 @@ import Button from '/src/components/button/base';
 <treeview>
 - <DataType type="object" name="netease:weapon"/>：根对象
   - <DataType type="string" name="type" isRequired/>：武器或工具类型，可选值：`"sword"`、`"shovel"`、`"pickaxe"`、`"hatchet"`（斧头）、`"hoe"`。
-  - <DataType type="int" name="level" isRequired/>：武器或工具的挖掘等级，可选值：`0`（木制或金制工具）、`1`（石制工具）、`2`（铁制工具）、`3`（钻制工具）。详见[网易提供的官方文档](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/2-自定义武器及工具.html#网易components)。
+  - <DataType type="int" name="level" isRequired/>：武器或工具的挖掘等级，可选值：`0`（木制或金制工具）、`1`（石制工具）、`2`（铁制工具）、`3`（钻制工具）。详见[网易提供的官方文档](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/2-zidingyiwuqijigongju.html#网易components)。
   - <DataType type="int" name="speed"/>：武器或工具挖掘方块的基础速度。默认值为`0`。
   - <DataType type="int" name="attack_damage"/>：武器或工具的攻击伤害。默认值为`0`。
   - <DataType type="int" name="enchantment"/>：武器或工具的附魔能力。默认值为`0`。
@@ -2453,7 +2453,7 @@ import Button from '/src/components/button/base';
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用minecraft:glint组件代替之。"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
-<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-foil"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#minecraft-foil"/>
 
 定义该物品会像附魔书一样产生附魔光泽。
 
@@ -2482,7 +2482,7 @@ import Button from '/src/components/button/base';
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用同名组件代替之，可能会需要脚本功能。"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:use_duration组件。"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
-<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-food"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#minecraft-food"/>
 
 定义物品为食物。
 
@@ -2567,7 +2567,7 @@ import Button from '/src/components/button/base';
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用同名组件代替之。"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
-<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-hand-equipped"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#minecraft-hand-equipped"/>
 
 定义该物品像工具一样直立展示在玩家手中。
 
@@ -2596,7 +2596,7 @@ import Button from '/src/components/button/base';
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用同名组件代替之。"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" color="lightblue"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
-<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-hover-text-color"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#minecraft-hover-text-color"/>
 
 定义物品悬浮文本的颜色。
 
@@ -2625,7 +2625,7 @@ import Button from '/src/components/button/base';
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用同名组件代替之。"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" color="lightblue"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
-<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-icon"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#minecraft-icon"/>
 
 定义物品的图标。
 
@@ -2660,7 +2660,7 @@ import Button from '/src/components/button/base';
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用minecraft:durability组件代替之。"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
-<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-max-damage"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#minecraft-max-damage"/>
 
 定义物品的耐久度。
 
@@ -2689,7 +2689,7 @@ import Button from '/src/components/button/base';
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用同名组件代替之。"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
-<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-max-stack-size"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#minecraft-max-stack-size"/>
 
 定义物品的最大堆叠数。
 
@@ -2718,7 +2718,7 @@ import Button from '/src/components/button/base';
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用minecraft:block_placer组件代替之。"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
-<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-seed"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#minecraft-seed"/>
 
 定义物品为种子。
 
@@ -2753,7 +2753,7 @@ import Button from '/src/components/button/base';
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用同名组件代替之。"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
-<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-stacked-by-data"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#minecraft-stacked-by-data"/>
 
 定义是否允许不同数据值的同种物品堆叠。
 
@@ -2782,7 +2782,7 @@ import Button from '/src/components/button/base';
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用同名组件代替之。"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" color="lightblue"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-use-animation"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#minecraft-use-animation"/>
 
 定义物品的使用动画。
 
@@ -2811,7 +2811,7 @@ import Button from '/src/components/button/base';
 <Usable type="all"/> <Version add="1.10" deprecated="1.16.0" tooltip="在高版本使用minecraft:use_modifiers组件代替之。"/> <Version add="1.20.20" deprecated="1.20.50" tooltip="在高版本使用minecraft:use_modifiers组件代替之。"/> <Highlight text="需要前置组件" tooltip="在1.10-1.16.0下，要使用该组件，请事先定义minecraft:food组件。"/> <br/>
 
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item"/>
-<Button text="中国版开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1#minecraft-use-duration"/>
+<Button text="中国版开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#minecraft-use-duration"/>
 
 定义该物品的使用时长。
 
@@ -3280,7 +3280,7 @@ import Button from '/src/components/button/base';
 本文主要参考文档如下，读者可以在这些文档获得更多信息。
 
 - [物品组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/itemreference/examples/itemcomponentlist?view=minecraft-bedrock-stable)
-- [自定义基础物品 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-玩法开发/15-自定义游戏内容/1-自定义物品/1-自定义基础物品.html?catalog=1)
+- [自定义基础物品 | 我的世界开发者官网](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html)
 - [物品文档 | 1.16.20.3 | bedrock.dev](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Item)
 - [物品组件 | Bedrock Wki](https://wiki.bedrock.dev/items/item-components)
 - [基岩版开发 Wiki - 数据驱动物品](https://wiki.mcbe-dev.net/p/Manual:%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/%E7%89%A9%E5%93%81)

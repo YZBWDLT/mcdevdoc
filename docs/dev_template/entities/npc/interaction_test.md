@@ -77,19 +77,19 @@ import FileType from "/src/components/type/file"
 
 这样，函数`entities/npc/interact`就将在被交互时，以 NPC 为执行者、NPC 的环境为执行环境参数执行其中的命令。例如，可以设置 NPC 在被交互时执行`say`命令：
 
-```json showLineNumbers title="BP_npc/functions/entities/npc/interact.mcfunction"
+```text showLineNumbers title="BP_npc/functions/entities/npc/interact.mcfunction"
 # ===== NPC 被交互 =====
 say Hello, world!
 ```
 
 记得设置聊天按钮的文本：
 
-```json showLineNumbers title="RP_npc/texts/en_US.lang"
+```lang showLineNumbers title="RP_npc/texts/en_US.lang"
 ## ===== Interaction Buttons =====
 action.interact.chat=Chat
 ```
 
-```json showLineNumbers title="RP_npc/texts/zh_CN.lang"
+```lang showLineNumbers title="RP_npc/texts/zh_CN.lang"
 ## ===== 聊天按钮 =====
 action.interact.chat=聊天
 ```

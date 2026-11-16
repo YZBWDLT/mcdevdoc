@@ -349,7 +349,7 @@ tile.test:black_block.name=黑色方块
 
 定义文件内部结构上和国际版也是类似的，都是「格式版本 - 描述 - 组件」的三段式定义。
 
-中国版方块在描述方面支持几个独有的参数，最重要的当属<DataType type="string" name="base_block"/>，它直接决定方块采用会何种底层代码，配合对应的组件就可以写出对应功能的方块。**目前中国版支持自定义的特殊方块类型包括刷怪笼、传送门、农作物、流体、重力方块、容器**，读者可以阅读[网易提供的文档](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/0-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97%E6%A6%82%E8%BF%B0.html?catalog=1)了解更多。
+中国版方块在描述方面支持几个独有的参数，最重要的当属<DataType type="string" name="base_block"/>，它直接决定方块采用会何种底层代码，配合对应的组件就可以写出对应功能的方块。**目前中国版支持自定义的特殊方块类型包括刷怪笼、传送门、农作物、流体、重力方块、容器**，读者可以阅读[网易提供的文档](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/0-teshufangkuaigaishu.html)了解更多。
 
 至于组件，和中国版物品不同，实测中国版物品并不能使用更高版本的国际版物品组件，而**中国版方块却能够完美继承国际版高版本的方块组件**，包括高版本的方块状态、方块置换、方块特征等特性都能使用，这意味着中国版方块的可拓展性就要比中国版物品来的更强。
 
@@ -445,11 +445,11 @@ tile.test:black_block.name=黑色方块
     }
     ```
 
-    ```json title="en_US.lang"
+    ```lang title="en_US.lang"
     tile.test:white_block.name=White Block
     ```
 
-    ```json title="zh_CN.lang"
+    ```lang title="zh_CN.lang"
     tile.test:white_block.name=白色方块
     ```
 

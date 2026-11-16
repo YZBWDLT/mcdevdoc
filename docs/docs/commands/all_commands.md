@@ -798,7 +798,7 @@ in <维度: Dimension> -> execute
 
 - `title`：主标题
 - `subtitle`：副标题
-- `actionbar`：快捷栏标题
+- `actionbar`：动作栏标题
 
 </TabItem>
 
@@ -1880,7 +1880,7 @@ in <维度: Dimension> -> execute
 
 - `title`：主标题
 - `subtitle`：副标题
-- `actionbar`：快捷栏标题
+- `actionbar`：动作栏标题
 
 </TabItem>
 
@@ -3018,17 +3018,17 @@ gametest create <测试名: string> [宽度: int] [高度: int] [深度: int]
 
 各子命令的作用如下表所示。
 
-| 子命令                  | 含义                                                       |
-| ----------------------- | ---------------------------------------------------------- |
-| `runthis`               | 执行 15 格半径内的测试结构。                               |
-| `run`                   | 执行指定的`测试名`，可指定是否失败时停止、重复次数与旋转步数。 |
-| `runset`                | 创建并执行所有测试。                                       |
-| `runsetuntilfail`       | 创建并执行所有测试，直到某个测试失败为止。                 |
-| `runthese`              | 在 200 格半径内执行测试。                                  |
-| `stopall`               | 停止执行所有测试。                                         |
-| `clearall`              | 清除所有测试。                                             |
-| `pos`                   | 在 200 格半径内寻找最近的测试结构。                        |
-| `create`                | 创建一个`测试名`指定大小的测试。                           |
+| 子命令            | 含义                                                           |
+| ----------------- | -------------------------------------------------------------- |
+| `runthis`         | 执行 15 格半径内的测试结构。                                   |
+| `run`             | 执行指定的`测试名`，可指定是否失败时停止、重复次数与旋转步数。 |
+| `runset`          | 创建并执行所有测试。                                           |
+| `runsetuntilfail` | 创建并执行所有测试，直到某个测试失败为止。                     |
+| `runthese`        | 在 200 格半径内执行测试。                                      |
+| `stopall`         | 停止执行所有测试。                                             |
+| `clearall`        | 清除所有测试。                                                 |
+| `pos`             | 在 200 格半径内寻找最近的测试结构。                            |
+| `create`          | 创建一个`测试名`指定大小的测试。                               |
 
 ---
 
@@ -3182,13 +3182,13 @@ script diagnostics stopcapture
 
 各子命令的作用如下表所示。
 
-| 子命令                           | 含义                                     |
-| -------------------------------- | ---------------------------------------- |
-| `debugger listen`                | 监听`端口`，等待调试器连接。             |
-| `debugger connect`               | 连接`主机`与`端口`上的调试器。           |
-| `debugger close`                 | 关闭调试器。                             |
-| `profiler start` / `profiler stop`           | 开始或停止记录脚本性能分析数据。         |
-| `diagnostics startcapture` / `diagnostics stopcapture` | 开始或停止捕获诊断信息。                 |
+| 子命令                                                 | 含义                             |
+| ------------------------------------------------------ | -------------------------------- |
+| `debugger listen`                                      | 监听`端口`，等待调试器连接。     |
+| `debugger connect`                                     | 连接`主机`与`端口`上的调试器。   |
+| `debugger close`                                       | 关闭调试器。                     |
+| `profiler start` / `profiler stop`                     | 开始或停止记录脚本性能分析数据。 |
+| `diagnostics startcapture` / `diagnostics stopcapture` | 开始或停止捕获诊断信息。         |
 
 `端口`的可用范围为`1024`到`65535`。
 

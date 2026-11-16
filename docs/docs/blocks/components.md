@@ -1642,7 +1642,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-max-stack-size"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#minecraft-max-stack-size"/>
 
 定义方块物品最大堆叠数量。
 
@@ -1668,7 +1668,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:collision_box组件和minecraft:selection_box组件平替，需求格式版本为1.19.60。但在当前中国版版本下，暂时不支持复合碰撞箱和复合选择箱。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-aabb"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-aabb"/>
 
 定义方块的碰撞箱和选择箱。
 
@@ -1691,7 +1691,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-中国版自定义花（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义方块的`customblocks_model_flower`）：
+中国版自定义花（详见[示例 Demo](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/13-mozu-sdk-biancheng/60-demo-shili.html) 中自定义方块的`customblocks_model_flower`）：
 
 ```json showLineNumbers
 "netease:aabb": {
@@ -1700,7 +1700,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-中国版自定义线路（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义方块的`customblocks_model_wire`）：
+中国版自定义线路（详见[示例 Demo](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/13-mozu-sdk-biancheng/60-demo-shili.html) 中自定义方块的`customblocks_model_wire`）：
 
 ```json showLineNumbers
 "netease:aabb": {
@@ -1733,9 +1733,9 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-animate-random-tick"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-block-animate-random-tick"/>
 
-定义方块会高频率随机更新，并触发 ModAPI 的[`BlockAnimateRandomTickEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html#blockanimaterandomtickevent)。
+定义方块会高频率随机更新，并触发 ModAPI 的[`BlockAnimateRandomTickEvent`客户端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#blockanimaterandomtickevent)。
 
 该组件可用于实现类似樱花树叶或其他落叶的方块特效。
 
@@ -1752,7 +1752,7 @@ import Button from '/src/components/button/base';
   - <DataType type="float" name="trigger_rate"/>：定义随机更新的触发频率，应为`0.0`-`1.0`（含），默认值为`0.1`。  
   应注意，方块离玩家越近，触发频率越大。当方块距离玩家 16 个方块以内时，如果设置`trigger_rate`为`1`，则几乎每秒都能触发。原版樱花树叶的触发率为`0.1`，即 10% 的概率触发落叶。随着方块离玩家越远，触发几率也会递减。最大触发距离为 32-40 格， 32 是玩家静止不动时的值，玩家移动时，最多可能有 8 个方块距离的偏移。  
   此外，设备性能越好，触发频率越大。游戏引擎会记录帧耗时，超时的 tick 不会触发 Python 事件，避免大量方块同时 tick 导致卡顿。
-  - <DataType type="boolean" name="send_event"/>：定义是否触发 ModAPI 的[`BlockAnimateRandomTickEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html#blockanimaterandomtickevent)。默认值为`true`。
+  - <DataType type="boolean" name="send_event"/>：定义是否触发 ModAPI 的[`BlockAnimateRandomTickEvent`客户端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#blockanimaterandomtickevent)。默认值为`true`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -1774,7 +1774,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="组件冲突" tooltip="此组件和其他多个组件存在冲突。" color="red"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-chest"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-block-chest"/>
 
 定义方块的箱子功能。
 
@@ -1783,7 +1783,7 @@ import Button from '/src/components/button/base';
 1. 该组件会创建一个方块实体，与其他类似逻辑存在冲突，因此不可定义[`netease:block_entity`](#neteaseblock_entity)组件。
 2. 要使用该组件，不可定义[`netease:face_directional`](#neteaseface_directional)组件。
 3. 该组件会覆盖带有`base_block`及相关组件的功能。
-4. 在使用[`SetBlockNew`](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E6%8E%A5%E5%8F%A3/%E4%B8%96%E7%95%8C/%E6%96%B9%E5%9D%97%E7%AE%A1%E7%90%86.html#setblocknew)接口时，应先将对应位置的方块设置为空气后再延时放置自定义箱子。
+4. 在使用[`SetBlockNew`](https://mc.163.com/newdev/docs/api/jiekou/shijie/fangkuaiguanli.html#setblocknew)接口时，应先将对应位置的方块设置为空气后再延时放置自定义箱子。
 
 :::
 
@@ -1822,7 +1822,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为netease_container。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-container"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-block-container"/>
 
 定义方块为一种自定义容器。
 
@@ -1880,7 +1880,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:crafting_table组件平替，需求格式版本为1.19.50。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/10-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E4%BD%9C%E5%8F%B0.html?catalog=1"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/10-zidingyigongzuotai.html"/>
 
 定义方块为一种自定义工作台。
 
@@ -1912,16 +1912,16 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-entity"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-block-entity"/>
 
-定义方块的方块实体属性。有关自定义方块实体的更多信息，读者可见[自定义方块实体 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/4-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97%E5%AE%9E%E4%BD%93.html)。
+定义方块的方块实体属性。有关自定义方块实体的更多信息，读者可见[自定义方块实体 | 我的世界开发者官网](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/4-zidingyifangkuaishiti.html)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="netease:block_entity"/>：根对象。
-  - <DataType type="boolean" name="tick"/>：是否能够触发[`ServerBlockEntityTickEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html#serverblockentitytickevent)。为`true`时，当玩家进入方块 tick 范围时，该方块每秒会发送 20 次该事件。默认为`false`。
-  - <DataType type="boolean" name="client_tick"/>：是否能够触发[`ModBlockEntityTickClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html#modblockentitytickclientevent)。为`true`时，当玩家进入方块 tick 范围时，该方块每秒会发送 20 次该事件。默认为`false`。
+  - <DataType type="boolean" name="tick"/>：是否能够触发[`ServerBlockEntityTickEvent`服务端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#serverblockentitytickevent)。为`true`时，当玩家进入方块 tick 范围时，该方块每秒会发送 20 次该事件。默认为`false`。
+  - <DataType type="boolean" name="client_tick"/>：是否能够触发[`ModBlockEntityTickClientEvent`客户端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#modblockentitytickclientevent)。为`true`时，当玩家进入方块 tick 范围时，该方块每秒会发送 20 次该事件。默认为`false`。
   - <DataType type="boolean" name="movable"/>：是否能够被活塞拉动。默认为`true`。
 </treeview>
 
@@ -1944,7 +1944,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="碰撞箱限制" tooltip="要使用该组件，方块的碰撞箱边长至少需要大于0.4格，否则该组件可能无法触发。" color="red"/> <Highlight text="存在平替" tooltip="该组件的piston_block_grabber功能可由minecraft:movable组件平替，需求格式版本为1.21.100。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-properties"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-block-properties"/>
 
 定义方块的属性。
 
@@ -1980,7 +1980,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="材质限制" tooltip="该组件会将方块的材质设置为透明材质，不可设置方块为不透明材质。" color="red"/> <Highlight text="模型限制" tooltip="该组件会在临近存在不透明方块时剔除对应的方块面，并且在物品栏的渲染贴图可能也会存在问题，因此请尽量使用自定义模型的方块。" color="red"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:random_offset组件平替，需求格式版本为1.21.100。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-block-random-offset"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-block-random-offset"/>
 
 定义方块的偏移。类似于原版的草。
 
@@ -2011,7 +2011,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:replaceable组件平替，需求格式版本为1.21.70。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/9-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E9%9B%AA%E6%96%B9%E5%9D%97.html?catalog=1"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/9-zidingyihanxuefangkuai.html"/>
 
 定义方块是否可被另一种方块在原位替代（类似于水、草丛或空气）。
 
@@ -2040,7 +2040,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:connection方块特征平替，需求格式版本为1.26.0。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-connection"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-connection"/>
 
 定义方块的连接属性。启用了连接属性的方块可使用[`query.is_connect()`](./molang#其他)查询连接状态。
 
@@ -2054,7 +2054,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-中国版自定义线路（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义方块的`customblocks_model_wire`）：
+中国版自定义线路（详见[示例 Demo](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/13-mozu-sdk-biancheng/60-demo-shili.html) 中自定义方块的`customblocks_model_wire`）：
 
 ```json showLineNumbers
 "netease:connection": {
@@ -2070,7 +2070,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-custom-tips"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-custom-tips"/>
 
 定义方块物品的物品信息描述（类似于物品的[`netease:customtips`](../items/components#neteasecustomtips)组件）。
 
@@ -2099,7 +2099,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:placement_direction方块特征、minecraft:transformation组件平替，需求格式版本为1.20.20。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-face-directional"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-face-directional"/>
 
 定义方块的多面向功能。带有多面向的方块将始终保持方块的北面贴图面向放置此方块的玩家。
 
@@ -2128,7 +2128,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为custom_heavy_block。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/6-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%87%8D%E5%8A%9B%E6%96%B9%E5%9D%97.html?catalog=1"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/6-zidingyizhonglifangkuai.html"/>
 
 定义方块为重力方块，会受到重力的影响（类似于沙子）。
 
@@ -2149,7 +2149,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-中国版自定义重力方块（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义方块的`customblocks_test_heavy`）：
+中国版自定义重力方块（详见[示例 Demo](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/13-mozu-sdk-biancheng/60-demo-shili.html) 中自定义方块的`customblocks_test_heavy`）：
 
 ```json showLineNumbers
 "netease:fall": {
@@ -2173,7 +2173,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-fire-resistant"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-fire-resistant"/>
 
 定义方块所对应的物品的防火属性。
 
@@ -2202,7 +2202,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-fuel"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-fuel"/>
 
 定义方块对应物品的燃料属性。
 
@@ -2231,9 +2231,9 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为liquid（静态流体）或flowing_liquid（动态流体）。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%81%E4%BD%93.html?catalog=1"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/5-zidingyiliuti.html"/>
 
-定义方块为一种自定义流体。详见[自定义流体 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/5-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%81%E4%BD%93.html?catalog=1)。
+定义方块为一种自定义流体。详见[自定义流体 | 我的世界开发者官网](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/5-zidingyiliuti.html)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2258,7 +2258,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-中国版自定义静态流体方块（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义流体的`cyan_water_static`）：
+中国版自定义静态流体方块（详见[示例 Demo](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/13-mozu-sdk-biancheng/60-demo-shili.html) 中自定义流体的`cyan_water_static`）：
 
 ```json showLineNumbers
 "netease:liquid": {
@@ -2275,7 +2275,7 @@ import Button from '/src/components/button/base';
 }
 ```
 
-中国版自定义流动流体方块（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义流体的`cyan_water_flowing`）：
+中国版自定义流动流体方块（详见[示例 Demo](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/13-mozu-sdk-biancheng/60-demo-shili.html) 中自定义流体的`cyan_water_flowing`）：
 
 ```json showLineNumbers
 "netease:liquid": {
@@ -2306,15 +2306,15 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-listen-block-remove"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-listen-block-remove"/>
 
-定义方块在被移除后会触发 ModAPI 的[`BlockRemoveServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html#blockremoveserverevent)。
+定义方块在被移除后会触发 ModAPI 的[`BlockRemoveServerEvent`服务端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#blockremoveserverevent)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="netease:listen_block_remove"/>：根对象。
-  - <DataType type="boolean" name="value"/>：是否监听[`BlockRemoveServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html#blockremoveserverevent)。默认值为`false`。
+  - <DataType type="boolean" name="value"/>：是否监听[`BlockRemoveServerEvent`服务端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#blockremoveserverevent)。默认值为`false`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
@@ -2335,7 +2335,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:placement_filter组件平替，需求格式版本为1.20.20。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-may-place-on"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-may-place-on"/>
 
 定义方块允许被放置或允许存在的条件。
 
@@ -2355,7 +2355,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-中国版自定义花（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义方块的`customblocks_model_flower`）：
+中国版自定义花（详见[示例 Demo](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/13-mozu-sdk-biancheng/60-demo-shili.html) 中自定义方块的`customblocks_model_flower`）：
 
 ```json showLineNumbers
 "netease:may_place_on": {
@@ -2382,7 +2382,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为mob_spawner。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/1-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%B7%E6%80%AA%E7%AE%B1.html?catalog=1"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/1-zidingyishuaguaixiang.html"/>
 
 定义方块为一种自定义刷怪笼。
 
@@ -2411,20 +2411,20 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-neighborchanged-sendto-script"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-neighborchanged-sendto-script"/>
 
-定义方块在周围环境变化时，触发 ModAPI 的[`BlockNeighborChangedServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#blockneighborchangedserverevent)。
+定义方块在周围环境变化时，触发 ModAPI 的[`BlockNeighborChangedServerEvent`服务端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#blockneighborchangedserverevent)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="netease:neighborchanged_sendto_script"/>：根对象。
-  - <DataType type="boolean" name="value"/>：方块在周围环境变化时，是否触发 ModAPI 的[`BlockNeighborChangedServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#blockneighborchangedserverevent)。默认值为`false`。
+  - <DataType type="boolean" name="value"/>：方块在周围环境变化时，是否触发 ModAPI 的[`BlockNeighborChangedServerEvent`服务端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#blockneighborchangedserverevent)。默认值为`false`。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">
 
-中国版自定义农作物（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义农作物的`customcrop_1_stage0`）：
+中国版自定义农作物（详见[示例 Demo](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/13-mozu-sdk-biancheng/60-demo-shili.html) 中自定义农作物的`customcrop_1_stage0`）：
 
 ```json showLineNumbers
 "netease:neighborchanged_sendto_script": {
@@ -2440,7 +2440,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="需要前置组件" tooltip="要使用此组件，请事先定义minecraft:light_dampening组件和netease:render_layer组件。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-no-crop-face-block"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-no-crop-face-block"/>
 
 定义方块与其他方块的相邻面能够正常渲染（类似于树叶）。
 
@@ -2468,9 +2468,9 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="碰撞箱限制" tooltip="要使用该组件，方块的碰撞箱边长至少需要大于0.4格，否则该组件可能无法触发。" color="red"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-after-fall-on"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-on-after-fall-on"/>
 
-定义实体刚掉落到该方块上的时候是否触发 ModAPI 的[`OnAfterFallOnBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onafterfallonblockclientevent)和[`OnAfterFallOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onafterfallonblockserverevent)。
+定义实体刚掉落到该方块上的时候是否触发 ModAPI 的[`OnAfterFallOnBlockClientEvent`客户端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#onafterfallonblockclientevent)和[`OnAfterFallOnBlockServerEvent`服务端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#onafterfallonblockserverevent)。
 
 基于这两个事件可实现类似于粘液块一样的效果。
 
@@ -2499,9 +2499,9 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="碰撞箱限制" tooltip="要使用该组件，方块的碰撞箱边长至少需要大于0.4格，否则该组件可能无法触发。" color="red"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-before-fall-on"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-on-before-fall-on"/>
 
-定义实体刚掉落到该方块上的时候是否触发 ModAPI 的[`OnBeforeFallOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onbeforefallonblockserverevent)。
+定义实体刚掉落到该方块上的时候是否触发 ModAPI 的[`OnBeforeFallOnBlockServerEvent`服务端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#onbeforefallonblockserverevent)。
 
 基于该事件可实现类似于粘液块一样的效果。
 
@@ -2530,9 +2530,9 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-entity-inside"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-on-entity-inside"/>
 
-定义方块碰撞箱内有实体的时候是否触发 ModAPI 的[`OnEntityInsideBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onentityinsideblockclientevent)和[`OnEntityInsideBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onentityinsideblockserverevent)。
+定义方块碰撞箱内有实体的时候是否触发 ModAPI 的[`OnEntityInsideBlockClientEvent`客户端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#onentityinsideblockclientevent)和[`OnEntityInsideBlockServerEvent`服务端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#onentityinsideblockserverevent)。
 
 基于这两个事件可实现类似于蜘蛛网减速一样的效果。
 
@@ -2561,9 +2561,9 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-stand-on"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-on-stand-on"/>
 
-定义当实体站在该方块上后是否触发 ModAPI 的[`OnStandOnBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onstandonblockclientevent)和[`OnStandOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#onstandonblockserverevent)。
+定义当实体站在该方块上后是否触发 ModAPI 的[`OnStandOnBlockClientEvent`客户端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#onstandonblockclientevent)和[`OnStandOnBlockServerEvent`服务端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#onstandonblockserverevent)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2590,9 +2590,9 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-step-off"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-on-step-off"/>
 
-定义当实体离开该方块上后是否触发 ModAPI 的[`StepOffBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#stepoffblockclientevent)和[`StepOffBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#stepoffblockserverevent)。
+定义当实体离开该方块上后是否触发 ModAPI 的[`StepOffBlockClientEvent`客户端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#stepoffblockclientevent)和[`StepOffBlockServerEvent`服务端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#stepoffblockserverevent)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2619,9 +2619,9 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-on-step-on"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-on-step-on"/>
 
-定义当实体踏上该方块后是否触发 ModAPI 的[`StepOnBlockClientEvent`客户端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#steponblockclientevent)和[`StepOnBlockServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#steponblockserverevent)。
+定义当实体踏上该方块后是否触发 ModAPI 的[`StepOnBlockClientEvent`客户端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#steponblockclientevent)和[`StepOnBlockServerEvent`服务端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#steponblockserverevent)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2648,7 +2648,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-pathable"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-pathable"/>
 
 定义方块在实体 AI 寻路时是否可走过此方块。
 
@@ -2677,7 +2677,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为portal。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BC%A0%E9%80%81%E9%97%A8%E6%96%B9%E5%9D%97.html?catalog=1"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/2-zidingyichuansongmenfangkuai.html"/>
 
 定义方块为一种自定义传送门。
 
@@ -2692,7 +2692,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-中国版自定义传送门（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义传送门的`portal`）：
+中国版自定义传送门（详见[示例 Demo](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/13-mozu-sdk-biancheng/60-demo-shili.html) 中自定义传送门的`portal`）：
 
 ```json showLineNumbers
 "netease:portal": {
@@ -2714,9 +2714,9 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-random-tick"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-random-tick"/>
 
-定义方块会随机更新，并触发 ModAPI 的[`BlockRandomTickServerEvent`服务端事件](https://mc.163.com/dev/mcmanual/mc-dev/mcdocs/1-ModAPI/%E4%BA%8B%E4%BB%B6/%E6%96%B9%E5%9D%97.html?catalog=1#blockrandomtickserverevent)。
+定义方块会随机更新，并触发 ModAPI 的[`BlockRandomTickServerEvent`服务端事件](https://mc.163.com/newdev/docs/api/shijian/fangkuai.html#blockrandomtickserverevent)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -2745,7 +2745,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:redstone_producer组件、minecraft:redstone_consumer组件平替，需求格式版本为1.26.0。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-redstone"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-redstone"/>
 
 定义方块的红石电源元件或红石机械元件属性。
 
@@ -2784,7 +2784,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:movable组件平替，需求格式版本为1.21.100。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-redstone-property"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-redstone-property"/>
 
 定义方块的红石属性。
 
@@ -2813,7 +2813,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:material_instances组件平替，要实现完全平替，需求格式版本为1.21.80。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-render-layer"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-render-layer"/>
 
 定义方块渲染材质。
 
@@ -2846,7 +2846,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:precipitation_interactions组件平替，需求格式版本为1.26.30。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/9-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E9%9B%AA%E6%96%B9%E5%9D%97.html?catalog=1"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/9-zidingyihanxuefangkuai.html"/>
 
 定义方块是否可含雪（类似矮草丛、花等）。
 
@@ -2875,7 +2875,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:collision_box组件、minecraft:material_instances组件平替，需求格式版本为1.19.50。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-solid"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-solid"/>
 
 定义方块是否实心。
 
@@ -2906,7 +2906,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件的最佳挖掘工具功能可由minecraft:destructible_by_mining组件的item_specific_speeds参数平替，需求格式版本为1.21.50。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#netease-tier"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-tier"/>
 
 定义方块的挖掘等级和挖掘相关属性。
 
@@ -2921,7 +2921,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-中国版自定义矿石（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义方块的`customblocks_test_ore`）：
+中国版自定义矿石（详见[示例 Demo](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/13-mozu-sdk-biancheng/60-demo-shili.html) 中自定义方块的`customblocks_test_ore`）：
 
 ```json showLineNumbers
 "netease:tier": {
@@ -2939,7 +2939,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为custom_crop_block。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/3-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%9C%E4%BD%9C%E7%89%A9%E6%96%B9%E5%9D%97.html?catalog=1"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/3-zidingyinongzuowufangkuai.html"/>
 
 定义方块的转换条件。用于自定义农作物。
 
@@ -2961,7 +2961,7 @@ import Button from '/src/components/button/base';
 
 </TabItem><TabItem value="示例" label="示例">
 
-中国版自定义农作物（详见[示例 Demo](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/13-%E6%A8%A1%E7%BB%84SDK%E7%BC%96%E7%A8%8B/60-Demo%E7%A4%BA%E4%BE%8B.html?catalog=1) 中自定义农作物的`customcrop_stage1`）：
+中国版自定义农作物（详见[示例 Demo](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/13-mozu-sdk-biancheng/60-demo-shili.html) 中自定义农作物的`customcrop_stage1`）：
 
 ```json showLineNumbers
 "netease:transform": {
@@ -2982,7 +2982,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:liquid_detection组件平替，需求格式版本为1.21.60。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/7-zidingyihanshuifangkuai.html"/>
 
 定义方块在水源或水流中表现为含水方块。
 
@@ -3011,7 +3011,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:liquid_detection组件平替，需求格式版本为1.21.60。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/7-zidingyihanshuifangkuai.html"/>
 
 定义方块会被水流摧毁，且无法放置在水中（类似红石粉、火把等）。
 
@@ -3040,7 +3040,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/7-zidingyihanshuifangkuai.html"/>
 
 定义方块只能放置在水中（类似海带、海草等）。
 
@@ -3069,7 +3069,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:liquid_detection组件平替，需求格式版本为1.21.60。" color="lightblue"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/3-%E7%89%B9%E6%AE%8A%E6%96%B9%E5%9D%97/7-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%AB%E6%B0%B4%E6%96%B9%E5%9D%97.html?catalog=1"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/7-zidingyihanshuifangkuai.html"/>
 
 定义方块在水源中表现为含水方块（类似台阶、楼梯等）。
 
@@ -3106,7 +3106,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.12.0" deprecated="1.18.0" tooltip="在高版本使用minecraft:light_dampening组件代替之。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-block-light-absorption"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#minecraft-block-light-absorption"/>
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks"/>
 
 定义方块会吸收光，降低光照等级。
@@ -3180,7 +3180,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.12.0" deprecated="1.19.20" tooltip="在高版本使用minecraft:light_emission组件代替之。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-block-light-emission"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#minecraft-block-light-emission"/>
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks"/>
 
 定义方块会发出光，提供光照等级。
@@ -3226,7 +3226,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.12.0" deprecated="1.19.20" tooltip="在高版本使用minecraft:destructible_by_mining组件代替之。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-destroy-time"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#minecraft-destroy-time"/>
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks"/>
 
 定义方块的挖掘时长。
@@ -3272,7 +3272,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.12.0" deprecated="1.19.20" tooltip="在高版本使用minecraft:destructible_by_explosion组件代替之。"/> <br/>
 
-<Button text="我的世界开发者官网" url="https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1#minecraft-explosion-resistance"/>
+<Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#minecraft-explosion-resistance"/>
 <Button text="bedrock.dev" url="https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks"/>
 
 定义方块的爆炸抗性。
@@ -3963,7 +3963,7 @@ import Button from '/src/components/button/base';
 本文主要参考文档如下，读者可以在这些文档获得更多信息。
 
 - [方块组件列表 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/blockreference/examples/blockcomponents/blockcomponentslist?view=minecraft-bedrock-stable)
-- [JSON 组件 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mcguide/20-%E7%8E%A9%E6%B3%95%E5%BC%80%E5%8F%91/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9/2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%9D%97/1-JSON%E7%BB%84%E4%BB%B6.html?catalog=1)
+- [JSON 组件 | 我的世界开发者官网](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html)
 - [方块文档 | 1.16.20.3 | bedrock.dev](https://bedrock.dev/docs/1.16.0.0/1.16.20.3/Blocks)
 - [方块组件 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-components)
 - [方块格式历史 | Bedrock Wiki](https://wiki.bedrock.dev/blocks/block-format-history)

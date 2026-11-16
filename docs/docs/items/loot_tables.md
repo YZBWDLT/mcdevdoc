@@ -200,34 +200,34 @@ import Button from '/src/components/button/base';
 
 各函数的可用场景如下表：✔️表示可用，❌表示不可用。「实体」包含实体掉落物与实体装备，「容器」包含钓鱼等按容器方式产出内容的场合。
 
-| 函数 | 类别 | 容器 | 实体 | 方块 | 交易表 |
-| :--- | :--- | :---: | :---: | :---: | :---: |
-| `enchant_book_for_trading` | 附魔 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `enchant_random_gear` | 附魔 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `enchant_randomly` | 附魔 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `enchant_with_levels` | 附魔 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `exploration_map` | 物品专用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `explosion_decay` | 外部因素 | ❌ | ❌ | ✔️ | ❌ |
-| `fill_container` | 物品专用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `furnace_smelt` | 物品专用 | ❌ | ✔️ | ❌ | ❌ |
-| `looting_enchant` | 外部因素 | ❌ | ✔️ | ❌ | ❌ |
-| `random_aux_value` | 通用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `random_block_state` | 通用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `random_dye` | 物品专用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `set_actor_id` | 物品专用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `set_banner_details` | 物品专用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `set_book_contents` | 物品专用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `set_count` | 通用 | ✔️ | ✔️ | ✔️ | ❌ |
-| `set_damage` | 通用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `set_data` | 通用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `set_data_from_color_index` | 外部因素 | ❌ | ❌ | ❌ | ✔️ |
-| `set_lore` | 通用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `set_name` | 通用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `set_ominous_bottle_amplifier` | 物品专用 | ✔️ | ✔️ | ✔️ | ❌ |
-| `set_potion` | 物品专用 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `set_stew_effect` | 物品专用 | ✔️ | ✔️ | ❌ | ❌ |
-| `specific_enchants` | 附魔 | ✔️ | ✔️ | ✔️ | ✔️ |
-| `trader_material_type` | 外部因素 | ❌ | ❌ | ❌ | ✔️ |
+| 函数                           | 类别     | 容器 | 实体 | 方块 | 交易表 |
+| :----------------------------- | :------- | :--: | :--: | :--: | :----: |
+| `enchant_book_for_trading`     | 附魔     |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `enchant_random_gear`          | 附魔     |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `enchant_randomly`             | 附魔     |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `enchant_with_levels`          | 附魔     |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `exploration_map`              | 物品专用 |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `explosion_decay`              | 外部因素 |  ❌  |  ❌  |  ✔️  |   ❌   |
+| `fill_container`               | 物品专用 |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `furnace_smelt`                | 物品专用 |  ❌  |  ✔️  |  ❌  |   ❌   |
+| `looting_enchant`              | 外部因素 |  ❌  |  ✔️  |  ❌  |   ❌   |
+| `random_aux_value`             | 通用     |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `random_block_state`           | 通用     |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `random_dye`                   | 物品专用 |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `set_actor_id`                 | 物品专用 |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `set_banner_details`           | 物品专用 |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `set_book_contents`            | 物品专用 |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `set_count`                    | 通用     |  ✔️  |  ✔️  |  ✔️  |   ❌   |
+| `set_damage`                   | 通用     |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `set_data`                     | 通用     |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `set_data_from_color_index`    | 外部因素 |  ❌  |  ❌  |  ❌  |   ✔️   |
+| `set_lore`                     | 通用     |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `set_name`                     | 通用     |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `set_ominous_bottle_amplifier` | 物品专用 |  ✔️  |  ✔️  |  ✔️  |   ❌   |
+| `set_potion`                   | 物品专用 |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `set_stew_effect`              | 物品专用 |  ✔️  |  ✔️  |  ❌  |   ❌   |
+| `specific_enchants`            | 附魔     |  ✔️  |  ✔️  |  ✔️  |   ✔️   |
+| `trader_material_type`         | 外部因素 |  ❌  |  ❌  |  ❌  |   ✔️   |
 
 关于表中的几个例外：
 
@@ -568,9 +568,7 @@ import Button from '/src/components/button/base';
     "function": "set_banner_details",
     "type": 0,
     "base_color": "black",
-    "patterns": [
-        { "color": "red", "pattern": "flower" }
-    ]
+    "patterns": [{ "color": "red", "pattern": "flower" }]
 }
 ```
 
@@ -599,7 +597,7 @@ import Button from '/src/components/button/base';
     "function": "set_book_contents",
     "title": "探索笔记",
     "author": "Steve",
-    "pages": [ "第一页", "第二页\n换行后的内容" ]
+    "pages": ["第一页", "第二页\n换行后的内容"]
 }
 ```
 
@@ -717,7 +715,7 @@ import Button from '/src/components/button/base';
 ```json showLineNumbers
 {
     "function": "set_lore",
-    "lore": [ "§r第一行描述", "§r第二行描述" ]
+    "lore": ["§r第一行描述", "§r第二行描述"]
 }
 ```
 
@@ -815,10 +813,7 @@ import Button from '/src/components/button/base';
 ```json showLineNumbers
 {
     "function": "set_stew_effect",
-    "effects": [
-        { "id": 0 },
-        { "id": 3 }
-    ]
+    "effects": [{ "id": 0 }, { "id": 3 }]
 }
 ```
 
@@ -845,10 +840,7 @@ import Button from '/src/components/button/base';
 ```json showLineNumbers
 {
     "function": "specific_enchants",
-    "enchants": [
-        "mending",
-        { "id": "fortune", "level": [ 1, 3 ] }
-    ]
+    "enchants": ["mending", { "id": "fortune", "level": [1, 3] }]
 }
 ```
 
@@ -879,7 +871,6 @@ import Button from '/src/components/button/base';
 ---
 
 ## 战利品表条件
-
 
 条件（Condition）用于判断某个池或条目是否参与抽取。条件写在`conditions`数组中，**任何一条不满足即整体不通过**。
 
@@ -1141,9 +1132,9 @@ import Button from '/src/components/button/base';
 ```json showLineNumbers
 {
     "condition": "match_tool",
-    "minecraft:match_tool_filter_any": [ "minecraft:iron_tier", "minecraft:golden_tier", "minecraft:diamond_tier" ],
-    "minecraft:match_tool_filter_all": [ "minecraft:is_tool" ],
-    "minecraft:match_tool_filter_none": [ "minecraft:is_shovel" ]
+    "minecraft:match_tool_filter_any": ["minecraft:iron_tier", "minecraft:golden_tier", "minecraft:diamond_tier"],
+    "minecraft:match_tool_filter_all": ["minecraft:is_tool"],
+    "minecraft:match_tool_filter_none": ["minecraft:is_shovel"]
 }
 ```
 
@@ -1267,7 +1258,7 @@ import Button from '/src/components/button/base';
 - [战利品表与交易表函数 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/documents/lootandtradetablefunctions?view=minecraft-bedrock-stable)
 - [战利品表 | Bedrock Wiki](https://wiki.bedrock.dev/loot/loot-tables)
 - [战利品表函数 | Bedrock Wiki](https://wiki.bedrock.dev/loot/item-functions)
-- [战利品条件 | 我的世界开发者官网](https://mc.163.com/dev/mcmanual/mc-dev/mconline/10-addon%E6%95%99%E7%A8%8B/%E7%AC%AC12%E7%AB%A0%EF%BC%9A%E6%9B%B4%E5%AE%8C%E5%96%84%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%89%E8%90%BD%E7%89%A9/%E8%AF%BE%E7%A8%8B04.%E6%88%98%E5%88%A9%E5%93%81%E6%9D%A1%E4%BB%B6.html?catalog=1)
+- [掉落表与生成规则 | 我的世界开发者官网](https://mc.163.com/newdev/docs/guide/custom-loot-spawn.html#%E6%9D%A1%E4%BB%B6-conditions)
 
 import GiscusComment from "/src/components/comment/giscus.js"
 
