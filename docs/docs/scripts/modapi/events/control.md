@@ -12,7 +12,7 @@ import Client from '/src/components/highlight/client';
 
 > 适用版本：中国版 3.10。仅中国版可用。
 
-本文主要记录控制相关的事件，共 23 个。
+本文主要记录控制相关的事件，共 23 个。监听方式见[事件工作机制](/docs/docs/scripts/modapi/overview#事件)。
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/kongzhi.html"/>
 
@@ -25,10 +25,10 @@ import Client from '/src/components/highlight/client';
 跳跃按钮按下事件，返回值设置参数只对当次按下事件起作用。
 
 ```python
-ClientJumpButtonPressDownEvent(continueJump: bool) -> Any
+def OnClientJumpButtonPressDownEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- continueJump: bool，设置是否执行跳跃逻辑。
+- args["continueJump"]: bool，设置是否执行跳跃逻辑。
 
 ---
 
@@ -39,7 +39,7 @@ ClientJumpButtonPressDownEvent(continueJump: bool) -> Any
 跳跃按钮按下释放事件。
 
 ```python
-ClientJumpButtonReleaseEvent() -> Any
+def OnClientJumpButtonReleaseEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 ---
@@ -51,7 +51,7 @@ ClientJumpButtonReleaseEvent() -> Any
 玩家点击屏幕时触发，多个手指点在屏幕上时，只有第一个会触发。
 
 ```python
-GetEntityByCoordEvent() -> Any
+def OnGetEntityByCoordEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 ---
@@ -63,7 +63,7 @@ GetEntityByCoordEvent() -> Any
 玩家点击屏幕后松开时触发，多个手指点在屏幕上时，只有最后一个手指松开时触发。
 
 ```python
-GetEntityByCoordReleaseClientEvent() -> Any
+def OnGetEntityByCoordReleaseClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 ---
@@ -75,20 +75,14 @@ GetEntityByCoordReleaseClientEvent() -> Any
 触发时机：陀螺仪传感器姿态发生变化时。
 
 ```python
-GyroSensorChangedClientEvent(
-    xDiff: float,
-    yDiff: float,
-    zDiff: float,
-    orientation: int,
-    timestamp: float,
-) -> Any
+def OnGyroSensorChangedClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- xDiff: float，x 轴角速度，单位为弧度/s。
-- yDiff: float，y 轴角速度，单位为弧度/s。
-- zDiff: float，z 轴角速度，单位为弧度/s。
-- orientation: int，当前屏幕朝向,0 竖屏正向 1 横屏向左 2 竖屏倒置 3 横屏向右。
-- timestamp: float，触发时间戳,秒。
+- args["xDiff"]: float，x 轴角速度，单位为弧度/s。
+- args["yDiff"]: float，y 轴角速度，单位为弧度/s。
+- args["zDiff"]: float，z 轴角速度，单位为弧度/s。
+- args["orientation"]: int，当前屏幕朝向,0 竖屏正向 1 横屏向左 2 竖屏倒置 3 横屏向右。
+- args["timestamp"]: float，触发时间戳,秒。
 
 **备注**
 
@@ -103,10 +97,10 @@ GyroSensorChangedClientEvent(
 玩家长按屏幕，即将响应到游戏内时触发。仅在移动端或 pc 的 F11 模式下触发。pc 的非 F11 模式可以监听 [RightClickBeforeClientEvent](/docs/docs/scripts/modapi/events/control#rightclickbeforeclientevent) 事件。
 
 ```python
-HoldBeforeClientEvent(cancel: bool) -> Any
+def OnHoldBeforeClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- cancel: bool，设置为 True 可拦截原版的挖方块/使用物品/与实体交互响应。
+- args["cancel"]: bool，设置为 True 可拦截原版的挖方块/使用物品/与实体交互响应。
 
 **备注**
 
@@ -123,10 +117,10 @@ HoldBeforeClientEvent(cancel: bool) -> Any
 玩家按下攻击/摧毁键时触发，例如鼠标左键、新触控攻击键、手柄右扳机键。鼠标左键仅在 pc 的普通控制模式（即非 F11 模式）下触发。
 
 ```python
-LeftClickBeforeClientEvent(cancel: bool) -> Any
+def OnLeftClickBeforeClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- cancel: bool，设置为 True 可拦截原版的挖方块或攻击响应。
+- args["cancel"]: bool，设置为 True 可拦截原版的挖方块或攻击响应。
 
 **备注**
 
@@ -141,7 +135,7 @@ LeftClickBeforeClientEvent(cancel: bool) -> Any
 玩家松开攻击/摧毁键时触发，例如鼠标左键、新触控攻击键、手柄右扳机键。鼠标左键仅在 pc 的普通控制模式（即非 F11 模式）下触发。
 
 ```python
-LeftClickReleaseClientEvent() -> Any
+def OnLeftClickReleaseClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 
@@ -158,10 +152,10 @@ LeftClickReleaseClientEvent() -> Any
 鼠标滚轮滚动时触发。
 
 ```python
-MouseWheelClientEvent(direction: int) -> Any
+def OnMouseWheelClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- direction: int，1 为向上滚动，0 为向下滚动。
+- args["direction"]: int，1 为向上滚动，0 为向下滚动。
 
 ---
 
@@ -172,7 +166,7 @@ MouseWheelClientEvent(direction: int) -> Any
 返回按钮（目前特指安卓系统导航中的返回按钮）松开时触发。
 
 ```python
-OnBackButtonReleaseClientEvent() -> Any
+def OnOnBackButtonReleaseClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 
@@ -189,7 +183,7 @@ OnBackButtonReleaseClientEvent() -> Any
 移动按钮按下触发事件，在按住一个方向键的同时，去按另外一个方向键，不会触发第二次。
 
 ```python
-OnClientPlayerStartMove() -> Any
+def OnOnClientPlayerStartMove(self, args: Dict[str, Any]) -> None: ...
 ```
 
 ---
@@ -201,7 +195,7 @@ OnClientPlayerStartMove() -> Any
 移动按钮按下释放时触发事件，同时按下多个方向键，需要释放所有的方向键才会触发事件。
 
 ```python
-OnClientPlayerStopMove() -> Any
+def OnOnClientPlayerStopMove(self, args: Dict[str, Any]) -> None: ...
 ```
 
 ---
@@ -213,12 +207,12 @@ OnClientPlayerStopMove() -> Any
 游戏手柄按键映射改变事件。
 
 ```python
-OnGamepadControllerLayoutChangeClientEvent(action: str, newKey: int, oldKey: int) -> Any
+def OnOnGamepadControllerLayoutChangeClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- action: str，行为。
-- newKey: int，修改后的键码，详见[GamepadKeyType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/GamepadKeyType.html)。
-- oldKey: int，修改前的键码，详见[GamepadKeyType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/GamepadKeyType.html)。
+- args["action"]: str，行为。
+- args["newKey"]: int，修改后的键码，详见[GamepadKeyType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/GamepadKeyType.html)。
+- args["oldKey"]: int，修改前的键码，详见[GamepadKeyType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/GamepadKeyType.html)。
 
 ---
 
@@ -229,12 +223,12 @@ OnGamepadControllerLayoutChangeClientEvent(action: str, newKey: int, oldKey: int
 游戏手柄按键事件。
 
 ```python
-OnGamepadKeyPressClientEvent(screenName: str, key: int, isDown: str) -> Any
+def OnOnGamepadKeyPressClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- screenName: str，当前 screenName。
-- key: int，键码，详见[GamepadKeyType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/GamepadKeyType.html)。
-- isDown: str，是否按下，按下为 1，弹起为 0。
+- args["screenName"]: str，当前 screenName。
+- args["key"]: int，键码，详见[GamepadKeyType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/GamepadKeyType.html)。
+- args["isDown"]: str，是否按下，按下为 1，弹起为 0。
 
 ---
 
@@ -245,12 +239,12 @@ OnGamepadKeyPressClientEvent(screenName: str, key: int, isDown: str) -> Any
 游戏手柄摇杆事件。
 
 ```python
-OnGamepadStickClientEvent(key: int, x: float, y: float) -> Any
+def OnOnGamepadStickClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- key: int，键码，详见[GamepadKeyType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/GamepadKeyType.html)。
-- x: float，摇杆水平方向的值，从左到右取值为 -1.0 ~ 1.0。
-- y: float，摇杆竖直方向的值，从下到上取值为 -1.0 ~ 1.0。
+- args["key"]: int，键码，详见[GamepadKeyType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/GamepadKeyType.html)。
+- args["x"]: float，摇杆水平方向的值，从左到右取值为 -1.0 ~ 1.0。
+- args["y"]: float，摇杆竖直方向的值，从下到上取值为 -1.0 ~ 1.0。
 
 **备注**
 
@@ -265,11 +259,11 @@ OnGamepadStickClientEvent(key: int, x: float, y: float) -> Any
 游戏手柄扳机事件。
 
 ```python
-OnGamepadTriggerClientEvent(key: int, magnitude: float) -> Any
+def OnOnGamepadTriggerClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- key: int，键码，详见[GamepadKeyType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/GamepadKeyType.html)。
-- magnitude: float，扣动扳机的力度，取值为 0 ~ 1.0。
+- args["key"]: int，键码，详见[GamepadKeyType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/GamepadKeyType.html)。
+- args["magnitude"]: float，扣动扳机的力度，取值为 0 ~ 1.0。
 
 **备注**
 
@@ -284,12 +278,12 @@ OnGamepadTriggerClientEvent(key: int, magnitude: float) -> Any
 按键按下或按键释放时触发。
 
 ```python
-OnKeyPressInGame(screenName: str, key: str, isDown: str) -> Any
+def OnOnKeyPressInGame(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- screenName: str，当前 screenName。
-- key: str，键码（注：这里的 int 型被转成了 str 型，比如"1"对应的就是枚举值文档中的 1），详见[KeyBoardType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/KeyBoardType.html)。
-- isDown: str，是否按下，按下为 1，弹起为 0。
+- args["screenName"]: str，当前 screenName。
+- args["key"]: str，键码（注：这里的 int 型被转成了 str 型，比如"1"对应的就是枚举值文档中的 1），详见[KeyBoardType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/KeyBoardType.html)。
+- args["isDown"]: str，是否按下，按下为 1，弹起为 0。
 
 ---
 
@@ -300,12 +294,12 @@ OnKeyPressInGame(screenName: str, key: str, isDown: str) -> Any
 键盘按键映射改变事件。
 
 ```python
-OnKeyboardControllerLayoutChangeClientEvent(action: str, newKey: int, oldKey: int) -> Any
+def OnOnKeyboardControllerLayoutChangeClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- action: str，行为。
-- newKey: int，修改后的键码，详见[KeyBoardType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/KeyBoardType.html)。
-- oldKey: int，修改前的键码，详见[KeyBoardType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/KeyBoardType.html)。
+- args["action"]: str，行为。
+- args["newKey"]: int，修改后的键码，详见[KeyBoardType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/KeyBoardType.html)。
+- args["oldKey"]: int，修改前的键码，详见[KeyBoardType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/KeyBoardType.html)。
 
 ---
 
@@ -316,12 +310,12 @@ OnKeyboardControllerLayoutChangeClientEvent(action: str, newKey: int, oldKey: in
 鼠标按下中键时触发。
 
 ```python
-OnMouseMiddleDownClientEvent(isDown: int, mousePositionX: float, mousePositionY: float) -> Any
+def OnOnMouseMiddleDownClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- isDown: int，1 为按下，0 为弹起。
-- mousePositionX: float，按下时的 x 坐标。
-- mousePositionY: float，按下时的 y 坐标。
+- args["isDown"]: int，1 为按下，0 为弹起。
+- args["mousePositionX"]: float，按下时的 x 坐标。
+- args["mousePositionY"]: float，按下时的 y 坐标。
 
 **备注**
 
@@ -336,10 +330,10 @@ OnMouseMiddleDownClientEvent(isDown: int, mousePositionX: float, mousePositionY:
 玩家按下使用物品/放置方块键时触发，例如鼠标右键、新触控交互键、手柄左扳机键。
 
 ```python
-RightClickBeforeClientEvent(cancel: bool) -> Any
+def OnRightClickBeforeClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- cancel: bool，设置为 True 可拦截原版的物品使用/实体交互响应。
+- args["cancel"]: bool，设置为 True 可拦截原版的物品使用/实体交互响应。
 
 **备注**
 
@@ -354,7 +348,7 @@ RightClickBeforeClientEvent(cancel: bool) -> Any
 玩家松开使用物品/放置方块键时触发，例如鼠标右键、新触控交互键、手柄左扳机键。
 
 ```python
-RightClickReleaseClientEvent() -> Any
+def OnRightClickReleaseClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 
@@ -371,10 +365,10 @@ RightClickReleaseClientEvent() -> Any
 玩家点击屏幕并松手，即将响应到游戏内时触发。仅在移动端或 pc 的 F11 模式下触发。pc 的非 F11 模式可以监听 [LeftClickBeforeClientEvent](/docs/docs/scripts/modapi/events/control#leftclickbeforeclientevent) 事件。
 
 ```python
-TapBeforeClientEvent(cancel: bool) -> Any
+def OnTapBeforeClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- cancel: bool，设置为 True 可拦截原版的攻击或放置响应。
+- args["cancel"]: bool，设置为 True 可拦截原版的攻击或放置响应。
 
 **备注**
 
@@ -391,7 +385,7 @@ TapBeforeClientEvent(cancel: bool) -> Any
 玩家点击屏幕后松手时触发。仅在移动端或 pc 的 F11 模式下触发。pc 的非 F11 模式可以使用 [LeftClickReleaseClientEvent](/docs/docs/scripts/modapi/events/control#leftclickreleaseclientevent) 与 [RightClickReleaseClientEvent](/docs/docs/scripts/modapi/events/control#rightclickreleaseclientevent) 事件监听鼠标松开。
 
 ```python
-TapOrHoldReleaseClientEvent() -> Any
+def OnTapOrHoldReleaseClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 

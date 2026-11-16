@@ -12,7 +12,7 @@ import Client from '/src/components/highlight/client';
 
 > 适用版本：中国版 3.10。仅中国版可用。
 
-本文主要记录世界相关的事件，共 44 个。
+本文主要记录世界相关的事件，共 44 个。监听方式见[事件工作机制](/docs/docs/scripts/modapi/overview#事件)。
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/shijie.html"/>
 
@@ -25,20 +25,14 @@ import Client from '/src/components/highlight/client';
 玩家完成自定义成就时触发该事件。
 
 ```python
-AchievementCompleteEvent(
-    playerId: str,
-    rootNodeId: str,
-    achievementId: str,
-    title: str,
-    description: str,
-) -> Any
+def OnAchievementCompleteEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- rootNodeId: str，所属的页面的根节点成就 id。
-- achievementId: str，达成的成就 id。
-- title: str，成就标题。
-- description: str，成就描述。
+- args["playerId"]: str，玩家 id。
+- args["rootNodeId"]: str，所属的页面的根节点成就 id。
+- args["achievementId"]: str，达成的成就 id。
+- args["title"]: str，成就标题。
+- args["description"]: str，成就描述。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -51,28 +45,18 @@ AchievementCompleteEvent(
 客户端侧创建新实体时触发。
 
 ```python
-AddEntityClientEvent(
-    id: str,
-    posX: float,
-    posY: float,
-    posZ: float,
-    dimensionId: int,
-    isBaby: bool,
-    engineTypeStr: str,
-    itemName: str,
-    auxValue: int,
-) -> Any
+def OnAddEntityClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，实体 id。
-- posX: float，位置 x。
-- posY: float，位置 y。
-- posZ: float，位置 z。
-- dimensionId: int，实体维度。
-- isBaby: bool，是否为幼儿。
-- engineTypeStr: str，实体类型。
-- itemName: str，物品 identifier（仅当物品实体时存在该字段）。
-- auxValue: int，物品附加值（仅当物品实体时存在该字段）。
+- args["id"]: str，实体 id。
+- args["posX"]: float，位置 x。
+- args["posY"]: float，位置 y。
+- args["posZ"]: float，位置 z。
+- args["dimensionId"]: int，实体维度。
+- args["isBaby"]: bool，是否为幼儿。
+- args["engineTypeStr"]: str，实体类型。
+- args["itemName"]: str，物品 identifier（仅当物品实体时存在该字段）。
+- args["auxValue"]: int，物品附加值（仅当物品实体时存在该字段）。
 
 **备注**
 
@@ -89,28 +73,18 @@ AddEntityClientEvent(
 服务端侧创建新实体，或实体从存档加载时触发。
 
 ```python
-AddEntityServerEvent(
-    id: str,
-    posX: float,
-    posY: float,
-    posZ: float,
-    dimensionId: int,
-    isBaby: bool,
-    engineTypeStr: str,
-    itemName: str,
-    auxValue: int,
-) -> Any
+def OnAddEntityServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，实体 id。
-- posX: float，位置 x。
-- posY: float，位置 y。
-- posZ: float，位置 z。
-- dimensionId: int，实体维度。
-- isBaby: bool，是否为幼儿。
-- engineTypeStr: str，实体类型，即实体 identifier。
-- itemName: str，物品 identifier（仅当物品实体时存在该字段）。
-- auxValue: int，物品附加值（仅当物品实体时存在该字段）。
+- args["id"]: str，实体 id。
+- args["posX"]: float，位置 x。
+- args["posY"]: float，位置 y。
+- args["posZ"]: float，位置 z。
+- args["dimensionId"]: int，实体维度。
+- args["isBaby"]: bool，是否为幼儿。
+- args["engineTypeStr"]: str，实体类型，即实体 identifier。
+- args["itemName"]: str，物品 identifier（仅当物品实体时存在该字段）。
+- args["auxValue"]: int，物品附加值（仅当物品实体时存在该字段）。
 
 **备注**
 
@@ -127,10 +101,10 @@ AddEntityServerEvent(
 玩家加入游戏时视野内存在其他玩家，或者其余玩家进入当前玩家视野时触发的事件，替换 AddPlayerEvent。
 
 ```python
-AddPlayerAOIClientEvent(playerId: str) -> Any
+def OnAddPlayerAOIClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
+- args["playerId"]: str，玩家 id。
 
 **备注**
 
@@ -148,10 +122,10 @@ AddPlayerAOIClientEvent(playerId: str) -> Any
 玩家进入当前玩家所在的区块 AOI 后，玩家皮肤数据异步加载完成后触发的事件。
 
 ```python
-AddPlayerCreatedClientEvent(playerId: str) -> Any
+def OnAddPlayerCreatedClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
+- args["playerId"]: str，玩家 id。
 
 **备注**
 
@@ -169,24 +143,16 @@ AddPlayerCreatedClientEvent(playerId: str) -> Any
 触发时机：玩家加入时触发该事件。
 
 ```python
-AddServerPlayerEvent(
-    id: str,
-    isTransfer: bool,
-    isReconnect: bool,
-    isPeUser: bool,
-    transferParam: str,
-    uid: Union[int, int],
-    proxyId: int,
-) -> Any
+def OnAddServerPlayerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，玩家 id。
-- isTransfer: bool，是否是切服时进入服务器，仅用于 Apollo。如果是 True，则表示切服时加入服务器，若是 False，则表示登录进入网络游戏。
-- isReconnect: bool，是否是断线重连，仅用于 Apollo。如果是 True，则表示本次登录是断线重连，若是 False，则表示本次是正常登录或者转服。
-- isPeUser: bool，是否从手机端登录，仅用于 Apollo。如果是 True，则表示本次登录是从手机端登录，若是 False，则表示本次登录是从 PC 端登录。
-- transferParam: str，切服传入参数，仅用于 Apollo。调用【TransferToOtherServer】或【TransferToOtherServerById】传入的切服参数。
-- uid: Union[int, int]，仅用于 Apollo，玩家的 netease uid，玩家的唯一标识。
-- proxyId: int，仅用于 Apollo，当前客户端连接的 proxy 服务器 id。
+- args["id"]: str，玩家 id。
+- args["isTransfer"]: bool，是否是切服时进入服务器，仅用于 Apollo。如果是 True，则表示切服时加入服务器，若是 False，则表示登录进入网络游戏。
+- args["isReconnect"]: bool，是否是断线重连，仅用于 Apollo。如果是 True，则表示本次登录是断线重连，若是 False，则表示本次是正常登录或者转服。
+- args["isPeUser"]: bool，是否从手机端登录，仅用于 Apollo。如果是 True，则表示本次登录是从手机端登录，若是 False，则表示本次登录是从 PC 端登录。
+- args["transferParam"]: str，切服传入参数，仅用于 Apollo。调用【TransferToOtherServer】或【TransferToOtherServerById】传入的切服参数。
+- args["uid"]: Union[int, int]，仅用于 Apollo，玩家的 netease uid，玩家的唯一标识。
+- args["proxyId"]: int，仅用于 Apollo，当前客户端连接的 proxy 服务器 id。
 
 **备注**
 
@@ -204,12 +170,12 @@ AddServerPlayerEvent(
 触发时机：客户端区块即将被卸载时。
 
 ```python
-ChunkAcquireDiscardedClientEvent(dimension: int, chunkPosX: int, chunkPosZ: int) -> Any
+def OnChunkAcquireDiscardedClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimension: int，区块所在维度。
-- chunkPosX: int，区块的 x 坐标，对应方块 X 坐标区间为[x * 16, x * 16 + 15]。
-- chunkPosZ: int，区块的 z 坐标，对应方块 Z 坐标区间为[z * 16, z * 16 + 15]。
+- args["dimension"]: int，区块所在维度。
+- args["chunkPosX"]: int，区块的 x 坐标，对应方块 X 坐标区间为[x * 16, x * 16 + 15]。
+- args["chunkPosZ"]: int，区块的 z 坐标，对应方块 Z 坐标区间为[z * 16, z * 16 + 15]。
 
 **备注**
 
@@ -224,20 +190,14 @@ ChunkAcquireDiscardedClientEvent(dimension: int, chunkPosX: int, chunkPosZ: int)
 服务端区块即将被卸载时触发。
 
 ```python
-ChunkAcquireDiscardedServerEvent(
-    dimension: int,
-    chunkPosX: int,
-    chunkPosZ: int,
-    entities: List[str],
-    blockEntities: List[Dict[str, Any]],
-) -> Any
+def OnChunkAcquireDiscardedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimension: int，区块所在维度。
-- chunkPosX: int，区块的 x 坐标，对应方块 X 坐标区间为[x * 16, x * 16 + 15]。
-- chunkPosZ: int，区块的 z 坐标，对应方块 Z 坐标区间为[z * 16, z * 16 + 15]。
-- entities: List[str]，随区块卸载而从世界移除的实体 id 的列表。注意事件触发时已经无法获取到这些实体的信息，仅供脚本资源回收用。
-- blockEntities: List[Dict[str, Any]]，随区块卸载而从世界移除的自定义方块实体的坐标的列表，列表元素 dict 包含 posX，posY，posZ 三个 int 表示自定义方块实体的坐标，blockName 表示方块的 identifier，包含命名空间及名称。注意事件触发时已经无法获取到这些方块实体的信息，仅供脚本资源回收用。
+- args["dimension"]: int，区块所在维度。
+- args["chunkPosX"]: int，区块的 x 坐标，对应方块 X 坐标区间为[x * 16, x * 16 + 15]。
+- args["chunkPosZ"]: int，区块的 z 坐标，对应方块 Z 坐标区间为[z * 16, z * 16 + 15]。
+- args["entities"]: List[str]，随区块卸载而从世界移除的实体 id 的列表。注意事件触发时已经无法获取到这些实体的信息，仅供脚本资源回收用。
+- args["blockEntities"]: List[Dict[str, Any]]，随区块卸载而从世界移除的自定义方块实体的坐标的列表，列表元素 dict 包含 posX，posY，posZ 三个 int 表示自定义方块实体的坐标，blockName 表示方块的 identifier，包含命名空间及名称。注意事件触发时已经无法获取到这些方块实体的信息，仅供脚本资源回收用。
 
 **备注**
 
@@ -252,18 +212,13 @@ ChunkAcquireDiscardedServerEvent(
 触发时机：区块创建完成时触发。
 
 ```python
-ChunkGeneratedServerEvent(
-    dimension: int,
-    chunkPosX: int,
-    chunkPosZ: int,
-    blockEntityData: Optional[[\{"blockName":str,"posX":int,"posY":int,"posZ":int\}...]],
-) -> Any
+def OnChunkGeneratedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimension: int，该区块所在的维度。
-- chunkPosX: int，区块的 x 坐标，对应方块 X 坐标区间为[x * 16, x * 16 + 15]。
-- chunkPosZ: int，区块的 z 坐标，对应方块 Z 坐标区间为[z * 16, z * 16 + 15]。
-- blockEntityData: Optional[[\{"blockName":str,"posX":int,"posY":int,"posZ":int\}...]]，该区块中的自定义方块实体列表，通常是由自定义特征生成的自定义方块，没有自定义方块实体时该值为 None。
+- args["dimension"]: int，该区块所在的维度。
+- args["chunkPosX"]: int，区块的 x 坐标，对应方块 X 坐标区间为[x * 16, x * 16 + 15]。
+- args["chunkPosZ"]: int，区块的 z 坐标，对应方块 Z 坐标区间为[z * 16, z * 16 + 15]。
+- args["blockEntityData"]: Optional[[\{"blockName":str,"posX":int,"posY":int,"posZ":int\}...]]，该区块中的自定义方块实体列表，通常是由自定义特征生成的自定义方块，没有自定义方块实体时该值为 None。
 
 ---
 
@@ -274,12 +229,12 @@ ChunkGeneratedServerEvent(
 触发时机：客户端区块加载完成时。
 
 ```python
-ChunkLoadedClientEvent(dimension: int, chunkPosX: int, chunkPosZ: int) -> Any
+def OnChunkLoadedClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimension: int，区块所在维度。
-- chunkPosX: int，区块的 x 坐标，对应方块 X 坐标区间为[x * 16, x * 16 + 15]。
-- chunkPosZ: int，区块的 z 坐标，对应方块 Z 坐标区间为[z * 16, z * 16 + 15]。
+- args["dimension"]: int，区块所在维度。
+- args["chunkPosX"]: int，区块的 x 坐标，对应方块 X 坐标区间为[x * 16, x * 16 + 15]。
+- args["chunkPosZ"]: int，区块的 z 坐标，对应方块 Z 坐标区间为[z * 16, z * 16 + 15]。
 
 ---
 
@@ -290,18 +245,13 @@ ChunkLoadedClientEvent(dimension: int, chunkPosX: int, chunkPosZ: int) -> Any
 触发时机：服务端区块加载完成时。
 
 ```python
-ChunkLoadedServerEvent(
-    dimension: int,
-    chunkPosX: int,
-    chunkPosZ: int,
-    blockEntities: List[Dict[str, Any]],
-) -> Any
+def OnChunkLoadedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimension: int，区块所在维度。
-- chunkPosX: int，区块的 x 坐标，对应方块 X 坐标区间为[x * 16, x * 16 + 15]。
-- chunkPosZ: int，区块的 z 坐标，对应方块 Z 坐标区间为[z * 16, z * 16 + 15]。
-- blockEntities: List[Dict[str, Any]]，随区块加载而加载进世界的自定义方块实体的坐标的列表，列表元素 dict 包含 posX，posY，posZ 三个 int 表示自定义方块实体的坐标，blockName 表示方块的 identifier，包含命名空间及名称。
+- args["dimension"]: int，区块所在维度。
+- args["chunkPosX"]: int，区块的 x 坐标，对应方块 X 坐标区间为[x * 16, x * 16 + 15]。
+- args["chunkPosZ"]: int，区块的 z 坐标，对应方块 Z 坐标区间为[z * 16, z * 16 + 15]。
+- args["blockEntities"]: List[Dict[str, Any]]，随区块加载而加载进世界的自定义方块实体的坐标的列表，列表元素 dict 包含 posX，posY，posZ 三个 int 表示自定义方块实体的坐标，blockName 表示方块的 identifier，包含命名空间及名称。
 
 **备注**
 
@@ -316,10 +266,10 @@ ChunkLoadedServerEvent(
 触发时机：客户端 mod 加载完成时，服务端触发此事件。服务器可以使用此事件，往客户端发送数据给其初始化。
 
 ```python
-ClientLoadAddonsFinishServerEvent(playerId: str) -> Any
+def OnClientLoadAddonsFinishServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
+- args["playerId"]: str，玩家 id。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -332,12 +282,12 @@ ClientLoadAddonsFinishServerEvent(playerId: str) -> Any
 玩家请求执行指令时触发。
 
 ```python
-CommandEvent(entityId: str, command: str, cancel: bool) -> Any
+def OnCommandEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- entityId: str，玩家 ID。
-- command: str，指令字符串。
-- cancel: bool，是否取消。
+- args["entityId"]: str，玩家 ID。
+- args["command"]: str，指令字符串。
+- args["cancel"]: bool，是否取消。
 
 **备注**
 
@@ -354,22 +304,15 @@ CommandEvent(entityId: str, command: str, cancel: bool) -> Any
 自定义命令触发事件。
 
 ```python
-CustomCommandTriggerServerEvent(
-    command: str,
-    args: List[Dict[str, Any]],
-    variant: int,
-    origin: Dict[str, Any],
-    return_failed: bool = False,
-    return_msg_key: str,
-) -> Any
+def OnCustomCommandTriggerServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- command: str，自定义命令名称，对应 json 中的 name 字段。
-- args: List[Dict[str, Any]]，自定义命令参数，详情见下方。
-- variant: int，表示是哪条变体，范围[0, 9]，对应 json 中 args 键中的数字，未配置变体则为 0。
-- origin: Dict[str, Any]，触发源的信息，详情见下方。
-- return_failed: bool，设置自定义命令是否执行失败，默认为 False，如果执行失败，返回信息以红色字体显示。
-- return_msg_key: str，设置返回给玩家或命令方块的信息，也支持通过语言文件(.lang)定义，默认值为 commands.custom.success(自定义命令执行成功)。
+- args["command"]: str，自定义命令名称，对应 json 中的 name 字段。
+- args["args"]: List[Dict[str, Any]]，自定义命令参数，详情见下方。
+- args["variant"]: int，表示是哪条变体，范围[0, 9]，对应 json 中 args 键中的数字，未配置变体则为 0。
+- args["origin"]: Dict[str, Any]，触发源的信息，详情见下方。
+- args["return_failed"]: bool，设置自定义命令是否执行失败，默认为 False，如果执行失败，返回信息以红色字体显示。
+- args["return_msg_key"]: str，设置返回给玩家或命令方块的信息，也支持通过语言文件(.lang)定义，默认值为 commands.custom.success(自定义命令执行成功)。
 
 **备注**
 
@@ -419,12 +362,12 @@ CustomCommandTriggerServerEvent(
 触发时机：删除玩家时触发该事件。
 
 ```python
-DelServerPlayerEvent(id: str, isTransfer: bool, uid: Union[int, int]) -> Any
+def OnDelServerPlayerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，玩家 id。
-- isTransfer: bool，是否是切服时退出服务器，仅用于 Apollo。如果是 True，则表示切服时退出服务器；若是 False，则表示退出网络游戏。
-- uid: Union[int, int]，玩家的 netease uid，玩家的唯一标识。
+- args["id"]: str，玩家 id。
+- args["isTransfer"]: bool，是否是切服时退出服务器，仅用于 Apollo。如果是 True，则表示切服时退出服务器；若是 False，则表示退出网络游戏。
+- args["uid"]: Union[int, int]，玩家的 netease uid，玩家的唯一标识。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -437,10 +380,10 @@ DelServerPlayerEvent(id: str, isTransfer: bool, uid: Union[int, int]) -> Any
 实体被删除时触发。
 
 ```python
-EntityRemoveEvent(id: str) -> Any
+def OnEntityRemoveEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，实体 id。
+- args["id"]: str，实体 id。
 
 **备注**
 
@@ -460,20 +403,14 @@ EntityRemoveEvent(id: str) -> Any
 当发生爆炸时触发。
 
 ```python
-ExplosionServerEvent(
-    blocks: List[[x,y,z,cancel]],
-    victims: Optional[List[Any]],
-    sourceId: Optional[str],
-    explodePos: List[Any],
-    dimensionId: int,
-) -> Any
+def OnExplosionServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- blocks: List[[x,y,z,cancel]]，爆炸导致的被破坏方块坐标(x,y,z)，cancel 是一个 bool 值。
-- victims: Optional[List[Any]]，受伤实体 id 列表，当该爆炸创建者 id 为 None 时，victims 也为 None。
-- sourceId: Optional[str]，爆炸创建者 id。
-- explodePos: List[Any]，爆炸位置[x,y,z]。
-- dimensionId: int，维度 id。
+- args["blocks"]: List[[x,y,z,cancel]]，爆炸导致的被破坏方块坐标(x,y,z)，cancel 是一个 bool 值。
+- args["victims"]: Optional[List[Any]]，受伤实体 id 列表，当该爆炸创建者 id 为 None 时，victims 也为 None。
+- args["sourceId"]: Optional[str]，爆炸创建者 id。
+- args["explodePos"]: List[Any]，爆炸位置[x,y,z]。
+- args["dimensionId"]: int，维度 id。
 
 **备注**
 
@@ -491,7 +428,7 @@ ExplosionServerEvent(
 客户端渲染帧开始时触发该事件,一秒触发次数为当前的帧数。
 
 ```python
-GameRenderTickEvent() -> Any
+def OnGameRenderTickEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 ---
@@ -506,20 +443,14 @@ GameRenderTickEvent() -> Any
 <TabItem value="说明" label="说明" default>
 
 ```python
-GlobalCommandServerEvent(
-    entityId: str,
-    command: str,
-    blockPos: Tuple[int, int, int],
-    dimension: int,
-    cancel: bool,
-) -> Any
+def OnGlobalCommandServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- entityId: str，执行命令的实体 id, 如果没有此键，则是命令方块执行的命令。
-- command: str，将要被执行的命令。
-- blockPos: Tuple[int, int, int]，执行命令的实体或方块的方块坐标。
-- dimension: int，执行命令的实体或方块所在维度 id。
-- cancel: bool，设置为 True 可以取消命令执行。
+- args["entityId"]: str，执行命令的实体 id, 如果没有此键，则是命令方块执行的命令。
+- args["command"]: str，将要被执行的命令。
+- args["blockPos"]: Tuple[int, int, int]，执行命令的实体或方块的方块坐标。
+- args["dimension"]: int，执行命令的实体或方块所在维度 id。
+- args["cancel"]: bool，设置为 True 可以取消命令执行。
 
 **备注**
 
@@ -574,7 +505,7 @@ GlobalCommandServerEvent(
 客户端加载 mod 完成事件。
 
 ```python
-LoadClientAddonScriptsAfter() -> Any
+def OnLoadClientAddonScriptsAfter(self, args: Dict[str, Any]) -> None: ...
 ```
 
 ---
@@ -586,7 +517,7 @@ LoadClientAddonScriptsAfter() -> Any
 服务器加载完 mod 时触发。
 
 ```python
-LoadServerAddonScriptsAfter() -> Any
+def OnLoadServerAddonScriptsAfter(self, args: Dict[str, Any]) -> None: ...
 ```
 
 ---
@@ -601,12 +532,12 @@ LoadServerAddonScriptsAfter() -> Any
 <TabItem value="说明" label="说明" default>
 
 ```python
-NewOnEntityAreaEvent(name: str, enteredEntities: List[str], leftEntities: List[str]) -> Any
+def OnNewOnEntityAreaEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- name: str，注册感应区域名称。
-- enteredEntities: List[str]，进入该感应区域的实体 id 列表。
-- leftEntities: List[str]，离开该感应区域的实体 id 列表。
+- args["name"]: str，注册感应区域名称。
+- args["enteredEntities"]: List[str]，进入该感应区域的实体 id 列表。
+- args["leftEntities"]: List[str]，离开该感应区域的实体 id 列表。
 
 **备注**
 
@@ -632,7 +563,7 @@ def NewOnEntityAreaEvent(self, args):
 <Server/>
 
 ```python
-NewOnEntityAreaEvent() -> Any
+def OnNewOnEntityAreaEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 <Server/> DimensionCompServer
@@ -645,20 +576,14 @@ NewOnEntityAreaEvent() -> Any
 <TabItem value="说明" label="说明" default>
 
 ```python
-NewOnEntityAreaEvent(
-    dimension: int,
-    name: str,
-    aabb: Tuple[float, float, float, float, float, float],
-    ignoredEntities: List[str],
-    entityType: int,
-) -> bool
+def OnNewOnEntityAreaEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimension: int，维度 id。
-- name: str，注册的感应区域名。
-- aabb: Tuple[float, float, float, float, float, float]，感应区域的坐标范围，依次为 minX, minY, minZ, maxX, maxY, maxZ。
-- ignoredEntities: List[str]，忽略的实体 id 列表。
-- entityType: int，期望响应的实体类型，不传则响应所有的实体类型[EntityType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/EntityType.html)。
+- args["dimension"]: int，维度 id。
+- args["name"]: str，注册的感应区域名。
+- args["aabb"]: Tuple[float, float, float, float, float, float]，感应区域的坐标范围，依次为 minX, minY, minZ, maxX, maxY, maxZ。
+- args["ignoredEntities"]: List[str]，忽略的实体 id 列表。
+- args["entityType"]: int，期望响应的实体类型，不传则响应所有的实体类型[EntityType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/EntityType.html)。
 
 **返回值**：bool，是否注册成功。
 
@@ -689,11 +614,11 @@ comp.RegisterEntityAOIEvent(0, "test", (0, 0, 0, 1, 1, 1), None)
 <TabItem value="说明" label="说明" default>
 
 ```python
-NewOnEntityAreaEvent(dimension: int, name: str) -> bool
+def OnNewOnEntityAreaEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimension: int，维度 id。
-- name: str，需要反注册的感应区域名。
+- args["dimension"]: int，维度 id。
+- args["name"]: str，需要反注册的感应区域名。
 
 **返回值**：bool，是否注册成功。
 
@@ -718,11 +643,11 @@ comp.UnRegisterEntityAOIEvent(0, "test")
 当 command 命令有成功消息输出时触发。
 
 ```python
-OnCommandOutputClientEvent(command: str, message: str) -> Any
+def OnOnCommandOutputClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- command: str，命令名称。
-- message: str，命令返回的消息。
+- args["command"]: str，命令名称。
+- args["message"]: str，命令返回的消息。
 
 **备注**
 
@@ -737,11 +662,11 @@ OnCommandOutputClientEvent(command: str, message: str) -> Any
 Command 命令执行成功事件。
 
 ```python
-OnCommandOutputServerEvent(command: str, message: str) -> Any
+def OnOnCommandOutputServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- command: str，命令名称。
-- message: str，命令返回的消息。
+- args["command"]: str，命令名称。
+- args["message"]: str，命令返回的消息。
 
 **备注**
 
@@ -756,18 +681,13 @@ OnCommandOutputServerEvent(command: str, message: str) -> Any
 触发时机：随机奖励箱第一次打开根据 loottable 生成物品时。
 
 ```python
-OnContainerFillLoottableServerEvent(
-    loottable: str,
-    playerId: str,
-    itemList: List[Any],
-    dirty: bool = False,
-) -> Any
+def OnOnContainerFillLoottableServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- loottable: str，奖励箱子所读取的 loottable 的 json 路径。
-- playerId: str，打开奖励箱子的玩家的 playerId。
-- itemList: List[Any]，掉落物品列表，每个元素为一个 itemDict，格式可参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- dirty: bool，默认为 False，如果需要修改掉落列表需将该值设为 True。
+- args["loottable"]: str，奖励箱子所读取的 loottable 的 json 路径。
+- args["playerId"]: str，打开奖励箱子的玩家的 playerId。
+- args["itemList"]: List[Any]，掉落物品列表，每个元素为一个 itemDict，格式可参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["dirty"]: bool，默认为 False，如果需要修改掉落列表需将该值设为 True。
 
 **备注**
 
@@ -785,11 +705,11 @@ OnContainerFillLoottableServerEvent(
 打雷强度发生改变。
 
 ```python
-OnLightningLevelChangeServerEvent(oldLevel: float, newLevel: float) -> Any
+def OnOnLightningLevelChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- oldLevel: float，改变前的打雷强度。
-- newLevel: float，改变后的打雷强度。
+- args["oldLevel"]: float，改变前的打雷强度。
+- args["newLevel"]: float，改变后的打雷强度。
 
 ---
 
@@ -800,12 +720,12 @@ OnLightningLevelChangeServerEvent(oldLevel: float, newLevel: float) -> Any
 独立维度天气打雷强度发生改变时触发。
 
 ```python
-OnLocalLightningLevelChangeServerEvent(oldLevel: float, newLevel: float, dimensionId: int) -> Any
+def OnOnLocalLightningLevelChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- oldLevel: float，改变前的打雷强度。
-- newLevel: float，改变后的打雷强度。
-- dimensionId: int，独立天气维度 id。
+- args["oldLevel"]: float，改变前的打雷强度。
+- args["newLevel"]: float，改变后的打雷强度。
+- args["dimensionId"]: int，独立天气维度 id。
 
 ---
 
@@ -816,10 +736,10 @@ OnLocalLightningLevelChangeServerEvent(oldLevel: float, newLevel: float, dimensi
 触发时机：玩家进入存档，出生点地形加载完成时触发。该事件触发时可以进行切换维度的操作。
 
 ```python
-OnLocalPlayerStopLoading(playerId: str) -> Any
+def OnOnLocalPlayerStopLoading(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，加载完成的玩家 id。
+- args["playerId"]: str，加载完成的玩家 id。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -832,12 +752,12 @@ OnLocalPlayerStopLoading(playerId: str) -> Any
 独立维度天气下雨强度发生改变时触发。
 
 ```python
-OnLocalRainLevelChangeServerEvent(oldLevel: float, newLevel: float, dimensionId: int) -> Any
+def OnOnLocalRainLevelChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- oldLevel: float，改变前的下雨强度。
-- newLevel: float，改变后的下雨强度。
-- dimensionId: int，独立天气维度 id。
+- args["oldLevel"]: float，改变前的下雨强度。
+- args["newLevel"]: float，改变后的下雨强度。
+- args["dimensionId"]: int，独立天气维度 id。
 
 ---
 
@@ -848,11 +768,11 @@ OnLocalRainLevelChangeServerEvent(oldLevel: float, newLevel: float, dimensionId:
 下雨强度发生改变。
 
 ```python
-OnRainLevelChangeServerEvent(oldLevel: float, newLevel: float) -> Any
+def OnOnRainLevelChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- oldLevel: float，改变前的下雨强度。
-- newLevel: float，改变后的下雨强度。
+- args["oldLevel"]: float，改变前的下雨强度。
+- args["newLevel"]: float，改变后的下雨强度。
 
 ---
 
@@ -863,7 +783,7 @@ OnRainLevelChangeServerEvent(oldLevel: float, newLevel: float) -> Any
 客户端 tick 事件,1 秒 30 次。
 
 ```python
-OnScriptTickClient() -> Any
+def OnOnScriptTickClient(self, args: Dict[str, Any]) -> None: ...
 ```
 
 ---
@@ -875,7 +795,7 @@ OnScriptTickClient() -> Any
 服务器 tick 时触发,1 秒有 30 个 tick。
 
 ```python
-OnScriptTickServer() -> Any
+def OnOnScriptTickServer(self, args: Dict[str, Any]) -> None: ...
 ```
 
 ---
@@ -887,24 +807,16 @@ OnScriptTickServer() -> Any
 触发时机：网易版大型结构即将生成时服务端抛出该事件。
 
 ```python
-PlaceNeteaseLargeFeatureServerEvent(
-    dimensionId: int,
-    pos: Tuple,
-    rot: int,
-    depth: int,
-    centerPool: str,
-    ignoreFitInContext: bool,
-    cancel: bool,
-) -> Any
+def OnPlaceNeteaseLargeFeatureServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimensionId: int，维度 id。
-- pos: Tuple，中心结构放置坐标(x, z)。
-- rot: int，中心结构顺时针旋转角度。
-- depth: int，大型结构递归深度。
-- centerPool: str，中心池的 identifier。
-- ignoreFitInContext: bool，是否允许生成过结构的地方是否可以继续生成结构。
-- cancel: bool，设置为 True 时可阻止该大型结构的放置。
+- args["dimensionId"]: int，维度 id。
+- args["pos"]: Tuple，中心结构放置坐标(x, z)。
+- args["rot"]: int，中心结构顺时针旋转角度。
+- args["depth"]: int，大型结构递归深度。
+- args["centerPool"]: str，中心池的 identifier。
+- args["ignoreFitInContext"]: bool，是否允许生成过结构的地方是否可以继续生成结构。
+- args["cancel"]: bool，设置为 True 时可阻止该大型结构的放置。
 
 **备注**
 
@@ -919,26 +831,17 @@ PlaceNeteaseLargeFeatureServerEvent(
 触发时机：首次生成地形时，结构特征即将生成时服务端抛出该事件。
 
 ```python
-PlaceNeteaseStructureFeatureEvent(
-    structureName: str,
-    x: int,
-    y: int,
-    z: int,
-    biomeType: int,
-    biomeName: str,
-    dimensionId: int,
-    cancel: bool,
-) -> Any
+def OnPlaceNeteaseStructureFeatureEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- structureName: str，结构名称，可修改。
-- x: int，结构坐标最小方块所在的 x 坐标。
-- y: int，结构坐标最小方块所在的 y 坐标。
-- z: int，结构坐标最小方块所在的 z 坐标。
-- biomeType: int，该 feature 所放置区块的生物群系类型。
-- biomeName: str，该 feature 所放置区块的生物群系名称。
-- dimensionId: int，维度 id。
-- cancel: bool，设置为 True 时可阻止该结构的放置。
+- args["structureName"]: str，结构名称，可修改。
+- args["x"]: int，结构坐标最小方块所在的 x 坐标。
+- args["y"]: int，结构坐标最小方块所在的 y 坐标。
+- args["z"]: int，结构坐标最小方块所在的 z 坐标。
+- args["biomeType"]: int，该 feature 所放置区块的生物群系类型。
+- args["biomeName"]: str，该 feature 所放置区块的生物群系名称。
+- args["dimensionId"]: int，维度 id。
+- args["cancel"]: bool，设置为 True 时可阻止该结构的放置。
 
 **备注**
 
@@ -947,7 +850,7 @@ PlaceNeteaseStructureFeatureEvent(
 <Server/>
 
 ```python
-PlaceNeteaseStructureFeatureEvent() -> Any
+def OnPlaceNeteaseStructureFeatureEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 <Server/> FeatureCompServer
@@ -960,10 +863,10 @@ PlaceNeteaseStructureFeatureEvent() -> Any
 <TabItem value="说明" label="说明" default>
 
 ```python
-PlaceNeteaseStructureFeatureEvent(structureName: str) -> bool
+def OnPlaceNeteaseStructureFeatureEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- structureName: str，结构的 identifier。
+- args["structureName"]: str，结构的 identifier。
 
 **返回值**：bool，是否增加成功。
 
@@ -990,10 +893,10 @@ comp.AddNeteaseFeatureWhiteList("test:pumpkins")
 <TabItem value="说明" label="说明" default>
 
 ```python
-PlaceNeteaseStructureFeatureEvent(structureName: str) -> bool
+def OnPlaceNeteaseStructureFeatureEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- structureName: str，结构名称。
+- args["structureName"]: str，结构名称。
 
 **返回值**：bool，是否移除成功。
 
@@ -1020,7 +923,7 @@ comp.RemoveNeteaseFeatureWhiteList("test:pumpkins")
 <TabItem value="说明" label="说明" default>
 
 ```python
-PlaceNeteaseStructureFeatureEvent() -> bool
+def OnPlaceNeteaseStructureFeatureEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 
@@ -1047,10 +950,10 @@ comp.ClearAllNeteaseFeatureWhiteList()
 触发时机：即将删除玩家时触发该事件，此时可以通过各种 API 获取玩家的当前状态。
 
 ```python
-PlayerIntendLeaveServerEvent(playerId: str) -> Any
+def OnPlayerIntendLeaveServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
+- args["playerId"]: str，玩家 id。
 
 **备注**
 
@@ -1067,13 +970,13 @@ PlayerIntendLeaveServerEvent(playerId: str) -> Any
 触发时机：准备显示“xxx 加入游戏”的玩家登录提示文字时服务端抛出的事件。
 
 ```python
-PlayerJoinMessageEvent(id: str, name: str, cancel: bool, message: str) -> Any
+def OnPlayerJoinMessageEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，玩家实体 id。
-- name: str，玩家昵称。
-- cancel: bool，是否显示提示文字，允许修改。True：不显示提示。
-- message: str，玩家加入游戏的提示文字，允许修改。
+- args["id"]: str，玩家实体 id。
+- args["name"]: str，玩家昵称。
+- args["cancel"]: bool，是否显示提示文字，允许修改。True：不显示提示。
+- args["message"]: str，玩家加入游戏的提示文字，允许修改。
 
 **备注**
 
@@ -1090,13 +993,13 @@ PlayerJoinMessageEvent(id: str, name: str, cancel: bool, message: str) -> Any
 触发时机：准备显示“xxx 离开游戏”的玩家离开提示文字时服务端抛出的事件。
 
 ```python
-PlayerLeftMessageServerEvent(id: str, name: str, cancel: bool, message: str) -> Any
+def OnPlayerLeftMessageServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，玩家实体 id。
-- name: str，玩家昵称。
-- cancel: bool，是否显示提示文字，允许修改。True：不显示提示。
-- message: str，玩家离开游戏的提示文字，允许修改。
+- args["id"]: str，玩家实体 id。
+- args["name"]: str，玩家昵称。
+- args["cancel"]: bool，是否显示提示文字，允许修改。True：不显示提示。
+- args["message"]: str，玩家离开游戏的提示文字，允许修改。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1109,10 +1012,10 @@ PlayerLeftMessageServerEvent(id: str, name: str, cancel: bool, message: str) -> 
 客户端侧实体被移除时触发。
 
 ```python
-RemoveEntityClientEvent(id: str) -> Any
+def OnRemoveEntityClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，移除的实体 id。
+- args["id"]: str，移除的实体 id。
 
 **备注**
 
@@ -1129,10 +1032,10 @@ RemoveEntityClientEvent(id: str) -> Any
 玩家离开当前玩家视野时触发的事件。
 
 ```python
-RemovePlayerAOIClientEvent(playerId: str) -> Any
+def OnRemovePlayerAOIClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
+- args["playerId"]: str，玩家 id。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1148,32 +1051,20 @@ RemovePlayerAOIClientEvent(playerId: str) -> Any
 <TabItem value="说明" label="说明" default>
 
 ```python
-ServerChatEvent(
-    username: str,
-    playerId: str,
-    message: str,
-    cancel: bool,
-    bChatById: bool,
-    bForbid: bool,
-    toPlayerIds: List[str],
-    gameChatPrefix: str,
-    gameChatPrefixColorR: float,
-    gameChatPrefixColorG: float,
-    gameChatPrefixColorB: float,
-) -> Any
+def OnServerChatEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- username: str，玩家名称。
-- playerId: str，玩家 id。
-- message: str，玩家发送的聊天消息内容。
-- cancel: bool，是否取消这个聊天事件，若取消可以设置为 True。
-- bChatById: bool，是否把聊天消息发送给指定在线玩家，而不是广播给所有在线玩家，若只发送某些玩家可以设置为 True。
-- bForbid: bool，是否禁言，仅 apollo 可用。true：被禁言，玩家聊天会提示“你已被管理员禁言”。
-- toPlayerIds: List[str]，接收聊天消息的玩家 id 列表，bChatById 为 True 时生效。
-- gameChatPrefix: str，设置当前玩家在网易聊天界面中的前缀，字数限制 4，从字符串头部开始取。前缀文本输入非字符串格式时会被置为空。若 cancel 为 True，会取消掉本次的前缀修改。
-- gameChatPrefixColorR: float，设置当前玩家在网易聊天界面中前缀颜色 rgb 的 r 值，范围为[0,1]。颜色数值输入其他格式时会被置为 0。若 cancel 为 True，会取消掉本次的颜色修改。
-- gameChatPrefixColorG: float，设置当前玩家在网易聊天界面中前缀颜色 rgb 的 g 值，范围为[0,1]。颜色数值输入其他格式时会被置为 0。若 cancel 为 True，会取消掉本次的颜色修改。
-- gameChatPrefixColorB: float，设置当前玩家在网易聊天界面中前缀颜色 rgb 的 b 值，范围为[0,1]。颜色数值输入其他格式时会被置为 0。若 cancel 为 True，会取消掉本次的颜色修改。
+- args["username"]: str，玩家名称。
+- args["playerId"]: str，玩家 id。
+- args["message"]: str，玩家发送的聊天消息内容。
+- args["cancel"]: bool，是否取消这个聊天事件，若取消可以设置为 True。
+- args["bChatById"]: bool，是否把聊天消息发送给指定在线玩家，而不是广播给所有在线玩家，若只发送某些玩家可以设置为 True。
+- args["bForbid"]: bool，是否禁言，仅 apollo 可用。true：被禁言，玩家聊天会提示“你已被管理员禁言”。
+- args["toPlayerIds"]: List[str]，接收聊天消息的玩家 id 列表，bChatById 为 True 时生效。
+- args["gameChatPrefix"]: str，设置当前玩家在网易聊天界面中的前缀，字数限制 4，从字符串头部开始取。前缀文本输入非字符串格式时会被置为空。若 cancel 为 True，会取消掉本次的前缀修改。
+- args["gameChatPrefixColorR"]: float，设置当前玩家在网易聊天界面中前缀颜色 rgb 的 r 值，范围为[0,1]。颜色数值输入其他格式时会被置为 0。若 cancel 为 True，会取消掉本次的颜色修改。
+- args["gameChatPrefixColorG"]: float，设置当前玩家在网易聊天界面中前缀颜色 rgb 的 g 值，范围为[0,1]。颜色数值输入其他格式时会被置为 0。若 cancel 为 True，会取消掉本次的颜色修改。
+- args["gameChatPrefixColorB"]: float，设置当前玩家在网易聊天界面中前缀颜色 rgb 的 b 值，范围为[0,1]。颜色数值输入其他格式时会被置为 0。若 cancel 为 True，会取消掉本次的颜色修改。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1212,22 +1103,15 @@ def OnServerChat(self, args):
 触发时机：用方块组合生成生物，生成生物之后触发该事件。
 
 ```python
-ServerPostBlockPatternEvent(
-    entityId: str,
-    entityGenerated: str,
-    x: int,
-    y: int,
-    z: int,
-    dimensionId: int,
-) -> Any
+def OnServerPostBlockPatternEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- entityId: str，生成生物的 id。
-- entityGenerated: str，生成生物的名字，如"minecraft:pig"。
-- x: int，方块 x 坐标。
-- y: int，方块 y 坐标。
-- z: int，方块 z 坐标。
-- dimensionId: int，维度 id。
+- args["entityId"]: str，生成生物的 id。
+- args["entityGenerated"]: str，生成生物的名字，如"minecraft:pig"。
+- args["x"]: int，方块 x 坐标。
+- args["y"]: int，方块 y 坐标。
+- args["z"]: int，方块 z 坐标。
+- args["dimensionId"]: int，维度 id。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1240,22 +1124,15 @@ ServerPostBlockPatternEvent(
 触发时机：用方块组合生成生物，在放置最后一个组成方块时触发该事件。
 
 ```python
-ServerPreBlockPatternEvent(
-    enable: bool,
-    x: int,
-    y: int,
-    z: int,
-    dimensionId: int,
-    entityWillBeGenerated: str,
-) -> Any
+def OnServerPreBlockPatternEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- enable: bool，是否允许继续生成。若设为 False，可阻止生成生物。
-- x: int，方块 x 坐标。
-- y: int，方块 y 坐标。
-- z: int，方块 z 坐标。
-- dimensionId: int，维度 id。
-- entityWillBeGenerated: str，即将生成生物的名字，如"minecraft:pig"。
+- args["enable"]: bool，是否允许继续生成。若设为 False，可阻止生成生物。
+- args["x"]: int，方块 x 坐标。
+- args["y"]: int，方块 y 坐标。
+- args["z"]: int，方块 z 坐标。
+- args["dimensionId"]: int，维度 id。
+- args["entityWillBeGenerated"]: str，即将生成生物的名字，如"minecraft:pig"。
 
 ---
 
@@ -1266,30 +1143,19 @@ ServerPreBlockPatternEvent(
 游戏内自动生成生物，以及使用 api 生成生物时触发。
 
 ```python
-ServerSpawnMobEvent(
-    entityId: str,
-    identifier: str,
-    type: int,
-    baby: bool,
-    x: float,
-    y: float,
-    z: float,
-    dimensionId: int,
-    realIdentifier: str,
-    cancel: bool,
-) -> Any
+def OnServerSpawnMobEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- entityId: str，实体 id。
-- identifier: str，生成实体的命名空间。
-- type: int，生成实体的类型，参考[EntityType](https://mc.163.com/newdev/docs/api/meijuzhi/EntityType.html)。
-- baby: bool，生成怪物是否是幼年怪。
-- x: float，生成实体坐标 x。
-- y: float，生成实体坐标 y。
-- z: float，生成实体坐标 z。
-- dimensionId: int，生成实体的维度，默认值为 0（0 为主世界，1 为地狱，2 为末地）。
-- realIdentifier: str，生成实体的命名空间，通过 MOD API 生成的生物在这个参数也能获取到真正的命名空间，而不是以 custom 开头的。
-- cancel: bool，是否取消生成该实体。
+- args["entityId"]: str，实体 id。
+- args["identifier"]: str，生成实体的命名空间。
+- args["type"]: int，生成实体的类型，参考[EntityType](https://mc.163.com/newdev/docs/api/meijuzhi/EntityType.html)。
+- args["baby"]: bool，生成怪物是否是幼年怪。
+- args["x"]: float，生成实体坐标 x。
+- args["y"]: float，生成实体坐标 y。
+- args["z"]: float，生成实体坐标 z。
+- args["dimensionId"]: int，生成实体的维度，默认值为 0（0 为主世界，1 为地狱，2 为末地）。
+- args["realIdentifier"]: str，生成实体的命名空间，通过 MOD API 生成的生物在这个参数也能获取到真正的命名空间，而不是以 custom 开头的。
+- args["cancel"]: bool，是否取消生成该实体。
 
 **备注**
 
@@ -1306,7 +1172,7 @@ ServerSpawnMobEvent(
 客户端卸载 mod 之前触发。
 
 ```python
-UnLoadClientAddonScriptsBefore() -> Any
+def OnUnLoadClientAddonScriptsBefore(self, args: Dict[str, Any]) -> None: ...
 ```
 
 ---

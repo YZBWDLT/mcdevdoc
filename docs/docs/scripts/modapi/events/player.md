@@ -12,7 +12,7 @@ import Client from '/src/components/highlight/client';
 
 > 适用版本：中国版 3.10。仅中国版可用。
 
-本文主要记录玩家相关的事件，共 45 个。
+本文主要记录玩家相关的事件，共 45 个。监听方式见[事件工作机制](/docs/docs/scripts/modapi/overview#事件)。
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/wanjia.html"/>
 
@@ -25,11 +25,11 @@ import Client from '/src/components/highlight/client';
 触发时机：当玩家增加经验时触发该事件。
 
 ```python
-AddExpEvent(id: str, addExp: int) -> Any
+def OnAddExpEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，玩家 id。
-- addExp: int，增加的经验值。
+- args["id"]: str，玩家 id。
+- args["addExp"]: int，增加的经验值。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -42,12 +42,12 @@ AddExpEvent(id: str, addExp: int) -> Any
 触发时机：当玩家升级时触发该事件。
 
 ```python
-AddLevelEvent(id: str, addLevel: int, newLevel: int) -> Any
+def OnAddLevelEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，玩家 id。
-- addLevel: int，增加的等级值。
-- newLevel: int，新的等级。
+- args["id"]: str，玩家 id。
+- args["addLevel"]: int，增加的等级值。
+- args["newLevel"]: int，新的等级。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -60,10 +60,10 @@ AddLevelEvent(id: str, addLevel: int, newLevel: int) -> Any
 相机运动器开始事件。相机添加运动器后，运动器开始运行时触发。
 
 ```python
-CameraMotionStartClientEvent(motionId: int) -> Any
+def OnCameraMotionStartClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- motionId: int，运动器 id。
+- args["motionId"]: int，运动器 id。
 
 ---
 
@@ -74,11 +74,11 @@ CameraMotionStartClientEvent(motionId: int) -> Any
 相机运动器停止事件。相机添加运动器并开始运行后，运动器自动停止时触发。
 
 ```python
-CameraMotionStopClientEvent(motionId: int, remove: bool = True) -> Any
+def OnCameraMotionStopClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- motionId: int，运动器 id。
-- remove: bool，是否移除该运动器，设置为 False 则保留，默认为 True，即运动器停止后自动移除。
+- args["motionId"]: int，运动器 id。
+- args["remove"]: bool，是否移除该运动器，设置为 False 则保留，默认为 True，即运动器停止后自动移除。
 
 **备注**
 
@@ -93,17 +93,17 @@ CameraMotionStopClientEvent(motionId: int, remove: bool = True) -> Any
 触发时机：获取玩家下一个等级升级经验时，用于重载玩家的升级经验，每个等级在重置之前都只会触发一次。
 
 ```python
-ChangeLevelUpCostServerEvent(level: int, levelUpCostExp: int, changed: bool) -> Any
+def OnChangeLevelUpCostServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- level: int，玩家当前等级。
-- levelUpCostExp: int，当前等级升级到下个等级需要的经验值，当设置升级经验小于 1 时会被强制调整到 1。
-- changed: bool，设置为 True，重载玩家升级经验才会生效。
+- args["level"]: int，玩家当前等级。
+- args["levelUpCostExp"]: int，当前等级升级到下个等级需要的经验值，当设置升级经验小于 1 时会被强制调整到 1。
+- args["changed"]: bool，设置为 True，重载玩家升级经验才会生效。
 
 <Server/>
 
 ```python
-ChangeLevelUpCostServerEvent() -> Any
+def OnChangeLevelUpCostServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 <Server/> PlayerCompServer
@@ -116,10 +116,10 @@ ChangeLevelUpCostServerEvent() -> Any
 <TabItem value="说明" label="说明" default>
 
 ```python
-ChangeLevelUpCostServerEvent(level: int) -> bool
+def OnChangeLevelUpCostServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- level: int，指定清理的等级，加入传入的数值小于 0，则清理所有等级的升级经验值缓存。
+- args["level"]: int，指定清理的等级，加入传入的数值小于 0，则清理所有等级的升级经验值缓存。
 
 **返回值**：bool，是否清理成功。
 
@@ -144,28 +144,18 @@ suc = comp.ClearDefinedLevelUpCost(1)
 玩家维度改变时客户端抛出。
 
 ```python
-DimensionChangeClientEvent(
-    playerId: str,
-    fromDimensionId: int,
-    toDimensionId: int,
-    fromX: float,
-    fromY: float,
-    fromZ: float,
-    toX: float,
-    toY: float,
-    toZ: float,
-) -> Any
+def OnDimensionChangeClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- fromDimensionId: int，维度改变前的维度。
-- toDimensionId: int，维度改变后的维度。
-- fromX: float，改变前的位置 x。
-- fromY: float，改变前的位置 Y。
-- fromZ: float，改变前的位置 Z。
-- toX: float，改变后的位置 x。
-- toY: float，改变后的位置 Y。
-- toZ: float，改变后的位置 Z。
+- args["playerId"]: str，玩家实体 id。
+- args["fromDimensionId"]: int，维度改变前的维度。
+- args["toDimensionId"]: int，维度改变后的维度。
+- args["fromX"]: float，改变前的位置 x。
+- args["fromY"]: float，改变前的位置 Y。
+- args["fromZ"]: float，改变前的位置 Z。
+- args["toX"]: float，改变后的位置 x。
+- args["toY"]: float，改变后的位置 Y。
+- args["toZ"]: float，改变后的位置 Z。
 
 **备注**
 
@@ -182,18 +172,13 @@ DimensionChangeClientEvent(
 玩家维度改变完成后客户端抛出。
 
 ```python
-DimensionChangeFinishClientEvent(
-    playerId: str,
-    fromDimensionId: int,
-    toDimensionId: int,
-    toPos: Tuple[float, float, float],
-) -> Any
+def OnDimensionChangeFinishClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- fromDimensionId: int，维度改变前的维度。
-- toDimensionId: int，维度改变后的维度。
-- toPos: Tuple[float, float, float]，改变后的位置 x,y,z,其中 y 值为脚底加上角色的身高值。
+- args["playerId"]: str，玩家实体 id。
+- args["fromDimensionId"]: int，维度改变前的维度。
+- args["toDimensionId"]: int，维度改变后的维度。
+- args["toPos"]: Tuple[float, float, float]，改变后的位置 x,y,z,其中 y 值为脚底加上角色的身高值。
 
 **备注**
 
@@ -210,18 +195,13 @@ DimensionChangeFinishClientEvent(
 玩家维度改变完成后服务端抛出。
 
 ```python
-DimensionChangeFinishServerEvent(
-    playerId: str,
-    fromDimensionId: int,
-    toDimensionId: int,
-    toPos: Tuple[float, float, float],
-) -> Any
+def OnDimensionChangeFinishServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- fromDimensionId: int，维度改变前的维度。
-- toDimensionId: int，维度改变后的维度。
-- toPos: Tuple[float, float, float]，改变后的位置 x,y,z,其中 y 值为脚底加上角色的身高值。
+- args["playerId"]: str，玩家实体 id。
+- args["fromDimensionId"]: int，维度改变前的维度。
+- args["toDimensionId"]: int，维度改变后的维度。
+- args["toPos"]: Tuple[float, float, float]，改变后的位置 x,y,z,其中 y 值为脚底加上角色的身高值。
 
 **备注**
 
@@ -238,28 +218,18 @@ DimensionChangeFinishServerEvent(
 玩家维度改变时服务端抛出。
 
 ```python
-DimensionChangeServerEvent(
-    playerId: str,
-    fromDimensionId: int,
-    toDimensionId: int,
-    fromX: float,
-    fromY: float,
-    fromZ: float,
-    toX: float,
-    toY: float,
-    toZ: float,
-) -> Any
+def OnDimensionChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- fromDimensionId: int，维度改变前的维度。
-- toDimensionId: int，维度改变后的维度。
-- fromX: float，改变前的位置 x。
-- fromY: float，改变前的位置 Y。
-- fromZ: float，改变前的位置 Z。
-- toX: float，改变后的位置 x。
-- toY: float，改变后的位置 Y。
-- toZ: float，改变后的位置 Z。
+- args["playerId"]: str，玩家实体 id。
+- args["fromDimensionId"]: int，维度改变前的维度。
+- args["toDimensionId"]: int，维度改变后的维度。
+- args["fromX"]: float，改变前的位置 x。
+- args["fromY"]: float，改变前的位置 Y。
+- args["fromZ"]: float，改变前的位置 Z。
+- args["toX"]: float，改变后的位置 x。
+- args["toY"]: float，改变后的位置 Y。
+- args["toZ"]: float，改变后的位置 Z。
 
 **备注**
 
@@ -276,12 +246,12 @@ DimensionChangeServerEvent(
 玩家扑灭火焰时触发。下雨，倒水等方式熄灭火焰不会触发。
 
 ```python
-ExtinguishFireClientEvent(pos: Tuple[float, float, float], playerId: str, cancel: bool) -> Any
+def OnExtinguishFireClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- pos: Tuple[float, float, float]，火焰方块的坐标。
-- playerId: str，玩家 id。
-- cancel: bool，修改为 True 时，可阻止玩家扑灭火焰。需要与 [ExtinguishFireServerEvent](/docs/docs/scripts/modapi/events/player#extinguishfireserverevent) 一起修改。
+- args["pos"]: Tuple[float, float, float]，火焰方块的坐标。
+- args["playerId"]: str，玩家 id。
+- args["cancel"]: bool，修改为 True 时，可阻止玩家扑灭火焰。需要与 [ExtinguishFireServerEvent](/docs/docs/scripts/modapi/events/player#extinguishfireserverevent) 一起修改。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -294,12 +264,12 @@ ExtinguishFireClientEvent(pos: Tuple[float, float, float], playerId: str, cancel
 玩家扑灭火焰时触发。下雨，倒水等方式熄灭火焰不会触发。
 
 ```python
-ExtinguishFireServerEvent(pos: Tuple[float, float, float], playerId: str, cancel: bool) -> Any
+def OnExtinguishFireServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- pos: Tuple[float, float, float]，火焰方块的坐标。
-- playerId: str，玩家 id。
-- cancel: bool，修改为 True 时，可阻止玩家扑灭火焰。需要与 [ExtinguishFireClientEvent](/docs/docs/scripts/modapi/events/player#extinguishfireclientevent) 一起修改。
+- args["pos"]: Tuple[float, float, float]，火焰方块的坐标。
+- args["playerId"]: str，玩家 id。
+- args["cancel"]: bool，修改为 True 时，可阻止玩家扑灭火焰。需要与 [ExtinguishFireClientEvent](/docs/docs/scripts/modapi/events/player#extinguishfireclientevent) 一起修改。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -312,12 +282,12 @@ ExtinguishFireServerEvent(pos: Tuple[float, float, float], playerId: str, cancel
 个人游戏模式发生变化时客户端触发。
 
 ```python
-GameTypeChangedClientEvent(playerId: str, oldGameType: int, newGameType: int) -> Any
+def OnGameTypeChangedClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 Id。
-- oldGameType: int，切换前的游戏模式。
-- newGameType: int，切换后的游戏模式。
+- args["playerId"]: str，玩家 Id。
+- args["oldGameType"]: int，切换前的游戏模式。
+- args["newGameType"]: int，切换后的游戏模式。
 
 **备注**
 
@@ -334,12 +304,12 @@ GameTypeChangedClientEvent(playerId: str, oldGameType: int, newGameType: int) ->
 当默认游戏模式或个人游戏模式发生变化时服务端触发，如果个人游戏模式不为默认时，修改默认游戏模式也会同时修改个人游戏模式，此时会触发两次该事件。
 
 ```python
-GameTypeChangedServerEvent(playerId: str, oldGameType: int, newGameType: int) -> Any
+def OnGameTypeChangedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 Id，[SetDefaultGameType](https://mc.163.com/newdev/docs/api/jiekou/shijie/youxiguize.html#setdefaultgametype)接口改变游戏模式时该参数为空字符串。
-- oldGameType: int，切换前的游戏模式。
-- newGameType: int，切换后的游戏模式。
+- args["playerId"]: str，玩家 Id，[SetDefaultGameType](https://mc.163.com/newdev/docs/api/jiekou/shijie/youxiguize.html#setdefaultgametype)接口改变游戏模式时该参数为空字符串。
+- args["oldGameType"]: int，切换前的游戏模式。
+- args["newGameType"]: int，切换后的游戏模式。
 
 **备注**
 
@@ -356,11 +326,11 @@ GameTypeChangedServerEvent(playerId: str, oldGameType: int, newGameType: int) ->
 玩家通过骑乘驯服生物后触发该事件。
 
 ```python
-MountTamingEvent(eid: str, pid: str) -> Any
+def OnMountTamingEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- eid: str，生物 id。
-- pid: str，玩家 id。
+- args["eid"]: str，生物 id。
+- args["pid"]: str，玩家 id。
 
 **备注**
 
@@ -375,10 +345,10 @@ MountTamingEvent(eid: str, pid: str) -> Any
 玩家动作事件，当本地玩家开始/停止某些动作时触发该事件。
 
 ```python
-OnLocalPlayerActionClientEvent(actionType: int) -> Any
+def OnOnLocalPlayerActionClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- actionType: int，动作事件枚举，详见 Minecraft 枚举值文档的[PlayerActionType](https://mc.163.com/newdev/docs/api/meijuzhi/PlayerActionType.html)。
+- args["actionType"]: int，动作事件枚举，详见 Minecraft 枚举值文档的[PlayerActionType](https://mc.163.com/newdev/docs/api/meijuzhi/PlayerActionType.html)。
 
 ---
 
@@ -389,7 +359,7 @@ OnLocalPlayerActionClientEvent(actionType: int) -> Any
 本地玩家开始跳跃时触发。
 
 ```python
-OnLocalPlayerStartJumpClientEvent() -> Any
+def OnOnLocalPlayerStartJumpClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 ---
@@ -401,11 +371,11 @@ OnLocalPlayerStartJumpClientEvent() -> Any
 玩家动作事件，当玩家开始/停止某些动作时触发该事件。
 
 ```python
-OnPlayerActionServerEvent(playerId: str, actionType: int) -> Any
+def OnOnPlayerActionServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- actionType: int，动作事件枚举，详见 Minecraft 枚举值文档的[PlayerActionType](https://mc.163.com/newdev/docs/api/meijuzhi/PlayerActionType.html)。
+- args["playerId"]: str，玩家 id。
+- args["actionType"]: int，动作事件枚举，详见 Minecraft 枚举值文档的[PlayerActionType](https://mc.163.com/newdev/docs/api/meijuzhi/PlayerActionType.html)。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -418,29 +388,22 @@ OnPlayerActionServerEvent(playerId: str, actionType: int) -> Any
 触发时机：通过 OpenPlayerHitBlockDetection 打开方块碰撞检测后，当玩家碰撞到方块时触发该事件。玩家着地时会触发 [OnGroundClientEvent](/docs/docs/scripts/modapi/events/entity#ongroundclientevent)，而不是该事件。客户端和服务端分别作碰撞检测，可能两个事件返回的结果略有差异。
 
 ```python
-OnPlayerHitBlockClientEvent(
-    playerId: str,
-    posX: int,
-    posY: int,
-    posZ: int,
-    blockId: str,
-    auxValue: int,
-) -> Any
+def OnOnPlayerHitBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，碰撞到方块的玩家 Id。
-- posX: int，碰撞方块 x 坐标。
-- posY: int，碰撞方块 y 坐标。
-- posZ: int，碰撞方块 z 坐标。
-- blockId: str，碰撞方块的 identifier。
-- auxValue: int，碰撞方块的附加值。
+- args["playerId"]: str，碰撞到方块的玩家 Id。
+- args["posX"]: int，碰撞方块 x 坐标。
+- args["posY"]: int，碰撞方块 y 坐标。
+- args["posZ"]: int，碰撞方块 z 坐标。
+- args["blockId"]: str，碰撞方块的 identifier。
+- args["auxValue"]: int，碰撞方块的附加值。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
 <Client/>
 
 ```python
-OnPlayerHitBlockClientEvent() -> Any
+def OnOnPlayerHitBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 <Client/> PlayerCompClient
@@ -453,10 +416,10 @@ OnPlayerHitBlockClientEvent() -> Any
 <TabItem value="说明" label="说明" default>
 
 ```python
-OnPlayerHitBlockClientEvent(precision: float) -> bool
+def OnOnPlayerHitBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- precision: float，碰撞检测精度，参数需要在区间[0, 1)，值越小，表示碰撞检测精度越高（可以理解为轻轻碰一下就能触发）。
+- args["precision"]: float，碰撞检测精度，参数需要在区间[0, 1)，值越小，表示碰撞检测精度越高（可以理解为轻轻碰一下就能触发）。
 
 **返回值**：bool，是否设置成功。
 
@@ -486,7 +449,7 @@ comp.OpenPlayerHitBlockDetection(0.0001)
 <TabItem value="说明" label="说明" default>
 
 ```python
-OnPlayerHitBlockClientEvent() -> bool
+def OnOnPlayerHitBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 
@@ -513,31 +476,23 @@ comp.ClosePlayerHitBlockDetection()
 触发时机：通过 OpenPlayerHitBlockDetection 打开方块碰撞检测后，当玩家碰撞到方块时触发该事件。监听玩家着地请使用客户端的 [OnGroundClientEvent](/docs/docs/scripts/modapi/events/entity#ongroundclientevent)。客户端和服务端分别作碰撞检测，可能两个事件返回的略有差异。
 
 ```python
-OnPlayerHitBlockServerEvent(
-    playerId: str,
-    posX: int,
-    posY: int,
-    posZ: int,
-    blockId: str,
-    auxValue: int,
-    dimensionId: int,
-) -> Any
+def OnOnPlayerHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，碰撞到方块的玩家 Id。
-- posX: int，碰撞方块 x 坐标。
-- posY: int，碰撞方块 y 坐标。
-- posZ: int，碰撞方块 z 坐标。
-- blockId: str，碰撞方块的 identifier。
-- auxValue: int，碰撞方块的附加值。
-- dimensionId: int，维度 id。
+- args["playerId"]: str，碰撞到方块的玩家 Id。
+- args["posX"]: int，碰撞方块 x 坐标。
+- args["posY"]: int，碰撞方块 y 坐标。
+- args["posZ"]: int，碰撞方块 z 坐标。
+- args["blockId"]: str，碰撞方块的 identifier。
+- args["auxValue"]: int，碰撞方块的附加值。
+- args["dimensionId"]: int，维度 id。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
 <Server/>
 
 ```python
-OnPlayerHitBlockServerEvent() -> Any
+def OnOnPlayerHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 <Server/> PlayerCompServer
@@ -550,10 +505,10 @@ OnPlayerHitBlockServerEvent() -> Any
 <TabItem value="说明" label="说明" default>
 
 ```python
-OnPlayerHitBlockServerEvent(precision: float) -> bool
+def OnOnPlayerHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- precision: float，碰撞检测精度，参数需要在区间[0, 1)，值越小，表示碰撞检测精度越高（可以理解为轻轻碰一下就能触发）。
+- args["precision"]: float，碰撞检测精度，参数需要在区间[0, 1)，值越小，表示碰撞检测精度越高（可以理解为轻轻碰一下就能触发）。
 
 **返回值**：bool，是否设置成功。
 
@@ -583,7 +538,7 @@ comp.OpenPlayerHitBlockDetection(0.0001)
 <TabItem value="说明" label="说明" default>
 
 ```python
-OnPlayerHitBlockServerEvent() -> bool
+def OnOnPlayerHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
 
@@ -610,11 +565,11 @@ comp.ClosePlayerHitBlockDetection()
 视角切换时会触发的事件。
 
 ```python
-PerspChangeClientEvent(from: int, to: int) -> Any
+def OnPerspChangeClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- from: int，切换前的视角。
-- to: int，切换后的视角。
+- args["from"]: int，切换前的视角。
+- args["to"]: int，切换后的视角。
 
 **备注**
 
@@ -629,24 +584,16 @@ PerspChangeClientEvent(from: int, to: int) -> Any
 触发时机：当玩家攻击时触发该事件。
 
 ```python
-PlayerAttackEntityEvent(
-    playerId: str,
-    victimId: str,
-    damage: float,
-    isValid: int,
-    cancel: bool,
-    isKnockBack: bool,
-    isCrit: bool,
-) -> Any
+def OnPlayerAttackEntityEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- victimId: str，受击者 id。
-- damage: float，伤害值：引擎传过来的值是 0 允许脚本层修改为其他数。
-- isValid: int，脚本是否设置伤害值：1 表示是；0 表示否。
-- cancel: bool，是否取消该次攻击，默认不取消。
-- isKnockBack: bool，是否支持击退效果，默认支持，当不支持时将屏蔽武器击退附魔效果。
-- isCrit: bool，本次攻击是否产生暴击,不支持修改。
+- args["playerId"]: str，玩家 id。
+- args["victimId"]: str，受击者 id。
+- args["damage"]: float，伤害值：引擎传过来的值是 0 允许脚本层修改为其他数。
+- args["isValid"]: int，脚本是否设置伤害值：1 表示是；0 表示否。
+- args["cancel"]: bool，是否取消该次攻击，默认不取消。
+- args["isKnockBack"]: bool，是否支持击退效果，默认支持，当不支持时将屏蔽武器击退附魔效果。
+- args["isCrit"]: bool，本次攻击是否产生暴击,不支持修改。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -655,13 +602,13 @@ PlayerAttackEntityEvent(
 触发时机：当本地玩家攻击时触发该事件。
 
 ```python
-PlayerAttackEntityEvent(playerId: str, victimId: str, damage: float, isCrit: bool) -> Any
+def OnPlayerAttackEntityEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- victimId: str，受击者 id。
-- damage: float，客户端收到的是真实伤害值，且修改无效。
-- isCrit: bool，本次攻击是否产生暴击,不支持修改。
+- args["playerId"]: str，玩家 id。
+- args["victimId"]: str，受击者 id。
+- args["damage"]: float，客户端收到的是真实伤害值，且修改无效。
+- args["isCrit"]: bool，本次攻击是否产生暴击,不支持修改。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -674,11 +621,11 @@ PlayerAttackEntityEvent(playerId: str, victimId: str, damage: float, isCrit: boo
 触发时机：玩家开始/结束快速旋转攻击并且不符合发送快速旋转攻击条件时触发（装备激流附魔的三叉戟、在水中或雨中，且未骑乘）。
 
 ```python
-PlayerCheatSpinAttackServerEvent(playerId: str, isStart: bool) -> Any
+def OnPlayerCheatSpinAttackServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家的 entityId。
-- isStart: bool，True 时代表开始快速旋转攻击；False 时代表结束快速旋转攻击。
+- args["playerId"]: str，玩家的 entityId。
+- args["isStart"]: bool，True 时代表开始快速旋转攻击；False 时代表结束快速旋转攻击。
 
 **备注**
 
@@ -697,13 +644,13 @@ PlayerCheatSpinAttackServerEvent(playerId: str, isStart: bool) -> Any
 触发时机：当玩家死亡时触发该事件。
 
 ```python
-PlayerDieEvent(id: str, attacker: str, customTag: str, cause: str) -> Any
+def OnPlayerDieEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，玩家 id。
-- attacker: str，伤害来源 id。
-- customTag: str，使用[Hurt 接口](https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html#hurt)传入的自定义伤害类型。
-- cause: str，伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](https://mc.163.com/newdev/docs/api/meijuzhi/ActorDamageCause.html)。
+- args["id"]: str，玩家 id。
+- args["attacker"]: str，伤害来源 id。
+- args["customTag"]: str，使用[Hurt 接口](https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html#hurt)传入的自定义伤害类型。
+- args["cause"]: str，伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](https://mc.163.com/newdev/docs/api/meijuzhi/ActorDamageCause.html)。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -716,12 +663,12 @@ PlayerDieEvent(id: str, attacker: str, customTag: str, cause: str) -> Any
 玩家与有 minecraft:interact 组件的生物交互时触发该事件，例如玩家手持空桶对牛挤奶、玩家手持打火石点燃苦力怕。
 
 ```python
-PlayerDoInteractServerEvent(playerId: str, itemDict: Dict[str, Any], interactEntityId: str) -> Any
+def OnPlayerDoInteractServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- itemDict: Dict[str, Any]，交互时使用物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- interactEntityId: str，交互的生物 entityId。
+- args["playerId"]: str，玩家 id。
+- args["itemDict"]: Dict[str, Any]，交互时使用物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["interactEntityId"]: str，交互的生物 entityId。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -734,13 +681,13 @@ PlayerDoInteractServerEvent(playerId: str, itemDict: Dict[str, Any], interactEnt
 触发时机：玩家吃下食物时触发。
 
 ```python
-PlayerEatFoodServerEvent(playerId: str, itemDict: Dict[str, Any], hunger: int, nutrition: float) -> Any
+def OnPlayerEatFoodServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 Id。
-- itemDict: Dict[str, Any]，食物物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- hunger: int，食物增加的饥饿值，可修改。
-- nutrition: float，食物的营养价值，回复饱和度 = 食物增加的饥饿值 * 食物的营养价值 * 2，饱和度最大不超过当前饥饿值，可修改。
+- args["playerId"]: str，玩家 Id。
+- args["itemDict"]: Dict[str, Any]，食物物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["hunger"]: int，食物增加的饥饿值，可修改。
+- args["nutrition"]: float，食物的营养价值，回复饱和度 = 食物增加的饥饿值 * 食物的营养价值 * 2，饱和度最大不超过当前饥饿值，可修改。
 
 **备注**
 
@@ -757,18 +704,13 @@ PlayerEatFoodServerEvent(playerId: str, itemDict: Dict[str, Any], hunger: int, n
 玩家喂养生物时触发，例如玩家手持小麦喂养牛、玩家手持胡萝卜喂养幼年猪。
 
 ```python
-PlayerFeedEntityServerEvent(
-    playerId: str,
-    entityId: str,
-    itemDict: Dict[str, Any],
-    cancel: bool = False,
-) -> Any
+def OnPlayerFeedEntityServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，主动喂养生物的玩家的唯一 ID。
-- entityId: str，被喂养生物的唯一 ID。
-- itemDict: Dict[str, Any]，当前玩家手持物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- cancel: bool，是否取消触发，默认为 False，若设为 True，可阻止触发后续的生物喂养逻辑。
+- args["playerId"]: str，主动喂养生物的玩家的唯一 ID。
+- args["entityId"]: str，被喂养生物的唯一 ID。
+- args["itemDict"]: Dict[str, Any]，当前玩家手持物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["cancel"]: bool，是否取消触发，默认为 False，若设为 True，可阻止触发后续的生物喂养逻辑。
 
 **备注**
 
@@ -785,20 +727,14 @@ PlayerFeedEntityServerEvent(
 玩家钓鱼成功收杆后触发，在钓鱼掉落物生成后触发。
 
 ```python
-PlayerFishingAfterServerEvent(
-    playerId: str,
-    hookEntity: str,
-    itemDict: Dict[str, Any],
-    itemList: List[Dict[str, Any]],
-    itemEntityIdList: List[str],
-) -> Any
+def OnPlayerFishingAfterServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，钓鱼的玩家 id。
-- hookEntity: str，鱼钩实体 id。
-- itemDict: Dict[str, Any]，玩家手持鱼竿的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- itemList: List[Dict[str, Any]]，钓鱼获得的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)列表（只读）。
-- itemEntityIdList: List[str]，钓鱼生成的掉落物实体 id 列表，与 itemList 一一对应。
+- args["playerId"]: str，钓鱼的玩家 id。
+- args["hookEntity"]: str，鱼钩实体 id。
+- args["itemDict"]: Dict[str, Any]，玩家手持鱼竿的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["itemList"]: List[Dict[str, Any]]，钓鱼获得的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)列表（只读）。
+- args["itemEntityIdList"]: List[str]，钓鱼生成的掉落物实体 id 列表，与 itemList 一一对应。
 
 **备注**
 
@@ -815,22 +751,15 @@ PlayerFishingAfterServerEvent(
 玩家钓鱼成功收杆时触发，在钓鱼掉落物生成前触发。
 
 ```python
-PlayerFishingServerEvent(
-    playerId: str,
-    hookEntity: str,
-    itemDict: Dict[str, Any],
-    itemList: List[Dict[str, Any]],
-    itemChange: bool = False,
-    cancel: bool,
-) -> Any
+def OnPlayerFishingServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，钓鱼的玩家 id。
-- hookEntity: str，鱼钩实体 id。
-- itemDict: Dict[str, Any]，玩家手持鱼竿的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- itemList: List[Dict[str, Any]]，钓鱼获得的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)列表，支持修改。修改后需将 itemChange 设置为 True。
-- itemChange: bool，是否修改了 itemList，默认为 False。当修改了 itemList 时需要设置为 True 才能生效。
-- cancel: bool，是否取消钓鱼成功，设置为 True 时不会生成掉落物。
+- args["playerId"]: str，钓鱼的玩家 id。
+- args["hookEntity"]: str，鱼钩实体 id。
+- args["itemDict"]: Dict[str, Any]，玩家手持鱼竿的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["itemList"]: List[Dict[str, Any]]，钓鱼获得的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)列表，支持修改。修改后需将 itemChange 设置为 True。
+- args["itemChange"]: bool，是否修改了 itemList，默认为 False。当修改了 itemList 时需要设置为 True 才能生效。
+- args["cancel"]: bool，是否取消钓鱼成功，设置为 True 时不会生成掉落物。
 
 **备注**
 
@@ -848,13 +777,13 @@ PlayerFishingServerEvent(
 玩家饥饿度变化时触发该事件。
 
 ```python
-PlayerHungerChangeServerEvent(playerId: str, hungerBefore: float, hunger: float, cancel: bool) -> Any
+def OnPlayerHungerChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- hungerBefore: float，变化前的饥饿度。
-- hunger: float，变化后的饥饿度。
-- cancel: bool，是否取消饥饿度变化。
+- args["playerId"]: str，玩家 id。
+- args["hungerBefore"]: float，变化前的饥饿度。
+- args["hunger"]: float，变化后的饥饿度。
+- args["cancel"]: bool，是否取消饥饿度变化。
 
 **备注**
 
@@ -872,13 +801,13 @@ PlayerHungerChangeServerEvent(playerId: str, hungerBefore: float, hunger: float,
 触发时机：当玩家受伤害前触发该事件。
 
 ```python
-PlayerHurtEvent(id: str, attacker: str, customTag: str, cause: str) -> Any
+def OnPlayerHurtEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，受击玩家 id。
-- attacker: str，伤害来源实体 id，若没有实体攻击，例如高空坠落，id 为-1。
-- customTag: str，使用[Hurt 接口](https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html#hurt)传入的自定义伤害类型。
-- cause: str，伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](https://mc.163.com/newdev/docs/api/meijuzhi/ActorDamageCause.html)。
+- args["id"]: str，受击玩家 id。
+- args["attacker"]: str，伤害来源实体 id，若没有实体攻击，例如高空坠落，id 为-1。
+- args["customTag"]: str，使用[Hurt 接口](https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html#hurt)传入的自定义伤害类型。
+- args["cause"]: str，伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](https://mc.163.com/newdev/docs/api/meijuzhi/ActorDamageCause.html)。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -891,13 +820,13 @@ PlayerHurtEvent(id: str, attacker: str, customTag: str, cause: str) -> Any
 触发时机：玩家可以与实体交互时。如果是鼠标控制模式，则当准心对着实体时触发。如果是触屏模式，则触发时机与屏幕下方的交互按钮显示的时机相同。玩家真正与实体发生交互的事件见 [PlayerDoInteractServerEvent](/docs/docs/scripts/modapi/events/player#playerdointeractserverevent)。
 
 ```python
-PlayerInteractServerEvent(cancel: bool = False, playerId: str, itemDict: Dict[str, Any], victimId: str) -> Any
+def OnPlayerInteractServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- cancel: bool，是否取消触发，默认为 False，若设为 True，可阻止触发后续的实体交互事件。
-- playerId: str，主动与实体互动的玩家的唯一 ID。
-- itemDict: Dict[str, Any]，当前玩家手持物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- victimId: str，被动的实体的唯一 ID。
+- args["cancel"]: bool，是否取消触发，默认为 False，若设为 True，可阻止触发后续的实体交互事件。
+- args["playerId"]: str，主动与实体互动的玩家的唯一 ID。
+- args["itemDict"]: Dict[str, Any]，当前玩家手持物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["victimId"]: str，被动的实体的唯一 ID。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -910,20 +839,14 @@ PlayerInteractServerEvent(cancel: bool = False, playerId: str, itemDict: Dict[st
 玩家用命名牌重命名实体时触发，例如玩家手持命名牌对羊修改名字、玩家手持命名牌对盔甲架修改名字。
 
 ```python
-PlayerNamedEntityServerEvent(
-    playerId: str,
-    entityId: str,
-    preName: str,
-    afterName: str,
-    cancel: bool = False,
-) -> Any
+def OnPlayerNamedEntityServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，主动命名实体的玩家的唯一 ID。
-- entityId: str，被命名实体的唯一 ID。
-- preName: str，实体当前的名字。
-- afterName: str，实体重命名后的名字。
-- cancel: bool，是否取消触发，默认为 False，若设为 True，可阻止触发后续的实体命名逻辑。
+- args["playerId"]: str，主动命名实体的玩家的唯一 ID。
+- args["entityId"]: str，被命名实体的唯一 ID。
+- args["preName"]: str，实体当前的名字。
+- args["afterName"]: str，实体重命名后的名字。
+- args["cancel"]: bool，是否取消触发，默认为 False，若设为 True，可阻止触发后续的实体命名逻辑。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -936,20 +859,14 @@ PlayerNamedEntityServerEvent(
 玩家权限变更事件。
 
 ```python
-PlayerPermissionChangeClientEvent(
-    causePlayerId: str,
-    playerId: str,
-    oldPermission: Dict[str, Any],
-    newPermission: Dict[str, Any],
-    changeCause: int,
-) -> Any
+def OnPlayerPermissionChangeClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- causePlayerId: str，发起者 id。
-- playerId: str，玩家 id。
-- oldPermission: Dict[str, Any]，变化前的权限字典。
-- newPermission: Dict[str, Any]，变化后的权限字典。
-- changeCause: int，变化原因，详见 Minecraft 枚举值文档的[PermissionChangeCause](https://mc.163.com/newdev/docs/api/meijuzhi/PermissionChangeCause.html)。
+- args["causePlayerId"]: str，发起者 id。
+- args["playerId"]: str，玩家 id。
+- args["oldPermission"]: Dict[str, Any]，变化前的权限字典。
+- args["newPermission"]: Dict[str, Any]，变化后的权限字典。
+- args["changeCause"]: int，变化原因，详见 Minecraft 枚举值文档的[PermissionChangeCause](https://mc.163.com/newdev/docs/api/meijuzhi/PermissionChangeCause.html)。
 
 **备注**
 
@@ -980,22 +897,15 @@ PlayerPermissionChangeClientEvent(
 玩家权限变更事件。
 
 ```python
-PlayerPermissionChangeServerEvent(
-    causePlayerId: str,
-    playerId: str,
-    oldPermission: Dict[str, Any],
-    newPermission: Dict[str, Any],
-    changeCause: int,
-    cancel: bool,
-) -> Any
+def OnPlayerPermissionChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- causePlayerId: str，发起者 id。
-- playerId: str，玩家 id。
-- oldPermission: Dict[str, Any]，变化前的权限字典。
-- newPermission: Dict[str, Any]，变化后的权限字典。
-- changeCause: int，变化原因，详见 Minecraft 枚举值文档的[PermissionChangeCause](https://mc.163.com/newdev/docs/api/meijuzhi/PermissionChangeCause.html)。
-- cancel: bool，为 true 时，取消本次权限变更。
+- args["causePlayerId"]: str，发起者 id。
+- args["playerId"]: str，玩家 id。
+- args["oldPermission"]: Dict[str, Any]，变化前的权限字典。
+- args["newPermission"]: Dict[str, Any]，变化后的权限字典。
+- args["changeCause"]: int，变化原因，详见 Minecraft 枚举值文档的[PermissionChangeCause](https://mc.163.com/newdev/docs/api/meijuzhi/PermissionChangeCause.html)。
+- args["cancel"]: bool，为 true 时，取消本次权限变更。
 
 **备注**
 
@@ -1024,10 +934,10 @@ PlayerPermissionChangeServerEvent(
 触发时机：玩家复活时触发该事件。
 
 ```python
-PlayerRespawnEvent(id: str) -> Any
+def OnPlayerRespawnEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，玩家 id。
+- args["id"]: str，玩家 id。
 
 **备注**
 
@@ -1044,10 +954,10 @@ PlayerRespawnEvent(id: str) -> Any
 触发时机：玩家复活完毕时触发。
 
 ```python
-PlayerRespawnFinishServerEvent(playerId: str) -> Any
+def OnPlayerRespawnFinishServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
+- args["playerId"]: str，玩家 id。
 
 **备注**
 
@@ -1065,24 +975,16 @@ PlayerRespawnFinishServerEvent(playerId: str) -> Any
 玩家使用床睡觉成功。
 
 ```python
-PlayerSleepServerEvent(
-    playerId: str,
-    fullName: str,
-    auxData: int,
-    dimensionid: int,
-    x: int,
-    y: int,
-    z: int,
-) -> Any
+def OnPlayerSleepServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- fullName: str，方块 id。
-- auxData: int，方块附加值。
-- dimensionid: int，维度 id。
-- x: int，方块 x 坐标。
-- y: int，方块 y 坐标。
-- z: int，方块 z 坐标。
+- args["playerId"]: str，玩家 id。
+- args["fullName"]: str，方块 id。
+- args["auxData"]: int，方块附加值。
+- args["dimensionid"]: int，维度 id。
+- args["x"]: int，方块 x 坐标。
+- args["y"]: int，方块 y 坐标。
+- args["z"]: int，方块 z 坐标。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1095,13 +997,13 @@ PlayerSleepServerEvent(
 触发时机：玩家开始/结束快速旋转攻击时触发。
 
 ```python
-PlayerSpinAttackServerEvent(playerId: str, isInWaterOrRain: bool, isRiding: bool, isStart: bool) -> Any
+def OnPlayerSpinAttackServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家的 entityId。
-- isInWaterOrRain: bool，是否在水中或雨中。
-- isRiding: bool，是否骑乘状态。
-- isStart: bool，True 时代表开始快速旋转攻击；False 时代表结束快速旋转攻击。
+- args["playerId"]: str，玩家的 entityId。
+- args["isInWaterOrRain"]: bool，是否在水中或雨中。
+- args["isRiding"]: bool，是否骑乘状态。
+- args["isStart"]: bool，True 时代表开始快速旋转攻击；False 时代表结束快速旋转攻击。
 
 仅 Apollo 可用
 
@@ -1116,13 +1018,13 @@ PlayerSpinAttackServerEvent(playerId: str, isInWaterOrRain: bool, isRiding: bool
 玩家开始钓鱼，生成鱼钩时在服务端触发。
 
 ```python
-PlayerStartFishingServerEvent(playerId: str, hookEntity: str, itemDict: Dict[str, Any], cancel: bool) -> Any
+def OnPlayerStartFishingServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，钓鱼成功的玩家 id。
-- hookEntity: str，鱼钩实体 id。
-- itemDict: Dict[str, Any]，玩家手持鱼竿的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- cancel: bool，是否取消，设置为 True 时会取消生成鱼漂。
+- args["playerId"]: str，钓鱼成功的玩家 id。
+- args["hookEntity"]: str，鱼钩实体 id。
+- args["itemDict"]: Dict[str, Any]，玩家手持鱼竿的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["cancel"]: bool，是否取消，设置为 True 时会取消生成鱼漂。
 
 **备注**
 
@@ -1139,24 +1041,16 @@ PlayerStartFishingServerEvent(playerId: str, hookEntity: str, itemDict: Dict[str
 玩家停止睡觉。
 
 ```python
-PlayerStopSleepServerEvent(
-    playerId: str,
-    fullName: str,
-    auxData: int,
-    dimensionid: int,
-    x: int,
-    y: int,
-    z: int,
-) -> Any
+def OnPlayerStopSleepServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- fullName: str，方块 id。
-- auxData: int，方块附加值。
-- dimensionid: int，维度 id。
-- x: int，方块 x 坐标。
-- y: int，方块 y 坐标。
-- z: int，方块 z 坐标。
+- args["playerId"]: str，玩家 id。
+- args["fullName"]: str，方块 id。
+- args["auxData"]: int，方块附加值。
+- args["dimensionid"]: int，维度 id。
+- args["x"]: int，方块 x 坐标。
+- args["y"]: int，方块 y 坐标。
+- args["z"]: int，方块 z 坐标。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1169,10 +1063,10 @@ PlayerStopSleepServerEvent(
 触发时机：当玩家传送时触发该事件，如：玩家使用末影珍珠或 tp 指令时。
 
 ```python
-PlayerTeleportEvent(id: str) -> Any
+def OnPlayerTeleportEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，玩家 id。
+- args["id"]: str，玩家 id。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1185,11 +1079,11 @@ PlayerTeleportEvent(id: str) -> Any
 玩家尝试使用床睡觉。
 
 ```python
-PlayerTrySleepServerEvent(playerId: str, cancel: bool) -> Any
+def OnPlayerTrySleepServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- cancel: bool，是否取消（开发者传入）。
+- args["playerId"]: str，玩家 id。
+- args["cancel"]: bool，是否取消（开发者传入）。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1202,12 +1096,12 @@ PlayerTrySleepServerEvent(playerId: str, cancel: bool) -> Any
 触发时机：玩家获取经验球时触发的事件。
 
 ```python
-ServerPlayerGetExperienceOrbEvent(playerId: str, experienceValue: int, cancel: bool) -> Any
+def OnServerPlayerGetExperienceOrbEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- experienceValue: int，经验球经验值。
-- cancel: bool，是否取消（开发者传入）。
+- args["playerId"]: str，玩家 id。
+- args["experienceValue"]: int，经验球经验值。
+- args["cancel"]: bool，是否取消（开发者传入）。
 
 **备注**
 
@@ -1227,10 +1121,10 @@ ServerPlayerGetExperienceOrbEvent(playerId: str, experienceValue: int, cancel: b
 <TabItem value="说明" label="说明" default>
 
 ```python
-StoreBuySuccServerEvent(playerId: str) -> Any
+def OnStoreBuySuccServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，购买商品的玩家实体 id。
+- args["playerId"]: str，购买商品的玩家实体 id。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1259,10 +1153,10 @@ def OnStoreBuySucc(self, args):
 触发时机：玩家加入游戏或通过更衣室局内换肤后 同步皮肤信息至客户端后触发。
 
 ```python
-UpdatePlayerSkinClientEvent(playerId: str) -> Any
+def OnUpdatePlayerSkinClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，更换皮肤的玩家 id。
+- args["playerId"]: str，更换皮肤的玩家 id。
 
 **备注**
 

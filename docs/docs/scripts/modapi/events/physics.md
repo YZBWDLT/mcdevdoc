@@ -12,7 +12,7 @@ import Client from '/src/components/highlight/client';
 
 > 适用版本：中国版 3.10。仅中国版可用。
 
-本文主要记录物理相关的事件，共 9 个。
+本文主要记录物理相关的事件，共 9 个。监听方式见[事件工作机制](/docs/docs/scripts/modapi/overview#事件)。
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/wuli.html"/>
 
@@ -25,24 +25,16 @@ import Client from '/src/components/highlight/client';
 脚本创建的 PhysX 关节受力超过 [SetJointBreakForce](/docs/docs/scripts/modapi/physics/joint#setjointbreakforce) 设置的阈值并断裂后触发。
 
 ```python
-PhysXJointBreakServerEvent(
-    jointId: int,
-    entityId0: Optional[str],
-    entityId1: Optional[str],
-    jointType: int,
-    breakForce: float,
-    breakTorque: float,
-    dimensionId: int,
-) -> Any
+def OnPhysXJointBreakServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- jointId: int，已断裂关节的 ID。
-- entityId0: Optional[str]，关节第 0 端实体 ID；该端连接世界时为 None。
-- entityId1: Optional[str]，关节第 1 端实体 ID；该端连接世界时为 None。
-- jointType: int，关节类型：0 固定关节，1 距离关节，2 球关节，3 铰链关节，4 滑动关节。
-- breakForce: float，断裂当次模拟中关节承受的线性约束力大小。
-- breakTorque: float，断裂当次模拟中关节承受的角约束力矩大小。
-- dimensionId: int，关节所在维度 ID。
+- args["jointId"]: int，已断裂关节的 ID。
+- args["entityId0"]: Optional[str]，关节第 0 端实体 ID；该端连接世界时为 None。
+- args["entityId1"]: Optional[str]，关节第 1 端实体 ID；该端连接世界时为 None。
+- args["jointType"]: int，关节类型：0 固定关节，1 距离关节，2 球关节，3 铰链关节，4 滑动关节。
+- args["breakForce"]: float，断裂当次模拟中关节承受的线性约束力大小。
+- args["breakTorque"]: float，断裂当次模拟中关节承受的角约束力矩大小。
+- args["dimensionId"]: int，关节所在维度 ID。
 
 **备注**
 
@@ -57,11 +49,11 @@ PhysXJointBreakServerEvent(
 客户端本地玩家当前维度完成 PhysX fetchResults 后触发，可通过 PhysX 组件读取当前帧最新线速度、角速度和四元数旋转。
 
 ```python
-PhysXPostSimulateClientEvent(dimensionId: int, deltaTime: float) -> Any
+def OnPhysXPostSimulateClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimensionId: int，当前完成物理模拟的维度 id。
-- deltaTime: float，本次物理模拟的固定时间步长，固定为 0.05 秒。
+- args["dimensionId"]: int，当前完成物理模拟的维度 id。
+- args["deltaTime"]: float，本次物理模拟的固定时间步长，固定为 0.05 秒。
 
 **备注**
 
@@ -78,11 +70,11 @@ PhysXPostSimulateClientEvent(dimensionId: int, deltaTime: float) -> Any
 服务端每个参与物理模拟的维度完成 PhysX fetchResults 后触发，可读取当次模拟产生的最新 PhysX 线速度、角速度和旋转状态。
 
 ```python
-PhysXPostSimulateServerEvent(dimensionId: int, deltaTime: float) -> Any
+def OnPhysXPostSimulateServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimensionId: int，当前刚完成物理模拟的维度 id。
-- deltaTime: float，本次物理模拟的固定时间步长，固定为 0.05 秒。
+- args["dimensionId"]: int，当前刚完成物理模拟的维度 id。
+- args["deltaTime"]: float，本次物理模拟的固定时间步长，固定为 0.05 秒。
 
 **备注**
 
@@ -99,11 +91,11 @@ PhysXPostSimulateServerEvent(dimensionId: int, deltaTime: float) -> Any
 客户端本地玩家当前维度执行 PhysX simulate 前触发，可用于轻量的视觉预测准备。
 
 ```python
-PhysXPreSimulateClientEvent(dimensionId: int, deltaTime: float) -> Any
+def OnPhysXPreSimulateClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimensionId: int，当前即将执行物理模拟的维度 id。
-- deltaTime: float，本次物理模拟的固定时间步长，固定为 0.05 秒。
+- args["dimensionId"]: int，当前即将执行物理模拟的维度 id。
+- args["deltaTime"]: float，本次物理模拟的固定时间步长，固定为 0.05 秒。
 
 **备注**
 
@@ -120,11 +112,11 @@ PhysXPreSimulateClientEvent(dimensionId: int, deltaTime: float) -> Any
 服务端每个参与物理模拟的维度执行 PhysX simulate 前触发。在本事件中对当前维度刚体施加的力或扭矩会参与当次模拟。
 
 ```python
-PhysXPreSimulateServerEvent(dimensionId: int, deltaTime: float) -> Any
+def OnPhysXPreSimulateServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimensionId: int，当前即将执行物理模拟的维度 id。
-- deltaTime: float，本次物理模拟的固定时间步长，固定为 0.05 秒。
+- args["dimensionId"]: int，当前即将执行物理模拟的维度 id。
+- args["deltaTime"]: float，本次物理模拟的固定时间步长，固定为 0.05 秒。
 
 **备注**
 
@@ -143,11 +135,11 @@ PhysXPreSimulateServerEvent(dimensionId: int, deltaTime: float) -> Any
 <TabItem value="说明" label="说明" default>
 
 ```python
-PhysxTouchClientEvent(touch: List[Dict[str, Any]], lost: List[Dict[str, Any]]) -> Any
+def OnPhysxTouchClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- touch: List[Dict[str, Any]]，开始接触的碰撞体对的信息。一个碰撞体在创建时使用了 PxEventMask.Found，他与其他碰撞体/原版实体开始接触时，会出现在列表中。
-- lost: List[Dict[str, Any]]，结束接触的碰撞体对的信息。一个碰撞体在创建时使用了 PxEventMask.Lost，他与其他碰撞体/原版实体结束接触时，会出现在列表中。
+- args["touch"]: List[Dict[str, Any]]，开始接触的碰撞体对的信息。一个碰撞体在创建时使用了 PxEventMask.Found，他与其他碰撞体/原版实体开始接触时，会出现在列表中。
+- args["lost"]: List[Dict[str, Any]]，结束接触的碰撞体对的信息。一个碰撞体在创建时使用了 PxEventMask.Lost，他与其他碰撞体/原版实体结束接触时，会出现在列表中。
 
 **备注**
 
@@ -212,11 +204,11 @@ PhysxTouchClientEvent(touch: List[Dict[str, Any]], lost: List[Dict[str, Any]]) -
 <TabItem value="说明" label="说明" default>
 
 ```python
-PhysxTouchServerEvent(touch: List[Dict[str, Any]], lost: List[Dict[str, Any]]) -> Any
+def OnPhysxTouchServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- touch: List[Dict[str, Any]]，开始接触的碰撞体对的信息。一个碰撞体在创建时使用了 PxEventMask.Found，他与其他碰撞体/原版实体开始接触时，会出现在列表中。
-- lost: List[Dict[str, Any]]，结束接触的碰撞体对的信息。一个碰撞体在创建时使用了 PxEventMask.Lost，他与其他碰撞体/原版实体结束接触时，会出现在列表中。
+- args["touch"]: List[Dict[str, Any]]，开始接触的碰撞体对的信息。一个碰撞体在创建时使用了 PxEventMask.Found，他与其他碰撞体/原版实体开始接触时，会出现在列表中。
+- args["lost"]: List[Dict[str, Any]]，结束接触的碰撞体对的信息。一个碰撞体在创建时使用了 PxEventMask.Lost，他与其他碰撞体/原版实体结束接触时，会出现在列表中。
 
 **备注**
 
@@ -281,11 +273,11 @@ PhysxTouchServerEvent(touch: List[Dict[str, Any]], lost: List[Dict[str, Any]]) -
 <TabItem value="说明" label="说明" default>
 
 ```python
-PhysxTriggerClientEvent(found: List[Dict[str, Any]], lost: List[Dict[str, Any]]) -> Any
+def OnPhysxTriggerClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- found: List[Dict[str, Any]]，进入触发器的碰撞体对的信息。它与其他碰撞体/原版实体进入触发器时，会出现在列表中。
-- lost: List[Dict[str, Any]]，离开触发器的碰撞体对的信息。它与其他碰撞体/原版实体离开触发器时，会出现在列表中。
+- args["found"]: List[Dict[str, Any]]，进入触发器的碰撞体对的信息。它与其他碰撞体/原版实体进入触发器时，会出现在列表中。
+- args["lost"]: List[Dict[str, Any]]，离开触发器的碰撞体对的信息。它与其他碰撞体/原版实体离开触发器时，会出现在列表中。
 
 **备注**
 
@@ -344,11 +336,11 @@ PhysxTriggerClientEvent(found: List[Dict[str, Any]], lost: List[Dict[str, Any]])
 <TabItem value="说明" label="说明" default>
 
 ```python
-PhysxTriggerServerEvent(found: List[Dict[str, Any]], lost: List[Dict[str, Any]]) -> Any
+def OnPhysxTriggerServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- found: List[Dict[str, Any]]，进入触发器的碰撞体对的信息。一个碰撞体在创建时使用了 PxEventMask.Found，它与其他碰撞体/原版实体进入触发器时，会出现在列表中。
-- lost: List[Dict[str, Any]]，离开触发器的碰撞体对的信息。一个碰撞体在创建时使用了 PxEventMask.Lost，它与其他碰撞体/原版实体离开触发器时，会出现在列表中。
+- args["found"]: List[Dict[str, Any]]，进入触发器的碰撞体对的信息。一个碰撞体在创建时使用了 PxEventMask.Found，它与其他碰撞体/原版实体进入触发器时，会出现在列表中。
+- args["lost"]: List[Dict[str, Any]]，离开触发器的碰撞体对的信息。一个碰撞体在创建时使用了 PxEventMask.Lost，它与其他碰撞体/原版实体离开触发器时，会出现在列表中。
 
 **备注**
 

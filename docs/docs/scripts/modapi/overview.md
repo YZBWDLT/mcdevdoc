@@ -56,7 +56,7 @@ comp.GetPlayerHunger()
 
 ## 事件
 
-事件依赖系统（System）。系统继承`ServerSystem`或`ClientSystem`，在`modMain.py`里用`RegisterSystem`注册，然后在`ListenEvent`里用`ListenForEvent`注册回调：
+事件依赖系统（System）。系统继承`ServerSystem`或`ClientSystem`，在`modMain.py`里用`RegisterSystem`注册，然后在系统的`__init__`里用`ListenForEvent`注册回调：
 
 ```python
 import mod.server.extraServerApi as serverApi
@@ -72,10 +72,16 @@ class MyServerSystem(ServerSystem):
             self, self.OnServerChat)
 
     def OnServerChat(self, args):
-        pass
+        print args["message"]
 ```
 
+`ListenForEvent`的五个参数依次是命名空间、系统名、事件名、监听者实例和回调函数。事件名是一个字符串，不是函数，所以事件不需要「获取组件」，也不能直接调用。
+
+客户端把`mod.server.extraServerApi`换成`mod.client.extraClientApi`，`GetServerSystemCls()`换成`GetClientSystemCls()`，事件名换成客户端事件即可。回调函数的名字可以自己定。
+
 回调函数必须接受一个参数，类型是 dict。引擎事件的 dict 由引擎给出，其中有些键是可设置参数，改掉它们的值会改变引擎接下来的行为。不要往这个 dict 里塞自己的键，需要额外数据时自己复制一份。
+
+事件文档里每个事件只列回调参数，也就是这个 dict 里有哪些键，写作`args["名字"]`。写法上先用`def On事件名(self, args)`声明回调，再从 args 里取值。
 
 自定义事件用`BroadcastEvent`在同一个端内广播，用`NotifyToClient`、`NotifyToServer`跨端发送。
 

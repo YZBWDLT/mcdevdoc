@@ -12,7 +12,7 @@ import Client from '/src/components/highlight/client';
 
 > 适用版本：中国版 3.10。仅中国版可用。
 
-本文主要记录模型相关的事件，共 9 个。
+本文主要记录模型相关的事件，共 9 个。监听方式见[事件工作机制](/docs/docs/scripts/modapi/overview#事件)。
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/moxing.html"/>
 
@@ -25,10 +25,10 @@ import Client from '/src/components/highlight/client';
 攻击动作开始时触发。
 
 ```python
-AttackAnimBeginClientEvent(id: str) -> Any
+def OnAttackAnimBeginClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，实体 id。
+- args["id"]: str，实体 id。
 
 **备注**
 
@@ -45,10 +45,10 @@ AttackAnimBeginClientEvent(id: str) -> Any
 当攻击动作开始时触发。
 
 ```python
-AttackAnimBeginServerEvent(id: str) -> Any
+def OnAttackAnimBeginServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，实体 id。
+- args["id"]: str，实体 id。
 
 **备注**
 
@@ -65,10 +65,10 @@ AttackAnimBeginServerEvent(id: str) -> Any
 攻击动作结束时触发。
 
 ```python
-AttackAnimEndClientEvent(id: str) -> Any
+def OnAttackAnimEndClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，实体 id。
+- args["id"]: str，实体 id。
 
 **备注**
 
@@ -85,10 +85,10 @@ AttackAnimEndClientEvent(id: str) -> Any
 当攻击动作结束时触发。
 
 ```python
-AttackAnimEndServerEvent(id: str) -> Any
+def OnAttackAnimEndServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，实体 id。
+- args["id"]: str，实体 id。
 
 **备注**
 
@@ -105,10 +105,10 @@ AttackAnimEndServerEvent(id: str) -> Any
 当跳跃动作开始时触发。
 
 ```python
-JumpAnimBeginServerEvent(id: str) -> Any
+def OnJumpAnimBeginServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，实体 id。
+- args["id"]: str，实体 id。
 
 **备注**
 
@@ -125,10 +125,10 @@ JumpAnimBeginServerEvent(id: str) -> Any
 走路动作开始时触发。
 
 ```python
-WalkAnimBeginClientEvent(id: str) -> Any
+def OnWalkAnimBeginClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，实体 id。
+- args["id"]: str，实体 id。
 
 **备注**
 
@@ -145,10 +145,10 @@ WalkAnimBeginClientEvent(id: str) -> Any
 当走路动作开始时触发。
 
 ```python
-WalkAnimBeginServerEvent(id: str) -> Any
+def OnWalkAnimBeginServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，实体 id。
+- args["id"]: str，实体 id。
 
 **备注**
 
@@ -165,10 +165,10 @@ WalkAnimBeginServerEvent(id: str) -> Any
 走路动作结束时触发。
 
 ```python
-WalkAnimEndClientEvent(id: str) -> Any
+def OnWalkAnimEndClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，实体 id。
+- args["id"]: str，实体 id。
 
 **备注**
 
@@ -185,10 +185,10 @@ WalkAnimEndClientEvent(id: str) -> Any
 当走路动作结束时触发。
 
 ```python
-WalkAnimEndServerEvent(id: str) -> Any
+def OnWalkAnimEndServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- id: str，实体 id。
+- args["id"]: str，实体 id。
 
 **备注**
 

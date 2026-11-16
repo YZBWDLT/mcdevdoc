@@ -12,7 +12,7 @@ import Client from '/src/components/highlight/client';
 
 > 适用版本：中国版 3.10。仅中国版可用。
 
-本文主要记录物品相关的事件，共 52 个。
+本文主要记录物品相关的事件，共 52 个。监听方式见[事件工作机制](/docs/docs/scripts/modapi/overview#事件)。
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/wupin.html"/>
 
@@ -25,18 +25,13 @@ import Client from '/src/components/highlight/client';
 触发时机：玩家获得物品时客户端抛出的事件（有些获取物品方式只会触发客户端事件，有些获取物品方式只会触发服务端事件，在使用时注意一点。）。
 
 ```python
-ActorAcquiredItemClientEvent(
-    actor: str,
-    secondaryActor: str,
-    itemDict: Dict[str, Any],
-    acquireMethod: int,
-) -> Any
+def OnActorAcquiredItemClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- actor: str，获得物品玩家实体 id。
-- secondaryActor: str，物品给予者玩家实体 id，如果不存在给予者的话，这里为空字符串。
-- itemDict: Dict[str, Any]，获取到的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- acquireMethod: int，获得物品的方法，详见[ItemAcquisitionMethod](https://mc.163.com/newdev/docs/api/meijuzhi/ItemAcquisitionMethod.html)。
+- args["actor"]: str，获得物品玩家实体 id。
+- args["secondaryActor"]: str，物品给予者玩家实体 id，如果不存在给予者的话，这里为空字符串。
+- args["itemDict"]: Dict[str, Any]，获取到的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["acquireMethod"]: int，获得物品的方法，详见[ItemAcquisitionMethod](https://mc.163.com/newdev/docs/api/meijuzhi/ItemAcquisitionMethod.html)。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -49,18 +44,13 @@ ActorAcquiredItemClientEvent(
 触发时机：玩家获得物品时服务端抛出的事件（有些获取物品方式只会触发客户端事件，有些获取物品方式只会触发服务端事件，在使用时注意一点。）。
 
 ```python
-ActorAcquiredItemServerEvent(
-    actor: str,
-    secondaryActor: str,
-    itemDict: Dict[str, Any],
-    acquireMethod: int,
-) -> Any
+def OnActorAcquiredItemServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- actor: str，获得物品玩家实体 id。
-- secondaryActor: str，物品给予者玩家实体 id，如果不存在给予者的话，这里为空字符串。
-- itemDict: Dict[str, Any]，获得的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- acquireMethod: int，获得物品的方法，详见[ItemAcquisitionMethod 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/ItemAcquisitionMethod.html)。
+- args["actor"]: str，获得物品玩家实体 id。
+- args["secondaryActor"]: str，物品给予者玩家实体 id，如果不存在给予者的话，这里为空字符串。
+- args["itemDict"]: Dict[str, Any]，获得的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["acquireMethod"]: int，获得物品的方法，详见[ItemAcquisitionMethod 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/ItemAcquisitionMethod.html)。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -73,12 +63,12 @@ ActorAcquiredItemServerEvent(
 触发时机：玩家使用物品时客户端抛出的事件（比较特殊不走该事件的例子：1）染料对有水的炼药锅使用；2）盔甲架装备盔甲）;3)喝牛奶。
 
 ```python
-ActorUseItemClientEvent(playerId: str, itemDict: Dict[str, Any], useMethod: int) -> Any
+def OnActorUseItemClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- itemDict: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- useMethod: int，使用物品的方法，详见[ItemUseMethodEnum 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/ItemUseMethodEnum.html)。
+- args["playerId"]: str，玩家实体 id。
+- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["useMethod"]: int，使用物品的方法，详见[ItemUseMethodEnum 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/ItemUseMethodEnum.html)。
 
 **备注**
 
@@ -95,12 +85,12 @@ ActorUseItemClientEvent(playerId: str, itemDict: Dict[str, Any], useMethod: int)
 触发时机：玩家使用物品生效之前服务端抛出的事件（比较特殊不走该事件的例子：1）染料对有水的炼药锅使用；2）盔甲架装备盔甲）。
 
 ```python
-ActorUseItemServerEvent(playerId: str, itemDict: Dict[str, Any], useMethod: int) -> Any
+def OnActorUseItemServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- itemDict: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- useMethod: int，使用物品的方法，详见[ItemUseMethodEnum 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/ItemUseMethodEnum.html)。
+- args["playerId"]: str，玩家实体 id。
+- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["useMethod"]: int，使用物品的方法，详见[ItemUseMethodEnum 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/ItemUseMethodEnum.html)。
 
 **备注**
 
@@ -117,20 +107,14 @@ ActorUseItemServerEvent(playerId: str, itemDict: Dict[str, Any], useMethod: int)
 玩家点击铁砧合成得到的物品时抛出的事件。
 
 ```python
-AnvilCreateResultItemAfterClientEvent(
-    playerId: str,
-    itemShowName: str,
-    itemDict: Dict[str, Any],
-    oldItemDict: Dict[str, Any],
-    materialItemDict: Dict[str, Any],
-) -> Any
+def OnAnvilCreateResultItemAfterClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- itemShowName: str，合成后的物品显示名称。
-- itemDict: Dict[str, Any]，合成后的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- oldItemDict: Dict[str, Any]，合成前的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)（铁砧内第一个物品）。
-- materialItemDict: Dict[str, Any]，合成所使用材料的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)（铁砧内第二个物品）。
+- args["playerId"]: str，玩家实体 id。
+- args["itemShowName"]: str，合成后的物品显示名称。
+- args["itemDict"]: Dict[str, Any]，合成后的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["oldItemDict"]: Dict[str, Any]，合成前的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)（铁砧内第一个物品）。
+- args["materialItemDict"]: Dict[str, Any]，合成所使用材料的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)（铁砧内第二个物品）。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -143,12 +127,12 @@ AnvilCreateResultItemAfterClientEvent(
 玩家点击右键尝试使用物品时客户端抛出的事件，可以通过设置 cancel 为 True 取消使用物品。
 
 ```python
-ClientItemTryUseEvent(playerId: str, itemDict: Dict[str, Any], cancel: bool) -> Any
+def OnClientItemTryUseEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- itemDict: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- cancel: bool，取消使用物品。
+- args["playerId"]: str，玩家 id。
+- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["cancel"]: bool，取消使用物品。
 
 **备注**
 
@@ -166,34 +150,21 @@ ClientItemTryUseEvent(playerId: str, itemDict: Dict[str, Any], cancel: bool) -> 
 玩家在对方块使用物品时客户端抛出的事件。
 
 ```python
-ClientItemUseOnEvent(
-    entityId: str,
-    itemDict: Dict[str, Any],
-    x: int,
-    y: int,
-    z: int,
-    blockName: str,
-    blockAuxValue: int,
-    face: int,
-    clickX: float,
-    clickY: float,
-    clickZ: float,
-    ret: bool,
-) -> Any
+def OnClientItemUseOnEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- entityId: str，玩家实体 id。
-- itemDict: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- x: int，方块 x 坐标值。
-- y: int，方块 y 坐标值。
-- z: int，方块 z 坐标值。
-- blockName: str，方块的 identifier。
-- blockAuxValue: int，方块的附加值。
-- face: int，点击方块的面，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
-- clickX: float，点击点的 x 比例位置。
-- clickY: float，点击点的 y 比例位置。
-- clickZ: float，点击点的 z 比例位置。
-- ret: bool，设为 True 可取消物品的使用。
+- args["entityId"]: str，玩家实体 id。
+- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["x"]: int，方块 x 坐标值。
+- args["y"]: int，方块 y 坐标值。
+- args["z"]: int，方块 z 坐标值。
+- args["blockName"]: str，方块的 identifier。
+- args["blockAuxValue"]: int，方块的附加值。
+- args["face"]: int，点击方块的面，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
+- args["clickX"]: float，点击点的 x 比例位置。
+- args["clickY"]: float，点击点的 y 比例位置。
+- args["clickZ"]: float，点击点的 z 比例位置。
+- args["ret"]: bool，设为 True 可取消物品的使用。
 
 **备注**
 
@@ -210,10 +181,10 @@ ClientItemUseOnEvent(
 玩家合成物品时触发。
 
 ```python
-ClientShapedRecipeTriggeredEvent(recipeId: str) -> Any
+def OnClientShapedRecipeTriggeredEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- recipeId: str，配方 id，对应配方 json 文件中的 identifier 字段。
+- args["recipeId"]: str，配方 id，对应配方 json 文件中的 identifier 字段。
 
 ---
 
@@ -227,22 +198,15 @@ ClientShapedRecipeTriggeredEvent(recipeId: str) -> Any
 <TabItem value="说明" label="说明" default>
 
 ```python
-ContainerItemChangedServerEvent(
-    pos: Optional[Tuple[int, int, int]],
-    containerType: int,
-    slot: int,
-    dimensionId: int,
-    oldItemDict: Dict[str, Any],
-    newItemDict: Dict[str, Any],
-) -> Any
+def OnContainerItemChangedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- pos: Optional[Tuple[int, int, int]]，容器坐标。
-- containerType: int，容器类型，类型含义见：[容器类型枚举](https://mc.163.com/newdev/docs/api/meijuzhi/ContainerType.html)。
-- slot: int，容器槽位。
-- dimensionId: int，维度 id。
-- oldItemDict: Dict[str, Any]，旧物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- newItemDict: Dict[str, Any]，新物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["pos"]: Optional[Tuple[int, int, int]]，容器坐标。
+- args["containerType"]: int，容器类型，类型含义见：[容器类型枚举](https://mc.163.com/newdev/docs/api/meijuzhi/ContainerType.html)。
+- args["slot"]: int，容器槽位。
+- args["dimensionId"]: int，维度 id。
+- args["oldItemDict"]: Dict[str, Any]，旧物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["newItemDict"]: Dict[str, Any]，新物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
 
 **备注**
 
@@ -287,18 +251,13 @@ def OnContainerItemChangedServerEvent(self, args):
 <TabItem value="说明" label="说明" default>
 
 ```python
-CraftItemOutputChangeServerEvent(
-    playerId: str,
-    itemDict: Dict[str, Any],
-    screenContainerType: int,
-    cancel: bool,
-) -> Any
+def OnCraftItemOutputChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- itemDict: Dict[str, Any]，生成的物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- screenContainerType: int，当前界面类型,类型含义见：[容器类型枚举](https://mc.163.com/newdev/docs/api/meijuzhi/ContainerType.html)。
-- cancel: bool，是否取消生成物品。
+- args["playerId"]: str，玩家实体 id。
+- args["itemDict"]: Dict[str, Any]，生成的物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["screenContainerType"]: int，当前界面类型,类型含义见：[容器类型枚举](https://mc.163.com/newdev/docs/api/meijuzhi/ContainerType.html)。
+- args["cancel"]: bool，是否取消生成物品。
 
 **备注**
 
@@ -349,11 +308,11 @@ def OnCraftItemOutputChangeServerEvent(self, args):
 玩家工作台界面更新显示可合成物品时抛出的事件。
 
 ```python
-CraftUpdateResultItemClientEvent(playerId: str, itemDict: Dict[str, Any]) -> Any
+def OnCraftUpdateResultItemClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- itemDict: Dict[str, Any]，合成后的物品的[[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)]。
+- args["playerId"]: str，玩家实体 id。
+- args["itemDict"]: Dict[str, Any]，合成后的物品的[[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)]。
 
 **备注**
 
@@ -371,20 +330,14 @@ CraftUpdateResultItemClientEvent(playerId: str, itemDict: Dict[str, Any]) -> Any
 服务端熔炉烧制触发事件。熔炉, 高炉，烟熏炉烧出物品时触发。
 
 ```python
-FurnaceBurnFinishedServerEvent(
-    dimensionId: int,
-    posX: float,
-    posY: float,
-    posZ: float,
-    itemDict: Dict[str, Any],
-) -> Any
+def OnFurnaceBurnFinishedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- dimensionId: int，维度 id。
-- posX: float，位置 x。
-- posY: float，位置 y。
-- posZ: float，位置 z。
-- itemDict: Dict[str, Any]，物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当新物品为空时，此项属性为 None。
+- args["dimensionId"]: int，维度 id。
+- args["posX"]: float，位置 x。
+- args["posY"]: float，位置 y。
+- args["posZ"]: float，位置 z。
+- args["itemDict"]: Dict[str, Any]，物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当新物品为空时，此项属性为 None。
 
 ---
 
@@ -395,20 +348,14 @@ FurnaceBurnFinishedServerEvent(
 玩家点击砂轮合成得到的物品时抛出的事件。
 
 ```python
-GrindStoneRemovedEnchantClientEvent(
-    playerId: str,
-    oldItemDict: Dict[str, Any],
-    additionalItemDict: Dict[str, Any],
-    newItemDict: Dict[str, Any],
-    exp: int,
-) -> Any
+def OnGrindStoneRemovedEnchantClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- oldItemDict: Dict[str, Any]，合成前的物品[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)（砂轮内第一个物品）。
-- additionalItemDict: Dict[str, Any]，作为合成材料的物品[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)（砂轮内第二个物品）。
-- newItemDict: Dict[str, Any]，合成后的物品[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- exp: int，本次合成返还的经验。
+- args["playerId"]: str，玩家实体 id。
+- args["oldItemDict"]: Dict[str, Any]，合成前的物品[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)（砂轮内第一个物品）。
+- args["additionalItemDict"]: Dict[str, Any]，作为合成材料的物品[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)（砂轮内第二个物品）。
+- args["newItemDict"]: Dict[str, Any]，合成后的物品[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["exp"]: int，本次合成返还的经验。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -421,18 +368,13 @@ GrindStoneRemovedEnchantClientEvent(
 玩家背包物品变化时客户端抛出的事件。
 
 ```python
-InventoryItemChangedClientEvent(
-    playerId: str,
-    slot: int,
-    oldItemDict: Dict[str, Any],
-    newItemDict: Dict[str, Any],
-) -> Any
+def OnInventoryItemChangedClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- slot: int，背包槽位。
-- oldItemDict: Dict[str, Any]，变化前槽位中的物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- newItemDict: Dict[str, Any]，变化后槽位中的物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["playerId"]: str，玩家实体 id。
+- args["slot"]: int，背包槽位。
+- args["oldItemDict"]: Dict[str, Any]，变化前槽位中的物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["newItemDict"]: Dict[str, Any]，变化后槽位中的物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
 
 **备注**
 
@@ -451,18 +393,13 @@ InventoryItemChangedClientEvent(
 玩家背包物品变化时服务端抛出的事件。
 
 ```python
-InventoryItemChangedServerEvent(
-    playerId: str,
-    slot: int,
-    oldItemDict: Dict[str, Any],
-    newItemDict: Dict[str, Any],
-) -> Any
+def OnInventoryItemChangedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- slot: int，背包槽位。
-- oldItemDict: Dict[str, Any]，变化前槽位中的物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- newItemDict: Dict[str, Any]，变化后槽位中的物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["playerId"]: str，玩家实体 id。
+- args["slot"]: int，背包槽位。
+- args["oldItemDict"]: Dict[str, Any]，变化前槽位中的物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["newItemDict"]: Dict[str, Any]，变化后槽位中的物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
 
 **备注**
 
@@ -482,20 +419,14 @@ InventoryItemChangedServerEvent(
 物品耐久度变化事件。
 
 ```python
-ItemDurabilityChangedServerEvent(
-    entityId: str,
-    itemDict: Dict[str, Any],
-    durabilityBefore: int,
-    durability: int,
-    canChange: bool,
-) -> Any
+def OnItemDurabilityChangedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- entityId: str，物品拥有者的实体 id。
-- itemDict: Dict[str, Any]，物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- durabilityBefore: int，变化前耐久度。
-- durability: int，变化后耐久度,支持修改。但是请注意修改范围，支持范围为[-32768,32767)。
-- canChange: bool，是否支持修改，为 true 时支持通过 durability 修改，为 false 时不支持。
+- args["entityId"]: str，物品拥有者的实体 id。
+- args["itemDict"]: Dict[str, Any]，物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["durabilityBefore"]: int，变化前耐久度。
+- args["durability"]: int，变化后耐久度,支持修改。但是请注意修改范围，支持范围为[-32768,32767)。
+- args["canChange"]: bool，是否支持修改，为 true 时支持通过 durability 修改，为 false 时不支持。
 
 **备注**
 
@@ -513,26 +444,17 @@ ItemDurabilityChangedServerEvent(
 漏出物品到漏斗时触发该事件。
 
 ```python
-ItemPullOutCustomContainerServerEvent(
-    itemDict: Dict[str, Any],
-    collectionName: str,
-    collectionIndex: int,
-    x: int,
-    y: int,
-    z: int,
-    dimension: int,
-    cancel: bool,
-) -> Any
+def OnItemPullOutCustomContainerServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- itemDict: Dict[str, Any]，漏斗漏出物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- collectionName: str，漏出物品的容器名称，目前仅支持 netease_container。
-- collectionIndex: int，漏出物品的容器索引。
-- x: int，容器方块 x 坐标。
-- y: int，容器方块 y 坐标。
-- z: int，容器方块 z 坐标。
-- dimension: int，容器方块所在的维度 id。
-- cancel: bool，是否取消该操作，默认为 false，事件中改为 true 时拒绝此次漏出物品的操作。
+- args["itemDict"]: Dict[str, Any]，漏斗漏出物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["collectionName"]: str，漏出物品的容器名称，目前仅支持 netease_container。
+- args["collectionIndex"]: int，漏出物品的容器索引。
+- args["x"]: int，容器方块 x 坐标。
+- args["y"]: int，容器方块 y 坐标。
+- args["z"]: int，容器方块 z 坐标。
+- args["dimension"]: int，容器方块所在的维度 id。
+- args["cancel"]: bool，是否取消该操作，默认为 false，事件中改为 true 时拒绝此次漏出物品的操作。
 
 ---
 
@@ -543,26 +465,17 @@ ItemPullOutCustomContainerServerEvent(
 漏斗漏入物品时触发该事件。
 
 ```python
-ItemPushInCustomContainerServerEvent(
-    itemDict: Dict[str, Any],
-    collectionName: str,
-    collectionIndex: int,
-    x: int,
-    y: int,
-    z: int,
-    dimension: int,
-    cancel: bool,
-) -> Any
+def OnItemPushInCustomContainerServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- itemDict: Dict[str, Any]，漏斗漏入物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- collectionName: str，目标容器名称，目前仅支持 netease_container。
-- collectionIndex: int，目标容器索引。
-- x: int，容器方块 x 坐标。
-- y: int，容器方块 y 坐标。
-- z: int，容器方块 z 坐标。
-- dimension: int，容器方块所在的维度 id。
-- cancel: bool，是否取消该操作，默认为 false，事件中改为 true 时拒绝此次漏入物品的操作。
+- args["itemDict"]: Dict[str, Any]，漏斗漏入物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["collectionName"]: str，目标容器名称，目前仅支持 netease_container。
+- args["collectionIndex"]: int，目标容器索引。
+- args["x"]: int，容器方块 x 坐标。
+- args["y"]: int，容器方块 y 坐标。
+- args["z"]: int，容器方块 z 坐标。
+- args["dimension"]: int，容器方块所在的维度 id。
+- args["cancel"]: bool，是否取消该操作，默认为 false，事件中改为 true 时拒绝此次漏入物品的操作。
 
 ---
 
@@ -573,20 +486,14 @@ ItemPushInCustomContainerServerEvent(
 触发时机：释放正在使用的物品。
 
 ```python
-ItemReleaseUsingClientEvent(
-    playerId: str,
-    durationLeft: float,
-    itemDict: Dict[str, Any],
-    maxUseDuration: int,
-    cancel: bool,
-) -> Any
+def OnItemReleaseUsingClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- durationLeft: float，蓄力剩余时间(当物品缺少"minecraft:maxduration"组件时,蓄力剩余时间为负数)。
-- itemDict: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- maxUseDuration: int，最大蓄力时长。
-- cancel: bool，设置为 True 可以取消，需要同时取消服务端事件 [ItemReleaseUsingServerEvent](/docs/docs/scripts/modapi/events/item#itemreleaseusingserverevent)。
+- args["playerId"]: str，玩家 id。
+- args["durationLeft"]: float，蓄力剩余时间(当物品缺少"minecraft:maxduration"组件时,蓄力剩余时间为负数)。
+- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["maxUseDuration"]: int，最大蓄力时长。
+- args["cancel"]: bool，设置为 True 可以取消，需要同时取消服务端事件 [ItemReleaseUsingServerEvent](/docs/docs/scripts/modapi/events/item#itemreleaseusingserverevent)。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -599,22 +506,15 @@ ItemReleaseUsingClientEvent(
 触发时机：释放正在使用的物品时。
 
 ```python
-ItemReleaseUsingServerEvent(
-    playerId: str,
-    durationLeft: float,
-    itemDict: Dict[str, Any],
-    maxUseDuration: int,
-    cancel: bool,
-    changeItem: bool,
-) -> Any
+def OnItemReleaseUsingServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- durationLeft: float，蓄力剩余时间(当物品缺少"minecraft:maxduration"组件时,蓄力剩余时间为负数)。
-- itemDict: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- maxUseDuration: int，最大蓄力时长。
-- cancel: bool，设置为 True 可以取消，需要同时取消客户端事件 [ItemReleaseUsingClientEvent](/docs/docs/scripts/modapi/events/item#itemreleaseusingclientevent)。
-- changeItem: bool，如果要在该事件的回调中修改当前使用槽位的物品，需设置这个参数为 True，否则将修改物品失败，例如修改耐久度或者替换成新物品。
+- args["playerId"]: str，玩家 id。
+- args["durationLeft"]: float，蓄力剩余时间(当物品缺少"minecraft:maxduration"组件时,蓄力剩余时间为负数)。
+- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["maxUseDuration"]: int，最大蓄力时长。
+- args["cancel"]: bool，设置为 True 可以取消，需要同时取消客户端事件 [ItemReleaseUsingClientEvent](/docs/docs/scripts/modapi/events/item#itemreleaseusingclientevent)。
+- args["changeItem"]: bool，如果要在该事件的回调中修改当前使用槽位的物品，需设置这个参数为 True，否则将修改物品失败，例如修改耐久度或者替换成新物品。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -627,11 +527,11 @@ ItemReleaseUsingServerEvent(
 玩家在使用物品之后服务端抛出的事件。
 
 ```python
-ItemUseAfterServerEvent(entityId: str, itemDict: Dict[str, Any]) -> Any
+def OnItemUseAfterServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- entityId: str，玩家实体 id。
-- itemDict: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["entityId"]: str，玩家实体 id。
+- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
 
 **备注**
 
@@ -648,34 +548,21 @@ ItemUseAfterServerEvent(entityId: str, itemDict: Dict[str, Any]) -> Any
 玩家在对方块使用物品之后服务端抛出的事件。
 
 ```python
-ItemUseOnAfterServerEvent(
-    entityId: str,
-    itemDict: Dict[str, Any],
-    x: int,
-    y: int,
-    z: int,
-    face: int,
-    clickX: float,
-    clickY: float,
-    clickZ: float,
-    blockName: str,
-    blockAuxValue: int,
-    dimensionId: int,
-) -> Any
+def OnItemUseOnAfterServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- entityId: str，玩家实体 id。
-- itemDict: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- x: int，方块 x 坐标值。
-- y: int，方块 y 坐标值。
-- z: int，方块 z 坐标值。
-- face: int，点击方块的面，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
-- clickX: float，点击点的 x 比例位置。
-- clickY: float，点击点的 y 比例位置。
-- clickZ: float，点击点的 z 比例位置。
-- blockName: str，方块的 identifier。
-- blockAuxValue: int，方块的附加值。
-- dimensionId: int，维度 id。
+- args["entityId"]: str，玩家实体 id。
+- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["x"]: int，方块 x 坐标值。
+- args["y"]: int，方块 y 坐标值。
+- args["z"]: int，方块 z 坐标值。
+- args["face"]: int，点击方块的面，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
+- args["clickX"]: float，点击点的 x 比例位置。
+- args["clickY"]: float，点击点的 y 比例位置。
+- args["clickZ"]: float，点击点的 z 比例位置。
+- args["blockName"]: str，方块的 identifier。
+- args["blockAuxValue"]: int，方块的附加值。
+- args["dimensionId"]: int，维度 id。
 
 **备注**
 
@@ -692,22 +579,15 @@ ItemUseOnAfterServerEvent(
 玩家客户端点击流体时触发（支持原版流体与自定义流体）。
 
 ```python
-LiquidClippedClientEvent(
-    playerId: str,
-    blockName: str,
-    aux: int,
-    blockPos: Tuple[int, int, int],
-    dimensionId: int,
-    floatPos: Tuple[float, float, float],
-) -> Any
+def OnLiquidClippedClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 Id。
-- blockName: str，方块的 identifier，包含命名空间及名称。
-- aux: int，方块附加值。
-- blockPos: Tuple[int, int, int]，方块坐标(x,y,z)。
-- dimensionId: int，维度 id。
-- floatPos: Tuple[float, float, float]，点击的精准坐标(x,y,z)。
+- args["playerId"]: str，玩家 Id。
+- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
+- args["aux"]: int，方块附加值。
+- args["blockPos"]: Tuple[int, int, int]，方块坐标(x,y,z)。
+- args["dimensionId"]: int，维度 id。
+- args["floatPos"]: Tuple[float, float, float]，点击的精准坐标(x,y,z)。
 
 **备注**
 
@@ -724,22 +604,15 @@ LiquidClippedClientEvent(
 玩家服务端点击流体时触发（支持原版流体与自定义流体）。
 
 ```python
-LiquidClippedServerEvent(
-    playerId: str,
-    blockName: str,
-    aux: int,
-    blockPos: Tuple[int, int, int],
-    dimensionId: int,
-    floatPos: Tuple[float, float, float],
-) -> Any
+def OnLiquidClippedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 Id。
-- blockName: str，方块的 identifier，包含命名空间及名称。
-- aux: int，方块附加值。
-- blockPos: Tuple[int, int, int]，方块坐标(x,y,z)。
-- dimensionId: int，维度 id。
-- floatPos: Tuple[float, float, float]，点击的精准坐标(x,y,z)。
+- args["playerId"]: str，玩家 Id。
+- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
+- args["aux"]: int，方块附加值。
+- args["blockPos"]: Tuple[int, int, int]，方块坐标(x,y,z)。
+- args["dimensionId"]: int，维度 id。
+- args["floatPos"]: Tuple[float, float, float]，点击的精准坐标(x,y,z)。
 
 **备注**
 
@@ -756,10 +629,10 @@ LiquidClippedServerEvent(
 手持物品发生变化时，触发该事件；数量改变不会通知。
 
 ```python
-OnCarriedNewItemChangedClientEvent(itemDict: Dict[str, Any]) -> Any
+def OnOnCarriedNewItemChangedClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- itemDict: Dict[str, Any]，切换后物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["itemDict"]: Dict[str, Any]，切换后物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
 
 ---
 
@@ -770,16 +643,12 @@ OnCarriedNewItemChangedClientEvent(itemDict: Dict[str, Any]) -> Any
 触发时机：玩家切换主手物品时触发该事件。
 
 ```python
-OnCarriedNewItemChangedServerEvent(
-    oldItemDict: Optional[Dict[str, Any]],
-    newItemDict: Optional[Dict[str, Any]],
-    playerId: str,
-) -> Any
+def OnOnCarriedNewItemChangedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- oldItemDict: Optional[Dict[str, Any]]，旧物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当旧物品为空时，此项属性为 None。
-- newItemDict: Optional[Dict[str, Any]]，新物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当新物品为空时，此项属性为 None。
-- playerId: str，玩家 entityId。
+- args["oldItemDict"]: Optional[Dict[str, Any]]，旧物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当旧物品为空时，此项属性为 None。
+- args["newItemDict"]: Optional[Dict[str, Any]]，新物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当新物品为空时，此项属性为 None。
+- args["playerId"]: str，玩家 entityId。
 
 **备注**
 
@@ -796,13 +665,13 @@ OnCarriedNewItemChangedServerEvent(
 触发时机：玩家将可附魔物品放到附魔台上时。
 
 ```python
-OnItemPutInEnchantingModelServerEvent(playerId: str, slotType: int, options: List[Any], change: bool) -> Any
+def OnOnItemPutInEnchantingModelServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id，参数类型为 str。
-- slotType: int，玩家放入物品的[EnchantSlotType](https://mc.163.com/newdev/docs/api/meijuzhi/EnchantSlotType.html)。
-- options: List[Any]，附魔台选项。
-- change: bool，传入 True 时，附魔台选项会被新传入的 options 覆盖。
+- args["playerId"]: str，玩家 id，参数类型为 str。
+- args["slotType"]: int，玩家放入物品的[EnchantSlotType](https://mc.163.com/newdev/docs/api/meijuzhi/EnchantSlotType.html)。
+- args["options"]: List[Any]，附魔台选项。
+- args["change"]: bool，传入 True 时，附魔台选项会被新传入的 options 覆盖。
 
 **备注**
 
@@ -819,18 +688,13 @@ OnItemPutInEnchantingModelServerEvent(playerId: str, slotType: int, options: Lis
 触发时机：玩家切换盔甲时触发该事件。
 
 ```python
-OnNewArmorExchangeServerEvent(
-    slot: int,
-    oldArmorDict: Optional[Dict[str, Any]],
-    newArmorDict: Optional[Dict[str, Any]],
-    playerId: str,
-) -> Any
+def OnOnNewArmorExchangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- slot: int，槽位 id。
-- oldArmorDict: Optional[Dict[str, Any]]，旧装备的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当旧物品为空时，此项属性为 None。
-- newArmorDict: Optional[Dict[str, Any]]，新装备的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当新物品为空时，此项属性为 None。
-- playerId: str，玩家 entityId。
+- args["slot"]: int，槽位 id。
+- args["oldArmorDict"]: Optional[Dict[str, Any]]，旧装备的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当旧物品为空时，此项属性为 None。
+- args["newArmorDict"]: Optional[Dict[str, Any]]，新装备的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当新物品为空时，此项属性为 None。
+- args["playerId"]: str，玩家 entityId。
 
 **备注**
 
@@ -848,16 +712,12 @@ OnNewArmorExchangeServerEvent(
 触发时机：玩家切换副手物品时触发该事件。
 
 ```python
-OnOffhandItemChangedServerEvent(
-    oldItemDict: Optional[Dict[str, Any]],
-    newItemDict: Optional[Dict[str, Any]],
-    playerId: str,
-) -> Any
+def OnOnOffhandItemChangedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- oldItemDict: Optional[Dict[str, Any]]，旧物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当旧物品为空时，此项属性为 None。
-- newItemDict: Optional[Dict[str, Any]]，新物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当新物品为空时，此项属性为 None。
-- playerId: str，玩家 entityId。
+- args["oldItemDict"]: Optional[Dict[str, Any]]，旧物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当旧物品为空时，此项属性为 None。
+- args["newItemDict"]: Optional[Dict[str, Any]]，新物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)，当新物品为空时，此项属性为 None。
+- args["playerId"]: str，玩家 entityId。
 
 **备注**
 
@@ -874,20 +734,14 @@ OnOffhandItemChangedServerEvent(
 触发时机：玩家激活/取消激活盾牌触发的事件。包括玩家持盾进入潜行状态，以及在潜行状态切换盾牌（切换耐久度不同的相同盾牌不会触发）。
 
 ```python
-OnPlayerActiveShieldServerEvent(
-    playerId: str,
-    isActive: bool,
-    itemDict: Dict[str, Any],
-    cancelable: bool,
-    cancel: bool,
-) -> Any
+def OnOnPlayerActiveShieldServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 Id。
-- isActive: bool，True:尝试激活,False:尝试取消激活。
-- itemDict: Dict[str, Any]，盾牌物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- cancelable: bool，是否可以取消。如果玩家在潜行状态切换盾牌，则无法取消。
-- cancel: bool，是否取消这次激活。
+- args["playerId"]: str，玩家 Id。
+- args["isActive"]: bool，True:尝试激活,False:尝试取消激活。
+- args["itemDict"]: Dict[str, Any]，盾牌物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["cancelable"]: bool，是否可以取消。如果玩家在潜行状态切换盾牌，则无法取消。
+- args["cancel"]: bool，是否取消这次激活。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -900,18 +754,13 @@ OnPlayerActiveShieldServerEvent(
 触发时机：玩家使用盾牌抵挡伤害之后触发。
 
 ```python
-OnPlayerBlockedByShieldAfterServerEvent(
-    playerId: str,
-    sourceId: str,
-    itemDict: Dict[str, Any],
-    damage: float,
-) -> Any
+def OnOnPlayerBlockedByShieldAfterServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 Id。
-- sourceId: str，伤害来源实体 Id，没有实体返回"-1"。
-- itemDict: Dict[str, Any]，盾牌物品字典[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- damage: float，抵挡的伤害数值。
+- args["playerId"]: str，玩家 Id。
+- args["sourceId"]: str，伤害来源实体 Id，没有实体返回"-1"。
+- args["itemDict"]: Dict[str, Any]，盾牌物品字典[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["damage"]: float，抵挡的伤害数值。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -924,18 +773,13 @@ OnPlayerBlockedByShieldAfterServerEvent(
 触发时机：玩家使用盾牌抵挡伤害之前触发。
 
 ```python
-OnPlayerBlockedByShieldBeforeServerEvent(
-    playerId: str,
-    sourceId: str,
-    itemDict: Dict[str, Any],
-    damage: float,
-) -> Any
+def OnOnPlayerBlockedByShieldBeforeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 Id。
-- sourceId: str，伤害来源实体 Id，没有实体返回"-1"。
-- itemDict: Dict[str, Any]，盾牌物品字典[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- damage: float，抵挡的伤害数值。
+- args["playerId"]: str，玩家 Id。
+- args["sourceId"]: str，伤害来源实体 Id，没有实体返回"-1"。
+- args["itemDict"]: Dict[str, Any]，盾牌物品字典[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["damage"]: float，抵挡的伤害数值。
 
 **备注**
 
@@ -952,28 +796,18 @@ OnPlayerBlockedByShieldBeforeServerEvent(
 玩家成功将物品添加到自定义容器时触发该事件。
 
 ```python
-PlayerAddCustomContainerItemClientEvent(
-    beforeItemDict: Dict[str, Any],
-    changedItemDict: Dict[str, Any],
-    afterItemDict: Dict[str, Any],
-    collectionName: str,
-    collectionType: str,
-    collectionIndex: int,
-    x: int,
-    y: int,
-    z: int,
-) -> Any
+def OnPlayerAddCustomContainerItemClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- beforeItemDict: Dict[str, Any]，操作前目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- changedItemDict: Dict[str, Any]，实际添加的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- afterItemDict: Dict[str, Any]，操作后目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- collectionName: str，容器名称，对应容器 json 中"custom_description"字段。
-- collectionType: str，容器类型，目前仅支持 netease_container 和 netease_ui_container。
-- collectionIndex: int，容器槽位索引。
-- x: int，容器方块 x 坐标。
-- y: int，容器方块 y 坐标。
-- z: int，容器方块 z 坐标。
+- args["beforeItemDict"]: Dict[str, Any]，操作前目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["changedItemDict"]: Dict[str, Any]，实际添加的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["afterItemDict"]: Dict[str, Any]，操作后目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["collectionName"]: str，容器名称，对应容器 json 中"custom_description"字段。
+- args["collectionType"]: str，容器类型，目前仅支持 netease_container 和 netease_ui_container。
+- args["collectionIndex"]: int，容器槽位索引。
+- args["x"]: int，容器方块 x 坐标。
+- args["y"]: int，容器方块 y 坐标。
+- args["z"]: int，容器方块 z 坐标。
 
 **备注**
 
@@ -990,30 +824,19 @@ PlayerAddCustomContainerItemClientEvent(
 玩家向自定义容器中添加物品成功后触发该事件。该事件不可取消，仅用于通知物品添加操作已完成。
 
 ```python
-PlayerAddCustomContainerItemServerEvent(
-    beforeItemDict: Dict[str, Any],
-    changedItemDict: Dict[str, Any],
-    afterItemDict: Dict[str, Any],
-    collectionName: str,
-    collectionType: str,
-    collectionIndex: int,
-    playerId: str,
-    x: int,
-    y: int,
-    z: int,
-) -> Any
+def OnPlayerAddCustomContainerItemServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- beforeItemDict: Dict[str, Any]，操作前目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- changedItemDict: Dict[str, Any]，实际添加的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- afterItemDict: Dict[str, Any]，操作后目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- collectionName: str，容器名称，对应容器 json 中"custom_description"字段。
-- collectionType: str，容器类型，目前仅支持 netease_container 和 netease_ui_container。
-- collectionIndex: int，目标容器索引。
-- playerId: str，玩家 id。
-- x: int，容器方块 x 坐标。
-- y: int，容器方块 y 坐标。
-- z: int，容器方块 z 坐标。
+- args["beforeItemDict"]: Dict[str, Any]，操作前目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["changedItemDict"]: Dict[str, Any]，实际添加的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["afterItemDict"]: Dict[str, Any]，操作后目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["collectionName"]: str，容器名称，对应容器 json 中"custom_description"字段。
+- args["collectionType"]: str，容器类型，目前仅支持 netease_container 和 netease_ui_container。
+- args["collectionIndex"]: int，目标容器索引。
+- args["playerId"]: str，玩家 id。
+- args["x"]: int，容器方块 x 坐标。
+- args["y"]: int，容器方块 y 坐标。
+- args["z"]: int，容器方块 z 坐标。
 
 **备注**
 
@@ -1031,11 +854,11 @@ PlayerAddCustomContainerItemServerEvent(
 触发时机：玩家丢弃物品时触发。
 
 ```python
-PlayerDropItemServerEvent(playerId: str, itemEntityId: str) -> Any
+def OnPlayerDropItemServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- itemEntityId: str，物品 entityId。
+- args["playerId"]: str，玩家 id。
+- args["itemEntityId"]: str，物品 entityId。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1048,20 +871,14 @@ PlayerDropItemServerEvent(playerId: str, itemEntityId: str) -> Any
 玩家即将捡起抛射物时触发，包括使用"netease:pick_up"的自定义抛射物。
 
 ```python
-PlayerPickupArrowServerEvent(
-    playerId: str,
-    arrowId: str,
-    itemDict: Dict[str, Any],
-    cancel: bool,
-    pickupDelay: int,
-) -> Any
+def OnPlayerPickupArrowServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 Id。
-- arrowId: str，抛射物 Id。
-- itemDict: Dict[str, Any]，触碰的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- cancel: bool，设置为 True 时将取消本次拾取。
-- pickupDelay: int，取消拾取后重新设置该物品的拾取 cd，小于 15 帧将视作 15 帧，大于等于 97813 帧将视作无法拾取，每秒 30 帧。
+- args["playerId"]: str，玩家 Id。
+- args["arrowId"]: str，抛射物 Id。
+- args["itemDict"]: Dict[str, Any]，触碰的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["cancel"]: bool，设置为 True 时将取消本次拾取。
+- args["pickupDelay"]: int，取消拾取后重新设置该物品的拾取 cd，小于 15 帧将视作 15 帧，大于等于 97813 帧将视作无法拾取，每秒 30 帧。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1074,28 +891,18 @@ PlayerPickupArrowServerEvent(
 玩家成功从自定义容器中移除物品时触发该事件。
 
 ```python
-PlayerRemoveCustomContainerItemClientEvent(
-    beforeItemDict: Dict[str, Any],
-    changedItemDict: Dict[str, Any],
-    afterItemDict: Dict[str, Any],
-    collectionName: str,
-    collectionType: str,
-    collectionIndex: int,
-    x: int,
-    y: int,
-    z: int,
-) -> Any
+def OnPlayerRemoveCustomContainerItemClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- beforeItemDict: Dict[str, Any]，操作前目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- changedItemDict: Dict[str, Any]，实际移除的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- afterItemDict: Dict[str, Any]，操作后目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- collectionName: str，容器名称，对应容器 json 中"custom_description"字段。
-- collectionType: str，容器类型，目前仅支持 netease_container 和 netease_ui_container。
-- collectionIndex: int，容器槽位索引。
-- x: int，容器方块 x 坐标。
-- y: int，容器方块 y 坐标。
-- z: int，容器方块 z 坐标。
+- args["beforeItemDict"]: Dict[str, Any]，操作前目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["changedItemDict"]: Dict[str, Any]，实际移除的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["afterItemDict"]: Dict[str, Any]，操作后目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["collectionName"]: str，容器名称，对应容器 json 中"custom_description"字段。
+- args["collectionType"]: str，容器类型，目前仅支持 netease_container 和 netease_ui_container。
+- args["collectionIndex"]: int，容器槽位索引。
+- args["x"]: int，容器方块 x 坐标。
+- args["y"]: int，容器方块 y 坐标。
+- args["z"]: int，容器方块 z 坐标。
 
 **备注**
 
@@ -1112,30 +919,19 @@ PlayerRemoveCustomContainerItemClientEvent(
 玩家从自定义容器中移除物品成功后触发该事件。该事件不可取消，仅用于通知物品移除操作已完成。
 
 ```python
-PlayerRemoveCustomContainerItemServerEvent(
-    beforeItemDict: Dict[str, Any],
-    changedItemDict: Dict[str, Any],
-    afterItemDict: Dict[str, Any],
-    collectionName: str,
-    collectionType: str,
-    collectionIndex: int,
-    playerId: str,
-    x: int,
-    y: int,
-    z: int,
-) -> Any
+def OnPlayerRemoveCustomContainerItemServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- beforeItemDict: Dict[str, Any]，操作前目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- changedItemDict: Dict[str, Any]，实际移除的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- afterItemDict: Dict[str, Any]，操作后目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- collectionName: str，容器名称，对应容器 json 中"custom_description"字段。
-- collectionType: str，容器类型，目前仅支持 netease_container 和 netease_ui_container。
-- collectionIndex: int，目标容器索引。
-- playerId: str，玩家 id。
-- x: int，容器方块 x 坐标。
-- y: int，容器方块 y 坐标。
-- z: int，容器方块 z 坐标。
+- args["beforeItemDict"]: Dict[str, Any]，操作前目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["changedItemDict"]: Dict[str, Any]，实际移除的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["afterItemDict"]: Dict[str, Any]，操作后目标槽位的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["collectionName"]: str，容器名称，对应容器 json 中"custom_description"字段。
+- args["collectionType"]: str，容器类型，目前仅支持 netease_container 和 netease_ui_container。
+- args["collectionIndex"]: int，目标容器索引。
+- args["playerId"]: str，玩家 id。
+- args["x"]: int，容器方块 x 坐标。
+- args["y"]: int，容器方块 y 坐标。
+- args["z"]: int，容器方块 z 坐标。
 
 **备注**
 
@@ -1152,26 +948,17 @@ PlayerRemoveCustomContainerItemServerEvent(
 玩家尝试将物品添加到自定义容器时触发该事件。
 
 ```python
-PlayerTryAddCustomContainerItemClientEvent(
-    itemDict: Dict[str, Any],
-    collectionName: str,
-    collectionType: str,
-    collectionIndex: int,
-    x: int,
-    y: int,
-    z: int,
-    cancel: bool,
-) -> Any
+def OnPlayerTryAddCustomContainerItemClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- itemDict: Dict[str, Any]，尝试添加物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- collectionName: str，放入容器名称，对应容器 json 中"custom_description"字段。
-- collectionType: str，放入容器类型，目前仅支持 netease_container 和 netease_ui_container。
-- collectionIndex: int，放入容器索引。
-- x: int，容器方块 x 坐标。
-- y: int，容器方块 y 坐标。
-- z: int，容器方块 z 坐标。
-- cancel: bool，是否取消该操作，默认为 false，事件中改为 true 时拒绝此次放入自定义容器的操作。
+- args["itemDict"]: Dict[str, Any]，尝试添加物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["collectionName"]: str，放入容器名称，对应容器 json 中"custom_description"字段。
+- args["collectionType"]: str，放入容器类型，目前仅支持 netease_container 和 netease_ui_container。
+- args["collectionIndex"]: int，放入容器索引。
+- args["x"]: int，容器方块 x 坐标。
+- args["y"]: int，容器方块 y 坐标。
+- args["z"]: int，容器方块 z 坐标。
+- args["cancel"]: bool，是否取消该操作，默认为 false，事件中改为 true 时拒绝此次放入自定义容器的操作。
 
 **备注**
 
@@ -1187,26 +974,17 @@ PlayerTryAddCustomContainerItemClientEvent(
 玩家尝试将物品添加到自定义容器时触发该事件。
 
 ```python
-PlayerTryAddCustomContainerItemServerEvent(
-    itemDict: Dict[str, Any],
-    collectionName: str,
-    collectionType: str,
-    collectionIndex: int,
-    playerId: str,
-    x: int,
-    y: int,
-    z: int,
-) -> Any
+def OnPlayerTryAddCustomContainerItemServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- itemDict: Dict[str, Any]，尝试添加物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- collectionName: str，放入容器名称，对应容器 json 中"custom_description"字段。
-- collectionType: str，放入容器类型，目前仅支持 netease_container 和 netease_ui_container。
-- collectionIndex: int，放入容器索引。
-- playerId: str，玩家 id。
-- x: int，容器方块 x 坐标。
-- y: int，容器方块 y 坐标。
-- z: int，容器方块 z 坐标。
+- args["itemDict"]: Dict[str, Any]，尝试添加物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["collectionName"]: str，放入容器名称，对应容器 json 中"custom_description"字段。
+- args["collectionType"]: str，放入容器类型，目前仅支持 netease_container 和 netease_ui_container。
+- args["collectionIndex"]: int，放入容器索引。
+- args["playerId"]: str，玩家 id。
+- args["x"]: int，容器方块 x 坐标。
+- args["y"]: int，容器方块 y 坐标。
+- args["z"]: int，容器方块 z 坐标。
 
 **备注**
 
@@ -1223,12 +1001,12 @@ PlayerTryAddCustomContainerItemServerEvent(
 触发时机：玩家丢弃物品时触发。
 
 ```python
-PlayerTryDropItemClientEvent(playerId: str, itemDict: Dict[str, Any], cancel: bool) -> Any
+def OnPlayerTryDropItemClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- itemDict: Dict[str, Any]，物品 dict。
-- cancel: bool，是否取消此次操作。
+- args["playerId"]: str，玩家 id。
+- args["itemDict"]: Dict[str, Any]，物品 dict。
+- args["cancel"]: bool，是否取消此次操作。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1241,26 +1019,17 @@ PlayerTryDropItemClientEvent(playerId: str, itemDict: Dict[str, Any], cancel: bo
 玩家尝试将物品放入自定义容器时触发该事件。
 
 ```python
-PlayerTryPutCustomContainerItemClientEvent(
-    itemDict: Dict[str, Any],
-    collectionName: str,
-    collectionType: str,
-    collectionIndex: int,
-    x: int,
-    y: int,
-    z: int,
-    cancel: bool,
-) -> Any
+def OnPlayerTryPutCustomContainerItemClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- itemDict: Dict[str, Any]，尝试放入物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- collectionName: str，放入容器名称，对应容器 json 中"custom_description"字段。
-- collectionType: str，放入容器类型，目前仅支持 netease_container 和 netease_ui_container。
-- collectionIndex: int，放入容器索引。
-- x: int，容器方块 x 坐标。
-- y: int，容器方块 y 坐标。
-- z: int，容器方块 z 坐标。
-- cancel: bool，是否取消该操作，默认为 false，事件中改为 true 时拒绝此次放入自定义容器的操作。
+- args["itemDict"]: Dict[str, Any]，尝试放入物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["collectionName"]: str，放入容器名称，对应容器 json 中"custom_description"字段。
+- args["collectionType"]: str，放入容器类型，目前仅支持 netease_container 和 netease_ui_container。
+- args["collectionIndex"]: int，放入容器索引。
+- args["x"]: int，容器方块 x 坐标。
+- args["y"]: int，容器方块 y 坐标。
+- args["z"]: int，容器方块 z 坐标。
+- args["cancel"]: bool，是否取消该操作，默认为 false，事件中改为 true 时拒绝此次放入自定义容器的操作。
 
 **备注**
 
@@ -1278,28 +1047,18 @@ PlayerTryPutCustomContainerItemClientEvent(
 玩家尝试将物品放入自定义容器时触发该事件。
 
 ```python
-PlayerTryPutCustomContainerItemServerEvent(
-    itemDict: Dict[str, Any],
-    collectionName: str,
-    collectionType: str,
-    collectionIndex: int,
-    playerId: str,
-    x: int,
-    y: int,
-    z: int,
-    cancel: bool,
-) -> Any
+def OnPlayerTryPutCustomContainerItemServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- itemDict: Dict[str, Any]，尝试放入物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- collectionName: str，放入容器名称，对应容器 json 中"custom_description"字段。
-- collectionType: str，放入容器类型，目前仅支持 netease_container 和 netease_ui_container。
-- collectionIndex: int，放入容器索引。
-- playerId: str，玩家 id。
-- x: int，容器方块 x 坐标。
-- y: int，容器方块 y 坐标。
-- z: int，容器方块 z 坐标。
-- cancel: bool，是否取消该操作，默认为 false，事件中改为 true 时拒绝此次放入自定义容器的操作。
+- args["itemDict"]: Dict[str, Any]，尝试放入物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["collectionName"]: str，放入容器名称，对应容器 json 中"custom_description"字段。
+- args["collectionType"]: str，放入容器类型，目前仅支持 netease_container 和 netease_ui_container。
+- args["collectionIndex"]: int，放入容器索引。
+- args["playerId"]: str，玩家 id。
+- args["x"]: int，容器方块 x 坐标。
+- args["y"]: int，容器方块 y 坐标。
+- args["z"]: int，容器方块 z 坐标。
+- args["cancel"]: bool，是否取消该操作，默认为 false，事件中改为 true 时拒绝此次放入自定义容器的操作。
 
 **备注**
 
@@ -1318,26 +1077,17 @@ PlayerTryPutCustomContainerItemServerEvent(
 玩家尝试从自定义容器中移除物品时触发该事件。
 
 ```python
-PlayerTryRemoveCustomContainerItemClientEvent(
-    itemDict: Dict[str, Any],
-    collectionName: str,
-    collectionType: str,
-    collectionIndex: int,
-    x: int,
-    y: int,
-    z: int,
-    cancel: bool,
-) -> Any
+def OnPlayerTryRemoveCustomContainerItemClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- itemDict: Dict[str, Any]，尝试移除物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- collectionName: str，放入容器名称，对应容器 json 中"custom_description"字段。
-- collectionType: str，放入容器类型，目前仅支持 netease_container 和 netease_ui_container。
-- collectionIndex: int，目标容器索引。
-- x: int，容器方块 x 坐标。
-- y: int，容器方块 y 坐标。
-- z: int，容器方块 z 坐标。
-- cancel: bool，是否取消该操作，默认为 false，事件中改为 true 时拒绝此次移除物品的操作。
+- args["itemDict"]: Dict[str, Any]，尝试移除物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["collectionName"]: str，放入容器名称，对应容器 json 中"custom_description"字段。
+- args["collectionType"]: str，放入容器类型，目前仅支持 netease_container 和 netease_ui_container。
+- args["collectionIndex"]: int，目标容器索引。
+- args["x"]: int，容器方块 x 坐标。
+- args["y"]: int，容器方块 y 坐标。
+- args["z"]: int，容器方块 z 坐标。
+- args["cancel"]: bool，是否取消该操作，默认为 false，事件中改为 true 时拒绝此次移除物品的操作。
 
 **备注**
 
@@ -1354,26 +1104,17 @@ PlayerTryRemoveCustomContainerItemClientEvent(
 玩家尝试从自定义容器中移除物品时触发该事件。
 
 ```python
-PlayerTryRemoveCustomContainerItemServerEvent(
-    itemDict: Dict[str, Any],
-    collectionName: str,
-    collectionType: str,
-    collectionIndex: int,
-    playerId: str,
-    x: int,
-    y: int,
-    z: int,
-) -> Any
+def OnPlayerTryRemoveCustomContainerItemServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- itemDict: Dict[str, Any]，尝试移除物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- collectionName: str，放入容器名称，对应容器 json 中"custom_description"字段。
-- collectionType: str，放入容器类型，目前仅支持 netease_container 和 netease_ui_container。
-- collectionIndex: int，目标容器索引。
-- playerId: str，玩家 id。
-- x: int，容器方块 x 坐标。
-- y: int，容器方块 y 坐标。
-- z: int，容器方块 z 坐标。
+- args["itemDict"]: Dict[str, Any]，尝试移除物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["collectionName"]: str，放入容器名称，对应容器 json 中"custom_description"字段。
+- args["collectionType"]: str，放入容器类型，目前仅支持 netease_container 和 netease_ui_container。
+- args["collectionIndex"]: int，目标容器索引。
+- args["playerId"]: str，玩家 id。
+- args["x"]: int，容器方块 x 坐标。
+- args["y"]: int，容器方块 y 坐标。
+- args["z"]: int，容器方块 z 坐标。
 
 **备注**
 
@@ -1390,12 +1131,12 @@ PlayerTryRemoveCustomContainerItemServerEvent(
 玩家点击右键尝试使用物品时服务端抛出的事件。
 
 ```python
-ServerItemTryUseEvent(playerId: str, itemDict: Dict[str, Any], cancel: bool) -> Any
+def OnServerItemTryUseEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 id。
-- itemDict: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- cancel: bool，设为 True 可取消物品的使用。
+- args["playerId"]: str，玩家 id。
+- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["cancel"]: bool，设为 True 可取消物品的使用。
 
 **备注**
 
@@ -1413,36 +1154,22 @@ ServerItemTryUseEvent(playerId: str, itemDict: Dict[str, Any], cancel: bool) -> 
 玩家在对方块使用物品之前服务端抛出的事件。
 
 ```python
-ServerItemUseOnEvent(
-    entityId: str,
-    itemDict: Dict[str, Any],
-    x: int,
-    y: int,
-    z: int,
-    blockName: str,
-    blockAuxValue: int,
-    face: int,
-    dimensionId: int,
-    clickX: float,
-    clickY: float,
-    clickZ: float,
-    ret: bool,
-) -> Any
+def OnServerItemUseOnEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- entityId: str，玩家实体 id。
-- itemDict: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- x: int，方块 x 坐标值。
-- y: int，方块 y 坐标值。
-- z: int，方块 z 坐标值。
-- blockName: str，方块的 identifier。
-- blockAuxValue: int，方块的附加值。
-- face: int，点击方块的面，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
-- dimensionId: int，维度 id。
-- clickX: float，点击点的 x 比例位置。
-- clickY: float，点击点的 y 比例位置。
-- clickZ: float，点击点的 z 比例位置。
-- ret: bool，设为 True 可取消物品的使用。
+- args["entityId"]: str，玩家实体 id。
+- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["x"]: int，方块 x 坐标值。
+- args["y"]: int，方块 y 坐标值。
+- args["z"]: int，方块 z 坐标值。
+- args["blockName"]: str，方块的 identifier。
+- args["blockAuxValue"]: int，方块的附加值。
+- args["face"]: int，点击方块的面，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
+- args["dimensionId"]: int，维度 id。
+- args["clickX"]: float，点击点的 x 比例位置。
+- args["clickY"]: float，点击点的 y 比例位置。
+- args["clickZ"]: float，点击点的 z 比例位置。
+- args["ret"]: bool，设为 True 可取消物品的使用。
 
 **备注**
 
@@ -1460,20 +1187,14 @@ ServerItemUseOnEvent(
 玩家即将捡起物品时触发。
 
 ```python
-ServerPlayerTryTouchEvent(
-    playerId: str,
-    entityId: str,
-    itemDict: Dict[str, Any],
-    cancel: bool,
-    pickupDelay: int,
-) -> Any
+def OnServerPlayerTryTouchEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家 Id。
-- entityId: str，物品实体的 Id。
-- itemDict: Dict[str, Any]，触碰的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- cancel: bool，设置为 True 时将取消本次拾取。
-- pickupDelay: int，取消拾取后重新设置该物品的拾取 cd，小于 15 帧将视作 15 帧，大于等于 97813 帧将视作无法拾取。
+- args["playerId"]: str，玩家 Id。
+- args["entityId"]: str，物品实体的 Id。
+- args["itemDict"]: Dict[str, Any]，触碰的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["cancel"]: bool，设置为 True 时将取消本次拾取。
+- args["pickupDelay"]: int，取消拾取后重新设置该物品的拾取 cd，小于 15 帧将视作 15 帧，大于等于 97813 帧将视作无法拾取。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1486,30 +1207,19 @@ ServerPlayerTryTouchEvent(
 触发时机：实体手持剪刀对方块使用时，有剪刀特殊效果的方块会在服务端线程触发该事件。
 
 ```python
-ShearsUseToBlockBeforeServerEvent(
-    blockX: int,
-    blockY: int,
-    blockZ: int,
-    blockName: str,
-    auxData: int,
-    dropName: str,
-    dropCount: int,
-    entityId: str,
-    dimensionId: int,
-    cancelShears: bool,
-) -> Any
+def OnShearsUseToBlockBeforeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- blockX: int，方块位置 x。
-- blockY: int，方块位置 y。
-- blockZ: int，方块位置 z。
-- blockName: str，方块的 identifier，包含命名空间及名称。
-- auxData: int，方块附加值。
-- dropName: str，触发剪刀效果的掉落物 identifier，包含命名空间及名称。
-- dropCount: int，触发剪刀效果的掉落物数量。
-- entityId: str，触发剪刀效果的实体 id，目前仅玩家会触发。
-- dimensionId: int，玩家触发时的维度 id。
-- cancelShears: bool，是否取消剪刀效果。
+- args["blockX"]: int，方块位置 x。
+- args["blockY"]: int，方块位置 y。
+- args["blockZ"]: int，方块位置 z。
+- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
+- args["auxData"]: int，方块附加值。
+- args["dropName"]: str，触发剪刀效果的掉落物 identifier，包含命名空间及名称。
+- args["dropCount"]: int，触发剪刀效果的掉落物数量。
+- args["entityId"]: str，触发剪刀效果的实体 id，目前仅玩家会触发。
+- args["dimensionId"]: int，玩家触发时的维度 id。
+- args["cancelShears"]: bool，是否取消剪刀效果。
 
 **备注**
 
@@ -1528,11 +1238,11 @@ ShearsUseToBlockBeforeServerEvent(
 玩家使用物品（目前仅支持 Bucket（奶桶）、Trident（三叉戟）、RangedWeapon（弓）、Food（食物）、Potion（药水）、Crossbow（弩））时抛出。
 
 ```python
-StartUsingItemClientEvent(playerId: str, itemDict: Dict[str, Any]) -> Any
+def OnStartUsingItemClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- itemDict: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["playerId"]: str，玩家实体 id。
+- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1545,11 +1255,11 @@ StartUsingItemClientEvent(playerId: str, itemDict: Dict[str, Any]) -> Any
 玩家停止使用物品（目前仅支持 Bucket（奶桶）、Trident（三叉戟）、RangedWeapon（弓）、Food（食物）、Potion（药水）、Crossbow（弩））时抛出。
 
 ```python
-StopUsingItemClientEvent(playerId: str, itemDict: Dict[str, Any]) -> Any
+def OnStopUsingItemClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- itemDict: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["playerId"]: str，玩家实体 id。
+- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1565,18 +1275,13 @@ StopUsingItemClientEvent(playerId: str, itemDict: Dict[str, Any]) -> Any
 <TabItem value="说明" label="说明" default>
 
 ```python
-UIContainerItemChangedServerEvent(
-    playerId: str,
-    slot: int,
-    oldItemDict: Dict[str, Any],
-    newItemDict: Dict[str, Any],
-) -> Any
+def OnUIContainerItemChangedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- playerId: str，玩家实体 id。
-- slot: int，容器槽位，含义见：[容器类型枚举](https://mc.163.com/newdev/docs/api/meijuzhi/PlayerUISlot.html)。
-- oldItemDict: Dict[str, Any]，旧物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- newItemDict: Dict[str, Any]，生成的物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["playerId"]: str，玩家实体 id。
+- args["slot"]: int，容器槽位，含义见：[容器类型枚举](https://mc.163.com/newdev/docs/api/meijuzhi/PlayerUISlot.html)。
+- args["oldItemDict"]: Dict[str, Any]，旧物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
+- args["newItemDict"]: Dict[str, Any]，生成的物品，格式参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
 
 **备注**
 
