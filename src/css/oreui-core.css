@@ -898,29 +898,125 @@ div[class*="buttonGroup"] button:hover {
     line-height: 18px;
 }
 
-/* ---- 2.10 提示框（Admonition） ---- */
+/* ---- 2.10 提示框（Admonition）：纯色标题条 + 同色淡染的正文 ----
+   官方 OreUI 的 Important / Information message 是整条实色横条。
+   但文档里的提示框经常要塞好几段话、代码块、折叠块 —— 整块实色会又吵又难读，
+   所以把「颜色身份」放在标题条上（整条实色），正文只染一成色：
+   既认得出是哪种提示，又能安安稳稳读字。
+
+   类型色统一改用站内那套（原来的 Infima 默认值偏亮，跟站内灰不搭）：
+     tip 绿 #3c8527 / info 蓝 #1a56db / warning 黄 #e0a300 / danger 红 #ca3636 / note 灰 #5a5b5c
+   标题条上的字默认白色，只有黄条换黑字（不然读不清）。 */
 .theme-admonition,
 .alert {
-    background-color: var(--oreui-bg) !important;
-    border-top: 5px solid var(--oreui-border-light);
-    border-right: 5px solid var(--oreui-border-dark);
-    border-bottom: 5px solid var(--oreui-border-dark);
-    border-left: 5px solid var(--ifm-alert-border-color, var(--oreui-accent));
+    /* 每种类型只换这一个变量，条和底色都跟着走 */
+    --admon-tint: var(--ifm-alert-border-color, var(--oreui-accent));
+
+    background-color: var(--oreui-panel-face) !important;
+    /* 顶边交给标题条，其余三边一圈 2px 描边 */
+    border: 2px solid var(--oreui-panel-edge);
+    border-top: 0;
     border-radius: 0;
+    padding: 0;
     color: var(--oreui-text);
 }
+
+/* 正文染一成类型色（color-mix 不支持的浏览器就退回纯板面灰） */
+@supports (background: color-mix(in srgb, red 10%, blue)) {
+    .theme-admonition,
+    .alert {
+        background-color: color-mix(in srgb, var(--admon-tint) 14%, var(--oreui-panel-face)) !important;
+    }
+}
+
+.alert--success {
+    --ifm-alert-border-color: var(--oreui-accent);
+}
+
+.alert--info {
+    --ifm-alert-border-color: #1a56db;
+}
+
+.alert--warning {
+    --ifm-alert-border-color: #e0a300;
+}
+
+.alert--danger {
+    --ifm-alert-border-color: #ca3636;
+}
+
+.alert--secondary {
+    --ifm-alert-border-color: #5a5b5c;
+}
+
+/* 标题条：整条实色，图标跟着字色走 */
+.theme-admonition div[class*="admonitionHeading"],
+.alert div[class*="admonitionHeading"] {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0.45rem 0.9rem;
+    background-color: var(--admon-tint);
+    color: #ffffff;
+    font-family: var(--oreui-font-body);
+    font-size: 0.95rem;
+    font-weight: normal;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    text-transform: none;
+}
+
+/* 黄条换黑字 */
+.alert--warning div[class*="admonitionHeading"] {
+    color: #0f0e0e;
+}
+
+.theme-admonition div[class*="admonitionIcon"],
+.alert div[class*="admonitionIcon"] {
+    display: inline-flex;
+    margin: 0;
+}
+
+.theme-admonition div[class*="admonitionIcon"] svg,
+.alert div[class*="admonitionIcon"] svg {
+    height: 1.15em;
+    width: 1.15em;
+    fill: currentColor;
+}
+
+/* 正文 */
+.theme-admonition div[class*="admonitionContent"],
+.alert div[class*="admonitionContent"] {
+    padding: 0.85rem 1rem 1rem;
+}
+
+.theme-admonition div[class*="admonitionContent"] > :last-child,
+.alert div[class*="admonitionContent"] > :last-child {
+    margin-bottom: 0;
+}
+
+/* 可折叠提示框的三角箭头 */
 .alert summary::before {
     border-color: transparent transparent transparent var(--oreui-accent-bright);
 }
+
+/* 提示框里嵌的折叠块（如「答案」）：表头再压暗一档才从染色的底上分得出来 */
+.alert details > summary {
+    background-color: #2a2b2c;
+}
+
 /* 可折叠提示框展开后的内容区。
    原先写作 .collapsibleContent_i85q，其中的 hash 由 Docusaurus 每次构建生成，
    版本升级后会静默失效，故改用结构选择器。 */
 .alert details > div {
     border-top: 2px solid var(--oreui-accent-darker);
 }
+
 em {
     text-decoration: underline var(--oreui-accent-bright);
 }
+
 .theme-admonition a {
     color: var(--oreui-link);
 }
