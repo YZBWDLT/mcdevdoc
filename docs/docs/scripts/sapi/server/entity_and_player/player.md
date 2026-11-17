@@ -241,6 +241,8 @@ playMusic(trackId: string, musicOptions?: MusicOptions): void
 
 播放一个只有该玩家能听到的音效。
 
+<Version type="script" add="2.10.0" inline/>：soundId 除字符串标识符外，也可传入 SoundDefinition。
+
 ```typescript
 playSound(soundId: SoundDefinition | string, soundOptions?: PlayerSoundOptions): SoundInstance
 ```

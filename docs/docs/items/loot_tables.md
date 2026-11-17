@@ -980,6 +980,95 @@ import Button from '/src/components/button/base';
 
 ---
 
+### `entity_properties`
+
+战利品来源实体或击杀它的实体是否处于给定状态。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object"/>：根对象。
+  - <DataType type="string" name="condition"/>：指定为`entity_properties`。
+  - <DataType type="string" name="entity"/>：要检测的实体。可填`this`（掉落战利品的实体）、`killer`（击杀它的实体）与`killer_player`（击杀它的玩家）。
+  - <DataType type="object" name="properties"/>：要检测的状态。
+    - <DataType type="boolean" name="on_fire"/>：实体是否着火。
+    - <DataType type="boolean" name="on_ground"/>：实体是否接触地面。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+鸡的战利品表（<FileType type="file" name="chicken.json"/>）中，着火时把生鸡肉烤成熟鸡肉：
+
+```json showLineNumbers
+{
+    "condition": "entity_properties",
+    "entity": "this",
+    "properties": {
+        "on_fire": true
+    }
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `bool_property`
+
+战利品来源实体的某个布尔属性是否为给定值。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object"/>：根对象。
+  - <DataType type="string" name="condition"/>：指定为`bool_property`。
+  - <DataType type="string" name="domain"/>：布尔属性的名称，例如`minecraft:has_flower`。
+  - <DataType type="boolean" name="value"/>：期望的属性值。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+铜傀儡的战利品表（<FileType type="file" name="copper_golem.json"/>）中，拿着花时额外掉落一朵虞美人：
+
+```json showLineNumbers
+{
+    "condition": "bool_property",
+    "domain": "minecraft:has_flower",
+    "value": true
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `is_baby`
+
+<Version add="1.21.93"/>
+
+战利品来源实体是否为幼体。没有参数。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object"/>：根对象。
+  - <DataType type="string" name="condition"/>：指定为`is_baby`。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+原版僵尸的战利品表把它与`passenger_of_entity`放在一起，只有幼年僵尸骑着鸡时才掉落`music_disc_lava_chicken`：
+
+```json showLineNumbers
+{
+    "condition": "is_baby"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
 ### `killed_by_player`
 
 战利品来源实体是否被玩家杀死。没有参数。
@@ -1071,6 +1160,64 @@ import Button from '/src/components/button/base';
 {
     "condition": "entity_killed",
     "entity_type": "minecraft:magma_cube"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `damaged_by_entity`
+
+<Version add="1.21.90"/>
+
+是否有指定类型的实体对掉落战利品的实体造成过伤害。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object"/>：根对象。
+  - <DataType type="string" name="condition"/>：指定为`damaged_by_entity`。
+  - <DataType type="string" name="entity_type"/>：造成伤害的实体 ID。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+原版恶魂的战利品表中，只有被玩家杀死且受过火球伤害，才会额外掉落`music_disc_tears`：
+
+```json showLineNumbers
+{
+    "condition": "damaged_by_entity",
+    "entity_type": "minecraft:fireball"
+}
+```
+
+</TabItem></Tabs>
+
+---
+
+### `passenger_of_entity`
+
+<Version add="1.21.93"/>
+
+掉落战利品的实体当前骑乘的载具是否为指定类型。
+
+<Tabs><TabItem value="parameters" label="参数" default>
+
+<treeview>
+- <DataType type="object"/>：根对象。
+  - <DataType type="string" name="condition"/>：指定为`passenger_of_entity`。
+  - <DataType type="string" name="entity_type"/>：载具的实体 ID。
+</treeview>
+
+</TabItem><TabItem value="example" label="示例">
+
+原版僵尸的战利品表中，骑的是鸡时才会掉落`music_disc_lava_chicken`：
+
+```json showLineNumbers
+{
+    "condition": "passenger_of_entity",
+    "entity_type": "minecraft:chicken"
 }
 ```
 

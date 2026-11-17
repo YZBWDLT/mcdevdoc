@@ -1799,7 +1799,10 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="priority"/>：行为优先级，数值越小越优先。默认值为`0`。
   - <DataType type="array" name="control_flags"/>：该行为占用的控制通道。可选值为`move`、`look`、`jump`。
     - <DataType type="string"/>：一个控制通道。
-  - <DataType type="array" name="float_duration"/>：每次漂浮持续的时间区间，写作`[最小值, 最大值]`，单位为秒。默认值为`[0, 0]`。
+  - <DataType type="array" name="float_duration"/>：<Version add="1.2.0" deprecated="1.26.40" inline/>每次漂浮持续的时间区间，写作`[最小值, 最大值]`，单位为秒。默认值为`[0, 0]`。
+  - <DataType type="object" name="float_duration"/>：<Version add="1.26.40" inline/>每次漂浮持续的时间区间，单位为秒。
+    - <DataType type="float" name="min"/>：区间下限。默认值为`0`。
+    - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="int" name="xz_dist"/>：在水平方向上寻找落点的距离，单位为方块。默认值为`10`。
   - <DataType type="int" name="y_dist"/>：在垂直方向上寻找落点的距离，单位为方块。默认值为`7`。
   - <DataType type="float" name="y_offset"/>：在选定落点上叠加的高度偏移，单位为方块。默认值为`0`。
@@ -4089,7 +4092,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 <Usable type="all"/> <Version add="1.2.0"/> <br/>
 
-使生物受到伤害后惊慌逃跑。
+使生物受到伤害后惊慌逃跑。`26.60`起生物被困住时不再每刻反复停止与启动该意向。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -4941,14 +4944,16 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     - <DataType type="float" name="max"/>：区间上限。默认值为`-1`。
   - <DataType type="float" name="attack_interval_min"/>：<Version add="未知" deprecated="1.26.40" inline/>两次攻击间隔的下限。默认值为`0`。
   - <DataType type="float" name="attack_interval_max"/>：<Version add="未知" deprecated="1.26.40" inline/>两次攻击间隔的上限。默认值为`0`。
-  - <DataType type="object" name="attack_range"/>：可以发起攻击的距离区间，单位为方块。
+  - <DataType type="float" name="attack_radius"/>：<Version add="未知" deprecated="1.26.50" inline/>可以发起攻击的最大距离，`26.50`起由`attack_range`取代。默认值为`0`。
+  - <DataType type="float" name="attack_radius_min"/>：<Version add="未知" deprecated="1.26.50" inline/>目标进入攻击范围的最小距离，`26.50`起由`attack_range`取代。默认值为`0`。
+  - <DataType type="object" name="attack_range"/>：<Version add="1.26.50" inline/>可以发起攻击的距离区间，单位为方块。
     - <DataType type="float" name="min"/>：区间下限。默认值为`0`。
     - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="float" name="burst_interval"/>：蓄力连发时每发之间的间隔，单位为秒。默认值为`0`。
   - <DataType type="int" name="burst_shots"/>：蓄力连发时的每次射击发数。默认值为`1`。
   - <DataType type="float" name="charge_charged_trigger"/>：在`charge_shoot_trigger`基础上再蓄力多少秒才算蓄满。默认值为`0`。
   - <DataType type="float" name="charge_shoot_trigger"/>：开始筹备连发前需要蓄力多少秒（随后翻倍）。目标离开视线时蓄力会衰减。默认值为`0`。
-  - <DataType type="string" name="in_range_movement_mode"/>：进入攻击距离后如何移动。可选值为`hold_position`（原地不动）、`follow_target`（跟随目标）。
+  - <DataType type="string" name="in_range_movement_mode"/>：<Version add="1.26.50" inline/>进入攻击距离后如何移动。可选值为`hold_position`（原地不动）、`follow_target`（跟随目标）。
   - <DataType type="float" name="ranged_fov"/>：<Version add="1.6.0" inline/> 用于发现目标的视野角度，单位为度。默认值为`90`。
   - <DataType type="boolean" name="set_persistent"/>：<Version add="1.18.30" inline/> 为`true`时瞄准玩家后不再被自然清除。默认值为`false`。
   - <DataType type="float" name="speed_multiplier"/>：追击目标时的移动速度乘数。默认值为`1`。

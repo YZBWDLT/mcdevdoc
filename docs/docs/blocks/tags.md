@@ -40,6 +40,7 @@ sidebar_position: 4
 | `minecraft:is_shovel_item_destructible` | 锹挖掘速度更快的方块 |
 | `minecraft:is_sword_item_destructible` | 剑挖掘速度更快的方块 |
 | `jungle` | 丛林木 |
+| `minecraft:leaves` | 各类树叶 |
 | `log` | 原木 |
 | `metal` | 金属块 |
 | `mob_spawner` | 刷怪笼 |

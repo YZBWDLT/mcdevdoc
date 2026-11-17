@@ -195,6 +195,8 @@ import Version from "/src/components/highlight/version"
   - <DataType type="float" name="value"/>：两次环境音之间的最短间隔，单位为秒。默认值为`8`。
 </treeview>
 
+> **备注**：`1.26.50`起环境音效不再被运行时覆盖。此前实体的头部在水中、离地或处于幼体状态时，`event_names`会被强制换成`ambient.in.water`、`ambient.in.air`与`ambient.baby`，现在需要在`event_names`里用条件条目自行声明。旧版定义的实体会自动获得[`minecraft:uses_legacy_ambient_sounds`](./deprecated#minecraftuses_legacy_ambient_sounds)组件，该组件已弃用。
+
 </TabItem><TabItem value="示例" label="示例">
 
 悦灵（<FileType type="file" name="allay.json"/>）：使用物品时改用另一套环境音。
@@ -477,7 +479,11 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:attack"/>：根对象。
-  - <DataType type="float"/><DataType type="array" name="damage"/>：近战伤害。写单个数值为固定伤害，写`[最小值, 最大值]`则在区间内随机；负值会为目标回血。默认值为`0`。
+  - <DataType type="float" name="damage"/>：近战伤害。负值会为目标回血。默认值为`0`。
+  - <DataType type="array" name="damage"/>：<Version add="未知" deprecated="1.26.60" inline/>在`[最小值, 最大值]`区间内随机。
+  - <DataType type="object" name="damage"/>：<Version add="1.26.60" inline/>在`min`与`max`之间随机。
+    - <DataType type="float" name="min"/>：区间下限。默认值为`0`。
+    - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="string" name="effect_name"/>：命中时施加的状态效果 ID。
   - <DataType type="float"/><DataType type="array" name="effect_duration"/>：状态效果的持续秒数，可写`[最小值, 最大值]`；写`infinite`表示永久。
   - <DataType type="int" name="effect_amplifier"/>：<Version add="1.26.30" inline/>状态效果的等级，从`0`开始。默认值为`0`。
@@ -1658,9 +1664,15 @@ import Version from "/src/components/highlight/version"
   - <DataType type="boolean" name="show_trade_screen"/>：<Version add="1.16.0" inline/>交互时是否打开交易界面。默认值为`true`。
   - <DataType type="boolean" name="persist_trades"/>：<Version add="1.12.0" inline/>生成的交易是否随实体存档保存。默认值为`false`。
   - <DataType type="boolean" name="convert_trades_economy"/>：<Version add="1.12.0" inline/>是否把旧版交易数据转换为经济交易数据。默认值为`false`。
-  - <DataType type="array" name="cured_discount"/>：<Version add="1.16.0" inline/>治愈村民后价格折扣的范围，写作`[最小值, 最大值]`。默认值为`[0, 0]`。
+  - <DataType type="array" name="cured_discount"/>：<Version add="1.16.0" deprecated="1.26.60" inline/>治愈村民后价格折扣的范围，写作`[最小值, 最大值]`。默认值为`[0, 0]`。
+  - <DataType type="object" name="cured_discount"/>：<Version add="1.26.60" inline/>治愈村民后价格折扣的范围。
+    - <DataType type="int" name="min"/>：区间下限。默认值为`-25`。
+    - <DataType type="int" name="max"/>：区间上限。默认值为`-20`。
     - <DataType type="int"/>：边界值。
-  - <DataType type="array" name="max_cured_discount"/>：<Version add="1.16.0" inline/>治愈折扣允许的最大范围。默认值为`[0, 0]`。
+  - <DataType type="array" name="max_cured_discount"/>：<Version add="1.16.0" deprecated="1.26.60" inline/>治愈折扣允许的最大范围。默认值为`[0, 0]`。
+  - <DataType type="object" name="max_cured_discount"/>：<Version add="1.26.60" inline/>治愈折扣允许的最大范围。
+    - <DataType type="int" name="min"/>：区间下限。默认值为`-25`。
+    - <DataType type="int" name="max"/>：区间上限。默认值为`-20`。
     - <DataType type="int"/>：边界值。
   - <DataType type="int" name="nearby_cured_discount"/>：<Version add="1.16.0" inline/>附近有治愈村民时的折扣步长，旧版定价使用。默认值为`-20`。
   - <DataType type="int" name="max_nearby_cured_discount"/>：<Version add="1.16.100" inline/>附近治愈折扣允许的最低值，旧版定价使用。默认值为`-200`。
@@ -2806,7 +2818,8 @@ import Version from "/src/components/highlight/version"
         - <DataType type="boolean" name="particle_offset_towards_interactor"/>：为`true`时粒子朝交互者方向偏移。默认值为`false`。
         - <DataType type="string" name="particle_type"/>：粒子效果名。
         - <DataType type="float" name="particle_y_offset"/>：粒子的垂直偏移。默认值为`0`。
-      - <DataType type="string"/><DataType type="array" name="play_sounds"/>：交互时播放的音效事件名，可写单个名称，也可写成名称数组。默认值为空数组。
+      - <DataType type="array" name="play_sounds"/>：交互时播放的音效事件名。默认值为空数组。  
+    <Version add="1.26.50" inline/>：只接受数组，不再接受单个字符串。
         - <DataType type="string"/>：一个音效事件名。
       - <DataType type="object" name="repair_entity_item"/>：<Version add="1.20.80" inline/>交互时修复实体已装备的物品。
         - <DataType type="int" name="amount"/>：每次修复的耐久值。默认值为`1`。
@@ -4191,7 +4204,8 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:projectile"/>：根对象。
-  - <DataType type="string" name="anchor"/>：生成弹射物时使用的参考点。可选值为`origin`（实体内原点）、`eye_height`（眼睛高度）、`middle`（实体中心）。默认值为`origin`。
+  - <DataType type="string" name="anchor"/>：生成弹射物时使用的参考点。可选值为`origin`（实体内原点）、`eye_height`（眼睛高度）、`middle`（实体中心）。默认值为`origin`。  
+  <Version add="1.26.50" inline/>：改为接受这三个字符串，更早的格式版本需写成整数`0`（原点）、`1`（眼睛高度）、`2`（中心）。
   - <DataType type="array" name="offset"/>：相对`anchor`的生成偏移，写作`[x, y, z]`。默认值为`[0, 0, 0]`。
   - <DataType type="float" name="power"/>：发射的初始速度，单位为方块每刻。默认值为`1.3`。
   - <DataType type="float" name="gravity"/>：每刻施加的向下加速度。默认值为`0.05`。
@@ -4203,8 +4217,10 @@ NPC（<FileType type="file" name="npc.json"/>）：
   - <DataType type="boolean" name="shoot_target"/>：<Version add="1.13.0" inline/>为`true`时瞄准射击者的当前目标。默认值为`true`。
   - <DataType type="boolean" name="homing"/>：为`true`时在飞行中转向追踪目标。默认值为`false`。
   - <DataType type="boolean" name="is_dangerous"/>：<Version add="1.13.0" inline/>为`true`时标记为危险弹射物，影响生物的反应。默认值为`false`。
-  - <DataType type="boolean" name="isolated_physics"/>：<Version add="1.26.20" inline/>为`true`时使用独立的弹道物理，不受实体运动影响。默认值为`true`。
-  - <DataType type="boolean" name="multiple_targets"/>：<Version add="1.5.0" inline/>为`true`时飞行途中可连续命中多个实体。默认值为`false`。
+  - <DataType type="boolean" name="isolated_physics"/>：<Version add="1.26.20" inline/>为`true`时使用独立的弹道物理，不受实体运动影响。默认值为`true`。  
+  <Version add="1.26.30" inline/>：格式版本低于`1.26.30`时默认值为`false`。
+  - <DataType type="boolean" name="multiple_targets"/>：<Version add="1.5.0" inline/>为`true`时飞行途中可连续命中多个实体。默认值为`false`。  
+  <Version add="1.26.50" inline/>：格式版本低于`1.26.50`时默认值为`true`。
   - <DataType type="boolean" name="hit_water"/>：为`true`时把水面视作命中面并停下。默认值为`false`。
   - <DataType type="boolean" name="hit_nearest_passenger"/>：<Version add="1.21.0" inline/>为`true`时命中载具后改为命中其上最近的乘客。默认值为`false`。
   - <DataType type="array" name="ignored_entities"/>：<Version add="1.21.0" inline/>弹射物会直接穿过的实体 ID 列表。
@@ -4299,9 +4315,9 @@ NPC（<FileType type="file" name="npc.json"/>）：
       - <DataType type="int" name="reapplication_delay"/>：两次施加效果之间的间隔刻数。默认值为`0`。
     - <DataType type="object" name="spawn_chance"/>：命中时按概率生成实体。
       - <DataType type="string" name="spawn_definition"/>：要生成的实体标识符。
-      - <DataType type="float" name="first_spawn_chance"/>：第一次生成的概率，取值 0 到 1。默认值为`0`。
+      - <DataType type="float" name="first_spawn_chance"/>：<Version add="1.26.50" inline/>第一次生成的概率，取值`0.0`-`1.0`。默认值为`0`。
       - <DataType type="int" name="first_spawn_count"/>：第一次生成的数量。默认值为`0`。
-      - <DataType type="float" name="second_spawn_chance"/>：第二次生成的概率，取值 0 到 1。默认值为`0`。
+      - <DataType type="float" name="second_spawn_chance"/>：<Version add="1.26.50" inline/>第二次生成的概率，取值`0.0`-`1.0`。默认值为`0`。
       - <DataType type="int" name="second_spawn_count"/>：第二次生成的数量。默认值为`0`。
       - <DataType type="boolean" name="spawn_baby"/>：为`true`时生成幼年个体。默认值为`false`。
       - <DataType type="array" name="on_spawn"/>：生成后对生成实体触发的事件。默认值为空数组。
@@ -4637,7 +4653,8 @@ NPC（<FileType type="file" name="npc.json"/>）：
   - <DataType type="boolean" name="rider_can_interact"/>：<Version add="1.6.0" inline/>为`true`时，骑乘者看向该实体即可选中它。默认值为`false`。
   - <DataType type="boolean" name="pull_in_entities"/>：为`true`时，符合`family_types`的实体会被拉入空座位。默认值为`false`。
   - <DataType type="float" name="passenger_max_width"/>：<Version add="1.20.0" inline/>可成为骑乘者的实体最大宽度，`0`表示不限。默认值为`0`。
-  - <DataType type="string" name="dismount_mode"/>：<Version add="1.21.80" inline/>骑乘者下马时的落点。可选值为`default`（默认方式）、`on_top_center`（落在实体顶部中心）、`look_direction`（落在骑乘者视线方向）。默认值为`default`。
+  - <DataType type="string" name="dismount_mode"/>：<Version add="1.21.80" inline/>骑乘者下马时的落点。可选值为`default`（默认方式）、`on_top_center`（落在实体顶部中心）、`look_direction`（落在骑乘者视线方向）。默认值为`default`。  
+  <Version add="1.26.60" inline/>：新增`look_direction`取值。
   - <DataType type="string"/><DataType type="object" name="on_rider_enter_event"/>：<Version add="1.21.80" inline/>有实体开始骑乘时在该实体身上触发的事件。可写事件 ID，也可写成含`event`与`target`的对象。
   - <DataType type="string"/><DataType type="object" name="on_rider_exit_event"/>：<Version add="1.21.80" inline/>有实体停止骑乘时触发的事件，写法同上。
   - <DataType type="array" name="seats"/>：座位列表。
@@ -5495,10 +5512,10 @@ NPC（<FileType type="file" name="npc.json"/>）：
 - <DataType type="object" name="minecraft:trail"/>：根对象。
   - <DataType type="string" name="block_type"/>：作为轨迹生成的方块 ID。默认值为`air`。
   - <DataType type="array" name="spawn_offset"/>：<Version add="1.16.0" inline/>生成位置相对实体位置的偏移，写作`[x, y, z]`。默认值为`[0, 0, 0]`。
-  - <DataType type="int" name="radius"/>：在实体周围多大范围内生成轨迹，`-1`表示只在脚下。默认值为`-1`。
-  - <DataType type="array" name="replaceable_blocks"/>：可以被轨迹方块替换的方块列表。留空时可替换任何可被替换的方块。
+  - <DataType type="int" name="radius"/>：<Version add="1.26.60" inline/>以`spawn_offset`为中心的水平方形半径，取值`-1`-`16`。默认值为`-1`，此时沿用旧版的四角放置行为。
+  - <DataType type="array" name="replaceable_blocks"/>：<Version add="1.26.60" inline/>可以被轨迹方块替换的方块列表，不指定时只替换空气。
     - <DataType type="string"/>：方块 ID。
-  - <DataType type="boolean" name="force_replace_matched_blocks"/>：为`true`时，即使方块不属于可替换列表也会被替换。默认值为`false`。
+  - <DataType type="boolean" name="force_replace_matched_blocks"/>：<Version add="1.26.60" inline/>为`true`时，即使方块不属于可替换列表也会被替换。默认值为`false`。
   - <DataType type="object" name="spawn_filter"/>：允许生成轨迹的条件。见[实体过滤器](../filters)。
 </treeview>
 
@@ -5532,7 +5549,8 @@ NPC（<FileType type="file" name="npc.json"/>）：
 <treeview>
 - <DataType type="object" name="minecraft:transformation"/>：根对象。
   - <DataType type="string" name="into"/>：转换后的实体定义 ID，可在其后用`<组件组名>`指定要套用的组件组，如`minecraft:zombie<minecraft:as_adult>`。
-  - <DataType type="object" name="delay"/>：转换前的延迟设置。
+  - <DataType type="object" name="delay"/>：转换前的延迟设置。  
+  <Version add="1.26.60" inline/>：只接受对象写法（`{"value": 秒数}`），不再接受纯数字。
     - <DataType type="float" name="value"/>：固定的延迟秒数。默认值为`0`。
     - <DataType type="float" name="range_min"/>：随机延迟的下限，单位为秒。默认值为`0`。
     - <DataType type="float" name="range_max"/>：随机延迟的上限，单位为秒。默认值为`0`。
@@ -5550,8 +5568,10 @@ NPC（<FileType type="file" name="npc.json"/>）：
   - <DataType type="boolean" name="preserve_equipment"/>：为`true`时转换后保留装备。默认值为`false`。
   - <DataType type="boolean" name="keep_level"/>：为`true`时保留交易等级。默认值为`false`。
   - <DataType type="boolean" name="keep_owner"/>：为`true`时保留原主人。默认值为`false`。
-  - <DataType type="string"/><DataType type="array" name="begin_transform_sound"/>：开始转换时播放的音效事件名。
-  - <DataType type="string"/><DataType type="array" name="transformation_sound"/>：转换完成时播放的音效事件名。
+  - <DataType type="array" name="begin_transform_sound"/>：开始转换时播放的音效事件名。  
+  <Version add="1.26.60" inline/>：只接受数组，不再接受单个字符串。
+  - <DataType type="array" name="transformation_sound"/>：转换完成时播放的音效事件名。  
+  <Version add="1.26.60" inline/>：只接受数组，不再接受单个字符串。
 </treeview>
 
 > **备注**：官方文档把两个音效字段写作数组，原版实际直接写字符串，两种写法均有效。

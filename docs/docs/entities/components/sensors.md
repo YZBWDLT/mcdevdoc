@@ -364,7 +364,10 @@ import Version from "/src/components/highlight/version"
 - <DataType type="object" name="minecraft:timer"/>：根对象。
   - <DataType type="boolean" name="looping"/>：触发后是否重新计时。默认值为`true`。
   - <DataType type="boolean" name="randomInterval"/>：时长是否在`time`的最小值与最大值之间随机取值。默认值为`true`。
-  - <DataType type="float"/><DataType type="array" name="time"/>：计时时长，单位为秒。写单个数值为固定时长，写`[最小值, 最大值]`则在区间内随机。默认值为`0.0`。
+  - <DataType type="float"/><DataType type="array" name="time"/>：<Version add="1.2.0" deprecated="1.26.60" inline/>计时时长，单位为秒。写单个数值为固定时长，写`[最小值, 最大值]`则在区间内随机。默认值为`0.0`。
+  - <DataType type="object" name="time"/>：<Version add="1.26.60" inline/>计时时长，单位为秒。
+    - <DataType type="float" name="min"/>：区间下限。默认值为`0`。
+    - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="array" name="random_time_choices"/>：<Version add="1.10.0" inline/>可随机选取的时长及权重，与`time`互斥。
     - <DataType type="object"/>：一项。
       - <DataType type="float" name="value"/>：时长，单位为秒。

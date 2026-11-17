@@ -81,6 +81,8 @@ class DimensionTypes {
 
 获取指定标识符的维度类型。
 
+<Version type="script" add="2.10.0" inline/>：除原版维度类型外，也可获取自定义维度类型；自定义维度类型需要系统启动事件完成后才能获取。
+
 ```typescript
 static get(dimensionTypeId: string): DimensionType | undefined
 ```
@@ -94,6 +96,8 @@ static get(dimensionTypeId: string): DimensionType | undefined
 <Static/> <EarlyExecution/>
 
 获取所有可用的维度类型。
+
+<Version type="script" add="2.10.0" inline/>：返回的列表除原版维度类型外也包含自定义维度类型；自定义维度类型需要系统启动事件完成后才会出现。
 
 ```typescript
 static getAll(): DimensionType[]

@@ -7,13 +7,15 @@ import BaseHighlight from "./base";
  * - `game`：游戏版本（默认）。26.0 起格式版本为`1.xx.yy`、游戏版本为`xx.yy`，显示时会自动去掉前缀`1.`
  * - `script`：`server` 模块脚本版本
  * - `script-ui`：`server-ui` 模块脚本版本
- * @type {Record<"format"|"game"|"script"|"script-ui", {label: string, china: string}>}
+ * - `script-graphics`：`server-graphics` 模块脚本版本
+ * @type {Record<"format"|"game"|"script"|"script-ui"|"script-graphics", {label: string, china: string}>}
  */
 const VERSION_TYPES = {
     format: { label: "格式版本", china: "1.21.130" },
     game: { label: "游戏版本", china: "1.21.130" },
     script: { label: "server模块脚本版本", china: "2.4.0" },
     "script-ui": { label: "server-ui模块脚本版本", china: "2.0.0" },
+    "script-graphics": { label: "server-graphics模块脚本版本", china: "0.0.0" },
 };
 
 /**
@@ -67,7 +69,7 @@ function isVersionGreater(v1, v2) {
 
 /**
  * @typedef VersionHighlightOptions
- * @property {"format"|"game"|"script"|"script-ui"} [type] 版本类型。`game` 为游戏版本（默认），`format` 为格式版本，两者均可直接填`format_version`里的数字；`script` 为`server`模块脚本版本，`script-ui` 为`server-ui`模块脚本版本。
+ * @property {"format"|"game"|"script"|"script-ui"|"script-graphics"} [type] 版本类型。`game` 为游戏版本（默认），`format` 为格式版本，两者均可直接填`format_version`里的数字；`script` 为`server`模块脚本版本，`script-ui` 为`server-ui`模块脚本版本，`script-graphics` 为`server-graphics`模块脚本版本。
  * @property {string} add 版本信息。
  * @property {string} [experimental] 需要开启的实验性玩法。
  * @property {boolean} [removed] 是否被移除。

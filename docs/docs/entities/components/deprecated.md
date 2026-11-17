@@ -377,6 +377,27 @@ import Version from "/src/components/highlight/version"
 ```
 
 </TabItem></Tabs>
+
+---
+
+### `minecraft:uses_legacy_ambient_sounds`
+
+<Usable type="all"/> <Version removed/> <br/>
+
+让实体按旧规则自动挑选环境音效：不在地面时用`ambient.in.air`，头部在水中时用`ambient.in.water`，幼体用`ambient.baby`，其余情况用`ambient`。该组件只在旧版定义的实体上自动注入，不需要也不能手动书写。
+
+<Tabs><TabItem value="参数" label="参数" default>
+
+<treeview>
+- <DataType type="object" name="minecraft:uses_legacy_ambient_sounds"/>：根对象，没有可填参数。
+</treeview>
+
+</TabItem><TabItem value="示例" label="示例">
+
+无需手动书写。格式版本低于`1.26.50`的实体定义会自动获得该组件。
+
+</TabItem></Tabs>
+
 import GiscusComment from "/src/components/comment/giscus.js"
 
 <GiscusComment/>

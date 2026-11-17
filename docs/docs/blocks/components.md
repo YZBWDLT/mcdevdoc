@@ -709,15 +709,17 @@ import Button from '/src/components/button/base';
 
 定义方块为方块实体。
 
+把带有该组件的自定义方块替换为另一个方块定义时，现在会创建新的方块实体，原方块的动态属性不再被继承。只改变方块状态时，方块实体与其动态属性会保留。
+
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
 - <DataType type="object" name="minecraft:block_entity"/>：根对象。
   - <DataType type="boolean" name="dynamic_properties"/>：是否允许方块实体存储动态属性，通过 SAPI 进行读写。默认值为`false`。
   - <DataType type="boolean" name="entity_storage"/>：<Version add="1.26.60" experimental="即将到来的创作者功能" inline/>是否允许通过脚本把实体序列化存储在该方块内，默认值为`false`。每个方块最多存储 4 个实体，详情见脚本接口的`minecraft:entity_storage`。
-  - <DataType type="object" name="container"/>：允许方块像箱子一样存储物品。
+  - <DataType type="object" name="container"/>：<Version add="1.26.50" experimental="即将到来的创作者功能" inline/>允许方块像箱子一样存储物品。
     - <DataType type="int" name="slot_count" isRequired/>：定义槽位数量。可选值为`1`-`54`（含）。
-    - <DataType type="string" name="title"/>：定义容器界面的标题，可填纯文本或语言文件的键名，长度应为 1-256 个字符。不指定时标题处不显示任何文本。
+    - <DataType type="string" name="title"/>：<Version add="1.26.60" inline/>定义容器界面的标题，可填纯文本或语言文件的键名，长度应为 1-256 个字符。不指定时标题处不显示任何文本。
     - <DataType type="boolean" name="show_ui_on_interaction"/>：<Version add="1.26.70" experimental="即将到来的创作者功能" inline/>是否在与方块交互时打开内置的容器界面。默认值为`true`；设为`false`时禁用内置界面，并放行正常的方块交互事件（包括`onPlayerInteract`回调）。
 </treeview>
 

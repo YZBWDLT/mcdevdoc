@@ -64,6 +64,7 @@ import Version from "/src/components/highlight/version"
             - <DataType type="object" name="menu_category"/>：<Version add="1.19.30" inline/>定义方块的分类和组别。
                 - <DataType type="string" name="category" isRequired/>：定义方块在创造模式物品栏中的分类。可填为`construction`（建筑）、`equipment`（装备）、`items`（物品）、`nature`（自然）、`none`（空）。
                 - <DataType type="string" name="group"/>：定义方块在创造模式物品栏中置于何物品组中，详见[物品组与物品分类](../items/item_category_and_group#物品组)。  
+                  <Version add="1.26.20" inline/>：填写时不能为空值。  
                    在格式版本为`1.21.50`或更低时，不能添加命名空间；在格式版本为`1.21.60`或更高时，必须添加命名空间。
                 - <DataType type="boolean" name="is_hidden_in_commands"/>：<Version add="1.19.40" inline/>定义方块是否隐藏在命令中。
             - <DataType type="object" name="states"/>[^1]：<Version add="1.20.10" inline tooltip="在1.19.70-1.20.0格式版本中，使用properties参数而非states。"/>定义方块状态。

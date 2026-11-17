@@ -253,7 +253,10 @@ import Version from "/src/components/highlight/version"
 
 <treeview>
 - <DataType type="object" name="minecraft:movement.jump"/>：根对象。
-  - <DataType type="array" name="jump_delay"/>：落地后再次起跳的延迟区间，写作`[最小值, 最大值]`，单位为秒。默认值为`[0, 0]`。
+  - <DataType type="array" name="jump_delay"/>：<Version add="1.2.0" deprecated="1.26.60" inline/>落地后再次起跳的延迟区间，写作`[最小值, 最大值]`，单位为秒。默认值为`[0, 0]`。
+  - <DataType type="object" name="jump_delay"/>：<Version add="1.26.60" inline/>落地后再次起跳的延迟区间，单位为秒。
+    - <DataType type="float" name="min"/>：区间下限。默认值为`0`。
+    - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="float" name="max_turn"/>：每刻可转动的最大角度，单位为度。默认值为`30`。
 </treeview>
 
