@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 // 8×8 像素贴图：用 require 引入，webpack 会把它们内联成 data URI，
 // 不产生额外请求（站点曾在 EdgeOne 上出现过外链图取不到的问题）
-const CHEVRON_SRC = require("@site/static/ui/dropdown_drop.png").default;
+const CHEVRON_SRC = require("@site/static/ui/chevron.png").default;
 const CHECK_SRC = require("@site/static/ui/dropdown_chosen.png").default;
 
 /**

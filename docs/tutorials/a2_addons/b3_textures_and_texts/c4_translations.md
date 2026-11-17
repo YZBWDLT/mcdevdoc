@@ -35,8 +35,6 @@ import FileType from "/src/components/type/file"
 
 我们来看语言文件的结构，虽然内容极多，多达万行，但总体上讲语言文件的结构还是很简单的，主要由如下方面组成：
 
-<!-- markdownlint-disable MD010 -->
-
 - **键值对**：采用`key=value`的形式，代表`key`应该翻译为`value`。  
   例如上图第 5 行的`accessibility.disableTTS=文本转语音已禁用`。
 - **注释**：由`##`（至少 2 个`#`）开头的行，这些行不会被 Minecraft 读取，因此可以写入辅助开发者理解的内容。  
@@ -100,8 +98,6 @@ import FileType from "/src/components/type/file"
 
 ![prank_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/prank_2.png)  
 ![prank_3](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/prank_3.webp)
-
-<!-- markdownlint-disable MD036 -->
 
 _~~拿着石镐的朋友：诶这游戏是不是出bug了？（~~_
 

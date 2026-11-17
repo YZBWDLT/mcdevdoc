@@ -118,14 +118,13 @@ import FileType from "/src/components/type/file"
   - <DataType type="array" name="modules" isRequired/>：包会应用的功能模块。至少应指定一个模块。
     - <DataType type="object" isRequired/>：指代一个或多个模块。
       - <DataType type="string" name="type" isRequired/>：模块会使用的功能。仅限填写为下面的值，并规定包为对应的类型。
-        <!-- markdownlint-disable MD058 -->
+
         | `type`的值 | 包类型 |
         | :---: | :---: |
         | `"data"` | 行为包 |
         | `"resources"` | 资源包 |
         | `"world_template"` | 地图模板 |
         | `"skin_pack"` | 皮肤包 |
-        <!-- markdownlint-enable MD058 -->
       - <DataType type="string" name="uuid" isRequired/>：模块的 UUID。格式要求同`header`。不宜和`header`的 UUID 相同。
       - <DataType type="array" name="version" isRequired/>：模块的版本。
         - <DataType type="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。

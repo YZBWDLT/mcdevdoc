@@ -13,7 +13,7 @@ import Version from "/src/components/highlight/version"
 
 实体模型（Entity Geometry）定义实体的形状——由骨骼（Bone）与被骨骼驱动的立方体（Cube）构成。模型文件的位置见[文件架构](./description#文件架构)，每个模型以模型标识符（如`geometry.armadillo`）登记。
 
-模型标识符习惯以`geometry.`开头。模型只影响外观，不影响碰撞箱等行为；碰撞箱由[`minecraft:collision_box`](./components#minecraftcollision_box)决定。
+模型标识符习惯以`geometry.`开头。模型只影响外观，不影响碰撞箱等行为；碰撞箱由[`minecraft:collision_box`](./components/attributes#minecraftcollision_box)决定。
 
 :::warning[注意]
 

@@ -76,7 +76,7 @@ import Button from '/src/components/button/base';
 字符串型（实验性）：
 
 <treeview>
-- <DataType type="string" name="minecraft:collision_box"/>：<Version add="1.26.70" experimental="实验性 Voxel 形状特征" inline/>直接指定一个体素形状作为碰撞箱，可填自定义体素形状的 ID、`minecraft:unit_cube`或`minecraft:empty`。详见[按体素剔除面](./culling#按体素剔除面)。
+- <DataType type="string" name="minecraft:collision_box"/>：<Version add="1.26.70" experimental="实验性 Voxel 形状特征" inline/>直接指定一个体素形状作为碰撞箱，可填自定义体素形状的 ID、`minecraft:unit_cube`或`minecraft:empty`。超出碰撞范围`(0, 0, 0)`到`(16, 24, 16)`的部分会被裁剪，并在内容日志中输出警告。详见[体素形状](./voxel)。
 </treeview>
 
 <Version add="1.19.50" deprecated="1.26.60" inline/> 对象型：
@@ -441,7 +441,7 @@ import Button from '/src/components/button/base';
   - <DataType type="string" name="culling"/>：<Version add="1.20.60" inline/>定义方块采用何种面剔除规则。详见[方块面剔除](./culling)。不指定时则不进行面剔除。
   - <DataType type="string" name="culling_layer"/>：<Version add="1.21.90" inline/>定义方块面剔除层。当在[面剔除规则](./culling)的`condition`中指定了`same_culling_layer`条件后，会在此方块在和临近方块使用相同的面剔除层时进行剔除。习惯上定义为`(命名空间):culling_layer.(面剔除层 ID)`。  
   原版有两个内置的面剔除层，包括`minecraft:culling_layer.undefined`（默认值）、`minecraft:culling_layer.leaves`（树叶剔除模式）。
-  - <DataType type="string" name="culling_shape"/>：<Version add="1.26.30" inline/>定义方块面剔除体素。默认值为`minecraft:empty`。详见[按体素剔除面](./culling#按体素剔除面)。
+  - <DataType type="string" name="culling_shape"/>：<Version add="1.26.30" inline/>定义方块面剔除体素。默认值为`minecraft:empty`。详见[体素形状](./voxel)。
   - <DataType type="boolean"/><DataType type="array" name="uv_lock"/>：<Version add="1.21.100" inline/>是否锁定 UV 面。若锁定 UV 面，则方块的 UV 不会随着[`minecraft:transformation`](#minecrafttransformation)组件的旋转而旋转。默认值为`false`。
     - <DataType type="string"/>：当指定为数组形式时，可指定为骨骼 ID 的数组，以确保这些骨骼不会随着[`minecraft:transformation`](#minecrafttransformation)组件的旋转而旋转。
   - <DataType type="object" name="n_way_visual_rotation"/>：<Version add="1.26.40" inline/> <Highlight text="禁止定义置换" tooltip="带有此参数的该组件不可定义在方块置换permutations内。" color="red" inline/> <Highlight text="疑似损坏" tooltip="实测该参数对非房主客户端不生效。" color="red" inline/> 方块可以根据[方块特征`minecraft:placement_direction`](./traits#minecraftplacement_direction)所对应的方块状态的值进行何种模型旋转。旋转的度数由允许的方块状态总数决定，默认的方块状态总是旋转 0°。
@@ -1152,7 +1152,7 @@ import Button from '/src/components/button/base';
 
 <treeview>
 - <DataType type="object" name="minecraft:liquid_detection"/>：根对象。
-  - <DataType type="array" name="detection_rules" isRequired/>：定义方块遇到液体时的检测规则。数组中的每个元素对应一种被检测的液体，可分别为其设置是否可容纳、接触时触发何种行为、从哪些方向阻止液体流动等。目前最多只能定义 1 条规则。
+  - <DataType type="array" name="detection_rules" isRequired/>：定义方块遇到液体时的检测规则。数组中的每个元素对应一种被检测的液体，可分别为其设置是否可容纳、接触时触发何种行为、从哪些方向阻止液体流动等。不可定义空数组。目前最多只能定义 1 条规则。
     - <DataType type="object"/>
       - <DataType type="string" name="liquid_type"/>：方块检查何种液体的行为。可选值为`water`（水）。默认值为`water`。
       - <DataType type="boolean" name="can_contain_liquid"/>：方块是否可以容纳该液体。默认值为`false`。若为`true`则代表方块可含水。
@@ -1351,7 +1351,6 @@ import Button from '/src/components/button/base';
 
 - <DataType type="object" name="minecraft:precipitation_interactions"/>：根对象。
     - <DataType type="string" name="precipitation_behavior" isRequired/>：方块在雨雪天气下的行为。可选值如下表，若挡雨则会使雨打在方块上并溅起水花，否则穿过方块；若积雪则会在方块上方形成雪层，否则穿过方块。
-        <!-- markdownlint-disable MD058 -->
 
         | 可选值                                       | 是否挡雨 | 是否积雪 |
         | -------------------------------------------- | -------- | -------- |

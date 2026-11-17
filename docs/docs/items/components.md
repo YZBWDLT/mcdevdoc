@@ -713,13 +713,12 @@ import Button from '/src/components/button/base';
 <treeview>
 - <DataType type="object" name="minecraft:enchantable"/>：根对象。
   - <DataType type="string" name="slot" isRequired/>：该物品可以按照什么类型的物品附魔。只能填写为下列值中的一种：
-    <!-- markdownlint-disable MD058 -->
+
     | `armor_feet` | `armor_torso` | `armor_head` | `armor_legs` | `axe` |
     | :---: | :---: | :---: | :---: | :---: |
     | **`bow`** | **`cosmetic_head`** | **`crossbow`** | **`elytra`** | **`fishing_rod`** |
     | **`flintsteel`** | **`hoe`** | **`melee_spear`** | **`pickaxe`** | **`shears`** |
     | **`shield`** | **`shovel`** | **`sword`** | **`all`** |   |
-    <!-- markdownlint-enable MD058 -->
   - <DataType type="int" name="value" isRequired/>：附魔能力。该值越高越容易附魔出更好的魔咒。应在`0`-`255`之间（含）。更多信息参见[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/附魔（物品修饰）#附魔能力)。
 </treeview>
 
@@ -2498,11 +2497,10 @@ import Button from '/src/components/button/base';
 - <DataType type="object" name="minecraft:food"/>：根对象。
   - <DataType type="int" name="nutrition"/>：食物回复的饥饿值。
   - <DataType type="string" name="saturation_modifier"/>：食物回复的饱和度等级。回复的饱和度将为饥饿值×饱和度系数×2。可选值及其对应饱和度系数如下表：
-    <!-- markdownlint-disable MD058 -->
+
     | 可选值 | `poor` | `low` | `normal` | `good` | `max` | `supernatural` |
     | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
     | **饱和度系数** | 0.1 | 0.3 | 0.6 | 0.8 | 1.0 | 1.2 |
-    <!-- markdownlint-enable MD058 -->
   - <DataType type="string" name="using_converts_to"/>：食物在食用完毕后将转化为的物品。应填写为物品 ID。
   - <DataType type="string" name="on_use_action"/>：食物在食用完毕后的行为。可选值：`chorus_teleport`、`suspicious_stew_effect`、`none`，默认为`none`。
   - <DataType type="array" name="on_use_range"/>：食物在食用完毕后的影响范围。仅在`on_use_action`指定为`chorus_teleport`时有意义，代表随机传送的范围。

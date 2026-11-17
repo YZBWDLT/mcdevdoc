@@ -84,3 +84,64 @@
         margin-bottom: 1.8rem;
     }
 }
+
+/* ================================================================
+   404 页（src/pages/404.js）
+   ---------------------------------------------------------------
+   一张居中的板面：大号 404 数字 + 标题 + 说明 + 回首页按钮。
+   配色与板面语言全部沿用站内变量，按钮直接复用 .btn 那套。
+   ================================================================ */
+.notFound {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 别写 100vh - 60px：下面还有页脚，那样整页永远多出一截滚动条。
+       58vh 已经够把面板推到视线中间，又不至于逼出一屏空白 */
+    min-height: 58vh;
+    padding: 3rem 1rem;
+    box-sizing: border-box;
+}
+
+.notFound__panel {
+    width: 100%;
+    max-width: 560px;
+    padding: 2.5rem 2rem 2.25rem;
+    text-align: center;
+    background-color: var(--oreui-surface);
+    /* 板面：一圈 3px 暗边，上沿与左侧受光 */
+    border: 3px solid #333334;
+    border-top-color: #5a5b5c;
+    border-left-color: #5a5b5c;
+}
+
+.notFound__code {
+    font-family: var(--oreui-font-title);
+    font-size: 4.5rem;
+    line-height: 1;
+    letter-spacing: 6px;
+    /* 数字是背景，不要抢标题的戏 */
+    color: #5a5b5c;
+}
+
+.notFound__title {
+    margin: 1rem 0 0.75rem;
+    font-family: var(--oreui-font-subtitle);
+    font-size: 1.5rem;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    color: var(--oreui-text);
+}
+
+.notFound__text {
+    margin: 0 auto 1.75rem;
+    max-width: 420px;
+    color: var(--oreui-text-dim);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.notFound__actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+}

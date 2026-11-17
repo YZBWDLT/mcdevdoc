@@ -453,6 +453,116 @@ button[class*="collapseSidebarButton"] {
     border-radius: 0;
 }
 
+/* 这个按钮里的图标是主题的平滑双箭头「«」，和上面的像素箭头混在一起很跳，
+   一并换成同一张像素图（转 90° 朝左）。选「收起侧边栏」的语义不受影响 */
+button[class*="collapseSidebarButton"] > svg {
+    display: none;
+}
+
+button[class*="collapseSidebarButton"]::before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 0 auto;
+    background: url("/ui/chevron.png") center / 16px 16px no-repeat;
+    image-rendering: pixelated;
+    transform: rotate(90deg);
+}
+
+/* 侧栏收起后，左边缘那条竖着的「展开」按钮。它不是 <button>（是个 role=button 的 div），
+   图标同样是主题的平滑箭头，一并换成像素图；朝右 = 朝上的图再转 90° */
+[class*="expandButton"] > svg {
+    display: none;
+}
+
+[class*="expandButton"]::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: url("/ui/chevron_up.png") center / 16px 16px no-repeat;
+    image-rendering: pixelated;
+    transform: rotate(90deg);
+}
+
+/* 侧栏分类的展开箭头（「国际版」「中国版」右边那个）：
+   主题给的是平滑的 SVG、黑色 50% 透明，在深色侧栏里发灰。
+   换成站内的像素箭头，展开/收起的方向仍由主题的 rotate 负责
+   （展开 rotate(180deg)、收起 rotate(90deg)），这里只管贴图和颜色。 */
+.menu__caret:before,
+.menu__link--sublist-caret:after {
+    /* 用**朝上**的那张：主题给的原图就是朝上的，靠 rotate 转出来 ——
+       展开 rotate(180deg) → 朝下，收起 rotate(90deg) → 朝右。
+       贴朝下的图会被转反，变成「展开朝上、收起朝左」。 */
+    background: url("/ui/chevron_up.png") center / 16px 16px no-repeat;
+    image-rendering: pixelated;
+    /* 主题在深色模式下会给这个图标加一层反色滤镜，浅色贴图不需要 */
+    filter: none;
+}
+
+@media (hover: hover) {
+    .menu__caret:hover:before,
+    .menu__link--sublist-caret:hover:after {
+        filter: brightness(1.45);
+    }
+}
+
+/* ---- 2.4.1 移动端抽屉 ----
+   窄屏点开后是一个整页抽屉。主题给的东西都是细线条：
+   返回键是「← 回到主菜单」的一串文本、关闭键是 1.2px 描边的细叉，
+   和站内的像素图标不是一套。这里统一换掉。
+   注意往回退那一层（子菜单）才有返回键。 */
+.navbar-sidebar__brand {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 2px solid var(--oreui-divider-dark);
+    box-shadow: 0 1px 0 var(--oreui-divider-light);
+}
+
+/* 关闭键：藏掉主题的细线 svg，换 7×7 像素叉 */
+.navbar-sidebar__close svg {
+    display: none;
+}
+
+.navbar-sidebar__close::before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url("/ui/close.png") center / 16px 16px no-repeat;
+    image-rendering: pixelated;
+}
+
+.navbar-sidebar__back {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    /* 主题把「← 回到主菜单」整个写在文本里，箭头是字符而不是图标。
+       字号归零把整串藏掉，再用 ::after 写回文字，箭头交给 ::before 贴像素图 */
+    font-size: 0;
+    color: var(--oreui-text-dim);
+}
+
+.navbar-sidebar__back::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: url("/ui/chevron.png") center / 16px 16px no-repeat;
+    image-rendering: pixelated;
+    transform: rotate(90deg);
+}
+
+.navbar-sidebar__back::after {
+    content: "回到主菜单";
+    font-family: var(--oreui-font-body);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+}
+
+.navbar-sidebar__back:hover {
+    color: var(--oreui-text);
+}
+
 /* ---- 2.5 右侧目录（TOC） ----
    整个目录是**一大块板面**（一圈 3px 边框、上沿亮），
    章节是板里的行：常态扁平，悬停整行提亮，当前阅读位置带左侧强调条。 */
@@ -678,9 +788,104 @@ div[class*="buttonGroup"] button:hover {
     color: var(--oreui-text);
 }
 
-/* 表格表头 */
+/* ---- 表格 ----
+   Infima 默认给每个单元格描一圈 1px #dbdbe2 的亮线 —— 那是浅色主题的配色，
+   压在深底上像方格纸，和站里的灰完全不搭。改成站内的「槽线」语言：
+     · 表头当一块板面：上沿亮线、下沿压线，面用 #313233；
+     · 行与行之间只留横向的 2px 槽 + 1px 反光（与 hr 同一套上深下浅）；
+     · 竖线一律去掉，列靠留白分开。 */
+/* 边框画在**单元格**上，不画在 table 上：
+   Infima 给 .markdown table 设了 display:block + overflow-x:auto 来做横向滚动，
+   这时 table 是个通栏的块，而里面那层匿名表格只有内容那么宽 ——
+   边框画在 table 上就会「框比表宽」，右侧空出一截。
+   画在首列/末列单元格上，边框自然跟着表格的真实宽度走。 */
+.markdown table {
+    border: 0;
+}
+
+.markdown table th:first-child,
+.markdown table td:first-child {
+    border-left: 2px solid var(--oreui-panel-edge);
+}
+
+.markdown table th:last-child,
+.markdown table td:last-child {
+    border-right: 2px solid var(--oreui-panel-edge);
+}
+
+/* 底边：最后一行的单元格自己补一条，免得表格底部开口 */
+.markdown table tbody tr:last-child td {
+    border-bottom: 2px solid var(--oreui-panel-edge);
+}
+
+/* Infima 还给每个 tr 描了一条 1px 的亮顶线（#dbdbe2），一并清掉 */
+.markdown table tr {
+    border: 0;
+}
+
 .markdown table thead {
     font-family: var(--oreui-font-subtitle);
+}
+
+.markdown table thead th {
+    /* 用 #3b3c3d 而不是 #313233：表格经常出现在标签页的板面（#313233）里，
+       同色的话表头就化进背景了；这一档在页面和板面上都分得开 */
+    background-color: var(--oreui-surface);
+    border: 0;
+    /* 顶边就是外框的上沿（亮） */
+    border-top: 2px solid var(--oreui-border-light);
+    border-bottom: 2px solid var(--oreui-divider-dark);
+    color: var(--oreui-text);
+    font-weight: normal;
+    letter-spacing: 0.5px;
+}
+
+/* 行与行之间的槽：上面 2px 暗线、下面 1px 反光 —— 顺序与 hr 一致（先暗后亮）。
+   两条都画成背景：用 border 那条反光会跑到暗线上方（border 在 cell 外侧），
+   用 box-shadow 又会被下一行的条纹底盖掉。 */
+.markdown table td {
+    border: 0;
+    background-image:
+        linear-gradient(var(--oreui-divider-dark), var(--oreui-divider-dark)),
+        linear-gradient(var(--oreui-divider-light), var(--oreui-divider-light));
+    background-repeat: no-repeat, no-repeat;
+    background-position: left bottom 1px, left bottom;
+    background-size: 100% 2px, 100% 1px;
+}
+
+/* 最后一行不留槽线，免得表格底部吊着一根线 */
+.markdown table tbody tr:last-child td {
+    background-image: none;
+}
+
+/* 表头也吃一遍条纹底，别让 thead 之后的第一行看起来「跳」了一格 */
+.markdown table thead tr {
+    background-color: transparent;
+}
+
+/* ---- 引用块 ----
+   Infima 默认是「左边一条色条 + 斜体」。Minecraft 的字体没有真斜体，
+   斜体是浏览器合成出来的，会糊成一团，所以这里一律不斜。
+   形状走板面语言：面 #3b3c3d、2px 描边（上沿亮）、左侧一条 4px 中性竖条。 */
+.markdown blockquote {
+    margin: 1.25rem 0;
+    padding: 0.85rem 1.1rem;
+    background-color: var(--oreui-surface);
+    border: 2px solid var(--oreui-panel-edge);
+    border-top-color: var(--oreui-border-light);
+    border-left: 2px solid #5a5b5c;
+    border-radius: 0;
+    color: var(--oreui-text-dim);
+    font-style: normal;
+}
+
+.markdown blockquote > :last-child {
+    margin-bottom: 0;
+}
+
+/* 引用块里的强调用主文字色，免得整块都发灰 */
+.markdown blockquote strong {
+    color: var(--oreui-text);
 }
 
 /* 分割线：与设置页的行分隔同一套「上深下浅」双线。
@@ -761,7 +966,8 @@ div[class*="buttonGroup"] button:hover {
     flex: 0 0 auto;
     width: 16px;
     height: 16px;
-    background-image: url("/ui/dropdown_drop.png");
+    /* 浅色版：原先是纯黑 8×8，压在 #313233 上几乎看不见 */
+    background-image: url("/ui/chevron.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 16px 16px;
@@ -819,15 +1025,149 @@ div[class*="buttonGroup"] button:hover {
     margin-bottom: 0;
 }
 
-/* ---- 2.7 分页按钮 ---- */
+/* ---- 2.7 分页按钮（上一页 / 下一页） ----
+   它本质是个大号按钮，所以照站内按钮那套来：面比页面深一档、2px 近黑描边、
+   底部压一条 4px 的厚度条、左上留一道高光。悬停提亮、按下落平 ——
+   与 white_btn / green_btn 的行为一致，而不是「悬停变绿边框」那种网页味。
+   两侧的 « » 是 Infima 用 content 写死的文本字符，一并换成像素箭头。 */
 .pagination-nav__link {
+    background-color: var(--oreui-surface);
     border: 2px solid var(--oreui-border-dark2);
     border-top-color: var(--oreui-border-light);
     border-radius: 0;
-    background-color: var(--oreui-panel-bg);
+    box-shadow:
+        inset 0 -4px rgba(0, 0, 0, 0.28),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.05);
+    /* 下面留出厚度条的位置，字不要压在上面 */
+    padding: 0.85rem 1rem 1.25rem;
 }
+
 .pagination-nav__link:hover {
-    border-color: var(--oreui-accent);
+    background-color: var(--oreui-panel-face-hover);
+    border-color: var(--oreui-border-dark2);
+    border-top-color: var(--oreui-border-light);
+}
+
+.pagination-nav__link:active {
+    background-color: var(--oreui-panel-face-active);
+    /* 按下去：厚度条收掉，高光也撤掉 */
+    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* 上下两行字：小字标签 + 正题 */
+.pagination-nav__sublabel {
+    margin-bottom: 0.35rem;
+    color: var(--oreui-text-dim);
+    font-family: var(--oreui-font-body);
+    font-size: 0.8rem;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+}
+
+.pagination-nav__label {
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-body);
+    font-size: 1.05rem;
+    font-weight: normal;
+    line-height: 1.45;
+}
+
+/* 箭头：清掉 Infima 的 « » 字符，换成像素图（朝下的图转 90° 朝左、转 -90° 朝右） */
+.pagination-nav__link--prev .pagination-nav__label::before,
+.pagination-nav__link--next .pagination-nav__label::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url("/ui/chevron.png") center / 16px 16px no-repeat;
+    image-rendering: pixelated;
+    vertical-align: -2px;
+}
+
+.pagination-nav__link--prev .pagination-nav__label::before {
+    margin-right: 0.5rem;
+    transform: rotate(90deg);
+}
+
+.pagination-nav__link--next .pagination-nav__label::after {
+    margin-left: 0.5rem;
+    transform: rotate(-90deg);
+}
+
+/* 悬停时箭头点亮成强调绿（换贴图，不用 background-color —— 那会在透明像素处
+   露出一块绿色方块），和文字一起给出「这一块可以点」的反馈 */
+.pagination-nav__link:hover .pagination-nav__label::before,
+.pagination-nav__link:hover .pagination-nav__label::after {
+    background-image: url("/ui/chevron_green.png");
+}
+
+/* ---- 2.7.1 文档页脚（编辑此页 / 最后更新） ----
+   它是正文的收尾，所以上面用站内的槽线（2px 暗 + 1px 反光）切一刀；
+   「编辑此页」按站内按钮做（面 + 2px 描边 + 底部厚度条），
+   右边那行更新信息是小字 —— 主题给它加了斜体，Minecraft 字体没有真斜体，
+   合成出来的斜边会糊，所以必须复位。 */
+.theme-doc-footer {
+    margin-top: 2rem;
+    padding-top: 0.9rem;
+    border-top: 2px solid var(--oreui-divider-dark);
+    box-shadow: inset 0 1px 0 var(--oreui-divider-light);
+}
+
+.theme-doc-footer .theme-doc-footer-edit-meta-row {
+    align-items: center;
+}
+
+.theme-edit-this-page {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.75rem 0.45rem;
+    background-color: var(--oreui-surface);
+    border: 2px solid var(--oreui-border-dark2);
+    border-top-color: var(--oreui-border-light);
+    box-shadow: inset 0 -3px rgba(0, 0, 0, 0.28);
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-body);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.theme-edit-this-page:hover {
+    background-color: var(--oreui-panel-face-hover);
+    color: var(--oreui-text);
+    text-decoration: none;
+}
+
+.theme-edit-this-page:active {
+    background-color: var(--oreui-panel-face-active);
+    box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2);
+}
+
+/* 主题那个 20px 的平滑铅笔换掉，改用像素图 */
+.theme-edit-this-page svg {
+    display: none;
+}
+
+.theme-edit-this-page::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: url("/ui/edit_light.png") center / 16px 16px no-repeat;
+    image-rendering: pixelated;
+}
+
+.theme-last-updated {
+    color: var(--oreui-text-dim);
+    font-family: var(--oreui-font-body);
+    font-size: 0.8rem;
+    font-style: normal;
+    letter-spacing: 0.5px;
+}
+
+.theme-last-updated b,
+.theme-last-updated time {
+    color: var(--oreui-text);
+    font-weight: normal;
 }
 
 /* ---- 2.8 卡片 / 面包屑 / 标签 ---- */
@@ -842,6 +1182,46 @@ div[class*="buttonGroup"] button:hover {
 }
 .badge {
     border-radius: 0;
+}
+
+/* 标签粒：主题给的是圆角胶囊（bg + 圆角 + 圆形计数），和站内直角语言冲突。
+   改成直角小键：面 + 2px 描边（上沿亮），计数是一个更暗的小方框。
+   类名是 CSS module 的哈希，只能用「含 tag_ 前缀」这种写法命中；
+   tagWithCount 是同一个元素的附加类，不影响。 */
+a[class*="tag_"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.2rem 0.55rem;
+    background-color: var(--oreui-surface);
+    border: 2px solid var(--oreui-border-dark2);
+    border-top-color: var(--oreui-border-light);
+    border-radius: 0;
+    color: var(--oreui-text-dim);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+a[class*="tag_"]:hover {
+    background-color: var(--oreui-panel-face-hover);
+    color: var(--oreui-text);
+    text-decoration: none;
+}
+
+a[class*="tag_"] span {
+    padding: 0 0.3rem;
+    background-color: #1e1e1f;
+    border: 1px solid var(--oreui-border-dark2);
+    color: var(--oreui-text-dim);
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+/* 带计数的标签在主题里是个「吊牌」：左边一个转 45° 的方框当缺口、
+   里面再一个圆孔当穿绳孔，边框还特意把左边去掉。站内不要这套装饰，清掉 */
+a[class*="tag_"]::before,
+a[class*="tag_"]::after {
+    content: none;
 }
 
 /* ---- 2.9 搜索框 ----
@@ -896,6 +1276,105 @@ div[class*="buttonGroup"] button:hover {
     font-family: var(--oreui-font-body);
     font-size: 0.72rem;
     line-height: 18px;
+}
+
+/* ---- 2.9.1 搜索弹窗（Algolia DocSearch） ----
+   弹窗是 DocSearch 自己的主题（蓝灰色系 + 圆角 + 阴影），和站内不搭。
+   先用它暴露的 --docsearch-* 变量整体换色，再补几个类覆盖直角和描边；
+   搜索输入框做成和代码块同款的「井」（面 #1e1e1f、近黑描边、上沿内影）。 */
+.DocSearch-Container {
+    --docsearch-primary-color: var(--oreui-accent-bright);
+    --docsearch-text-color: var(--oreui-text);
+    --docsearch-muted-color: var(--oreui-text-dim);
+    --docsearch-container-background: rgba(0, 0, 0, 0.6);
+    --docsearch-modal-background: var(--oreui-panel-face);
+    --docsearch-modal-shadow: none;
+    --docsearch-searchbox-background: #1e1e1f;
+    --docsearch-searchbox-focus-background: #1e1e1f;
+    --docsearch-hit-background: var(--oreui-surface);
+    --docsearch-hit-color: var(--oreui-text);
+    --docsearch-hit-active-color: var(--oreui-text);
+    --docsearch-hit-shadow: none;
+    --docsearch-footer-background: var(--oreui-panel-face);
+    --docsearch-footer-shadow: none;
+    --docsearch-key-gradient: linear-gradient(-225deg, #4a4b4c, #3b3c3d);
+    --docsearch-key-shadow: none;
+    --docsearch-logo-color: var(--oreui-text-dim);
+    --docsearch-border-radius: 0;
+}
+
+.DocSearch-Modal.DocSearch-Modal {
+    border: 2px solid var(--oreui-panel-edge);
+    border-top-color: var(--oreui-border-light);
+    border-radius: 0;
+    overflow: hidden;
+}
+
+/* 输入框：与代码块同一口「井」 */
+.DocSearch-SearchBar {
+    padding: 0.75rem;
+}
+
+.DocSearch-Form.DocSearch-Form {
+    border-radius: 0;
+    background-color: #1e1e1f;
+    border: 2px solid #0b0b0c;
+    box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.55);
+}
+
+.DocSearch-Input {
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-body);
+}
+
+/* 命中项：一条一条的板面小卡 */
+.DocSearch-Hit.DocSearch-Hit a {
+    border-radius: 0;
+    background-color: var(--oreui-surface);
+    border: 2px solid var(--oreui-panel-edge);
+    box-shadow: none;
+}
+
+.DocSearch-Hit.DocSearch-Hit[aria-selected="true"] a {
+    background-color: var(--oreui-panel-face-hover);
+    border-color: var(--oreui-accent);
+}
+
+.DocSearch-Hit-source.DocSearch-Hit-source {
+    background-color: var(--oreui-panel-face);
+    color: var(--oreui-text-dim);
+    font-family: var(--oreui-font-body);
+}
+
+.DocSearch-Hit-title mark,
+.DocSearch-Hit-path mark {
+    color: var(--oreui-accent-bright);
+    background: transparent;
+}
+
+/* 底栏 */
+.DocSearch-Footer.DocSearch-Footer {
+    border-radius: 0;
+    background-color: var(--oreui-panel-face);
+    border-top: 2px solid var(--oreui-panel-edge);
+    box-shadow: none;
+}
+
+.DocSearch-Commands-Key.DocSearch-Commands-Key,
+.DocSearch-Commands li kbd {
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid var(--oreui-panel-edge);
+}
+
+/* 「搜索提供 @algolia」那行灰字不要抢戏 */
+.DocSearch-Label {
+    color: var(--oreui-text-dim);
+}
+
+/* 右下角那个蓝色 Algolia 徽标：换成站内的灰，否则整块深色里就它最跳 */
+.DocSearch-Logo svg {
+    fill: var(--oreui-text-dim);
 }
 
 /* ---- 2.10 提示框（Admonition）：纯色标题条 + 同色淡染的正文 ----
@@ -1021,7 +1500,77 @@ em {
     color: var(--oreui-link);
 }
 
+/* ---- 2.10.1 回到顶部按钮 ----
+   主题给的是 3rem 的圆钮 + Infima 的 emphasis-700（#444950，偏蓝灰），
+   形状还被全局直角压成了方块。改成站内的小方键：板面 + 2px 描边（上沿亮）+ 像素上箭头。 */
+.theme-back-to-top-button.theme-back-to-top-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--oreui-panel-face);
+    border: 2px solid var(--oreui-panel-edge);
+    border-top-color: var(--oreui-border-light);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* 主题的箭头是用 mask 从 --ifm-menu-link-sublist-icon 里抠出来的（平滑 chevron），
+   这里要先把 mask 撤掉，再贴像素图，否则会变成「用像素图去填那个平滑形状」 */
+.theme-back-to-top-button.theme-back-to-top-button::after {
+    -webkit-mask: none;
+    mask: none;
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    background-color: transparent;
+    background-image: url("/ui/chevron_up.png");
+    background-position: center;
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+}
+
+.theme-back-to-top-button.theme-back-to-top-button:hover {
+    background-color: var(--oreui-panel-face-hover);
+}
+
+/* 显隐：主题靠 window 滚动加 .backToTopButtonShow，但本站滚的是 #__docusaurus，
+   那个 class 永远加不上 —— 改由 Root.js 里的 ScrollBridge 在 <html> 上挂 data-scrolled */
+.theme-back-to-top-button.theme-back-to-top-button {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease,
+        background-color 0.15s ease;
+}
+
+html[data-scrolled="on"] .theme-back-to-top-button.theme-back-to-top-button {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
 /* ---- 2.11 杂项 ---- */
+/* 屏幕阅读器专用。Markdown 的脚注区标题由解析器自动生成，挂了 `sr-only`，
+   但这个类在项目里没有实现（Infima 不提供），于是那行英文「Footnotes」
+   被当成普通 h2 显示在正文里。补上标准写法，它就该只留给读屏。 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .tabs__item,
 details {
     border-radius: 0;
@@ -1057,6 +1606,139 @@ kbd {
    使用 webkit 伪元素定制滚动条样式，使其与按钮风格一致。
    Firefox 使用 @supports 隔离回退方案。
    ================================================================ */
+
+/* ---- 2.12 博客 ----
+   博客区是 Docusaurus 的默认版式（纯文本列表 + 日期 + 分页），和文档区割裂。
+   这里把它拉回同一套语言：
+     列表条目 → 一张板面卡片；标题 → 白色、悬停变亮；
+     日期/阅读时长 → 次级色小字；右侧「最近博文」→ 与文档 TOC 同一块板面。 */
+
+/* 归档页（/blog/archive）的顶部。主题用的是 Infima 的 `hero hero--primary`：
+   一整条实色横条（跟着 --ifm-color-primary 走，本站就是强调绿）+ 白色大标题。
+   站里没有第二处实色横条，这里改成普通的页面标题：
+   标题走站内字体，下面一条槽线收口。
+   副标题另删 —— 它和标题在中文里是同一句翻译（都是 theme.blog.archive 的
+   title / description，中文都译作「历史博文」），显示出来就是重复两遍。 */
+.hero.hero--primary {
+    padding: 2.25rem 0 0;
+    background-color: transparent;
+    color: var(--oreui-text);
+}
+
+.hero.hero--primary .container {
+    padding-bottom: 0.9rem;
+    border-bottom: 2px solid var(--oreui-divider-dark);
+    box-shadow: 0 1px 0 var(--oreui-divider-light);
+}
+
+.hero.hero--primary .hero__title {
+    margin: 0;
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-title);
+    font-size: 2rem;
+    font-weight: normal;
+    line-height: 1.3;
+    letter-spacing: 2px;
+}
+
+.hero.hero--primary .hero__subtitle {
+    display: none;
+}
+
+.blog-wrapper .markdown {
+    color: var(--oreui-text);
+}
+
+/* 列表里的每一条博文：一张卡片 */
+.blog-list-page article.margin-bottom--xl {
+    margin-bottom: 1.1rem !important;
+    padding: 1rem 1.15rem 1.1rem;
+    background-color: var(--oreui-surface);
+    border: 2px solid var(--oreui-panel-edge);
+    border-top-color: var(--oreui-border-light);
+    border-radius: 0;
+}
+
+/* 标题 */
+.blog-list-page article header h2,
+.blog-list-page article header h1 {
+    margin: 0 0 0.35rem;
+    font-family: var(--oreui-font-subtitle);
+    font-size: 1.25rem;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+}
+
+.blog-list-page article header h2 a {
+    color: var(--oreui-text);
+}
+
+.blog-list-page article header h2 a:hover {
+    color: var(--oreui-accent-bright);
+    text-decoration: none;
+}
+
+/* 日期 · 阅读时长 */
+.blog-list-page article header > div {
+    color: var(--oreui-text-dim);
+    font-family: var(--oreui-font-body);
+    font-size: 0.85rem;
+}
+
+/* 摘要 */
+.blog-list-page article .markdown {
+    color: var(--oreui-text-dim);
+    font-size: 0.95rem;
+}
+
+.blog-list-page article .markdown > :last-child {
+    margin-bottom: 0;
+}
+
+/* 右侧「最近博文」：与文档 TOC 同一块浅色板面 */
+.blog-wrapper aside nav {
+    padding: 0.4rem;
+    background-color: #48494a;
+    border: 3px solid #333334;
+    border-top-color: #5a5b5c;
+    border-left-color: #5a5b5c;
+    border-radius: 0;
+}
+
+.blog-wrapper aside div[class*="sidebarItemTitle"] {
+    padding: 0.35rem 0.6rem 0.5rem;
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-subtitle);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.blog-wrapper aside h3[class*="yearGroupHeading"] {
+    margin: 0.35rem 0.6rem 0.25rem;
+    color: var(--oreui-text-dim);
+    font-family: var(--oreui-font-body);
+    font-size: 0.8rem;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+.blog-wrapper aside ul[class*="sidebarItemList"] a {
+    display: block;
+    padding: 0.3rem 0.6rem;
+    color: var(--oreui-text-dim);
+    font-size: 0.9rem;
+}
+
+.blog-wrapper aside ul[class*="sidebarItemList"] a:hover {
+    background-color: var(--oreui-panel-face-hover);
+    color: var(--oreui-text);
+    text-decoration: none;
+}
+
+/* 分页条数导航（博客列表底部的「第 X 页」）也套同一套按钮形状 */
+.blog-wrapper .pagination-nav__link {
+    padding: 0.6rem 0.9rem 0.9rem;
+}
 
 /* ---- 3.1 全局滚动条 ----
    四层结构照 5.7 凸面按钮：
@@ -1929,7 +2611,7 @@ body {
     color: #4a4b4d;
 }
 
-/* 右侧箭头：static/ui/dropdown_drop.png（8×8 像素图，放大两倍） */
+/* 右侧箭头：static/ui/chevron.png（8×8 像素图，放大两倍） */
 .oreui-dropdown__chevron {
     flex: 0 0 auto;
     display: block;

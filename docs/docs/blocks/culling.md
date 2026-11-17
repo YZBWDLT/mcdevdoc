@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 # 方块面剔除
@@ -8,10 +8,13 @@ import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
+import Version from "/src/components/highlight/version"
 
 > 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
 方块面剔除（Block Culling）可用于在临近存在方块时、方块面不可见时、或间距过远时隐藏特定的骨骼或方块面，这可以显著提升客户端方面的性能。
+
+方块面剔除规则的写法见下文；体素形状本身的文件格式、限制与内置形状见[体素形状](./voxel)。
 
 本文档收录方块面剔除的相关信息。
 
@@ -100,48 +103,36 @@ import Image from "/src/components/image/standard"
 
 ## 按体素剔除面
 
-:::danger[警告]
+在[`minecraft:geometry`组件](./components#minecraftgeometry)的`culling_shape`参数中指定体素形状，方块就会按这个形状参与面剔除：
 
-按体素剔除面的功能仍处于实验性玩法，必须开启「实验性 Voxel 形状特征」才可使用。在实验性玩法中，该功能存在功能不稳定、功能更改甚至未来被移除的风险。
-
-因此，在此功能正式实装之前，本部分将仅作少量的介绍。感兴趣的读者可以阅读[体素形状 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/documents/voxelshapes?view=minecraft-bedrock-stable)了解更多。
-
-:::
-
-体素（Voxel）是和像素（Pixel）类似的概念，指使用立方体为基本单位构成的空间图形。在基岩版，可以通过体素剔除相邻方块的面。
-
-可在<FileType type="folder" name="behavior_packs"/> - <FileType type="folder" name="shapes"/> - <FileType type="file" name="*.json"/>中定义体素（每个体素最多包含 32 个盒体），例如下面的下半砖形状体素：
-
-```json showLineNumbers title="shapes/slab_bottom.voxel.json"
-{
-    "format_version": "1.21.110",
-    "minecraft:voxel_shape": {
-        "description": {
-            "identifier": "test:slab_bottom"
-        },
-        "shape": {
-            "boxes": [
-                {
-                    "min": [ 0, 0, 0 ],
-                    "max": [ 16, 8, 16 ]
-                }
-            ]
-        }
-    }
+```json showLineNumbers
+"minecraft:geometry": {
+    "identifier": "geometry.custom_slab",
+    "culling": "test:culling.custom",
+    "culling_shape": "test:slab_bottom"
 }
 ```
 
-然后，在[`minecraft:geometry`组件](./components#minecraftgeometry)中的`culling_shape`选定此体素，当其他临近方块和该方块指定的体素完全重叠后就会被剔除面，如下图所示：
+不指定`culling_shape`时默认为`minecraft:empty`。需要注意的是：
 
-![voxel_1](/img/docs/blocks/culling/voxel_1.webp)
+- `identifier`写成`minecraft:geometry.full_block`时，`culling_shape`会被强制设为`minecraft:unit_cube`，自定义形状会被忽略。
+- 自定义方块要参与体素剔除，需要同时定义`culling`面剔除规则；只写`culling_shape`不会生效。
+- <Version add="1.26.30" inline/>：`culling_shape`不再是实验性内容。
+- <Version add="1.26.40" inline/>：原版方块的体素形状不再需要实验性玩法。
 
----
+剔除的判断分三步：先算出本方块在该面上的「面片」，再算出相邻方块对面一侧的面片，如果相邻方块完全盖住这块面片，该面就被剔除。面片是体素形状与该面边界的交集，六个面的边界分别是北/南`Z = 0`与`Z = 16`、西/东`X = 0`与`X = 16`、下/上`Y = 0`与`Y = 16`。
+
+<Image src="/img/docs/blocks/culling/face_slice.png" text="相邻方块完全盖住面片时才剔除，只盖住一部分则保留" size="85%"/>
+
+体素比较判定为「不剔除」时，渲染器仍会继续检查面剔除规则的`condition`，`culling_layer`相同的方块依然可能互相剔除。树叶、玻璃这类「同种之间才剔除」的方块，通常就让`culling_shape`保持默认值，把判定交给`culling_layer`。
+
+<Image src="/img/docs/blocks/culling/voxel_1.webp" text="使用体素形状剔除相邻方块的面"/>
 
 ## 背面剔除
 
 背面剔除（Backface Culling）是一项用于提升性能的渲染技术。众所周知，我们在现实生活中看一个立方体只能看到 3 个面，故而没有看到的 3 个面就可以防止渲染，这可以提升程序性能。对于非透明方块来讲，是否渲染这 3 个面就没有任何的影响了。
 
-<Image src="/img/docs/blocks/culling/backface_culling_1.webp" text="面剔除示例"/>
+<Image src="/img/docs/blocks/culling/backface_culling.png" text="面剔除示例" size="85%"/>
 
 然而，对于透明方块，背面剔除技术却是有影响的。例如玻璃就是背面剔除的，而刷怪笼则是背面不剔除。
 

@@ -45,7 +45,7 @@ import Button from '/src/components/button/base';
     - <DataType type="array" name="modules" isRequired/>：包会应用的功能模块。至少应指定一个模块。
         - <DataType type="object" isRequired/>：指代一个或多个模块。
             - <DataType type="string" name="type" isRequired/>：模块会使用的功能。仅限填写为下面的值，并规定包为对应的类型。
-                  <!-- markdownlint-disable MD058 -->
+
                 |     `type`的值     |                  包类型                  |
                 | :----------------: | :--------------------------------------: |
                 |      `"data"`      |                  行为包                  |
@@ -53,7 +53,6 @@ import Button from '/src/components/button/base';
                 | `"world_template"` |                 地图模板                 |
                 |   `"skin_pack"`    |                  皮肤包                  |
                 |     `"script"`     | 会使用到脚本功能，通常结合`data`模块使用 |
-                  <!-- markdownlint-enable MD058 -->
             - <DataType type="string" name="uuid" isRequired/>：模块的 UUID。格式要求同`header`。不宜和`header`的 UUID 相同。
             - <DataType type="array" name="version" isRequired/>：模块的版本。
                 - <DataType type="int" name="0" isRequired/>：代表主版本号。通常主版本号应为`1`或更高的值。
@@ -89,7 +88,7 @@ import Button from '/src/components/button/base';
             - <DataType type="int" name="memory_tier"/>：子包的内存需求，在选中此设置后将需要额外分配的内存。每一级都需要额外的 256MB 的内存。
     - <DataType type="array" name="capabilities"/>：包将会额外影响的 Minecraft 游戏特性。
         - <DataType type="string" isRequired/>：包会影响的特性。仅限填写为下面的值，并规定包影响的游戏特性。
-              <!-- markdownlint-disable MD058 -->
+
             |           允许值           |                                       包影响的特性                                        |
             | :------------------------: | :---------------------------------------------------------------------------------------: |
             |       `"chemistry"`        |                             添加、移除或影响化学用品的行为。                              |
@@ -97,7 +96,6 @@ import Button from '/src/components/button/base';
             | `"experimental_custom_ui"` |                     包可以使用 HTML 文件来创建、使用或修改自定义 UI。                     |
             |       `"raytraced"`        |                      包使用光线追踪的功能，并可能使用自定义着色器。                       |
             |          `"pbr"`           | 包使用灵动视效（Vibrant Visuals）的功能。对于高版本的包，不指定此参数将无法使用灵动视效。 |
-              <!-- markdownlint-enable MD058 -->
 
 </treeview>
 

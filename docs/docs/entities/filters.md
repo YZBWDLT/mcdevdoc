@@ -1984,9 +1984,9 @@ import Version from "/src/components/highlight/version"
 
 ### `has_equipment_block_tag`
 
-<Usable type="all"/> <Version add="未知"/> <br/>
+<Usable type="all"/> <Version add="未知" deprecated="1.26.20" tooltip="弃用原因：方块标签不应用于判断物品行为。请改用has_same_equipment_in_slot_as过滤器。"/> <br/>
 
-测试主体指定装备槽位中是否存在带有指定方块标签的方块物品。
+测试主体指定装备槽位中是否存在带有指定方块标签的方块物品。该过滤器已弃用，需要检查装备时改用[`has_same_equipment_in_slot_as`](#has_same_equipment_in_slot_as)。
 
 <Tabs><TabItem value="参数" label="参数" default>
 

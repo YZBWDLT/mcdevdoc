@@ -27,6 +27,8 @@ import Version from "/src/components/highlight/version"
     - <FileType type="file" name="(方块 ID).block.json"/>：行为包方块定义
   - <FileType type="folder" name="netease_blocks"/>：<Usable type="onlyChina" inline/>中国版方块定义
     - <FileType type="file" name="(方块 ID).block.json"/>：行为包方块定义
+  - <FileType type="folder" name="shapes"/>
+    - <FileType type="file" name="*.json"/>：定义体素形状，详见[体素形状](./voxel)
 - <FileType type="folder" name="resource_packs"/>
   - <FileType type="folder" name="block_culling"/>
     - <FileType type="file" name="*.json"/>：定义方块面剔除规则

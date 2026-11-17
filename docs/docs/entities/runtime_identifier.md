@@ -11,7 +11,7 @@ sidebar_position: 10
 运行时 ID 只解析**原版实体中被硬编码的部分**：
 
 - **只接受原版实体的 ID**。把一个纯数据驱动的实体填进运行时 ID 不会产生任何效果，因为它没有硬编码行为可继承。
-- **部分原版实体的硬编码行为会覆盖数据驱动组件**，例如潜影贝的碰撞箱尺寸无法由[`minecraft:collision_box`](./components#minecraftcollision_box)改变。
+- **部分原版实体的硬编码行为会覆盖数据驱动组件**，例如潜影贝的碰撞箱尺寸无法由[`minecraft:collision_box`](./components/attributes#minecraftcollision_box)改变。
 - 使用运行时 ID 后，实体的名称也会变成被继承实体所用的名称。
 
 :::warning[注意]

@@ -294,7 +294,7 @@ import Version from "/src/components/highlight/version"
 
 <Usable type="all"/> <Version add="1.2.0"/> <br/>
 
-向实体的[组件组](./description#行为包定义格式)添加组件组。组内的组件会覆盖同类型的现有组件；重复添加已激活的组件组会使相关组件重新初始化，例如[`minecraft:timer`](./components#minecrafttimer)会重新开始计时。
+向实体的[组件组](./description#行为包定义格式)添加组件组。组内的组件会覆盖同类型的现有组件；重复添加已激活的组件组会使相关组件重新初始化，例如[`minecraft:timer`](./components/sensors#minecrafttimer)会重新开始计时。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -621,7 +621,7 @@ import Version from "/src/components/highlight/version"
 
 <Usable type="all"/> <Version add="1.21.70"/> <br/>
 
-将实体的原点位置设置为其当前位置。实体必须已拥有[`minecraft:home`](./components#minecrafthome)组件才能生效。
+将实体的原点位置设置为其当前位置。实体必须已拥有[`minecraft:home`](./components/functional#minecrafthome)组件才能生效。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -655,7 +655,7 @@ import Version from "/src/components/highlight/version"
 
 <Usable type="all"/> <Version add="1.26.30"/> <br/>
 
-解除实体与其他实体之间的拴绳，可与[`minecraft:leashable`](./components#minecraftleashable)组件配合使用。
+解除实体与其他实体之间的拴绳，可与[`minecraft:leashable`](./components/functional#minecraftleashable)组件配合使用。
 
 <Tabs><TabItem value="参数" label="参数" default>
 
@@ -685,7 +685,7 @@ import Version from "/src/components/highlight/version"
 
 <Usable type="all"/> <Version add="1.26.30" tooltip="在1.21.40作为实验性内容加入。"/> <br/>
 
-在实体原点所在的方块上执行事件。实体必须拥有已设置原点位置的[`minecraft:home`](./components#minecrafthome)组件才能生效。
+在实体原点所在的方块上执行事件。实体必须拥有已设置原点位置的[`minecraft:home`](./components/functional#minecrafthome)组件才能生效。
 
 <Tabs><TabItem value="参数" label="参数" default>
 

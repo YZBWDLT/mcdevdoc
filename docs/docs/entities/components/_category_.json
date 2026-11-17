@@ -1,0 +1,8 @@
+{
+    "label": "数据驱动实体组件",
+    "position": 2,
+    "link": {
+        "type": "doc",
+        "id": "docs/entities/components/index"
+    }
+}

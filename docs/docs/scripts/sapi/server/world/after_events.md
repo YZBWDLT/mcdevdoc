@@ -453,7 +453,7 @@ class EntityHitBlockAfterEvent {
 - <ReadOnly/> blockFace: [Direction](../general#direction-枚举)，被击中方块的朝向。
 - <ReadOnly/> damagingEntity: [Entity](../entity_and_player/entity#entity-类)，发起攻击的实体。
 - <ReadOnly/> hitBlock: [Block](../block/main#block-类)，被攻击击中的方块。
-- <ReadOnly/> hitBlockPermutation: [BlockPermutation](../block/main#blockpermutation-类)，被攻击击中的方块状态。
+- <Version type="script" add="1.12.0" inline/> <ReadOnly/> hitBlockPermutation: [BlockPermutation](../block/main#blockpermutation-类)，被攻击击中的方块状态。
 
 ---
 

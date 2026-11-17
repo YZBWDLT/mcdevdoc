@@ -101,21 +101,13 @@ GetConfigData(configName: str, isGlobal: bool = False) -> Dict[str, Any]
 
 ## 页面组织
 
-接口部分按网易的原始分类排列：
+侧边栏分三块：
 
-- [通用](/docs/docs/scripts/modapi/general/component)：组件、系统、事件、工具、数学、调试等基础设施
-- [世界](/docs/docs/scripts/modapi/world/map)：地图、方块管理、实体管理、配方、时间、天气、游戏规则等
-- [实体](/docs/docs/scripts/modapi/entity/attribute)：属性、行为、渲染、状态效果、自定义属性、Molang 等
-- [玩家](/docs/docs/scripts/modapi/player/attribute)：属性、行为、背包、摄像机、动画、权限、游戏模式
-- [方块](/docs/docs/scripts/modapi/block/state)：方块状态、方块实体、容器、红石、告示牌、调色板
-- [物品](/docs/docs/scripts/modapi/item)
-- [自定义 UI](/docs/docs/scripts/modapi/custom_ui/control)：UI 界面、UI 控件、书本、成就
-- [特效](/docs/docs/scripts/modapi/effect/particle)、[后处理](/docs/docs/scripts/modapi/post_process/vignette)、[虚拟世界](/docs/docs/scripts/modapi/virtual_world/world)
-- [模型](/docs/docs/scripts/modapi/model)、[渲染](/docs/docs/scripts/modapi/render)、[控制](/docs/docs/scripts/modapi/control)、[物理](/docs/docs/scripts/modapi/physics/scene)
-- [音效](/docs/docs/scripts/modapi/audio)、[原生 UI](/docs/docs/scripts/modapi/native_ui)、[游戏设置](/docs/docs/scripts/modapi/game_setting)
-- [联机大厅](/docs/docs/scripts/modapi/lobby)、[商城](/docs/docs/scripts/modapi/store)、[成就](/docs/docs/scripts/modapi/achievement)、[山头服务器](/docs/docs/scripts/modapi/server_cluster)
+- **接口**：全部接口，按通用、世界、实体、玩家、方块、物品、自定义 UI、特效、后处理、虚拟世界、模型、渲染、控制、物理、音效、原生 UI、游戏设置、联机大厅、商城、成就、山头服务器分节
+- **事件**：全部事件，按世界、实体、玩家、方块、物品、控制、UI、模型、物理、音效、游戏设置、联机大厅分节
+- **[枚举值](/docs/docs/scripts/modapi/enums)**：接口参数里用到的枚举类与取值
 
-事件单独成节，位于[事件](/docs/docs/scripts/modapi/events/world)。
+每个分节内部的页面数量不多，点开分类就能看到。
 
 ## 参考文档
 

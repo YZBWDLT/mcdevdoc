@@ -596,7 +596,7 @@ class Component {
 
 #### 属性
 
-- <ReadOnly/> isValid: boolean，该组件是否有效；其所属对象有效、且该组件自身校验通过时，组件才有效。
+- <Version type="script" add="1.4.0" inline/> <ReadOnly/> isValid: boolean，该组件是否有效；其所属对象有效、且该组件自身校验通过时，组件才有效。
 - <ReadOnly/> typeId: string，该组件的标识符。
 
 ---

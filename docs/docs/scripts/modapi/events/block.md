@@ -24,13 +24,43 @@ import Client from '/src/components/highlight/client';
 
 触发时机：以摄像机为中心，随机选取周围的方块触发 Tick，触发的数量取决于设备性能。只有添加了 netease:block_animate_random_tick 的自定义方块才会触发此事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnBlockAnimateRandomTickEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockPos"]: Tuple[float, float, float]，方块坐标。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxData"]: int，方块附加值。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockPos | Tuple[float, float, float] | 方块坐标。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxData | int | 方块附加值。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "BlockAnimateRandomTickEvent",
+            self, self.OnBlockAnimateRandomTickEvent)
+
+    def OnBlockAnimateRandomTickEvent(self, args):
+        blockPos = args["blockPos"]
+        blockName = args["blockName"]
+        auxData = args["auxData"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -40,21 +70,55 @@ def OnBlockAnimateRandomTickEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：方块被水流破坏的事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnBlockDestroyByLiquidServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
-- args["liquidName"]: str，流体方块 id。
-- args["blockName"]: str，方块 id。
-- args["auxValue"]: int，方块附加值。
-- args["dimensionId"]: int，方块所在维度 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
+| liquidName | str | 流体方块 id。 |
+| blockName | str | 方块 id。 |
+| auxValue | int | 方块附加值。 |
+| dimensionId | int | 方块所在维度 id。 |
 
 **备注**
 
 - 指令或者接口的设置不会触发该事件。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "BlockDestroyByLiquidServerEvent",
+            self, self.OnBlockDestroyByLiquidServerEvent)
+
+    def OnBlockDestroyByLiquidServerEvent(self, args):
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        liquidName = args["liquidName"]
+        blockName = args["blockName"]
+        auxValue = args["auxValue"]
+        dimensionId = args["dimensionId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -64,17 +128,51 @@ def OnBlockDestroyByLiquidServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：方块转为含水或者脱离含水(流体)后触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnBlockLiquidStateChangeAfterServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxValue"]: int，方块附加值。
-- args["dimension"]: int，方块维度。
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
-- args["turnLiquid"]: bool，是否转为含水，true 则转为含水，false 则脱离含水。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxValue | int | 方块附加值。 |
+| dimension | int | 方块维度。 |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
+| turnLiquid | bool | 是否转为含水，true 则转为含水，false 则脱离含水。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "BlockLiquidStateChangeAfterServerEvent",
+            self, self.OnBlockLiquidStateChangeAfterServerEvent)
+
+    def OnBlockLiquidStateChangeAfterServerEvent(self, args):
+        blockName = args["blockName"]
+        auxValue = args["auxValue"]
+        dimension = args["dimension"]
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        turnLiquid = args["turnLiquid"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -84,17 +182,51 @@ def OnBlockLiquidStateChangeAfterServerEvent(self, args: Dict[str, Any]) -> None
 
 触发时机：方块转为含水或者脱离含水(流体)前触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnBlockLiquidStateChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxValue"]: int，方块附加值。
-- args["dimension"]: int，方块维度。
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
-- args["turnLiquid"]: bool，是否转为含水，true 则转为含水，false 则脱离含水。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxValue | int | 方块附加值。 |
+| dimension | int | 方块维度。 |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
+| turnLiquid | bool | 是否转为含水，true 则转为含水，false 则脱离含水。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "BlockLiquidStateChangeServerEvent",
+            self, self.OnBlockLiquidStateChangeServerEvent)
+
+    def OnBlockLiquidStateChangeServerEvent(self, args):
+        blockName = args["blockName"]
+        auxValue = args["auxValue"]
+        dimension = args["dimension"]
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        turnLiquid = args["turnLiquid"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -104,23 +236,63 @@ def OnBlockLiquidStateChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：自定义方块周围的方块发生变化时，需要配置 netease:neighborchanged_sendto_script，详情请查阅《自定义农作物》文档。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnBlockNeighborChangedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["dimensionId"]: int，维度。
-- args["posX"]: int，方块 x 坐标。
-- args["posY"]: int，方块 y 坐标。
-- args["posZ"]: int，方块 z 坐标。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxValue"]: int，方块附加值。
-- args["neighborPosX"]: int，变化方块 x 坐标。
-- args["neighborPosY"]: int，变化方块 y 坐标。
-- args["neighborPosZ"]: int，变化方块 z 坐标。
-- args["fromBlockName"]: str，方块变化前的 identifier，包含命名空间及名称。
-- args["fromBlockAuxValue"]: int，方块变化前附加值。
-- args["toBlockName"]: str，方块变化后的 identifier，包含命名空间及名称。
-- args["toAuxValue"]: int，方块变化后附加值。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| dimensionId | int | 维度。 |
+| posX | int | 方块 x 坐标。 |
+| posY | int | 方块 y 坐标。 |
+| posZ | int | 方块 z 坐标。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxValue | int | 方块附加值。 |
+| neighborPosX | int | 变化方块 x 坐标。 |
+| neighborPosY | int | 变化方块 y 坐标。 |
+| neighborPosZ | int | 变化方块 z 坐标。 |
+| fromBlockName | str | 方块变化前的 identifier，包含命名空间及名称。 |
+| fromBlockAuxValue | int | 方块变化前附加值。 |
+| toBlockName | str | 方块变化后的 identifier，包含命名空间及名称。 |
+| toAuxValue | int | 方块变化后附加值。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "BlockNeighborChangedServerEvent",
+            self, self.OnBlockNeighborChangedServerEvent)
+
+    def OnBlockNeighborChangedServerEvent(self, args):
+        dimensionId = args["dimensionId"]
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+        blockName = args["blockName"]
+        auxValue = args["auxValue"]
+        neighborPosX = args["neighborPosX"]
+        neighborPosY = args["neighborPosY"]
+        neighborPosZ = args["neighborPosZ"]
+        fromBlockName = args["fromBlockName"]
+        fromBlockAuxValue = args["fromBlockAuxValue"]
+        toBlockName = args["toBlockName"]
+        toAuxValue = args["toAuxValue"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -130,18 +302,53 @@ def OnBlockNeighborChangedServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：自定义方块配置[netease:random_tick](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-random-tick)随机 tick 时。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnBlockRandomTickServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["posX"]: int，方块 x 坐标。
-- args["posY"]: int，方块 y 坐标。
-- args["posZ"]: int，方块 z 坐标。
-- args["blockName"]: str，方块名称。
-- args["fullName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxValue"]: int，方块附加值。
-- args["brightness"]: int，方块亮度。
-- args["dimensionId"]: int，方块所在维度。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| posX | int | 方块 x 坐标。 |
+| posY | int | 方块 y 坐标。 |
+| posZ | int | 方块 z 坐标。 |
+| blockName | str | 方块名称。 |
+| fullName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxValue | int | 方块附加值。 |
+| brightness | int | 方块亮度。 |
+| dimensionId | int | 方块所在维度。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "BlockRandomTickServerEvent",
+            self, self.OnBlockRandomTickServerEvent)
+
+    def OnBlockRandomTickServerEvent(self, args):
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+        blockName = args["blockName"]
+        fullName = args["fullName"]
+        auxValue = args["auxValue"]
+        brightness = args["brightness"]
+        dimensionId = args["dimensionId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -151,22 +358,81 @@ def OnBlockRandomTickServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：监听该事件的方块在销毁时触发，可以通过 ListenOnBlockRemoveEvent 方法进行监听，或者通过 json 组件[netease:listen_block_remove](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-listen-block-remove)进行配置。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnBlockRemoveServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["x"]: int，方块位置 x。
-- args["y"]: int，方块位置 y。
-- args["z"]: int，方块位置 z。
-- args["fullName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxValue"]: int，方块的附加值。
-- args["dimension"]: int，该方块所在的维度。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| x | int | 方块位置 x。 |
+| y | int | 方块位置 y。 |
+| z | int | 方块位置 z。 |
+| fullName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxValue | int | 方块的附加值。 |
+| dimension | int | 该方块所在的维度。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "BlockRemoveServerEvent",
+            self, self.OnBlockRemoveServerEvent)
+
+    def OnBlockRemoveServerEvent(self, args):
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        fullName = args["fullName"]
+        auxValue = args["auxValue"]
+        dimension = args["dimension"]
+```
+
+</TabItem>
+</Tabs>
 
 <Server/>
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnBlockRemoveServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "BlockRemoveServerEvent",
+            self, self.OnBlockRemoveServerEvent)
+
+    def OnBlockRemoveServerEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Server/> BlockInfoComponentServer
 
@@ -181,8 +447,10 @@ def OnBlockRemoveServerEvent(self, args: Dict[str, Any]) -> None: ...
 def OnBlockRemoveServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["identifier"]: str，方块 identifier，如 minecraft:wheat。
-- args["listen"]: bool，是否监听。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| identifier | str | 方块 identifier，如 minecraft:wheat。 |
+| listen | bool | 是否监听。 |
 
 **返回值**：bool，是否设置成功。
 
@@ -211,16 +479,49 @@ comp.ListenOnBlockRemoveEvent("minecraft:wheat", True)
 
 触发时机：方块转为含雪或者脱离含雪后触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnBlockSnowStateChangeAfterServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["dimension"]: int，方块维度。
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
-- args["turnSnow"]: bool，是否转为含雪，true 则转为含雪，false 则脱离含雪。
-- args["setBlockType"]: int，方块进入脱离含雪的原因，参考[SetBlockType](https://mc.163.com/newdev/docs/api/meijuzhi/SetBlockType.html)。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| dimension | int | 方块维度。 |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
+| turnSnow | bool | 是否转为含雪，true 则转为含雪，false 则脱离含雪。 |
+| setBlockType | int | 方块进入脱离含雪的原因，参考[SetBlockType](/docs/docs/scripts/modapi/enums#setblocktype)。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "BlockSnowStateChangeAfterServerEvent",
+            self, self.OnBlockSnowStateChangeAfterServerEvent)
+
+    def OnBlockSnowStateChangeAfterServerEvent(self, args):
+        dimension = args["dimension"]
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        turnSnow = args["turnSnow"]
+        setBlockType = args["setBlockType"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -230,16 +531,49 @@ def OnBlockSnowStateChangeAfterServerEvent(self, args: Dict[str, Any]) -> None: 
 
 触发时机：方块转为含雪或者脱离含雪前触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnBlockSnowStateChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["dimension"]: int，方块维度。
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
-- args["turnSnow"]: bool，是否转为含雪，true 则转为含雪，false 则脱离含雪。
-- args["setBlockType"]: int，方块进入脱离含雪的原因，参考[SetBlockType](https://mc.163.com/newdev/docs/api/meijuzhi/SetBlockType.html)。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| dimension | int | 方块维度。 |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
+| turnSnow | bool | 是否转为含雪，true 则转为含雪，false 则脱离含雪。 |
+| setBlockType | int | 方块进入脱离含雪的原因，参考[SetBlockType](/docs/docs/scripts/modapi/enums#setblocktype)。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "BlockSnowStateChangeServerEvent",
+            self, self.OnBlockSnowStateChangeServerEvent)
+
+    def OnBlockSnowStateChangeServerEvent(self, args):
+        dimension = args["dimension"]
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        turnSnow = args["turnSnow"]
+        setBlockType = args["setBlockType"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -249,18 +583,53 @@ def OnBlockSnowStateChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：自定义机械元件方块红石信号量发生变化时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnBlockStrengthChangedServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["posX"]: int，方块 x 坐标。
-- args["posY"]: int，方块 y 坐标。
-- args["posZ"]: int，方块 z 坐标。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxValue"]: int，方块附加值。
-- args["newStrength"]: int，变化后的红石信号量。
-- args["oldStrength"]: int，变化前的红石信号量。
-- args["dimensionId"]: int，维度。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| posX | int | 方块 x 坐标。 |
+| posY | int | 方块 y 坐标。 |
+| posZ | int | 方块 z 坐标。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxValue | int | 方块附加值。 |
+| newStrength | int | 变化后的红石信号量。 |
+| oldStrength | int | 变化前的红石信号量。 |
+| dimensionId | int | 维度。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "BlockStrengthChangedServerEvent",
+            self, self.OnBlockStrengthChangedServerEvent)
+
+    def OnBlockStrengthChangedServerEvent(self, args):
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+        blockName = args["blockName"]
+        auxValue = args["auxValue"]
+        newStrength = args["newStrength"]
+        oldStrength = args["oldStrength"]
+        dimensionId = args["dimensionId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -270,18 +639,53 @@ def OnBlockStrengthChangedServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：两个并排的小箱子方块准备组合为一个大箱子方块时。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnChestBlockTryPairWithServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["cancel"]: bool，是否允许触发，默认为 False，若设为 True，可阻止小箱子组合成为一个大箱子。
-- args["blockX"]: int，小箱子方块 x 坐标。
-- args["blockY"]: int，小箱子方块 y 坐标。
-- args["blockZ"]: int，小箱子方块 z 坐标。
-- args["otherBlockX"]: int，将要与之组合的另外一个小箱子方块 x 坐标。
-- args["otherBlockY"]: int，将要与之组合的另外一个小箱子方块 y 坐标。
-- args["otherBlockZ"]: int，将要与之组合的另外一个小箱子方块 z 坐标。
-- args["dimensionId"]: int，维度 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| cancel | bool | 是否允许触发，默认为 False，若设为 True，可阻止小箱子组合成为一个大箱子。 |
+| blockX | int | 小箱子方块 x 坐标。 |
+| blockY | int | 小箱子方块 y 坐标。 |
+| blockZ | int | 小箱子方块 z 坐标。 |
+| otherBlockX | int | 将要与之组合的另外一个小箱子方块 x 坐标。 |
+| otherBlockY | int | 将要与之组合的另外一个小箱子方块 y 坐标。 |
+| otherBlockZ | int | 将要与之组合的另外一个小箱子方块 z 坐标。 |
+| dimensionId | int | 维度 id。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ChestBlockTryPairWithServerEvent",
+            self, self.OnChestBlockTryPairWithServerEvent)
+
+    def OnChestBlockTryPairWithServerEvent(self, args):
+        cancel = args["cancel"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        otherBlockX = args["otherBlockX"]
+        otherBlockY = args["otherBlockY"]
+        otherBlockZ = args["otherBlockZ"]
+        dimensionId = args["dimensionId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -291,20 +695,25 @@ def OnChestBlockTryPairWithServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：玩家右键点击新版自定义方块（或者通过接口 AddBlockItemListenForUseEvent 增加监听的 MC 原生游戏方块）时客户端抛出该事件（该事件 tick 执行，需要注意效率问题）。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnClientBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["playerId"]: str，玩家 Id。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["aux"]: int，方块附加值。
-- args["cancel"]: bool，设置为 True 可拦截与方块交互的逻辑。
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
-- args["clickX"]: float，点击点的 x 比例位置。
-- args["clickY"]: float，点击点的 y 比例位置。
-- args["clickZ"]: float，点击点的 z 比例位置。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| playerId | str | 玩家 Id。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| aux | int | 方块附加值。 |
+| cancel | bool | 设置为 True 可拦截与方块交互的逻辑。 |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
+| clickX | float | 点击点的 x 比例位置。 |
+| clickY | float | 点击点的 y 比例位置。 |
+| clickZ | float | 点击点的 z 比例位置。 |
 
 **备注**
 
@@ -312,11 +721,69 @@ def OnClientBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "ClientBlockUseEvent",
+            self, self.OnClientBlockUseEvent)
+
+    def OnClientBlockUseEvent(self, args):
+        playerId = args["playerId"]
+        blockName = args["blockName"]
+        aux = args["aux"]
+        cancel = args["cancel"]
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        clickX = args["clickX"]
+        clickY = args["clickY"]
+        clickZ = args["clickZ"]
+```
+
+</TabItem>
+</Tabs>
+
 <Client/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnClientBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "ClientBlockUseEvent",
+            self, self.OnClientBlockUseEvent)
+
+    def OnClientBlockUseEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Client/> BlockUseEventWhiteListComponentClient
 
@@ -331,7 +798,9 @@ def OnClientBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
 def OnClientBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。 |
 
 **返回值**：bool，是否增加成功。
 
@@ -362,7 +831,9 @@ comp.AddBlockItemListenForUseEvent("minecraft:nether_brick_stairs:2")
 def OnClientBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。 |
 
 **返回值**：bool，是否移除成功。
 
@@ -416,19 +887,53 @@ comp.ClearAllListenForBlockUseEventItems()
 
 触发时机：玩家点击命令方块，尝试打开命令方块的设置界面。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnCommandBlockContainerOpenEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["playerId"]: str，玩家实体 id。
-- args["isBlock"]: bool，是否以方块坐标的形式定位命令方块，当为 True 时下述的 blockX/blockY/blockZ 有意义，当为 False 时，下述的 victimId 有意义。
-- args["blockX"]: int，命令方块位置 x，当 isBlock 为 True 时有效。
-- args["blockY"]: int，命令方块位置 y，当 isBlock 为 True 时有效。
-- args["blockZ"]: int，命令方块位置 z，当 isBlock 为 True 时有效。
-- args["victimId"]: str，命令方块对应的逻辑实体的唯一 id，当 isBlock 为 False 时有效。
-- args["cancel"]: bool，修改为 True 时，可以阻止玩家打开命令方块的设置界面。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| playerId | str | 玩家实体 id。 |
+| isBlock | bool | 是否以方块坐标的形式定位命令方块，当为 True 时下述的 blockX/blockY/blockZ 有意义，当为 False 时，下述的 victimId 有意义。 |
+| blockX | int | 命令方块位置 x，当 isBlock 为 True 时有效。 |
+| blockY | int | 命令方块位置 y，当 isBlock 为 True 时有效。 |
+| blockZ | int | 命令方块位置 z，当 isBlock 为 True 时有效。 |
+| victimId | str | 命令方块对应的逻辑实体的唯一 id，当 isBlock 为 False 时有效。 |
+| cancel | bool | 修改为 True 时，可以阻止玩家打开命令方块的设置界面。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "CommandBlockContainerOpenEvent",
+            self, self.OnCommandBlockContainerOpenEvent)
+
+    def OnCommandBlockContainerOpenEvent(self, args):
+        playerId = args["playerId"]
+        isBlock = args["isBlock"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        victimId = args["victimId"]
+        cancel = args["cancel"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -438,25 +943,61 @@ def OnCommandBlockContainerOpenEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：玩家尝试修改命令方块的内置命令时。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnCommandBlockUpdateEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["playerId"]: str，玩家实体 id。
-- args["playerUid"]: Union[int, int]，玩家的 uid。
-- args["command"]: str，企图修改的命令方块中的命令内容字符串。
-- args["isBlock"]: bool，是否以方块坐标的形式定位命令方块，当为 True 时下述的 blockX/blockY/blockZ 有意义，当为 False 时，下述的 victimId 有意义。
-- args["blockX"]: int，命令方块位置 x，当 isBlock 为 True 时有效。
-- args["blockY"]: int，命令方块位置 y，当 isBlock 为 True 时有效。
-- args["blockZ"]: int，命令方块位置 z，当 isBlock 为 True 时有效。
-- args["victimId"]: str，命令方块对应的逻辑实体的唯一 id，当 isBlock 为 False 时有效。
-- args["cancel"]: bool，修改为 True 时，可以阻止玩家修改命令方块的内置命令。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| playerId | str | 玩家实体 id。 |
+| playerUid | Union[int, int] | 玩家的 uid。 |
+| command | str | 企图修改的命令方块中的命令内容字符串。 |
+| isBlock | bool | 是否以方块坐标的形式定位命令方块，当为 True 时下述的 blockX/blockY/blockZ 有意义，当为 False 时，下述的 victimId 有意义。 |
+| blockX | int | 命令方块位置 x，当 isBlock 为 True 时有效。 |
+| blockY | int | 命令方块位置 y，当 isBlock 为 True 时有效。 |
+| blockZ | int | 命令方块位置 z，当 isBlock 为 True 时有效。 |
+| victimId | str | 命令方块对应的逻辑实体的唯一 id，当 isBlock 为 False 时有效。 |
+| cancel | bool | 修改为 True 时，可以阻止玩家修改命令方块的内置命令。 |
 
 **备注**
 
 - 当修改的目标为命令方块矿车时（此时 isBlock 为 False），设置 cancel 为 True，依旧可以阻止修改命令方块矿车的内部指令，但是从客户端能够看到命令方块矿车的内部指令变化了，不过这仅仅是假象，重新登录或者其他客户端打开命令方块矿车的设置界面，就会发现其实内部指令没有变化。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "CommandBlockUpdateEvent",
+            self, self.OnCommandBlockUpdateEvent)
+
+    def OnCommandBlockUpdateEvent(self, args):
+        playerId = args["playerId"]
+        playerUid = args["playerUid"]
+        command = args["command"]
+        isBlock = args["isBlock"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        victimId = args["victimId"]
+        cancel = args["cancel"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -466,25 +1007,61 @@ def OnCommandBlockUpdateEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：当方块已经被玩家破坏时触发该事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnDestroyBlockEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
-- args["face"]: int，方块被敲击的面向 id，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
-- args["fullName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxData"]: int，方块附加值。
-- args["playerId"]: str，破坏方块的玩家 ID。
-- args["dimensionId"]: int，维度 id。
-- args["dropEntityIds"]: List[str]，掉落物实体 id 列表。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
+| face | int | 方块被敲击的面向 id，参考[Facing 枚举](/docs/docs/scripts/modapi/enums#facing)。 |
+| fullName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxData | int | 方块附加值。 |
+| playerId | str | 破坏方块的玩家 ID。 |
+| dimensionId | int | 维度 id。 |
+| dropEntityIds | List[str] | 掉落物实体 id 列表。 |
 
 **备注**
 
 - 在生存模式或创造模式下都会触发。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "DestroyBlockEvent",
+            self, self.OnDestroyBlockEvent)
+
+    def OnDestroyBlockEvent(self, args):
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        face = args["face"]
+        fullName = args["fullName"]
+        auxData = args["auxData"]
+        playerId = args["playerId"]
+        dimensionId = args["dimensionId"]
+        dropEntityIds = args["dropEntityIds"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -494,18 +1071,49 @@ def OnDestroyBlockEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：泥土方块变成草方块时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnDirtBlockToGrassBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["dimension"]: int，方块维度。
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| dimension | int | 方块维度。 |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
 
 **备注**
 
 - 指令或者接口的设置不会触发该事件。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "DirtBlockToGrassBlockServerEvent",
+            self, self.OnDirtBlockToGrassBlockServerEvent)
+
+    def OnDirtBlockToGrassBlockServerEvent(self, args):
+        dimension = args["dimension"]
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -515,24 +1123,59 @@ def OnDirtBlockToGrassBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：当生物成功放置方块后触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityPlaceBlockAfterServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
-- args["fullName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxData"]: int，方块附加值。
-- args["entityId"]: str，试图放置方块的生物 ID。
-- args["dimensionId"]: int，维度 id。
-- args["face"]: int，点击方块的面，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
+| fullName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxData | int | 方块附加值。 |
+| entityId | str | 试图放置方块的生物 ID。 |
+| dimensionId | int | 维度 id。 |
+| face | int | 点击方块的面，参考[Facing 枚举](/docs/docs/scripts/modapi/enums#facing)。 |
 
 **备注**
 
 - 部分放置后会产生实体的方块、可操作的方块、带有特殊逻辑的方块，不会触发该事件，包括但不限于床、门、告示牌、花盆、红石中继器、船、炼药锅、头部模型、蛋糕、酿造台、盔甲架等。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityPlaceBlockAfterServerEvent",
+            self, self.OnEntityPlaceBlockAfterServerEvent)
+
+    def OnEntityPlaceBlockAfterServerEvent(self, args):
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        fullName = args["fullName"]
+        auxData = args["auxData"]
+        entityId = args["entityId"]
+        dimensionId = args["dimensionId"]
+        face = args["face"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -542,22 +1185,57 @@ def OnEntityPlaceBlockAfterServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：当下落的方块实体被破坏时，服务端触发该事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnFallingBlockBreakServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["fallingBlockId"]: str，下落的方块实体 id。
-- args["fallingBlockX"]: float，下落的方块实体位置 x。
-- args["fallingBlockY"]: float，下落的方块实体位置 y。
-- args["fallingBlockZ"]: float，下落的方块实体位置 z。
-- args["blockName"]: str，重力方块的 identifier，包含命名空间及名称。
-- args["fallTickAmount"]: int，下落的方块实体持续下落了多少 tick。
-- args["dimensionId"]: int，下落的方块实体维度 id。
-- args["cancelDrop"]: bool，是否取消方块物品掉落，可以在脚本层中设置。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| fallingBlockId | str | 下落的方块实体 id。 |
+| fallingBlockX | float | 下落的方块实体位置 x。 |
+| fallingBlockY | float | 下落的方块实体位置 y。 |
+| fallingBlockZ | float | 下落的方块实体位置 z。 |
+| blockName | str | 重力方块的 identifier，包含命名空间及名称。 |
+| fallTickAmount | int | 下落的方块实体持续下落了多少 tick。 |
+| dimensionId | int | 下落的方块实体维度 id。 |
+| cancelDrop | bool | 是否取消方块物品掉落，可以在脚本层中设置。 |
 
 **备注**
 
 - 不是所有下落的方块都会触发该事件，需要在 json 中先配置触发开关（详情参考：自定义重力方块）。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "FallingBlockBreakServerEvent",
+            self, self.OnFallingBlockBreakServerEvent)
+
+    def OnFallingBlockBreakServerEvent(self, args):
+        fallingBlockId = args["fallingBlockId"]
+        fallingBlockX = args["fallingBlockX"]
+        fallingBlockY = args["fallingBlockY"]
+        fallingBlockZ = args["fallingBlockZ"]
+        blockName = args["blockName"]
+        fallTickAmount = args["fallTickAmount"]
+        dimensionId = args["dimensionId"]
+        cancelDrop = args["cancelDrop"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -567,26 +1245,64 @@ def OnFallingBlockBreakServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：当下落的方块开始计算砸到实体的伤害时，客户端触发该事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnFallingBlockCauseDamageBeforeClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["fallingBlockId"]: int，下落的方块实体 id。
-- args["fallingBlockX"]: float，下落的方块实体位置 x。
-- args["fallingBlockY"]: float，下落的方块实体位置 y。
-- args["fallingBlockZ"]: float，下落的方块实体位置 z。
-- args["blockName"]: str，重力方块的 identifier，包含命名空间及名称。
-- args["dimensionId"]: int，下落的方块实体维度 id。
-- args["collidingEntitys"]: List[str]，当前碰撞到的实体列表 id（客户端只能获取到玩家），如果没有的话是 None。
-- args["fallTickAmount"]: int，下落的方块实体持续下落了多少 tick。
-- args["fallDistance"]: float，下落的方块实体持续下落了多少距离。
-- args["isHarmful"]: bool，客户端始终为 false，因为客户端不会计算伤害值。
-- args["fallDamage"]: int，对实体的伤害。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| fallingBlockId | int | 下落的方块实体 id。 |
+| fallingBlockX | float | 下落的方块实体位置 x。 |
+| fallingBlockY | float | 下落的方块实体位置 y。 |
+| fallingBlockZ | float | 下落的方块实体位置 z。 |
+| blockName | str | 重力方块的 identifier，包含命名空间及名称。 |
+| dimensionId | int | 下落的方块实体维度 id。 |
+| collidingEntitys | List[str] | 当前碰撞到的实体列表 id（客户端只能获取到玩家），如果没有的话是 None。 |
+| fallTickAmount | int | 下落的方块实体持续下落了多少 tick。 |
+| fallDistance | float | 下落的方块实体持续下落了多少距离。 |
+| isHarmful | bool | 客户端始终为 false，因为客户端不会计算伤害值。 |
+| fallDamage | int | 对实体的伤害。 |
 
 **备注**
 
 - 不是所有下落的方块都会触发该事件，需要在 json 中先配置触发开关（详情参考：自定义重力方块）。
 - 当该事件的参数数据（fallTickAmount，fallDistance，collidingEntitys，fallDamage）与服务端事件 [FallingBlockCauseDamageBeforeServerEvent](/docs/docs/scripts/modapi/events/block#fallingblockcausedamagebeforeserverevent) 数据有差异时，请以服务端事件数据为准。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "FallingBlockCauseDamageBeforeClientEvent",
+            self, self.OnFallingBlockCauseDamageBeforeClientEvent)
+
+    def OnFallingBlockCauseDamageBeforeClientEvent(self, args):
+        fallingBlockId = args["fallingBlockId"]
+        fallingBlockX = args["fallingBlockX"]
+        fallingBlockY = args["fallingBlockY"]
+        fallingBlockZ = args["fallingBlockZ"]
+        blockName = args["blockName"]
+        dimensionId = args["dimensionId"]
+        collidingEntitys = args["collidingEntitys"]
+        fallTickAmount = args["fallTickAmount"]
+        fallDistance = args["fallDistance"]
+        isHarmful = args["isHarmful"]
+        fallDamage = args["fallDamage"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -596,26 +1312,64 @@ def OnFallingBlockCauseDamageBeforeClientEvent(self, args: Dict[str, Any]) -> No
 
 触发时机：当下落的方块开始计算砸到实体的伤害时，服务端触发该事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnFallingBlockCauseDamageBeforeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["fallingBlockId"]: str，下落的方块实体 id。
-- args["fallingBlockX"]: float，下落的方块实体位置 x。
-- args["fallingBlockY"]: float，下落的方块实体位置 y。
-- args["fallingBlockZ"]: float，下落的方块实体位置 z。
-- args["blockName"]: str，重力方块的 identifier，包含命名空间及名称。
-- args["dimensionId"]: int，下落的方块实体维度 id。
-- args["collidingEntitys"]: List[str]，当前碰撞到的实体列表 id，如果没有的话是 None。
-- args["fallTickAmount"]: int，下落的方块实体持续下落了多少 tick。
-- args["fallDistance"]: float，下落的方块实体持续下落了多少距离。
-- args["isHarmful"]: bool，是否计算对实体的伤害，引擎传来的值由 json 配置和伤害是否大于 0 决定，可在脚本层修改传回引擎。
-- args["fallDamage"]: int，对实体的伤害，引擎传来的值距离和 json 配置决定，可在脚本层修改传回引擎。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| fallingBlockId | str | 下落的方块实体 id。 |
+| fallingBlockX | float | 下落的方块实体位置 x。 |
+| fallingBlockY | float | 下落的方块实体位置 y。 |
+| fallingBlockZ | float | 下落的方块实体位置 z。 |
+| blockName | str | 重力方块的 identifier，包含命名空间及名称。 |
+| dimensionId | int | 下落的方块实体维度 id。 |
+| collidingEntitys | List[str] | 当前碰撞到的实体列表 id，如果没有的话是 None。 |
+| fallTickAmount | int | 下落的方块实体持续下落了多少 tick。 |
+| fallDistance | float | 下落的方块实体持续下落了多少距离。 |
+| isHarmful | bool | 是否计算对实体的伤害，引擎传来的值由 json 配置和伤害是否大于 0 决定，可在脚本层修改传回引擎。 |
+| fallDamage | int | 对实体的伤害，引擎传来的值距离和 json 配置决定，可在脚本层修改传回引擎。 |
 
 **备注**
 
 - 不是所有下落的方块都会触发该事件，需要在 json 中先配置触发开关（详情参考：自定义重力方块）。
 - 服务端通常触发在客户端之后，而且有时会相差一个 tick，这就意味着可能发生以下现象:服务端 fallTickAmount 比配置强制破坏时间多 1tick，下落的距离、下落的伤害计算出来比客户端时间多 1tick 的误差。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "FallingBlockCauseDamageBeforeServerEvent",
+            self, self.OnFallingBlockCauseDamageBeforeServerEvent)
+
+    def OnFallingBlockCauseDamageBeforeServerEvent(self, args):
+        fallingBlockId = args["fallingBlockId"]
+        fallingBlockX = args["fallingBlockX"]
+        fallingBlockY = args["fallingBlockY"]
+        fallingBlockZ = args["fallingBlockZ"]
+        blockName = args["blockName"]
+        dimensionId = args["dimensionId"]
+        collidingEntitys = args["collidingEntitys"]
+        fallTickAmount = args["fallTickAmount"]
+        fallDistance = args["fallDistance"]
+        isHarmful = args["isHarmful"]
+        fallDamage = args["fallDamage"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -625,22 +1379,57 @@ def OnFallingBlockCauseDamageBeforeServerEvent(self, args: Dict[str, Any]) -> No
 
 触发时机：当下落的方块实体变回普通重力方块时，服务端触发该事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnFallingBlockReturnHeavyBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["fallingBlockId"]: int，下落的方块实体 id。
-- args["blockX"]: int，方块位置 x。
-- args["blockY"]: int，方块位置 y。
-- args["blockZ"]: int，方块位置 z。
-- args["heavyBlockName"]: str，重力方块的 identifier，包含命名空间及名称。
-- args["prevHereBlockName"]: str，变回重力方块时，原本方块位置的 identifier，包含命名空间及名称。
-- args["dimensionId"]: int，下落的方块实体维度 id。
-- args["fallTickAmount"]: int，下落的方块实体持续下落了多少 tick。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| fallingBlockId | int | 下落的方块实体 id。 |
+| blockX | int | 方块位置 x。 |
+| blockY | int | 方块位置 y。 |
+| blockZ | int | 方块位置 z。 |
+| heavyBlockName | str | 重力方块的 identifier，包含命名空间及名称。 |
+| prevHereBlockName | str | 变回重力方块时，原本方块位置的 identifier，包含命名空间及名称。 |
+| dimensionId | int | 下落的方块实体维度 id。 |
+| fallTickAmount | int | 下落的方块实体持续下落了多少 tick。 |
 
 **备注**
 
 - 不是所有下落的方块都会触发该事件，需要在 json 中先配置触发开关（详情参考：自定义重力方块）。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "FallingBlockReturnHeavyBlockServerEvent",
+            self, self.OnFallingBlockReturnHeavyBlockServerEvent)
+
+    def OnFallingBlockReturnHeavyBlockServerEvent(self, args):
+        fallingBlockId = args["fallingBlockId"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        heavyBlockName = args["heavyBlockName"]
+        prevHereBlockName = args["prevHereBlockName"]
+        dimensionId = args["dimensionId"]
+        fallTickAmount = args["fallTickAmount"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -650,19 +1439,51 @@ def OnFallingBlockReturnHeavyBlockServerEvent(self, args: Dict[str, Any]) -> Non
 
 触发时机：耕地退化为泥土时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnFarmBlockToDirtBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["dimension"]: int，方块维度。
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
-- args["setBlockType"]: int，耕地退化为泥土的原因，参考[SetBlockType](https://mc.163.com/newdev/docs/api/meijuzhi/SetBlockType.html)。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| dimension | int | 方块维度。 |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
+| setBlockType | int | 耕地退化为泥土的原因，参考[SetBlockType](/docs/docs/scripts/modapi/enums#setblocktype)。 |
 
 **备注**
 
 - 指令或者接口的设置不会触发该事件。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "FarmBlockToDirtBlockServerEvent",
+            self, self.OnFarmBlockToDirtBlockServerEvent)
+
+    def OnFarmBlockToDirtBlockServerEvent(self, args):
+        dimension = args["dimension"]
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        setBlockType = args["setBlockType"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -672,18 +1493,49 @@ def OnFarmBlockToDirtBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：草方块变成泥土方块时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnGrassBlockToDirtBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["dimension"]: int，方块维度。
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| dimension | int | 方块维度。 |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
 
 **备注**
 
 - 指令或者接口的设置不会触发该事件。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "GrassBlockToDirtBlockServerEvent",
+            self, self.OnGrassBlockToDirtBlockServerEvent)
+
+    def OnGrassBlockToDirtBlockServerEvent(self, args):
+        dimension = args["dimension"]
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -693,20 +1545,53 @@ def OnGrassBlockToDirtBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：当重力方块变为下落的方块实体后，服务端触发该事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnHeavyBlockStartFallingServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["fallingBlockId"]: str，下落的方块实体 id。
-- args["blockX"]: int，方块位置 x。
-- args["blockY"]: int，方块位置 y。
-- args["blockZ"]: int，方块位置 z。
-- args["blockName"]: str，重力方块的 identifier，包含命名空间及名称。
-- args["dimensionId"]: int，下落的方块实体维度 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| fallingBlockId | str | 下落的方块实体 id。 |
+| blockX | int | 方块位置 x。 |
+| blockY | int | 方块位置 y。 |
+| blockZ | int | 方块位置 z。 |
+| blockName | str | 重力方块的 identifier，包含命名空间及名称。 |
+| dimensionId | int | 下落的方块实体维度 id。 |
 
 **备注**
 
 - 不是所有下落的方块都会触发该事件，需要在 json 中先配置触发开关（详情参考：自定义重力方块）。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "HeavyBlockStartFallingServerEvent",
+            self, self.OnHeavyBlockStartFallingServerEvent)
+
+    def OnHeavyBlockStartFallingServerEvent(self, args):
+        fallingBlockId = args["fallingBlockId"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        blockName = args["blockName"]
+        dimensionId = args["dimensionId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -716,18 +1601,53 @@ def OnHeavyBlockStartFallingServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：当漏斗上方连接容器后，容器往漏斗开始输入物品时触发，事件仅触发一次。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnHopperTryPullInServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["x"]: int，漏斗位置 x。
-- args["y"]: int，漏斗位置 y。
-- args["z"]: int，漏斗位置 z。
-- args["abovePosX"]: int，交互的容器位置 x。
-- args["abovePosY"]: int，交互的容器位置 y。
-- args["abovePosZ"]: int，交互的容器位置 z。
-- args["dimensionId"]: int，维度 id。
-- args["canHopper"]: bool，是否允许容器往漏斗加东西(要关闭此交互，需先监听此事件再放置容器)。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| x | int | 漏斗位置 x。 |
+| y | int | 漏斗位置 y。 |
+| z | int | 漏斗位置 z。 |
+| abovePosX | int | 交互的容器位置 x。 |
+| abovePosY | int | 交互的容器位置 y。 |
+| abovePosZ | int | 交互的容器位置 z。 |
+| dimensionId | int | 维度 id。 |
+| canHopper | bool | 是否允许容器往漏斗加东西(要关闭此交互，需先监听此事件再放置容器)。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "HopperTryPullInServerEvent",
+            self, self.OnHopperTryPullInServerEvent)
+
+    def OnHopperTryPullInServerEvent(self, args):
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        abovePosX = args["abovePosX"]
+        abovePosY = args["abovePosY"]
+        abovePosZ = args["abovePosZ"]
+        dimensionId = args["dimensionId"]
+        canHopper = args["canHopper"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -737,18 +1657,53 @@ def OnHopperTryPullInServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：当漏斗以毗邻的方式连接容器时，即从旁边连接容器时，漏斗向容器开始输出物品时触发，事件仅触发一次。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnHopperTryPullOutServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["x"]: int，漏斗位置 x。
-- args["y"]: int，漏斗位置 y。
-- args["z"]: int，漏斗位置 z。
-- args["attachedPosX"]: int，交互的容器位置 x。
-- args["attachedPosY"]: int，交互的容器位置 y。
-- args["attachedPosZ"]: int，交互的容器位置 z。
-- args["dimensionId"]: int，维度 id。
-- args["canHopper"]: bool，是否允许漏斗往容器加东西(要关闭此交互，需先监听此事件再放置容器)。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| x | int | 漏斗位置 x。 |
+| y | int | 漏斗位置 y。 |
+| z | int | 漏斗位置 z。 |
+| attachedPosX | int | 交互的容器位置 x。 |
+| attachedPosY | int | 交互的容器位置 y。 |
+| attachedPosZ | int | 交互的容器位置 z。 |
+| dimensionId | int | 维度 id。 |
+| canHopper | bool | 是否允许漏斗往容器加东西(要关闭此交互，需先监听此事件再放置容器)。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "HopperTryPullOutServerEvent",
+            self, self.OnHopperTryPullOutServerEvent)
+
+    def OnHopperTryPullOutServerEvent(self, args):
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        attachedPosX = args["attachedPosX"]
+        attachedPosY = args["attachedPosY"]
+        attachedPosZ = args["attachedPosZ"]
+        dimensionId = args["dimensionId"]
+        canHopper = args["canHopper"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -758,21 +1713,53 @@ def OnHopperTryPullOutServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 客户端自定义方块实体初始化完成时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnModBlockEntityLoadedClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["posX"]: int，自定义方块实体的位置 X。
-- args["posY"]: int，自定义方块实体的位置 Y。
-- args["posZ"]: int，自定义方块实体的位置 Z。
-- args["dimensionId"]: int，维度 id。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| posX | int | 自定义方块实体的位置 X。 |
+| posY | int | 自定义方块实体的位置 Y。 |
+| posZ | int | 自定义方块实体的位置 Z。 |
+| dimensionId | int | 维度 id。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
 
 **备注**
 
 - 只有添加了自定义方块实体扩展功能的自定义方块实体才能触发该事件（见自定义方块实体外观），请用该事件来初始化自定义方块实体的 molang，否则方块实体未初始化完成会设置失败。
 - 实际触发时机是自定义方块实体第一次出现在玩家视野中时触发，玩家离开后又回来时方块实体会重新加载并初始化。但由于出生点是常加载区域，来回传送不会重复触发此事件。
 - 该事件在 [OnModBlockNeteaseEffectCreatedClientEvent](/docs/docs/scripts/modapi/events/block#onmodblockneteaseeffectcreatedclientevent) 后触发。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "ModBlockEntityLoadedClientEvent",
+            self, self.OnModBlockEntityLoadedClientEvent)
+
+    def OnModBlockEntityLoadedClientEvent(self, args):
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+        dimensionId = args["dimensionId"]
+        blockName = args["blockName"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -782,15 +1769,47 @@ def OnModBlockEntityLoadedClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 客户端自定义方块实体卸载时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnModBlockEntityRemoveClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["posX"]: int，自定义方块实体的位置 X。
-- args["posY"]: int，自定义方块实体的位置 Y。
-- args["posZ"]: int，自定义方块实体的位置 Z。
-- args["dimensionId"]: int，维度 id。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| posX | int | 自定义方块实体的位置 X。 |
+| posY | int | 自定义方块实体的位置 Y。 |
+| posZ | int | 自定义方块实体的位置 Z。 |
+| dimensionId | int | 维度 id。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "ModBlockEntityRemoveClientEvent",
+            self, self.OnModBlockEntityRemoveClientEvent)
+
+    def OnModBlockEntityRemoveClientEvent(self, args):
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+        dimensionId = args["dimensionId"]
+        blockName = args["blockName"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -800,20 +1819,52 @@ def OnModBlockEntityRemoveClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 客户端自定义方块实体 tick 事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnModBlockEntityTickClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["posX"]: int，自定义方块实体的位置 X。
-- args["posY"]: int，自定义方块实体的位置 Y。
-- args["posZ"]: int，自定义方块实体的位置 Z。
-- args["dimensionId"]: int，维度 id。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| posX | int | 自定义方块实体的位置 X。 |
+| posY | int | 自定义方块实体的位置 Y。 |
+| posZ | int | 自定义方块实体的位置 Z。 |
+| dimensionId | int | 维度 id。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
 
 **备注**
 
 - 只有 client_tick 字段为 true 的自定义方块实体才能触发该事件（见自定义方块实体。
 - 目前客户端实体 tick 范围为硬编码，范围为玩家为中心的等腰等斜边八边形，其中斜边长度为 5，非斜边长度为 3。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "ModBlockEntityTickClientEvent",
+            self, self.OnModBlockEntityTickClientEvent)
+
+    def OnModBlockEntityTickClientEvent(self, args):
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+        dimensionId = args["dimensionId"]
+        blockName = args["blockName"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -823,19 +1874,24 @@ def OnModBlockEntityTickClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：当实体降落到方块后客户端触发，主要用于力的计算。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnAfterFallOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["posX"]: float，实体位置 x。
-- args["posY"]: float，实体位置 y。
-- args["posZ"]: float，实体位置 z。
-- args["motionX"]: float，瞬时移动 X 方向的力。
-- args["motionY"]: float，瞬时移动 Y 方向的力。
-- args["motionZ"]: float，瞬时移动 Z 方向的力。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["calculate"]: bool，是否按脚本层传值计算力。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| posX | float | 实体位置 x。 |
+| posY | float | 实体位置 y。 |
+| posZ | float | 实体位置 z。 |
+| motionX | float | 瞬时移动 X 方向的力。 |
+| motionY | float | 瞬时移动 Y 方向的力。 |
+| motionZ | float | 瞬时移动 Z 方向的力。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| calculate | bool | 是否按脚本层传值计算力。 |
 
 **备注**
 
@@ -847,6 +1903,37 @@ def OnOnAfterFallOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "OnAfterFallOnBlockClientEvent",
+            self, self.OnOnAfterFallOnBlockClientEvent)
+
+    def OnOnAfterFallOnBlockClientEvent(self, args):
+        entityId = args["entityId"]
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+        motionX = args["motionX"]
+        motionY = args["motionY"]
+        motionZ = args["motionZ"]
+        blockName = args["blockName"]
+        calculate = args["calculate"]
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### OnAfterFallOnBlockServerEvent
@@ -855,19 +1942,24 @@ def OnOnAfterFallOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：当实体降落到方块后服务端触发，主要用于力的计算。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnAfterFallOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["posX"]: float，实体位置 x。
-- args["posY"]: float，实体位置 y。
-- args["posZ"]: float，实体位置 z。
-- args["motionX"]: float，瞬时移动 X 方向的力。
-- args["motionY"]: float，瞬时移动 Y 方向的力。
-- args["motionZ"]: float，瞬时移动 Z 方向的力。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["calculate"]: bool，是否按脚本层传值计算力。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| posX | float | 实体位置 x。 |
+| posY | float | 实体位置 y。 |
+| posZ | float | 实体位置 z。 |
+| motionX | float | 瞬时移动 X 方向的力。 |
+| motionY | float | 瞬时移动 Y 方向的力。 |
+| motionZ | float | 瞬时移动 Z 方向的力。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| calculate | bool | 是否按脚本层传值计算力。 |
 
 **备注**
 
@@ -879,6 +1971,37 @@ def OnOnAfterFallOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "OnAfterFallOnBlockServerEvent",
+            self, self.OnOnAfterFallOnBlockServerEvent)
+
+    def OnOnAfterFallOnBlockServerEvent(self, args):
+        entityId = args["entityId"]
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+        motionX = args["motionX"]
+        motionY = args["motionY"]
+        motionZ = args["motionZ"]
+        blockName = args["blockName"]
+        calculate = args["calculate"]
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### OnBeforeFallOnBlockServerEvent
@@ -887,17 +2010,22 @@ def OnOnAfterFallOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：当实体刚降落到方块上时服务端触发，主要用于伤害计算。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnBeforeFallOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["blockX"]: int，方块位置 x。
-- args["blockY"]: int，方块位置 y。
-- args["blockZ"]: int，方块位置 z。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["fallDistance"]: float，实体下降距离，可在脚本层传给引擎。
-- args["cancel"]: bool，是否取消引擎对实体下降伤害的计算。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| blockX | int | 方块位置 x。 |
+| blockY | int | 方块位置 y。 |
+| blockZ | int | 方块位置 z。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| fallDistance | float | 实体下降距离，可在脚本层传给引擎。 |
+| cancel | bool | 是否取消引擎对实体下降伤害的计算。 |
 
 **备注**
 
@@ -907,6 +2035,35 @@ def OnOnBeforeFallOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "OnBeforeFallOnBlockServerEvent",
+            self, self.OnOnBeforeFallOnBlockServerEvent)
+
+    def OnOnBeforeFallOnBlockServerEvent(self, args):
+        entityId = args["entityId"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        blockName = args["blockName"]
+        fallDistance = args["fallDistance"]
+        cancel = args["cancel"]
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### OnEntityInsideBlockClientEvent
@@ -915,20 +2072,25 @@ def OnOnBeforeFallOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：当实体碰撞盒所在区域有方块时，客户端持续触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnEntityInsideBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["dimensionId"]: int，实体所在维度 id。
-- args["slowdownMultiX"]: float，实体移速 X 方向的减速比例。
-- args["slowdownMultiY"]: float，实体移速 Y 方向的减速比例。
-- args["slowdownMultiZ"]: float，实体移速 Z 方向的减速比例。
-- args["blockX"]: int，方块位置 x。
-- args["blockY"]: int，方块位置 y。
-- args["blockZ"]: int，方块位置 z。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["cancel"]: bool，可由脚本层回传 True 给引擎，阻止触发后续原版逻辑。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| dimensionId | int | 实体所在维度 id。 |
+| slowdownMultiX | float | 实体移速 X 方向的减速比例。 |
+| slowdownMultiY | float | 实体移速 Y 方向的减速比例。 |
+| slowdownMultiZ | float | 实体移速 Z 方向的减速比例。 |
+| blockX | int | 方块位置 x。 |
+| blockY | int | 方块位置 y。 |
+| blockZ | int | 方块位置 z。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| cancel | bool | 可由脚本层回传 True 给引擎，阻止触发后续原版逻辑。 |
 
 **备注**
 
@@ -941,11 +2103,69 @@ def OnOnEntityInsideBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "OnEntityInsideBlockClientEvent",
+            self, self.OnOnEntityInsideBlockClientEvent)
+
+    def OnOnEntityInsideBlockClientEvent(self, args):
+        entityId = args["entityId"]
+        dimensionId = args["dimensionId"]
+        slowdownMultiX = args["slowdownMultiX"]
+        slowdownMultiY = args["slowdownMultiY"]
+        slowdownMultiZ = args["slowdownMultiZ"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        blockName = args["blockName"]
+        cancel = args["cancel"]
+```
+
+</TabItem>
+</Tabs>
+
 <Client/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnOnEntityInsideBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "OnEntityInsideBlockClientEvent",
+            self, self.OnOnEntityInsideBlockClientEvent)
+
+    def OnOnEntityInsideBlockClientEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Client/> BlockInfoComponentClient
 
@@ -960,7 +2180,9 @@ def OnOnEntityInsideBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 def OnOnEntityInsideBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否注册成功。
 
@@ -994,7 +2216,9 @@ comp.RegisterOnEntityInside("minecraft:redstone_ore")
 def OnOnEntityInsideBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否删除成功。
 
@@ -1022,19 +2246,24 @@ comp.UnRegisterOnEntityInside("minecraft:redstone_ore")
 
 触发时机：当实体碰撞盒所在区域有方块时，服务端持续触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnEntityInsideBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["slowdownMultiX"]: float，实体移速 X 方向的减速比例，可在脚本层被修改。
-- args["slowdownMultiY"]: float，实体移速 Y 方向的减速比例，可在脚本层被修改。
-- args["slowdownMultiZ"]: float，实体移速 Z 方向的减速比例，可在脚本层被修改。
-- args["blockX"]: int，方块位置 x。
-- args["blockY"]: int，方块位置 y。
-- args["blockZ"]: int，方块位置 z。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["cancel"]: bool，可由脚本层回传 True 给引擎，阻止触发后续原版逻辑。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| slowdownMultiX | float | 实体移速 X 方向的减速比例，可在脚本层被修改。 |
+| slowdownMultiY | float | 实体移速 Y 方向的减速比例，可在脚本层被修改。 |
+| slowdownMultiZ | float | 实体移速 Z 方向的减速比例，可在脚本层被修改。 |
+| blockX | int | 方块位置 x。 |
+| blockY | int | 方块位置 y。 |
+| blockZ | int | 方块位置 z。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| cancel | bool | 可由脚本层回传 True 给引擎，阻止触发后续原版逻辑。 |
 
 **备注**
 
@@ -1046,11 +2275,68 @@ def OnOnEntityInsideBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "OnEntityInsideBlockServerEvent",
+            self, self.OnOnEntityInsideBlockServerEvent)
+
+    def OnOnEntityInsideBlockServerEvent(self, args):
+        entityId = args["entityId"]
+        slowdownMultiX = args["slowdownMultiX"]
+        slowdownMultiY = args["slowdownMultiY"]
+        slowdownMultiZ = args["slowdownMultiZ"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        blockName = args["blockName"]
+        cancel = args["cancel"]
+```
+
+</TabItem>
+</Tabs>
+
 <Server/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnOnEntityInsideBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "OnEntityInsideBlockServerEvent",
+            self, self.OnOnEntityInsideBlockServerEvent)
+
+    def OnOnEntityInsideBlockServerEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Server/> BlockInfoComponentServer
 
@@ -1065,7 +2351,9 @@ def OnOnEntityInsideBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 def OnOnEntityInsideBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否注册成功。
 
@@ -1100,7 +2388,9 @@ comp.RegisterOnEntityInside("minecraft:redstone_ore")
 def OnOnEntityInsideBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否删除成功。
 
@@ -1127,18 +2417,49 @@ comp.UnRegisterOnEntityInside("minecraft:redstone_ore")
 
 <Client/>
 
-自定义方块实体绑定的特效创建成功事件，在自定义方块实体中绑定的特效创建成功时触发以及使用接口 [CreateFrameEffectForBlockEntity](/docs/docs/scripts/modapi/block/block_entity#createframeeffectforblockentity) 或 [CreateParticleEffectForBlockEntity](/docs/docs/scripts/modapi/block/block_entity#createparticleeffectforblockentity) 为自定义方块实体添加特效成功时触发。
+自定义方块实体绑定的特效创建成功事件，在自定义方块实体中绑定的特效创建成功时触发以及使用接口 [CreateFrameEffectForBlockEntity](/docs/docs/scripts/modapi/interfaces/block/block_entity#createframeeffectforblockentity) 或 [CreateParticleEffectForBlockEntity](/docs/docs/scripts/modapi/interfaces/block/block_entity#createparticleeffectforblockentity) 为自定义方块实体添加特效成功时触发。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnOnModBlockNeteaseEffectCreatedClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["effectName"]: str，创建成功的特效的自定义键值名称。
-- args["id"]: int，该特效的 id。
-- args["effectType"]: int，该特效的类型，0 为粒子特效，1 为序列帧特效。
-- args["blockPos"]: Tuple[float, float, float]，该特效绑定的自定义方块实体的世界坐标。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| effectName | str | 创建成功的特效的自定义键值名称。 |
+| id | int | 该特效的 id。 |
+| effectType | int | 该特效的类型，0 为粒子特效，1 为序列帧特效。 |
+| blockPos | Tuple[float, float, float] | 该特效绑定的自定义方块实体的世界坐标。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "OnModBlockNeteaseEffectCreatedClientEvent",
+            self, self.OnOnModBlockNeteaseEffectCreatedClientEvent)
+
+    def OnOnModBlockNeteaseEffectCreatedClientEvent(self, args):
+        effectName = args["effectName"]
+        id = args["id"]
+        effectType = args["effectType"]
+        blockPos = args["blockPos"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1148,23 +2469,28 @@ def OnOnModBlockNeteaseEffectCreatedClientEvent(self, args: Dict[str, Any]) -> N
 
 触发时机：当实体站立到方块上时客户端持续触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnStandOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["dimensionId"]: int，实体所在维度 id。
-- args["posX"]: float，实体位置 x。
-- args["posY"]: float，实体位置 y。
-- args["posZ"]: float，实体位置 z。
-- args["motionX"]: float，瞬时移动 X 方向的力。
-- args["motionY"]: float，瞬时移动 Y 方向的力。
-- args["motionZ"]: float，瞬时移动 Z 方向的力。
-- args["blockX"]: int，方块位置 x。
-- args["blockY"]: int，方块位置 y。
-- args["blockZ"]: int，方块位置 z。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["cancel"]: bool，可由脚本层回传 True 给引擎，阻止触发后续原版逻辑。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| dimensionId | int | 实体所在维度 id。 |
+| posX | float | 实体位置 x。 |
+| posY | float | 实体位置 y。 |
+| posZ | float | 实体位置 z。 |
+| motionX | float | 瞬时移动 X 方向的力。 |
+| motionY | float | 瞬时移动 Y 方向的力。 |
+| motionZ | float | 瞬时移动 Z 方向的力。 |
+| blockX | int | 方块位置 x。 |
+| blockY | int | 方块位置 y。 |
+| blockZ | int | 方块位置 z。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| cancel | bool | 可由脚本层回传 True 给引擎，阻止触发后续原版逻辑。 |
 
 **备注**
 
@@ -1174,11 +2500,72 @@ def OnOnStandOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "OnStandOnBlockClientEvent",
+            self, self.OnOnStandOnBlockClientEvent)
+
+    def OnOnStandOnBlockClientEvent(self, args):
+        entityId = args["entityId"]
+        dimensionId = args["dimensionId"]
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+        motionX = args["motionX"]
+        motionY = args["motionY"]
+        motionZ = args["motionZ"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        blockName = args["blockName"]
+        cancel = args["cancel"]
+```
+
+</TabItem>
+</Tabs>
+
 <Client/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnOnStandOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "OnStandOnBlockClientEvent",
+            self, self.OnOnStandOnBlockClientEvent)
+
+    def OnOnStandOnBlockClientEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Client/> BlockInfoComponentClient
 
@@ -1193,7 +2580,9 @@ def OnOnStandOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 def OnOnStandOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否注册成功。
 
@@ -1228,7 +2617,9 @@ comp.RegisterOnStandOn("minecraft:redstone_ore")
 def OnOnStandOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否删除成功。
 
@@ -1256,23 +2647,28 @@ comp.UnRegisterOnStandOn("minecraft:redstone_ore")
 
 触发时机：当实体站立到方块上时服务端持续触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnStandOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["dimensionId"]: int，实体所在维度 id。
-- args["posX"]: float，实体位置 x。
-- args["posY"]: float，实体位置 y。
-- args["posZ"]: float，实体位置 z。
-- args["motionX"]: float，瞬时移动 X 方向的力。
-- args["motionY"]: float，瞬时移动 Y 方向的力。
-- args["motionZ"]: float，瞬时移动 Z 方向的力。
-- args["blockX"]: int，方块位置 x。
-- args["blockY"]: int，方块位置 y。
-- args["blockZ"]: int，方块位置 z。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["cancel"]: bool，可由脚本层回传 True 给引擎，阻止触发后续原版逻辑。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| dimensionId | int | 实体所在维度 id。 |
+| posX | float | 实体位置 x。 |
+| posY | float | 实体位置 y。 |
+| posZ | float | 实体位置 z。 |
+| motionX | float | 瞬时移动 X 方向的力。 |
+| motionY | float | 瞬时移动 Y 方向的力。 |
+| motionZ | float | 瞬时移动 Z 方向的力。 |
+| blockX | int | 方块位置 x。 |
+| blockY | int | 方块位置 y。 |
+| blockZ | int | 方块位置 z。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| cancel | bool | 可由脚本层回传 True 给引擎，阻止触发后续原版逻辑。 |
 
 **备注**
 
@@ -1282,11 +2678,72 @@ def OnOnStandOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "OnStandOnBlockServerEvent",
+            self, self.OnOnStandOnBlockServerEvent)
+
+    def OnOnStandOnBlockServerEvent(self, args):
+        entityId = args["entityId"]
+        dimensionId = args["dimensionId"]
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+        motionX = args["motionX"]
+        motionY = args["motionY"]
+        motionZ = args["motionZ"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        blockName = args["blockName"]
+        cancel = args["cancel"]
+```
+
+</TabItem>
+</Tabs>
+
 <Server/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnOnStandOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "OnStandOnBlockServerEvent",
+            self, self.OnOnStandOnBlockServerEvent)
+
+    def OnOnStandOnBlockServerEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Server/> BlockInfoComponentServer
 
@@ -1301,7 +2758,9 @@ def OnOnStandOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 def OnOnStandOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否注册成功。
 
@@ -1337,7 +2796,9 @@ comp.RegisterOnStandOn("minecraft:redstone_ore")
 def OnOnStandOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否删除成功。
 
@@ -1366,21 +2827,59 @@ comp.UnRegisterOnStandOn("minecraft:redstone_ore")
 
 触发时机：活塞或者粘性活塞推送/缩回影响附近方块时。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnPistonActionServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["cancel"]: bool，是否允许触发，默认为 False，若设为 True，可阻止触发后续的事件。
-- args["action"]: str，推送时=expanding；缩回时=retracting。
-- args["pistonFacing"]: int，活塞的朝向，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
-- args["pistonMoveFacing"]: int，活塞的运动方向，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
-- args["dimensionId"]: int，活塞方块所在的维度。
-- args["pistonX"]: int，活塞方块的 x 坐标。
-- args["pistonY"]: int，活塞方块的 y 坐标。
-- args["pistonZ"]: int，活塞方块的 z 坐标。
-- args["blockList"]: List[Tuple[int, int, int]]，活塞运动影响到产生被移动效果的方块坐标[x,y,z]，均为 int 类型。
-- args["breakBlockList"]: List[Tuple[int, int, int]]，活塞运动影响到产生被破坏效果的方块坐标[x,y,z]，均为 int 类型。
-- args["entityList"]: List[string]，活塞运动影响到产生被移动或被破坏效果的实体的 ID 列表。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| cancel | bool | 是否允许触发，默认为 False，若设为 True，可阻止触发后续的事件。 |
+| action | str | 推送时=expanding；缩回时=retracting。 |
+| pistonFacing | int | 活塞的朝向，参考[Facing 枚举](/docs/docs/scripts/modapi/enums#facing)。 |
+| pistonMoveFacing | int | 活塞的运动方向，参考[Facing 枚举](/docs/docs/scripts/modapi/enums#facing)。 |
+| dimensionId | int | 活塞方块所在的维度。 |
+| pistonX | int | 活塞方块的 x 坐标。 |
+| pistonY | int | 活塞方块的 y 坐标。 |
+| pistonZ | int | 活塞方块的 z 坐标。 |
+| blockList | List[Tuple[int, int, int]] | 活塞运动影响到产生被移动效果的方块坐标[x,y,z]，均为 int 类型。 |
+| breakBlockList | List[Tuple[int, int, int]] | 活塞运动影响到产生被破坏效果的方块坐标[x,y,z]，均为 int 类型。 |
+| entityList | List[string] | 活塞运动影响到产生被移动或被破坏效果的实体的 ID 列表。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "PistonActionServerEvent",
+            self, self.OnPistonActionServerEvent)
+
+    def OnPistonActionServerEvent(self, args):
+        cancel = args["cancel"]
+        action = args["action"]
+        pistonFacing = args["pistonFacing"]
+        pistonMoveFacing = args["pistonMoveFacing"]
+        dimensionId = args["dimensionId"]
+        pistonX = args["pistonX"]
+        pistonY = args["pistonY"]
+        pistonZ = args["pistonZ"]
+        blockList = args["blockList"]
+        breakBlockList = args["breakBlockList"]
+        entityList = args["entityList"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1390,20 +2889,55 @@ def OnPistonActionServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 当玩家即将破坏方块时，客户端线程触发该事件。主要用于床，旗帜，箱子这些根据方块实体数据进行渲染的方块，一般情况下请使用 [ServerPlayerTryDestroyBlockEvent](/docs/docs/scripts/modapi/events/block#serverplayertrydestroyblockevent)。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnPlayerTryDestroyBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
-- args["face"]: int，方块被敲击的面向 id，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxData"]: int，方块附加值。
-- args["playerId"]: str，试图破坏方块的玩家 ID。
-- args["cancel"]: bool，默认为 False，在脚本层设置为 True 就能取消该方块的破坏。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
+| face | int | 方块被敲击的面向 id，参考[Facing 枚举](/docs/docs/scripts/modapi/enums#facing)。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxData | int | 方块附加值。 |
+| playerId | str | 试图破坏方块的玩家 ID。 |
+| cancel | bool | 默认为 False，在脚本层设置为 True 就能取消该方块的破坏。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "PlayerTryDestroyBlockClientEvent",
+            self, self.OnPlayerTryDestroyBlockClientEvent)
+
+    def OnPlayerTryDestroyBlockClientEvent(self, args):
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        face = args["face"]
+        blockName = args["blockName"]
+        auxData = args["auxData"]
+        playerId = args["playerId"]
+        cancel = args["cancel"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1413,20 +2947,52 @@ def OnPlayerTryDestroyBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：自定义方块配置了 netease:block_entity 组件并设 tick 为 true，方块在玩家的模拟距离（新建存档时可以设置，默认为 4 个区块）内，或者在 tickingarea 内的时候触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnServerBlockEntityTickEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，该方块名称。
-- args["dimension"]: int，该方块所在的维度。
-- args["posX"]: int，该方块的 x 坐标。
-- args["posY"]: int，该方块的 y 坐标。
-- args["posZ"]: int，该方块的 z 坐标。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 该方块名称。 |
+| dimension | int | 该方块所在的维度。 |
+| posX | int | 该方块的 x 坐标。 |
+| posY | int | 该方块的 y 坐标。 |
+| posZ | int | 该方块的 z 坐标。 |
 
 **备注**
 
 - 方块实体的 tick 事件频率为每秒钟 20 次。
-- 触发本事件时，若正在退出游戏，将无法获取到抛出本事件的方块实体数据（[GetBlockEntityData](/docs/docs/scripts/modapi/block/block_entity#getblockentitydata) 函数返回 None），也无法对其进行操作。
+- 触发本事件时，若正在退出游戏，将无法获取到抛出本事件的方块实体数据（[GetBlockEntityData](/docs/docs/scripts/modapi/interfaces/block/block_entity#getblockentitydata) 函数返回 None），也无法对其进行操作。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ServerBlockEntityTickEvent",
+            self, self.OnServerBlockEntityTickEvent)
+
+    def OnServerBlockEntityTickEvent(self, args):
+        blockName = args["blockName"]
+        dimension = args["dimension"]
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1436,23 +3002,28 @@ def OnServerBlockEntityTickEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：玩家右键点击新版自定义方块（或者通过接口 AddBlockItemListenForUseEvent 增加监听的 MC 原生游戏方块）时服务端抛出该事件（该事件 tick 执行，需要注意效率问题）。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnServerBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["playerId"]: str，玩家 Id。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["aux"]: int，方块附加值。
-- args["cancel"]: bool，设置为 True 可拦截与方块交互的逻辑。
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
-- args["clickX"]: float，点击点的 x 比例位置。
-- args["clickY"]: float，点击点的 y 比例位置。
-- args["clickZ"]: float，点击点的 z 比例位置。
-- args["face"]: int，点击方块的面，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
-- args["itemDict"]: Dict[str, Any]，使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- args["dimensionId"]: int，维度 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| playerId | str | 玩家 Id。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| aux | int | 方块附加值。 |
+| cancel | bool | 设置为 True 可拦截与方块交互的逻辑。 |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
+| clickX | float | 点击点的 x 比例位置。 |
+| clickY | float | 点击点的 y 比例位置。 |
+| clickZ | float | 点击点的 z 比例位置。 |
+| face | int | 点击方块的面，参考[Facing 枚举](/docs/docs/scripts/modapi/enums#facing)。 |
+| itemDict | Dict[str, Any] | 使用的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。 |
+| dimensionId | int | 维度 id。 |
 
 **备注**
 
@@ -1462,11 +3033,72 @@ def OnServerBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ServerBlockUseEvent",
+            self, self.OnServerBlockUseEvent)
+
+    def OnServerBlockUseEvent(self, args):
+        playerId = args["playerId"]
+        blockName = args["blockName"]
+        aux = args["aux"]
+        cancel = args["cancel"]
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        clickX = args["clickX"]
+        clickY = args["clickY"]
+        clickZ = args["clickZ"]
+        face = args["face"]
+        itemDict = args["itemDict"]
+        dimensionId = args["dimensionId"]
+```
+
+</TabItem>
+</Tabs>
+
 <Server/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnServerBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ServerBlockUseEvent",
+            self, self.OnServerBlockUseEvent)
+
+    def OnServerBlockUseEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Server/> BlockUseEventWhiteListComponentServer
 
@@ -1481,7 +3113,9 @@ def OnServerBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
 def OnServerBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。 |
 
 **返回值**：bool，是否增加成功。
 
@@ -1512,7 +3146,9 @@ comp.AddBlockItemListenForUseEvent("minecraft:nether_brick_stairs:2")
 def OnServerBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。 |
 
 **返回值**：bool，是否移除成功。
 
@@ -1566,22 +3202,27 @@ comp.ClearAllListenForBlockUseEventItems()
 
 触发时机：当生物试图放置方块时触发该事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnServerEntityTryPlaceBlockEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["x"]: int，方块 x 坐标,支持修改。
-- args["y"]: int，方块 y 坐标,支持修改。
-- args["z"]: int，方块 z 坐标,支持修改。
-- args["fullName"]: str，方块的 identifier，包含命名空间及名称,支持修改。
-- args["auxData"]: int，方块附加值,支持修改。
-- args["entityId"]: str，试图放置方块的生物 ID。
-- args["dimensionId"]: int，维度 id。
-- args["face"]: int，点击方块的面，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
-- args["cancel"]: bool，默认为 False，在脚本层设置为 True 就能取消该方块的放置。
-- args["clickX"]: float，点击点的 x 比例位置。
-- args["clickY"]: float，点击点的 y 比例位置。
-- args["clickZ"]: float，点击点的 z 比例位置。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| x | int | 方块 x 坐标,支持修改。 |
+| y | int | 方块 y 坐标,支持修改。 |
+| z | int | 方块 z 坐标,支持修改。 |
+| fullName | str | 方块的 identifier，包含命名空间及名称,支持修改。 |
+| auxData | int | 方块附加值,支持修改。 |
+| entityId | str | 试图放置方块的生物 ID。 |
+| dimensionId | int | 维度 id。 |
+| face | int | 点击方块的面，参考[Facing 枚举](/docs/docs/scripts/modapi/enums#facing)。 |
+| cancel | bool | 默认为 False，在脚本层设置为 True 就能取消该方块的放置。 |
+| clickX | float | 点击点的 x 比例位置。 |
+| clickY | float | 点击点的 y 比例位置。 |
+| clickZ | float | 点击点的 z 比例位置。 |
 
 **备注**
 
@@ -1589,6 +3230,40 @@ def OnServerEntityTryPlaceBlockEvent(self, args: Dict[str, Any]) -> None: ...
 - 修改放置方块信息只对一般方块有效，对一些特殊方块无效，会导致放置取消，特殊方块包括：钟、蜡烛、管珊瑚扇、台阶、青蛙卵、脚手架、海泡菜、顶层雪、睡莲。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ServerEntityTryPlaceBlockEvent",
+            self, self.OnServerEntityTryPlaceBlockEvent)
+
+    def OnServerEntityTryPlaceBlockEvent(self, args):
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        fullName = args["fullName"]
+        auxData = args["auxData"]
+        entityId = args["entityId"]
+        dimensionId = args["dimensionId"]
+        face = args["face"]
+        cancel = args["cancel"]
+        clickX = args["clickX"]
+        clickY = args["clickY"]
+        clickZ = args["clickZ"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1598,15 +3273,47 @@ def OnServerEntityTryPlaceBlockEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：手动放置或通过接口创建含自定义方块实体的方块时触发，此时可向该方块实体中存放数据。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnServerPlaceBlockEntityEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，该方块名称。
-- args["dimension"]: int，该方块所在的维度。
-- args["posX"]: int，该方块的 x 坐标。
-- args["posY"]: int，该方块的 y 坐标。
-- args["posZ"]: int，该方块的 z 坐标。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 该方块名称。 |
+| dimension | int | 该方块所在的维度。 |
+| posX | int | 该方块的 x 坐标。 |
+| posY | int | 该方块的 y 坐标。 |
+| posZ | int | 该方块的 z 坐标。 |
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ServerPlaceBlockEntityEvent",
+            self, self.OnServerPlaceBlockEntityEvent)
+
+    def OnServerPlaceBlockEntityEvent(self, args):
+        blockName = args["blockName"]
+        dimension = args["dimension"]
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1616,20 +3323,25 @@ def OnServerPlaceBlockEntityEvent(self, args: Dict[str, Any]) -> None: ...
 
 当玩家即将破坏方块时，服务端线程触发该事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnServerPlayerTryDestroyBlockEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["x"]: int，方块 x 坐标。
-- args["y"]: int，方块 y 坐标。
-- args["z"]: int，方块 z 坐标。
-- args["face"]: int，方块被敲击的面向 id，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
-- args["fullName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxData"]: int，方块附加值。
-- args["playerId"]: str，试图破坏方块的玩家 ID。
-- args["dimensionId"]: int，维度 id。
-- args["cancel"]: bool，默认为 False，在脚本层设置为 True 就能取消该方块的破坏。
-- args["spawnResources"]: bool，是否生成掉落物，默认为 True，在脚本层设置为 False 就能取消生成掉落物。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| x | int | 方块 x 坐标。 |
+| y | int | 方块 y 坐标。 |
+| z | int | 方块 z 坐标。 |
+| face | int | 方块被敲击的面向 id，参考[Facing 枚举](/docs/docs/scripts/modapi/enums#facing)。 |
+| fullName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxData | int | 方块附加值。 |
+| playerId | str | 试图破坏方块的玩家 ID。 |
+| dimensionId | int | 维度 id。 |
+| cancel | bool | 默认为 False，在脚本层设置为 True 就能取消该方块的破坏。 |
+| spawnResources | bool | 是否生成掉落物，默认为 True，在脚本层设置为 False 就能取消生成掉落物。 |
 
 **备注**
 
@@ -1639,6 +3351,38 @@ def OnServerPlayerTryDestroyBlockEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ServerPlayerTryDestroyBlockEvent",
+            self, self.OnServerPlayerTryDestroyBlockEvent)
+
+    def OnServerPlayerTryDestroyBlockEvent(self, args):
+        x = args["x"]
+        y = args["y"]
+        z = args["z"]
+        face = args["face"]
+        fullName = args["fullName"]
+        auxData = args["auxData"]
+        playerId = args["playerId"]
+        dimensionId = args["dimensionId"]
+        cancel = args["cancel"]
+        spawnResources = args["spawnResources"]
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### ShearsDestoryBlockBeforeClientEvent
@@ -1647,26 +3391,63 @@ def OnServerPlayerTryDestroyBlockEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：玩家手持剪刀破坏方块时，有剪刀特殊效果的方块会在客户端线程触发该事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnShearsDestoryBlockBeforeClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockX"]: int，方块位置 x。
-- args["blockY"]: int，方块位置 y。
-- args["blockZ"]: int，方块位置 z。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxData"]: int，方块附加值。
-- args["dropName"]: str，触发剪刀效果的掉落物 identifier，包含命名空间及名称。
-- args["dropCount"]: int，触发剪刀效果的掉落物数量。
-- args["playerId"]: str，触发剪刀效果的玩家 id。
-- args["dimensionId"]: int，玩家触发时的维度 id。
-- args["cancelShears"]: bool，是否取消剪刀效果。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockX | int | 方块位置 x。 |
+| blockY | int | 方块位置 y。 |
+| blockZ | int | 方块位置 z。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxData | int | 方块附加值。 |
+| dropName | str | 触发剪刀效果的掉落物 identifier，包含命名空间及名称。 |
+| dropCount | int | 触发剪刀效果的掉落物数量。 |
+| playerId | str | 触发剪刀效果的玩家 id。 |
+| dimensionId | int | 玩家触发时的维度 id。 |
+| cancelShears | bool | 是否取消剪刀效果。 |
 
 **备注**
 
 - 目前仅绊线会触发，需要取消剪刀效果得配合 [ShearsDestoryBlockBeforeServerEvent](/docs/docs/scripts/modapi/events/block#shearsdestoryblockbeforeserverevent) 同时使用。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "ShearsDestoryBlockBeforeClientEvent",
+            self, self.OnShearsDestoryBlockBeforeClientEvent)
+
+    def OnShearsDestoryBlockBeforeClientEvent(self, args):
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        blockName = args["blockName"]
+        auxData = args["auxData"]
+        dropName = args["dropName"]
+        dropCount = args["dropCount"]
+        playerId = args["playerId"]
+        dimensionId = args["dimensionId"]
+        cancelShears = args["cancelShears"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1676,20 +3457,25 @@ def OnShearsDestoryBlockBeforeClientEvent(self, args: Dict[str, Any]) -> None: .
 
 触发时机：玩家手持剪刀破坏方块时，有剪刀特殊效果的方块会在服务端线程触发该事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnShearsDestoryBlockBeforeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockX"]: int，方块位置 x。
-- args["blockY"]: int，方块位置 y。
-- args["blockZ"]: int，方块位置 z。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxData"]: int，方块附加值。
-- args["dropName"]: str，触发剪刀效果的掉落物 identifier，包含命名空间及名称。
-- args["dropCount"]: int，触发剪刀效果的掉落物数量。
-- args["playerId"]: str，触发剪刀效果的玩家 id。
-- args["dimensionId"]: int，玩家触发时的维度 id。
-- args["cancelShears"]: bool，是否取消剪刀效果。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockX | int | 方块位置 x。 |
+| blockY | int | 方块位置 y。 |
+| blockZ | int | 方块位置 z。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxData | int | 方块附加值。 |
+| dropName | str | 触发剪刀效果的掉落物 identifier，包含命名空间及名称。 |
+| dropCount | int | 触发剪刀效果的掉落物数量。 |
+| playerId | str | 触发剪刀效果的玩家 id。 |
+| dimensionId | int | 玩家触发时的维度 id。 |
+| cancelShears | bool | 是否取消剪刀效果。 |
 
 **备注**
 
@@ -1699,6 +3485,38 @@ def OnShearsDestoryBlockBeforeServerEvent(self, args: Dict[str, Any]) -> None: .
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ShearsDestoryBlockBeforeServerEvent",
+            self, self.OnShearsDestoryBlockBeforeServerEvent)
+
+    def OnShearsDestoryBlockBeforeServerEvent(self, args):
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        blockName = args["blockName"]
+        auxData = args["auxData"]
+        dropName = args["dropName"]
+        dropCount = args["dropCount"]
+        playerId = args["playerId"]
+        dimensionId = args["dimensionId"]
+        cancelShears = args["cancelShears"]
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### StartDestroyBlockClientEvent
@@ -1707,22 +3525,55 @@ def OnShearsDestoryBlockBeforeServerEvent(self, args: Dict[str, Any]) -> None: .
 
 玩家开始挖方块时触发。创造模式下不触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnStartDestroyBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["pos"]: Tuple[float, float, float]，方块的坐标。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxValue"]: int，方块的附加值。
-- args["playerId"]: str，玩家 id。
-- args["cancel"]: bool，修改为 True 时，可阻止玩家进入挖方块的状态。需要与 [StartDestroyBlockServerEvent](/docs/docs/scripts/modapi/events/block#startdestroyblockserverevent) 一起修改。
-- args["face"]: int，方块被敲击面,参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| pos | Tuple[float, float, float] | 方块的坐标。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxValue | int | 方块的附加值。 |
+| playerId | str | 玩家 id。 |
+| cancel | bool | 修改为 True 时，可阻止玩家进入挖方块的状态。需要与 [StartDestroyBlockServerEvent](/docs/docs/scripts/modapi/events/block#startdestroyblockserverevent) 一起修改。 |
+| face | int | 方块被敲击面,参考[Facing 枚举](/docs/docs/scripts/modapi/enums#facing)。 |
 
 **备注**
 
 - 如果是隔着火焰挖方块，即使将该事件 cancel 掉，火焰也会被扑灭。如果要阻止火焰扑灭，需要配合 [ExtinguishFireClientEvent](/docs/docs/scripts/modapi/events/player#extinguishfireclientevent) 使用。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "StartDestroyBlockClientEvent",
+            self, self.OnStartDestroyBlockClientEvent)
+
+    def OnStartDestroyBlockClientEvent(self, args):
+        pos = args["pos"]
+        blockName = args["blockName"]
+        auxValue = args["auxValue"]
+        playerId = args["playerId"]
+        cancel = args["cancel"]
+        face = args["face"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1732,17 +3583,22 @@ def OnStartDestroyBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 玩家开始挖方块时触发。创造模式下不触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnStartDestroyBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["pos"]: Tuple[float, float, float]，方块的坐标。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["auxValue"]: int，方块的附加值。
-- args["playerId"]: str，玩家 id。
-- args["dimensionId"]: int，维度 id。
-- args["cancel"]: bool，修改为 True 时，可阻止玩家进入挖方块的状态。需要与 [StartDestroyBlockClientEvent](/docs/docs/scripts/modapi/events/block#startdestroyblockclientevent) 一起修改。
-- args["face"]: int，方块被敲击面,参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| pos | Tuple[float, float, float] | 方块的坐标。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| auxValue | int | 方块的附加值。 |
+| playerId | str | 玩家 id。 |
+| dimensionId | int | 维度 id。 |
+| cancel | bool | 修改为 True 时，可阻止玩家进入挖方块的状态。需要与 [StartDestroyBlockClientEvent](/docs/docs/scripts/modapi/events/block#startdestroyblockclientevent) 一起修改。 |
+| face | int | 方块被敲击面,参考[Facing 枚举](/docs/docs/scripts/modapi/enums#facing)。 |
 
 **备注**
 
@@ -1752,6 +3608,35 @@ def OnStartDestroyBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "StartDestroyBlockServerEvent",
+            self, self.OnStartDestroyBlockServerEvent)
+
+    def OnStartDestroyBlockServerEvent(self, args):
+        pos = args["pos"]
+        blockName = args["blockName"]
+        auxValue = args["auxValue"]
+        playerId = args["playerId"]
+        dimensionId = args["dimensionId"]
+        cancel = args["cancel"]
+        face = args["face"]
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### StepOffBlockClientEvent
@@ -1760,16 +3645,21 @@ def OnStartDestroyBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：实体移动离开一个实心方块时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnStepOffBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockX"]: int，方块 x 坐标。
-- args["blockY"]: int，方块 y 坐标。
-- args["blockZ"]: int，方块 z 坐标。
-- args["entityId"]: str，触发的 entity 的唯一 ID。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["dimensionId"]: int，维度 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockX | int | 方块 x 坐标。 |
+| blockY | int | 方块 y 坐标。 |
+| blockZ | int | 方块 z 坐标。 |
+| entityId | str | 触发的 entity 的唯一 ID。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| dimensionId | int | 维度 id。 |
 
 **备注**
 
@@ -1778,11 +3668,65 @@ def OnStepOffBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "StepOffBlockClientEvent",
+            self, self.OnStepOffBlockClientEvent)
+
+    def OnStepOffBlockClientEvent(self, args):
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        entityId = args["entityId"]
+        blockName = args["blockName"]
+        dimensionId = args["dimensionId"]
+```
+
+</TabItem>
+</Tabs>
+
 <Client/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnStepOffBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "StepOffBlockClientEvent",
+            self, self.OnStepOffBlockClientEvent)
+
+    def OnStepOffBlockClientEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Client/> BlockInfoComponentClient
 
@@ -1797,7 +3741,9 @@ def OnStepOffBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 def OnStepOffBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否注册成功。
 
@@ -1831,7 +3777,9 @@ comp.RegisterOnStepOff("minecraft:redstone_ore")
 def OnStepOffBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否删除成功。
 
@@ -1859,16 +3807,21 @@ comp.UnRegisterOnStepOff("minecraft:redstone_ore")
 
 触发时机：实体移动离开一个实心方块时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnStepOffBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockX"]: int，方块 x 坐标。
-- args["blockY"]: int，方块 y 坐标。
-- args["blockZ"]: int，方块 z 坐标。
-- args["entityId"]: str，触发的 entity 的唯一 ID。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["dimensionId"]: int，维度 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockX | int | 方块 x 坐标。 |
+| blockY | int | 方块 y 坐标。 |
+| blockZ | int | 方块 z 坐标。 |
+| entityId | str | 触发的 entity 的唯一 ID。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| dimensionId | int | 维度 id。 |
 
 **备注**
 
@@ -1877,11 +3830,65 @@ def OnStepOffBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "StepOffBlockServerEvent",
+            self, self.OnStepOffBlockServerEvent)
+
+    def OnStepOffBlockServerEvent(self, args):
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        entityId = args["entityId"]
+        blockName = args["blockName"]
+        dimensionId = args["dimensionId"]
+```
+
+</TabItem>
+</Tabs>
+
 <Server/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnStepOffBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "StepOffBlockServerEvent",
+            self, self.OnStepOffBlockServerEvent)
+
+    def OnStepOffBlockServerEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Server/> BlockInfoComponentServer
 
@@ -1896,7 +3903,9 @@ def OnStepOffBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 def OnStepOffBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否注册成功。
 
@@ -1931,7 +3940,9 @@ comp.RegisterOnStepOff("minecraft:redstone_ore")
 def OnStepOffBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否删除成功。
 
@@ -1960,17 +3971,22 @@ comp.UnRegisterOnStepOff("minecraft:redstone_ore")
 
 触发时机：实体刚移动至一个新实心方块时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnStepOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["cancel"]: bool，是否允许触发，默认为 False，若设为 True，可阻止触发后续原版逻辑。
-- args["blockX"]: int，方块 x 坐标。
-- args["blockY"]: int，方块 y 坐标。
-- args["blockZ"]: int，方块 z 坐标。
-- args["entityId"]: str，触发的 entity 的唯一 ID。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["dimensionId"]: int，维度 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| cancel | bool | 是否允许触发，默认为 False，若设为 True，可阻止触发后续原版逻辑。 |
+| blockX | int | 方块 x 坐标。 |
+| blockY | int | 方块 y 坐标。 |
+| blockZ | int | 方块 z 坐标。 |
+| entityId | str | 触发的 entity 的唯一 ID。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| dimensionId | int | 维度 id。 |
 
 **备注**
 
@@ -1981,11 +3997,66 @@ def OnStepOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "StepOnBlockClientEvent",
+            self, self.OnStepOnBlockClientEvent)
+
+    def OnStepOnBlockClientEvent(self, args):
+        cancel = args["cancel"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        entityId = args["entityId"]
+        blockName = args["blockName"]
+        dimensionId = args["dimensionId"]
+```
+
+</TabItem>
+</Tabs>
+
 <Client/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnStepOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "StepOnBlockClientEvent",
+            self, self.OnStepOnBlockClientEvent)
+
+    def OnStepOnBlockClientEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Client/> BlockInfoComponentClient
 
@@ -2000,7 +4071,9 @@ def OnStepOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 def OnStepOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否注册成功。
 
@@ -2033,7 +4106,9 @@ comp.RegisterOnStepOn("minecraft:redstone_ore")
 def OnStepOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否删除成功。
 
@@ -2061,17 +4136,22 @@ comp.UnRegisterOnStepOn("minecraft:redstone_ore")
 
 触发时机：实体刚移动至一个新实心方块时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnStepOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["cancel"]: bool，是否允许触发，默认为 False，若设为 True，可阻止触发后续物理交互事件。
-- args["blockX"]: int，方块 x 坐标。
-- args["blockY"]: int，方块 y 坐标。
-- args["blockZ"]: int，方块 z 坐标。
-- args["entityId"]: str，触发的 entity 的唯一 ID。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["dimensionId"]: int，维度 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| cancel | bool | 是否允许触发，默认为 False，若设为 True，可阻止触发后续物理交互事件。 |
+| blockX | int | 方块 x 坐标。 |
+| blockY | int | 方块 y 坐标。 |
+| blockZ | int | 方块 z 坐标。 |
+| entityId | str | 触发的 entity 的唯一 ID。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| dimensionId | int | 维度 id。 |
 
 **备注**
 
@@ -2082,11 +4162,66 @@ def OnStepOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "StepOnBlockServerEvent",
+            self, self.OnStepOnBlockServerEvent)
+
+    def OnStepOnBlockServerEvent(self, args):
+        cancel = args["cancel"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        entityId = args["entityId"]
+        blockName = args["blockName"]
+        dimensionId = args["dimensionId"]
+```
+
+</TabItem>
+</Tabs>
+
 <Server/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnStepOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "StepOnBlockServerEvent",
+            self, self.OnStepOnBlockServerEvent)
+
+    def OnStepOnBlockServerEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Server/> BlockInfoComponentServer
 
@@ -2101,7 +4236,9 @@ def OnStepOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 def OnStepOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否注册成功。
 
@@ -2135,7 +4272,9 @@ comp.RegisterOnStepOn("minecraft:redstone_ore")
 def OnStepOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["blockName"]: str，方块标识符，包含命名空间，如 minecraft:grass。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
 
 **返回值**：bool，是否删除成功。
 

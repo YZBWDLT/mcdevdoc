@@ -699,7 +699,6 @@ execute if score tick time matches 20.. run scoreboard players remove tick time 
 - 首先可以看到函数的门槛比较高，因为要使用附加包，而附加包通常需要文件管理、以及 JSON 语法的基础，这就要求我们打好这些基础，才能较好地应用它们；
 - 此外，函数在延时执行、条件执行等方面上有时并没有命令方块来得方便；
     - 对于延时执行问题，我们通常采取的方案是利用记分板计时器，就是令<FileType type="file" name="tick.json" />执行一个计时器文件（或者令<FileType type="file" name="tick.json" />执行一个主文件，再由主文件执行一个计时器文件），在需要的时候使这个计时器循环执行，通过加减变量的分值（我个人常使用`time.timeline`这个变量）和变量的检测来执行延时命令。例如：
-        <!--markdownlint-disable MD031-->
         ```mcfunction showLineNumbers title="main.mcfunction"
         scoreboard players add timeline time 1
         execute if score timeline time matches 20 run say 这是第一秒！

@@ -90,7 +90,7 @@ import Version from "/src/components/highlight/version"
 
 实体版本（Entity Version）用于自动更新世界中已存在的实体。
 
-在引入实体版本之前，修改实体定义后，先前存在于世界中的实体仍保留修改之前的行为。开发者只能借助[`minecraft:environment_sensor`](./components#minecraftenvironment_sensor)与一个布尔属性逐刻轮询，才能把旧实体迁移到新的定义上——既带来每刻开销，也让定义文件中混入大量迁移逻辑。
+在引入实体版本之前，修改实体定义后，先前存在于世界中的实体仍保留修改之前的行为。开发者只能借助[`minecraft:environment_sensor`](./components/sensors#minecraftenvironment_sensor)与一个布尔属性逐刻轮询，才能把旧实体迁移到新的定义上——既带来每刻开销，也让定义文件中混入大量迁移逻辑。
 
 实体版本用一串连续的整数记录实体已经历的升级步骤，游戏在加载存档时自动补跑缺失的步骤，使实体总处于最新的状态下。
 
@@ -351,7 +351,7 @@ import Version from "/src/components/highlight/version"
 
 事件名不由`sounds.json`决定。引擎在某个时机（受伤、死亡、落地等）发出一个事件名，再按这个名称到`sounds.json`中查表，查到才播放。因此这些时机只能使用引擎内置的事件名；自定义的名称写入表中不会被自动播放，除非有某个字段显式要求播放它。
 
-数据驱动侧唯一能自行指定事件名的地方是[`minecraft:ambient_sound_interval`](./components#minecraftambient_sound_interval)的`event_name`与`event_names`。把自定义的事件名填进这两个字段，环境音计时器到点时会按该名称查表：[^3]
+数据驱动侧唯一能自行指定事件名的地方是[`minecraft:ambient_sound_interval`](./components/functional#minecraftambient_sound_interval)的`event_name`与`event_names`。把自定义的事件名填进这两个字段，环境音计时器到点时会按该名称查表：[^3]
 
 ```json showLineNumbers title="行为包中的实体定义，节选"
 "minecraft:ambient_sound_interval": {

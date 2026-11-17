@@ -10,6 +10,7 @@ import '/src/css/treeview.css';
 import FileType from "/src/components/type/file"
 import DataType from "/src/components/type/data"
 import Image from "/src/components/image/standard"
+import Version from "/src/components/highlight/version"
 
 > 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
@@ -70,7 +71,8 @@ import Image from "/src/components/image/standard"
         - <DataType type="object" name="gui"/>：如何显示在物品栏等 GUI 内。可写入的参数比<DataType type="object" name="thirdperson_righthand"/>多出一个。
           - <DataType type="boolean" name="fit_to_frame"/>
         - <DataType type="object" name="head"/>：如何显示在玩家的头上。可写入的参数与<DataType type="object" name="thirdperson_righthand"/>一致。
-        - <DataType type="object" name="fixed"/>：如何显示在展示框上。可写入的参数与<DataType type="object" name="thirdperson_righthand"/>一致。
+        - <DataType type="object" name="fixed"/>：如何显示在物品展示框上。可写入的参数与<DataType type="object" name="thirdperson_righthand"/>一致。
+        - <DataType type="object" name="shelf"/>：<Version add="1.26.40" inline/>如何显示在书架方块上。可写入的参数与<DataType type="object" name="thirdperson_righthand"/>一致。格式版本低于`1.26.40`时沿用`fixed`的值。
 </treeview>
 
 <details>

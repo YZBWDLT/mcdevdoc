@@ -1,7 +1,8 @@
 import React from "react";
 
-// 与下拉框用同一张像素箭头，展开时旋转 180° 变成「∧」
-const CHEVRON_SRC = require("@site/static/ui/dropdown_drop.png").default;
+// 与下拉框用同一张像素箭头，展开时旋转 180° 变成「∧」。
+// 用浅色版（#c6c7c9）：原来那张是纯黑，压在深底上几乎看不见
+const CHEVRON_SRC = require("@site/static/ui/chevron.png").default;
 
 /**
  * OreUI 折叠栏（用于详情 / FAQ）。

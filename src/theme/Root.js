@@ -70,10 +70,58 @@ function PreferenceManager() {
     return null;
 }
 
+// ================================================================
+// 滚动桥（ScrollBridge）
+// ---------------------------------------------------------------
+// 站点把滚动容器换成了 #__docusaurus（html/body 是 overflow: clip），
+// 而主题的「回到顶部」按钮是靠 window 的滚动位置决定显示、靠 window.scrollTo 回顶 ——
+// 在这套结构里它永远不会出现，点了也不会动。
+// 这里补两件事：
+//   1. 监听容器的滚动，往 <html> 挂 data-scrolled="on|off"，按钮的显隐交给 CSS；
+//   2. 在捕获阶段接管按钮的点击，改成滚容器。
+// ================================================================
+function ScrollBridge() {
+    const isBrowser = useIsBrowser();
+
+    useEffect(() => {
+        if (!isBrowser) return undefined;
+
+        const container = document.getElementById("__docusaurus");
+        if (!container) return undefined;
+
+        const sync = () => {
+            document.documentElement.dataset.scrolled = container.scrollTop > 400 ? "on" : "off";
+        };
+
+        const handleClick = event => {
+            const target = event.target;
+            if (!(target instanceof Element)) return;
+            const button = target.closest(".theme-back-to-top-button");
+            if (!button) return;
+            // 主题的处理器是滚 window，这里拦掉，改成滚我们的容器
+            event.preventDefault();
+            event.stopPropagation();
+            container.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
+        container.addEventListener("scroll", sync, { passive: true });
+        document.addEventListener("click", handleClick, true);
+        sync();
+
+        return () => {
+            container.removeEventListener("scroll", sync);
+            document.removeEventListener("click", handleClick, true);
+        };
+    }, [isBrowser]);
+
+    return null;
+}
+
 export default function Root({ children }) {
     return (
         <>
             <PreferenceManager />
+            <ScrollBridge />
             {children}
             <OverlayScrollbar />
         </>

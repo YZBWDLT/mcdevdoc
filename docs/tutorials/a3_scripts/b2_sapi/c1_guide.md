@@ -581,8 +581,6 @@ npm i @minecraft/server-ui
 
 现在我们正式开始练习吧。越到后面的题目，我们越会面对更加复杂的需求！
 
-<!--markdownlint-disable MD031-->
-
 1. 实现**玩家**死亡执行命令`function events/player_die`——但是注意，这回不要用循环代码！读者可以尝试使用实体死亡后事件，并且注意`Entity`类有`runCommand`方法。
 2. 让 TNT 除了能炸掉玻璃之外，其他一切方块都炸不掉！读者可以考虑使用爆炸前事件。
 3. 让玩家在吃掉苹果之后，增加 1 级的经验。读者可以考虑使用完成使用物品后事件。
@@ -998,7 +996,7 @@ npm i @minecraft/server-ui
          * @param {number} max
          */
         static randomInt(min, max) {
-            return Math.floor(Math.random() * (max - min)) + min;
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
     }
 

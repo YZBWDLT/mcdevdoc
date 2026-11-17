@@ -24,17 +24,49 @@ import Client from '/src/components/highlight/client';
 
 触发时机：生物（包括玩家）受伤时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnActorHurtServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，生物 Id。
-- args["cause"]: str，伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](https://mc.163.com/newdev/docs/api/meijuzhi/ActorDamageCause.html)。
-- args["damage"]: float，伤害值（被伤害吸收后的值），不可修改。
-- args["absorbedDamage"]: int，被伤害吸收效果吸收的伤害值。
-- args["customTag"]: str，使用[Hurt 接口](https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html#hurt)传入的自定义伤害类型。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 生物 Id。 |
+| cause | str | 伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](/docs/docs/scripts/modapi/enums#actordamagecause)。 |
+| damage | float | 伤害值（被伤害吸收后的值），不可修改。 |
+| absorbedDamage | int | 被伤害吸收效果吸收的伤害值。 |
+| customTag | str | 使用[Hurt 接口](https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html#hurt)传入的自定义伤害类型。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ActorHurtServerEvent",
+            self, self.OnActorHurtServerEvent)
+
+    def OnActorHurtServerEvent(self, args):
+        entityId = args["entityId"]
+        cause = args["cause"]
+        damage = args["damage"]
+        absorbedDamage = args["absorbedDamage"]
+        customTag = args["customTag"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -44,18 +76,23 @@ def OnActorHurtServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 实体实际受到伤害时触发，相比于 [DamageEvent](/docs/docs/scripts/modapi/events/entity#damageevent)，该伤害为经过护甲及 buff 计算后，实际的扣血量。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnActuallyHurtServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["srcId"]: str，伤害源 id。
-- args["projectileId"]: str，投射物 id。
-- args["entityId"]: str，被伤害 id。
-- args["damage"]: float，伤害值（被伤害吸收后的值），允许修改，设置为 0 则此次造成的伤害为 0，若设置数值和原来一样则视为没有修改。
-- args["invulnerableTime"]: int，实体受击后，剩余的无懈可击帧数，在无懈可击时间内，damage 和 damage_f 为超过上次伤害的部分。
-- args["lastHurt"]: float，实体上次受到的伤害。
-- args["cause"]: str，伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](https://mc.163.com/newdev/docs/api/meijuzhi/ActorDamageCause.html)。
-- args["customTag"]: str，使用[Hurt 接口](https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html#hurt)传入的自定义伤害类型。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| srcId | str | 伤害源 id。 |
+| projectileId | str | 投射物 id。 |
+| entityId | str | 被伤害 id。 |
+| damage | float | 伤害值（被伤害吸收后的值），允许修改，设置为 0 则此次造成的伤害为 0，若设置数值和原来一样则视为没有修改。 |
+| invulnerableTime | int | 实体受击后，剩余的无懈可击帧数，在无懈可击时间内，damage 和 damage_f 为超过上次伤害的部分。 |
+| lastHurt | float | 实体上次受到的伤害。 |
+| cause | str | 伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](/docs/docs/scripts/modapi/enums#actordamagecause)。 |
+| customTag | str | 使用[Hurt 接口](https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html#hurt)传入的自定义伤害类型。 |
 
 **备注**
 
@@ -63,9 +100,39 @@ def OnActuallyHurtServerEvent(self, args: Dict[str, Any]) -> None: ...
 - 为了游戏运行效率请尽可能避免将火的伤害设置为 0，因为这样会导致大量触发该事件。
 - 若要修改 damage 的值，请确保修改后的值与原值不同，且支持转换为浮点型，否则引擎会忽略这次修改。
 - 青蛙、山羊跳跃落地时也会触发此伤害事件，但它们的掉落伤害实际会有减免，青蛙减少 5，山羊减少 10。
-- 在无懈可击时间内，只要实体受到高于上次受击的伤害，可以连续触发不受 [SetHurtCD](/docs/docs/scripts/modapi/world/game_rules#sethurtcd) 影响，如实体连续受到 1 伤害，如果在本事件中修改 damage 为 0.5，则引擎会认为每次都有 0.5 的溢出伤害，可以通过 invulnerableTime 和 lastHurt 来判断是否取消这次伤害。
+- 在无懈可击时间内，只要实体受到高于上次受击的伤害，可以连续触发不受 [SetHurtCD](/docs/docs/scripts/modapi/interfaces/world/game_rules#sethurtcd) 影响，如实体连续受到 1 伤害，如果在本事件中修改 damage 为 0.5，则引擎会认为每次都有 0.5 的溢出伤害，可以通过 invulnerableTime 和 lastHurt 来判断是否取消这次伤害。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ActuallyHurtServerEvent",
+            self, self.OnActuallyHurtServerEvent)
+
+    def OnActuallyHurtServerEvent(self, args):
+        srcId = args["srcId"]
+        projectileId = args["projectileId"]
+        entityId = args["entityId"]
+        damage = args["damage"]
+        invulnerableTime = args["invulnerableTime"]
+        lastHurt = args["lastHurt"]
+        cause = args["cause"]
+        customTag = args["customTag"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -75,17 +142,49 @@ def OnActuallyHurtServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：实体获得状态效果时。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnAddEffectServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["effectName"]: str，实体获得状态效果的名字。
-- args["effectDuration"]: int，状态效果的持续时间，单位秒。
-- args["effectAmplifier"]: int，状态效果的放大倍数。
-- args["damage"]: float，状态造成的伤害值（真实扣除生命值的量）。只有持续时间为 0 时有用。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| effectName | str | 实体获得状态效果的名字。 |
+| effectDuration | int | 状态效果的持续时间，单位秒。 |
+| effectAmplifier | int | 状态效果的放大倍数。 |
+| damage | float | 状态造成的伤害值（真实扣除生命值的量）。只有持续时间为 0 时有用。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "AddEffectServerEvent",
+            self, self.OnAddEffectServerEvent)
+
+    def OnAddEffectServerEvent(self, args):
+        entityId = args["entityId"]
+        effectName = args["effectName"]
+        effectDuration = args["effectDuration"]
+        effectAmplifier = args["effectAmplifier"]
+        damage = args["damage"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -95,14 +194,43 @@ def OnAddEffectServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 玩家靠近生物时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnApproachEntityClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["playerId"]: str，玩家实体 id。
-- args["entityId"]: str，靠近的生物实体 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| playerId | str | 玩家实体 id。 |
+| entityId | str | 靠近的生物实体 id。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "ApproachEntityClientEvent",
+            self, self.OnApproachEntityClientEvent)
+
+    def OnApproachEntityClientEvent(self, args):
+        playerId = args["playerId"]
+        entityId = args["entityId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -112,19 +240,49 @@ def OnApproachEntityClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：实体开始或者结束游泳时。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnChangeSwimStateServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体的唯一 ID。
-- args["formState"]: bool，事件触发前，实体是否在游泳状态。
-- args["toState"]: bool，事件触发后，实体是否在游泳状态。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体的唯一 ID。 |
+| formState | bool | 事件触发前，实体是否在游泳状态。 |
+| toState | bool | 事件触发后，实体是否在游泳状态。 |
 
 **备注**
 
 - 当实体的状态没有变化时，不会触发此事件，即 formState 和 toState 必定一真一假。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ChangeSwimStateServerEvent",
+            self, self.OnChangeSwimStateServerEvent)
+
+    def OnChangeSwimStateServerEvent(self, args):
+        entityId = args["entityId"]
+        formState = args["formState"]
+        toState = args["toState"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -134,19 +292,24 @@ def OnChangeSwimStateServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 实体受到伤害时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnDamageEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["srcId"]: str，伤害源 id。
-- args["projectileId"]: str，投射物 id。
-- args["entityId"]: str，被伤害 id。
-- args["damage"]: float，伤害值（被伤害吸收前的值），允许修改，设置为 0 则此次造成的伤害为 0。
-- args["absorption"]: int，受到伤害时，扣除黄心前，实体拥有的黄心血量（见[AttrType 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/AttrType.html)的 ABSORPTION）。
-- args["cause"]: str，伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](https://mc.163.com/newdev/docs/api/meijuzhi/ActorDamageCause.html)。
-- args["knock"]: bool，是否击退被攻击者，允许修改，设置该值为 False 则不产生击退。
-- args["ignite"]: bool，是否点燃被伤害者，允许修改，设置该值为 True 产生点燃效果。
-- args["customTag"]: str，使用[Hurt 接口](https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html#hurt)传入的自定义伤害类型。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| srcId | str | 伤害源 id。 |
+| projectileId | str | 投射物 id。 |
+| entityId | str | 被伤害 id。 |
+| damage | float | 伤害值（被伤害吸收前的值），允许修改，设置为 0 则此次造成的伤害为 0。 |
+| absorption | int | 受到伤害时，扣除黄心前，实体拥有的黄心血量（见[AttrType 枚举](/docs/docs/scripts/modapi/enums#attrtype)的 ABSORPTION）。 |
+| cause | str | 伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](/docs/docs/scripts/modapi/enums#actordamagecause)。 |
+| knock | bool | 是否击退被攻击者，允许修改，设置该值为 False 则不产生击退。 |
+| ignite | bool | 是否点燃被伤害者，允许修改，设置该值为 True 产生点燃效果。 |
+| customTag | str | 使用[Hurt 接口](https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html#hurt)传入的自定义伤害类型。 |
 
 **备注**
 
@@ -160,6 +323,37 @@ def OnDamageEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "DamageEvent",
+            self, self.OnDamageEvent)
+
+    def OnDamageEvent(self, args):
+        srcId = args["srcId"]
+        projectileId = args["projectileId"]
+        entityId = args["entityId"]
+        damage = args["damage"]
+        absorption = args["absorption"]
+        cause = args["cause"]
+        knock = args["knock"]
+        ignite = args["ignite"]
+        customTag = args["customTag"]
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### EntityChangeDimensionServerEvent
@@ -168,19 +362,24 @@ def OnDamageEvent(self, args: Dict[str, Any]) -> None: ...
 
 实体维度改变时服务端抛出。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityChangeDimensionServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["fromDimensionId"]: int，维度改变前的维度。
-- args["toDimensionId"]: int，维度改变后的维度。
-- args["fromX"]: float，改变前的位置 x。
-- args["fromY"]: float，改变前的位置 Y。
-- args["fromZ"]: float，改变前的位置 Z。
-- args["toX"]: float，改变后的位置 x。
-- args["toY"]: float，改变后的位置 Y。
-- args["toZ"]: float，改变后的位置 Z。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| fromDimensionId | int | 维度改变前的维度。 |
+| toDimensionId | int | 维度改变后的维度。 |
+| fromX | float | 改变前的位置 x。 |
+| fromY | float | 改变前的位置 Y。 |
+| fromZ | float | 改变前的位置 Z。 |
+| toX | float | 改变后的位置 x。 |
+| toY | float | 改变后的位置 Y。 |
+| toZ | float | 改变后的位置 Z。 |
 
 **备注**
 
@@ -188,6 +387,37 @@ def OnEntityChangeDimensionServerEvent(self, args: Dict[str, Any]) -> None: ...
 - 注意，玩家维度改变时不触发该事件，而是会触发 [DimensionChangeServerEvent](/docs/docs/scripts/modapi/events/player#dimensionchangeserverevent) 事件。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityChangeDimensionServerEvent",
+            self, self.OnEntityChangeDimensionServerEvent)
+
+    def OnEntityChangeDimensionServerEvent(self, args):
+        entityId = args["entityId"]
+        fromDimensionId = args["fromDimensionId"]
+        toDimensionId = args["toDimensionId"]
+        fromX = args["fromX"]
+        fromY = args["fromY"]
+        fromZ = args["fromZ"]
+        toX = args["toX"]
+        toY = args["toY"]
+        toZ = args["toZ"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -197,14 +427,43 @@ def OnEntityChangeDimensionServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：生物定义 json 文件中设置的 event 触发时同时触发。生物行为变更事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityDefinitionsEventServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，生物 id。
-- args["eventName"]: str，触发的事件名称。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 生物 id。 |
+| eventName | str | 触发的事件名称。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityDefinitionsEventServerEvent",
+            self, self.OnEntityDefinitionsEventServerEvent)
+
+    def OnEntityDefinitionsEventServerEvent(self, args):
+        entityId = args["entityId"]
+        eventName = args["eventName"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -214,14 +473,19 @@ def OnEntityDefinitionsEventServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：生物死亡掉落物品之后。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityDieLoottableAfterServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["dieEntityId"]: str，死亡实体的 entityId。
-- args["attacker"]: str，伤害来源的 entityId。
-- args["itemList"]: List[Dict[str, Any]]，掉落物品列表，每个元素为一个 itemDict，格式可参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- args["itemEntityIdList"]: List[str]，掉落物品 entityId 列表。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| dieEntityId | str | 死亡实体的 entityId。 |
+| attacker | str | 伤害来源的 entityId。 |
+| itemList | List[Dict[str, Any]] | 掉落物品列表，每个元素为一个 itemDict，格式可参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。 |
+| itemEntityIdList | List[str] | 掉落物品 entityId 列表。 |
 
 **备注**
 
@@ -231,6 +495,32 @@ def OnEntityDieLoottableAfterServerEvent(self, args: Dict[str, Any]) -> None: ..
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityDieLoottableAfterServerEvent",
+            self, self.OnEntityDieLoottableAfterServerEvent)
+
+    def OnEntityDieLoottableAfterServerEvent(self, args):
+        dieEntityId = args["dieEntityId"]
+        attacker = args["attacker"]
+        itemList = args["itemList"]
+        itemEntityIdList = args["itemEntityIdList"]
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### EntityDieLoottableServerEvent
@@ -239,14 +529,19 @@ def OnEntityDieLoottableAfterServerEvent(self, args: Dict[str, Any]) -> None: ..
 
 触发时机：生物死亡掉落物品时。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityDieLoottableServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["dieEntityId"]: str，死亡实体的 entityId。
-- args["attacker"]: str，伤害来源的 entityId。
-- args["itemList"]: List[Dict[str, Any]]，掉落物品列表，每个元素为一个 itemDict，格式可参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- args["dirty"]: bool，默认为 False，如果需要修改掉落列表需将该值设为 True。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| dieEntityId | str | 死亡实体的 entityId。 |
+| attacker | str | 伤害来源的 entityId。 |
+| itemList | List[Dict[str, Any]] | 掉落物品列表，每个元素为一个 itemDict，格式可参考[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。 |
+| dirty | bool | 默认为 False，如果需要修改掉落列表需将该值设为 True。 |
 
 **备注**
 
@@ -256,6 +551,32 @@ def OnEntityDieLoottableServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityDieLoottableServerEvent",
+            self, self.OnEntityDieLoottableServerEvent)
+
+    def OnEntityDieLoottableServerEvent(self, args):
+        dieEntityId = args["dieEntityId"]
+        attacker = args["attacker"]
+        itemList = args["itemList"]
+        dirty = args["dirty"]
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### EntityDroppedItemServerEvent
@@ -264,15 +585,45 @@ def OnEntityDieLoottableServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：生物扔出物品时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityDroppedItemServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，生物 Id。
-- args["itemDict"]: Dict[str, Any]，扔出的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- args["itemEntityId"]: str，物品实体 Id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 生物 Id。 |
+| itemDict | Dict[str, Any] | 扔出的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。 |
+| itemEntityId | str | 物品实体 Id。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityDroppedItemServerEvent",
+            self, self.OnEntityDroppedItemServerEvent)
+
+    def OnEntityDroppedItemServerEvent(self, args):
+        entityId = args["entityId"]
+        itemDict = args["itemDict"]
+        itemEntityId = args["itemEntityId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -282,19 +633,53 @@ def OnEntityDroppedItemServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 生物受到状态伤害/回复事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityEffectDamageServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["damage"]: float，伤害值（伤害吸收后实际扣血量），负数表示生命回复量。
-- args["attributeBuffType"]: int，状态类型，取值范围 0~12，参考[AttributeBuffType](https://mc.163.com/newdev/docs/api/meijuzhi/AttributeBuffType.html)。
-- args["duration"]: float，状态持续时间，单位秒（s）。
-- args["lifeTimer"]: float，状态生命时间，单位秒（s）。
-- args["isInstantaneous"]: bool，是否为立即生效状态。
-- args["cause"]: str，伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](https://mc.163.com/newdev/docs/api/meijuzhi/ActorDamageCause.html)。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| damage | float | 伤害值（伤害吸收后实际扣血量），负数表示生命回复量。 |
+| attributeBuffType | int | 状态类型，取值范围 0~12，参考[AttributeBuffType](/docs/docs/scripts/modapi/enums#attributebufftype)。 |
+| duration | float | 状态持续时间，单位秒（s）。 |
+| lifeTimer | float | 状态生命时间，单位秒（s）。 |
+| isInstantaneous | bool | 是否为立即生效状态。 |
+| cause | str | 伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](/docs/docs/scripts/modapi/enums#actordamagecause)。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityEffectDamageServerEvent",
+            self, self.OnEntityEffectDamageServerEvent)
+
+    def OnEntityEffectDamageServerEvent(self, args):
+        entityId = args["entityId"]
+        damage = args["damage"]
+        attributeBuffType = args["attributeBuffType"]
+        duration = args["duration"]
+        lifeTimer = args["lifeTimer"]
+        isInstantaneous = args["isInstantaneous"]
+        cause = args["cause"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -304,15 +689,43 @@ def OnEntityEffectDamageServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 数据库加载实体自定义数据时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityLoadScriptEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["args"]: List[Any]，该事件的参数为长度为 2 的 list，而非 dict，其中 list 的第一个元素为实体 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| args | List[Any] | 该事件的参数为长度为 2 的 list，而非 dict，其中 list 的第一个元素为实体 id。 |
 
 **备注**
 
-- 只有使用过 extraData 组件的 [SetExtraData](/docs/docs/scripts/modapi/world/custom_data#setextradata) 接口的实体才有此事件，触发时可以通过 extraData 组件的 [GetExtraData](/docs/docs/scripts/modapi/world/custom_data#getextradata) 或 [GetWholeExtraData](/docs/docs/scripts/modapi/world/custom_data#getwholeextradata) 接口获取该实体的自定义数据。
+- 只有使用过 extraData 组件的 [SetExtraData](/docs/docs/scripts/modapi/interfaces/world/custom_data#setextradata) 接口的实体才有此事件，触发时可以通过 extraData 组件的 [GetExtraData](/docs/docs/scripts/modapi/interfaces/world/custom_data#getextradata) 或 [GetWholeExtraData](/docs/docs/scripts/modapi/interfaces/world/custom_data#getwholeextradata) 接口获取该实体的自定义数据。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityLoadScriptEvent",
+            self, self.OnEntityLoadScriptEvent)
+
+    def OnEntityLoadScriptEvent(self, args):
+        args = args["args"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -322,15 +735,45 @@ def OnEntityLoadScriptEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：实体模型切换时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityModelChangedClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["newModel"]: str，新的模型名字。
-- args["oldModel"]: str，原来的模型名字。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| newModel | str | 新的模型名字。 |
+| oldModel | str | 原来的模型名字。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "EntityModelChangedClientEvent",
+            self, self.OnEntityModelChangedClientEvent)
+
+    def OnEntityModelChangedClientEvent(self, args):
+        entityId = args["entityId"]
+        newModel = args["newModel"]
+        oldModel = args["oldModel"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -340,14 +783,43 @@ def OnEntityModelChangedClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 实体运动器开始事件。实体（包含玩家）添加运动器后，运动器开始运行时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityMotionStartServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["motionId"]: int，运动器 id。
-- args["entityId"]: str，实体 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| motionId | int | 运动器 id。 |
+| entityId | str | 实体 id。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityMotionStartServerEvent",
+            self, self.OnEntityMotionStartServerEvent)
+
+    def OnEntityMotionStartServerEvent(self, args):
+        motionId = args["motionId"]
+        entityId = args["entityId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -357,19 +829,49 @@ def OnEntityMotionStartServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 实体运动器停止事件。实体（包含玩家）添加运动器并开始运行后，运动器自动停止时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityMotionStopServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["motionId"]: int，运动器 id。
-- args["entityId"]: str，实体 id。
-- args["remove"]: bool，是否移除该运动器，设置为 False 则保留，默认为 True，即运动器停止后自动移除，该参数设置只对非玩家实体有效。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| motionId | int | 运动器 id。 |
+| entityId | str | 实体 id。 |
+| remove | bool | 是否移除该运动器，设置为 False 则保留，默认为 True，即运动器停止后自动移除，该参数设置只对非玩家实体有效。 |
 
 **备注**
 
-- 注意：该事件触发表示运动器播放顺利完成，手动调用的 [StopEntityMotion](/docs/docs/scripts/modapi/entity/behavior#stopentitymotion)、[RemoveEntityMotion](/docs/docs/scripts/modapi/entity/behavior#removeentitymotion) 以及实体被销毁导致的运动器停止不会触发该事件。
+- 注意：该事件触发表示运动器播放顺利完成，手动调用的 [StopEntityMotion](/docs/docs/scripts/modapi/interfaces/entity/behavior#stopentitymotion)、[RemoveEntityMotion](/docs/docs/scripts/modapi/interfaces/entity/behavior#removeentitymotion) 以及实体被销毁导致的运动器停止不会触发该事件。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityMotionStopServerEvent",
+            self, self.OnEntityMotionStopServerEvent)
+
+    def OnEntityMotionStopServerEvent(self, args):
+        motionId = args["motionId"]
+        entityId = args["entityId"]
+        remove = args["remove"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -379,15 +881,45 @@ def OnEntityMotionStopServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 有 minecraft:behavior.pickup_items 行为的生物拾取物品时触发该事件，例如村民拾取面包、猪灵拾取金锭。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityPickupItemServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，生物 Id。
-- args["itemDict"]: Dict[str, Any]，拾取的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。
-- args["secondaryActor"]: str，物品给予者 id（一般是玩家），如果不存在给予者的话，这里为空字符串。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 生物 Id。 |
+| itemDict | Dict[str, Any] | 拾取的物品的[物品信息字典](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/10-jibengainian/1-wodeshijiejichugainian.html#物品信息字典#物品信息字典)。 |
+| secondaryActor | str | 物品给予者 id（一般是玩家），如果不存在给予者的话，这里为空字符串。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityPickupItemServerEvent",
+            self, self.OnEntityPickupItemServerEvent)
+
+    def OnEntityPickupItemServerEvent(self, args):
+        entityId = args["entityId"]
+        itemDict = args["itemDict"]
+        secondaryActor = args["secondaryActor"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -397,14 +929,43 @@ def OnEntityPickupItemServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 当实体骑乘上另一个实体时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityStartRidingEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["id"]: str，乘骑者实体 id。
-- args["rideId"]: str，被乘骑者实体 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| id | str | 乘骑者实体 id。 |
+| rideId | str | 被乘骑者实体 id。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityStartRidingEvent",
+            self, self.OnEntityStartRidingEvent)
+
+    def OnEntityStartRidingEvent(self, args):
+        id = args["id"]
+        rideId = args["rideId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -414,43 +975,109 @@ def OnEntityStartRidingEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：当实体停止骑乘时。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityStopRidingEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["id"]: str，实体 id。
-- args["rideId"]: str，坐骑 id。
-- args["exitFromRider"]: bool，是否下坐骑。
-- args["entityIsBeingDestroyed"]: bool，坐骑是否将要销毁。
-- args["switchingRides"]: bool，是否换乘坐骑。
-- args["cancel"]: bool，设置为 True 可以取消（需要与客户端事件一同取消）。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| id | str | 实体 id。 |
+| rideId | str | 坐骑 id。 |
+| exitFromRider | bool | 是否下坐骑。 |
+| entityIsBeingDestroyed | bool | 坐骑是否将要销毁。 |
+| switchingRides | bool | 是否换乘坐骑。 |
+| cancel | bool | 设置为 True 可以取消（需要与客户端事件一同取消）。 |
 
 **备注**
 
-- 以下情况不允许取消 ride 组件 [StopEntityRiding](/docs/docs/scripts/modapi/entity/behavior#stopentityriding) 接口玩家传送时坐骑死亡时玩家睡觉时玩家死亡时未驯服的马怕水的生物坐骑进入水里切换维度。
+- 以下情况不允许取消 ride 组件 [StopEntityRiding](/docs/docs/scripts/modapi/interfaces/entity/behavior#stopentityriding) 接口玩家传送时坐骑死亡时玩家睡觉时玩家死亡时未驯服的马怕水的生物坐骑进入水里切换维度。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityStopRidingEvent",
+            self, self.OnEntityStopRidingEvent)
+
+    def OnEntityStopRidingEvent(self, args):
+        id = args["id"]
+        rideId = args["rideId"]
+        exitFromRider = args["exitFromRider"]
+        entityIsBeingDestroyed = args["entityIsBeingDestroyed"]
+        switchingRides = args["switchingRides"]
+        cancel = args["cancel"]
+```
+
+</TabItem>
+</Tabs>
 
 <Client/>
 
 触发时机：当实体停止骑乘时。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityStopRidingEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["id"]: str，实体 id。
-- args["rideId"]: str，坐骑 id。
-- args["exitFromRider"]: bool，是否下坐骑。
-- args["entityIsBeingDestroyed"]: bool，坐骑是否将要销毁。
-- args["switchingRides"]: bool，是否换乘坐骑。
-- args["cancel"]: bool，设置为 True 可以取消（需要与服务端事件一同取消）。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| id | str | 实体 id。 |
+| rideId | str | 坐骑 id。 |
+| exitFromRider | bool | 是否下坐骑。 |
+| entityIsBeingDestroyed | bool | 坐骑是否将要销毁。 |
+| switchingRides | bool | 是否换乘坐骑。 |
+| cancel | bool | 设置为 True 可以取消（需要与服务端事件一同取消）。 |
 
 **备注**
 
-- 以下情况不允许取消 ride 组件 [StopEntityRiding](/docs/docs/scripts/modapi/entity/behavior#stopentityriding) 接口玩家传送时坐骑死亡时玩家睡觉时玩家死亡时未驯服的马怕水的生物坐骑进入水里切换维度。
+- 以下情况不允许取消 ride 组件 [StopEntityRiding](/docs/docs/scripts/modapi/interfaces/entity/behavior#stopentityriding) 接口玩家传送时坐骑死亡时玩家睡觉时玩家死亡时未驯服的马怕水的生物坐骑进入水里切换维度。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "EntityStopRidingEvent",
+            self, self.OnEntityStopRidingEvent)
+
+    def OnEntityStopRidingEvent(self, args):
+        id = args["id"]
+        rideId = args["rideId"]
+        exitFromRider = args["exitFromRider"]
+        entityIsBeingDestroyed = args["entityIsBeingDestroyed"]
+        switchingRides = args["switchingRides"]
+        cancel = args["cancel"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -460,20 +1087,75 @@ def OnEntityStopRidingEvent(self, args: Dict[str, Any]) -> None: ...
 
 实体 tick 时触发。该事件为 20 帧每秒。需要使用 AddEntityTickEventWhiteList 添加触发该事件的实体类型白名单。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnEntityTickServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["identifier"]: str，实体 identifier。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| identifier | str | 实体 identifier。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityTickServerEvent",
+            self, self.OnEntityTickServerEvent)
+
+    def OnEntityTickServerEvent(self, args):
+        entityId = args["entityId"]
+        identifier = args["identifier"]
+```
+
+</TabItem>
+</Tabs>
+
 <Server/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnEntityTickServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "EntityTickServerEvent",
+            self, self.OnEntityTickServerEvent)
+
+    def OnEntityTickServerEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Server/>
 
@@ -488,7 +1170,9 @@ def OnEntityTickServerEvent(self, args: Dict[str, Any]) -> None: ...
 def OnEntityTickServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["identifier"]: str，实体的类型名，原版的实体需要加上 minecraft 命名空间。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| identifier | str | 实体的类型名，原版的实体需要加上 minecraft 命名空间。 |
 
 **返回值**：bool，是否成功。
 
@@ -512,17 +1196,49 @@ serverApi.AddEntityTickEventWhiteList('minecraft:cow')
 
 生物生命值或最大生命值发生变化之前触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnHealthChangeBeforeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["from"]: float，变化前的生命值。
-- args["to"]: float，将要变化到的生命值，cancel 设置为 True 时可以取消该变化，但是此参数不变。
-- args["byScript"]: bool，是否通过 [SetAttrValue](/docs/docs/scripts/modapi/entity/attribute#setattrvalue) 或 [SetAttrMaxValue](/docs/docs/scripts/modapi/entity/attribute#setattrmaxvalue) 调用产生的变化。
-- args["cancel"]: bool，是否取消该变化。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| from | float | 变化前的生命值。 |
+| to | float | 将要变化到的生命值，cancel 设置为 True 时可以取消该变化，但是此参数不变。 |
+| byScript | bool | 是否通过 [SetAttrValue](/docs/docs/scripts/modapi/interfaces/entity/attribute#setattrvalue) 或 [SetAttrMaxValue](/docs/docs/scripts/modapi/interfaces/entity/attribute#setattrmaxvalue) 调用产生的变化。 |
+| cancel | bool | 是否取消该变化。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "HealthChangeBeforeServerEvent",
+            self, self.OnHealthChangeBeforeServerEvent)
+
+    def OnHealthChangeBeforeServerEvent(self, args):
+        entityId = args["entityId"]
+        from_ = args["from"]
+        to = args["to"]
+        byScript = args["byScript"]
+        cancel = args["cancel"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -532,15 +1248,45 @@ def OnHealthChangeBeforeServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 生物生命值发生变化时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnHealthChangeClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["from"]: float，变化前的生命值。
-- args["to"]: float，变化后的生命值。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| from | float | 变化前的生命值。 |
+| to | float | 变化后的生命值。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "HealthChangeClientEvent",
+            self, self.OnHealthChangeClientEvent)
+
+    def OnHealthChangeClientEvent(self, args):
+        entityId = args["entityId"]
+        from_ = args["from"]
+        to = args["to"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -550,16 +1296,47 @@ def OnHealthChangeClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 生物生命值发生变化时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnHealthChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["from"]: float，变化前的生命值。
-- args["to"]: float，变化后的生命值。
-- args["byScript"]: bool，是否通过 [SetAttrValue](/docs/docs/scripts/modapi/entity/attribute#setattrvalue) 或 [SetAttrMaxValue](/docs/docs/scripts/modapi/entity/attribute#setattrmaxvalue) 调用产生的变化。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| from | float | 变化前的生命值。 |
+| to | float | 变化后的生命值。 |
+| byScript | bool | 是否通过 [SetAttrValue](/docs/docs/scripts/modapi/interfaces/entity/attribute#setattrvalue) 或 [SetAttrMaxValue](/docs/docs/scripts/modapi/interfaces/entity/attribute#setattrmaxvalue) 调用产生的变化。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "HealthChangeServerEvent",
+            self, self.OnHealthChangeServerEvent)
+
+    def OnHealthChangeServerEvent(self, args):
+        entityId = args["entityId"]
+        from_ = args["from"]
+        to = args["to"]
+        byScript = args["byScript"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -569,14 +1346,43 @@ def OnHealthChangeServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 玩家远离生物时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnLeaveEntityClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["playerId"]: str，玩家实体 id。
-- args["entityId"]: str，远离的生物实体 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| playerId | str | 玩家实体 id。 |
+| entityId | str | 远离的生物实体 id。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "LeaveEntityClientEvent",
+            self, self.OnLeaveEntityClientEvent)
+
+    def OnLeaveEntityClientEvent(self, args):
+        playerId = args["playerId"]
+        entityId = args["entityId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -586,20 +1392,51 @@ def OnLeaveEntityClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 实体死亡时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnMobDieEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["id"]: str，实体 id。
-- args["attacker"]: str，伤害来源 id。
-- args["cause"]: str，伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](https://mc.163.com/newdev/docs/api/meijuzhi/ActorDamageCause.html)。
-- args["customTag"]: str，使用[Hurt 接口](https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html#hurt)传入的自定义伤害类型。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| id | str | 实体 id。 |
+| attacker | str | 伤害来源 id。 |
+| cause | str | 伤害来源，详见 Minecraft 枚举值文档的[ActorDamageCause](/docs/docs/scripts/modapi/enums#actordamagecause)。 |
+| customTag | str | 使用[Hurt 接口](https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html#hurt)传入的自定义伤害类型。 |
 
 **备注**
 
-- 注意：不能在该事件回调中对此玩家手持物品进行修改，如 [SpawnItemToPlayerCarried](/docs/docs/scripts/modapi/player/container#spawnitemtoplayercarried)、[ChangePlayerItemTipsAndExtraId](/docs/docs/scripts/modapi/player/container#changeplayeritemtipsandextraid) 等接口。
+- 注意：不能在该事件回调中对此玩家手持物品进行修改，如 [SpawnItemToPlayerCarried](/docs/docs/scripts/modapi/interfaces/player/container#spawnitemtoplayercarried)、[ChangePlayerItemTipsAndExtraId](/docs/docs/scripts/modapi/interfaces/player/container#changeplayeritemtipsandextraid) 等接口。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "MobDieEvent",
+            self, self.OnMobDieEvent)
+
+    def OnMobDieEvent(self, args):
+        id = args["id"]
+        attacker = args["attacker"]
+        cause = args["cause"]
+        customTag = args["customTag"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -609,23 +1446,57 @@ def OnMobDieEvent(self, args: Dict[str, Any]) -> None: ...
 
 环境生物改变方块时触发，触发的时机与 mobgriefing 游戏规则影响的行为相同。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnMobGriefingBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["cancel"]: bool，是否允许触发，默认为 False，若设为 True，可阻止触发后续物理交互事件。
-- args["blockX"]: int，方块 x 坐标。
-- args["blockY"]: int，方块 y 坐标。
-- args["blockZ"]: int，方块 z 坐标。
-- args["entityId"]: str，触发的 entity 的唯一 ID。
-- args["blockName"]: str，方块的 identifier，包含命名空间及名称。
-- args["dimensionId"]: int，维度 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| cancel | bool | 是否允许触发，默认为 False，若设为 True，可阻止触发后续物理交互事件。 |
+| blockX | int | 方块 x 坐标。 |
+| blockY | int | 方块 y 坐标。 |
+| blockZ | int | 方块 z 坐标。 |
+| entityId | str | 触发的 entity 的唯一 ID。 |
+| blockName | str | 方块的 identifier，包含命名空间及名称。 |
+| dimensionId | int | 维度 id。 |
 
 **备注**
 
 - 触发的时机包括：生物踩踏耕地、破坏单个方块、破门、火矢点燃方块、凋灵 boss 破坏方块、末影龙破坏方块、末影人捡起方块、蠹虫破坏被虫蚀的方块、蠹虫把方块变成被虫蚀的方块、凋零杀死生物生成凋零玫瑰、生物踩坏海龟蛋。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "MobGriefingBlockServerEvent",
+            self, self.OnMobGriefingBlockServerEvent)
+
+    def OnMobGriefingBlockServerEvent(self, args):
+        cancel = args["cancel"]
+        blockX = args["blockX"]
+        blockY = args["blockY"]
+        blockZ = args["blockZ"]
+        entityId = args["entityId"]
+        blockName = args["blockName"]
+        dimensionId = args["dimensionId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -635,17 +1506,49 @@ def OnMobGriefingBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 生物受到火焰伤害时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnFireHurtEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["victim"]: str，受伤实体 id。
-- args["src"]: str，火焰创建者 id。
-- args["fireTime"]: float，着火时间，单位秒, 不支持修改。
-- args["cancel"]: bool，是否取消此处火焰伤害。
-- args["cancelIgnite"]: bool，是否取消点燃效果。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| victim | str | 受伤实体 id。 |
+| src | str | 火焰创建者 id。 |
+| fireTime | float | 着火时间，单位秒, 不支持修改。 |
+| cancel | bool | 是否取消此处火焰伤害。 |
+| cancelIgnite | bool | 是否取消点燃效果。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "OnFireHurtEvent",
+            self, self.OnOnFireHurtEvent)
+
+    def OnOnFireHurtEvent(self, args):
+        victim = args["victim"]
+        src = args["src"]
+        fireTime = args["fireTime"]
+        cancel = args["cancel"]
+        cancelIgnite = args["cancelIgnite"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -655,17 +1558,45 @@ def OnOnFireHurtEvent(self, args: Dict[str, Any]) -> None: ...
 
 实体着地事件。玩家，沙子，铁砧，掉落的物品，点燃的 TNT 掉落地面时触发，其余实体着地不触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnGroundClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["id"]: str，实体 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| id | str | 实体 id。 |
 
 **备注**
 
 - 因为掉落是服务端与客户端各自计算的，对于掉落的方块，有时会出现服务端先着地，然后把 FallingBlock 实体移除掉了，导致客户端没触发着地事件的情况。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "OnGroundClientEvent",
+            self, self.OnOnGroundClientEvent)
+
+    def OnOnGroundClientEvent(self, args):
+        id = args["id"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -675,17 +1606,45 @@ def OnOnGroundClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 实体着地事件。实体，掉落的物品，点燃的 TNT 掉落地面时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnGroundServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["id"]: str，实体 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| id | str | 实体 id。 |
 
 **备注**
 
 - 不支持抛射物实体。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "OnGroundServerEvent",
+            self, self.OnOnGroundServerEvent)
+
+    def OnOnGroundServerEvent(self, args):
+        id = args["id"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -695,13 +1654,41 @@ def OnOnGroundServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 实体被击退时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnKnockBackServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["id"]: str，实体 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| id | str | 实体 id。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "OnKnockBackServerEvent",
+            self, self.OnOnKnockBackServerEvent)
+
+    def OnOnKnockBackServerEvent(self, args):
+        id = args["id"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -711,25 +1698,85 @@ def OnOnKnockBackServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：通过 OpenMobHitBlockDetection 打开方块碰撞检测后，当生物（不包括玩家）碰撞到方块时触发该事件。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnMobHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，碰撞到方块的生物 Id。
-- args["posX"]: int，碰撞方块 x 坐标。
-- args["posY"]: int，碰撞方块 y 坐标。
-- args["posZ"]: int，碰撞方块 z 坐标。
-- args["blockId"]: str，碰撞方块的 identifier。
-- args["auxValue"]: int，碰撞方块的附加值。
-- args["dimensionId"]: int，维度 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 碰撞到方块的生物 Id。 |
+| posX | int | 碰撞方块 x 坐标。 |
+| posY | int | 碰撞方块 y 坐标。 |
+| posZ | int | 碰撞方块 z 坐标。 |
+| blockId | str | 碰撞方块的 identifier。 |
+| auxValue | int | 碰撞方块的附加值。 |
+| dimensionId | int | 维度 id。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "OnMobHitBlockServerEvent",
+            self, self.OnOnMobHitBlockServerEvent)
+
+    def OnOnMobHitBlockServerEvent(self, args):
+        entityId = args["entityId"]
+        posX = args["posX"]
+        posY = args["posY"]
+        posZ = args["posZ"]
+        blockId = args["blockId"]
+        auxValue = args["auxValue"]
+        dimensionId = args["dimensionId"]
+```
+
+</TabItem>
+</Tabs>
+
 <Server/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnOnMobHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "OnMobHitBlockServerEvent",
+            self, self.OnOnMobHitBlockServerEvent)
+
+    def OnOnMobHitBlockServerEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Server/> GameComponentServer
 
@@ -744,8 +1791,10 @@ def OnOnMobHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 def OnOnMobHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，生物的实体 Id。
-- args["precision"]: float，碰撞检测精度，参数需要在区间[0, 1)，值越小，表示碰撞检测精度越高（可以理解为轻轻碰一下就能触发）。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 生物的实体 Id。 |
+| precision | float | 碰撞检测精度，参数需要在区间[0, 1)，值越小，表示碰撞检测精度越高（可以理解为轻轻碰一下就能触发）。 |
 
 **返回值**：bool，是否设置成功。
 
@@ -778,7 +1827,9 @@ comp.OpenMobHitBlockDetection("-123456",0.0001)
 def OnOnMobHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，生物的实体 Id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 生物的实体 Id。 |
 
 **返回值**：bool，是否设置成功。
 
@@ -809,8 +1860,10 @@ comp.CloseMobHitBlockDetection("-123456")
 def OnOnMobHitMobClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["mobId"]: str，当前生物的 id。
-- args["hittedMobList"]: List[str]，当前生物碰撞到的其他所有生物 id 的 list。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| mobId | str | 当前生物的 id。 |
+| hittedMobList | List[str] | 当前生物碰撞到的其他所有生物 id 的 list。 |
 
 **备注**
 
@@ -837,9 +1890,35 @@ def OnMobHitMobClientEvent(self, args):
 
 <Client/>
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnMobHitMobClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "OnMobHitMobClientEvent",
+            self, self.OnOnMobHitMobClientEvent)
+
+    def OnOnMobHitMobClientEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Client/> PlayerCompClient
 
@@ -920,8 +1999,10 @@ comp.ClosePlayerHitMobDetection()
 def OnOnMobHitMobServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["mobId"]: str，当前生物的 id。
-- args["hittedMobList"]: List[str]，当前生物碰撞到的其他所有生物 id 的 list。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| mobId | str | 当前生物的 id。 |
+| hittedMobList | List[str] | 当前生物碰撞到的其他所有生物 id 的 list。 |
 
 **备注**
 
@@ -947,9 +2028,35 @@ def OnMobHitMobServerEvent(self, args):
 
 <Server/>
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnOnMobHitMobServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "OnMobHitMobServerEvent",
+            self, self.OnOnMobHitMobServerEvent)
+
+    def OnOnMobHitMobServerEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Server/> PlayerCompServer
 
@@ -1023,20 +2130,75 @@ comp.ClosePlayerHitMobDetection()
 
 触发时机：当抛射物与头部碰撞时触发该事件。注：需调用 OpenPlayerCritBox 开启玩家爆头后才能触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnProjectileCritHitEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["id"]: str，抛射物 id。
-- args["targetId"]: str，碰撞目标 id。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| id | str | 抛射物 id。 |
+| targetId | str | 碰撞目标 id。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ProjectileCritHitEvent",
+            self, self.OnProjectileCritHitEvent)
+
+    def OnProjectileCritHitEvent(self, args):
+        id = args["id"]
+        targetId = args["targetId"]
+```
+
+</TabItem>
+</Tabs>
+
 <Server/>
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
 
 ```python
 def OnProjectileCritHitEvent(self, args: Dict[str, Any]) -> None: ...
 ```
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "ProjectileCritHitEvent",
+            self, self.OnProjectileCritHitEvent)
+
+    def OnProjectileCritHitEvent(self, args):
+        pass
+```
+
+</TabItem>
+</Tabs>
 
 <Server/> PlayerCompServer
 
@@ -1103,18 +2265,20 @@ comp.ClosePlayerCritBox()
 def OnProjectileDoHitEffectEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["id"]: str，抛射物 id。
-- args["hitTargetType"]: str，碰撞目标类型,'ENTITY'或是'BLOCK'。
-- args["targetId"]: str，碰撞目标 id。
-- args["hitFace"]: int，撞击在方块上的面 id，参考[Facing 枚举](https://mc.163.com/newdev/docs/api/meijuzhi/Facing.html)。
-- args["x"]: float，碰撞 x 坐标。
-- args["y"]: float，碰撞 y 坐标。
-- args["z"]: float，碰撞 z 坐标。
-- args["blockPosX"]: int，碰撞是方块时，方块 x 坐标。
-- args["blockPosY"]: int，碰撞是方块时，方块 y 坐标。
-- args["blockPosZ"]: int，碰撞是方块时，方块 z 坐标。
-- args["srcId"]: str，创建者 id。
-- args["cancel"]: bool，是否取消这个碰撞事件，若取消可以设置为 True。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| id | str | 抛射物 id。 |
+| hitTargetType | str | 碰撞目标类型,'ENTITY'或是'BLOCK'。 |
+| targetId | str | 碰撞目标 id。 |
+| hitFace | int | 撞击在方块上的面 id，参考[Facing 枚举](/docs/docs/scripts/modapi/enums#facing)。 |
+| x | float | 碰撞 x 坐标。 |
+| y | float | 碰撞 y 坐标。 |
+| z | float | 碰撞 z 坐标。 |
+| blockPosX | int | 碰撞是方块时，方块 x 坐标。 |
+| blockPosY | int | 碰撞是方块时，方块 y 坐标。 |
+| blockPosZ | int | 碰撞是方块时，方块 z 坐标。 |
+| srcId | str | 创建者 id。 |
+| cancel | bool | 是否取消这个碰撞事件，若取消可以设置为 True。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
 
@@ -1143,17 +2307,49 @@ def OnProjectileDoHitEffectEvent(self, args):
 
 触发时机：实体身上状态效果更新时触发，更新条件 1、新增状态等级较高，更新状态等级及时间；2、新增状态等级不变，时间较长，更新状态持续时间。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnRefreshEffectServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["effectName"]: str，更新状态效果的名字。
-- args["effectDuration"]: int，更新后状态效果剩余持续时间，单位秒。
-- args["effectAmplifier"]: int，更新后的状态效果放大倍数。
-- args["damage"]: float，状态造成的伤害值，如药水。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| effectName | str | 更新状态效果的名字。 |
+| effectDuration | int | 更新后状态效果剩余持续时间，单位秒。 |
+| effectAmplifier | int | 更新后的状态效果放大倍数。 |
+| damage | float | 状态造成的伤害值，如药水。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "RefreshEffectServerEvent",
+            self, self.OnRefreshEffectServerEvent)
+
+    def OnRefreshEffectServerEvent(self, args):
+        entityId = args["entityId"]
+        effectName = args["effectName"]
+        effectDuration = args["effectDuration"]
+        effectAmplifier = args["effectAmplifier"]
+        damage = args["damage"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1163,16 +2359,47 @@ def OnRefreshEffectServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：实体身上状态效果被移除时。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnRemoveEffectServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["effectName"]: str，被移除状态效果的名字。
-- args["effectDuration"]: int，被移除状态效果的剩余持续时间，单位秒。
-- args["effectAmplifier"]: int，被移除状态效果的放大倍数。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| effectName | str | 被移除状态效果的名字。 |
+| effectDuration | int | 被移除状态效果的剩余持续时间，单位秒。 |
+| effectAmplifier | int | 被移除状态效果的放大倍数。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "RemoveEffectServerEvent",
+            self, self.OnRemoveEffectServerEvent)
+
+    def OnRemoveEffectServerEvent(self, args):
+        entityId = args["entityId"]
+        effectName = args["effectName"]
+        effectDuration = args["effectDuration"]
+        effectAmplifier = args["effectAmplifier"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1182,19 +2409,49 @@ def OnRemoveEffectServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：抛射物生成时触发。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnSpawnProjectileServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["projectileId"]: str，抛射物的实体 id。
-- args["projectileIdentifier"]: str，抛射物的 identifier。
-- args["spawnerId"]: str，发射者的实体 id，没有发射者时为-1。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| projectileId | str | 抛射物的实体 id。 |
+| projectileIdentifier | str | 抛射物的 identifier。 |
+| spawnerId | str | 发射者的实体 id，没有发射者时为-1。 |
 
 **备注**
 
 - 该事件里无法获取弹射物实体的 auxvalue。如有需要可以延迟一帧获取，或者在 [ProjectileDoHitEffectEvent](/docs/docs/scripts/modapi/events/entity#projectiledohiteffectevent) 获取。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "SpawnProjectileServerEvent",
+            self, self.OnSpawnProjectileServerEvent)
+
+    def OnSpawnProjectileServerEvent(self, args):
+        projectileId = args["projectileId"]
+        projectileIdentifier = args["projectileIdentifier"]
+        spawnerId = args["spawnerId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1204,18 +2461,47 @@ def OnSpawnProjectileServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：一个实体即将骑乘另外一个实体。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnStartRidingClientEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["actorId"]: str，骑乘者的唯一 ID。
-- args["victimId"]: str，被骑乘实体的唯一 ID。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| actorId | str | 骑乘者的唯一 ID。 |
+| victimId | str | 被骑乘实体的唯一 ID。 |
 
 **备注**
 
 - 如果需要修改 cancel，请通过服务端事件 [StartRidingServerEvent](/docs/docs/scripts/modapi/events/entity#startridingserverevent) 同步修改，客户端触发该事件时，实体已经骑乘成功。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+ClientSystem = clientApi.GetClientSystemCls()
+
+class MyClientSystem(ClientSystem):
+    def __init__(self, namespace, systemName):
+        ClientSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            clientApi.GetEngineNamespace(),
+            clientApi.GetEngineSystemName(),
+            "StartRidingClientEvent",
+            self, self.OnStartRidingClientEvent)
+
+    def OnStartRidingClientEvent(self, args):
+        actorId = args["actorId"]
+        victimId = args["victimId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1225,15 +2511,45 @@ def OnStartRidingClientEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：一个实体即将骑乘另外一个实体。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnStartRidingServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["cancel"]: bool，是否允许触发，默认为 False，若设为 True，可阻止触发后续的实体交互事件。
-- args["actorId"]: str，骑乘者的唯一 ID。
-- args["victimId"]: str，被骑乘实体的唯一 ID。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| cancel | bool | 是否允许触发，默认为 False，若设为 True，可阻止触发后续的实体交互事件。 |
+| actorId | str | 骑乘者的唯一 ID。 |
+| victimId | str | 被骑乘实体的唯一 ID。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "StartRidingServerEvent",
+            self, self.OnStartRidingServerEvent)
+
+    def OnStartRidingServerEvent(self, args):
+        cancel = args["cancel"]
+        actorId = args["actorId"]
+        victimId = args["victimId"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1243,18 +2559,51 @@ def OnStartRidingServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 触发时机：实体即将获得状态效果前。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnWillAddEffectServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["entityId"]: str，实体 id。
-- args["effectName"]: str，实体获得状态效果的名字。
-- args["effectDuration"]: int，状态效果的持续时间，单位秒。
-- args["effectAmplifier"]: int，状态效果的放大倍数。
-- args["cancel"]: bool，设置为 True 可以取消。
-- args["damage"]: float，状态将会造成的伤害值，如药水；需要注意，该值不一定是最终的伤害值，例如被伤害吸收效果扣除。只有持续时间为 0 时有用。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| entityId | str | 实体 id。 |
+| effectName | str | 实体获得状态效果的名字。 |
+| effectDuration | int | 状态效果的持续时间，单位秒。 |
+| effectAmplifier | int | 状态效果的放大倍数。 |
+| cancel | bool | 设置为 True 可以取消。 |
+| damage | float | 状态将会造成的伤害值，如药水；需要注意，该值不一定是最终的伤害值，例如被伤害吸收效果扣除。只有持续时间为 0 时有用。 |
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "WillAddEffectServerEvent",
+            self, self.OnWillAddEffectServerEvent)
+
+    def OnWillAddEffectServerEvent(self, args):
+        entityId = args["entityId"]
+        effectName = args["effectName"]
+        effectDuration = args["effectDuration"]
+        effectAmplifier = args["effectAmplifier"]
+        cancel = args["cancel"]
+        damage = args["damage"]
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -1264,26 +2613,64 @@ def OnWillAddEffectServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 实体即将传送或切换维度。
 
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
 ```python
 def OnWillTeleportToServerEvent(self, args: Dict[str, Any]) -> None: ...
 ```
 
-- args["cancel"]: bool，是否允许触发，默认为 False，若设为 True，可阻止触发后续的传送。
-- args["entityId"]: str，实体的唯一 ID。
-- args["fromDimensionId"]: int，传送前所在的维度。
-- args["toDimensionId"]: int，传送后的目标维度。
-- args["fromX"]: int，传送前所在的 x 坐标。
-- args["fromY"]: int，传送前所在的 y 坐标。
-- args["fromZ"]: int，传送前所在的 z 坐标。
-- args["toX"]: int，传送目标地点的 x 坐标。
-- args["toY"]: int，传送目标地点的 y 坐标。
-- args["toZ"]: int，传送目标地点的 z 坐标。
-- args["cause"]: str，传送理由，详情见 MinecraftEnum.EntityTeleportCause。
+| args的参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| cancel | bool | 是否允许触发，默认为 False，若设为 True，可阻止触发后续的传送。 |
+| entityId | str | 实体的唯一 ID。 |
+| fromDimensionId | int | 传送前所在的维度。 |
+| toDimensionId | int | 传送后的目标维度。 |
+| fromX | int | 传送前所在的 x 坐标。 |
+| fromY | int | 传送前所在的 y 坐标。 |
+| fromZ | int | 传送前所在的 z 坐标。 |
+| toX | int | 传送目标地点的 x 坐标。 |
+| toY | int | 传送目标地点的 y 坐标。 |
+| toZ | int | 传送目标地点的 z 坐标。 |
+| cause | str | 传送理由，详情见 MinecraftEnum.EntityTeleportCause。 |
 
 **备注**
 
 - 假如目标维度尚未在内存中创建（即服务器启动之后，到传送之前，没有玩家进入过这个维度），那么此时事件中返回的目标地点坐标是算法生成的，不能保证正确。
 
 在零件中直接声明一个同名函数，即可完成监听，详情参考[零件事件](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/14-yushewanfabiancheng/12-shenrulijielingjian/0-lingjiankaifa.html#零件事件)。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.server.extraServerApi as serverApi
+ServerSystem = serverApi.GetServerSystemCls()
+
+class MyServerSystem(ServerSystem):
+    def __init__(self, namespace, systemName):
+        ServerSystem.__init__(self, namespace, systemName)
+        self.ListenForEvent(
+            serverApi.GetEngineNamespace(),
+            serverApi.GetEngineSystemName(),
+            "WillTeleportToServerEvent",
+            self, self.OnWillTeleportToServerEvent)
+
+    def OnWillTeleportToServerEvent(self, args):
+        cancel = args["cancel"]
+        entityId = args["entityId"]
+        fromDimensionId = args["fromDimensionId"]
+        toDimensionId = args["toDimensionId"]
+        fromX = args["fromX"]
+        fromY = args["fromY"]
+        fromZ = args["fromZ"]
+        toX = args["toX"]
+        toY = args["toY"]
+        toZ = args["toZ"]
+        cause = args["cause"]
+```
+
+</TabItem>
+</Tabs>
 
 ---

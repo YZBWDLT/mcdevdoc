@@ -1,0 +1,859 @@
+---
+sidebar_position: 1
+---
+
+# 粒子
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Button from '/src/components/button/base';
+import Server from '/src/components/highlight/server';
+import Client from '/src/components/highlight/client';
+
+> 适用版本：中国版 3.10。仅中国版可用。
+
+本文主要记录粒子相关的接口，共 23 个。
+
+<Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/texiao/lizi.html"/>
+
+---
+
+### Bind
+
+<Client/> ParticleSkeletonBindComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleEntityBind(particleEntityId)`
+
+绑定 entity。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+Bind(
+    bindEntityId: str,
+    offset: Tuple[float, float, float],
+    rot: Tuple[float, float, float],
+    correction: bool,
+    isClientEntity: bool = False,
+) -> bool
+```
+
+- bindEntityId: str，绑定的 entity 的 ID。
+- offset: Tuple[float, float, float]，绑定的偏移量，相对绑定 entity 脚下中心。
+- rot: Tuple[float, float, float]，绑定的旋转角度。
+- correction: bool，默认不开启，开启后可以使特效的旋转角度准确设置为参照玩家的相对角度。
+- isClientEntity: bool，如果实体是由 [CreateClientEntityByTypeStr](/docs/docs/scripts/modapi/interfaces/world/entity#createcliententitybytypestr) 接口创建的,则需要传入 True.默认为 False。
+
+**返回值**：bool，设置是否成功。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleEntityBind(particleEntityId)
+comp.Bind(entityId, (0, 1, 0), (0, 0, 0))
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### CreateEngineParticle
+
+<Client/> ClientSystem
+
+系统方法，在自定义 System 类中直接调用。
+
+用于创建粒子特效。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+CreateEngineParticle(
+    path: str,
+    pos: Tuple[float, float, float],
+) -> Optional[int]
+```
+
+- path: str，特效资源路径，需要加上后缀名（一般是 json）。
+- pos: Tuple[float, float, float]，创建位置坐标。
+
+**返回值**：Optional[int]，particleEntityId 或者 None。
+
+**备注**
+
+- 创建粒子后，可以用返回的 particleEntityId 创建客户端粒子分类中的相关组件，设置所需属性，以实现各种表现效果。
+- 切换维度后会自动隐藏非本维度创建的而且没有绑定实体的粒子, 回到该维度后会自动重新显示。
+- 粒子创建之后需要调用 particleControl 组件的 [Play](/docs/docs/scripts/modapi/interfaces/effect/particle#play) 函数才会播放，如果播放非本维度创建的粒子,会同时修改该粒子的创建维度为当前维度。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+class MyClientSystem(ClientSystem):
+    # 创建
+    def createParticle(self):
+        particleEntityId = self.CreateEngineParticle("effects/fire.json", (0,5,0))
+        particleControlComp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+        particleControlComp.Play()
+
+    # 删除
+    def removeParticle(self, particleEntityId):
+        self.DestroyEntity(particleEntityId)
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### GetParticleEmissionRate
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+获取粒子发射器每帧发射粒子的频率。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+GetParticleEmissionRate() -> Tuple[float, float]
+```
+
+
+**返回值**：Tuple[float, float]，粒子发射器每帧发射粒子的频率。
+
+**备注**
+
+- 该接口所获取的值对应粒子特效 json 文件中"emissionrate"的值。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+comp.GetParticleEmissionRate()
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### GetParticleMaxNum
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+获取粒子发射器包含的最大粒子数量。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+GetParticleMaxNum() -> int
+```
+
+
+**返回值**：int，粒子发射器所包含的最大粒子数量。
+
+**备注**
+
+- 该接口所获取的值对应粒子特效 json 文件中"numparticles"的值。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+comp.GetParticleMaxNum()
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### GetParticleMaxSize
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+获取粒子特效中粒子大小的最大值。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+GetParticleMaxSize() -> Tuple[float, float]
+```
+
+
+**返回值**：Tuple[float, float]，粒子大小的最大值。
+
+**备注**
+
+- 该接口获取的值对应粒子特效 json 文件中"particlesize"的"max"值。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+comp.GetParticleMaxSize()
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### GetParticleMinSize
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+获取粒子特效中粒子大小的最小值。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+GetParticleMinSize() -> Tuple[float, float]
+```
+
+
+**返回值**：Tuple[float, float]，粒子大小的最小值。
+
+**备注**
+
+- 该接口获取的值对应粒子特效 json 文件中"particlesize"的"min"值。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+comp.GetParticleMinSize()
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### GetParticleVolumeSize
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+获取粒子发射器的体积大小缩放值。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+GetParticleVolumeSize() -> Tuple[float, float, float]
+```
+
+
+**返回值**：Tuple[float, float, float]，粒子发射器的体积大小缩放值。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+comp.GetParticleVolumeSize()
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### GetPos
+
+<Client/> ParticleTransComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleTrans(particleEntityId)`
+
+获取粒子发射器的世界坐标位置。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+GetPos() -> Tuple[float, float, float]
+```
+
+
+**返回值**：Tuple[float, float, float]，返回粒子发射器的世界坐标位置。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleTrans(particleEntityId)
+comp.GetPos()
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### GetRot
+
+<Client/> ParticleTransComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleTrans(particleEntityId)`
+
+获取粒子发射器的旋转角度。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+GetRot() -> Tuple[float, float, float]
+```
+
+
+**返回值**：Tuple[float, float, float]，返回粒子发射器的旋转角度。
+
+**备注**
+
+- 注意，当使用 SetRotation 设置旋转角度时，设置的 x 轴方向的旋转接近 90 度或者-90 度，此时会由于旋转的奇异性，计算旋转角度时会出现除 0 的问题，因此为了避免这种情况，会采用奇异情况下的计算公式来计算，这种情况接口返回的是与 [SetRotUseZXY](/docs/docs/scripts/modapi/interfaces/effect/particle#setrotusezxy) 接口所设置的值等价的旋转角度。
+- 该接口获取的旋转值对应接口 [SetRotUseZXY](/docs/docs/scripts/modapi/interfaces/effect/particle#setrotusezxy) 所设置的旋转值。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleTrans(particleEntityId)
+comp.GetRot()
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### Pause
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+暂停播放，粒子定格在当前时刻，再次调用 [Play](/docs/docs/scripts/modapi/interfaces/effect/particle#play) 时继续播放。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+Pause() -> bool
+```
+
+
+**返回值**：bool，设置是否成功。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+comp.Pause()
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### Play
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+播放粒子特效。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+Play() -> bool
+```
+
+
+**返回值**：bool，设置是否成功。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+comp.Play()
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### SetFadeDistance
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+设置粒子开始自动调整透明度的距离。粒子与摄像机之间的距离小于该值时会自动调整粒子的透明度，距离摄像机越近，粒子越透明。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+SetFadeDistance(fadeDistance: float) -> bool
+```
+
+- fadeDistance: float，自动调整透明度的距离，应为正数，负数将视作零来处理。
+
+**返回值**：bool，设置是否成功。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+# 设置该粒子在与相机距离小于3时会自动调整透明度
+comp.SetFadeDistance(3)
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### SetGlobal
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+设置粒子发射器是否为全局粒子发射器, 默认是 False。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+SetGlobal(enable: bool) -> bool
+```
+
+- enable: bool，是否为全局粒子发射器。
+
+**返回值**：bool，设置是否成功。
+
+**备注**
+
+- 该接口设置粒子发射器是否为全局粒子发射器，如果设置为 True，则不会应远离摄像机被剔除。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+comp.SetGlobal(True)
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### SetLayer
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+粒子默认层级为 1，当层级不为 1 时表示该特效开启特效分层渲染功能。特效（粒子和帧动画）分层渲染时，层级越高渲染越靠后，层级大的会遮挡层级低的，且同一层级的特效会根据特效的相对位置产生正确的相互遮挡关系。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+SetLayer(layer: int) -> bool
+```
+
+- layer: int，粒子渲染层级，总共包含 0-15 的层级。
+
+**返回值**：bool，设置是否成功。
+
+**备注**
+
+- 该接口只针对粒子进行设置，序列帧特效请使用 frameAniControl 组件。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+# 设置渲染层级为2
+comp.SetLayer(2)
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### SetParticleEmissionRate
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+设置粒子发射器每帧发射粒子的频率，频率越大则每帧发射的粒子数量越多，但粒子数量不会超过粒子发射器的粒子容量，同时由于性能考虑，每帧发射的粒子数量也不会超过 100 个。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+SetParticleEmissionRate(minRate: float, maxRate: float) -> bool
+```
+
+- minRate: float，每帧发射粒子频率的最小值。每帧发射粒子的频率将在频率最小值和频率最大值之间取随机数进行插值。当该值设置为负值时设置将会失败，且该值不能比粒子频率的最大值大。
+- maxRate: float，每帧发射粒子频率的最大值。每帧发射粒子的频率将在频率最小值和频率最大值之间取随机数进行插值。当该值设置为负值时设置将会失败，且该值不能比粒子频率的最小值小。
+
+**返回值**：bool，设置是否成功。
+
+**备注**
+
+- 该接口所设置的值对应粒子特效 json 文件中"emissionrate"的值。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+# 扩充粒子发射器的粒子容量
+comp.SetParticleMaxNum(1000)
+# 提高发射粒子的频率
+comp.SetParticleEmissionRate(15,20)
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### SetParticleMaxNum
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+设置粒子发射器的粒子容量，即粒子发射器所包含的最大粒子数量。该数量并不代表目前粒子发射器所发射的粒子数量，如需要增加发射的粒子数量，需同时改变粒子的发射频率。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+SetParticleMaxNum(num: int) -> bool
+```
+
+- num: int，粒子发射器所包含的最大粒子数量，不能为负值，粒子的数量最大值不超过 100000。
+
+**返回值**：bool，设置是否成功。
+
+**备注**
+
+- 考虑到性能的原因，请注意粒子的数量不要设置过大。该接口设置的值对应粒子特效 json 文件中"numparticles"的值。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+comp.SetParticleMaxNum(1000)
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### SetParticleSize
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+设置粒子特效中粒子大小的最小值及最大值。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+SetParticleSize(
+    minSize: Tuple[float, float],
+    maxSize: Tuple[float, float],
+) -> bool
+```
+
+- minSize: Tuple[float, float]，粒子大小的最小值(x,y)。x 值影响粒子的左右拉伸程度，y 值影响粒子的上下拉伸程度。粒子特效中的粒子大小会在最小值和最大值当中取随机值进行决定。当该值设置为负值时设置将会失败，且该值不能比粒子大小的最大值大。
+- maxSize: Tuple[float, float]，粒子大小的最大值(x,y)。x 值影响粒子的左右拉伸程度，y 值影响粒子的上下拉伸程度。粒子特效中的粒子大小会在最小值和最大值当中取随机值进行决定。当该值设置为负值时设置将会失败，且该值不能比粒子大小的最小值小。
+
+**返回值**：bool，设置是否成功。
+
+**备注**
+
+- 该接口设置的值对应粒子特效 json 文件中"particlesize"的值。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+comp.SetParticleSize((0.5,0.5),(0.6,0.6))
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### SetParticleVolumeSize
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+设置粒子发射器的体积大小缩放，不影响单个粒子的尺寸。粒子发射器的体积越大，则粒子的发射范围越大。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+SetParticleVolumeSize(scale: Tuple[float, float, float]) -> bool
+```
+
+- scale: Tuple[float, float, float]，粒子发射器的体积大小缩放值(x,y,z), x,y,z 分别为各个坐标轴方向的缩放值，该值越大该方向发射粒子的范围越大。
+
+**返回值**：bool，设置是否成功。
+
+**备注**
+
+- 当粒子绑定实体时该设置无效。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+comp.SetParticleVolumeSize((1,0,0))
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### SetPos
+
+<Client/> ParticleTransComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleTrans(particleEntityId)`
+
+设置粒子发射器的世界坐标位置。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+SetPos(pos: Tuple[float, float, float]) -> bool
+```
+
+- pos: Tuple[float, float, float]，世界坐标。
+
+**返回值**：bool，设置是否成功。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleTrans(particleEntityId)
+comp.SetPos((0, 5, 0))
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### SetRelative
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+当粒子绑定了 entity 或骨骼模型时，发射出的粒子使用 entity 坐标系还是世界坐标系。与 mcstudio 特效编辑器中粒子的“相对挂点运动”选项功能相同。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+SetRelative(relative: bool) -> bool
+```
+
+- relative: bool，True 表示相对坐标系，False 表示世界坐标系。
+
+**返回值**：bool，设置是否成功。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+# 使用世界坐标系
+comp.SetRelative(False)
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### SetRotUseZXY
+
+<Client/> ParticleTransComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleTrans(particleEntityId)`
+
+设置粒子发射器的旋转，旋转顺序按照绕 z,x,y 轴旋转。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+SetRotUseZXY(rot: Tuple[float, float, float]) -> bool
+```
+
+- rot: Tuple[float, float, float]，绕局部坐标系的+z，+x，+y 轴旋转的角度，旋转顺序按照绕 z,x,y 轴旋转。
+
+**返回值**：bool，设置是否成功。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleTrans(particleEntityId)
+# 绕z轴旋转90度，然后绕y轴旋转90度
+comp.SetRotUseZXY((0, 90, 90))
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### SetUsePointFiltering
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+设置粒子材质的纹理滤波是否使用点滤波方法。默认为使用双线性滤波。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+SetUsePointFiltering(enable: bool) -> bool
+```
+
+- enable: bool，true 为使用点滤波方法，false 为使用默认的双线性滤波。
+
+**返回值**：bool，设置是否成功。
+
+**备注**
+
+- 使用点滤波的图像通常边缘清晰、可能会有较强烈的锯齿感；使用双线性插值的图像通常比较平滑、可能会使图像一定程度上变得模糊。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+# 设置使用点滤波
+comp.SetUsePointFiltering(True)
+comp.Play()
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### Stop
+
+<Client/> ParticleControlComp
+
+获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
+
+停止粒子播放。
+
+<Tabs>
+<TabItem value="说明" label="说明" default>
+
+```python
+Stop() -> bool
+```
+
+
+**返回值**：bool，设置是否成功。
+
+</TabItem>
+<TabItem value="示例" label="示例">
+
+```python
+import mod.client.extraClientApi as clientApi
+comp = clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)
+comp.Stop()
+```
+
+</TabItem>
+</Tabs>
+
+---

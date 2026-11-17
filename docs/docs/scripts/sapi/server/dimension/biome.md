@@ -36,6 +36,8 @@ class BiomeType {
 
 #### getTags 方法
 
+<Version type="script" add="2.7.0" inline/>
+
 返回该生物群系的所有标签。
 
 ```typescript
@@ -45,6 +47,8 @@ getTags(): string[]
 **返回值**：string[]，该生物群系的所有标签。
 
 #### hasTags 方法
+
+<Version type="script" add="2.7.0" inline/>
 
 检查生物群系是否拥有所有给定的标签。
 
