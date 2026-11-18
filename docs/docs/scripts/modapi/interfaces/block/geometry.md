@@ -4,6 +4,7 @@ sidebar_position: 3
 
 # 方块几何体模型
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/fangkuai/fangkuaijihetimoxing.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CombineBlockBetweenPosToGeometry
+
+<Version type="china" add="2.1"/>
 
 <Client/> BlockGeometryCompClient
 
@@ -70,6 +77,8 @@ palette = blockGeometryComp.CombineBlockBetweenPosToGeometry((200,64,200),(201,6
 
 ### CombineBlockFromPosListToGeometry
 
+<Version type="china" add="2.1"/>
+
 <Client/> BlockGeometryCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockGeometry(levelId)`
@@ -117,6 +126,8 @@ palette = blockGeometryComp.CombineBlockFromPosListToGeometry([(200,64,200),(201
 ---
 
 ### CombineBlockPaletteToGeometry
+
+<Version type="china" add="2.1"/>
 
 <Client/> BlockGeometryCompClient
 
@@ -167,6 +178,8 @@ print geometryName
 
 ### EnableActorBlockGeometryTransparent
 
+<Version type="china" add="2.2"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender("-4294967295")`
@@ -204,6 +217,8 @@ print actorRenderComp.SetActorBlockGeometryTransparency("my_block_geometry", 0.5
 
 ### GetActorBlockGeometryScale
 
+<Version type="china" add="3.2"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender("-4294967295")`
@@ -236,6 +251,8 @@ print actorRenderComp.GetActorBlockGeometryScale("my_block_geometry")
 ---
 
 ### SetActorBlockGeometryOffset
+
+<Version type="china" add="2.2"/>
 
 <Client/> ActorRenderCompClient
 
@@ -274,6 +291,8 @@ print actorRenderComp.SetActorBlockGeometryOffset("my_block_geometry", (1,1,1))
 
 ### SetActorBlockGeometryRotation
 
+<Version type="china" add="2.2"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender("-4294967295")`
@@ -311,6 +330,8 @@ print actorRenderComp.SetActorBlockGeometryRotation("my_block_geometry", (90,0,0
 
 ### SetActorBlockGeometryRotationQuat
 
+<Version type="china" add="3.10"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -332,6 +353,8 @@ SetActorBlockGeometryRotationQuat(
 ---
 
 ### SetActorBlockGeometryScale
+
+<Version type="china" add="3.2"/>
 
 <Client/> ActorRenderCompClient
 
@@ -369,6 +392,8 @@ print actorRenderComp.SetActorBlockGeometryScale("my_block_geometry", (0.5, 0.5,
 ---
 
 ### SetActorBlockGeometryTransparency
+
+<Version type="china" add="2.2"/>
 
 <Client/> ActorRenderCompClient
 

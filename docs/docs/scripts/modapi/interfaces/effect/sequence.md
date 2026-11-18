@@ -4,6 +4,7 @@ sidebar_position: 6
 
 # 序列帧
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/texiao/xuliezhen.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### Bind
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FrameAniSkeletonBindComp
 
@@ -58,6 +65,8 @@ comp.Bind(entityId, (0, 1, 0), (0, 0, 0))
 ---
 
 ### CreateEngineSfx
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ClientSystem
 
@@ -118,6 +127,8 @@ class MyClientSystem(ClientSystem):
 
 ### CreateEngineSfxFromEditor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ClientSystem
 
 系统方法，在自定义 System 类中直接调用。
@@ -177,6 +188,8 @@ class MyClientSystem(ClientSystem):
 
 ### GetPos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> FrameAniTransComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFrameAniTrans(frameEntityId)`
@@ -208,6 +221,8 @@ comp.GetPos()
 ---
 
 ### GetRot
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FrameAniTransComp
 
@@ -241,6 +256,8 @@ comp.GetRot()
 
 ### GetScale
 
+<Version type="china" add="1.24"/>
+
 <Client/> FrameAniTransComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFrameAniTrans(frameEntityId)`
@@ -272,6 +289,8 @@ comp.GetScale()
 ---
 
 ### Pause
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FrameAniControlComp
 
@@ -305,6 +324,8 @@ comp.Pause()
 
 ### Play
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> FrameAniControlComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFrameAniControl(frameEntityId)`
@@ -336,6 +357,8 @@ comp.Play()
 ---
 
 ### SetDeepTest
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FrameAniControlComp
 
@@ -371,6 +394,8 @@ comp.SetDeepTest(False)
 
 ### SetFaceCamera
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> FrameAniControlComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFrameAniControl(frameEntityId)`
@@ -405,6 +430,8 @@ comp.SetFaceCamera(False)
 
 ### SetFadeDistance
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> FrameAniControlComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFrameAniControl(frameEntityId)`
@@ -438,6 +465,8 @@ comp.SetFadeDistance(3)
 ---
 
 ### SetGlobal
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FrameAniControlComp
 
@@ -475,6 +504,8 @@ comp.SetGlobal(True)
 ---
 
 ### SetLayer
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FrameAniControlComp
 
@@ -514,6 +545,8 @@ comp.SetLayer(2)
 
 ### SetLoop
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> FrameAniControlComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFrameAniControl(frameEntityId)`
@@ -547,6 +580,8 @@ comp.SetLoop(True)
 ---
 
 ### SetMixColor
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FrameAniControlComp
 
@@ -583,6 +618,8 @@ comp.SetMixColor(color)
 
 ### SetPos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> FrameAniTransComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFrameAniTrans(frameEntityId)`
@@ -615,6 +652,8 @@ comp.SetPos((0, 5, 0))
 ---
 
 ### SetRot
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FrameAniTransComp
 
@@ -650,6 +689,8 @@ comp.SetRot((0, 90, 90))
 
 ### SetRotUseZXY
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> FrameAniTransComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFrameAniTrans(frameEntityId)`
@@ -684,6 +725,8 @@ comp.SetRotUseZXY((0, 90, 90))
 
 ### SetScale
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> FrameAniTransComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFrameAniTrans(frameEntityId)`
@@ -717,6 +760,8 @@ comp.SetScale((2, 1, 1))
 ---
 
 ### SetUsePointFiltering
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FrameAniControlComp
 
@@ -755,6 +800,8 @@ comp.SetUsePointFiltering(True)
 ---
 
 ### Stop
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FrameAniControlComp
 

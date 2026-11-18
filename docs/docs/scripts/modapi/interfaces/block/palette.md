@@ -4,6 +4,7 @@ sidebar_position: 2
 
 # 方块调色板
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/fangkuai/fangkuaitiaoseban.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### DeleteBlockInBlockPalette
+
+<Version type="china" add="2.1"/>
 
 <Server/> <Client/> BlockPaletteComponent
 
@@ -67,6 +74,8 @@ print count
 
 ### DeserializeBlockPalette
 
+<Version type="china" add="2.1"/>
+
 <Server/> <Client/> BlockPaletteComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlock(levelId)`
@@ -112,6 +121,8 @@ def onGetBlockPalette(self, data):
 
 ### GetBlockCountInBlockPalette
 
+<Version type="china" add="2.1"/>
+
 <Server/> <Client/> BlockPaletteComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlock(levelId)`
@@ -154,6 +165,8 @@ print count
 ---
 
 ### GetLocalPosListOfBlocks
+
+<Version type="china" add="2.1"/>
 
 <Server/> <Client/> BlockPaletteComponent
 
@@ -201,6 +214,8 @@ print result
 
 ### GetVolumeOfBlockPalette
 
+<Version type="china" add="2.1"/>
+
 <Server/> <Client/> BlockPaletteComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlock(levelId)`
@@ -242,6 +257,8 @@ print result
 
 ### ReplaceAirByStructureVoid
 
+<Version type="china" add="2.1"/>
+
 <Server/> <Client/> BlockPaletteComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlock(levelId)`
@@ -281,6 +298,8 @@ print palette.ReplaceAirByStructureVoid(True)
 ---
 
 ### ReplaceBlockInBlockPalette
+
+<Version type="china" add="2.1"/>
 
 <Server/> <Client/> BlockPaletteComponent
 
@@ -336,6 +355,8 @@ print count
 ---
 
 ### SerializeBlockPalette
+
+<Version type="china" add="2.1"/>
 
 <Server/> <Client/> BlockPaletteComponent
 

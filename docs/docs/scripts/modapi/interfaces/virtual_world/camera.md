@@ -4,6 +4,7 @@ sidebar_position: 4
 
 # 相机
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/xunishijie/xiangji.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CameraGetClickModel
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -73,6 +80,8 @@ class MyClientSystem(ClientSystem):
 
 ### CameraGetFov
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -104,6 +113,8 @@ fov = virtualWorldComp.CameraGetFov()
 ---
 
 ### CameraGetPos
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -137,6 +148,8 @@ cameraPos = virtualWorldComp.CameraGetPos()
 
 ### CameraGetZoom
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -168,6 +181,8 @@ zoom = virtualWorldComp.CameraGetZoom()
 ---
 
 ### CameraLookAt
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -209,6 +224,8 @@ virtualWorldComp.CameraLookAt((0.0, 0.0, -10.0), (0.0, 1.0, 0.0))
 ---
 
 ### CameraMoveTo
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -255,6 +272,8 @@ virtualWorldComp.CameraMoveTo((0.0, 0.0, -10.0), (1.0, 1.0, -10.0), (0.0,1.0, 0.
 
 ### CameraSetFov
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -287,6 +306,8 @@ virtualWorldComp.CameraSetFov(60)
 ---
 
 ### CameraSetPos
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -321,6 +342,8 @@ virtualWorldComp.CameraSetPos((0.0, 6.0, 0.0))
 
 ### CameraSetZoom
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -353,6 +376,8 @@ virtualWorldComp.CameraSetZoom(2.0)
 ---
 
 ### CameraStopActions
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 

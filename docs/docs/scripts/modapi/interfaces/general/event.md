@@ -4,6 +4,7 @@ sidebar_position: 105
 
 # 事件
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/tongyong/shijian.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### BroadcastEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> <Client/> BaseSystem
 
@@ -54,6 +61,8 @@ class FpsServerSystem(ServerSystem):
 
 ### BroadcastToAllClient
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ServerSystem
 
 系统方法，在自定义 System 类中直接调用。
@@ -87,6 +96,8 @@ class FpsServerSystem(ServerSystem):
 ---
 
 ### CreateEventData
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> <Client/> BaseSystem
 
@@ -125,6 +136,8 @@ class FpsServerSystem(ServerSystem):
 
 ### GetEngineNamespace
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -135,7 +148,7 @@ class FpsServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEngineNamespace() -> str
+服务端接口() -> str
 ```
 
 
@@ -166,7 +179,7 @@ class FpsServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEngineNamespace() -> str
+客户端接口() -> str
 ```
 
 
@@ -191,6 +204,8 @@ class FpsClientSystem(ClientSystem):
 
 ### GetEngineSystemName
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -201,7 +216,7 @@ class FpsClientSystem(ClientSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEngineSystemName() -> str
+服务端接口() -> str
 ```
 
 
@@ -232,7 +247,7 @@ class FpsServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEngineSystemName() -> str
+客户端接口() -> str
 ```
 
 
@@ -256,6 +271,8 @@ class FpsClientSystem(ClientSystem):
 ---
 
 ### ListenForEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> <Client/> BaseSystem
 
@@ -315,6 +332,8 @@ class FpsServerSystem(ServerSystem):
 
 ### NotifyToClient
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ServerSystem
 
 系统方法，在自定义 System 类中直接调用。
@@ -349,6 +368,8 @@ class FpsServerSystem(ServerSystem):
 ---
 
 ### NotifyToMultiClients
+
+<Version type="china" add="2.0"/>
 
 <Server/> ServerSystem
 
@@ -389,6 +410,8 @@ class FpsServerSystem(ServerSystem):
 
 ### NotifyToServer
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ClientSystem
 
 系统方法，在自定义 System 类中直接调用。
@@ -422,6 +445,8 @@ class FpsClientSystem(ClientSystem):
 ---
 
 ### UnListenAllEvents
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> <Client/> BaseSystem
 
@@ -462,6 +487,8 @@ class FpsServerSystem(ServerSystem):
 ---
 
 ### UnListenForEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> <Client/> BaseSystem
 

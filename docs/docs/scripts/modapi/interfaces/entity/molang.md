@@ -4,6 +4,7 @@ sidebar_position: 16
 
 # Molang 表达式
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shiti/molang-biaodashi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### EvalMolangExpression
+
+<Version type="china" add="3.1"/>
 
 <Server/> QueryVariableComponentServer
 
@@ -30,7 +37,7 @@ import Client from '/src/components/highlight/client';
 <TabItem value="说明" label="说明" default>
 
 ```python
-EvalMolangExpression(expression: str) -> Dict[str, Any]
+服务端接口(expression: str) -> Dict[str, Any]
 ```
 
 - expression: str，molang 表达式。
@@ -63,7 +70,7 @@ result = comp.EvalMolangExpression('query.can_fly')
 <TabItem value="说明" label="说明" default>
 
 ```python
-EvalMolangExpression(expression: str) -> Dict[str, Any]
+客户端接口(expression: str) -> Dict[str, Any]
 ```
 
 - expression: str，molang 表达式。
@@ -89,6 +96,8 @@ result = comp.EvalMolangExpression('query.can_fly')
 ---
 
 ### Get
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> QueryVariableComponentClient
 
@@ -127,6 +136,8 @@ result = comp.Get('query.mod.state')
 
 ### GetAllProperties
 
+<Version type="china" add="3.5"/>
+
 <Server/> QueryVariableComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateQueryVariable(entityId)`
@@ -162,6 +173,8 @@ result = comp.GetAllProperties()
 ---
 
 ### GetMolangValue
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> QueryVariableComponentClient
 
@@ -203,6 +216,8 @@ result = comp.GetMolangValue('query.can_fly')
 
 ### GetStringHash64
 
+<Version type="china" add="2.0"/>
+
 <Client/> QueryVariableComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateQueryVariable(levelId)`
@@ -239,6 +254,8 @@ result = comp.GetStringHash64('steve')
 ---
 
 ### Register
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> QueryVariableComponentClient
 
@@ -277,6 +294,8 @@ result = comp.Register('query.mod.state', 0.0)
 ---
 
 ### Set
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> QueryVariableComponentClient
 
@@ -317,6 +336,8 @@ result = comp.Set('query.mod.state', 1.0)
 
 ### SetPropertyValue
 
+<Version type="china" add="3.5"/>
+
 <Server/> QueryVariableComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateQueryVariable(entityId)`
@@ -354,6 +375,8 @@ result = comp.SetPropertyValue('minecraft:has_nectar', True)
 ---
 
 ### UnRegister
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> QueryVariableComponentClient
 

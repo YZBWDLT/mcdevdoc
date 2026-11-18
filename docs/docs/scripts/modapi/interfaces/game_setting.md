@@ -4,6 +4,7 @@ sidebar_position: 17
 
 # 游戏设置
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/youxishezhi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetControllerLayout
+
+<Version type="china" add="2.8"/>
 
 <Client/> PlayerViewCompClient
 
@@ -52,6 +59,8 @@ comp.GetControllerLayout(1) #获取手柄的绑定映射
 ---
 
 ### GetGamepadKeyMappings
+
+<Version type="china" add="3.7"/>
 
 <Client/> PlayerViewCompClient
 
@@ -88,6 +97,8 @@ print("当前冲刺手柄按键码:", keyCode)
 
 ### GetKeyMappings
 
+<Version type="china" add="3.7"/>
+
 <Client/> PlayerViewCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayerView(levelId)`
@@ -122,6 +133,8 @@ print("当前冲刺键码:", keyCode)
 
 ### GetSliderOption
 
+<Version type="china" add="2.11"/>
+
 <Client/> PlayerViewCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayerView(levelId)`
@@ -154,6 +167,8 @@ print(comp.GetSliderOption(clientApi.GetMinecraftEnum().SliderOptionId.MOUSE_SEN
 ---
 
 ### GetToggleOption
+
+<Version type="china" add="1.21"/>
 
 <Client/> PlayerViewCompClient
 
@@ -192,6 +207,8 @@ print(comp.GetToggleOption(clientApi.GetMinecraftEnum().OptionId.HIDE_PAPERDOLL)
 
 ### GetUIProfile
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> PlayerViewCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayerView(levelId)`
@@ -223,6 +240,8 @@ profile = comp.GetUIProfile()
 ---
 
 ### HighlightBoxSelection
+
+<Version type="china" add="1.21"/>
 
 <Client/> PlayerViewCompClient
 
@@ -261,6 +280,8 @@ comp.HighlightBoxSelection(True)
 
 ### RegisterCustomGamepadMapping
 
+<Version type="china" add="3.7"/>
+
 <Client/> PlayerViewCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayerView(levelId)`
@@ -298,6 +319,8 @@ print("注册结果:", success)
 
 ### RegisterCustomKeyMapping
 
+<Version type="china" add="3.7"/>
+
 <Client/> PlayerViewCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayerView(levelId)`
@@ -334,6 +357,8 @@ print("注册结果:", success)
 ---
 
 ### SetSliderOption
+
+<Version type="china" add="2.11"/>
 
 <Client/> PlayerViewCompClient
 
@@ -373,6 +398,8 @@ print(comp.SetSliderOption(clientApi.GetMinecraftEnum().SliderOptionId.MOUSE_SEN
 
 ### SetSplitControlCanChange
 
+<Version type="china" add="1.23"/>
+
 <Client/> PlayerViewCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayerView(levelId)`
@@ -409,6 +436,8 @@ print(comp.SetSplitControlCanChange(True))
 ---
 
 ### SetToggleOption
+
+<Version type="china" add="1.21"/>
 
 <Client/> PlayerViewCompClient
 
@@ -452,6 +481,8 @@ print(comp.SetToggleOption(clientApi.GetMinecraftEnum().OptionId.HIDE_PAPERDOLL,
 ---
 
 ### SetUIProfile
+
+<Version type="china" add="1.21"/>
 
 <Client/> PlayerViewCompClient
 

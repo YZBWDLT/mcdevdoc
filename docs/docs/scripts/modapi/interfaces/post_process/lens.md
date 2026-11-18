@@ -4,6 +4,7 @@ sidebar_position: 2
 
 # 镜头效果
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/houchuli/jingtouxiaoguo.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CheckDepthOfFieldEnabled
+
+<Version type="china" add="1.25"/>
 
 <Client/> PostProcessComponent
 
@@ -52,6 +59,8 @@ comp.CheckDepthOfFieldEnabled()
 
 ### CheckLensStainEnabled
 
+<Version type="china" add="1.25"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -84,6 +93,8 @@ comp.CheckLensStainEnabled()
 
 ### ResetLensStainTexture
 
+<Version type="china" add="1.25"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -115,6 +126,8 @@ comp.ResetLensStainTexture()
 ---
 
 ### SetDepthOfFieldBlurRadius
+
+<Version type="china" add="1.25"/>
 
 <Client/> PostProcessComponent
 
@@ -150,6 +163,8 @@ comp.SetDepthOfFieldBlurRadius(0.3)
 
 ### SetDepthOfFieldFarBlurScale
 
+<Version type="china" add="1.25"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -183,6 +198,8 @@ comp.SetDepthOfFieldFarBlurScale(1.0)
 ---
 
 ### SetDepthOfFieldFocusDistance
+
+<Version type="china" add="1.25"/>
 
 <Client/> PostProcessComponent
 
@@ -222,6 +239,8 @@ comp.SetDepthOfFieldFocusDistance(4)
 
 ### SetDepthOfFieldNearBlurScale
 
+<Version type="china" add="1.25"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -255,6 +274,8 @@ comp.SetDepthOfFieldNearBlurScale(1.0)
 ---
 
 ### SetDepthOfFieldUseCenterFocus
+
+<Version type="china" add="1.25"/>
 
 <Client/> PostProcessComponent
 
@@ -294,6 +315,8 @@ comp.SetDepthOfFieldUseCenterFocus(True)
 
 ### SetEnableDepthOfField
 
+<Version type="china" add="1.25"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -327,6 +350,8 @@ comp.SetEnableDepthOfField(True)
 
 ### SetEnableLensStain
 
+<Version type="china" add="1.25"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -359,6 +384,8 @@ comp.SetEnableLensStain(True)
 ---
 
 ### SetLensStainColor
+
+<Version type="china" add="1.25"/>
 
 <Client/> PostProcessComponent
 
@@ -395,6 +422,8 @@ comp.SetLensStainColor(0.3, (255,0,0))
 
 ### SetLensStainIntensity
 
+<Version type="china" add="1.25"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -428,6 +457,8 @@ comp.SetLensStainIntensity(0.4)
 ---
 
 ### SetLensStainTexture
+
+<Version type="china" add="1.25"/>
 
 <Client/> PostProcessComponent
 

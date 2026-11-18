@@ -16,6 +16,10 @@ import Version from "/src/components/highlight/version"
 
 传感器组件检查实体是否满足特定条件，例如周围是否有生物、是否受到伤害、附近是否存在方块等，并在符合条件后触发[实体事件](../events)。
 
+要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=entity_component" color="green"/>
+
 ### `minecraft:block_sensor`
 
 <Usable type="all"/> <Version add="1.14.0"/> <br/>
@@ -396,5 +400,6 @@ import Version from "/src/components/highlight/version"
 
 </TabItem></Tabs>
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>

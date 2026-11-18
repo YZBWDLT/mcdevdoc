@@ -518,7 +518,9 @@ button[class*="collapseSidebarButton"]::before {
     box-shadow: 0 1px 0 var(--oreui-divider-light);
 }
 
-/* 关闭键：藏掉主题的细线 svg，换 7×7 像素叉 */
+/* 关闭键：藏掉主题的细线 svg，换 7×7 像素叉。
+   显示尺寸取 21px —— 7 的整数 3 倍，每个像素正好占 3×3 个屏幕像素；
+   写 16px 的话是 2.28 倍，像素会一大一小，看着就不像 MC 的图了 */
 .navbar-sidebar__close svg {
     display: none;
 }
@@ -526,9 +528,9 @@ button[class*="collapseSidebarButton"]::before {
 .navbar-sidebar__close::before {
     content: "";
     display: block;
-    width: 16px;
-    height: 16px;
-    background: url("/ui/close.png") center / 16px 16px no-repeat;
+    width: 21px;
+    height: 21px;
+    background: url("/ui/close.png") center / 21px 21px no-repeat;
     image-rendering: pixelated;
 }
 
@@ -1325,6 +1327,21 @@ a[class*="tag_"]::after {
 .DocSearch-Input {
     color: var(--oreui-text);
     font-family: var(--oreui-font-body);
+}
+
+/* 关闭键：DocSearch 自带一个 20px 的**矢量**叉，线条细、端点圆，
+   和站内的像素图标不是一套。藏掉 svg，换同一张 7×7 像素叉（21px = 3 倍整数缩放） */
+.DocSearch-Close svg {
+    display: none;
+}
+
+.DocSearch-Close::before {
+    content: "";
+    display: block;
+    width: 21px;
+    height: 21px;
+    background: url("/ui/close.png") center / 21px 21px no-repeat;
+    image-rendering: pixelated;
 }
 
 /* 命中项：一条一条的板面小卡 */
@@ -3468,4 +3485,95 @@ a.oreui-card__action:visited {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+}
+
+
+/* ---- 5.12 勾选框 ----
+   形态照设置页的「方块 + 勾」：方框是凹陷面板，勾选后换成主题绿 + 白色对勾。
+   没有厚度条，属于板面语言（判据见 STYLE-站点美化.md）。
+   整行可点：框只有 20px，只让框能点会很别扭。 */
+
+.oreui-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.55rem;
+    border: 0;
+    background: transparent;
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-body);
+    font-size: 0.9rem;
+    text-align: left;
+    cursor: pointer;
+}
+
+.oreui-check:hover {
+    background-color: rgba(0, 0, 0, 0.14);
+}
+
+.oreui-check:focus-visible {
+    outline: 3px solid var(--oreui-accent-bright);
+    outline-offset: -3px;
+}
+
+.oreui-check__box {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    /* 描边用 box-shadow，省得占掉宽高、让框看起来偏小 */
+    background-color: #313233;
+    box-shadow:
+        inset 0 2px #232425,
+        inset 0 -1px rgba(255, 255, 255, 0.06),
+        0 0 0 2px #1d1e1f;
+}
+
+/* 选中态照规范图里那个「☑」：深绿底 + 一圈浅绿内边框 + 黑描边 */
+.oreui-check[aria-checked="true"] .oreui-check__box {
+    background-color: var(--oreui-accent);
+    box-shadow:
+        inset 0 0 0 2px #5a9c48,
+        0 0 0 2px #1d1e1f;
+}
+
+/* 9 格摆满 18px，每格正好 2px —— 方块才对得齐像素 */
+.oreui-check__box svg {
+    width: 18px;
+    height: 18px;
+}
+
+.oreui-check__label {
+    line-height: 1.4;
+}
+
+/* 计数用正文体，不要等宽 —— 站内的数字除了代码一律不用等宽 */
+.oreui-check__count {
+    color: var(--oreui-text-dim);
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* ---- 5.13 锚点落点高亮 ----
+   从接口速查跳进长文档时，闪一下目标标题，告诉读者「到了，就是这条」。
+   类由 src/clientModules/anchorHighlight.js 临时加、定时摘，不常驻。 */
+
+@keyframes anchor-flash {
+    0%,
+    45% {
+        background-color: rgba(108, 195, 73, 0.26);
+        box-shadow: inset 4px 0 0 var(--oreui-link);
+    }
+
+    100% {
+        background-color: transparent;
+        box-shadow: inset 4px 0 0 transparent;
+    }
+}
+
+.anchor-flash {
+    animation: anchor-flash 2.6s ease-out;
 }

@@ -4,6 +4,7 @@ sidebar_position: 4
 
 # 碰撞体
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -14,11 +15,23 @@ import Client from '/src/components/highlight/client';
 
 本文主要记录碰撞体相关的接口，共 8 个。
 
+:::warning[注意]
+
+物理系列接口属于**实验性内容**，后续版本可能出现接口变更、开发环境变更等情况。网易建议开发者合理安排开发内容与正式版本，避免物理系统更新后出现模组失效。有关物理系统的完整说明与使用教程，请查阅网易的[物理的使用指南](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/20-wuliwanfakaifa/1-wulideshiyongzhinan.html)。
+
+:::
+
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/wuli/pengzhuangti.html"/>
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
 
 ---
 
 ### AddBoxGeometry
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -30,7 +43,7 @@ import Client from '/src/components/highlight/client';
 <TabItem value="说明" label="说明" default>
 
 ```python
-AddBoxGeometry(
+服务端接口(
     localTransform: Tuple[float, float, float],
     halfX: float,
     halfY: float,
@@ -81,7 +94,7 @@ comp.AddBoxGeometry((0, 0.9, 0), 0.3, 0.9, 0.3, 0.05, 0.05, 0)
 给客户端本地自定义刚体创建盒形碰撞体。
 
 ```python
-AddBoxGeometry(
+客户端接口(
     localTransform: Tuple[float, float, float],
     halfX: float,
     halfY: float,
@@ -115,6 +128,8 @@ AddBoxGeometry(
 ---
 
 ### AddBoxTrigger
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PhysxComponentServer
 
@@ -167,6 +182,8 @@ comp.AddBoxTrigger((0, 0.9, 0), 0.3, 0.9, 0.3)
 ---
 
 ### AddCapsuleGeometry
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PhysxComponentServer
 
@@ -224,6 +241,8 @@ comp.AddCapsuleGeometry((0, 0.9, 0), 0.3, 0.9, 0.05, 0.05, 0)
 
 ### AddSphereGeometry
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -278,6 +297,8 @@ comp.AddSphereGeometry((0, 0.9, 0), 0.3, 0.05, 0.05, 0)
 
 ### GetShapeCount
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -288,9 +309,8 @@ comp.AddSphereGeometry((0, 0.9, 0), 0.3, 0.05, 0.05, 0)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetShapeCount() -> int
+服务端接口() -> int
 ```
-
 
 **返回值**：int，shape 数量；非自定义刚体时返回 None。
 
@@ -313,15 +333,16 @@ print comp.GetShapeCount()
 获取客户端本地自定义刚体当前的碰撞 shape 数量。
 
 ```python
-GetShapeCount() -> int
+客户端接口() -> int
 ```
-
 
 **返回值**：int，shape 数量；客户端没有本地自定义刚体时返回 None。
 
 ---
 
 ### GetShapeInfo
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -333,7 +354,7 @@ GetShapeCount() -> int
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetShapeInfo(shapeIndex: int) -> Dict[str, Any]
+服务端接口(shapeIndex: int) -> Dict[str, Any]
 ```
 
 - shapeIndex: int，shape 索引，范围为 0 到 [GetShapeCount](/docs/docs/scripts/modapi/interfaces/physics/collider#getshapecount)()-1。
@@ -359,7 +380,7 @@ print comp.GetShapeInfo(0) # 返回第一个 shape 的 localTransform、userData
 获取客户端本地指定碰撞 shape 的信息。
 
 ```python
-GetShapeInfo(shapeIndex: int) -> Dict[str, Any]
+客户端接口(shapeIndex: int) -> Dict[str, Any]
 ```
 
 - shapeIndex: int，shape 索引，范围为 0 到 [GetShapeCount](/docs/docs/scripts/modapi/interfaces/physics/collider#getshapecount)()-1。
@@ -369,6 +390,8 @@ GetShapeInfo(shapeIndex: int) -> Dict[str, Any]
 ---
 
 ### RemoveShape
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -380,7 +403,7 @@ GetShapeInfo(shapeIndex: int) -> Dict[str, Any]
 <TabItem value="说明" label="说明" default>
 
 ```python
-RemoveShape(shapeIndex: int) -> bool
+服务端接口(shapeIndex: int) -> bool
 ```
 
 - shapeIndex: int，shape 索引，范围为 0 到 [GetShapeCount](/docs/docs/scripts/modapi/interfaces/physics/collider#getshapecount)()-1。
@@ -410,7 +433,7 @@ comp.RemoveShape(0) # 删除第一个已添加的碰撞 shape
 删除客户端本地自定义刚体上指定索引的碰撞 shape。
 
 ```python
-RemoveShape(shapeIndex: int) -> bool
+客户端接口(shapeIndex: int) -> bool
 ```
 
 - shapeIndex: int，shape 索引，范围为 0 到 [GetShapeCount](/docs/docs/scripts/modapi/interfaces/physics/collider#getshapecount)()-1。
@@ -425,6 +448,8 @@ RemoveShape(shapeIndex: int) -> bool
 
 ### RemoveShapeByUserData
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -435,7 +460,7 @@ RemoveShape(shapeIndex: int) -> bool
 <TabItem value="说明" label="说明" default>
 
 ```python
-RemoveShapeByUserData(userData: str) -> int
+服务端接口(userData: str) -> int
 ```
 
 - userData: str，创建 shape 时传入的自定义标识。
@@ -461,7 +486,7 @@ removedCount = comp.RemoveShapeByUserData("wheel")
 删除客户端本地所有 userData 与指定值相同的碰撞 shape。
 
 ```python
-RemoveShapeByUserData(userData: str) -> int
+客户端接口(userData: str) -> int
 ```
 
 - userData: str，创建 shape 时传入的自定义标识。

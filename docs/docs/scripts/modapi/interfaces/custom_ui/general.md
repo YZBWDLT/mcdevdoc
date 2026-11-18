@@ -4,6 +4,7 @@ sidebar_position: 1
 
 # 通用
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/zidingyi-ui/tongyong.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CheckCanBindUI
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -55,6 +62,8 @@ canBind = clientApi.CheckCanBindUI(entityId)
 ---
 
 ### CreateUI
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -140,6 +149,8 @@ def OnUIInitFinished(self, args):
 
 ### EnableFontBatchRender
 
+<Version type="china" add="2.12"/>
+
 <Client/> GameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -175,6 +186,8 @@ print(comp.EnableFontBatchRender(True))
 
 ### GetCustomUIControlProxyCls
 
+<Version type="china" add="1.22"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -205,6 +218,8 @@ CustomUIControlProxy = clientApi.GetCustomUIControlProxyCls()
 ---
 
 ### GetMiniMapScreenNodeCls
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -237,6 +252,8 @@ MiniMapBaseScreen = clientApi.GetMiniMapScreenNodeCls()
 
 ### GetNativeScreenManagerCls
 
+<Version type="china" add="1.22"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -268,6 +285,8 @@ NativeScreenManager = clientApi.GetNativeScreenManagerCls()
 
 ### GetScreenNodeCls
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -298,6 +317,8 @@ ScreenNode = clientApi.GetScreenNodeCls()
 ---
 
 ### GetTopScreen
+
+<Version type="china" add="2.0"/>
 
 <Client/>
 
@@ -333,6 +354,8 @@ node = clientApi.GetTopScreen()
 ---
 
 ### GetTopUI
+
+<Version type="china" add="2.4"/>
 
 <Client/>
 
@@ -370,6 +393,8 @@ TopUIName = clientApi.GetTopUI()
 
 ### GetTopUINode
 
+<Version type="china" add="2.6"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -400,6 +425,8 @@ uiNode = clientApi.GetTopUINode()
 ---
 
 ### GetUI
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -434,6 +461,8 @@ uiNode = clientApi.GetUI(modConfig.ModName, modConfig.FpsBattleUIName)
 
 ### GetUIScreenProxyCls
 
+<Version type="china" add="2.6"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -464,6 +493,8 @@ CustomUIScreenProxy = clientApi.GetUIScreenProxyCls()
 ---
 
 ### GetViewBinderCls
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -496,6 +527,8 @@ ViewBinder = clientApi.GetViewBinderCls()
 
 ### GetViewViewRequestCls
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -526,6 +559,8 @@ ViewRequest = clientApi.GetViewViewRequestCls()
 ---
 
 ### OpenDeveloperHomeWindow
+
+<Version type="china" add="3.2"/>
 
 <Client/> NeteaseWindowCompClient
 
@@ -558,6 +593,8 @@ comp.OpenDeveloperHomeWindow("developer@163.com")
 
 ### OpenResourceCenterDetailWindow
 
+<Version type="china" add="3.2"/>
+
 <Client/> NeteaseWindowCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateNeteaseWindow(playerId)`
@@ -588,6 +625,8 @@ comp.OpenResourceCenterDetailWindow("itemId")
 ---
 
 ### PopScreen
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -624,6 +663,8 @@ clientApi.PopScreen()
 
 ### PopTopUI
 
+<Version type="china" add="2.4"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -659,6 +700,8 @@ MyBool = clientApi.PopTopUI()
 ---
 
 ### PushScreen
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -710,6 +753,8 @@ def OnUIInitFinished(self, args):
 
 ### RegisterUI
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -754,6 +799,8 @@ def OnUIInitFinished(self, args):
 ---
 
 ### RegisterUIAnimations
+
+<Version type="china" add="2.8"/>
 
 <Client/>
 
@@ -811,6 +858,8 @@ clientApi.RegisterUIAnimations(data, True)
 ---
 
 ### UnregisterUIAnimation
+
+<Version type="china" add="2.8"/>
 
 <Client/>
 

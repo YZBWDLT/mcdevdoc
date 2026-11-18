@@ -4,6 +4,7 @@ sidebar_position: 7
 
 # UI
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/UI.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_event" color="green"/>
+
 ---
 
 ### AchievementButtonMovedClientEvent
+
+<Version type="china" add="2.9"/>
 
 <Client/>
 
@@ -63,6 +70,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### ClientChestCloseEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -126,6 +135,8 @@ class MyClientSystem(ClientSystem):
 
 ### ClientChestOpenEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 打开箱子界面时触发，包括小箱子，合并后大箱子和末影箱(实体容器不属于方块，不会触发该事件)。
@@ -184,6 +195,8 @@ class MyClientSystem(ClientSystem):
 
 ### ClientPlayerInventoryCloseEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 关闭物品背包界面时触发。
@@ -221,6 +234,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### ClientPlayerInventoryOpenEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -266,6 +281,8 @@ class MyClientSystem(ClientSystem):
 
 ### CloseNeteaseShopEvent
 
+<Version type="china" add="2.6"/>
+
 <Client/>
 
 关闭商城界面时触发，包括脚本商城和 Apollo 插件商城。
@@ -303,6 +320,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### GridComponentSizeChangedClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -345,6 +364,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### HudButtonChangedClientEvent
+
+<Version type="china" add="3.3"/>
 
 <Client/>
 
@@ -398,6 +419,8 @@ class MyClientSystem(ClientSystem):
 
 ### OnItemSlotButtonClickedEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 点击快捷栏、背包栏、盔甲栏、副手栏的物品槽时触发。
@@ -440,6 +463,8 @@ class MyClientSystem(ClientSystem):
 
 ### PlayerChatButtonClickClientEvent
 
+<Version type="china" add="1.21"/>
+
 <Client/>
 
 玩家点击聊天按钮或回车键触发呼出聊天窗口时客户端抛出的事件。
@@ -477,6 +502,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### PlayerInventoryOpenScriptServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -528,6 +555,8 @@ class MyServerSystem(ServerSystem):
 
 ### PopScreenAfterClientEvent
 
+<Version type="china" add="2.6"/>
+
 <Client/>
 
 screen 移除触发。
@@ -575,6 +604,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### PopScreenEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -624,6 +655,8 @@ class MyClientSystem(ClientSystem):
 
 ### PushScreenEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 screen 创建触发。
@@ -667,6 +700,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### ScreenSizeChangedClientEvent
+
+<Version type="china" add="2.5"/>
 
 <Client/>
 
@@ -720,6 +755,8 @@ class MyClientSystem(ClientSystem):
 
 ### UiInitFinished
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 UI 初始化框架完成,此时可以创建 UI。
@@ -762,6 +799,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### UrgeShipEvent
+
+<Version type="china" add="2.4"/>
 
 <Server/>
 

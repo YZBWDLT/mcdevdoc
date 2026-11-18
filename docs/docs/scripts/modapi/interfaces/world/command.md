@@ -4,6 +4,7 @@ sidebar_position: 14
 
 # 指令
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/zhiling.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetCommandPermissionLevel
+
+<Version type="china" add="1.23"/>
 
 <Server/> CommandCompServer
 
@@ -53,6 +60,8 @@ print "GetCommandPermissionLevel oplevel={}".format(opLevel)
 
 ### GetDefaultPlayerPermissionLevel
 
+<Version type="china" add="1.23"/>
+
 <Server/> CommandCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateCommand(levelId)`
@@ -85,6 +94,8 @@ print "GetDefaultPlayerPermissionLevel oplevel={}".format(opLevel)
 ---
 
 ### SetCommand
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> CommandCompServer
 
@@ -126,6 +137,8 @@ comp.SetCommand("/tp @p 100 5 100")#传送指令
 
 ### SetCommandPermissionLevel
 
+<Version type="china" add="1.23"/>
+
 <Server/> CommandCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateCommand(levelId)`
@@ -164,6 +177,8 @@ print "SetCommandPermissionLevel to {} suc={}".format(opLevel, suc)
 ---
 
 ### SetDefaultPlayerPermissionLevel
+
+<Version type="china" add="1.23"/>
 
 <Server/> CommandCompServer
 

@@ -4,6 +4,7 @@ sidebar_position: 2
 
 # 方块管理
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/fangkuaiguanli.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetBlock
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -57,6 +64,8 @@ comp.GetBlock((x,y,z))
 
 ### GetBlockClip
 
+<Version type="china" add="2.1"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -67,7 +76,7 @@ comp.GetBlock((x,y,z))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBlockClip(pos: Tuple[int, int, int], dimensionId: int = -1) -> Dict[str, Any]
+服务端接口(pos: Tuple[int, int, int], dimensionId: int = -1) -> Dict[str, Any]
 ```
 
 - pos: Tuple[int, int, int]，方块位置。
@@ -102,7 +111,7 @@ blockDict = comp.GetBlockClip((0, 5, 0), 0)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBlockClip(pos: Tuple[int, int, int]) -> Dict[str, Any]
+客户端接口(pos: Tuple[int, int, int]) -> Dict[str, Any]
 ```
 
 - pos: Tuple[int, int, int]，方块位置。
@@ -129,6 +138,8 @@ comp.GetBlockClip((x,y,z))
 
 ### GetBlockCollision
 
+<Version type="china" add="2.1"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -139,7 +150,7 @@ comp.GetBlockClip((x,y,z))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBlockCollision(
+服务端接口(
     pos: Tuple[int, int, int],
     dimensionId: int = -1,
     getAll: bool = False,
@@ -182,10 +193,7 @@ blockDict = comp.GetBlockCollision((0, 5, 0), 0, True)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBlockCollision(
-    pos: Tuple[int, int, int],
-    getAll: bool = False,
-) -> Dict[str, Any]
+客户端接口(pos: Tuple[int, int, int], getAll: bool = False) -> Dict[str, Any]
 ```
 
 - pos: Tuple[int, int, int]，方块位置。
@@ -215,6 +223,8 @@ comp.GetBlockCollision((x,y,z), True)
 ---
 
 ### GetBlockNew
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -255,6 +265,8 @@ blockDict = comp.GetBlockNew((0, 5, 0), 0)
 
 ### GetDestroyTotalTime
 
+<Version type="china" add="1.22"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -265,11 +277,7 @@ blockDict = comp.GetBlockNew((0, 5, 0), 0)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetDestroyTotalTime(
-    blockName: str,
-    itemName: str,
-    miningArgs: Dict[str, Any],
-) -> float
+服务端接口(blockName: str, itemName: str, miningArgs: Dict[str, Any]) -> float
 ```
 
 - blockName: str，方块标识符，格式[namespace:name:auxvalue]，auxvalue 默认为 0。
@@ -317,11 +325,7 @@ comp.GetDestroyTotalTime("minecraft:diamond_block", "minecraft:stone_pickaxe", a
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetDestroyTotalTime(
-    blockName: str,
-    itemName: str,
-    miningArgs: Dict[str, Any],
-) -> float
+客户端接口(blockName: str, itemName: str, miningArgs: Dict[str, Any]) -> float
 ```
 
 - blockName: str，方块标识符，格式[namespace:name:auxvalue]，auxvalue 默认为 0。
@@ -363,6 +367,8 @@ comp.GetDestroyTotalTime("minecraft:diamond_block", "minecraft:stone_pickaxe", a
 
 ### GetLiquidBlock
 
+<Version type="china" add="2.0"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -402,6 +408,8 @@ liquidBlockDict = comp.GetLiquidBlock((0, 5, 0), 0)
 
 ### GetTopBlockHeight
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -412,7 +420,7 @@ liquidBlockDict = comp.GetLiquidBlock((0, 5, 0), 0)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetTopBlockHeight(pos: Tuple[int, int], dimension: int = 0) -> Optional[int]
+服务端接口(pos: Tuple[int, int], dimension: int = 0) -> Optional[int]
 ```
 
 - pos: Tuple[int, int]，x 轴与 z 轴位置。
@@ -442,7 +450,7 @@ height = comp.GetTopBlockHeight((5, 5), 0)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetTopBlockHeight(pos: Tuple[int, int]) -> Optional[int]
+客户端接口(pos: Tuple[int, int]) -> Optional[int]
 ```
 
 - pos: Tuple[int, int]，x 轴与 z 轴位置。
@@ -464,6 +472,8 @@ height = comp.GetTopBlockHeight((5, 5))
 ---
 
 ### SetBlockNew
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -529,6 +539,8 @@ comp.SetBlockNew((0, 6, 0), blockDict, 0, 0, True, False)
 
 ### SetJigsawBlock
 
+<Version type="china" add="2.7"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockState(serverApi.GetLevelId())`
@@ -587,6 +599,8 @@ print comp.SetJigsawBlock((0, 100, 0), blockDict, 0)
 
 ### SetLiquidBlock
 
+<Version type="china" add="2.0"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(playerId)`
@@ -634,6 +648,8 @@ comp.SetLiquidBlock((0, 5, 0), blockDict, 0)
 ---
 
 ### SetSnowBlock
+
+<Version type="china" add="2.0"/>
 
 <Server/> BlockInfoComponentServer
 

@@ -8,6 +8,7 @@ import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 import Optional from "/src/components/highlight/optional"
 import RestrictedMode from "/src/components/highlight/restrictedMode"
+import Button from '/src/components/button/base';
 
 本文主要记录实体组件相关接口。
 
@@ -84,6 +85,10 @@ import RestrictedMode from "/src/components/highlight/restrictedMode"
 | 末影物品栏 | [`EntityEnderInventoryComponent`](#entityenderinventorycomponent-类) | `2.8.0` |
 | NPC | [`EntityNpcComponent`](#entitynpccomponent-类) | `beta` |
 | 光标物品栏 | [`PlayerCursorInventoryComponent`](#playercursorinventorycomponent-类) | `1.14.0` |
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

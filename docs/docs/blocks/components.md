@@ -19,7 +19,9 @@ import Button from '/src/components/button/base';
 
 数据驱动方块组件（Data-Driven Block Components）用于规定方块的功能。将不同的方块组件组合在一起可以实现多种复杂的功能。方块组件可以指定到<DataType type="object" name="components" isRequired/>中，以使得方块在所有情况下都使用相关功能；也可以指定到方块置换<DataType type="array" name="permutations"/> - <DataType type="object"/> - <DataType type="object" name="components" isRequired/>中，使得方块在使用特定方块置换时使用特定的功能。
 
-本文档收录所有已开放或即将开放的命名空间为`minecraft`和`netease`的方块组件信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
+本文档收录所有已开放或即将开放的命名空间为`minecraft`和`netease`的方块组件信息。要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=block_component" color="green"/>
 
 也可以在[常见的方块实例](./examples)中查找是否有你需要的实例。
 
@@ -612,7 +614,7 @@ import Button from '/src/components/button/base';
 
 <Usable type="all"/> <Version add="1.21.120"/> <Highlight text="禁止定义置换" tooltip="此组件不可定义在方块置换permutations内。" color="red"/> <Highlight text="需要前置组件" tooltip="目前，该组件只适用于花盆。因此，要使用此组件，请事先定义minecraft:flower_pottable组件。"/> <br/>
 
-定义了方块嵌入另一方块（如花盆）时需要使用的`geometry`和`material_instances`。
+定义了方块嵌入另一方块（如花盆）时需要使用的`geometry`和`material_instances`。嵌入时的整体变换由模型文件中[`item_display_transforms`](./model#方块模型文件格式)下的`embedded`指定。
 
 另见：_[`minecraft:flower_pottable`](#minecraftflower_pottable)组件_。
 
@@ -1682,7 +1684,7 @@ import Button from '/src/components/button/base';
 
 ### `minecraft:max_stack_size`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.11"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#minecraft-max-stack-size"/>
 
@@ -1708,7 +1710,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:aabb`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:collision_box组件和minecraft:selection_box组件平替，需求格式版本为1.19.60。但在当前中国版版本下，暂时不支持复合碰撞箱和复合选择箱。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:collision_box组件和minecraft:selection_box组件平替，需求格式版本为1.19.60。但在当前中国版版本下，暂时不支持复合碰撞箱和复合选择箱。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-aabb"/>
 
@@ -1773,7 +1775,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_animate_random_tick`
 
-<Usable type="onlyChina"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="3.3"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-block-animate-random-tick"/>
 
@@ -1814,7 +1816,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_chest`
 
-<Usable type="onlyChina"/> <Highlight text="组件冲突" tooltip="此组件和其他多个组件存在冲突。" color="red"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.7"/> <Highlight text="组件冲突" tooltip="此组件和其他多个组件存在冲突。" color="red"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-block-chest"/>
 
@@ -1862,7 +1864,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_container`
 
-<Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为netease_container。"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="3.4"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为netease_container。"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-block-container"/>
 
@@ -1920,7 +1922,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_crafting_table`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:crafting_table组件平替，需求格式版本为1.19.50。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.7"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:crafting_table组件平替，需求格式版本为1.19.50。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/10-zidingyigongzuotai.html"/>
 
@@ -1952,7 +1954,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_entity`
 
-<Usable type="onlyChina"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="1.24"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-block-entity"/>
 
@@ -1984,7 +1986,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_properties`
 
-<Usable type="onlyChina"/> <Highlight text="碰撞箱限制" tooltip="要使用该组件，方块的碰撞箱边长至少需要大于0.4格，否则该组件可能无法触发。" color="red"/> <Highlight text="存在平替" tooltip="该组件的piston_block_grabber功能可由minecraft:movable组件平替，需求格式版本为1.21.100。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="碰撞箱限制" tooltip="要使用该组件，方块的碰撞箱边长至少需要大于0.4格，否则该组件可能无法触发。" color="red"/> <Highlight text="存在平替" tooltip="该组件的piston_block_grabber功能可由minecraft:movable组件平替，需求格式版本为1.21.100。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-block-properties"/>
 
@@ -2020,7 +2022,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:block_random_offset`
 
-<Usable type="onlyChina"/> <Highlight text="材质限制" tooltip="该组件会将方块的材质设置为透明材质，不可设置方块为不透明材质。" color="red"/> <Highlight text="模型限制" tooltip="该组件会在临近存在不透明方块时剔除对应的方块面，并且在物品栏的渲染贴图可能也会存在问题，因此请尽量使用自定义模型的方块。" color="red"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:random_offset组件平替，需求格式版本为1.21.100。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.7"/> <Highlight text="材质限制" tooltip="该组件会将方块的材质设置为透明材质，不可设置方块为不透明材质。" color="red"/> <Highlight text="模型限制" tooltip="该组件会在临近存在不透明方块时剔除对应的方块面，并且在物品栏的渲染贴图可能也会存在问题，因此请尽量使用自定义模型的方块。" color="red"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:random_offset组件平替，需求格式版本为1.21.100。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-block-random-offset"/>
 
@@ -2051,7 +2053,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:can_built_over`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:replaceable组件平替，需求格式版本为1.21.70。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.0"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:replaceable组件平替，需求格式版本为1.21.70。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/9-zidingyihanxuefangkuai.html"/>
 
@@ -2080,7 +2082,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:connection`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:connection方块特征平替，需求格式版本为1.26.0。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:connection方块特征平替，需求格式版本为1.26.0。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-connection"/>
 
@@ -2110,7 +2112,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:custom_tips`
 
-<Usable type="onlyChina"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.7"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-custom-tips"/>
 
@@ -2139,7 +2141,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:face_directional`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:placement_direction方块特征、minecraft:transformation组件平替，需求格式版本为1.20.20。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="1.25"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:placement_direction方块特征、minecraft:transformation组件平替，需求格式版本为1.20.20。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-face-directional"/>
 
@@ -2168,7 +2170,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:fall`
 
-<Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为custom_heavy_block。"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="1.24"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为custom_heavy_block。"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/6-zidingyizhonglifangkuai.html"/>
 
@@ -2213,7 +2215,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:fire_resistant`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-fire-resistant"/>
 
@@ -2242,7 +2244,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:fuel`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.11"/> <Highlight text="存在平替" tooltip="该组件功能可由同ID物品定义minecraft:block_placer组件的replace_block_item属性为true后，通过定义物品组件平替。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-fuel"/>
 
@@ -2271,7 +2273,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:liquid`
 
-<Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为liquid（静态流体）或flowing_liquid（动态流体）。"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="1.24"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为liquid（静态流体）或flowing_liquid（动态流体）。"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/5-zidingyiliuti.html"/>
 
@@ -2346,7 +2348,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:listen_block_remove`
 
-<Usable type="onlyChina"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-listen-block-remove"/>
 
@@ -2375,7 +2377,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:may_place_on`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:placement_filter组件平替，需求格式版本为1.20.20。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:placement_filter组件平替，需求格式版本为1.20.20。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-may-place-on"/>
 
@@ -2422,7 +2424,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:mob_spawner`
 
-<Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为mob_spawner。"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为mob_spawner。"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/1-zidingyishuaguaixiang.html"/>
 
@@ -2451,7 +2453,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:neighborchanged_sendto_script`
 
-<Usable type="onlyChina"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-neighborchanged-sendto-script"/>
 
@@ -2480,7 +2482,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:no_crop_face_block`
 
-<Usable type="onlyChina"/> <Highlight text="需要前置组件" tooltip="要使用此组件，请事先定义minecraft:light_dampening组件和netease:render_layer组件。"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.7"/> <Highlight text="需要前置组件" tooltip="要使用此组件，请事先定义minecraft:light_dampening组件和netease:render_layer组件。"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-no-crop-face-block"/>
 
@@ -2508,7 +2510,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:on_after_fall_on`
 
-<Usable type="onlyChina"/> <Highlight text="碰撞箱限制" tooltip="要使用该组件，方块的碰撞箱边长至少需要大于0.4格，否则该组件可能无法触发。" color="red"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="1.24"/> <Highlight text="碰撞箱限制" tooltip="要使用该组件，方块的碰撞箱边长至少需要大于0.4格，否则该组件可能无法触发。" color="red"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-on-after-fall-on"/>
 
@@ -2539,7 +2541,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:on_before_fall_on`
 
-<Usable type="onlyChina"/> <Highlight text="碰撞箱限制" tooltip="要使用该组件，方块的碰撞箱边长至少需要大于0.4格，否则该组件可能无法触发。" color="red"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="1.24"/> <Highlight text="碰撞箱限制" tooltip="要使用该组件，方块的碰撞箱边长至少需要大于0.4格，否则该组件可能无法触发。" color="red"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-on-before-fall-on"/>
 
@@ -2570,7 +2572,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:on_entity_inside`
 
-<Usable type="onlyChina"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="1.25"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-on-entity-inside"/>
 
@@ -2601,7 +2603,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:on_stand_on`
 
-<Usable type="onlyChina"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="1.24"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-on-stand-on"/>
 
@@ -2630,7 +2632,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:on_step_off`
 
-<Usable type="onlyChina"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="1.25"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-on-step-off"/>
 
@@ -2659,7 +2661,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:on_step_on`
 
-<Usable type="onlyChina"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="1.25"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-on-step-on"/>
 
@@ -2688,7 +2690,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:pathable`
 
-<Usable type="onlyChina"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-pathable"/>
 
@@ -2717,7 +2719,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:portal`
 
-<Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为portal。"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为portal。"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/2-zidingyichuansongmenfangkuai.html"/>
 
@@ -2754,7 +2756,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:random_tick`
 
-<Usable type="onlyChina"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-random-tick"/>
 
@@ -2785,7 +2787,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:redstone`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:redstone_producer组件、minecraft:redstone_consumer组件平替，需求格式版本为1.26.0。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:redstone_producer组件、minecraft:redstone_consumer组件平替，需求格式版本为1.26.0。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-redstone"/>
 
@@ -2824,7 +2826,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:redstone_property`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:movable组件平替，需求格式版本为1.21.100。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:movable组件平替，需求格式版本为1.21.100。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-redstone-property"/>
 
@@ -2853,7 +2855,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:render_layer`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:material_instances组件平替，要实现完全平替，需求格式版本为1.21.80。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:material_instances组件平替，要实现完全平替，需求格式版本为1.21.80。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-render-layer"/>
 
@@ -2886,7 +2888,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:snow_recover_able`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:precipitation_interactions组件平替，需求格式版本为1.26.30。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.0"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:precipitation_interactions组件平替，需求格式版本为1.26.30。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/9-zidingyihanxuefangkuai.html"/>
 
@@ -2915,7 +2917,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:solid`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:collision_box组件、minecraft:material_instances组件平替，需求格式版本为1.19.50。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:collision_box组件、minecraft:material_instances组件平替，需求格式版本为1.19.50。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-solid"/>
 
@@ -2946,7 +2948,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:tier`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件的最佳挖掘工具功能可由minecraft:destructible_by_mining组件的item_specific_speeds参数平替，需求格式版本为1.21.50。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="存在平替" tooltip="该组件的最佳挖掘工具功能可由minecraft:destructible_by_mining组件的item_specific_speeds参数平替，需求格式版本为1.21.50。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-tier"/>
 
@@ -2979,7 +2981,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:transform`
 
-<Usable type="onlyChina"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为custom_crop_block。"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在方块描述中将base_block设置为custom_crop_block。"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/3-zidingyinongzuowufangkuai.html"/>
 
@@ -3022,7 +3024,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:water_flow_source`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:liquid_detection组件平替，需求格式版本为1.21.60。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.0"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:liquid_detection组件平替，需求格式版本为1.21.60。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/7-zidingyihanshuifangkuai.html"/>
 
@@ -3049,18 +3051,20 @@ import Button from '/src/components/button/base';
 
 ---
 
-### `netease:water_destroy`
+### `netease:water_destory`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:liquid_detection组件平替，需求格式版本为1.21.60。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.0"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:liquid_detection组件平替，需求格式版本为1.21.60。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/7-zidingyihanshuifangkuai.html"/>
 
 定义方块会被水流摧毁，且无法放置在水中（类似红石粉、火把等）。
 
+> **注意**：这里的`destroy`拼写有误，网易误拼写为了`destory`，原文如此。
+
 <Tabs><TabItem value="参数" label="参数" default>
 
 <treeview>
-- <DataType type="object" name="netease:water_destroy"/>：根对象。
+- <DataType type="object" name="netease:water_destory"/>：根对象。
   - <DataType type="boolean" name="value" isRequired/>：方块是否会被水流摧毁，且无法放置在水中。
 </treeview>
 
@@ -3069,7 +3073,7 @@ import Button from '/src/components/button/base';
 **遇水破坏**：水流过时方块被破坏，类似火把。
 
 ```json showLineNumbers
-"netease:water_destroy": {
+"netease:water_destory": {
     "value": true
 }
 ```
@@ -3080,7 +3084,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:water_only`
 
-<Usable type="onlyChina"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.0"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/7-zidingyihanshuifangkuai.html"/>
 
@@ -3109,7 +3113,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:water_source`
 
-<Usable type="onlyChina"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:liquid_detection组件平替，需求格式版本为1.21.60。" color="lightblue"/> <br/>
+<Usable type="onlyChina"/> <Version type="china" add="2.0"/> <Highlight text="存在平替" tooltip="该组件可由minecraft:liquid_detection组件平替，需求格式版本为1.21.60。" color="lightblue"/> <br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/7-zidingyihanshuifangkuai.html"/>
 

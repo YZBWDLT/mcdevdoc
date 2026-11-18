@@ -4,6 +4,7 @@ sidebar_position: 4
 
 # 方块实体
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/fangkuai/fangkuaishiti.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CleanBlockTileEntityCustomData
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -64,6 +71,8 @@ print "CleanBlockTileEntityCustomData pos=%s suc=%s" % (str(pos), suc)
 
 ### CreateFrameEffectForBlockEntity
 
+<Version type="china" add="1.24"/>
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -108,6 +117,8 @@ id2 = comp.CreateFrameEffectForBlockEntity(pos, "effects/sfxs/snow.json", "my_fr
 
 ### CreateParticleEffectForBlockEntity
 
+<Version type="china" add="1.24"/>
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -150,6 +161,8 @@ id = comp.CreateParticleEffectForBlockEntity(pos, "effects/fire.json", "my_parti
 
 ### ExecuteCommandBlock
 
+<Version type="china" add="2.10"/>
+
 <Server/> BlockEntityCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockEntity(levelId)`
@@ -184,6 +197,8 @@ print comp.ExecuteCommandBlock((x, y, z), 0)
 
 ### GetBlockEntityData
 
+<Version type="china" add="2.7"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockEntityData(levelId)`
@@ -194,10 +209,7 @@ print comp.ExecuteCommandBlock((x, y, z), 0)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBlockEntityData(
-    dimension: int,
-    pos: Tuple[int, int, int],
-) -> Optional[BlockEntityData]
+服务端接口(dimension: int, pos: Tuple[int, int, int]) -> Optional[BlockEntityData]
 ```
 
 - dimension: int，维度。
@@ -255,7 +267,7 @@ if blockEntityData:
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBlockEntityData(pos: Tuple[int, int, int]) -> Optional[Dict[str, Any]]
+客户端接口(pos: Tuple[int, int, int]) -> Optional[Dict[str, Any]]
 ```
 
 - pos: Tuple[int, int, int]，方块所在位置。
@@ -282,6 +294,8 @@ blockEntityData = blockEntitycomp.GetBlockEntityData((4, 3, 2))
 ---
 
 ### GetBlockEntityMolangValue
+
+<Version type="china" add="1.24"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -316,6 +330,8 @@ comp.GetBlockEntityMolangValue(pos, "query.mod.idle")
 ---
 
 ### GetBlockTileEntityCustomData
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -363,6 +379,8 @@ print "GetBlockTileEntityCustomData pos=%s key=%s value=%s" % (str(pos), key, va
 ---
 
 ### GetBlockTileEntityWholeCustomData
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -414,6 +432,8 @@ if data:
 
 ### GetCommandBlock
 
+<Version type="china" add="2.10"/>
+
 <Server/> BlockEntityCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockEntity(levelId)`
@@ -459,6 +479,8 @@ print comp.GetCommandBlock((x, y, z), 0)
 ---
 
 ### GetFrameEffectIdInBlockEntity
+
+<Version type="china" add="1.24"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -506,6 +528,8 @@ id = comp.GetFrameEffectIdInBlockEntity(pos, "my_frame1")
 
 ### GetFrameItem
 
+<Version type="china" add="2.10"/>
+
 <Server/> BlockEntityCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockEntity(levelId)`
@@ -539,6 +563,8 @@ print comp.GetFrameItem((x, y, z), 0)
 ---
 
 ### GetFrameItemDropChange
+
+<Version type="china" add="2.10"/>
 
 <Server/> BlockEntityCompServer
 
@@ -574,6 +600,8 @@ print comp.GetFrameItemDropChange((x, y, z), 0)
 
 ### GetFrameRotation
 
+<Version type="china" add="2.10"/>
+
 <Server/> BlockEntityCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockEntity(levelId)`
@@ -608,6 +636,8 @@ print comp.GetFrameRotation((x, y, z), 0)
 
 ### GetHopperSpeed
 
+<Version type="china" add="2.10"/>
+
 <Server/> BlockEntityCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockEntity(levelId)`
@@ -641,6 +671,8 @@ print comp.GetHopperSpeed((x, y, z), 0)
 ---
 
 ### GetParticleEffectIdInBlockEntity
+
+<Version type="china" add="1.24"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -688,6 +720,8 @@ id = comp.GetParticleEffectIdInBlockEntity(pos, "my_particle1")
 
 ### RemoveFrameEffectInBlockEntity
 
+<Version type="china" add="1.24"/>
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -726,6 +760,8 @@ comp.RemoveFrameEffectInBlockEntity(pos, "my_frame1")
 
 ### RemoveParticleEffectInBlockEntity
 
+<Version type="china" add="1.24"/>
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -763,6 +799,8 @@ comp.RemoveParticleEffectInBlockEntity(pos, "my_particle1")
 ---
 
 ### SetBlockEntityData
+
+<Version type="china" add="3.2"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -809,6 +847,8 @@ if blockEntityData:
 ---
 
 ### SetBlockEntityMolangValue
+
+<Version type="china" add="1.24"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -863,6 +903,8 @@ comp.SetBlockEntityMolangValue(pos, "variable.mod_is_moving", 2.0)
 
 ### SetBlockTileEntityCustomData
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(playerId)`
@@ -910,6 +952,8 @@ print "SetBlockTileEntityCustomData pos=%s suc=%s" % (str(pos), suc)
 ---
 
 ### SetCommandBlock
+
+<Version type="china" add="2.10"/>
 
 <Server/> BlockEntityCompServer
 
@@ -967,6 +1011,8 @@ print comp.SetCommandBlock((x, y, z), 0, cmd, name, mode, isConditional, redston
 
 ### SetEnableBlockEntityAnimations
 
+<Version type="china" add="1.24"/>
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -1000,6 +1046,8 @@ comp.SetEnableBlockEntityAnimations(pos, True)
 ---
 
 ### SetFrameItem
+
+<Version type="china" add="2.10"/>
 
 <Server/> BlockEntityCompServer
 
@@ -1049,6 +1097,8 @@ print comp.SetFrameItem((x, y, z), 0, itemDict)
 
 ### SetFrameItemDropChange
 
+<Version type="china" add="2.10"/>
+
 <Server/> BlockEntityCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockEntity(levelId)`
@@ -1092,6 +1142,8 @@ print comp.SetFrameItemDropChange((x, y, z), 0, 0)
 
 ### SetFrameRotation
 
+<Version type="china" add="2.10"/>
+
 <Server/> BlockEntityCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockEntity(levelId)`
@@ -1130,6 +1182,8 @@ print comp.SetFrameRotation((x, y, z), 0, 90)
 ---
 
 ### SetHopperSpeed
+
+<Version type="china" add="2.10"/>
 
 <Server/> BlockEntityCompServer
 

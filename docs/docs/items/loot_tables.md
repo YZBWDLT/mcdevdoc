@@ -18,7 +18,9 @@ import Button from '/src/components/button/base';
 
 战利品表的每个环节——池、条目、函数、条件——都可以单独配置，组合起来就能实现从「必掉一个苹果」到「按抢夺等级与难度分层掉落随机附魔的装备」等各种效果。
 
-本文档收录战利品表的结构、池、条目、函数与条件。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
+本文档收录战利品表的结构、池、条目、函数与条件。要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=loot" color="green"/>
 
 <Button text="教程" url="/docs/tutorials/a2_addons/b7_loot_tables_and_trade_tables/c1_loot_tables" color="green"/>
 

@@ -57,7 +57,7 @@ import Version from "/src/components/highlight/version"
               - <DataType type="float" name="inflate"/>：定义部件的膨胀值，在基础大小的基础上放大多少倍。
               - <DataType type="array" name="pivot"/>：定义部件枢轴点。对部件的旋转操作基于此枢轴点。应为一个<DataType type="float"/>的三元数组。
               - <DataType type="array" name="rotation"/>：定义部件相对于部件枢轴点的旋转角度。应为一个<DataType type="float"/>的三元数组。
-      - <DataType type="object" name="item_display_transforms"/>：（1.21.110+）此方块在各种情况下显示的变换值。
+      - <DataType type="object" name="item_display_transforms"/>：<Version add="1.21.30" inline/>此方块在各种情况下显示的变换值。
         - <DataType type="object" name="thirdperson_righthand"/>：在第三人称下如何显示在玩家右手上。
           - <DataType type="array" name="rotation_pivot"/>：旋转枢轴。应为一个<DataType type="float"/>的三元数组。
           - <DataType type="array" name="rotation"/>：相对于旋转枢轴的旋转值。应为一个<DataType type="float"/>的三元数组。
@@ -72,6 +72,7 @@ import Version from "/src/components/highlight/version"
           - <DataType type="boolean" name="fit_to_frame"/>
         - <DataType type="object" name="head"/>：如何显示在玩家的头上。可写入的参数与<DataType type="object" name="thirdperson_righthand"/>一致。
         - <DataType type="object" name="fixed"/>：如何显示在物品展示框上。可写入的参数与<DataType type="object" name="thirdperson_righthand"/>一致。
+        - <DataType type="object" name="embedded"/>：<Version add="1.21.120" inline/>方块被嵌入另一方块（如花盆）时如何显示。可写入的参数与<DataType type="object" name="thirdperson_righthand"/>一致。不指定时按`0.75`倍缩放显示，与大部分原版花在花盆中的大小一致。
         - <DataType type="object" name="shelf"/>：<Version add="1.26.40" inline/>如何显示在书架方块上。可写入的参数与<DataType type="object" name="thirdperson_righthand"/>一致。格式版本低于`1.26.40`时沿用`fixed`的值。
 </treeview>
 
@@ -202,7 +203,7 @@ import Version from "/src/components/highlight/version"
 
 <details>
 
-<summary>新版模型（1.21.110+）</summary>
+<summary>新版模型</summary>
 
 ```json showLineNumbers title="slab.geo.json"
 {

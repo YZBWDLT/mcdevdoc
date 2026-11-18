@@ -20,15 +20,23 @@ import Version from '/src/components/highlight/version';
 
 **每个命令条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。"/>。
 
+要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=command" color="green"/>
+
 ## 帮助命令
 
 ### `/help`（或`/?`）
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c1_command" color="green"/> <WikiButton item="命令/help"/>
 
 显示帮助文档。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -60,11 +68,30 @@ import Version from '/src/components/highlight/version';
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**查询某条命令的帮助**：在聊天栏输入后，聊天框会列出该命令的语法与权限等级。
+
+```text
+help scoreboard
+```
+
+**翻到指定页**：查看第 2 页的命令列表。
+
+```text
+help 2
+```
+
+</TabItem>
+</Tabs>
+
 ## 超高频命令
 
 ### `/execute`
 
-<Version type="game" add="1.19.50" tooltip="最早的版本于0.16加入，但现在的版本已不可用。"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.19.50" tooltip="最早的版本于0.16加入，但现在的版本已不可用。"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d1_cmd_context" color="green"/>
 <WikiButton item="命令/execute"/>
@@ -72,6 +99,10 @@ import Version from '/src/components/highlight/version';
 按照特定的命令上下文执行命令，并检测条件。
 
 `/execute`除了`run`子命令之外，通用语法为`/execute <子命令> -> execute`，其中`-> execute`表示下一个子命令的起点。从左到右解析。修饰子命令的`-> execute`是必选参数。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -261,16 +292,45 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**切换执行者与位置**：让每位玩家各自在自己所在的位置执行同一条命令，而不是由命令方块统一执行。
+
+```text
+execute as @a at @s run say 我在这里
+```
+
+**条件判断**：只有满足条件的玩家才会执行命令；此处为有钻石剑的玩家各获得一个苹果。
+
+```text
+execute as @a[hasitem={item=diamond_sword}] run give @s apple 1
+```
+
+**修饰与条件连用**：脚下是石头时，把脚下的方块换成金块。
+
+```text
+execute if block ~ ~-1 ~ stone run setblock ~ ~-1 ~ gold_block
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/function`
 
-<Version type="game" add="1.8.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.8.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#直接执行函数文件的命令function" color="green"/>
 <WikiButton item="命令/function"/>
 
 执行函数。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /function <路径: filepath>
@@ -280,16 +340,33 @@ in <维度: Dimension> -> execute
 
 `路径`是不带`functions/`和后缀的文件名。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**执行函数文件**：执行行为包 functions 目录下的函数文件。
+
+```text
+function system/main
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/scoreboard`
 
-<Version type="game" add="1.7.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.7.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d2_scoreboard"  color="green"/>
 <WikiButton item="命令/scoreboard"/>
 
 管理记分项和追踪对象。其中，`玩家: target`可以是不存在的玩家，可以指定为`*`以代表所有追踪对象。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -351,7 +428,7 @@ in <维度: Dimension> -> execute
 
 在聊天栏列举所有记分项的信息。
 
-会受到游戏规则`sendCommandFeedBack`的影响。
+会受到游戏规则`sendCommandFeedback`的影响。
 
 </TabItem>
 
@@ -453,7 +530,7 @@ in <维度: Dimension> -> execute
 
 `玩家名称`为空时，则返回全部追踪对象。
 
-会受到游戏规则`sendCommandFeedBack`的影响。
+会受到游戏规则`sendCommandFeedback`的影响。
 
 </TabItem>
   
@@ -475,16 +552,46 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**记录并显示分数**：为玩家加分，并把该记分项显示在侧边栏。
+
+```text
+scoreboard players add @s points 1
+scoreboard objectives setdisplay sidebar points
+```
+
+**按分数判定**：分数达到 10 分时才执行命令。
+
+```text
+execute if score @s points matches 10.. run say 你已达标
+```
+
+**清除分数**：清除玩家的分数记录。
+
+```text
+scoreboard players reset @s points
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/summon`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d1_add_and_remove_entity" color="green"/>
 <WikiButton item="命令/summon"/>
 
 在特定位置生成特定名称、特定生成事件的实体。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -502,7 +609,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="summon_2" label="常规（旋转角度）">
 
-<Version type="game" add="1.19.70"/>
+<Version add="1.19.70"/>
 
 ```
 /summon <实体: EntityType> [生成位置: x y z] [y旋转: value] [x旋转: value] [生成事件: string] [名称: string]
@@ -516,7 +623,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="summon_3" label="常规（面向实体）">
 
-<Version type="game" add="1.19.80"/>
+<Version add="1.19.80"/>
 
 ```
 /summon <实体: EntityType> [生成位置: x y z] facing <面向实体: target> [生成事件: string] [名称: string]
@@ -530,7 +637,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="summon_4" label="常规（面向坐标）">
 
-<Version type="game" add="1.19.80"/>
+<Version add="1.19.80"/>
 
 ```
 /summon <实体: EntityType> [生成位置: x y z] facing <面向位置: x y z> [生成事件: string] [名称: string]
@@ -544,16 +651,45 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**在指定坐标生成实体**：在指定坐标生成一只盔甲架，可用于标记位置。
+
+```text
+summon minecraft:armor_stand 0 100 0
+```
+
+**命名生成**：生成一头有名字的猪。
+
+```text
+summon minecraft:pig 小猪 0 100 0
+```
+
+**指定朝向**：生成默认转向为 90° 的盔甲架。
+
+```text
+summon minecraft:armor_stand 0 100 0 90 0
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/tellraw`
 
-<Version type="game" add="1.9.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.9.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" color="green"/>
 <WikiButton item="命令/tellraw"/>
 
 对特定玩家的聊天栏发送原始 JSON 文本。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /tellraw <玩家: target> <原始JSON文本: json>
@@ -563,16 +699,33 @@ in <维度: Dimension> -> execute
 
 `原始JSON文本`必须是有效的文本组件。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**发送 JSON 消息**：向全体玩家发送一条带颜色的消息。
+
+```text
+tellraw @a {"rawtext":[{"text":"§a任务开始"}]}
+```
+
+</TabItem>
+</Tabs>
+
 ## 高频命令
 
 ### `/tag`
 
-<Version type="game" add="1.9.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.9.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/d1_tag" color="green"/>
 <WikiButton item="命令/tag"/>
 
 对实体的标签进行操作。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -604,22 +757,45 @@ in <维度: Dimension> -> execute
 
 在聊天栏返回`实体`的所有标签。
 
-会受到游戏规则`sendCommandFeedBack`的影响。
+会受到游戏规则`sendCommandFeedback`的影响。
 
 </TabItem>
 
+</Tabs>
+
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**给实体打标签**：打上标签后，即可通过标签批量筛选该实体。
+
+```text
+tag @s add isReady
+```
+
+**查询标签**：列出实体拥有的全部标签。
+
+```text
+tag @s list
+```
+
+</TabItem>
 </Tabs>
 
 ---
 
 ### `/tp`（或`/teleport`）
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#传送玩家的命令tp或teleport" color="green"/>
 <WikiButton item="命令/teleport"/>
 
 传送实体到特定位置。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs><TabItem value="tp_executor" label="传送执行者">
 
@@ -639,9 +815,9 @@ in <维度: Dimension> -> execute
 
 将执行者传送到`位置`。
 
-<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_1_3" label="常规（旋转角度）">
 
@@ -651,13 +827,13 @@ in <维度: Dimension> -> execute
 
 将执行者按特定旋转角度传送到`位置`。
 
-<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_1_4" label="常规（面向实体）">
 
-<Version type="game" add="1.2.0"/>
+<Version add="1.2.0"/>
 
 ```
 /tp <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
@@ -665,13 +841,13 @@ in <维度: Dimension> -> execute
 
 将执行者按面向`面向实体`的朝向传送到`位置`。
 
-<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_1_5" label="常规（面向坐标）">
 
-<Version type="game" add="1.2.0"/>
+<Version add="1.2.0"/>
 
 ```
 /tp <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
@@ -679,9 +855,9 @@ in <维度: Dimension> -> execute
 
 将执行者按面向`面向坐标`的朝向传送到`位置`。
 
-<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem></Tabs>
 
@@ -695,9 +871,9 @@ in <维度: Dimension> -> execute
 
 将`目标`传送到`位置`。
 
-<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_2_2" label="常规">
 
@@ -707,9 +883,9 @@ in <维度: Dimension> -> execute
 
 将`目标`传送到`位置`。
 
-<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_2_3" label="常规（旋转角度）">
 
@@ -719,13 +895,13 @@ in <维度: Dimension> -> execute
 
 将`目标`按特定旋转角度传送到`位置`。
 
-<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_2_4" label="常规（面向实体）">
 
-<Version type="game" add="1.2.0"/>
+<Version add="1.2.0"/>
 
 ```
 /tp <目标: target> <位置: x y z> facing <面向实体: target> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
@@ -733,13 +909,13 @@ in <维度: Dimension> -> execute
 
 将`目标`按面向`面向实体`的朝向传送到`位置`。
 
-<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
 
 </TabItem><TabItem value="tp_2_5" label="常规（面向坐标）">
 
-<Version type="game" add="1.2.0"/>
+<Version add="1.2.0"/>
 
 ```
 /tp <目标: target> <位置: x y z> facing <面向坐标: x y z> [检查卡墙: Boolean] [维度变更时强制使用给定坐标: Boolean]
@@ -747,23 +923,52 @@ in <维度: Dimension> -> execute
 
 将`目标`按面向`面向坐标`的朝向传送到`位置`。
 
-<Version type="game" add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
+<Version add="1.13.0" inline/> `检查卡墙`，如果`检查卡墙`指定为`true`，则当传送点有方块会导致实体卡墙时阻止传送。默认值为`false`。
 
-<Version type="game" add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+<Version add="26.50" inline/> `维度变更时强制使用给定坐标`，如果`维度变更时强制使用给定坐标`指定为`true`，则传送时会强制使用给定坐标而不额外修正。默认值为`false`。
+
+</TabItem></Tabs>
 
 </TabItem></Tabs>
 
-</TabItem></Tabs>
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**传送玩家**：把玩家传送到指定坐标。
+
+```text
+tp @s 100 64 -200
+```
+
+**传送到实体**：把玩家传送到最近的马的位置。
+
+```text
+tp @s @e[type=horse,c=1]
+```
+
+**跨维度传送**：把玩家传送到末地的指定坐标。
+
+```text
+execute in the_end run tp @s 84 57 79
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
 ### `/scriptevent`
 
-<Version type="game" add="1.20.30"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.20.30"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <WikiButton item="命令/scriptevent"/>
 
 对 [system](/docs/docs/scripts/sapi/server/system/main) 类发送一个 scriptEventReceive 后事件。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /scriptevent <消息ID: string> <消息: message>
@@ -773,16 +978,33 @@ in <维度: Dimension> -> execute
 
 返回 [ScriptEventCommandMessageAfterEvent](/docs/docs/scripts/sapi/server/system/after_events#scripteventcommandmessageafterevent-类) 事件，脚本中可调用 id 属性获取命令中的`消息ID`，调用 message 属性获取命令中的`消息`。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**向脚本发送消息**：向脚本系统发送一条带 ID 的消息，脚本可通过 system.afterEvents.scriptEventReceive 接收。
+
+```text
+scriptevent my_pack:on_tick hello
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/titleraw`
 
-<Version type="game" add="1.9.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.9.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds" color="green"/>
 <WikiButton item="命令/titleraw"/>
 
 对特定玩家发送原始 JSON 文本的标题。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -840,16 +1062,46 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**显示 JSON 标题**：以 JSON 形式设置主标题，可使用颜色等格式。
+
+```text
+titleraw @a title {"rawtext":[{"text":"§6新章节"}]}
+```
+
+**副标题与物品栏**：分别设置副标题与物品栏文字。
+
+```text
+titleraw @a subtitle {"rawtext":[{"text":"§7第二章"}]}
+titleraw @a actionbar {"rawtext":[{"text":"§e金币：10"}]}
+```
+
+**清除标题**：清除屏幕上的标题。
+
+```text
+titleraw @a clear
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/playsound`
 
-<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle" color="green"/>
 <WikiButton item="命令/playsound"/>
 
 对玩家播放音效。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /playsound <音效: string> [玩家: target] [位置: x y z] [音量: float] [音调: float] [最低音量: float]
@@ -861,16 +1113,33 @@ in <维度: Dimension> -> execute
 
 因位置限制，故常与`/execute`搭配使用。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**播放音效**：在玩家所在的位置播放一次音效。
+
+```text
+playsound random.orb @a ~ ~ ~ 1 1
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/setblock`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#放置方块的命令setblock" color="green"/>
 <WikiButton item="命令/setblock"/>
 
 在一个特定位置放置方块。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -908,16 +1177,39 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**放置方块**：在脚下放置一个金块。
+
+```text
+setblock ~ ~1 ~ gold_block
+```
+
+**保留原有方块**：只在目标位置为空时放置方块。
+
+```text
+setblock ~ ~1 ~ gold_block keep
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/event`
 
-<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#触发生成事件event" color="green"/>
 <WikiButton item="命令/event"/>
 
 触发一个实体的生成事件。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /event entity <目标: target> <生成事件: string>
@@ -927,16 +1219,33 @@ in <维度: Dimension> -> execute
 
 `生成事件`是由实体行为文件（SE 文件）所定义的`events`的键名。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**触发生成事件**：触发实体的生成事件，可用于复用实体定义中的事件。
+
+```text
+event entity @s minecraft:entity_spawned
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/particle`
 
-<Version type="game" add="1.8.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.8.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle" color="green"/>
 <WikiButton item="命令/particle"/>
 
 释放粒子。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /particle <粒子效果: string> [位置: x y z]
@@ -948,16 +1257,33 @@ in <维度: Dimension> -> execute
 
 部分粒子可能会因为缺少上下文信息而不能正确释放。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**释放粒子**：在指定位置释放一次粒子效果。
+
+```text
+particle minecraft:flame ~ ~1 ~
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/clear`
 
-<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除物品的命令clear" color="green"/>
 <WikiButton item="命令/clear"/>
 
 清除玩家的物品。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /clear [玩家: target] [物品: Item] [数据值: int] [最大数量: int]
@@ -969,16 +1295,33 @@ in <维度: Dimension> -> execute
 
 `最大数量`指定为`0`时，该命令用于检测玩家是否拥有物品。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**清除物品**：清空玩家背包中指定数量的泥土。
+
+```text
+clear @s minecraft:dirt -1 64
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/clone`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#复制一片区域的命令clone" color="green"/>
 <WikiButton item="命令/clone"/>
 
 将一个区域的方块复制到另一个区域。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -1023,16 +1366,39 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**复制区域**：把以自己为起点的一小片区域复制到旁边。
+
+```text
+clone ~ ~ ~ ~10 ~10 ~10 ~20 ~20 ~20
+```
+
+**只复制非空气方块**：复制时忽略空气方块。
+
+```text
+clone ~ ~ ~ ~10 ~10 ~10 ~20 ~20 ~20 masked
+```
+
+</TabItem>
+</Tabs>
+
 ## 中频命令
 
 ### `/camera`
 
-<Version type="game" add="1.20.30"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.20.30"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机命令camera" color="green"/>
 <WikiButton item="命令/camera"/>
 
 对玩家的相机填充颜色，或设置玩家的相机视角。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs><TabItem value="clear" label="clear" default>
 
@@ -1078,8 +1444,8 @@ in <维度: Dimension> -> execute
 - `minecraft:first_person`：第一人称
 - `minecraft:third_person`：第三人称背面
 - `minecraft:third_person_front`：第三人称正面
-- `minecraft:follow_orbit`：<Version type="game" add="1.21.40" inline/> 轨道相机
-- `minecraft:fixed_boom`：<Version type="game" add="1.21.70" inline/> 轨道相机，锁定视角
+- `minecraft:follow_orbit`：<Version add="1.21.40" inline/> 轨道相机
+- `minecraft:fixed_boom`：<Version add="1.21.70" inline/> 轨道相机，锁定视角
 - `minecraft:free`：自由视角
 
 </TabItem><TabItem value="2" label="自由视角相机">
@@ -1104,7 +1470,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="3" label="轨道相机">
 
-<Version type="game" add="1.21.40"/>
+<Version add="1.21.40"/>
 
 ```
 /camera <玩家: target> set <预设: string> [缓动] [朝向] [视角偏移] [实体偏移]
@@ -1116,12 +1482,12 @@ in <维度: Dimension> -> execute
 
 `缓动`、`朝向`、`视角偏移`和`实体偏移`可任意缺少一个或若干个，但顺序上必须是`缓动`在前，`朝向`其次，`视角偏移`再次，`实体偏移`在后。对应关系如下表所示。
 
-| 完整语法                                                                 |   简写语法   | 含义                                                                                                                               |
-| ------------------------------------------------------------------------ | :----------: | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `ease <缓动时间: float> <缓动类型: Easing>`                              |   `[缓动]`   | <Version type="game" add="1.21.80" inline/> 将玩家的相机按照`缓动类型`决定的运镜方式，在`缓动时间`秒内将玩家的相机从起点移动到终点 |
-| `rot <x旋转: value> <y旋转: value>`                                      |   `[朝向]`   | <Version type="game" add="1.21.80" inline/> 设置相机的旋转角度                                                                     |
-| `entity_offset <x实体偏移: float> <y实体偏移: float> <z实体偏移: float>` | `[实体偏移]` | 相机焦点相对于玩家位置的偏移                                                                                                       |
-| `view_offset <x视角偏移: float> <y视角偏移: float>`                      | `[视角偏移]` | 相机焦点相对于玩家视角的偏移                                                                                                       |
+| 完整语法                                                                 |   简写语法   | 含义                                                                                                                   |
+| ------------------------------------------------------------------------ | :----------: | ---------------------------------------------------------------------------------------------------------------------- |
+| `ease <缓动时间: float> <缓动类型: Easing>`                              |   `[缓动]`   | <Version add="1.21.80" inline/> 将玩家的相机按照`缓动类型`决定的运镜方式，在`缓动时间`秒内将玩家的相机从起点移动到终点 |
+| `rot <x旋转: value> <y旋转: value>`                                      |   `[朝向]`   | <Version add="1.21.80" inline/> 设置相机的旋转角度                                                                     |
+| `entity_offset <x实体偏移: float> <y实体偏移: float> <z实体偏移: float>` | `[实体偏移]` | 相机焦点相对于玩家位置的偏移                                                                                           |
+| `view_offset <x视角偏移: float> <y视角偏移: float>`                      | `[视角偏移]` | 相机焦点相对于玩家视角的偏移                                                                                           |
 
 `[朝向]`的默认值为`rot 0 0`。`[实体偏移]`为空时，不改变位置偏移。`[视角偏移]`为空时，不改变视角偏移。
 
@@ -1129,7 +1495,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="target" label="target">
 
-<Version type="game" add="1.21.60"/>
+<Version add="1.21.60"/>
 
 聚焦实体语法，可令玩家的相机焦点始终对准某个实体。包括`target_entity`和`remove_target`。
 
@@ -1163,7 +1529,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="fov" label="fov">
 
-<Version type="game" add="1.21.111"/>
+<Version add="1.21.111"/>
 
 视场角语法，控制玩家相机的视场角。包括`fov_clear`和`fov_set`。
 
@@ -1191,7 +1557,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="attach" label="attach">
 
-<Version type="game" add="26.10"/>
+<Version add="26.10"/>
 
 附着相机语法，将相机固定到特定实体上。包括`attach_to_entity`和`detach_from_entity`。
 
@@ -1215,7 +1581,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="play_spline" label="play_spline">
 
-<Version type="game" add="26.10"/>
+<Version add="26.10"/>
 
 样条语法，按照特定样条路径播放相机。
 
@@ -1227,16 +1593,45 @@ in <维度: Dimension> -> execute
 
 </TabItem></Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**设置相机预设**：把玩家的相机强制切换为第三人称背面，无法切换。
+
+```text
+camera @s set minecraft:third_person
+```
+
+**自由视角移动**：让相机在 3 秒内平滑移动到玩家前方。
+
+```text
+camera @s set minecraft:free ease 3 in_out_quad pos ^^^0.3 facing ^^^1
+```
+
+**恢复视角**：清除自定义相机，让玩家回到自己的视角。
+
+```text
+camera @s clear
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/structure`
 
-<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b3_command_systems/c3_structure_block#结构命令structure" color="green"/>
 <WikiButton item="命令/structure"/>
 
 保存、加载或删除一个结构。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -1339,7 +1734,7 @@ in <维度: Dimension> -> execute
 - `block_by_block`：逐个方块加载。
 - `layer_by_layer`：逐层加载。
 
-`包含实体`的默认值为`true`。`包含方块`的默认值为`true`。`动画秒数`的默认值为`0`。`含水`（<Version type="game" add="1.19.30" inline/>）的默认值为`false`。`完整度`的默认值为`100`。`种子`为空时，随机取值。
+`包含实体`的默认值为`true`。`包含方块`的默认值为`true`。`动画秒数`的默认值为`0`。`含水`（<Version add="1.19.30" inline/>）的默认值为`false`。`完整度`的默认值为`100`。`种子`为空时，随机取值。
 
 </TabItem>
 
@@ -1359,16 +1754,45 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**保存结构**：把选区保存为名为 my_house 的结构文件。
+
+```text
+structure save my_house ~ ~ ~ ~6 ~6 ~6
+```
+
+**加载结构**：把保存的结构放置到指定坐标。
+
+```text
+structure load my_house 100 64 -200
+```
+
+**删除结构**：删除已保存的结构文件。
+
+```text
+structure delete my_house
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/gamerule`
 
-<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改游戏规则的命令gamerule" color="green"/>
 <WikiButton item="命令/gamerule"/>
 
 查询或更改游戏规则。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -1380,7 +1804,7 @@ in <维度: Dimension> -> execute
 
 在聊天栏返回所有游戏规则的值。
 
-会受到游戏规则`sendCommandFeedBack`的影响。
+会受到游戏规则`sendCommandFeedback`的影响。
 
 </TabItem>
 
@@ -1395,22 +1819,51 @@ in <维度: Dimension> -> execute
 
 `值`为空时，改为查询`规则`。
 
-会受到游戏规则`sendCommandFeedBack`的影响。
+会受到游戏规则`sendCommandFeedback`的影响。
 
 </TabItem>
 
+</Tabs>
+
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**修改游戏规则**：关闭命令反馈，避免命令执行时刷屏。
+
+```text
+gamerule sendCommandFeedback false
+```
+
+**查询规则**：查询当前是否开启命令反馈。
+
+```text
+gamerule sendCommandFeedback
+```
+
+**关闭昼夜交替**：让世界不再切换昼夜。
+
+```text
+gamerule doDaylightCycle false
+```
+
+</TabItem>
 </Tabs>
 
 ---
 
 ### `/effect`
 
-<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#添加状态效果effect" color="green"/>
 <WikiButton item="命令/effect"/>
 
 对实体施加或移除状态效果。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -1436,7 +1889,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="2" label="无限时长">
 
-<Version type="game" add="1.21.40"/>
+<Version add="1.21.40"/>
 
 ```
 /effect <实体: target> <状态效果: Effect> infinite [放大倍率: int] [隐藏粒子: Boolean]
@@ -1460,24 +1913,53 @@ in <维度: Dimension> -> execute
 /effect <实体: target> clear [状态效果: Effect]
 ```
 
-移除`实体`的`状态效果`。
+移除`实体`的`状态效果`。`状态效果`为空时，移除实体的所有状态效果。
 
-`状态效果`为空时，移除实体的所有状态效果。
+<Version add="1.21.40" inline/>：允许使用`状态效果`。
 
 </TabItem>
 
+</Tabs>
+
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**给予状态效果**：给予玩家 30 秒速度效果。
+
+```text
+effect @s speed 30 1
+```
+
+**移除效果**：清除玩家的速度效果。
+
+```text
+effect @s speed clear
+```
+
+**无限时长**：给予永久的力量 II。
+
+```text
+effect @s strength infinite 1
+```
+
+</TabItem>
 </Tabs>
 
 ---
 
 ### `/replaceitem`
 
-<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#改物品更改物品栏物品的命令replaceitem" color="green"/>
 <WikiButton item="命令/replaceitem"/>
 
 替换实体的物品栏为特定物品。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -1499,7 +1981,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="2" label="检查旧物品">
 
-<Version type="game" add="1.16.0"/>
+<Version add="1.16.0"/>
 
 ```
 /replaceitem block <位置: x y z> slot.container <槽位ID: int> <旧物品处理: ReplaceMode> <物品: Item> [数量: int] [数据值: int] [组件: json]
@@ -1540,7 +2022,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="2" label="检查旧物品">
 
-<Version type="game" add="1.16.0"/>
+<Version add="1.16.0"/>
 
 ```
 /replaceitem entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> <旧物品处理: ReplaceMode> <物品: Item> [数量: int] [数据值: int] [组件: json]
@@ -1565,16 +2047,45 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**替换物品栏物品**：把玩家主手槽位的物品替换为钻石剑，不影响其余槽位。
+
+```text
+replaceitem entity @s slot.weapon.mainhand 0 diamond_sword
+```
+
+**替换容器物品**：把下方箱子第 1 格换成 64 个石头。
+
+```text
+replaceitem block ~ ~-1 ~ slot.container 0 stone 64
+```
+
+**槽位有物品时不替换**：主手为空时才放入钻石剑。
+
+```text
+replaceitem entity @s slot.weapon.mainhand 0 keep diamond_sword
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/kill`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#清除实体的命令kill" color="green"/>
 <WikiButton item="命令/kill"/>
 
 清除实体。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /kill <实体: target>
@@ -1582,16 +2093,33 @@ in <维度: Dimension> -> execute
 
 清除`实体`。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**清除实体**：清除全部僵尸。
+
+```text
+kill @e[type=zombie]
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/give`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#give的扩展语法" color="green"/>
 <WikiButton item="命令/give"/>
 
 给予玩家物品。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /give <玩家: target> <物品: Item> [数量: int] [数据值: int] [组件: json]
@@ -1601,16 +2129,33 @@ in <维度: Dimension> -> execute
 
 `数量`的默认值为`1`。`数据值`的默认值为`0`。`组件`为空时，不添加任何组件。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**给予物品**：给予玩家一把钻石剑。
+
+```text
+give @s diamond_sword 1
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/spawnpoint`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置重生点spawnpoint" color="green"/>
 <WikiButton item="命令/spawnpoint"/>
 
 设置玩家的重生点。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /spawnpoint [玩家: target] [重生点: x y z]
@@ -1622,16 +2167,33 @@ in <维度: Dimension> -> execute
 
 1.21.100 之后，可以在末地设置重生点。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**设置重生点**：把玩家自己的重生点设在当前位置。
+
+```text
+spawnpoint @s ~ ~ ~
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/inputpermission`
 
-<Version type="game" add="1.19.80"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.19.80"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#变更权限inputpermission" color="green"/>
 <WikiButton item="命令/inputpermission" length="large"/>
 
 设置玩家的权限。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -1643,7 +2205,7 @@ in <维度: Dimension> -> execute
 
 查询有多少`玩家`的`权限`处于`状态`下。
 
-会受到游戏规则`sendCommandFeedBack`的影响。
+会受到游戏规则`sendCommandFeedback`的影响。
 
 </TabItem>
 
@@ -1659,16 +2221,39 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**禁用移动**：禁止玩家移动，但仍可转动视角。
+
+```text
+inputpermission set @s movement disabled
+```
+
+**查询权限**：查询玩家当前是否被禁止移动。
+
+```text
+inputpermission query @s movement
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/fill`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c8_block_cmds#批量填充方块的命令fill" color="green"/>
 <WikiButton item="命令/fill"/>
 
 填充一片区域为特定方块。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -1750,16 +2335,45 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**填充区域**：填充以自己为起点的一小片区域。
+
+```text
+fill ~ ~ ~ ~5 ~5 ~5 stone
+```
+
+**只填充空气**：只填充空气方块，不动已有方块。
+
+```text
+fill ~ ~ ~ ~5 ~5 ~5 air keep
+```
+
+**替换指定方块**：把区域里的泥土换成石头。
+
+```text
+fill ~ ~ ~ ~5 ~5 ~5 stone replace dirt
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/gamemode`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#更改玩家游戏模式的命令gamemode" color="green"/>
 <WikiButton item="命令/gamemode"/>
 
 调整玩家的游戏模式。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /gamemode <游戏模式: GameMode> [玩家: target]
@@ -1778,16 +2392,33 @@ in <维度: Dimension> -> execute
 - `default`或`d`或`3`：默认模式。
 - `spectator`：旁观模式。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**切换游戏模式**：把玩家切换为创造模式。
+
+```text
+gamemode creative @s
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/music`
 
-<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#播放音乐的命令music" color="green"/>
 <WikiButton item="命令/music"/>
 
 对玩家播放或停止音乐。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -1855,16 +2486,45 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**播放音乐**：为全体玩家播放一段音乐。
+
+```text
+music play music.game.credits
+```
+
+**加入播放队列**：把音乐加入队列，不打断当前播放。
+
+```text
+music queue music.game.credits
+```
+
+**调整音量**：把音乐音量调低。
+
+```text
+music volume 0.5
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/title`
 
-<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#标题命令title" color="green"/>
 <WikiButton item="命令/title"/>
 
 对特定玩家发送标题。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -1922,16 +2582,45 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**显示标题**：在屏幕上显示主标题。
+
+```text
+title @a title §6新章节
+```
+
+**设置时间**：设置标题的淡入、停留与淡出时间。
+
+```text
+title @a times 10 60 10
+```
+
+**清除标题**：清除屏幕上的标题。
+
+```text
+title @a clear
+```
+
+</TabItem>
+</Tabs>
+
 ## 低频命令
 
 ### `/fog`
 
-<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#迷雾命令fog" color="green"/>
 <WikiButton item="命令/fog"/>
 
 设置对玩家显示的迷雾。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -1962,16 +2651,39 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**推入迷雾**：为玩家推入一层苍白之园迷雾，并为其命名，便于日后移除。
+
+```text
+fog @s push minecraft:fog_pale_garden my_fog
+```
+
+**移除迷雾**：移除此前推入的迷雾。
+
+```text
+fog @s remove my_fog
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/hud`
 
-<Version type="game" add="1.20.80"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.20.80"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#hud-显示命令hud" color="green"/>
 <WikiButton item="命令/hud"/>
 
 隐藏或恢复 HUD 的可用性。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /hud <玩家: target> <可见性: HudVisibility> [HUD元素: HudElement]
@@ -2001,15 +2713,32 @@ in <维度: Dimension> -> execute
 - `tooltips`：提示框。
 - `touch_controls`：触控按键。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**隐藏 HUD**：隐藏玩家的全部 HUD 元素。
+
+```text
+hud @s hide all
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/dialogue`
 
-<Version type="game" add="1.17.10"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="中国版不可用" tooltip="中国版移除了 NPC 的功能，包括实体定义的 minecraft:npc 组件。因此，该命令在中国版的执行结果无论如何都是无效。" color="red"/><br/>
+<Version add="1.17.10"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="中国版不可用" tooltip="中国版移除了NPC的功能，包括实体定义的minecraft:npc组件。因此，该命令在中国版的执行结果无论如何都是无效。" color="red"/><br/>
 
 <WikiButton item="命令/dialogue"/>
 
 调用 NPC 的对话框。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -2045,15 +2774,38 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**打开对话框**：让玩家打开指定 NPC 的对话框。
+
+```text
+dialogue open @e[type=npc] @s
+```
+
+**切换场景**：让 NPC 换用另一个对话框。
+
+```text
+dialogue change @e[type=npc] my_pack:scenes/end
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/playanimation`
 
-<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <WikiButton item="命令/playanimation"/>
 
 令实体运行动画。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /playanimation <实体: target> <动画: string> [下个状态: string] [淡出时间: float] [终止表达式: string] [控制器: string]
@@ -2061,16 +2813,33 @@ in <维度: Dimension> -> execute
 
 令`实体`播放`动画`。动画受对应的动画控制器的控制。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**播放动画**：让指定的狐狸播放一段一次性动画。
+
+```text
+playanimation @e[type=fox,c=1] animation.fox.sit
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/say`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#发送消息的命令say" color="green"/>
 <WikiButton item="命令/say"/>
 
 在服务器公告消息。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /say <消息: message>
@@ -2080,16 +2849,33 @@ in <维度: Dimension> -> execute
 
 格式为`[执行者] 消息`。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**广播消息**：在聊天栏向全体玩家发送消息，消息前会带上执行者的名字。
+
+```text
+say 服务器已开启
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/setworldspawn`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#设置出生点setworldspawn" color="green"/>
 <WikiButton item="命令/setworldspawn" length="large"/>
 
 设置世界的出生点。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /setworldspawn [出生点: x y z]
@@ -2099,16 +2885,33 @@ in <维度: Dimension> -> execute
 
 `出生点`的默认值为执行位置。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**设置世界出生点**：把世界的出生点设在指定坐标。
+
+```text
+setworldspawn 0 64 0
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/tickingarea`
 
-<Version type="game" add="1.2.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.2.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界常加载区域的命令tickingarea" color="green"/>
 <WikiButton item="命令/tickingarea"/>
 
 添加常加载区域。每个维度最多可同时定义 10 个常加载区域，单个区域不能超过 100 个区块。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -2118,7 +2921,7 @@ in <维度: Dimension> -> execute
 /tickingarea add <起点: x y z> <终点: x y z> [名称: string] [预加载: Boolean]
 ```
 
-添加含`起点`到`终点`组成的长方体区域的所有区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`（<Version type="game" add="1.18.30" inline/>）。
+添加含`起点`到`终点`组成的长方体区域的所有区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`（<Version add="1.18.30" inline/>）。
 
 `名称`的默认值为`AreaX`，其中`X`为从`0`开始的第 n-1 个常加载区域。`预加载`的默认值为`false`。
 
@@ -2126,7 +2929,7 @@ in <维度: Dimension> -> execute
 /tickingarea add circle <中心: x y z> <半径: int> [名称: string] [预加载: Boolean]
 ```
 
-添加由`中心`和`半径`确定的圆形区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`（<Version type="game" add="1.18.30" inline/>）。
+添加由`中心`和`半径`确定的圆形区块为名为`名称`的常加载区域，可设定预加载信息为`预加载`（<Version add="1.18.30" inline/>）。
 
 `半径`以区块为单位，只能是`1`到`4`的整数。
 
@@ -2158,7 +2961,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="preload" label="preload">
 
-<Version type="game" add="1.18.30"/>
+<Version add="1.18.30"/>
 
 ```
 /tickingarea preload <名称: string> [预加载: Boolean]
@@ -2166,7 +2969,7 @@ in <维度: Dimension> -> execute
 
 将名为`名称`的常加载区域设定预加载信息为`预加载`。
 
-`预加载`为空时，返回符合条件的常加载区域的预加载信息。会受到游戏规则`sendCommandFeedBack`的影响。
+`预加载`为空时，返回符合条件的常加载区域的预加载信息。会受到游戏规则`sendCommandFeedback`的影响。
 
 ```
 /tickingarea preload <位置: x y z> [预加载: Boolean]
@@ -2174,7 +2977,7 @@ in <维度: Dimension> -> execute
 
 将包含`位置`的常加载区域设定预加载信息为`预加载`。
 
-`预加载`为空时，返回符合条件的常加载区域的预加载信息。会受到游戏规则`sendCommandFeedBack`的影响。
+`预加载`为空时，返回符合条件的常加载区域的预加载信息。会受到游戏规则`sendCommandFeedback`的影响。
 
 </TabItem>
 
@@ -2192,16 +2995,45 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**添加常加载区域**：让指定区域在无人时也保持加载。
+
+```text
+tickingarea add 0 0 0 100 0 100
+```
+
+**圆形区域**：以自己为中心、半径 4 区块的圆形常加载区域。
+
+```text
+tickingarea add circle ~ ~ ~ 4
+```
+
+**列出区域**：查看当前维度的常加载区域。
+
+```text
+tickingarea list
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/tell`（或`/msg`、`/w`）
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#私聊玩家tellwmsg" color="green"/>
 <WikiButton item="命令/tell"/>
 
 私聊玩家。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /tell <玩家: target> <消息: message>
@@ -2213,16 +3045,33 @@ in <维度: Dimension> -> execute
 
 当执行者的权限等级为`0`时，不能使用目标选择器。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**私聊玩家**：给指定玩家发送一条私信。
+
+```text
+tell @a 你好
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/time`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整时间的命令time" color="green"/>
 <WikiButton item="命令/time"/>
 
 控制或查询世界时间或特定时钟。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs><TabItem value="add" label="add" default>
 
@@ -2233,7 +3082,7 @@ in <维度: Dimension> -> execute
 
 加快世界时间或特定`时钟`的时间`数值`游戏刻。
 
-<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
+<Version add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
 
 </TabItem><TabItem value="query" label="query">
 
@@ -2244,9 +3093,9 @@ in <维度: Dimension> -> execute
 
 查询世界处于第几天、或时间、或存在总时长，或查询特定`时钟`的时间。
 
-<Version type="game" add="26.60" inline/>：`query`支持`time`参数。
+<Version add="26.60" inline/>：`query`支持`time`参数。
 
-<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。当选择了特定时钟后，只能查询在该时钟内的时长。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
+<Version add="26.60" inline/>：`时钟`，指定要操作的时钟。当选择了特定时钟后，只能查询在该时钟内的时长。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
 
 </TabItem><TabItem value="set" label="set">
 
@@ -2257,7 +3106,7 @@ in <维度: Dimension> -> execute
 
 设置世界的时间或特定`时钟`的时间为`数值`游戏刻。
 
-<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
+<Version add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
 
 ```
 /time set <时间标记: timemarker name> [时间标记出现方式: TimeMarkerOccurrence]
@@ -2268,11 +3117,11 @@ in <维度: Dimension> -> execute
 
 `时间标记`可选值为：`sunrise`（日出）、`day`（早上）、`noon`（中午）、`sunset`（日落）、`night`（晚上）、`midnight`（午夜）。
 
-<Version type="game" add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
+<Version add="26.60" inline/>：`时钟`，指定要操作的时钟。可选值为`minecraft:overworld`（主世界时钟）。可通过脚本[注册](/docs/docs/scripts/sapi/server/system/custom_world_clock#registerclock-方法)新的时钟。
 
-<Version type="game" add="26.60" inline/>：`时间标记`现在允许添加`minecraft:`命名空间。可通过脚本[注册](/docs/docs/scripts/sapi/server/world/world_clock#addtimemarker-方法)新的时间标记。
+<Version add="26.60" inline/>：`时间标记`现在允许添加`minecraft:`命名空间。可通过脚本[注册](/docs/docs/scripts/sapi/server/world/world_clock#addtimemarker-方法)新的时间标记。
 
-<Version type="game" add="26.60" inline/>：`时间标记出现方式`，指定寻找时间标记的方式。可选值为：
+<Version add="26.60" inline/>：`时间标记出现方式`，指定寻找时间标记的方式。可选值为：
 
 - `next`：默认，寻找晚于当前时间的下次标记（今天或明天）
 - `stay`：寻找当天内的标记（今天）
@@ -2280,7 +3129,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="pause" label="pause">
 
-<Version type="game" add="26.60"/>
+<Version add="26.60"/>
 
 ```
 /time pause
@@ -2291,7 +3140,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="resume" label="resume">
 
-<Version type="game" add="26.60"/>
+<Version add="26.60"/>
 
 ```
 /time resume
@@ -2302,16 +3151,45 @@ in <维度: Dimension> -> execute
 
 </TabItem></Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**设置时间**：把世界时间设为白昼。
+
+```text
+time set 1000
+```
+
+**查询时间**：查询当前是白天的第几个时刻。
+
+```text
+time query daytime
+```
+
+**暂停时间**：暂停世界时间的流逝。
+
+```text
+time pause
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/xp`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#添加或夺走经验xp" color="green"/>
 <WikiButton item="命令/xp"/>
 
 增加或移除玩家的经验。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -2345,15 +3223,38 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**给予经验**：给予玩家 100 点经验。
+
+```text
+xp 100 @s
+```
+
+**给予等级**：给予玩家 5 级经验。
+
+```text
+xp 5L @s
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/loot`
 
-<Version type="game" add="1.18.10"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.18.10"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <WikiButton item="命令/loot"/>
 
 生成、给予、插入、替换战利品。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /loot <目标> <来源>
@@ -2363,32 +3264,61 @@ in <维度: Dimension> -> execute
 
 `目标`确定操作的目标和操作方法。可用的子命令如下表所示。其中，`[数量: int]`的默认值为`1`。
 
-| 子命令                                                                                    | 含义                                                                                                                                        |
-| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `give <玩家: target>`                                                                     | <Version type="game" add="1.18.30" inline/> 给予`玩家`战利品                                                                                |
-| `insert <位置: x y z>`                                                                    | <Version type="game" add="1.18.30" inline/> 向`位置`的容器按顺序插入战利品                                                                  |
-| `spawn <位置: x y z>`                                                                     | 在`位置`生成战利品                                                                                                                          |
-| `replace block <位置: x y z> slot.container <槽位ID: int> [数量: int]`                    | <Version type="game" add="1.19.40" inline/> 对`位置`处的容器，从`槽位ID`的槽位开始，清除`数量`个槽位后，再插入至多`数量`种战利品            |
-| `replace entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> [数量: int]` | <Version type="game" add="1.19.0" inline/> 对`实体`的物品栏，从`槽位ID`的槽位开始，清除`数量`个`槽位类型`的槽位后，再插入至多`数量`种战利品 |
+| 子命令                                                                                    | 含义                                                                                                                            |
+| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `give <玩家: target>`                                                                     | <Version add="1.18.30" inline/> 给予`玩家`战利品                                                                                |
+| `insert <位置: x y z>`                                                                    | <Version add="1.18.30" inline/> 向`位置`的容器按顺序插入战利品                                                                  |
+| `spawn <位置: x y z>`                                                                     | 在`位置`生成战利品                                                                                                              |
+| `replace block <位置: x y z> slot.container <槽位ID: int> [数量: int]`                    | <Version add="1.19.40" inline/> 对`位置`处的容器，从`槽位ID`的槽位开始，清除`数量`个槽位后，再插入至多`数量`种战利品            |
+| `replace entity <实体: target> <槽位类型: EntityEquipmentSlot> <槽位ID: int> [数量: int]` | <Version add="1.19.0" inline/> 对`实体`的物品栏，从`槽位ID`的槽位开始，清除`数量`个`槽位类型`的槽位后，再插入至多`数量`种战利品 |
 
 `来源`确定调用的战利品表。可用的子命令如下表所示：
 
-| 子命令                                                           | 含义                                                                                       |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `kill <实体: target> [<tool>\|mainhand\|offhand: string]`        | 模拟使用指定工具杀死`实体`后的战利品表                                                     |
-| `loot <战利品表: string> [<tool>\|mainhand\|offhand: string]`    | 模拟使用指定工具直接调用`战利品表`（不带`loot_tables/`和`.json`后缀）                      |
-| `mine <目标方块位置: x y z> [<tool>\|mainhand\|offhand: string]` | <Version type="game" add="1.21.60" inline/> 模拟使用指定工具挖掘`目标方块位置`后的战利品表 |
+| 子命令                                                           | 含义                                                                           |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `kill <实体: target> [<tool>\|mainhand\|offhand: string]`        | 模拟使用指定工具杀死`实体`后的战利品表                                         |
+| `loot <战利品表: string> [<tool>\|mainhand\|offhand: string]`    | 模拟使用指定工具直接调用`战利品表`（不带`loot_tables/`和`.json`后缀）          |
+| `mine <目标方块位置: x y z> [<tool>\|mainhand\|offhand: string]` | <Version add="1.21.60" inline/> 模拟使用指定工具挖掘`目标方块位置`后的战利品表 |
+
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**按战利品表给予物品**：按简易地牢的战利品表给玩家发放物品。
+
+```text
+loot give @s loot minecraft:chests/simple_dungeon
+```
+
+**在世界中生成**：把战利品表生成的物品丢在指定位置。
+
+```text
+loot spawn ~ ~1 ~ loot minecraft:chests/simple_dungeon
+```
+
+**模拟挖掘**：模拟用钻石镐挖开脚下的方块后掉落战利品。
+
+```text
+loot spawn ~ ~1 ~ mine ~ ~-1 ~ minecraft:diamond_pickaxe
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
 ### `/difficulty`
 
-<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界难度的命令difficulty" color="green"/>
 <WikiButton item="命令/difficulty"/>
 
 设置游戏难度。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /difficulty <难度: Difficulty>
@@ -2404,16 +3334,33 @@ in <维度: Dimension> -> execute
 - `normal`或`n`或`2`：普通。
 - `hard`或`h`或`3`：困难。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**设置难度**：把世界难度设为普通。
+
+```text
+difficulty normal
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/weather`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c2_simple_cmds#调整天气的命令weather" color="green"/>
 <WikiButton item="命令/weather"/>
 
 调整或查询天气状态。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -2437,22 +3384,45 @@ in <维度: Dimension> -> execute
 
 查询天气。
 
-会受到游戏规则`sendCommandFeedBack`的影响。
+会受到游戏规则`sendCommandFeedback`的影响。
 
 </TabItem>
 
+</Tabs>
+
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**设置天气**：让雨持续 5 分钟。
+
+```text
+weather rain 6000
+```
+
+**查询天气**：查询当前天气。
+
+```text
+weather query
+```
+
+</TabItem>
 </Tabs>
 
 ---
 
 ### `/enchant`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c7_item_cmds#为物品附魔的命令enchant" color="green"/>
 <WikiButton item="命令/enchant"/>
 
 附魔玩家手里的物品。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /enchant <玩家: target> <附魔: int> [等级: int]
@@ -2465,20 +3435,37 @@ in <维度: Dimension> -> execute
 
 附魔不能超过物品所允许的魔咒类别和魔咒等级。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**附魔**：给玩家手中的钻石剑附上 3 级锋利。
+
+```text
+enchant @s sharpness 3
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/schedule`
 
-<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#队列执行函数文件的命令schedule" color="green"/>
 <WikiButton item="命令/schedule"/>
 
 队列执行函数。当玩家满足特定条件后，执行函数。
 
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
+
 <Tabs><TabItem value="delay" label="delay" default>
 
-<Version type="game" add="1.21.50"/>
+<Version add="1.21.50"/>
 
 <Tabs><TabItem value="1" label="add (游戏刻)" default>
 
@@ -2576,7 +3563,7 @@ in <维度: Dimension> -> execute
 
 </TabItem><TabItem value="clear" label="clear">
 
-<Version type="game" add="1.21.40"/>
+<Version add="1.21.40"/>
 
 ```
 /schedule clear <函数: filepath>
@@ -2586,16 +3573,45 @@ in <维度: Dimension> -> execute
 
 </TabItem></Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**延时执行函数**：5 秒后执行函数。
+
+```text
+schedule delay add system/main 5s
+```
+
+**区域加载后执行**：等区域加载完毕再执行函数。
+
+```text
+schedule on_area_loaded add 0 0 0 100 0 100 system/main
+```
+
+**取消延时**：取消尚未执行的延时任务。
+
+```text
+schedule clear system/main
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/ride`
 
-<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#改变骑乘关系ride" color="green"/>
 <WikiButton item="命令/ride"/>
 
 建立骑乘关系。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -2677,16 +3693,45 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**建立骑乘关系**：让玩家骑上最近的猪。
+
+```text
+ride @s start_riding @e[type=pig,c=1]
+```
+
+**解除骑乘**：让玩家离开坐骑。
+
+```text
+ride @s stop_riding
+```
+
+**生成坐骑**：为玩家生成一匹坐骑并立刻骑上。
+
+```text
+ride @s summon_ride minecraft:pig
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/stopsound`
 
-<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d3_sound_and_particle#停止音效的命令stopsound" color="green"/>
 <WikiButton item="命令/stopsound"/>
 
 停止播放音效。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /stopsound <玩家: target> [音效: string]
@@ -2696,16 +3741,33 @@ in <维度: Dimension> -> execute
 
 `音效`为空时，停止播放一切音效。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**停止音效**：停止播放指定的音效。
+
+```text
+stopsound @a random.orb
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/damage`
 
-<Version type="game" add="1.18.10"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.18.10"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#施加特定伤害damage" color="green"/>
 <WikiButton item="命令/damage"/>
 
 对实体造成伤害。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -2731,16 +3793,39 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**造成伤害**：对自己造成 5 点伤害。
+
+```text
+damage @s 5
+```
+
+**指定成因**：造成指定成因的伤害。
+
+```text
+damage @s 5 none
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/camerashake`
 
-<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d2_screen_cmds#相机摇晃命令camerashake" color="green"/>
 <WikiButton item="命令/camerashake"/>
 
 摇晃玩家的相机。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -2763,7 +3848,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="stop" label="stop">
 
-<Version type="game" add="1.16.210"/>
+<Version add="1.16.210"/>
 
 ```
 /camerashake stop [玩家: target]
@@ -2777,16 +3862,39 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**摇晃视角**：让玩家的视角摇晃 1 秒。
+
+```text
+camerashake add @s 0.5 1
+```
+
+**停止摇晃**：立刻停止视角摇晃。
+
+```text
+camerashake stop @s
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/mobevent`
 
-<Version type="game" add="1.11.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.11.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界生物生成事件的命令mobevent" color="green"/>
 <WikiButton item="命令/mobevent"/>
 
 更改世界生物生成事件。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /mobevent <事件: MobEvent> [值: Boolean]
@@ -2794,19 +3902,42 @@ in <维度: Dimension> -> execute
 
 设置生物生成的`事件`为`值`。
 
-`值`为空时，改为查询事件。会受到游戏规则`sendCommandFeedBack`的影响。
+`值`为空时，改为查询事件。会受到游戏规则`sendCommandFeedback`的影响。
+
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**开关生物事件**：关闭生物袭击等世界事件。
+
+```text
+mobevent events_enabled false
+```
+
+**单独开关事件**：只关闭末影龙事件，保留其他事件。
+
+```text
+mobevent minecraft:ender_dragon_event false
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
 ### `/aimassist`
 
-<Version type="game" add="1.21.70"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.21.70"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <WikiButton item="命令/aimassist"/>
 
 设置玩家的瞄准辅助。
 
 **瞄准辅助（Aim Assist）** 是用于非第一人称时的瞄准功能。瞄准辅助会尝试以玩家的眼睛为顶点，向外以一定的角度发散一个锥形的区域，并按照特定规则选取方块和实体。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs><TabItem value="set" label="set" default>
 
@@ -2837,15 +3968,38 @@ in <维度: Dimension> -> execute
 
 </TabItem></Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**设置瞄准辅助**：为玩家开启瞄准辅助。
+
+```text
+aimassist @s set
+```
+
+**清除瞄准辅助**：关闭玩家的瞄准辅助。
+
+```text
+aimassist @s clear
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/place`
 
-<Version type="game" add="1.21.70"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="1.21.70"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/place"/>
 
 放置地物、结构、拼图等。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -2875,7 +4029,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="jigsaw" label="jigsaw">
 
-<Version type="game" add="1.21.80"/>
+<Version add="1.21.80"/>
 
 ```
 /place jigsaw <pool: filepath> <jigsawTarget: string> <maxDepth: int> [pos: x y z] [keepJigsaws: Boolean] [includeEntities: Boolean] [liquidSettings: LiquidSettings]
@@ -2889,7 +4043,7 @@ in <维度: Dimension> -> execute
 
 <TabItem value="structure" label="structure">
 
-<Version type="game" add="1.21.80"/>
+<Version add="1.21.80"/>
 
 ```
 /place structure <structure: string> [pos: x y z] [ignoreStartHeight: Boolean] [keepJigsaws: Boolean] [includeEntities: Boolean] [liquidSettings: LiquidSettings]
@@ -2903,17 +4057,46 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**放置地物**：在指定位置放置蕨类地物。
+
+```text
+place feature minecraft:fern_feature ~ ~ ~
+```
+
+**按规则放置地物**：按地物规则放置地表植被。
+
+```text
+place featurerule minecraft:mesa_after_surface_dry_grass_feature_rules ~ ~ ~
+```
+
+**放置拼图结构**：展开拼图结构池，展开深度为 2。
+
+```text
+place jigsaw my_pack:jigsaw/tower_pool my_pack:tower 2 ~ ~ ~
+```
+
+</TabItem>
+</Tabs>
+
 在脚本中，可使用 [Dimension.placeFeature](/docs/docs/scripts/sapi/server/dimension/main#placefeature-方法)、[Dimension.placeFeatureRule](/docs/docs/scripts/sapi/server/dimension/main#placefeaturerule-方法)、[StructureManager.placeJigsaw](/docs/docs/scripts/sapi/server/world/structure#placejigsaw-方法) 等方法完成相同的操作。
 
 ---
 
 ### `/controlscheme`
 
-<Version type="game" add="1.21.90"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.21.90"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <WikiButton item="命令/controlscheme" length="large"/>
 
 修改相机预设的控制方案。此命令需要结合`/camera`使用。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -2954,18 +4137,41 @@ in <维度: Dimension> -> execute
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**设置控制方案**：让玩家的移动方向跟随相机方向。
+
+```text
+controlscheme @s set camera_relative
+```
+
+**清除控制方案**：恢复默认的移动方式。
+
+```text
+controlscheme @s clear
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ## 零频命令
 
 ### `/alwaysday`（或`/daylock`）
 
-<Version type="game" add="1.2.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.2.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#设置终为白日alwaysday" color="green"/>
 <WikiButton item="命令/alwaysday"/>
 
 设置终为白日。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /alwaysday [锁定: Boolean]
@@ -2976,16 +4182,33 @@ in <维度: Dimension> -> execute
 
 `锁定`为空时，改为查询。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**锁定白昼**：锁定世界为白昼，关闭昼夜交替。
+
+```text
+alwaysday true
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/clearspawnpoint`
 
-<Version type="game" add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.16.100"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d3_players#清除重生点clearspawnpoint" color="green"/>
 <WikiButton item="命令/clearspawnpoint" length="large"/>
 
 清除玩家的重生点。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /clearspawnpoint [玩家: target]
@@ -2995,15 +4218,32 @@ in <维度: Dimension> -> execute
 
 `玩家`的默认值为执行者。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**清除重生点**：清除玩家自己的重生点。
+
+```text
+clearspawnpoint @s
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/gametest`
 
-<Version type="game" add="1.19.40"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="实验性玩法" color="red" tooltip="该命令本身自 1.19.40 起已不再属于实验性玩法，但 GameTest 框架所依赖的 @minecraft/server-gametest 模块仍处于 beta 阶段，实际使用时仍需开启「Beta API」实验性玩法。"/><br/>
+<Version add="1.19.40"/> <Highlight text="权限等级 1" color="lightblue"/> <Highlight text="实验性玩法" color="red" tooltip="该命令本身自1.19.40起已不再属于实验性玩法，但GameTest框架所依赖的@minecraft/server-gametest模块仍处于beta阶段，实际使用时仍需开启「Beta API」实验性玩法。"/><br/>
 
 <WikiButton item="命令/gametest"/>
 
 触发 Gametest 测试。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 gametest runthis
@@ -3032,34 +4272,80 @@ gametest create <测试名: string> [宽度: int] [高度: int] [深度: int]
 | `pos`             | 在 200 格半径内寻找最近的测试结构。                            |
 | `create`          | 创建一个`测试名`指定大小的测试。                               |
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**运行测试**：运行一个名为 my_test 的测试。
+
+```text
+gametest run my_test
+```
+
+**创建测试**：创建一个 5×5×5 的测试。
+
+```text
+gametest create my_test 5 5 5
+```
+
+**运行附近测试**：执行附近 200 格内的所有测试。
+
+```text
+gametest runthese
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/gametips`
 
-<Version type="game" add="1.20.80"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令需要启用作弊后才能使用。"/><br/>
+<Version add="1.20.80"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令需要启用作弊后才能使用。"/><br/>
 
 <WikiButton item="命令/gametips"/>
 
 启用或禁用此设备上的游戏提示。
 
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
+
 ```
-gametips <disable|enable>
+gametips <disable|enable|d|e>
 ```
 
 `disable`禁用游戏提示，`enable`启用游戏提示。二者可分别简写为`d`和`e`。
 
 该命令只在客户端生效，不能在专用服务端上使用。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**关闭游戏提示**：关闭当前设备上的游戏提示。
+
+```text
+gametips disable
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/locate`
 
-<Version type="game" add="1.19.10" tooltip="最早的版本于1.0加入，但现在的版本已不可用。"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.19.10" tooltip="最早的版本于1.0加入，但现在的版本已不可用。"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#定位命令locate" color="green"/>
 <WikiButton item="命令/locate"/>
 
 定位结构或生物群系。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -3071,7 +4357,7 @@ gametips <disable|enable>
 
 定位`生物群系`并返回该生物群系对应的坐标。
 
-会受到游戏规则`sendCommandFeedBack`的影响。
+会受到游戏规则`sendCommandFeedback`的影响。
 
 </TabItem>
 
@@ -3083,13 +4369,13 @@ gametips <disable|enable>
 
 定位`结构`并返回该结构对应的坐标。`只使用新区块`指定为`true`时，只定位尚未生成的区块中的结构，默认值为`false`。
 
-会受到游戏规则`sendCommandFeedBack`的影响。
+会受到游戏规则`sendCommandFeedback`的影响。
 
 </TabItem>
 
 <TabItem value="poi" label="poi">
 
-<Version type="game" add="26.60" experimental="兴趣点（POI）"/>
+<Version add="26.60" experimental="兴趣点（POI）"/>
 
 ```
 /locate poi <兴趣点: poi type>
@@ -3098,22 +4384,51 @@ gametips <disable|enable>
 
 定位`兴趣点`（或符合`兴趣点标签`的兴趣点）并返回该兴趣点对应的坐标。
 
-会受到游戏规则`sendCommandFeedBack`的影响。注意：该命令的检查范围相比于其他重载可能较小。
+会受到游戏规则`sendCommandFeedback`的影响。注意：该命令的检查范围相比于其他重载可能较小。
 
 </TabItem>
 
+</Tabs>
+
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**定位结构**：查找最近的村庄并返回坐标。
+
+```text
+locate structure minecraft:village
+```
+
+**定位生物群系**：查找最近的平原。
+
+```text
+locate biome minecraft:plains
+```
+
+**只在新区块中查找**：只在尚未生成的区块中寻找村庄。
+
+```text
+locate structure minecraft:village true
+```
+
+</TabItem>
 </Tabs>
 
 ---
 
 ### `/me`
 
-<Version type="game" add="1.0.5"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version add="1.0.5"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c9_effect_cmds/d1_text_cmds#聊天栏宣告状态me" color="green"/>
 <WikiButton item="命令/me"/>
 
 公告自身状态。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /me <消息: message>
@@ -3123,16 +4438,33 @@ gametips <disable|enable>
 
 和`/say`类似，格式为`* 执行者 消息`。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**以自己名义发言**：在聊天栏以执行者的名字显示消息。
+
+```text
+me 打了个哈欠
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/recipe`
 
-<Version type="game" add="1.20.30"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.20.30"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a2_addons/b4_data_driven_items/c3_recipes#配方命令recipe" color="green"/>
 <WikiButton item="命令/recipe"/>
 
 为玩家添加或移除配方。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -3162,15 +4494,38 @@ gametips <disable|enable>
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**解锁配方**：让玩家解锁一个配方。
+
+```text
+recipe give @s minecraft:bread
+```
+
+**收回配方**：收回玩家已解锁的配方。
+
+```text
+recipe take @s minecraft:bread
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/script`
 
-<Version type="game" add="1.19.70"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/> <Highlight text="实验性玩法" color="red" tooltip="该命令本身自 1.19.70 起已不再属于实验性玩法，但它主要服务于 GameTest 框架，而该框架所依赖的 @minecraft/server-gametest 模块仍处于 beta 阶段，实际使用时仍需开启「Beta API」实验性玩法。"/><br/>
+<Version add="1.19.70"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/> <Highlight text="实验性玩法" color="red" tooltip="该命令本身自1.19.70起已不再属于实验性玩法，但它主要服务于GameTest框架，而该框架所依赖的@minecraft/server-gametest模块仍处于beta阶段，实际使用时仍需开启「Beta API」实验性玩法。"/><br/>
 
 <WikiButton item="命令/script"/>
 
 调试脚本。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 script debugger listen <端口: int>
@@ -3194,37 +4549,77 @@ script diagnostics stopcapture
 
 `端口`的可用范围为`1024`到`65535`。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**监听调试端口**：开启脚本调试器并监听 3000 端口。
+
+```text
+script debugger listen 3000
+```
+
+**关闭调试器**：关闭正在运行的脚本调试器。
+
+```text
+script debugger close
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/spreadplayers`
 
-<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c6_entity_cmds/d2_change_entity#随机传送玩家spreadplayers" color="green"/>
 <WikiButton item="命令/spreadplayers" length="large"/>
 
 随机扩散实体到地表。
 
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
+
 ```
 /spreadplayers <x: value> <z: value> <实体间距离: float> <最大范围: float> <实体: target> [最高高度: value]
 ```
 
-将实体随机扩散到以`x`和`z`为中心，边长为（2\*`最大范围`+1）的正方形区域的地表，并要求其间距不小于`实体间距离`。若指定`最高高度`（<Version type="game" add="1.21.20" inline/>），则地表的判定改为`最高高度`下方的地表。
+将实体随机扩散到以`x`和`z`为中心，边长为（2\*`最大范围`+1）的正方形区域的地表，并要求其间距不小于`实体间距离`。若指定`最高高度`（<Version add="1.21.20" inline/>），则地表的判定改为`最高高度`下方的地表。
 
 `最高高度`为空时，默认为全高度。
 
 实体间距离不为`0`时，可能会因为空间小而随机扩散失败，这可能会导致偶发性问题。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**随机分散**：把附近的玩家随机分散到周围。
+
+```text
+spreadplayers ~ ~ 5 20 @a
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/testfor`
 
-<Version type="game" add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="1.0.5"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b1_concepts/c6_target_selector#命令testfor检测实体的命令" color="green"/>
 <WikiButton item="命令/testfor"/>
 
 检查实体是否存在。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /testfor <实体: target>
@@ -3234,16 +4629,33 @@ script diagnostics stopcapture
 
 在无特殊要求的情况下，应使用`/execute if entity`代替。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**检测实体**：检测场上是否存在牛。
+
+```text
+testfor @e[type=cow]
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/testforblock`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d3_subcommands_2#检测方块的子命令ifunless-block" color="green"/>
 <WikiButton item="命令/testforblock"/>
 
 检查方块是否存在。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /testforblock <位置: x y z> <方块: Block> [方块状态: block states]
@@ -3255,16 +4667,33 @@ script diagnostics stopcapture
 
 在无特殊要求的情况下，应使用`/execute if block`代替。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**检测方块**：检测脚下的方块是否为石头。
+
+```text
+testforblock ~ ~-1 ~ stone
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/testforblocks`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c3_execute/d3_subcommands_2#检测区域的子命令ifunless-blocks" color="green"/>
 <WikiButton item="命令/testforblocks" length="large"/>
 
 检查一个区域是否和另一个区域一致。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /testforblocks <起点: x y z> <终点: x y z> <目标点: x y z> [all|masked]
@@ -3279,16 +4708,33 @@ script diagnostics stopcapture
 
 在无特殊要求的情况下，应使用`/execute if blocks`代替。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**比较区域**：比较两片区域内的方块是否完全一致。
+
+```text
+testforblocks ~ ~ ~ ~5 ~5 ~5 ~ ~ ~
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/toggledownfall`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 1" color="lightblue"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#切换天气toggledownfall" color="green"/>
 <WikiButton item="命令/toggledownfall" length="large"/>
 
 切换天气。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /toggledownfall
@@ -3296,15 +4742,32 @@ script diagnostics stopcapture
 
 切换天气。若为晴天，则切换为雨天或雷暴；若为雨天或雷暴，则改回晴天。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**切换天气**：在晴天、雨天与雷暴之间切换。
+
+```text
+toggledownfall
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/packstack`
 
-<Version type="game" add="26.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version add="26.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <WikiButton item="命令/packstack"/>
 
 输出当前附加包的数据。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /packstack <包类型: stackType> [详细输出: verbose] [是否排除原版包: exclude-vanilla]
@@ -3321,16 +4784,33 @@ script diagnostics stopcapture
 
 `是否排除原版包`可选值为`exclude-vanilla`。指定此参数时将不再输出原版包信息。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**查看附加包**：输出当前加载的行为包列表。
+
+```text
+packstack server
+```
+
+</TabItem>
+</Tabs>
+
 ## 服务器命令
 
 ### `/op`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" color="green"/>
 <WikiButton item="命令/op"/>
 
 将玩家设置为管理员。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /op <玩家: target>
@@ -3340,16 +4820,33 @@ script diagnostics stopcapture
 
 被设置为管理员的玩家，若为房主则权限等级为`3`，否则为`2`。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**设为管理员**：把玩家设为管理员。
+
+```text
+op Steve
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/deop`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#权限控制op与deop" color="green"/>
 <WikiButton item="命令/deop"/>
 
 夺走玩家的管理员权限。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /deop <玩家: target>
@@ -3357,16 +4854,33 @@ script diagnostics stopcapture
 
 剥夺`玩家`的管理权限。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**取消管理员**：取消玩家的管理员权限。
+
+```text
+deop Steve
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/kick`
 
-<Version type="game" add="1.16.0"/> <Highlight text="权限等级 1" color="lightblue" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version add="1.16.0"/> <Highlight text="权限等级 1" color="lightblue" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#移出玩家命令kick" color="green"/>
 <WikiButton item="命令/kick"/>
 
 移出玩家。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /kick <玩家: target> <理由: message>
@@ -3376,16 +4890,33 @@ script diagnostics stopcapture
 
 并不等于永久封禁，被踢出的玩家仍然可以回到游戏。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**踢出玩家**：把玩家踢出服务器，并给出理由。
+
+```text
+kick @a 维护中
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/list`
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#玩家列表命令list" color="green"/>
 <WikiButton item="命令/list"/>
 
 列出玩家列表。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /list
@@ -3393,15 +4924,32 @@ script diagnostics stopcapture
 
 列出当前所有玩家，以及总的玩家数量。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**列出玩家**：在聊天栏列出在线玩家与人数。
+
+```text
+list
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/connect`（或`/wsserver`）
 
-<Version type="game" add="0.16.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="0.16.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/connect"/>
 
 连接到 WebSocket 服务器。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /connect <服务器URI: text>
@@ -3411,15 +4959,32 @@ script diagnostics stopcapture
 
 一般用于 Minecraft 和其他软件的连接互通。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**连接 WebSocket**：连接到本机 8000 端口上的 WebSocket 服务器。
+
+```text
+connect 127.0.0.1:8000
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/dedicatedwsserver`
 
-<Version type="game" add="1.19.10"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令需要启用作弊后才能使用。"/><br/>
+<Version add="1.19.10"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令需要启用作弊后才能使用。"/><br/>
 
 <WikiButton item="命令/dedicatedwsserver" length="large"/>
 
 在专用服务器上连接到 WebSocket 服务器。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 dedicatedwsserver <服务器地址: string> <端口: int>
@@ -3429,22 +4994,52 @@ dedicatedwsserver <服务器地址: string> <端口: int>
 
 与`/connect`使用单个 URI 参数不同，该命令把地址与端口拆成两个参数分别填写。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**连接 WebSocket**：在专用服务器上连接到 8000 端口的 WebSocket 服务器。
+
+```text
+dedicatedwsserver 127.0.0.1 8000
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/reload`
 
-<Version type="game" add="1.8.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="1.8.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a2_addons/b2_functions_and_structures/c1_function#重载函数文件的命令reload" color="green"/>
 <WikiButton item="命令/reload"/>
 
 重新加载函数和脚本（仅限 [Script API](/docs/tutorials/a3_scripts/b2_sapi/c1_guide)）。
 
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
+
 ```
 /reload [全部: reload_all]
 ```
 
-重新热加载函数和脚本（仅限国际版的 Script API）。如果`全部`（<Version type="game" add="1.21.30" inline/>）指定为`all`，则退出地图再重新加载。
+重新热加载函数和脚本（仅限国际版的 Script API）。如果`全部`（<Version add="1.21.30" inline/>）指定为`all`，则退出地图再重新加载。
+
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**重载函数与脚本**：重新加载函数与脚本文件。
+
+```text
+reload
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -3456,6 +5051,10 @@ dedicatedwsserver <服务器地址: string> <端口: int>
 
 重新加载与权限、变量等相关的配置文件。
 
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
+
 ```
 reloadconfig
 ```
@@ -3464,21 +5063,51 @@ reloadconfig
 
 加入版本无明确记录。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**重载配置**：重新读取权限、变量等配置文件。
+
+```text
+reloadconfig
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/reloadpacketlimitconfig`
 
-<Version type="game" add="1.21.100"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="1.21.100"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/reloadpacketlimitconfig" length="extra_large"/>
 
 重新加载数据包限制的配置文件。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 reloadpacketlimitconfig
 ```
 
 重新读取服务器目录下的`packetlimitconfig.json`，且始终执行成功。该命令只能在 BDS 中执行。
+
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**重载限制配置**：重新读取数据包限制配置文件。
+
+```text
+reloadpacketlimitconfig
+```
+
+</TabItem>
+</Tabs>
 
 ---
 
@@ -3491,22 +5120,43 @@ reloadpacketlimitconfig
 
 关闭服务器。
 
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
+
 ```
 stop
 ```
 
 关闭 BDS 服务器。在控制台的命令不能使用斜杠。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**关闭服务器**：保存数据后关闭 BDS 服务器。
+
+```text
+stop
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/save`
 
-<Version type="game" add="1.6.1"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="1.6.1"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" color="green"/>
 <WikiButton item="命令/save"/>
 
 控制服务器将存档写入磁盘的方式，用于在服务器运行期间从外部复制存档作为备份。该命令只能在 BDS 中执行。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -3542,6 +5192,31 @@ save resume
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**暂停存档写入**：暂停存档写入，以便从外部复制存档作为备份。
+
+```text
+save hold
+```
+
+**查询存档文件**：查询各存档文件的路径与待截断的字节数。
+
+```text
+save query
+```
+
+**恢复存档写入**：恢复服务器对存档文件的写入。
+
+```text
+save resume
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/changesetting`
@@ -3551,6 +5226,10 @@ save resume
 <WikiButton item="命令/changesetting" length="large"/>
 
 在服务器运行期间更改专用服务器的设置。该命令只能在 BDS 控制台执行。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 changesetting allow-cheats <允许作弊: Boolean>
@@ -3564,15 +5243,38 @@ changesetting difficulty <难度: int>
 
 该命令不会修改`server.properties`中的值。加入版本无明确记录。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**修改服务器设置**：把服务器难度改为困难。
+
+```text
+changesetting difficulty hard
+```
+
+**允许作弊**：让正在运行的服务器允许作弊。
+
+```text
+changesetting allow-cheats true
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/transfer`
 
-<Version type="game" add="1.20.30"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="1.20.30"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/transfer"/>
 
 将玩家转移到另一个服务器。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 transfer <玩家ID: string> <服务器: string> [端口: int]
@@ -3584,16 +5286,33 @@ transfer <玩家ID: string> <服务器: string> [端口: int]
 
 能否转移成功取决于目标服务器是否接受转移登录。该命令只能在 BDS 中执行。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**转移玩家**：把玩家转移到另一台服务器。
+
+```text
+transfer Steve example.com 19132
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/setmaxplayers`
 
-<Version type="game" add="1.1.0"/> <Highlight text="权限等级 3" tooltip="该命令的权限等级为房主，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="1.1.0"/> <Highlight text="权限等级 3" tooltip="该命令的权限等级为房主，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#设置最大玩家数setmaxplayers" color="green"/>
 <WikiButton item="命令/setmaxplayers" length="large"/>
 
 设置房间内允许的最大玩家数。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /setmaxplayers <最大玩家数: int>
@@ -3601,16 +5320,33 @@ transfer <玩家ID: string> <服务器: string> [端口: int]
 
 将服务器或房间的最大人数设置为`最大玩家数`。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**限制人数**：把房间人数上限设为 20 人。
+
+```text
+setmaxplayers 20
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/allowlist`（或`/whitelist`）
 
-<Version type="game" add="1.18.10" tooltip="曾用名为/whitelist，最早于1.16.0加入。"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="1.18.10" tooltip="曾用名为/whitelist，最早于1.16.0加入。"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c10_server_cmds#服务器可用的命令stopallowlist和save等" color="green"/>
 <WikiButton item="命令/allowlist"/>
 
 添加或移除玩家的白名单。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -3656,17 +5392,46 @@ allowlist reload
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**管理白名单**：把玩家加入服务器白名单。
+
+```text
+allowlist add Steve
+```
+
+**移出白名单**：把玩家移出白名单。
+
+```text
+allowlist remove Steve
+```
+
+**重载白名单**：重新读取磁盘上的白名单文件。
+
+```text
+allowlist reload
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/permission`（或`/ops`）
 
-<Version type="game" add="1.10.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="1.10.0"/> <Highlight text="权限等级 2" tooltip="该命令的权限等级为管理员，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/permission"/>
 
 枚举或重新加载权限列表，或设置玩家的权限等级。
 
-<Version type="game" add="26.40" inline/> 该命令的权限等级由`4`下调为`2`，且不再要求启用作弊。
+<Version add="26.40" inline/> 该命令的权限等级由`4`下调为`2`，且不再要求启用作弊。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 <Tabs>
 
@@ -3708,15 +5473,44 @@ permission reload
 
 </Tabs>
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**设置权限等级**：把玩家的权限等级设为操作员。
+
+```text
+permission set @s operator
+```
+
+**列出权限**：查看所有玩家的权限等级。
+
+```text
+permission list
+```
+
+**重载权限**：重新读取 permissions.json。
+
+```text
+permission reload
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/serveridentity`
 
-<Version type="game" add="26.50"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="26.50"/> <Highlight text="权限等级 4" tooltip="该命令的权限等级为服务器，不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/serveridentity" length="large"/>
 
 保存、删除或查询专用服务器的标识符密钥文件。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 serveridentity save
@@ -3728,15 +5522,32 @@ serveridentity status
 
 密钥文件位于服务器目录的`keys/server_identity_key.pem`。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**查询标识密钥**：查询服务器标识密钥文件是否存在。
+
+```text
+serveridentity status
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/party`
 
-<Version type="game" add="26.30" tooltip="正式版不可用。"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/> <Highlight text="仅登录账户可执行" tooltip="该命令不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
+<Version add="26.30" tooltip="正式版不可用。"/> <Highlight text="权限等级 0" color="yellowgreen" tooltip="该命令无需作弊即可使用。"/> <Highlight text="仅登录账户可执行" tooltip="该命令不能使用命令方块、函数或脚本等自动化程序执行。"/><br/>
 
 <WikiButton item="命令/party"/>
 
 在组队中发送消息。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /party <消息: message>
@@ -3744,18 +5555,35 @@ serveridentity status
 
 在组队中发送`消息`。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**组队发言**：在组队频道中发送消息。
+
+```text
+party 一起来玩
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ## 中国版命令
 
 ### `/enableedunpc`
 
-<Highlight text="中国版独有" tooltip="该命令仅限中国版可用。"/><br/>
+<Version type="china" add="未知" tooltip="该命令可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="中国版独有" tooltip="该命令仅限中国版可用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c11_china_edition" color="green"/>
 <WikiButton item="命令/enableedunpc" length="large"/>
 
 启用 NPC。
+
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
 
 ```
 /enableedunpc <启用NPC: Boolean>
@@ -3765,22 +5593,52 @@ serveridentity status
 
 需要注意：即使启用 NPC，它也不能通过`/summon`直接生成，而且也不存在任何实际功能。你可以使用`/give @s spawn_egg 1 51`获得 NPC 的刷怪蛋。
 
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**允许生成 NPC**：允许地图内生成 NPC。
+
+```text
+enableedunpc true
+```
+
+</TabItem>
+</Tabs>
+
 ---
 
 ### `/removeedunpc`
 
-<Highlight text="中国版独有" tooltip="该命令仅限中国版可用。"/><br/>
+<Version type="china" add="未知" tooltip="该命令可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="中国版独有" tooltip="该命令仅限中国版可用。"/><br/>
 
 <Button text="教程" url="/docs/tutorials/a1_commands/b2_commands/c11_china_edition" color="green"/>
 <WikiButton item="命令/removeedunpc" length="large"/>
 
 移除全部 NPC。
 
+<Tabs>
+
+<TabItem value="语法" label="语法" default>
+
 ```
 /removeedunpc
 ```
 
 移除地图内现有的全部 NPC。但这不会禁止 NPC 的生成。
+
+</TabItem>
+
+<TabItem value="示例" label="示例">
+
+**移除 NPC**：移除地图内已有的全部 NPC。
+
+```text
+removeedunpc
+```
+
+</TabItem>
+</Tabs>
 
 ---
 

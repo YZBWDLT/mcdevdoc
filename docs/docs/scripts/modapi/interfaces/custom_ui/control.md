@@ -4,6 +4,7 @@ sidebar_position: 6
 
 # UI 控件
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/zidingyi-ui/ui-kongjian.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddEntityMarker
+
+<Version type="china" add="3.2"/>
 
 <Client/> MiniMapUIControl
 
@@ -63,6 +70,8 @@ map.AddEntityMarker(entityId, "textures/ui/custom_head")
 
 ### AddEntityTextMarker
 
+<Version type="china" add="3.2"/>
+
 <Client/> MiniMapUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -98,6 +107,8 @@ map.AddEntityTextMarker(entityId, "just test", 1.0)
 
 ### AddHoverEventParams
 
+<Version type="china" add="2.5"/>
+
 <Client/> ButtonUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -131,6 +142,8 @@ buttonUIControl.AddHoverEventParams()
 ---
 
 ### AddOption
+
+<Version type="china" add="1.25"/>
 
 <Client/> NeteaseComboBoxUIControl
 
@@ -170,6 +183,8 @@ success = comboBoxUIControl.AddOption("测试项", "textures/ui/test_icon", {"my
 ---
 
 ### AddStaticMarker
+
+<Version type="china" add="3.2"/>
 
 <Client/> MiniMapUIControl
 
@@ -216,6 +231,8 @@ map.AddStaticMarker("this_is_marker_key", (10,2), "textures/blocks/border", (3,3
 
 ### AddStaticTextMarker
 
+<Version type="china" add="3.2"/>
+
 <Client/> MiniMapUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -257,6 +274,8 @@ map.AddStaticTextMarker("this_is_marker_key", (10,2), "just test", 1.0)
 
 ### AddTouchEventParams
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ButtonUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -296,6 +315,8 @@ buttonUIControl.AddTouchEventParams({"isSwallow":True})
 
 ### ClearOptions
 
+<Version type="china" add="1.25"/>
+
 <Client/> NeteaseComboBoxUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -325,6 +346,8 @@ comboBoxUIControl.ClearOptions()
 
 ### ClearSelection
 
+<Version type="china" add="1.25"/>
+
 <Client/> NeteaseComboBoxUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -353,6 +376,8 @@ comboBoxUIControl.ClearSelection()
 ---
 
 ### DisableTextShadow
+
+<Version type="china" add="2.1"/>
 
 <Client/> LabelUIControl
 
@@ -387,6 +412,8 @@ ret = labelUIControl.DisableTextShadow()
 
 ### EnableTextShadow
 
+<Version type="china" add="2.1"/>
+
 <Client/> LabelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -419,6 +446,8 @@ ret = labelUIControl.EnableTextShadow()
 ---
 
 ### GetAnchorFrom
+
+<Version type="china" add="2.1"/>
 
 <Client/> BaseUIControl
 
@@ -453,6 +482,8 @@ anchorFrom = baseUIControl.GetAnchorFrom()
 
 ### GetAnchorTo
 
+<Version type="china" add="2.1"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -485,6 +516,8 @@ anchorTo = baseUIControl.GetAnchorTo()
 ---
 
 ### GetChildByName
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> BaseUIControl
 
@@ -520,6 +553,8 @@ text2Control = text1Control.GetChildByName("text2")
 
 ### GetChildByPath
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -554,6 +589,8 @@ text3Control = text1Control.GetChildByPath("/text2/text3")
 
 ### GetClipDirection
 
+<Version type="china" add="2.1"/>
+
 <Client/> ImageUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -585,6 +622,8 @@ imageUIControl.GetClipDirection()
 ---
 
 ### GetClipOffset
+
+<Version type="china" add="2.1"/>
 
 <Client/> BaseUIControl
 
@@ -619,6 +658,8 @@ clipOffset = baseUIControl.GetClipOffset()
 
 ### GetClipsChildren
 
+<Version type="china" add="2.1"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -652,6 +693,8 @@ clipsChildrenEnabled = baseUIControl.GetClipsChildren()
 
 ### GetCurrentSliceIndex
 
+<Version type="china" add="2.7"/>
+
 <Client/> SelectionWheelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -683,6 +726,8 @@ selectionWheelControl.GetCurrentSliceIndex()
 ---
 
 ### GetEditText
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> TextEditBoxUIControl
 
@@ -720,6 +765,8 @@ text = textEditBoxUIControl.GetEditText()
 ---
 
 ### GetFullPosition
+
+<Version type="china" add="2.1"/>
 
 <Client/> BaseUIControl
 
@@ -764,6 +811,8 @@ ret = baseUIControl.GetFullPosition(axis="x")
 ---
 
 ### GetFullSize
+
+<Version type="china" add="2.1"/>
 
 <Client/> BaseUIControl
 
@@ -810,6 +859,8 @@ ret = baseUIControl.GetFullSize(axis="x")
 
 ### GetGlobalPosition
 
+<Version type="china" add="2.8"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -843,6 +894,8 @@ textPosition = baseUIControl.GetGlobalPosition()
 
 ### GetGlobalRotateAngle
 
+<Version type="china" add="2.8"/>
+
 <Client/> ImageUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -875,6 +928,8 @@ print imageControl.GetGlobalRotateAngle()
 
 ### GetGlobalRotatePoint
 
+<Version type="china" add="2.8"/>
+
 <Client/> ImageUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -906,6 +961,8 @@ print imageControl.GetGlobalRotatePoint()
 ---
 
 ### GetGridItem
+
+<Version type="china" add="2.6"/>
 
 <Client/> GridUIControl
 
@@ -948,6 +1005,8 @@ if gridItem_0:
 
 ### GetIsModal
 
+<Version type="china" add="2.1"/>
+
 <Client/> InputPanelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -981,6 +1040,8 @@ inputPanel.GetIsModal()
 
 ### GetIsSwallow
 
+<Version type="china" add="2.7"/>
+
 <Client/> InputPanelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1013,6 +1074,8 @@ inputPanel.GetIsSwallow()
 ---
 
 ### GetMaxSize
+
+<Version type="china" add="2.1"/>
 
 <Client/> BaseUIControl
 
@@ -1051,6 +1114,8 @@ imageMaxSize = baseUIControl.GetMaxSize()
 
 ### GetMinSize
 
+<Version type="china" add="2.1"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1087,6 +1152,8 @@ imageMinSize = baseUIControl.GetMinSize()
 ---
 
 ### GetModelId
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> NeteasePaperDollUIControl
 
@@ -1144,6 +1211,8 @@ clientSystem.DestroyEntity(particleEntityId) # 销毁动画
 
 ### GetOffsetDelta
 
+<Version type="china" add="2.2"/>
+
 <Client/> InputPanelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1181,6 +1250,8 @@ offset_delta = inputPanel.GetOffsetDelta()
 
 ### GetOptionCount
 
+<Version type="china" add="1.25"/>
+
 <Client/> NeteaseComboBoxUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1212,6 +1283,8 @@ totalNum = comboBoxUIControl.GetOptionCount()
 ---
 
 ### GetOptionIndexByShowName
+
+<Version type="china" add="1.25"/>
 
 <Client/> NeteaseComboBoxUIControl
 
@@ -1246,6 +1319,8 @@ index = comboBoxUIControl.GetOptionIndexByShowName("测试项")
 
 ### GetOptionShowNameByIndex
 
+<Version type="china" add="1.25"/>
+
 <Client/> NeteaseComboBoxUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1278,6 +1353,8 @@ text = comboBoxUIControl.GetOptionShowNameByIndex(0)
 ---
 
 ### GetOrientation
+
+<Version type="china" add="2.1"/>
 
 <Client/> StackPanelUIControl
 
@@ -1312,6 +1389,8 @@ stackPanel.GetOrientation()
 
 ### GetPath
 
+<Version type="china" add="2.9"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1343,6 +1422,8 @@ path = baseUIControl.GetPath()
 ---
 
 ### GetPosition
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> BaseUIControl
 
@@ -1377,6 +1458,8 @@ textPosition = baseUIControl.GetPosition()
 
 ### GetPropertyBag
 
+<Version type="china" add="3.4"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1408,6 +1491,8 @@ propertyBag = baseUIControl.GetPropertyBag()
 ---
 
 ### GetRotateAngle
+
+<Version type="china" add="2.8"/>
 
 <Client/> ImageUIControl
 
@@ -1441,6 +1526,8 @@ print imageControl.GetRotateAngle()
 
 ### GetRotatePivot
 
+<Version type="china" add="2.8"/>
+
 <Client/> ImageUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1472,6 +1559,8 @@ print imageControl.GetRotatePivot()
 ---
 
 ### GetRotateRect
+
+<Version type="china" add="2.8"/>
 
 <Client/> ImageUIControl
 
@@ -1507,6 +1596,8 @@ print imageControl.GetRotateRect()
 
 ### GetScrollViewContentControl
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScrollViewUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1539,6 +1630,8 @@ contentUIControl = scrollViewUIControl.GetScrollViewContentControl()
 ---
 
 ### GetScrollViewContentPath
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScrollViewUIControl
 
@@ -1578,6 +1671,8 @@ path = scrollViewUIControl.GetScrollViewContentPath()
 
 ### GetScrollViewPercentValue
 
+<Version type="china" add="2.6"/>
+
 <Client/> ScrollViewUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1610,6 +1705,8 @@ scrollViewUIControl.GetScrollViewPercentValue()
 ---
 
 ### GetScrollViewPos
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScrollViewUIControl
 
@@ -1644,6 +1741,8 @@ scrollViewUIControl.GetScrollViewPos()
 
 ### GetSelectOptionIndex
 
+<Version type="china" add="1.25"/>
+
 <Client/> NeteaseComboBoxUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1676,6 +1775,8 @@ currentIndex = comboBoxUIControl.GetSelectOptionIndex()
 
 ### GetSelectOptionShowName
 
+<Version type="china" add="1.25"/>
+
 <Client/> NeteaseComboBoxUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1707,6 +1808,8 @@ currentText = comboBoxUIControl.GetSelectOptionShowName()
 ---
 
 ### GetSize
+
+<Version type="china" add="2.7"/>
 
 <Client/> BaseUIControl
 
@@ -1741,6 +1844,8 @@ text2Size = baseUIControl.GetSize()
 
 ### GetSliceCount
 
+<Version type="china" add="2.7"/>
+
 <Client/> SelectionWheelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1772,6 +1877,8 @@ selectionWheelControl.GetSliceCount()
 ---
 
 ### GetSliderValue
+
+<Version type="china" add="1.23"/>
 
 <Client/> SliderUIControl
 
@@ -1805,6 +1912,8 @@ value = sliderUIControl.GetSliderValue()
 ---
 
 ### GetText
+
+<Version type="china" add="3.5"/>
 
 <Client/> LabelUIControl
 
@@ -1843,6 +1952,8 @@ labelUIControl.GetText()
 
 ### GetTextAlignment
 
+<Version type="china" add="2.1"/>
+
 <Client/> LabelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1875,6 +1986,8 @@ labelUIControl.GetTextAlignment()
 ---
 
 ### GetTextColor
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> LabelUIControl
 
@@ -1909,6 +2022,8 @@ labelUIControl.GetTextColor()
 
 ### GetTextLinePadding
 
+<Version type="china" add="2.1"/>
+
 <Client/> LabelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1942,6 +2057,8 @@ labelUIControl.GetTextLinePadding()
 
 ### GetToggleState
 
+<Version type="china" add="2.6"/>
+
 <Client/> SwitchToggleUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -1974,6 +2091,8 @@ print switchToggleUIControl.GetToggleState()
 ---
 
 ### GetUiItem
+
+<Version type="china" add="2.11"/>
 
 <Client/> ItemRendererUIControl
 
@@ -2019,6 +2138,8 @@ itemInfoDict = itemRendererControl.GetUiItem()
 
 ### GetVisible
 
+<Version type="china" add="3.5"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2051,6 +2172,8 @@ textVisible = baseUIControl.GetVisible()
 ---
 
 ### IsAnimEndCallbackRegistered
+
+<Version type="china" add="2.8"/>
 
 <Client/> BaseUIControl
 
@@ -2089,6 +2212,8 @@ print control.IsAnimEndCallbackRegistered("offset_animation")
 
 ### IsTextShadowEnabled
 
+<Version type="china" add="2.1"/>
+
 <Client/> LabelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2121,6 +2246,8 @@ labelUIControl.IsTextShadowEnabled()
 ---
 
 ### PauseAnimation
+
+<Version type="china" add="2.8"/>
 
 <Client/> BaseUIControl
 
@@ -2165,6 +2292,8 @@ control.PauseAnimation()
 
 ### PlayAnimation
 
+<Version type="china" add="2.8"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2208,6 +2337,8 @@ control.PlayAnimation()
 
 ### RegisterCloseComboBoxCallback
 
+<Version type="china" add="1.25"/>
+
 <Client/> NeteaseComboBoxUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2243,6 +2374,8 @@ comboBoxUIControl.RegisterCloseComboBoxCallback(onCloseComboBoxCallback)
 
 ### RegisterOpenComboBoxCallback
 
+<Version type="china" add="1.25"/>
+
 <Client/> NeteaseComboBoxUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2277,6 +2410,8 @@ comboBoxUIControl.RegisterOpenComboBoxCallback(onOpenComboBoxCallback)
 ---
 
 ### RegisterSelectItemCallback
+
+<Version type="china" add="1.25"/>
 
 <Client/> NeteaseComboBoxUIControl
 
@@ -2323,6 +2458,8 @@ comboBoxUIControl.RegisterSelectItemCallback(onSelectItemCallback)
 
 ### RemoveAnimEndCallback
 
+<Version type="china" add="2.8"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2360,6 +2497,8 @@ control.RemoveAnimEndCallback("offset_animation")
 ---
 
 ### RemoveAnimation
+
+<Version type="china" add="2.8"/>
 
 <Client/> BaseUIControl
 
@@ -2399,6 +2538,8 @@ control.RemoveAnimation("offset")
 
 ### RemoveEntityMarker
 
+<Version type="china" add="3.2"/>
+
 <Client/> MiniMapUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2431,6 +2572,8 @@ map.RemoveEntityMarker(entityId)
 ---
 
 ### RemoveEntityTextMarker
+
+<Version type="china" add="3.2"/>
 
 <Client/> MiniMapUIControl
 
@@ -2465,6 +2608,8 @@ map.RemoveEntityTextMarker(entityId)
 
 ### RemoveOptionByIndex
 
+<Version type="china" add="1.25"/>
+
 <Client/> NeteaseComboBoxUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2497,6 +2642,8 @@ success = comboBoxUIControl.RemoveOptionByIndex(0)
 ---
 
 ### RemoveOptionByShowName
+
+<Version type="china" add="1.25"/>
 
 <Client/> NeteaseComboBoxUIControl
 
@@ -2531,6 +2678,8 @@ success = comboBoxUIControl.RemoveOptionByShowName("测试项")
 
 ### RemoveStaticMarker
 
+<Version type="china" add="3.2"/>
+
 <Client/> MiniMapUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2564,6 +2713,8 @@ map.RemoveStaticMarker(entityId)
 
 ### RemoveStaticTextMarker
 
+<Version type="china" add="3.2"/>
+
 <Client/> MiniMapUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2596,6 +2747,8 @@ map.RemoveStaticTextMarker("this_is_marker_key")
 ---
 
 ### RenderBlockGeometryModel
+
+<Version type="china" add="2.4"/>
 
 <Client/> NeteasePaperDollUIControl
 
@@ -2653,6 +2806,8 @@ doll.RenderBlockGeometryModel(param)
 ---
 
 ### RenderEntity
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> NeteasePaperDollUIControl
 
@@ -2723,6 +2878,8 @@ doll.RenderEntity(param)
 
 ### RenderSkeletonModel
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> NeteasePaperDollUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2786,6 +2943,8 @@ doll.RenderSkeletonModel(param)
 
 ### RepaintMiniMap
 
+<Version type="china" add="3.2"/>
+
 <Client/> MiniMapUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2814,6 +2973,8 @@ map.RepaintMiniMap()
 ---
 
 ### Rotate
+
+<Version type="china" add="2.8"/>
 
 <Client/> ImageUIControl
 
@@ -2845,6 +3006,8 @@ imageControl.Rotate(30)
 ---
 
 ### RotateAround
+
+<Version type="china" add="2.8"/>
 
 <Client/> ImageUIControl
 
@@ -2878,6 +3041,8 @@ imageControl.RotateAround((50, 50), 30)
 
 ### SetAlpha
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -2909,6 +3074,8 @@ baseUIControl.SetAlpha(0.5)
 ---
 
 ### SetAnchorFrom
+
+<Version type="china" add="2.1"/>
 
 <Client/> BaseUIControl
 
@@ -2961,6 +3128,8 @@ ret = baseUIControl.SetAnchorFrom(anchorFrom)
 
 ### SetAnchorTo
 
+<Version type="china" add="2.1"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3012,6 +3181,8 @@ ret = baseUIControl.SetAnchorTo(anchorTo)
 
 ### SetAnimEndCallback
 
+<Version type="china" add="2.8"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3054,6 +3225,8 @@ control.SetAnimEndCallback("offset_animation", callback)
 ---
 
 ### SetAnimation
+
+<Version type="china" add="2.8"/>
 
 <Client/> BaseUIControl
 
@@ -3124,6 +3297,8 @@ control.SetAnimation("alpha", "CustomAnimations", "alpha_animation_1")
 
 ### SetButtonHoverInCallback
 
+<Version type="china" add="2.5"/>
+
 <Client/> ButtonUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3173,6 +3348,8 @@ buttonUIControl.SetButtonHoverInCallback(onButtonHoveInCallback)
 
 ### SetButtonHoverOutCallback
 
+<Version type="china" add="2.5"/>
+
 <Client/> ButtonUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3220,6 +3397,8 @@ buttonUIControl.SetButtonHoverOutCallback(OnButtonHoverOutCallback)
 
 ### SetButtonScreenExitCallback
 
+<Version type="china" add="2.2"/>
+
 <Client/> ButtonUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3259,6 +3438,8 @@ buttonUIControl.SetButtonScreenExitCallback(onButtonScreenExitCallback)
 
 ### SetButtonTouchCancelCallback
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ButtonUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3297,6 +3478,8 @@ buttonUIControl.SetButtonTouchCancelCallback(onButtonTouchCancelCallback)
 ---
 
 ### SetButtonTouchDownCallback
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ButtonUIControl
 
@@ -3351,6 +3534,8 @@ buttonUIControl.SetButtonTouchDownCallback(onButtonTouchDownCallback)
 
 ### SetButtonTouchMoveCallback
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ButtonUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3390,6 +3575,8 @@ buttonUIControl.SetButtonTouchMoveCallback(onButtonTouchMoveCallback)
 ---
 
 ### SetButtonTouchMoveInCallback
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ButtonUIControl
 
@@ -3431,6 +3618,8 @@ buttonUIControl.SetButtonTouchMoveInCallback(onButtonTouchMoveInCallback)
 
 ### SetButtonTouchMoveOutCallback
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ButtonUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3471,6 +3660,8 @@ buttonUIControl.SetButtonTouchMoveOutCallback(onButtonTouchMoveOutCallback)
 
 ### SetButtonTouchUpCallback
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ButtonUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3509,6 +3700,8 @@ buttonUIControl.SetButtonTouchUpCallback(onButtonTouchUpCallback)
 ---
 
 ### SetClipDirection
+
+<Version type="china" add="2.1"/>
 
 <Client/> ImageUIControl
 
@@ -3556,6 +3749,8 @@ ret = imageUIControl.SetClipDirection(clipDirection)
 
 ### SetClipOffset
 
+<Version type="china" add="2.1"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3591,6 +3786,8 @@ ret = baseUIControl.SetClipOffset(clipOffset)
 
 ### SetClipsChildren
 
+<Version type="china" add="2.1"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3625,6 +3822,8 @@ ret = baseUIControl.SetClipsChildren(True)
 
 ### SetCurrentSliceIndex
 
+<Version type="china" add="2.7"/>
+
 <Client/> SelectionWheelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3655,6 +3854,8 @@ selectionWheelControl.SetCurrentSliceIndex(-1)
 ---
 
 ### SetEditText
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> TextEditBoxUIControl
 
@@ -3689,6 +3890,8 @@ textEditBoxUIControl.SetEditText(text)
 
 ### SetEditTextMaxLength
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> TextEditBoxUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3720,6 +3923,8 @@ textEditBoxUIControl.SetEditTextMaxLength(10)
 ---
 
 ### SetFullPosition
+
+<Version type="china" add="2.1"/>
 
 <Client/> BaseUIControl
 
@@ -3781,6 +3986,8 @@ ret = baseUIControl.SetFullPosition(axis="y", paramDict={"followType":"parent", 
 ---
 
 ### SetFullSize
+
+<Version type="china" add="2.1"/>
 
 <Client/> BaseUIControl
 
@@ -3849,6 +4056,8 @@ ret = baseUIControl.SetFullSize(axis="y", {"fit":True})
 
 ### SetGridDimension
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> GridUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3880,6 +4089,8 @@ gridUIControl.SetGridDimension((2, 2))
 ---
 
 ### SetHighestY
+
+<Version type="china" add="1.22"/>
 
 <Client/> MiniMapUIControl
 
@@ -3918,6 +4129,8 @@ map.SetHighestY(255)
 
 ### SetHoverCallback
 
+<Version type="china" add="2.7"/>
+
 <Client/> SelectionWheelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -3951,6 +4164,8 @@ selectionWheelControl.SetHoverCallback(onSelectionWheelHover)
 ---
 
 ### SetImageAdaptionType
+
+<Version type="china" add="2.1"/>
 
 <Client/> ImageUIControl
 
@@ -4003,6 +4218,8 @@ ret = imageUIControl.SetImageAdaptionType("originNineSlice", (0, 0, 0, 0))
 
 ### SetIsModal
 
+<Version type="china" add="2.1"/>
+
 <Client/> InputPanelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4037,6 +4254,8 @@ ret = inputPanel.SetIsModal(True)
 
 ### SetIsSwallow
 
+<Version type="china" add="2.7"/>
+
 <Client/> InputPanelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4070,6 +4289,8 @@ ret = inputPanel.SetIsSwallow(True)
 ---
 
 ### SetLayer
+
+<Version type="china" add="1.22"/>
 
 <Client/> BaseUIControl
 
@@ -4122,6 +4343,8 @@ comp.AddTimer(300, _updateScreen)
 
 ### SetMaxSize
 
+<Version type="china" add="2.1"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4160,6 +4383,8 @@ ret = baseUIControl.SetMaxSize(imageMaxSize)
 ---
 
 ### SetMinSize
+
+<Version type="china" add="2.1"/>
 
 <Client/> BaseUIControl
 
@@ -4200,6 +4425,8 @@ ret = baseUIControl.SetMinSize(imageMinSize)
 
 ### SetOffsetDelta
 
+<Version type="china" add="2.2"/>
+
 <Client/> InputPanelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4238,6 +4465,8 @@ success = inputPanel.SetOffsetDelta((100, 100))
 
 ### SetOrientation
 
+<Version type="china" add="2.1"/>
+
 <Client/> StackPanelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4273,6 +4502,8 @@ stackPanel.SetOrientation(orientation)
 
 ### SetPosition
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4305,6 +4536,8 @@ baseUIControl.SetPosition(pos)
 ---
 
 ### SetPropertyBag
+
+<Version type="china" add="3.4"/>
 
 <Client/> BaseUIControl
 
@@ -4339,6 +4572,8 @@ success = baseUIControl.SetPropertyBag(params)
 ---
 
 ### SetRotatePivot
+
+<Version type="china" add="2.8"/>
 
 <Client/> ImageUIControl
 
@@ -4382,6 +4617,8 @@ imageControl.SetRotatePivot((0, 1))
 
 ### SetScrollViewPercentValue
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScrollViewUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4413,6 +4650,8 @@ scrollViewUIControl.SetScrollViewPercentValue(20)
 ---
 
 ### SetScrollViewPos
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScrollViewUIControl
 
@@ -4446,6 +4685,8 @@ scrollViewUIControl.SetScrollViewPos(100)
 
 ### SetSelectOptionByIndex
 
+<Version type="china" add="1.25"/>
+
 <Client/> NeteaseComboBoxUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4477,6 +4718,8 @@ comboBoxUIControl.SetSelectOptionByIndex(0)
 
 ### SetSelectOptionByShowName
 
+<Version type="china" add="1.25"/>
+
 <Client/> NeteaseComboBoxUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4507,6 +4750,8 @@ comboBoxUIControl.SetSelectOptionByShowName("测试项")
 ---
 
 ### SetSize
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> BaseUIControl
 
@@ -4542,6 +4787,8 @@ baseUIControl.SetSize(text2Size)
 
 ### SetSliderValue
 
+<Version type="china" add="1.23"/>
+
 <Client/> SliderUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4574,6 +4821,8 @@ sliderUIControl.SetSliderValue(0.5) # 百分比滑动条
 ---
 
 ### SetSprite
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ImageUIControl
 
@@ -4616,6 +4865,8 @@ buttonPressedUIControl.SetSprite("textures/button01_pressed")
 
 ### SetSpriteClipRatio
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ImageUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4650,6 +4901,8 @@ imageUIControl.SetSpriteClipRatio(1.0 - progress)
 
 ### SetSpriteColor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ImageUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4683,6 +4936,8 @@ imageUIControl.SetSpriteColor((1 - durabilityRatio, durabilityRatio, 0))
 
 ### SetSpriteGray
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ImageUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4714,6 +4969,8 @@ imageUIControl.SetSpriteGray(True)
 ---
 
 ### SetSpritePlatformFrame
+
+<Version type="china" add="1.23"/>
 
 <Client/> ImageUIControl
 
@@ -4751,6 +5008,8 @@ imageUIControl.SetSpritePlatformFrame()
 
 ### SetSpritePlatformHead
 
+<Version type="china" add="1.23"/>
+
 <Client/> ImageUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4786,6 +5045,8 @@ imageUIControl.SetSpritePlatformHead()
 
 ### SetSpriteUV
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ImageUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4817,6 +5078,8 @@ imageUIControl.SetSpriteUV((10, 0))
 
 ### SetSpriteUVSize
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ImageUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4847,6 +5110,8 @@ imageUIControl.SetSpriteUVSize((40, 30))
 ---
 
 ### SetText
+
+<Version type="china" add="1.23"/>
 
 <Client/> LabelUIControl
 
@@ -4881,6 +5146,8 @@ labelUIControl.SetText(text)
 ---
 
 ### SetTextAlignment
+
+<Version type="china" add="2.1"/>
 
 <Client/> LabelUIControl
 
@@ -4927,6 +5194,8 @@ ret = labelUIControl.SetTextAlignment(textAlignment)
 
 ### SetTextColor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> LabelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4964,6 +5233,8 @@ labelUIControl.SetTextColor(color)
 
 ### SetTextFontSize
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> LabelUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -4995,6 +5266,8 @@ labelUIControl.SetTextFontSize(0.8)
 ---
 
 ### SetTextLinePadding
+
+<Version type="china" add="2.1"/>
 
 <Client/> LabelUIControl
 
@@ -5031,6 +5304,8 @@ ret = labelUIControl.SetTextLinePadding(textLinePadding)
 
 ### SetToggleState
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SwitchToggleUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5063,6 +5338,8 @@ switchToggleUIControl.SetToggleState(True)
 
 ### SetTouchEnable
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5094,6 +5371,8 @@ baseUIControl.SetTouchEnable(False)
 ---
 
 ### SetTouchUpCallback
+
+<Version type="china" add="2.7"/>
 
 <Client/> SelectionWheelUIControl
 
@@ -5128,6 +5407,8 @@ selectionWheelControl.SetTouchUpCallback(onSelectionWheelTouchUp)
 ---
 
 ### SetUiItem
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ItemRendererUIControl
 
@@ -5174,6 +5455,8 @@ itemRendererControl.SetUiItem(itemName, auxValue)
 
 ### SetValue
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ProgressBarUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5205,6 +5488,8 @@ progressBarUIControl.SetValue(0.8)
 ---
 
 ### SetVisible
+
+<Version type="china" add="3.5"/>
 
 <Client/> BaseUIControl
 
@@ -5256,6 +5541,8 @@ comp.AddTimer(300, _tickUpdateScreen)
 
 ### StopAnimation
 
+<Version type="china" add="1.22"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5299,6 +5586,8 @@ control.StopAnimation()
 
 ### ZoomIn
 
+<Version type="china" add="1.22"/>
+
 <Client/> MiniMapUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5331,6 +5620,8 @@ map.ZoomIn(0.2)
 ---
 
 ### ZoomOut
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> MiniMapUIControl
 
@@ -5369,6 +5660,8 @@ map.ZoomOut(0.2)
 
 ### ZoomReset
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> MiniMapUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5400,6 +5693,8 @@ map.ZoomReset(0.2)
 ---
 
 ### asButton
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> BaseUIControl
 
@@ -5433,6 +5728,8 @@ buttonControl = buttonBaseControl.asButton()
 
 ### asGrid
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5464,6 +5761,8 @@ gridControl = gridBaseControl.asGrid()
 ---
 
 ### asImage
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> BaseUIControl
 
@@ -5497,6 +5796,8 @@ imageControl = imageBaseControl.asImage()
 
 ### asInputPanel
 
+<Version type="china" add="2.1"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5527,6 +5828,8 @@ inputPanelUIControl = uiNode.GetBaseUIControl(inputPanelPath).asInputPanel()
 ---
 
 ### asItemRenderer
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> BaseUIControl
 
@@ -5560,6 +5863,8 @@ itemRendererControl = itemRendererBaseControl.asItemRenderer()
 
 ### asLabel
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5591,6 +5896,8 @@ text1LabelControl = text1BaseControl.asLabel()
 ---
 
 ### asMiniMap
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> BaseUIControl
 
@@ -5624,6 +5931,8 @@ miniMapControl = miniMapBaseControl.asMiniMap()
 
 ### asNeteaseComboBox
 
+<Version type="china" add="1.25"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5654,6 +5963,8 @@ comboBoxUIControl = uiNode.GetBaseUIControl(comboBoxPath).asNeteaseComboBox()
 ---
 
 ### asNeteasePaperDoll
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> BaseUIControl
 
@@ -5686,6 +5997,8 @@ paperDollControl = paperDollBaseControl.asNeteasePaperDoll()
 ---
 
 ### asProgressBar
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> BaseUIControl
 
@@ -5720,6 +6033,8 @@ progressBarControl = progressBarBaseControl.asProgressBar()
 
 ### asScrollView
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5752,6 +6067,8 @@ scrollViewControl = scrollviewBaseControl.asScrollView()
 
 ### asSelectionWheel
 
+<Version type="china" add="2.7"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5782,6 +6099,8 @@ selectionWheelControl = uiNode.GetBaseUIControl(selectionWheelPath).asSelectionW
 ---
 
 ### asSlider
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> BaseUIControl
 
@@ -5815,6 +6134,8 @@ sliderControl = sliderBaseControl.asSlider()
 
 ### asStackPanel
 
+<Version type="china" add="2.1"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5845,6 +6166,8 @@ stackPanelUIControl = uiNode.GetBaseUIControl(stackPanelPath).asStackPanel()
 ---
 
 ### asSwitchToggle
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> BaseUIControl
 
@@ -5878,6 +6201,8 @@ switchToggleControl = switchToggleBaseControl.asSwitchToggle()
 
 ### asTextEditBox
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> BaseUIControl
 
 控件方法，先用 GetBaseUIControl 取得控件实例再调用。
@@ -5909,6 +6234,8 @@ textEditBoxControl = textEditBoxBaseControl.asTextEditBox()
 ---
 
 ### resetAnimation
+
+<Version type="china" add="2.2"/>
 
 <Client/> BaseUIControl
 

@@ -6,8 +6,13 @@ sidebar_position: 3
 
 import Version from "/src/components/highlight/version"
 import RestrictedMode from "/src/components/highlight/restrictedMode"
+import Button from '/src/components/button/base';
 
 本文主要记录界面管理器相关接口，传统表单与数据驱动 UI 均可用它管理界面。
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

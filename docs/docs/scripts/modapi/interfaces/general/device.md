@@ -4,6 +4,7 @@ sidebar_position: 102
 
 # 本地设备
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/tongyong/bendishebei.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetEngineVersion
+
+<Version type="china" add="3.3"/>
 
 <Client/>
 
@@ -51,6 +58,8 @@ print(clientApi.GetEngineVersion())
 
 ### GetIP
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -82,6 +91,8 @@ clientApi.GetIP()
 
 ### GetMinecraftVersion
 
+<Version type="china" add="3.3"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -92,7 +103,7 @@ clientApi.GetIP()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetMinecraftVersion() -> str
+服务端接口() -> str
 ```
 
 
@@ -119,7 +130,7 @@ print(serverApi.GetMinecraftVersion())
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetMinecraftVersion() -> str
+客户端接口() -> str
 ```
 
 
@@ -140,6 +151,8 @@ print(clientApi.GetMinecraftVersion())
 
 ### GetPlatform
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -150,7 +163,7 @@ print(clientApi.GetMinecraftVersion())
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlatform() -> int
+服务端接口() -> int
 ```
 
 
@@ -177,7 +190,7 @@ serverApi.GetPlatform()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlatform() -> int
+客户端接口() -> int
 ```
 
 
@@ -197,6 +210,8 @@ clientApi.GetPlatform()
 ---
 
 ### IsInApollo
+
+<Version type="china" add="1.21"/>
 
 <Server/>
 
@@ -228,6 +243,8 @@ IsInApollo = serverApi.IsInApollo()
 ---
 
 ### IsInServer
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 

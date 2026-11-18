@@ -4,6 +4,7 @@ sidebar_position: 5
 
 # 摄像机
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/wanjia/shexiangji.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddCameraAroundEntityMotion
+
+<Version type="china" add="2.5"/>
 
 <Client/> CameraComponentClient
 
@@ -71,6 +78,8 @@ mID = comp.AddCameraAroundEntityMotion(eID, 1.0, axis, lockDir=False, stopRad=0,
 
 ### AddCameraAroundPointMotion
 
+<Version type="china" add="2.5"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -120,6 +129,8 @@ mID = comp.AddCameraAroundPointMotion(center, 1.0, axis, lockDir=False, stopRad=
 ---
 
 ### AddCameraTrackMotion
+
+<Version type="china" add="2.5"/>
 
 <Client/> CameraComponentClient
 
@@ -182,6 +193,8 @@ mID = comp.AddCameraTrackMotion(target, 3.0, startPos=None, relativeCoord=True, 
 
 ### AddCameraVelocityMotion
 
+<Version type="china" add="2.5"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -228,6 +241,8 @@ mID = comp.AddCameraVelocityMotion(velocity, accelerate, useVelocityDir=True)
 
 ### DepartCamera
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -269,6 +284,8 @@ comp.SetCameraRotation((45.0, 0.0, 0.0))
 
 ### GetAspectRatio
 
+<Version type="china" add="3.10"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -301,6 +318,8 @@ aspect = comp.GetAspectRatio()
 
 ### GetCameraAnchor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -332,6 +351,8 @@ comp.GetCameraAnchor()
 ---
 
 ### GetCameraMotions
+
+<Version type="china" add="2.5"/>
 
 <Client/> CameraComponentClient
 
@@ -373,6 +394,8 @@ motions = comp.GetCameraMotions()
 
 ### GetCameraOffset
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -405,6 +428,8 @@ comp.GetCameraOffset()
 
 ### GetCameraPitchLimit
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -436,6 +461,8 @@ comp.GetCameraPitchLimit()
 ---
 
 ### GetCameraRotation
+
+<Version type="china" add="2.9"/>
 
 <Client/> CameraComponentClient
 
@@ -474,6 +501,8 @@ rot = comp.GetCameraRotation()
 
 ### GetForward
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -505,6 +534,8 @@ comp.GetForward()
 ---
 
 ### GetFov
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> CameraComponentClient
 
@@ -538,6 +569,8 @@ fov = comp.GetFov()
 
 ### GetFpHeight
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -569,6 +602,8 @@ heightOffset = comp.GetFpHeight()
 ---
 
 ### GetNearFarPlane
+
+<Version type="china" add="3.10"/>
 
 <Client/> CameraComponentClient
 
@@ -602,6 +637,8 @@ near, far = comp.GetNearFarPlane()
 
 ### GetPerspective
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> PlayerViewCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayerView(entityId)`
@@ -634,6 +671,8 @@ persp = comp.GetPerspective()
 
 ### GetPosition
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -665,6 +704,8 @@ comp.GetPosition()
 ---
 
 ### GetProjectionMatrix
+
+<Version type="china" add="3.10"/>
 
 <Client/> CameraComponentClient
 
@@ -701,6 +742,8 @@ element = projMat[0][0]
 ---
 
 ### GetViewMatrix
+
+<Version type="china" add="3.10"/>
 
 <Client/> CameraComponentClient
 
@@ -741,6 +784,8 @@ element = viewMat[1][2]
 ---
 
 ### GetWorldRayFromScreenPoint
+
+<Version type="china" add="3.10"/>
 
 <Client/> CameraComponentClient
 
@@ -785,6 +830,8 @@ direction = ray['direction']
 
 ### IsModCameraLockPitch
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -817,6 +864,8 @@ comp.IsModCameraLockPitch()
 
 ### IsModCameraLockYaw
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -848,6 +897,8 @@ comp.IsModCameraLockYaw()
 ---
 
 ### LockCamera
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> CameraComponentClient
 
@@ -892,6 +943,8 @@ comp.LockCamera((0, 6, 0), (30, 0, 0))
 
 ### LockModCameraPitch
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -924,6 +977,8 @@ comp.LockModCameraPitch(1)
 ---
 
 ### LockModCameraYaw
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> CameraComponentClient
 
@@ -958,6 +1013,8 @@ comp.LockModCameraYaw(1)
 
 ### LockPerspective
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> PlayerViewCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayerView(entityId)`
@@ -990,6 +1047,8 @@ comp.LockPerspective(1)
 ---
 
 ### RemoveCameraMotion
+
+<Version type="china" add="2.5"/>
 
 <Client/> CameraComponentClient
 
@@ -1024,6 +1083,8 @@ comp.RemoveCameraMotion(mID)
 
 ### ResetCameraBindActorId
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -1055,6 +1116,8 @@ comp.ResetCameraBindActorId()
 ---
 
 ### ResetCameraPos
+
+<Version type="china" add="3.8"/>
 
 <Client/> CameraComponentClient
 
@@ -1090,6 +1153,8 @@ comp.ResetCameraPos()
 ---
 
 ### SetCameraAnchor
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> CameraComponentClient
 
@@ -1132,6 +1197,8 @@ comp.SetCameraAnchor((0,1,0))
 
 ### SetCameraBindActorId
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -1164,6 +1231,8 @@ comp.SetCameraBindActorId('1234')
 ---
 
 ### SetCameraDistanceFixed
+
+<Version type="china" add="2.8"/>
 
 <Client/> CameraComponentClient
 
@@ -1201,6 +1270,8 @@ comp.SetCameraDistanceFixed(True)
 ---
 
 ### SetCameraOffset
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> CameraComponentClient
 
@@ -1241,6 +1312,8 @@ comp.SetCameraOffset((1, 1, 1))
 
 ### SetCameraPitchLimit
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -1278,6 +1351,8 @@ comp.SetCameraPitchLimit((-30, 30))
 ---
 
 ### SetCameraPos
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> CameraComponentClient
 
@@ -1318,6 +1393,8 @@ comp.SetCameraPos((1, 1, 1))
 
 ### SetCameraRotation
 
+<Version type="china" add="2.8"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -1355,6 +1432,8 @@ comp.SetCameraRotation((1, 1, 1))
 
 ### SetFov
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -1387,6 +1466,8 @@ comp.SetFov(60)
 ---
 
 ### SetPerspective
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> PlayerViewCompClient
 
@@ -1421,6 +1502,8 @@ comp.SetPerspective(1)
 
 ### SetPlayerFovScale
 
+<Version type="china" add="3.2"/>
+
 <Client/> PlayerViewCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayerView(levelId)`
@@ -1454,6 +1537,8 @@ print(comp.SetPlayerFovScale(0.5))
 
 ### SetSpeedFovLock
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -1484,6 +1569,8 @@ comp.SetSpeedFovLock(True)
 ---
 
 ### StartCameraMotion
+
+<Version type="china" add="2.5"/>
 
 <Client/> CameraComponentClient
 
@@ -1523,6 +1610,8 @@ comp.StartCameraMotion(mID)
 
 ### StopCameraMotion
 
+<Version type="china" add="2.5"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -1560,6 +1649,8 @@ comp.StopCameraMotion(mID)
 
 ### UnDepartCamera
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -1594,6 +1685,8 @@ comp.UnDepartCamera()
 ---
 
 ### UnLockCamera
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> CameraComponentClient
 
@@ -1630,6 +1723,8 @@ comp.UnLockCamera()
 ---
 
 ### WorldToScreenPoint
+
+<Version type="china" add="3.10"/>
 
 <Client/> CameraComponentClient
 

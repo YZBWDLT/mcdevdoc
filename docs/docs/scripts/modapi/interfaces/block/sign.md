@@ -4,6 +4,7 @@ sidebar_position: 6
 
 # 告示牌
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/fangkuai/gaoshipai.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetSignBlockText
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -62,6 +69,8 @@ print "GetSignBlockText text={}".format(text)
 
 ### GetSignTextStyle
 
+<Version type="china" add="2.10"/>
+
 <Server/> BlockEntityCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockEntity(levelId)`
@@ -100,6 +109,8 @@ print comp.GetSignTextStyle((x, y, z), 0)
 ---
 
 ### SetSignBlockText
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -144,6 +155,8 @@ print "SetSignBlockText suc={}".format(suc)
 ---
 
 ### SetSignTextStyle
+
+<Version type="china" add="2.10"/>
 
 <Server/> BlockEntityCompServer
 

@@ -472,13 +472,19 @@ system.runInterval(() => {
 
 ## 学会查看文档
 
-应该要说明的是，目前 SAPI 的更新速度依旧很快，并且时不时就会推出非常重磅的新内容，这也就意味着本文以至于本系列的脚本相关文章都具有一定的时效性。因此，读者必须培养自己查阅文档的能力。
+应该要说明的是，目前 SAPI 的更新速度依旧很快，并且时不时就会推出非常重磅的新内容，这也就意味着本文以至于本系列的脚本相关文章都具有一定的时效性。因此，读者必须培养自己查阅文档的能力。我们来介绍以下几个网站的文档。
 
-本站已经整理了完整的[脚本文档](/docs/docs/scripts/sapi/version_table)，按版本收录了各个类与接口，中文阅读、查找方便，**建议优先查阅**。下面几个外部文档则可以作为补充：
+### 本站
+
+是的，本站支持全套的脚本接口检查！
+
+当今的时代是一个好时代——我利用 AI 工具直接在本站引入了全套的脚本文档，全中文、准确率高、可查版本，还有速查工具可以使用！读者可以在本站的[SAPI 文档](/docs/docs/scripts/sapi/overview)进行查阅，也可以在[接口速查](/quick_reference)中找到你可能需要的接口。
+
+当然，以下几个网站的信息也十分值得参考。
 
 ### JaylyMC 的 SAPI 文档
 
-目前来说，最好用的 SAPI 文档是 [JaylyMC 的 SAPI 文档](https://jaylydev.github.io/scriptapi-docs/)，这份文档详细记载了各个游戏版本下的可用 API：
+目前来说，这几个补充文档中，最好用的 SAPI 文档是 [JaylyMC 的 SAPI 文档](https://jaylydev.github.io/scriptapi-docs/)，这份文档详细记载了各个游戏版本下的可用 API：
 
 ![doc_1](/img/tutorials/a3_scripts/b2_guide/c1_sapi/doc_1.webp)
 
@@ -490,7 +496,7 @@ system.runInterval(() => {
 
 然而，这个文档最大的问题在于国内的网络难以连接……你懂得。此外，它还是一个纯英文的文档。
 
-我们可以看到 SAPI 提供的接口非常多，有巨多无比的类，让人难以下手。**这里给一个可以大幅降低你入门难度的建议：先看[`World`](/docs/docs/scripts/sapi/server/world/main#world-类)和[`System`](/docs/docs/scripts/sapi/server/system/main#system-类)类**！剩下的几乎其他类都是从这两个类延伸出来的，所以当然要从世界和系统类先下手。要获取方块、实体时，先考虑从世界类获取维度，然后就可以获取方块和实体了。
+我们在这个网站就可以看到 SAPI 提供的接口非常多，有巨多无比的类，让人难以下手。**这里给一个可以大幅降低你入门难度的建议：先看[`World`](/docs/docs/scripts/sapi/server/world/main#world-类)和[`System`](/docs/docs/scripts/sapi/server/system/main#system-类)类**！剩下的几乎其他类都是从这两个类延伸出来的，所以当然要从世界和系统类先下手。要获取方块、实体时，先考虑从世界类获取维度，然后就可以获取方块和实体了。
 
 ### ProjectXero 的 SAPI 文档
 

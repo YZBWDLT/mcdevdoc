@@ -4,6 +4,7 @@ sidebar_position: 14
 
 # 自定义属性
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shiti/zidingyishuxing.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetAttr
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ModAttrComponentServer
 
@@ -30,7 +37,7 @@ import Client from '/src/components/highlight/client';
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAttr(paramName: str, defaultValue: Any) -> Any
+服务端接口(paramName: str, defaultValue: Any) -> Any
 ```
 
 - paramName: str，属性名称，str 的名称建议以 mod 命名为前缀，避免多个 mod 之间冲突。
@@ -68,7 +75,7 @@ comp.SetAttr('testDict', testDict)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAttr(paramName: str, defaultValue: Any) -> Any
+客户端接口(paramName: str, defaultValue: Any) -> Any
 ```
 
 - paramName: str，属性名称，str 的名称建议以 mod 命名为前缀，避免多个 mod 之间冲突。
@@ -95,6 +102,8 @@ comp.GetAttr('health')
 ---
 
 ### RegisterUpdateFunc
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModAttrComponentClient
 
@@ -138,6 +147,8 @@ def jumpingText(self, data):
 
 ### SaveAttr
 
+<Version type="china" add="2.10"/>
+
 <Server/> ModAttrComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateModAttr(entityId)`
@@ -171,6 +182,8 @@ comp.SaveAttr()
 
 ### SetAttr
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ModAttrComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateModAttr(entityId)`
@@ -181,7 +194,7 @@ comp.SaveAttr()
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetAttr(
+服务端接口(
     paramName: str,
     paramValue: Any,
     needRestore: bool = False,
@@ -222,7 +235,7 @@ comp.SetAttr('testDict', {'key':'value'})
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetAttr(paramName: str, paramValue: Any) -> Any
+客户端接口(paramName: str, paramValue: Any) -> Any
 ```
 
 - paramName: str，属性名称，str 的名称建议以 mod 命名为前缀，避免多个 mod 之间冲突。
@@ -247,6 +260,8 @@ comp.SetAttr('health', 1)
 ---
 
 ### UnRegisterUpdateFunc
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModAttrComponentClient
 

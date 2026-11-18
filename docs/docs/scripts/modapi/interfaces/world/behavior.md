@@ -4,6 +4,7 @@ sidebar_position: 11
 
 # 行为
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/xingwei.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### UseItemAttackEntity
+
+<Version type="china" add="3.6"/>
 
 <Server/> GameComponentServer
 
@@ -84,6 +91,8 @@ print(comp.UseItemAttackEntity(itemDict, entityId))
 
 ### UseItemToEntity
 
+<Version type="china" add="3.7"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -132,6 +141,8 @@ print( gameComp.UseItemToEntity(itemDict, entityId) )
 ---
 
 ### UseItemToPos
+
+<Version type="china" add="3.8"/>
 
 <Server/> GameComponentServer
 

@@ -4,11 +4,18 @@ sidebar_position: 2
 
 # 设置约定
 
+import Button from '/src/components/button/base';
+
+
 import Version from "/src/components/highlight/version"
 
 本文记录各组件的通用设置写法。获取组件的函数见[获取组件](./main)，模块本身的说明见 [ScriptAPI 简述](../overview)。
 
 这些设置只影响 Vibrant Visuals 开启后的渲染效果，关闭时不会生效。
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

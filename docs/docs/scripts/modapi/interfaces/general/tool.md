@@ -4,6 +4,7 @@ sidebar_position: 104
 
 # 工具
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/tongyong/gongju.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddRepeatedTimer
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -30,12 +37,7 @@ import Client from '/src/components/highlight/client';
 <TabItem value="说明" label="说明" default>
 
 ```python
-AddRepeatedTimer(
-    delay: float,
-    func: Callable,
-    *args: Any,
-    **kwargs: Any,
-) -> Callable
+服务端接口(delay: float, func: Callable, *args: Any, **kwargs: Any) -> Callable
 ```
 
 - delay: float，延迟时间，单位秒。
@@ -67,12 +69,7 @@ comp.AddRepeatedTimer(3.0,func,args,kwargs)
 <TabItem value="说明" label="说明" default>
 
 ```python
-AddRepeatedTimer(
-    delay: float,
-    func: Callable,
-    *args: Any,
-    **kwargs: Any,
-) -> Callable
+客户端接口(delay: float, func: Callable, *args: Any, **kwargs: Any) -> Callable
 ```
 
 - delay: float，延迟时间，单位秒。
@@ -98,6 +95,8 @@ comp.AddRepeatedTimer(3.0,func,args,kwargs)
 
 ### AddTimer
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -108,7 +107,7 @@ comp.AddRepeatedTimer(3.0,func,args,kwargs)
 <TabItem value="说明" label="说明" default>
 
 ```python
-AddTimer(delay: float, func: Callable, *args: Any, **kwargs: Any) -> Callable
+服务端接口(delay: float, func: Callable, *args: Any, **kwargs: Any) -> Callable
 ```
 
 - delay: float，延迟时间，单位秒。
@@ -140,7 +139,7 @@ comp.AddTimer(3.0,func,args,kwargs)
 <TabItem value="说明" label="说明" default>
 
 ```python
-AddTimer(delay: float, func: Callable, *args: Any, **kwargs: Any) -> Callable
+客户端接口(delay: float, func: Callable, *args: Any, **kwargs: Any) -> Callable
 ```
 
 - delay: float，延迟时间，单位秒。
@@ -166,6 +165,8 @@ comp.AddTimer(3.0,func,args,kwargs)
 
 ### CancelTimer
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -176,7 +177,7 @@ comp.AddTimer(3.0,func,args,kwargs)
 <TabItem value="说明" label="说明" default>
 
 ```python
-CancelTimer(timer: Callable) -> Any
+服务端接口(timer: Callable) -> Any
 ```
 
 - timer: Callable，[AddTimer](/docs/docs/scripts/modapi/interfaces/general/tool#addtimer) 和 [AddRepeatedTimer](/docs/docs/scripts/modapi/interfaces/general/tool#addrepeatedtimer) 时返回的定时器实例。
@@ -203,7 +204,7 @@ comp.CancelTimer(timer)
 <TabItem value="说明" label="说明" default>
 
 ```python
-CancelTimer(timer: Callable) -> Any
+客户端接口(timer: Callable) -> Any
 ```
 
 - timer: Callable，[AddTimer](/docs/docs/scripts/modapi/interfaces/general/tool#addtimer) 和 [AddRepeatedTimer](/docs/docs/scripts/modapi/interfaces/general/tool#addrepeatedtimer) 时返回的定时器实例。
@@ -224,6 +225,8 @@ comp.CancelTimer(timer)
 
 ### CheckNameValid
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -234,7 +237,7 @@ comp.CancelTimer(timer)
 <TabItem value="说明" label="说明" default>
 
 ```python
-CheckNameValid(name: str) -> bool
+服务端接口(name: str) -> bool
 ```
 
 - name: str，昵称。
@@ -263,7 +266,7 @@ isValid = comp.CheckNameValid("史蒂夫")
 <TabItem value="说明" label="说明" default>
 
 ```python
-CheckNameValid(name: str) -> bool
+客户端接口(name: str) -> bool
 ```
 
 - name: str，昵称。
@@ -286,6 +289,8 @@ isValid = comp.CheckNameValid("史蒂夫")
 
 ### CheckWordsValid
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -296,7 +301,7 @@ isValid = comp.CheckNameValid("史蒂夫")
 <TabItem value="说明" label="说明" default>
 
 ```python
-CheckWordsValid(words: str) -> bool
+服务端接口(words: str) -> bool
 ```
 
 - words: str，语句。
@@ -325,7 +330,7 @@ isValid = comp.CheckWordsValid("creeper? Aww man")
 <TabItem value="说明" label="说明" default>
 
 ```python
-CheckWordsValid(words: str) -> bool
+客户端接口(words: str) -> bool
 ```
 
 - words: str，语句。
@@ -348,6 +353,8 @@ isValid = comp.CheckWordsValid("creeper? Aww man")
 
 ### GetChinese
 
+<Version type="china" add="1.23"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -358,7 +365,7 @@ isValid = comp.CheckWordsValid("creeper? Aww man")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetChinese(langStr: str) -> str
+服务端接口(langStr: str) -> str
 ```
 
 - langStr: str，传入的 langStr。
@@ -388,7 +395,7 @@ Chinese = comp.GetChinese("entity.wolf.name")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetChinese(langStr: str) -> str
+客户端接口(langStr: str) -> str
 ```
 
 - langStr: str，传入的 langStr。
@@ -411,6 +418,8 @@ Chinese = comp.GetChinese("entity.wolf.name")
 ---
 
 ### GetClipboardContent
+
+<Version type="china" add="3.3"/>
 
 <Client/> GameComponentClient
 
@@ -450,6 +459,8 @@ content = comp.GetClipboardContent()
 
 ### GetFps
 
+<Version type="china" add="2.4"/>
+
 <Client/> GameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -482,6 +493,8 @@ fps = comp.GetFps()
 
 ### GetHostPlayerId
 
+<Version type="china" add="3.4"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -492,7 +505,7 @@ fps = comp.GetFps()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetHostPlayerId() -> str
+服务端接口() -> str
 ```
 
 
@@ -519,7 +532,7 @@ serverApi.GetHostPlayerId()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetHostPlayerId() -> str
+客户端接口() -> str
 ```
 
 
@@ -540,6 +553,8 @@ clientApi.GetHostPlayerId()
 
 ### GetMinecraftEnum
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -550,7 +565,7 @@ clientApi.GetHostPlayerId()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetMinecraftEnum() -> Any
+服务端接口() -> Any
 ```
 
 
@@ -579,7 +594,7 @@ comp.SetPlayerGameType(serverApi.GetMinecraftEnum().GameType.Survival)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetMinecraftEnum() -> Any
+客户端接口() -> Any
 ```
 
 
@@ -608,6 +623,8 @@ class BattleUI(ScreenNode):
 
 ### GetModConfigJson
 
+<Version type="china" add="1.23"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -618,7 +635,7 @@ class BattleUI(ScreenNode):
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetModConfigJson(path: str) -> Dict[str, Any]
+服务端接口(path: str) -> Dict[str, Any]
 ```
 
 - path: str，指定路径的 json 文件。
@@ -646,7 +663,7 @@ data = serverApi.GetModConfigJson("modconfigs/monster.json")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetModConfigJson(path: str) -> Dict[str, Any]
+客户端接口(path: str) -> Dict[str, Any]
 ```
 
 - path: str，指定路径的 json 文件。
@@ -671,6 +688,8 @@ data = clientApi.GetModConfigJson("modconfigs/monster.json")
 ---
 
 ### GetServerTickTime
+
+<Version type="china" add="2.6"/>
 
 <Server/>
 
@@ -707,6 +726,8 @@ print serverApi.GetServerTickTime()
 
 ### ImportModule
 
+<Version type="china" add="2.8"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -717,7 +738,7 @@ print serverApi.GetServerTickTime()
 <TabItem value="说明" label="说明" default>
 
 ```python
-ImportModule(path: str) -> Any
+服务端接口(path: str) -> Any
 ```
 
 - path: str，模块的绝对路径。
@@ -745,7 +766,7 @@ serverApi.ImportModule("tutorialScripts.tutorialServerSystem")
 <TabItem value="说明" label="说明" default>
 
 ```python
-ImportModule(path: str) -> Any
+客户端接口(path: str) -> Any
 ```
 
 - path: str，模块的绝对路径。
@@ -766,6 +787,8 @@ clientApi.ImportModule("tutorialScripts.tutorialClientSystem")
 ---
 
 ### SetClipboardContent
+
+<Version type="china" add="3.3"/>
 
 <Client/> GameComponentClient
 
@@ -802,6 +825,8 @@ comp.SetClipboardContent("Hello, minecraft")
 
 ### StartCoroutine
 
+<Version type="china" add="1.24"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -812,7 +837,7 @@ comp.SetClipboardContent("Hello, minecraft")
 <TabItem value="说明" label="说明" default>
 
 ```python
-StartCoroutine(
+服务端接口(
     iterOrFunc: Union[Generator, Callable],
     callback: Optional[Callable] = None,
 ) -> Generator
@@ -873,7 +898,7 @@ serverApi.StartCoroutine(coroutineTest, callback)
 <TabItem value="说明" label="说明" default>
 
 ```python
-StartCoroutine(
+客户端接口(
     iterOrFunc: Union[Generator, Callable],
     callback: Optional[Callable] = None,
 ) -> Generator
@@ -928,6 +953,8 @@ clientApi.StartCoroutine(coroutineTest, callback)
 
 ### StopCoroutine
 
+<Version type="china" add="1.24"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -938,7 +965,7 @@ clientApi.StartCoroutine(coroutineTest, callback)
 <TabItem value="说明" label="说明" default>
 
 ```python
-StopCoroutine(iter: Generator) -> bool
+服务端接口(iter: Generator) -> bool
 ```
 
 - iter: Generator，需要停止的生成器对象,[StartCoroutine](/docs/docs/scripts/modapi/interfaces/general/tool#startcoroutine) 的返回值。
@@ -966,7 +993,7 @@ serverApi.StopCoroutine(generator)
 <TabItem value="说明" label="说明" default>
 
 ```python
-StopCoroutine(iter: Generator) -> bool
+客户端接口(iter: Generator) -> bool
 ```
 
 - iter: Generator，需要停止的生成器对象,[StartCoroutine](/docs/docs/scripts/modapi/interfaces/general/tool#startcoroutine) 的返回值。

@@ -4,6 +4,7 @@ sidebar_position: 3
 
 # 方块组合
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/fangkuaizuhe.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CreateMicroBlockResStr
+
+<Version type="china" add="1.23"/>
 
 <Server/> BlockCompServer
 
@@ -72,6 +79,8 @@ with open("micro_block_x.json", "w+") as f:
 
 ### GetBlankBlockPalette
 
+<Version type="china" add="2.1"/>
+
 <Server/> BlockCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlock(levelId)`
@@ -82,7 +91,7 @@ with open("micro_block_x.json", "w+") as f:
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBlankBlockPalette() -> BlockPaletteComponent
+服务端接口() -> BlockPaletteComponent
 ```
 
 
@@ -110,7 +119,7 @@ blankPalette = comp.GetBlankBlockPalette()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBlankBlockPalette() -> BlockPaletteComponent
+客户端接口() -> BlockPaletteComponent
 ```
 
 
@@ -132,6 +141,8 @@ blankPalette = comp.GetBlankBlockPalette()
 
 ### GetBlockPaletteBetweenPos
 
+<Version type="china" add="2.1"/>
+
 <Server/> BlockCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlock(entityId)`
@@ -142,7 +153,7 @@ blankPalette = comp.GetBlankBlockPalette()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBlockPaletteBetweenPos(
+服务端接口(
     dimensionId: int,
     startBlockPos: Tuple[int, int, int],
     endBlockPos: Tuple[int, int, int],
@@ -184,7 +195,7 @@ palette = comp.GetBlockPaletteBetweenPos(0, (200,64,200),(201,65,202))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBlockPaletteBetweenPos(
+客户端接口(
     startPos: Tuple[int, int, int],
     endPos: Tuple[int, int, int],
     eliminateAir: bool = True,
@@ -218,6 +229,8 @@ palette = comp.GetBlockPaletteBetweenPos((200,64,200),(201,65,202))
 
 ### GetBlockPaletteFromPosList
 
+<Version type="china" add="2.1"/>
+
 <Server/> BlockCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlock(entityId)`
@@ -228,7 +241,7 @@ palette = comp.GetBlockPaletteBetweenPos((200,64,200),(201,65,202))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBlockPaletteFromPosList(
+服务端接口(
     dimensionId: int,
     posList: List[Tuple[int, int, int]],
 ) -> BlockPaletteComponent
@@ -270,9 +283,7 @@ palette = comp.GetBlockPaletteFromPosList(0,
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBlockPaletteFromPosList(
-    posList: List[Tuple[int, int, int]],
-) -> BlockPaletteComponent
+客户端接口(posList: List[Tuple[int, int, int]]) -> BlockPaletteComponent
 ```
 
 - posList: List[Tuple[int, int, int]]，方块位置列表。
@@ -304,6 +315,8 @@ palette = comp.GetBlockPaletteFromPosList([
 
 ### LookupBlocksByBlockTag
 
+<Version type="china" add="3.10"/>
+
 <Server/> BlockCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlock(levelId)`
@@ -314,7 +327,7 @@ palette = comp.GetBlockPaletteFromPosList([
 <TabItem value="说明" label="说明" default>
 
 ```python
-LookupBlocksByBlockTag(blockTag: str) -> List[Dict[str, Any]]
+服务端接口(blockTag: str) -> List[Dict[str, Any]]
 ```
 
 - blockTag: str，方块 tag 名，如 common:stone_tag。
@@ -343,7 +356,7 @@ comp.LookupBlocksByBlockTag("common:stone_tag")
 <TabItem value="说明" label="说明" default>
 
 ```python
-LookupBlocksByBlockTag(blockTag: str) -> List[Dict[str, Any]]
+客户端接口(blockTag: str) -> List[Dict[str, Any]]
 ```
 
 - blockTag: str，方块 tag 名，如 common:stone_tag。
@@ -365,6 +378,8 @@ comp.LookupBlocksByBlockTag("common:stone_tag")
 ---
 
 ### RegisterBlockPatterns
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockCompServer
 
@@ -428,6 +443,8 @@ value = comp.RegisterBlockPatterns(['# #'],{'#': 'minecraft:iron_block'},'minecr
 ---
 
 ### SetBlockByBlockPalette
+
+<Version type="china" add="2.1"/>
 
 <Server/> BlockCompServer
 

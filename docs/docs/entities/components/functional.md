@@ -14,6 +14,10 @@ import Version from "/src/components/highlight/version"
 
 # 功能性组件
 
+要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=entity_component" color="green"/>
+
 ### `minecraft:addrider`
 
 <Usable type="all"/> <Version add="1.2.0"/> <Highlight text="需要前置组件" tooltip="要使用该组件，请事先定义minecraft:rideable组件。"/> <br/>
@@ -3555,6 +3559,8 @@ NPC（<FileType type="file" name="npc.json"/>）：
 <treeview>
 - <DataType type="object" name="minecraft:offspring"/>：根对象。
   - <DataType type="object" name="offspring_pairs"/>：亲代组合与后代的对应关系，键为亲代实体 ID、值为后代实体 ID。
+  - <DataType type="boolean" name="combine_parent_colors"/>：<Version add="1.21.60" inline/> 幼体是否混合双亲的颜色。该参数在`1.26.0`之前属于`minecraft:breedable`。
+  - <DataType type="string" name="mutation_strategy"/>：后代变异的策略，可选值为`random`（随机选取）与`none`（不随机）。
   - <DataType type="object" name="mutation_factor"/>：各项变异的发生概率，取值`0.0`-`1.0`，数值越大越容易变异。
     - <DataType type="float" name="variant"/>：变种发生变异的概率。默认值为`0`。
     - <DataType type="float" name="color"/>：颜色发生变异的概率。默认值为`0`。
@@ -4664,6 +4670,8 @@ NPC（<FileType type="file" name="npc.json"/>）：
       - <DataType type="int" name="max_rider_count"/>：该座位允许的最多骑乘者数量。默认值为`0`。
       - <DataType type="float" name="lock_rider_rotation"/>：骑乘者在此座位上可转动的角度上限，单位为度；省略则不受限。默认值为`181`。
       - <DataType type="string" name="rotate_rider_by"/>：骑乘者的朝向偏移，填 Molang 表达式。默认值为`0`。
+      - <DataType type="float" name="third_person_camera_radius"/>：<Version add="1.21.80" inline/>该座位在第三人称视角与第三人称正面视角下使用的相机半径，取值`1`-`64`，负值忽略。
+      - <DataType type="float" name="camera_relax_distance_smoothing"/>：<Version add="1.21.80" inline/>相机被障碍物推近后回到完整距离时的弹性刚度，取值`1`-`32`。
 </treeview>
 
 > **备注**：`priority`字段在官方文档中标注为旧数据遗留、当前不生效，故未列出。
@@ -5976,5 +5984,6 @@ NPC（<FileType type="file" name="npc.json"/>）：
 </TabItem></Tabs>
 
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>

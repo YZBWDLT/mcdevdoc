@@ -4,6 +4,7 @@ sidebar_position: 5
 
 # 文字面板
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/texiao/wenzimianban.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CreateTextBoardInWorld
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> TextBoardComponentClient
 
@@ -65,6 +72,8 @@ comp.CreateTextBoardInWorld("我显示在世界坐标位置",(0.5, 0.4, 0.3, 0.8
 
 ### RemoveTextBoard
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> TextBoardComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateTextBoard(clientApi.GetLevelId())`
@@ -99,6 +108,8 @@ if boardId:
 ---
 
 ### SetBoardBackgroundColor
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> TextBoardComponentClient
 
@@ -139,6 +150,8 @@ if boardId:
 ---
 
 ### SetBoardBindEntity
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> TextBoardComponentClient
 
@@ -183,6 +196,8 @@ if boardId:
 
 ### SetBoardDepthTest
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> TextBoardComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateTextBoard(clientApi.GetLevelId())`
@@ -219,6 +234,8 @@ if boardId:
 ---
 
 ### SetBoardFaceCamera
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> TextBoardComponentClient
 
@@ -257,6 +274,8 @@ if boardId:
 
 ### SetBoardPos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> TextBoardComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateTextBoard(clientApi.GetLevelId())`
@@ -293,6 +312,8 @@ if boardId:
 ---
 
 ### SetBoardRot
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> TextBoardComponentClient
 
@@ -331,6 +352,8 @@ if boardId:
 
 ### SetBoardScale
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> TextBoardComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateTextBoard(clientApi.GetLevelId())`
@@ -367,6 +390,8 @@ if boardId:
 ---
 
 ### SetBoardTextColor
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> TextBoardComponentClient
 
@@ -407,6 +432,8 @@ if boardId:
 ---
 
 ### SetText
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> TextBoardComponentClient
 

@@ -4,6 +4,7 @@ sidebar_position: 8
 
 # 容器
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/fangkuai/rongqi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetBrewingStandSlotItem
+
+<Version type="china" add="2.10"/>
 
 <Server/> ItemCompServer
 
@@ -59,6 +66,8 @@ comp.GetBrewingStandSlotItem(serverApi.GetMinecraftEnum().BrewingStandSlotType.S
 
 ### GetChestBoxSize
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ChestContainerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateChestBlock(levelId)`
@@ -97,6 +106,8 @@ comp.GetChestBoxSize(None, (x, y, z), 0)
 ---
 
 ### GetChestPairedPosition
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -145,6 +156,8 @@ else:
 
 ### GetContainerItem
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -192,6 +205,8 @@ comp.GetContainerItem((x,y,z), 0, 2)
 
 ### GetContainerSize
 
+<Version type="china" add="1.21"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -229,6 +244,8 @@ comp.GetContainerSize((x, y, z), 0)
 ---
 
 ### GetEnderChestItem
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ItemCompServer
 
@@ -273,6 +290,8 @@ comp.GetEnderChestItem(playerId, 0)
 
 ### GetInputSlotItem
 
+<Version type="china" add="2.1"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -306,6 +325,8 @@ itemName = comp.GetInputSlotItem((x, y, z), 1)
 ---
 
 ### GetOpenContainerItem
+
+<Version type="china" add="1.22"/>
 
 <Server/> ItemCompServer
 
@@ -351,6 +372,8 @@ comp.GetOpenContainerItem(playerId,serverApi.GetMinecraftEnum().OpenContainerId.
 
 ### GetOutputSlotItem
 
+<Version type="china" add="2.1"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -384,6 +407,8 @@ itemName = comp.GetOutputSlotItem((x, y, z), 1)
 ---
 
 ### GetPlayerUIItem
+
+<Version type="china" add="2.1"/>
 
 <Server/> ItemCompServer
 
@@ -431,6 +456,8 @@ comp.GetPlayerUIItem(playerId, slot, True)
 
 ### SetBrewingStandSlotItem
 
+<Version type="china" add="2.10"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -477,6 +504,8 @@ comp.SetBrewingStandSlotItem(itemDict, serverApi.GetMinecraftEnum().BrewingStand
 
 ### SetChestBoxItemExchange
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ChestContainerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateChestBlock(playerId)`
@@ -517,6 +546,8 @@ comp.SetChestBoxItemExchange(playerId, (x,y,z), 0, 1)
 ---
 
 ### SetChestBoxItemNum
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ChestContainerCompServer
 
@@ -561,6 +592,8 @@ comp.SetChestBoxItemNum(None, (x,y,z), 0, 10, 0)
 
 ### SetInputSlotItem
 
+<Version type="china" add="2.1"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -599,6 +632,8 @@ comp.SetInputSlotItem({"itemName": "minecraft:iron_ore", "auxValue": 0, "count":
 ---
 
 ### SetPlayerUIItem
+
+<Version type="china" add="2.3"/>
 
 <Server/> ItemCompServer
 
@@ -658,6 +693,8 @@ comp.SetPlayerUIItem(playerId, slot, itemDict)
 
 ### SpawnItemToContainer
 
+<Version type="china" add="1.21"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -714,6 +751,8 @@ comp.SpawnItemToContainer(itemDict, 0, (x,y,z), 0)
 ---
 
 ### SpawnItemToEnderChest
+
+<Version type="china" add="1.21"/>
 
 <Server/> ItemCompServer
 

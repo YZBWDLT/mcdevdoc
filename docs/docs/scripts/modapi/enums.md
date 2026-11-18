@@ -4,6 +4,9 @@ sidebar_position: 3
 
 # 枚举值
 
+import Button from '/src/components/button/base';
+
+
 > 适用版本：中国版 3.10。仅中国版可用。
 
 ModAPI 里有一批参数只接受固定的几个值，网易把它们做成了枚举类。取值的方式是先拿到枚举对象，再点出常量：
@@ -17,6 +20,10 @@ value = AttrType.HEALTH
 这样写比直接填字符串安全，拼错了会立刻报错。下面按类列出全部取值，第一列是脚本里写的常量名，第二列是它对应的实际值。
 
 共 59 个枚举类、1503 个常量。
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_enum" color="green"/>
 
 ## ActorDamageCause
 

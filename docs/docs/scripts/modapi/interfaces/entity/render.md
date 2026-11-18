@@ -4,6 +4,7 @@ sidebar_position: 12
 
 # 渲染
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shiti/xuanran.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddActorAnimation
+
+<Version type="china" add="1.22"/>
 
 <Client/> ActorRenderCompClient
 
@@ -64,6 +71,8 @@ comp.AddActorAnimation("minecraft:pig", "custom_move", "animation.pig.custom_mov
 
 ### AddActorAnimationController
 
+<Version type="china" add="1.22"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(entityId)`
@@ -106,6 +115,8 @@ comp.AddActorAnimationController("minecraft:skeleton", "controller__use_item_pro
 ---
 
 ### AddActorBlockGeometry
+
+<Version type="china" add="2.1"/>
 
 <Client/> ActorRenderCompClient
 
@@ -156,6 +167,8 @@ print actorRenderComp.AddActorBlockGeometry(geometryName)
 
 ### AddActorGeometry
 
+<Version type="china" add="2.3"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -200,6 +213,8 @@ comp.AddActorGeometry("minecraft:sheep", "default", "geometry.panda")
 
 ### AddActorParticleEffect
 
+<Version type="china" add="1.22"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -243,6 +258,8 @@ comp.AddActorParticleEffect("minecraft:villager", "nectar_dripping", "minecraft:
 
 ### AddActorRenderController
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -285,6 +302,8 @@ comp.AddActorRenderController('minecraft:villager', 'custom_render_controller_na
 ---
 
 ### AddActorRenderControllerArray
+
+<Version type="china" add="2.1"/>
 
 <Client/> ActorRenderCompClient
 
@@ -334,6 +353,8 @@ comp.AddActorRenderControllerArray("minecraft:pig", "controller.render.pig", cli
 
 ### AddActorRenderMaterial
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -376,6 +397,8 @@ comp.AddActorRenderMaterial('minecraft:villager', 'custom_material_key', 'custom
 ---
 
 ### AddActorScriptAnimate
+
+<Version type="china" add="1.22"/>
 
 <Client/> ActorRenderCompClient
 
@@ -424,6 +447,8 @@ comp.AddActorScriptAnimate("minecraft:pig", "animation_controller_short_name", "
 
 ### AddActorSoundEffect
 
+<Version type="china" add="1.22"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -464,6 +489,8 @@ comp.AddActorSoundEffect("minecraft:villager", "sound_thunder", "ambient.weather
 
 ### AddActorTexture
 
+<Version type="china" add="2.3"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -502,6 +529,8 @@ comp.AddActorTexture("minecraft:sheep", "default", "textures/entity/panda/panda"
 ---
 
 ### AddAnimationControllerToOneActor
+
+<Version type="china" add="3.2"/>
 
 <Client/> ActorRenderCompClient
 
@@ -545,6 +574,8 @@ comp.AddAnimationControllerToOneActor(entityId, "controller__use_item_progress",
 ---
 
 ### AddAnimationToOneActor
+
+<Version type="china" add="3.2"/>
 
 <Client/> ActorRenderCompClient
 
@@ -590,6 +621,8 @@ comp.AddAnimationToOneActor(entityId, "custom_move", "animation.armor_stand.defa
 
 ### AddGeometryToOneActor
 
+<Version type="china" add="3.2"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -634,6 +667,8 @@ comp.AddGeometryToOneActor(entityId, "default", "geometry.panda")
 
 ### AddParticleEffectToOneActor
 
+<Version type="china" add="3.2"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -676,6 +711,8 @@ comp.AddParticleEffectToOneActor(entityId, "nectar_dripping", "minecraft:nectar_
 ---
 
 ### AddRenderControllerToOneActor
+
+<Version type="china" add="3.2"/>
 
 <Client/> ActorRenderCompClient
 
@@ -720,6 +757,8 @@ comp.AddRenderControllerToOneActor(entityId, 'controller.render.llama', 'query.m
 
 ### AddRenderMaterialToOneActor
 
+<Version type="china" add="3.2"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -762,6 +801,8 @@ comp.AddRenderMaterialToOneActor(entityId, 'custom_material_key', 'custom_materi
 ---
 
 ### AddScriptAnimateToOneActor
+
+<Version type="china" add="3.2"/>
 
 <Client/> ActorRenderCompClient
 
@@ -809,6 +850,8 @@ comp.AddScriptAnimateToOneActor(entityId, "animation_controller_short_name", "qu
 
 ### AddSoundEffectToOneActor
 
+<Version type="china" add="3.2"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -849,6 +892,8 @@ comp.AddSoundEffectToOneActor(entityId, "sound_thunder", "ambient.weather.thunde
 
 ### AddTextureToOneActor
 
+<Version type="china" add="3.2"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -888,6 +933,8 @@ comp.AddTextureToOneActor(entityId, "default", "textures/entity/panda/panda")
 
 ### BindEntityToEntity
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -926,6 +973,8 @@ comp.BindEntityToEntity(bindEntityId)
 
 ### ClearActorBlockGeometry
 
+<Version type="china" add="2.1"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockGeometry(levelId)`
@@ -963,6 +1012,8 @@ print actorRenderComp.ClearActorBlockGeometry()
 ---
 
 ### CopyActorGeometryFromPlayer
+
+<Version type="china" add="2.7"/>
 
 <Client/> ActorRenderCompClient
 
@@ -1010,6 +1061,8 @@ comp.CopyActorGeometryFromPlayer(playerId, "minecraft:sheep", "default", "defaul
 
 ### CopyActorRenderMaterialFromPlayer
 
+<Version type="china" add="2.7"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -1055,6 +1108,8 @@ comp.CopyActorRenderMaterialFromPlayer(playerId, 'minecraft:sheep', 'default', '
 
 ### CopyActorTextureFromPlayer
 
+<Version type="china" add="2.7"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -1099,6 +1154,8 @@ comp.CopyActorTextureFromPlayer(playerId, "minecraft:sheep", "default", "default
 ---
 
 ### CopyPlayerGeometryToOneActor
+
+<Version type="china" add="2.10"/>
 
 <Client/> ActorRenderCompClient
 
@@ -1146,6 +1203,8 @@ comp.CopyPlayerGeometryToOneActor(playerId, "default", "default")
 
 ### CopyPlayerRenderMaterialToOneActor
 
+<Version type="china" add="2.10"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(entityId)`
@@ -1190,6 +1249,8 @@ comp.CopyPlayerRenderMaterialToOneActor(playerId, 'default', 'default')
 ---
 
 ### CopyPlayerTextureToOneActor
+
+<Version type="china" add="2.10"/>
 
 <Client/> ActorRenderCompClient
 
@@ -1236,6 +1297,8 @@ comp.CopyPlayerTextureToOneActor(playerId, "default", "default")
 
 ### DeleteActorBlockGeometry
 
+<Version type="china" add="2.1"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockGeometry(levelId)`
@@ -1274,6 +1337,8 @@ print actorRenderComp.DeleteActorBlockGeometry(geometryName)
 ---
 
 ### GetActorRenderParams
+
+<Version type="china" add="2.7"/>
 
 <Client/> ActorRenderCompClient
 
@@ -1318,6 +1383,8 @@ textureKeys = comp.GetActorRenderParams(entityId, "textures")
 
 ### GetEntityExtraUniforms
 
+<Version type="china" add="2.9"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(entityId)`
@@ -1358,6 +1425,8 @@ print actorRenderComp.GetEntityExtraUniforms(4)
 
 ### GetEntityRenderDistance
 
+<Version type="china" add="2.8"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(playerId)`
@@ -1390,6 +1459,8 @@ print actorRenderComp.GetEntityRenderDistance()
 ---
 
 ### GetEntityUIExtraUniforms
+
+<Version type="china" add="2.9"/>
 
 <Client/> ActorRenderCompClient
 
@@ -1435,6 +1506,8 @@ print actorRenderComp.GetEntityUIExtraUniforms("minecraft:player",4)
 
 ### GetNotRenderAtAll
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(entityId)`
@@ -1466,6 +1539,8 @@ notRender = comp.GetNotRenderAtAll()
 ---
 
 ### GetQueryableBoneOrientation
+
+<Version type="china" add="3.8"/>
 
 <Client/> ActorRenderCompClient
 
@@ -1505,6 +1580,8 @@ print actorRenderComp.GetQueryableBoneOrientation("head")
 
 ### IsShowName
 
+<Version type="china" add="2.10"/>
+
 <Client/> NameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateName(entityId)`
@@ -1541,6 +1618,8 @@ comp.IsShowName()
 
 ### RebuildActorRender
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -1574,6 +1653,8 @@ comp.RebuildActorRender('minecraft:villager')
 
 ### RebuildRenderForOneActor
 
+<Version type="china" add="2.10"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(entityId)`
@@ -1605,6 +1686,8 @@ comp.RebuildRenderForOneActor()
 ---
 
 ### RemoveActorAnimationController
+
+<Version type="china" add="1.22"/>
 
 <Client/> ActorRenderCompClient
 
@@ -1646,6 +1729,8 @@ comp.RemoveActorAnimationController("minecraft:villager", "controller__use_item_
 ---
 
 ### RemoveActorGeometry
+
+<Version type="china" add="2.3"/>
 
 <Client/> ActorRenderCompClient
 
@@ -1689,6 +1774,8 @@ comp.RemoveActorGeometry("minecraft:panda", "default")
 
 ### RemoveActorRenderController
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -1729,6 +1816,8 @@ comp.RemoveActorRenderController('minecraft:villager', 'custom_render_controller
 ---
 
 ### RemoveActorTexture
+
+<Version type="china" add="2.3"/>
 
 <Client/> ActorRenderCompClient
 
@@ -1778,6 +1867,8 @@ comp.RemoveActorTexture("minecraft:panda", "default")
 
 ### RemoveAnimationControllerForOneActor
 
+<Version type="china" add="3.2"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(entityId)`
@@ -1818,6 +1909,8 @@ comp.RemoveAnimationControllerForOneActor(entityId, "controller__use_item_progre
 ---
 
 ### RemoveGeometryForOneActor
+
+<Version type="china" add="3.2"/>
 
 <Client/> ActorRenderCompClient
 
@@ -1861,6 +1954,8 @@ comp.RemoveGeometryForOneActor("0", "default")
 
 ### RemoveRenderControllerForOneActor
 
+<Version type="china" add="3.2"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -1902,6 +1997,8 @@ comp.RemoveRenderControllerForOneActor('0', 'custom_render_controller_name')
 
 ### RemoveTextureForOneActor
 
+<Version type="china" add="3.2"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -1940,6 +2037,8 @@ comp.RemoveTextureForOneActor("0", "default")
 
 ### ResetActorRender
 
+<Version type="china" add="2.10"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(levelId)`
@@ -1977,6 +2076,8 @@ comp.ResetActorRender("minecraft:sheep")
 
 ### ResetBindEntity
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -2008,6 +2109,8 @@ comp.ResetBindEntity()
 ---
 
 ### ResetEntityExtraSkin
+
+<Version type="china" add="3.8"/>
 
 <Client/> ActorRenderCompClient
 
@@ -2050,6 +2153,8 @@ comp.RebuildPlayerRender()  # 玩家实体
 
 ### ResetRenderForOneActor
 
+<Version type="china" add="2.10"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(entityId)`
@@ -2081,6 +2186,8 @@ comp.ResetRenderForOneActor()
 ---
 
 ### SetActorAllBlockGeometryVisible
+
+<Version type="china" add="2.1"/>
 
 <Client/> ActorRenderCompClient
 
@@ -2120,6 +2227,8 @@ print actorRenderComp.SetActorAllBlockGeometryVisible(False)
 ---
 
 ### SetActorBlockGeometryVisible
+
+<Version type="china" add="2.1"/>
 
 <Client/> ActorRenderCompClient
 
@@ -2161,6 +2270,8 @@ print actorRenderComp.SetActorBlockGeometryVisible(geometryName, False)
 
 ### SetAlwaysShowName
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> NameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateName(entityId)`
@@ -2198,6 +2309,8 @@ comp.SetAlwaysShowName(False)
 ---
 
 ### SetColor
+
+<Version type="china" add="3.5"/>
 
 <Client/> HealthComponentClient
 
@@ -2237,6 +2350,8 @@ comp.SetColor((0, 0, 0, 1), (1, 1, 1, 1))
 ---
 
 ### SetEntityExtraUniforms
+
+<Version type="china" add="2.9"/>
 
 <Client/> ActorRenderCompClient
 
@@ -2294,6 +2409,8 @@ print actorRenderComp.SetEntityExtraUniforms(3, (3.0,3.0,3.0,3.0))
 
 ### SetEntityRenderDistance
 
+<Version type="china" add="2.8"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(playerId)`
@@ -2331,6 +2448,8 @@ print actorRenderComp.SetEntityRenderDistance(48)
 ---
 
 ### SetEntityUIExtraUniforms
+
+<Version type="china" add="2.9"/>
 
 <Client/> ActorRenderCompClient
 
@@ -2390,6 +2509,8 @@ print actorRenderComp.SetEntityUIExtraUniforms("minecraft:player", 3, (3.0,3.0,3
 
 ### SetHealthBarDeviation
 
+<Version type="china" add="2.1"/>
+
 <Client/> HealthComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateHealth(entityId)`
@@ -2428,6 +2549,8 @@ comp.SetHealthBarDeviation(1.0)
 
 ### SetNameDeeptest
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> GameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -2461,6 +2584,8 @@ comp.SetNameDeeptest(True)
 ---
 
 ### SetNotRenderAtAll
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ActorRenderCompClient
 
@@ -2498,6 +2623,8 @@ comp.SetNotRenderAtAll(False)
 
 ### SetRenderLocalPlayer
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> GameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -2531,6 +2658,8 @@ comp.SetRenderLocalPlayer(False)
 ---
 
 ### SetShowName
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> NameComponentClient
 
@@ -2570,6 +2699,8 @@ comp.SetShowName(False)
 
 ### ShowHealth
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> HealthComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateHealth(entityId)`
@@ -2605,6 +2736,8 @@ comp.ShowHealth(False)
 ---
 
 ### ShowHealthBar
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> GameComponentClient
 

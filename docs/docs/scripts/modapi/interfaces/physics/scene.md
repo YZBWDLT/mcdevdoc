@@ -4,6 +4,7 @@ sidebar_position: 1
 
 # 场景
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -14,11 +15,23 @@ import Client from '/src/components/highlight/client';
 
 本文主要记录场景相关的接口，共 7 个。
 
+:::warning[注意]
+
+物理系列接口属于**实验性内容**，后续版本可能出现接口变更、开发环境变更等情况。网易建议开发者合理安排开发内容与正式版本，避免物理系统更新后出现模组失效。有关物理系统的完整说明与使用教程，请查阅网易的[物理的使用指南](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/20-wuliwanfakaifa/1-wulideshiyongzhinan.html)。
+
+:::
+
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/wuli/changjing.html"/>
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
 
 ---
 
 ### ClearRemoteVisualSync
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -32,7 +45,6 @@ import Client from '/src/components/highlight/client';
 ```python
 ClearRemoteVisualSync() -> bool
 ```
-
 
 **返回值**：bool，是否成功。
 
@@ -52,6 +64,8 @@ comp.ClearRemoteVisualSync()
 
 ### ConnectPvd
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -64,7 +78,6 @@ comp.ClearRemoteVisualSync()
 ```python
 ConnectPvd() -> bool
 ```
-
 
 **返回值**：bool，是否连接成功。
 
@@ -88,6 +101,8 @@ levelComp.ConnectPvd()
 
 ### DisconnectPvd
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -100,7 +115,6 @@ levelComp.ConnectPvd()
 ```python
 DisconnectPvd() -> None
 ```
-
 
 **返回值**：None，无返回值。
 
@@ -124,6 +138,8 @@ levelComp.DisconnectPvd()
 
 ### Raycast
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(levelId)`
@@ -134,7 +150,7 @@ levelComp.DisconnectPvd()
 <TabItem value="说明" label="说明" default>
 
 ```python
-Raycast(
+服务端接口(
     dimensionId: int,
     origin: Tuple[float, float, float],
     dir: Tuple[float, float, float],
@@ -177,7 +193,7 @@ print comp.Raycast(0, (0,80,0), (0,1,0), 5)
 <TabItem value="说明" label="说明" default>
 
 ```python
-Raycast(
+客户端接口(
     origin: Tuple[float, float, float],
     dir: Tuple[float, float, float],
     maxDist: float,
@@ -211,6 +227,8 @@ print comp.Raycast(0, (0,80,0), (0,1,0), 5)
 ---
 
 ### SampleBuoyancy
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -263,6 +281,8 @@ result = comp.SampleBuoyancy(
 
 ### SetRemoteVisualSync
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -296,6 +316,8 @@ comp.SetRemoteVisualSync(80.0, 0) # 80 格内不丢同步 tick
 ---
 
 ### SetSceneGravity
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 

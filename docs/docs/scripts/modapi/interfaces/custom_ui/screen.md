@@ -4,6 +4,7 @@ sidebar_position: 5
 
 # UI 界面
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/zidingyi-ui/ui-jiemian.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### BindVirtualWorldModel
+
+<Version type="china" add="1.22"/>
 
 <Client/> ScreenNode
 
@@ -66,6 +73,8 @@ succ = uiNode.BindVirtualWorldModel(objId, (0.0, 0.0, 0.0))
 
 ### ChangeBindAutoScale
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -101,6 +110,8 @@ succ = uiNode.ChangeBindAutoScale(1)
 
 ### ChangeBindEntityId
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -131,6 +142,8 @@ succ = uiNode.ChangeBindEntityId(entityId)
 ---
 
 ### ChangeBindOffset
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScreenNode
 
@@ -166,6 +179,8 @@ succ = uiNode.ChangeBindOffset((0, 3, 0))
 ---
 
 ### Clone
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScreenNode
 
@@ -229,6 +244,8 @@ comp.AddTimer(300, _tickUpdateScreen)
 
 ### Create
 
+<Version type="china" add="2.2"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -242,6 +259,8 @@ Create() -> Any
 ---
 
 ### CreateChildControl
+
+<Version type="china" add="2.6"/>
 
 <Client/> ScreenNode
 
@@ -286,6 +305,8 @@ if parentControl:
 
 ### Destroy
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -299,6 +320,8 @@ Destroy() -> Any
 ---
 
 ### GetAllChildrenPath
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScreenNode
 
@@ -331,6 +354,8 @@ node.GetAllChildrenPath("/panel")
 ---
 
 ### GetBaseUIControl
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScreenNode
 
@@ -365,6 +390,8 @@ text2UIControl = uiNode.GetBaseUIControl(text2Path)
 
 ### GetBindAutoScale
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -394,6 +421,8 @@ autoScale = uiNode.GetBindAutoScale()
 ---
 
 ### GetBindEntityId
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScreenNode
 
@@ -425,6 +454,8 @@ entityId = uiNode.GetBindEntityId()
 
 ### GetBindOffset
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -455,6 +486,8 @@ offset = uiNode.GetBindOffset()
 
 ### GetBindWorldPosition
 
+<Version type="china" add="2.7"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -484,6 +517,8 @@ position = uiNode.GetBindWorldPosition()
 ---
 
 ### GetChildrenName
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScreenNode
 
@@ -517,6 +552,8 @@ node.GetChildrenName("/panel")
 
 ### GetIsHud
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -547,6 +584,8 @@ isHud = uiNode.GetIsHud()
 ---
 
 ### GetRichTextItem
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScreenNode
 
@@ -581,6 +620,8 @@ richTextItem = uiNode.GetRichTextItem(richTextPath)
 
 ### GetScreenName
 
+<Version type="china" add="2.0"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -612,6 +653,8 @@ screenName = uiNode.GetScreenName()
 
 ### GetSelf
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -628,6 +671,8 @@ GetSelf() -> ScreenNode
 ---
 
 ### OnActive
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScreenNode
 
@@ -648,6 +693,8 @@ OnActive() -> Any
 
 ### OnDeactive
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -666,6 +713,8 @@ OnDeactive() -> Any
 ---
 
 ### RemoveChildControl
+
+<Version type="china" add="2.6"/>
 
 <Client/> ScreenNode
 
@@ -702,6 +751,8 @@ if childControl:
 
 ### RemoveComponent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -734,6 +785,8 @@ uiNode.RemoveComponent(text2Path, parentPath)
 ---
 
 ### SetBindWorldPosition
+
+<Version type="china" add="2.9"/>
 
 <Client/> ScreenNode
 
@@ -770,6 +823,8 @@ uiNode.SetBindWorldPosition(0, (100,60,100))
 
 ### SetIsHud
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -804,6 +859,8 @@ uiNode.SetIsHud(1)
 
 ### SetRemove
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -831,6 +888,8 @@ uiNode.SetRemove()
 ---
 
 ### SetScreenVisible
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScreenNode
 
@@ -861,6 +920,8 @@ uiNode.SetScreenVisible(False)
 ---
 
 ### SetSelectControl
+
+<Version type="china" add="1.21"/>
 
 <Client/> ScreenNode
 
@@ -893,6 +954,8 @@ uiNode.SetSelectControl(path, True)
 
 ### SetStackGridCount
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -924,6 +987,8 @@ uiNode.SetStackGridCount(stackgridPath, 3)
 ---
 
 ### SetUiEntity
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScreenNode
 
@@ -960,6 +1025,8 @@ uiNode.SetUiEntity(imagePath, 'minecraft:cat')
 ---
 
 ### SetUiModel
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ScreenNode
 
@@ -1002,6 +1069,8 @@ uiNode.SetUiModel(imagePath, 'saber', 'idle', True)
 
 ### SetUiModelScale
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -1037,6 +1106,8 @@ uiNode.SetUiModelScale(imagePath, 1.2)
 
 ### Update
 
+<Version type="china" add="2.0"/>
+
 <Client/> ScreenNode
 
 界面方法，在自定义 ScreenNode 子类中直接调用。
@@ -1050,6 +1121,8 @@ Update() -> Any
 ---
 
 ### UpdateScreen
+
+<Version type="china" add="1.22"/>
 
 <Client/> ScreenNode
 

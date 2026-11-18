@@ -4,6 +4,7 @@ sidebar_position: 1
 
 # 背包
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/wanjia/beibao.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddEnchantToInvItem
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ItemCompServer
 
@@ -55,6 +62,8 @@ comp.AddEnchantToInvItem(0, serverApi.GetMinecraftEnum().EnchantType.BowDamage, 
 
 ### AddModEnchantToInvItem
 
+<Version type="china" add="1.24"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -89,6 +98,8 @@ comp.AddModEnchantToInvItem(0, "customenchant", 2)
 ---
 
 ### ChangePlayerItemTipsAndExtraId
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ItemCompServer
 
@@ -136,6 +147,8 @@ comp.ChangePlayerItemTipsAndExtraId(serverApi.GetMinecraftEnum().ItemPosType.INV
 
 ### ChangeSelectSlot
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -168,6 +181,8 @@ success = comp.ChangeSelectSlot(0)
 ---
 
 ### GetCarriedItem
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ItemCompClient
 
@@ -206,6 +221,8 @@ carriedData = comp.GetCarriedItem()
 
 ### GetInvItemEnchantData
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -238,6 +255,8 @@ comp.GetInvItemEnchantData(0)
 ---
 
 ### GetInvItemModEnchantData
+
+<Version type="china" add="1.24"/>
 
 <Server/> ItemCompServer
 
@@ -272,6 +291,8 @@ comp.GetInvItemModEnchantData(0)
 
 ### GetOffhandItem
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(entityId)`
@@ -305,6 +326,8 @@ offhandData = comp.GetOffhandItem()
 
 ### GetPlayerAllItems
 
+<Version type="china" add="2.7"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -315,10 +338,7 @@ offhandData = comp.GetOffhandItem()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerAllItems(
-    posType: int,
-    getUserData: bool = False,
-) -> List[Dict[str, Any]]
+服务端接口(posType: int, getUserData: bool = False) -> List[Dict[str, Any]]
 ```
 
 - posType: int，[ItemPosType 枚举](/docs/docs/scripts/modapi/enums#itempostype)。
@@ -352,10 +372,7 @@ comp.GetPlayerAllItems(serverApi.GetMinecraftEnum().ItemPosType.INVENTORY)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerAllItems(
-    posType: int,
-    getUserData: bool = False,
-) -> List[Dict[str, Any]]
+客户端接口(posType: int, getUserData: bool = False) -> List[Dict[str, Any]]
 ```
 
 - posType: int，[ItemPosType 枚举](/docs/docs/scripts/modapi/enums#itempostype)。
@@ -383,6 +400,8 @@ comp.GetPlayerAllItems(clientApi.GetMinecraftEnum().ItemPosType.INVENTORY)
 
 ### GetPlayerFishHookEntity
 
+<Version type="china" add="3.8"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -393,7 +412,7 @@ comp.GetPlayerAllItems(clientApi.GetMinecraftEnum().ItemPosType.INVENTORY)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerFishHookEntity() -> List[str]
+服务端接口() -> List[str]
 ```
 
 
@@ -421,7 +440,7 @@ fishHookEntityId = comp.GetPlayerFishHookEntity()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerFishHookEntity() -> List[str]
+客户端接口() -> List[str]
 ```
 
 
@@ -443,6 +462,8 @@ fishHookEntityId = comp.GetPlayerFishHookEntity()
 
 ### GetPlayerFishItem
 
+<Version type="china" add="3.8"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -453,7 +474,7 @@ fishHookEntityId = comp.GetPlayerFishHookEntity()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerFishItem(getUserData: bool = False) -> Dict[str, Any]
+服务端接口(getUserData: bool = False) -> Dict[str, Any]
 ```
 
 - getUserData: bool，是否获取物品的 userData，默认为 False。
@@ -486,7 +507,7 @@ fishItem = comp.GetPlayerFishItem()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerFishItem(getUserData: bool = False) -> Dict[str, Any]
+客户端接口(getUserData: bool = False) -> Dict[str, Any]
 ```
 
 - getUserData: bool，是否获取物品的 userData，默认为 False。
@@ -513,6 +534,8 @@ fishItem = comp.GetPlayerFishItem()
 
 ### GetPlayerItem
 
+<Version type="china" add="2.7"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -523,11 +546,7 @@ fishItem = comp.GetPlayerFishItem()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerItem(
-    posType: int,
-    slotPos: int,
-    getUserData: bool = False,
-) -> Dict[str, Any]
+服务端接口(posType: int, slotPos: int, getUserData: bool = False) -> Dict[str, Any]
 ```
 
 - posType: int，[ItemPosType 枚举](/docs/docs/scripts/modapi/enums#itempostype)。
@@ -563,11 +582,7 @@ comp.GetPlayerItem(serverApi.GetMinecraftEnum().ItemPosType.INVENTORY, 0)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerItem(
-    posType: int,
-    slotPos: int,
-    getUserData: bool = False,
-) -> Dict[str, Any]
+客户端接口(posType: int, slotPos: int, getUserData: bool = False) -> Dict[str, Any]
 ```
 
 - posType: int，[ItemPosType 枚举](/docs/docs/scripts/modapi/enums#itempostype)。
@@ -596,6 +611,8 @@ comp.GetPlayerItem(clientApi.GetMinecraftEnum().ItemPosType.INVENTORY, 0)
 ---
 
 ### GetSelectSlotId
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ItemCompServer
 
@@ -629,6 +646,8 @@ comp.GetSelectSlotId()
 
 ### GetSlotId
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(entityId)`
@@ -660,6 +679,8 @@ slotId = comp.GetSlotId()
 ---
 
 ### RemoveEnchantToInvItem
+
+<Version type="china" add="1.24"/>
 
 <Server/> ItemCompServer
 
@@ -695,6 +716,8 @@ comp.RemoveEnchantToInvItem(0, serverApi.GetMinecraftEnum().EnchantType.BowDamag
 
 ### RemoveModEnchantToInvItem
 
+<Version type="china" add="1.24"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -728,6 +751,8 @@ comp.RemoveModEnchantToInvItem(0, "customenchant")
 ---
 
 ### SetInvItemExchange
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ItemCompServer
 
@@ -763,6 +788,8 @@ comp.SetInvItemExchange(0, 2)
 
 ### SetInvItemNum
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -796,6 +823,8 @@ comp.SetInvItemNum(0, 10)
 ---
 
 ### SetPlayerAllItems
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ItemCompServer
 
@@ -845,6 +874,8 @@ comp.SetPlayerAllItems(itemsDictMap)
 
 ### SpawnItemToPlayerCarried
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -887,6 +918,8 @@ comp.SpawnItemToPlayerCarried(itemDict, playerId)
 ---
 
 ### SpawnItemToPlayerInv
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ItemCompServer
 

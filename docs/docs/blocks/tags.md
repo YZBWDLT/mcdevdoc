@@ -4,13 +4,17 @@ sidebar_position: 4
 
 # 方块标签
 
+import Button from '/src/components/button/base';
+
 > 适用版本：国际版 26.60，中国版 3.10（1.21.130）。
 
 ---
 
 方块标签（Block Tags）可以用于将多个方块在底层代码上进行分类，可用于[相关 Molang](./molang) 和[配方表](../items/recipes)中。方块标签可以在数据驱动方块中通过[方块组件`minecraft:tags`](./components#minecrafttags)（1.26.20+）或[方块组件`tag:(标签)`](./components#tag标签)（1.26.10-）定义。原版的方块也在大量使用方块标签。
 
-本文档收录方块标签的相关信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
+本文档收录方块标签的相关信息。要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=tag" color="green"/>
 
 ---
 

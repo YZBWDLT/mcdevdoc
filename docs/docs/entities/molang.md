@@ -12,6 +12,10 @@ Molang 的查询函数本身是通用的，不区分物品、方块或实体；�
 
 表中未标注的查询在服务端与客户端都可用；标有「仅资源包可用」「仅行为包可用」的查询只在对应一侧生效。
 
+要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=molang" color="green"/>
+
 ---
 
 ## 实体属性
@@ -411,5 +415,6 @@ Molang 的查询函数本身是通用的，不区分物品、方块或实体；�
 - [Molang 查询函数 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/molangreference/examples/molangconcepts/queryfunctions?view=minecraft-bedrock-stable)
 
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>

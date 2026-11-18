@@ -4,6 +4,7 @@ sidebar_position: 7
 
 # 时间
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/shijian.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetLocalDoDayNightCycle
+
+<Version type="china" add="1.23"/>
 
 <Server/> DimensionCompServer
 
@@ -58,6 +65,8 @@ comp.GetLocalDoDayNightCycle(3)
 
 ### GetLocalTime
 
+<Version type="china" add="1.23"/>
+
 <Server/> DimensionCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateDimension(levelId)`
@@ -68,7 +77,7 @@ comp.GetLocalDoDayNightCycle(3)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetLocalTime(dimension: int) -> int
+服务端接口(dimension: int) -> int
 ```
 
 - dimension: int，维度 id。
@@ -107,7 +116,7 @@ day = passedTime / 24000
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetLocalTime() -> int
+客户端接口() -> int
 ```
 
 
@@ -139,6 +148,8 @@ day = passedTime / 24000
 
 ### GetTime
 
+<Version type="china" add="2.7"/>
+
 <Server/> TimeComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateTime(levelId)`
@@ -149,7 +160,7 @@ day = passedTime / 24000
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetTime() -> int
+服务端接口() -> int
 ```
 
 
@@ -186,7 +197,7 @@ day = passedTime / 24000
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetTime() -> int
+客户端接口() -> int
 ```
 
 
@@ -216,6 +227,8 @@ day = passedTime / 24000
 ---
 
 ### GetUseLocalTime
+
+<Version type="china" add="1.23"/>
 
 <Server/> DimensionCompServer
 
@@ -253,6 +266,8 @@ comp.GetUseLocalTime(3)
 ---
 
 ### SetLocalDoDayNightCycle
+
+<Version type="china" add="1.23"/>
 
 <Server/> DimensionCompServer
 
@@ -293,6 +308,8 @@ comp.SetLocalDoDayNightCycle(3, False)
 ---
 
 ### SetLocalTime
+
+<Version type="china" add="1.23"/>
 
 <Server/> DimensionCompServer
 
@@ -341,6 +358,8 @@ comp.SetLocalTime(3, (day + 1) * 24000 + 0)
 
 ### SetLocalTimeOfDay
 
+<Version type="china" add="1.23"/>
+
 <Server/> DimensionCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateDimension(levelId)`
@@ -380,6 +399,8 @@ comp.SetLocalTimeOfDay(3, 6000)
 ---
 
 ### SetTime
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> TimeComponentServer
 
@@ -425,6 +446,8 @@ comp.SetTime((day + 1) * 24000 + 0)
 
 ### SetTimeOfDay
 
+<Version type="china" add="1.23"/>
+
 <Server/> TimeComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateTime(levelId)`
@@ -462,6 +485,8 @@ comp.SetTimeOfDay(6000)
 ---
 
 ### SetUseLocalTime
+
+<Version type="china" add="1.23"/>
 
 <Server/> DimensionCompServer
 

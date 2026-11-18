@@ -16,6 +16,10 @@ import Version from "/src/components/highlight/version"
 
 寻路与运动组件规定了实体在拥有一个目标后，会尝试以何种路径到达预定地点。
 
+要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=entity_component" color="green"/>
+
 ### `minecraft:movement`
 
 <Usable type="all"/> <Version add="未知"/> <br/>
@@ -700,5 +704,6 @@ import Version from "/src/components/highlight/version"
 
 </TabItem></Tabs>
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>

@@ -4,6 +4,7 @@ sidebar_position: 10
 
 # 消息
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/xiaoxi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### NotifyOneMessage
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> MsgComponentServer
 
@@ -52,6 +59,8 @@ comp.NotifyOneMessage(playerId, "test", "§c")
 ---
 
 ### SendMsg
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> MsgComponentServer
 
@@ -91,6 +100,8 @@ comp.SendMsg("playerName","test")
 
 ### SendMsgToPlayer
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> MsgComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateMsg(levelId)`
@@ -122,6 +133,8 @@ comp.SendMsgToPlayer(fromPlayerId, toPlayerId, "test")
 ---
 
 ### SetLeftCornerNotify
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> TextNotifyComponet
 
@@ -156,6 +169,8 @@ comp.SetLeftCornerNotify("做好准备")
 
 ### SetNotifyMsg
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -189,6 +204,8 @@ comp.SetNotifyMsg("消息通知", serverApi.GenerateColor('BLUE'))
 ---
 
 ### SetOnePopupNotice
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -226,6 +243,8 @@ comp.SetOnePopupNotice(playerId, serverApi.GenerateColor("RED") + "消息通知"
 
 ### SetOneTipMessage
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(playerId)`
@@ -261,6 +280,8 @@ comp.SetOneTipMessage(playerId, serverApi.GenerateColor("RED") + "tip提示")
 
 ### SetPopupNotice
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -271,7 +292,7 @@ comp.SetOneTipMessage(playerId, serverApi.GenerateColor("RED") + "tip提示")
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetPopupNotice(message: str, subtitle: str) -> bool
+服务端接口(message: str, subtitle: str) -> bool
 ```
 
 - message: str，消息内容,可以在消息前增加 extraServerApi.GenerateColor("RED")字符来设置颜色，具体参考样例。
@@ -301,7 +322,7 @@ comp.SetPopupNotice(serverApi.GenerateColor("RED") + "消息通知", "消息子�
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetPopupNotice(message: str, subtitle: str) -> bool
+客户端接口(message: str, subtitle: str) -> bool
 ```
 
 - message: str，消息内容,可以在消息前增加 extraClientApi.GenerateColor("RED")字符来设置颜色，具体参考样例。
@@ -324,6 +345,8 @@ comp.SetPopupNotice(clientApi.GenerateColor("RED") + "消息通知", "消息子�
 ---
 
 ### SetPopupState
+
+<Version type="china" add="2.8"/>
 
 <Client/> GameComponentClient
 
@@ -362,6 +385,8 @@ comp.SetPopupState(2)
 
 ### SetTipMessage
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -372,7 +397,7 @@ comp.SetPopupState(2)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetTipMessage(message: str) -> bool
+服务端接口(message: str) -> bool
 ```
 
 - message: str，消息内容,可以在消息前增加 extraServerApi.GenerateColor("RED")字符来设置颜色，具体参考样例。
@@ -401,7 +426,7 @@ comp.SetTipMessage(serverApi.GenerateColor("RED") + "tip提示")
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetTipMessage(message: str) -> bool
+客户端接口(message: str) -> bool
 ```
 
 - message: str，消息内容,可以在消息前增加 extraClientApi.GenerateColor("RED")字符来设置颜色，具体参考样例。

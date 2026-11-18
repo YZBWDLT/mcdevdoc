@@ -20,7 +20,9 @@ import Button from '/src/components/button/base';
 
 [^1]: 直至本文更新时，Block Traits 的译名仍在讨论，且未能明确统一。读者可以在其他不同的文档中看到不同的翻译，例如方块性状、方块特质等。在未明确声明的情况下，为读者理解方便，本文档系列采用与中文 Minecraft Wiki 在多数基岩版相关更新日志中采用的译名：方块特征。
 
-本文档收录方块特征的相关信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
+本文档收录方块特征的相关信息。要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=block_trait" color="green"/>
 
 ---
 

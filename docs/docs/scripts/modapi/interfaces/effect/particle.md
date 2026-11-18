@@ -4,6 +4,7 @@ sidebar_position: 1
 
 # 粒子
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/texiao/lizi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### Bind
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ParticleSkeletonBindComp
 
@@ -62,6 +69,8 @@ comp.Bind(entityId, (0, 1, 0), (0, 0, 0))
 ---
 
 ### CreateEngineParticle
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ClientSystem
 
@@ -114,6 +123,8 @@ class MyClientSystem(ClientSystem):
 
 ### GetParticleEmissionRate
 
+<Version type="china" add="1.24"/>
+
 <Client/> ParticleControlComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
@@ -149,6 +160,8 @@ comp.GetParticleEmissionRate()
 ---
 
 ### GetParticleMaxNum
+
+<Version type="china" add="1.24"/>
 
 <Client/> ParticleControlComp
 
@@ -186,6 +199,8 @@ comp.GetParticleMaxNum()
 
 ### GetParticleMaxSize
 
+<Version type="china" add="1.24"/>
+
 <Client/> ParticleControlComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
@@ -221,6 +236,8 @@ comp.GetParticleMaxSize()
 ---
 
 ### GetParticleMinSize
+
+<Version type="china" add="1.24"/>
 
 <Client/> ParticleControlComp
 
@@ -258,6 +275,8 @@ comp.GetParticleMinSize()
 
 ### GetParticleVolumeSize
 
+<Version type="china" add="1.24"/>
+
 <Client/> ParticleControlComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
@@ -290,6 +309,8 @@ comp.GetParticleVolumeSize()
 
 ### GetPos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ParticleTransComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleTrans(particleEntityId)`
@@ -321,6 +342,8 @@ comp.GetPos()
 ---
 
 ### GetRot
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ParticleTransComp
 
@@ -359,6 +382,8 @@ comp.GetRot()
 
 ### Pause
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ParticleControlComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
@@ -391,6 +416,8 @@ comp.Pause()
 
 ### Play
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ParticleControlComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
@@ -422,6 +449,8 @@ comp.Play()
 ---
 
 ### SetFadeDistance
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ParticleControlComp
 
@@ -456,6 +485,8 @@ comp.SetFadeDistance(3)
 ---
 
 ### SetGlobal
+
+<Version type="china" add="3.2"/>
 
 <Client/> ParticleControlComp
 
@@ -494,6 +525,8 @@ comp.SetGlobal(True)
 
 ### SetLayer
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ParticleControlComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
@@ -531,6 +564,8 @@ comp.SetLayer(2)
 ---
 
 ### SetParticleEmissionRate
+
+<Version type="china" add="1.24"/>
 
 <Client/> ParticleControlComp
 
@@ -573,6 +608,8 @@ comp.SetParticleEmissionRate(15,20)
 
 ### SetParticleMaxNum
 
+<Version type="china" add="1.24"/>
+
 <Client/> ParticleControlComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
@@ -609,6 +646,8 @@ comp.SetParticleMaxNum(1000)
 ---
 
 ### SetParticleSize
+
+<Version type="china" add="1.24"/>
 
 <Client/> ParticleControlComp
 
@@ -651,6 +690,8 @@ comp.SetParticleSize((0.5,0.5),(0.6,0.6))
 
 ### SetParticleVolumeSize
 
+<Version type="china" add="1.24"/>
+
 <Client/> ParticleControlComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleControl(particleEntityId)`
@@ -688,6 +729,8 @@ comp.SetParticleVolumeSize((1,0,0))
 
 ### SetPos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ParticleTransComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleTrans(particleEntityId)`
@@ -720,6 +763,8 @@ comp.SetPos((0, 5, 0))
 ---
 
 ### SetRelative
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ParticleControlComp
 
@@ -755,6 +800,8 @@ comp.SetRelative(False)
 
 ### SetRotUseZXY
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ParticleTransComp
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleTrans(particleEntityId)`
@@ -788,6 +835,8 @@ comp.SetRotUseZXY((0, 90, 90))
 ---
 
 ### SetUsePointFiltering
+
+<Version type="china" add="1.23"/>
 
 <Client/> ParticleControlComp
 
@@ -827,6 +876,8 @@ comp.Play()
 ---
 
 ### Stop
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ParticleControlComp
 

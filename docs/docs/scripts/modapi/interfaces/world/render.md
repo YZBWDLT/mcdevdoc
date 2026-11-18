@@ -4,6 +4,7 @@ sidebar_position: 12
 
 # 渲染
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/xuanran.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddTerrainDestroyParticleEffect
+
+<Version type="china" add="3.3"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -60,6 +67,8 @@ comp.AddTerrainDestroyParticleEffect("minecraft:stone", 0, (30, 66, 30))
 
 ### AddUseItemParticleEffect
 
+<Version type="china" add="3.3"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -99,6 +108,8 @@ comp.AddUseItemParticleEffect("minecraft:apple", 0, (30, 66, 30))
 
 ### GetAmbientBrightness
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -130,6 +141,8 @@ ambineBrightness = comp.GetAmbientBrightness()
 ---
 
 ### GetFogColor
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FogCompClient
 
@@ -164,6 +177,8 @@ fogColor = comp.GetFogColor()
 
 ### GetFogLength
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> FogCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFog(levelId)`
@@ -195,6 +210,8 @@ start,end = comp.GetFogLength()
 ---
 
 ### GetMoonRot
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> SkyRenderCompClient
 
@@ -228,6 +245,8 @@ rot = comp.GetMoonRot()
 
 ### GetSkyColor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -259,6 +278,8 @@ color = comp.GetSkyColor()
 ---
 
 ### GetSkyTextures
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> SkyRenderCompClient
 
@@ -293,6 +314,8 @@ textureList = comp.GetSkyTextures()
 
 ### GetStarBrightness
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -324,6 +347,8 @@ starBrightness = comp.GetStarBrightness()
 ---
 
 ### GetSunRot
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> SkyRenderCompClient
 
@@ -357,6 +382,8 @@ rot = comp.GetSunRot()
 
 ### GetUseAmbientBrightness
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -388,6 +415,8 @@ useAmbientBrightness = comp.GetUseAmbientBrightness()
 ---
 
 ### GetUseFogColor
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FogCompClient
 
@@ -422,6 +451,8 @@ useFogColor = comp.GetUseFogColor()
 
 ### GetUseFogLength
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> FogCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFog(levelId)`
@@ -455,6 +486,8 @@ useFogLength = comp.GetUseFogLength()
 
 ### GetUseMoonRot
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -486,6 +519,8 @@ useMoonRot = comp.GetUseMoonRot()
 ---
 
 ### GetUseSkyColor
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> SkyRenderCompClient
 
@@ -519,6 +554,8 @@ useSkyColor = comp.GetUseSkyColor()
 
 ### GetUseStarBrightness
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -551,6 +588,8 @@ useStarBrightness = comp.GetUseStarBrightness()
 
 ### GetUseSunRot
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -582,6 +621,8 @@ useSunRot = comp.GetUseSunRot()
 ---
 
 ### HideNameTag
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -617,6 +658,8 @@ clientApi.HideNameTag(True)
 
 ### IsHideNameTag
 
+<Version type="china" add="2.10"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -647,6 +690,8 @@ clientApi.IsHideNameTag()
 ---
 
 ### RemoveTerrainDestroyParticleEffect
+
+<Version type="china" add="3.3"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -690,6 +735,8 @@ comp.RemoveTerrainDestroyParticleEffect("minecraft:stone", 0, (30, 66, 30))
 
 ### RemoveUseItemParticleEffect
 
+<Version type="china" add="3.3"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -732,6 +779,8 @@ comp.RemoveUseItemParticleEffect("minecraft:apple", 0, (30, 66, 30))
 
 ### ResetAmbientBrightness
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -763,6 +812,8 @@ comp.ResetAmbientBrightness()
 ---
 
 ### ResetFogColor
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FogCompClient
 
@@ -796,6 +847,8 @@ comp.ResetFogColor()
 
 ### ResetFogLength
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> FogCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFog(levelId)`
@@ -827,6 +880,8 @@ comp.ResetFogLength()
 ---
 
 ### ResetMoonRot
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> SkyRenderCompClient
 
@@ -860,6 +915,8 @@ comp.ResetMoonRot()
 
 ### ResetSkyColor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -891,6 +948,8 @@ comp.ResetSkyColor()
 ---
 
 ### ResetSkyTextures
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> SkyRenderCompClient
 
@@ -924,6 +983,8 @@ comp.ResetSkyTextures()
 
 ### ResetStarBrightness
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -956,6 +1017,8 @@ comp.ResetStarBrightness()
 
 ### ResetSunRot
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -987,6 +1050,8 @@ comp.ResetSunRot()
 ---
 
 ### SetAmbientBrightness
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> SkyRenderCompClient
 
@@ -1021,6 +1086,8 @@ comp.SetAmbientBrightness(0.1)
 
 ### SetFogColor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> FogCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateFog(levelId)`
@@ -1054,6 +1121,8 @@ comp.SetFogColor((1.0,1.0,1.0,1.0))
 ---
 
 ### SetFogLength
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> FogCompClient
 
@@ -1094,6 +1163,8 @@ comp.SetFogLength(10, 50)
 
 ### SetMoonRot
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -1127,6 +1198,8 @@ comp.SetMoonRot((10, 0, 10))
 
 ### SetSkyColor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -1159,6 +1232,8 @@ comp.SetSkyColor((0.5, 0.5, 0.8, 1.0))
 ---
 
 ### SetSkyTextures
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> SkyRenderCompClient
 
@@ -1199,6 +1274,8 @@ comp.SetSkyTextures(textureList)
 
 ### SetStarBrightness
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -1232,6 +1309,8 @@ comp.SetStarBrightness(0.1)
 
 ### SetSunRot
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> SkyRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateSkyRender(levelId)`
@@ -1264,6 +1343,8 @@ comp.SetSunRot((10, 0, 10))
 ---
 
 ### SkyTextures
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> SkyRenderCompClient
 
@@ -1336,6 +1417,8 @@ modResource/textures/environment/end_sky.png #末地天空渲染贴图
 ---
 
 ### SpawnDestroyParticleEffect
+
+<Version type="china" add="3.10"/>
 
 <Client/> BlockInfoComponentClient
 

@@ -4,6 +4,7 @@ sidebar_position: 6
 
 # 物品
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/wupin.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### BindItemToMinecraftModel
+
+<Version type="china" add="3.8"/>
 
 <Client/> ItemCompClient
 
@@ -77,6 +84,8 @@ print("Successfully bind item with id:", itemModelId)
 
 ### BindItemToSkeletonModel
 
+<Version type="china" add="3.8"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -134,6 +143,8 @@ print("Successfully bind item with id:", itemModelId)
 
 ### CancelShearsDestroyBlockSpeed
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(entityId)`
@@ -167,6 +178,8 @@ comp.CancelShearsDestroyBlockSpeed("minecraft:obsidian")
 
 ### CancelShearsDestroyBlockSpeedAll
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(entityId)`
@@ -198,6 +211,8 @@ comp.CancelShearsDestroyBlockSpeedAll()
 ---
 
 ### ChangeArmorTextures
+
+<Version type="china" add="1.21"/>
 
 <Client/> ActorRenderCompClient
 
@@ -248,6 +263,8 @@ print(comp.ChangeArmorTextures("minecraft:diamond_helmet", textureDict, "texture
 
 ### ChangeItemTexture
 
+<Version type="china" add="1.21"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -288,6 +305,8 @@ print(comp.ChangeItemTexture("mytool:hatchet_1:0", "textures/items/hatchet_1"))
 
 ### GetAllEnchantsInfo
 
+<Version type="china" add="2.10"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -298,7 +317,7 @@ print(comp.ChangeItemTexture("mytool:hatchet_1:0", "textures/items/hatchet_1"))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAllEnchantsInfo() -> List[Dict[str, Any]]
+服务端接口() -> List[Dict[str, Any]]
 ```
 
 
@@ -330,7 +349,7 @@ comp.GetAllEnchantsInfo()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAllEnchantsInfo() -> List[Dict[str, Any]]
+客户端接口() -> List[Dict[str, Any]]
 ```
 
 
@@ -355,6 +374,8 @@ comp.GetAllEnchantsInfo()
 ---
 
 ### GetBindBoneForBindItem
+
+<Version type="china" add="3.8"/>
 
 <Client/> ItemCompClient
 
@@ -410,6 +431,8 @@ print("The bone name of the bind item is:", boneName)
 
 ### GetBindItemOffset
 
+<Version type="china" add="3.8"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -461,6 +484,8 @@ print("offset is:", offset)
 ---
 
 ### GetBindItemRotation
+
+<Version type="china" add="3.8"/>
 
 <Client/> ItemCompClient
 
@@ -515,6 +540,8 @@ print("rotation is:", rotation)
 
 ### GetBindItemScale
 
+<Version type="china" add="3.8"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -567,6 +594,8 @@ print("scale is:", scale)
 
 ### GetCustomName
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -601,6 +630,8 @@ name = comp.GetCustomName(itemDict)
 
 ### GetFishingLineColor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> FishingLineCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateFishingLine(playerId)`
@@ -611,7 +642,7 @@ name = comp.GetCustomName(itemDict)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetFishingLineColor(itemName: str) -> Tuple[float, float, float]
+服务端接口(itemName: str) -> Tuple[float, float, float]
 ```
 
 - itemName: str，鱼竿物品的完整名称，如 "minecraft:fishing_rod" 或自定义鱼竿名称。
@@ -641,7 +672,7 @@ print color
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetFishingLineColor(itemName: str) -> Tuple[float, float, float]
+客户端接口(itemName: str) -> Tuple[float, float, float]
 ```
 
 - itemName: str，鱼竿物品的完整名称，如 "minecraft:fishing_rod" 或自定义鱼竿名称。
@@ -665,6 +696,8 @@ print color
 
 ### GetFishingLineMax
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> FishingLineCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateFishingLine(playerId)`
@@ -675,7 +708,7 @@ print color
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetFishingLineMax(itemName: str) -> float
+服务端接口(itemName: str) -> float
 ```
 
 - itemName: str，鱼竿物品的完整名称，如 "minecraft:fishing_rod" 或自定义鱼竿名称。
@@ -704,7 +737,7 @@ maxLen = comp.GetFishingLineMax("mymod:custom_fishing_rod")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetFishingLineMax(itemName: str) -> float
+客户端接口(itemName: str) -> float
 ```
 
 - itemName: str，鱼竿物品的完整名称，如 "minecraft:fishing_rod" 或自定义鱼竿名称。
@@ -726,6 +759,8 @@ maxLen = comp.GetFishingLineMax("mymod:custom_fishing_rod")
 ---
 
 ### GetIconInfo
+
+<Version type="china" add="3.10"/>
 
 <Client/> ItemCompClient
 
@@ -765,6 +800,8 @@ uv = comp.GetIconInfo({"itemName": "minecraft:apple", "auxValue": 0})
 
 ### GetItemBasicInfo
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -775,7 +812,7 @@ uv = comp.GetIconInfo({"itemName": "minecraft:apple", "auxValue": 0})
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetItemBasicInfo(
+服务端接口(
     itemName: str,
     auxValue: int = 0,
     isEnchanted: bool = False,
@@ -886,7 +923,7 @@ support_sword = (enchant_slot_type & EnchantSlotType.SWORD) > 0
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetItemBasicInfo(
+客户端接口(
     itemName: str,
     auxValue: int = 0,
     isEnchanted: bool = False,
@@ -1024,6 +1061,8 @@ def OnStarkGridResize(self):
 
 ### GetItemDefenceAngle
 
+<Version type="china" add="2.1"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -1061,6 +1100,8 @@ comp.GetItemDefenceAngle(serverApi.GetMinecraftEnum().ItemPosType.INVENTORY, 0)
 ---
 
 ### GetItemDurability
+
+<Version type="china" add="1.21"/>
 
 <Server/> ItemCompServer
 
@@ -1106,6 +1147,8 @@ comp.GetItemDurability(serverApi.GetMinecraftEnum().ItemPosType.ARMOR, 1)
 
 ### GetItemEffectName
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -1145,6 +1188,8 @@ comp.GetItemEffectName("minecraft:banner", 15, {'Type': 1})
 ---
 
 ### GetItemFormattedHoverText
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ItemCompClient
 
@@ -1188,6 +1233,8 @@ comp.GetItemFormattedHoverText("minecraft:banner", 15, True, {'Type': 1})
 
 ### GetItemHoverName
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -1228,6 +1275,8 @@ comp.GetItemHoverName("minecraft:banner", 15, {'Type': 1})
 
 ### GetItemInfoByBlockName
 
+<Version type="china" add="3.2"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -1267,6 +1316,8 @@ blockDict = comp.GetItemInfoByBlockName("minecraft:stone")
 
 ### GetItemLayer
 
+<Version type="china" add="2.5"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -1301,6 +1352,8 @@ texture = comp.GetItemLayer(itemDict, 1)
 ---
 
 ### GetItemMaxDurability
+
+<Version type="china" add="1.24"/>
 
 <Server/> ItemCompServer
 
@@ -1337,6 +1390,8 @@ comp.GetItemMaxDurability(serverApi.GetMinecraftEnum().ItemPosType.INVENTORY, 1,
 
 ### GetItemTags
 
+<Version type="china" add="3.2"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -1347,7 +1402,7 @@ comp.GetItemMaxDurability(serverApi.GetMinecraftEnum().ItemPosType.INVENTORY, 1,
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetItemTags(itemName: str, auxValue: int) -> List[str]
+服务端接口(itemName: str, auxValue: int) -> List[str]
 ```
 
 - itemName: str，item 的 identifier。
@@ -1377,7 +1432,7 @@ comp.GetItemTags("minecraft:apple")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetItemTags(itemName: str, auxValue: int) -> List[str]
+客户端接口(itemName: str, auxValue: int) -> List[str]
 ```
 
 - itemName: str，item 的 identifier。
@@ -1400,6 +1455,8 @@ comp.GetItemTags("minecraft:apple")
 ---
 
 ### GetItemTexture
+
+<Version type="china" add="3.1"/>
 
 <Client/> ItemCompClient
 
@@ -1434,6 +1491,8 @@ print(comp.GetItemTexture("mytool:hatchet_1:0"))
 
 ### GetLoadItems
 
+<Version type="china" add="2.6"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -1467,6 +1526,8 @@ itemName = comp.GetLoadItems(True)
 
 ### GetUserDataInEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -1477,7 +1538,7 @@ itemName = comp.GetLoadItems(True)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetUserDataInEvent(eventName: str) -> bool
+服务端接口(eventName: str) -> bool
 ```
 
 - eventName: str，引擎事件名。
@@ -1507,7 +1568,7 @@ comp.GetUserDataInEvent("PlayerEatFoodServerEvent")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetUserDataInEvent(eventName: str) -> bool
+客户端接口(eventName: str) -> bool
 ```
 
 - eventName: str，引擎事件名。
@@ -1530,6 +1591,8 @@ comp.GetUserDataInEvent("ActorAcquiredItemClientEvent")
 ---
 
 ### LookupItemByName
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -1564,6 +1627,8 @@ exist = gameComp.LookupItemByName("minecraft:bed")
 
 ### LookupItemsByItemTag
 
+<Version type="china" add="3.10"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -1574,7 +1639,7 @@ exist = gameComp.LookupItemByName("minecraft:bed")
 <TabItem value="说明" label="说明" default>
 
 ```python
-LookupItemsByItemTag(itemTag: str) -> List[Dict[str, Any]]
+服务端接口(itemTag: str) -> List[Dict[str, Any]]
 ```
 
 - itemTag: str，物品 tag 名，如 common:apple。
@@ -1603,7 +1668,7 @@ comp.LookupItemsByItemTag("common:apple")
 <TabItem value="说明" label="说明" default>
 
 ```python
-LookupItemsByItemTag(itemTag: str) -> List[Dict[str, Any]]
+客户端接口(itemTag: str) -> List[Dict[str, Any]]
 ```
 
 - itemTag: str，物品 tag 名，如 common:apple。
@@ -1625,6 +1690,8 @@ comp.LookupItemsByItemTag("common:apple")
 ---
 
 ### RemoveItemLayer
+
+<Version type="china" add="2.5"/>
 
 <Server/> ItemCompServer
 
@@ -1663,6 +1730,8 @@ if success:
 
 ### SetAttackDamage
 
+<Version type="china" add="1.21"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -1699,6 +1768,8 @@ if success:
 ---
 
 ### SetBindBoneForBindItem
+
+<Version type="china" add="3.8"/>
 
 <Client/> ItemCompClient
 
@@ -1754,6 +1825,8 @@ comp.SetBindBoneForBindItem(player_id, itemModelId, "")
 ---
 
 ### SetBindItemOffset
+
+<Version type="china" add="3.8"/>
 
 <Client/> ItemCompClient
 
@@ -1812,6 +1885,8 @@ comp.SetBindItemOffset(player_id, itemModelId, (0, 0.5, 0))
 
 ### SetBindItemRotation
 
+<Version type="china" add="3.8"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -1864,6 +1939,8 @@ comp.SetBindItemRotation(player_id, itemModelId, (0, 90, 0))
 ---
 
 ### SetBindItemScale
+
+<Version type="china" add="3.8"/>
 
 <Client/> ItemCompClient
 
@@ -1918,6 +1995,8 @@ comp.SetBindItemScale(player_id, itemModelId, 1.5)
 
 ### SetCompassEntity
 
+<Version type="china" add="3.2"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -1950,6 +2029,8 @@ comp.SetCompassEntity(entityId)
 ---
 
 ### SetCompassTarget
+
+<Version type="china" add="3.2"/>
 
 <Client/> ItemCompClient
 
@@ -1985,6 +2066,8 @@ comp.SetCompassTarget(x,y,z)
 ---
 
 ### SetCustomName
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ItemCompServer
 
@@ -2022,6 +2105,8 @@ comp.SpawnItemToPlayerCarried(itemDict, playerId)
 
 ### SetFishingLineColor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> FishingLineCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateFishingLine(playerId)`
@@ -2056,6 +2141,8 @@ comp.SetFishingLineColor("mymod:custom_fishing_rod", (1.0, 0.0, 0.0))
 
 ### SetFishingLineMax
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> FishingLineCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateFishingLine(playerId)`
@@ -2089,6 +2176,8 @@ comp.SetFishingLineMax("mymod:custom_fishing_rod", 64.0)
 ---
 
 ### SetItemDefenceAngle
+
+<Version type="china" add="2.1"/>
 
 <Server/> ItemCompServer
 
@@ -2135,6 +2224,8 @@ comp.SetItemDefenceAngle(serverApi.GetMinecraftEnum().ItemPosType.INVENTORY, 0, 
 
 ### SetItemDurability
 
+<Version type="china" add="1.21"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -2180,6 +2271,8 @@ comp.SetItemDurability(serverApi.GetMinecraftEnum().ItemPosType.ARMOR, 0, 5)
 ---
 
 ### SetItemLayer
+
+<Version type="china" add="2.5"/>
 
 <Server/> ItemCompServer
 
@@ -2342,6 +2435,8 @@ SetItemLayer(itemDict: Dict[str, Any], layer: int, texture: str) -> bool
 
 ### SetItemMaxDurability
 
+<Version type="china" add="1.24"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -2391,6 +2486,8 @@ comp.SetItemMaxDurability(serverApi.GetMinecraftEnum().ItemPosType.INVENTORY, 0,
 ---
 
 ### SetItemTierLevel
+
+<Version type="china" add="1.21"/>
 
 <Server/> ItemCompServer
 
@@ -2443,6 +2540,8 @@ if success:
 
 ### SetItemTierSpeed
 
+<Version type="china" add="1.21"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -2480,6 +2579,8 @@ if success:
 
 ### SetMaxStackSize
 
+<Version type="china" add="1.21"/>
+
 <Server/> ItemCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItem(playerId)`
@@ -2516,6 +2617,8 @@ if success:
 ---
 
 ### SetShearsDestroyBlockSpeed
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ItemCompServer
 

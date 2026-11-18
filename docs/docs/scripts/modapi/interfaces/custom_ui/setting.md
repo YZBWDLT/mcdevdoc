@@ -4,6 +4,7 @@ sidebar_position: 2
 
 # 通用设置
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/zidingyi-ui/tongyongshezhi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CloseSettingUI
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> NeteaseWindowCompClient
 
@@ -57,6 +64,8 @@ result = comp.CloseSettingUI()
 ---
 
 ### GetSettingInst
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> NeteaseWindowCompClient
 
@@ -100,6 +109,8 @@ if settingInst:
 
 ### OpenSettingUI
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> NeteaseWindowCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateNeteaseWindow(levelId)`
@@ -137,6 +148,8 @@ result = comp.OpenSettingUI()
 ---
 
 ### RegisterSettingInst
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> NeteaseWindowCompClient
 
@@ -186,11 +199,13 @@ if settingInst:
 
 ### SettingInst 下的方法
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Tabs>
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法() -> Any
+Clear() -> Any
 ```
 
 
@@ -210,7 +225,7 @@ def Clear(self)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str, name: str, priority: Optional[int]) -> SettingInst
+AddText(key: str, name: str, priority: Optional[int]) -> SettingInst
 ```
 
 - key: str，控件 id。
@@ -235,7 +250,7 @@ def AddText(self, key, name, priority=None)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(
+AddToggle(
     key: str,
     name: str,
     callback: Callable,
@@ -268,7 +283,7 @@ def AddToggle(self, key, name, callback, priority=None, default=False)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(
+AddSlider(
     key: str,
     name: str,
     step: int,
@@ -303,7 +318,7 @@ def AddSlider(self, key, name, step, callback, priority=None, default=0)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(
+AddDropDown(
     key: str,
     name: str,
     options: List[str],
@@ -338,7 +353,7 @@ def AddDropDown(self, key, name, options, callback, priority=None, default=None)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(
+AddInput(
     key: str,
     name: str,
     callback: Callable,
@@ -371,7 +386,7 @@ def AddInput(self, key, name, callback, priority=None, default="")
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(
+AddButton(
     key: str,
     name: str,
     buttonText: str,
@@ -404,7 +419,7 @@ def AddButton(self, key, name, buttonText, callback, priority=None)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str) -> bool
+GetToggleDefault(key: str) -> bool
 ```
 
 - key: str，控件 id。
@@ -427,7 +442,7 @@ def GetToggleDefault(self, key)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str) -> str
+GetInputDefault(key: str) -> str
 ```
 
 - key: str，控件 id。
@@ -450,7 +465,7 @@ def GetInputDefault(self, key)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str) -> str
+GetDropDownDefault(key: str) -> str
 ```
 
 - key: str，控件 id。
@@ -473,7 +488,7 @@ def GetDropDownDefault(self, key)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str) -> int
+GetSliderDefault(key: str) -> int
 ```
 
 - key: str，控件 id。
@@ -496,7 +511,7 @@ def GetSliderDefault(self, key)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str) -> str
+GetText(key: str) -> str
 ```
 
 - key: str，控件 id。
@@ -519,7 +534,7 @@ def GetText(self, key)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str) -> Optional[str]
+GetButtonText(key: str) -> Optional[str]
 ```
 
 - key: str，控件 id。
@@ -542,7 +557,7 @@ def GetButtonText(self, key)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str) -> Optional[bool]
+GetToggleValue(key: str) -> Optional[bool]
 ```
 
 - key: str，控件 id。
@@ -565,7 +580,7 @@ def GetToggleValue(self, key)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str) -> Optional[int]
+GetSliderValue(key: str) -> Optional[int]
 ```
 
 - key: str，控件 id。
@@ -588,7 +603,7 @@ def GetSliderValue(self, key)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str) -> Optional[str]
+GetDropDownValue(key: str) -> Optional[str]
 ```
 
 - key: str，控件 id。
@@ -611,7 +626,7 @@ def GetDropDownValue(self, key)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str) -> Optional[str]
+GetInputValue(key: str) -> Optional[str]
 ```
 
 - key: str，控件 id。
@@ -634,7 +649,7 @@ def GetInputValue(self, key)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str, value: bool) -> SettingInst
+SetToggleDefault(key: str, value: bool) -> SettingInst
 ```
 
 - key: str，控件 id。
@@ -658,7 +673,7 @@ def SetToggleDefault(self, key, value)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str, value: str) -> SettingInst
+SetInputDefault(key: str, value: str) -> SettingInst
 ```
 
 - key: str，控件 id。
@@ -682,7 +697,7 @@ def SetInputDefault(self, key, value)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str, option: str) -> SettingInst
+SetDropDownDefault(key: str, option: str) -> SettingInst
 ```
 
 - key: str，控件 id。
@@ -706,7 +721,7 @@ def SetDropDownDefault(self, key, option)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str, value: int) -> SettingInst
+SetSliderDefault(key: str, value: int) -> SettingInst
 ```
 
 - key: str，控件 id。
@@ -730,7 +745,7 @@ def SetSliderDefault(self, key, value)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str, value: bool) -> SettingInst
+SetToggleValue(key: str, value: bool) -> SettingInst
 ```
 
 - key: str，控件 id。
@@ -754,7 +769,7 @@ def SetToggleValue(self, key, value)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str, value: int) -> SettingInst
+SetSliderValue(key: str, value: int) -> SettingInst
 ```
 
 - key: str，控件 id。
@@ -778,7 +793,7 @@ def SetSliderValue(self, key, value)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str, value: str) -> SettingInst
+SetDropDownValue(key: str, value: str) -> SettingInst
 ```
 
 - key: str，控件 id。
@@ -802,7 +817,7 @@ def SetDropDownValue(self, key, value)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str, value: str) -> SettingInst
+SetInputValue(key: str, value: str) -> SettingInst
 ```
 
 - key: str，控件 id。
@@ -826,7 +841,7 @@ def SetInputValue(self, key, value)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str, value: str) -> SettingInst
+SetButtonText(key: str, value: str) -> SettingInst
 ```
 
 - key: str，控件 id。
@@ -850,7 +865,7 @@ def SetButtonText(self, key, value)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str, value: str) -> SettingInst
+SetText(key: str, value: str) -> SettingInst
 ```
 
 - key: str，控件 id。
@@ -874,7 +889,7 @@ def SetText(self, key, value)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str, is_locked: bool) -> SettingInst
+SetLockSettingComp(key: str, is_locked: bool) -> SettingInst
 ```
 
 - key: str，控件 id。
@@ -898,7 +913,7 @@ def SetLockSettingComp(self, key, is_locked)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法() -> Dict[str, Any]
+GetFormatData() -> Dict[str, Any]
 ```
 
 
@@ -920,7 +935,7 @@ def GetFormatData(self)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法(key: str) -> Dict[str, Any]
+GetSettingsControl(key: str) -> Dict[str, Any]
 ```
 
 - key: str，控件 id。
@@ -943,7 +958,7 @@ def GetSettingsControl(self, key)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法() -> str
+GetModId() -> str
 ```
 
 
@@ -965,7 +980,7 @@ def GetModId(self)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SettingInst 下的方法() -> int
+GetAutoPriority() -> int
 ```
 
 

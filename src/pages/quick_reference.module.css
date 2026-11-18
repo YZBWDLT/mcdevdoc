@@ -1,0 +1,389 @@
+/* ================================================================
+   接口速查（/quick_reference）
+   ---------------------------------------------------------------
+   版式沿用 pages.css 的「板面」语言：标题与说明在外，内容通栏。
+   配色只用 --oreui-* 变量，不写死颜色，方便以后整体调。
+   ================================================================ */
+
+/* ---- 搜索框 ---- */
+.search {
+    position: relative;
+    margin: 0 2rem 1rem;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 50%;
+    left: 0.85rem;
+    width: 1.15rem;
+    height: 1.15rem;
+    color: #8c8d90;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* 覆盖 .oreui-input 的宽度与高度：这是页面主控件，做大一号。
+   box-sizing 必须显式写上：Infima 没有全局 border-box，
+   而 .oreui-input 是 width:100% + 左右共 5rem 内边距，不写就会横向溢出。 */
+.input {
+    box-sizing: border-box;
+    min-height: 54px;
+    padding-right: 3.2rem;
+    padding-left: 2.9rem;
+    font-size: 1.05rem;
+}
+
+.clear {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    /* 站内统一的 7×7 像素叉，21px 是三倍整数放大，像素才不会糊 */
+    background: url("/ui/close.png") center / 21px 21px no-repeat;
+    cursor: pointer;
+    opacity: 0.72;
+    transform: translateY(-50%);
+}
+
+.clear:hover {
+    opacity: 1;
+}
+
+.slash {
+    position: absolute;
+    top: 50%;
+    right: 0.85rem;
+    padding: 0.1rem 0.45rem;
+    border: 2px solid #4a4b4c;
+    color: #8c8d90;
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 0.8rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* ---- 筛选区 ---- */
+.filters {
+    margin: 0 2rem 1.1rem;
+}
+
+.filterHead {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.3rem;
+}
+
+.filterTitle {
+    color: var(--oreui-text);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.filterActions {
+    display: flex;
+    gap: 0.35rem;
+    margin-left: auto;
+}
+
+.filterAction {
+    padding: 0.1rem 0.5rem;
+    border: 2px solid #333334;
+    border-top-color: #5a5b5c;
+    background: #3b3c3d;
+    color: var(--oreui-text-dim);
+    font-family: var(--oreui-font-body);
+    font-size: 0.76rem;
+    cursor: pointer;
+}
+
+.filterAction:hover:not(:disabled) {
+    background: #444546;
+    color: var(--oreui-text);
+}
+
+.filterAction:disabled {
+    color: #6e6f72;
+    cursor: default;
+}
+
+/* 类型：桌面三列，够放下十一个分类又不至于拉太长 */
+.checkGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 0.4rem;
+    margin-bottom: 0.5rem;
+}
+
+/* 平台与状态并排，两组之间留一道竖线 */
+.filterRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 0.3rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid #3a3b3c;
+}
+
+.filterRow .filterTitle {
+    margin-right: 0.2rem;
+    color: var(--oreui-text-dim);
+    font-size: 0.82rem;
+}
+
+.filterRow .inlineChecks {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 0.9rem;
+}
+
+/* 版本下拉：收窄一点，免得把整行挤到下一排 */
+.versionPick {
+    width: 158px;
+    margin-right: 0.9rem;
+}
+
+/* ---- 结果 ---- */
+.summary {
+    margin: 0 2rem 0.6rem;
+    color: var(--oreui-text-dim);
+    font-size: 0.88rem;
+}
+
+/* 最近查看：一排小方块，点一下回到上次看的那条 */
+.recent {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0 2rem 0.75rem;
+}
+
+.recentLabel {
+    margin-right: 0.15rem;
+    color: var(--oreui-text-dim);
+    font-size: 0.82rem;
+}
+
+.recentItem {
+    padding: 0.15rem 0.5rem;
+    border: 2px solid #333334;
+    border-top-color: #5a5b5c;
+    background: #3b3c3d;
+    color: var(--oreui-text);
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 0.78rem;
+    text-decoration: none;
+}
+
+.recentItem:hover {
+    background: #444546;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* 清除：跟条目同样式，但字色压暗，别抢主内容 */
+.recentClear {
+    padding: 0.15rem 0.5rem;
+    border: 2px solid transparent;
+    background: transparent;
+    color: #8c8d90;
+    font-family: var(--oreui-font-body);
+    font-size: 0.76rem;
+    cursor: pointer;
+}
+
+.recentClear:hover {
+    border-color: #333334;
+    border-top-color: #5a5b5c;
+    background: #3b3c3d;
+    color: var(--oreui-text);
+}
+
+/* 数字跟正文一致，不用等宽 */
+.summary strong {
+    color: var(--oreui-text);
+    font-family: var(--oreui-font-body);
+    font-variant-numeric: tabular-nums;
+    font-weight: normal;
+}
+
+.results {
+    /* 通栏：行悬停的底色要铺到屏幕两侧 */
+    border-right: 0;
+    border-left: 0;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.12rem 0.8rem;
+    padding: 0.55rem 2rem 0.6rem;
+    border-bottom: 1px solid #3a3b3c;
+    color: var(--oreui-text);
+    text-decoration: none;
+}
+
+.row:last-child {
+    border-bottom: 0;
+}
+
+.row:hover,
+.rowActive {
+    background: rgba(0, 0, 0, 0.16);
+    color: var(--oreui-text);
+    text-decoration: none;
+}
+
+.name {
+    overflow: hidden;
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 命名空间（minecraft: / Entity. / 命令斜杠）压暗，主名保持亮白 */
+.namespace {
+    color: #9a9b9e;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.version {
+    padding: 0 0.32rem;
+    border: 1px solid #4a4b4c;
+    color: var(--oreui-text-dim);
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 0.7rem;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+/* 状态标记：实验性最要紧（正式版本里根本拿不到），颜色给足 */
+.badgeExp,
+.badgeDep,
+.badgeRem {
+    padding: 0 0.32rem;
+    border: 1px solid currentColor;
+    font-size: 0.68rem;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+.badgeExp {
+    color: #e0a75c;
+}
+
+.badgeDep {
+    color: #cfc06d;
+}
+
+.badgeRem {
+    color: #dd8c8c;
+}
+
+.side {
+    padding: 0 0.32rem;
+    font-size: 0.68rem;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+.server {
+    color: #8fd673;
+}
+
+.client {
+    color: #7fc4e8;
+}
+
+.desc {
+    display: -webkit-box;
+    grid-column: 1 / -1;
+    overflow: hidden;
+    color: var(--oreui-text-dim);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.crumb {
+    grid-column: 1 / -1;
+    color: #8c8d90;
+    font-size: 0.72rem;
+}
+
+/* 命中处：不要黄底，用半透明绿，暗色下不刺眼 */
+.results mark {
+    padding: 0;
+    background: rgba(108, 195, 73, 0.42);
+    color: #ffffff;
+}
+
+.empty {
+    margin: 0;
+    padding: 2rem;
+    color: var(--oreui-text-dim);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.more {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #333334;
+    border-top-color: #5a5b5c;
+    background: #3b3c3d;
+    color: var(--oreui-text-dim);
+    font-family: var(--oreui-font-body);
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.more:hover {
+    background: #444546;
+    color: var(--oreui-text);
+}
+
+/* ---- 窄屏 ---- */
+@media (max-width: 768px) {
+    .search,
+    .filters,
+    .recent,
+    .summary {
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+
+    .checkGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .row {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    .name {
+        font-size: 0.88rem;
+        white-space: normal;
+        word-break: break-all;
+    }
+}
+
+@media (max-width: 420px) {
+    .checkGrid {
+        grid-template-columns: 1fr;
+    }
+}

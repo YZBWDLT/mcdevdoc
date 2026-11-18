@@ -4,6 +4,7 @@ sidebar_position: 6
 
 # 属性
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/wanjia/shuxing.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddPlayerExperience
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ExpComponentServer
 
@@ -57,6 +64,8 @@ comp.AddPlayerExperience(25)
 
 ### AddPlayerLevel
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> LevelComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateLv(playerId)`
@@ -89,6 +98,8 @@ comp.AddPlayerLevel(2)
 ---
 
 ### CollectOnlineClientData
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PlayerCompServer
 
@@ -160,6 +171,8 @@ comp.CollectOnlineClientData(['player', 'world', 'entity', 'game'], ProcessData,
 
 ### GetArmorValue
 
+<Version type="china" add="2.5"/>
+
 <Client/> GameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -192,6 +205,8 @@ print(comp.GetArmorValue(playerId))
 ---
 
 ### GetEnchantmentSeed
+
+<Version type="china" add="2.9"/>
 
 <Server/> PlayerCompServer
 
@@ -229,6 +244,8 @@ comp.GetEnchantmentSeed()
 
 ### GetPlayerCurLevelExp
 
+<Version type="china" add="2.5"/>
+
 <Client/> GameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -262,6 +279,8 @@ print(comp.GetPlayerCurLevelExp(playerId))
 
 ### GetPlayerCurrentExhaustionValue
 
+<Version type="china" add="3.4"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -294,6 +313,8 @@ value = comp.GetPlayerCurrentExhaustionValue()
 
 ### GetPlayerExp
 
+<Version type="china" add="2.5"/>
+
 <Server/> ExpComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateExp(entityId)`
@@ -304,7 +325,7 @@ value = comp.GetPlayerCurrentExhaustionValue()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerExp(isPercent: bool) -> float
+服务端接口(isPercent: bool) -> float
 ```
 
 - isPercent: bool，是否为百分比。
@@ -337,7 +358,7 @@ print(comp.GetPlayerExp(False))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerExp(playerId: str, isPercent: bool) -> float
+客户端接口(playerId: str, isPercent: bool) -> float
 ```
 
 - playerId: str，玩家 id。
@@ -360,6 +381,8 @@ print(comp.GetPlayerExp(playerId, False))
 ---
 
 ### GetPlayerHealthLevel
+
+<Version type="china" add="1.23"/>
 
 <Server/> PlayerCompServer
 
@@ -393,6 +416,8 @@ print(comp.GetPlayerHealthLevel())
 
 ### GetPlayerHealthTick
 
+<Version type="china" add="1.23"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -425,6 +450,8 @@ print(comp.GetPlayerHealthTick())
 
 ### GetPlayerHunger
 
+<Version type="china" add="2.7"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -435,7 +462,7 @@ print(comp.GetPlayerHealthTick())
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerHunger() -> float
+服务端接口() -> float
 ```
 
 
@@ -463,7 +490,7 @@ comp.GetPlayerHunger()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerHunger() -> float
+客户端接口() -> float
 ```
 
 
@@ -484,6 +511,8 @@ comp.GetPlayerHunger()
 ---
 
 ### GetPlayerLevel
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> LevelComponentServer
 
@@ -517,6 +546,8 @@ comp.GetPlayerLevel()
 
 ### GetPlayerMaxExhaustionValue
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -548,6 +579,8 @@ comp.GetPlayerMaxExhaustionValue()
 ---
 
 ### GetPlayerStarveLevel
+
+<Version type="china" add="1.23"/>
 
 <Server/> PlayerCompServer
 
@@ -581,6 +614,8 @@ print(comp.GetPlayerStarveLevel())
 
 ### GetPlayerStarveTick
 
+<Version type="china" add="1.23"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -613,6 +648,8 @@ print(comp.GetPlayerStarveTick())
 
 ### GetPlayerTotalExp
 
+<Version type="china" add="1.21"/>
+
 <Server/> ExpComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateExp(entityId)`
@@ -623,7 +660,7 @@ print(comp.GetPlayerStarveTick())
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerTotalExp() -> int
+服务端接口() -> int
 ```
 
 
@@ -651,7 +688,7 @@ print(comp.GetPlayerTotalExp())
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerTotalExp(playerId: str) -> int
+客户端接口(playerId: str) -> int
 ```
 
 - playerId: str，玩家 id。
@@ -673,6 +710,8 @@ print(comp.GetPlayerTotalExp(playerId))
 ---
 
 ### IsHighLevelMultiJointOfficialSkin
+
+<Version type="china" add="3.4"/>
 
 <Client/> GameComponentClient
 
@@ -709,6 +748,8 @@ def onUpdatePlayerSkinClientEvent(self,args):
 
 ### IsHighLevelOfficialSkin
 
+<Version type="china" add="3.4"/>
+
 <Client/> GameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -743,6 +784,8 @@ def onUpdatePlayerSkinClientEvent(self,args):
 ---
 
 ### IsMultiJointOfficialSkin
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> GameComponentClient
 
@@ -779,6 +822,8 @@ def onUpdatePlayerSkinClientEvent(self,args):
 
 ### IsOfficialSkin
 
+<Version type="china" add="3.4"/>
+
 <Client/> GameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -814,6 +859,8 @@ def onUpdatePlayerSkinClientEvent(self,args):
 
 ### IsPlayerNaturalRegen
 
+<Version type="china" add="1.23"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -846,6 +893,8 @@ print(comp.IsPlayerNaturalRegen())
 
 ### IsPlayerNaturalStarve
 
+<Version type="china" add="1.23"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -877,6 +926,8 @@ print(comp.IsPlayerNaturalStarve())
 ---
 
 ### SetEnchantmentSeed
+
+<Version type="china" add="2.9"/>
 
 <Server/> PlayerCompServer
 
@@ -915,6 +966,8 @@ comp.SetEnchantmentSeed(32)
 
 ### SetPlayerCurrentExhaustionValue
 
+<Version type="china" add="3.4"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -947,6 +1000,8 @@ result = comp.SetPlayerCurrentExhaustionValue(2.0)
 ---
 
 ### SetPlayerHealthLevel
+
+<Version type="china" add="1.23"/>
 
 <Server/> PlayerCompServer
 
@@ -985,6 +1040,8 @@ comp.SetPlayerHealthLevel(16) # 饥饿值大于等于16就会进入自然恢复�
 
 ### SetPlayerHealthTick
 
+<Version type="china" add="1.23"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -1021,6 +1078,8 @@ comp.SetPlayerHealthTick(40) # 自然恢复状态下每隔2（40/20）秒恢复1
 ---
 
 ### SetPlayerHunger
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PlayerCompServer
 
@@ -1059,6 +1118,8 @@ comp.SetPlayerHunger(10)
 
 ### SetPlayerMaxExhaustionValue
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -1096,6 +1157,8 @@ comp.SetPlayerMaxExhaustionValue(10.0)
 
 ### SetPlayerNaturalRegen
 
+<Version type="china" add="1.23"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -1129,6 +1192,8 @@ comp.SetPlayerNaturalRegen(False) # 关闭自然恢复，即使饥饿值大于�
 
 ### SetPlayerNaturalStarve
 
+<Version type="china" add="1.23"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -1161,6 +1226,8 @@ comp.SetPlayerNaturalStarve(False) # 关闭饥饿掉血，即使饥饿值小于�
 ---
 
 ### SetPlayerPrefixAndSuffixName
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> NameComponentServer
 
@@ -1205,6 +1272,8 @@ comp.SetPlayerPrefixAndSuffixName("红队",serverApi.GenerateColor('RED'),'肉�
 
 ### SetPlayerStarveLevel
 
+<Version type="china" add="1.23"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -1242,6 +1311,8 @@ comp.SetPlayerStarveLevel(2) # 饥饿值小于等于2就会进入饥饿掉血状
 
 ### SetPlayerStarveTick
 
+<Version type="china" add="1.23"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -1278,6 +1349,8 @@ comp.SetPlayerStarveTick(40) # 饥饿掉血状态下每隔2（40/20）秒扣除1
 ---
 
 ### SetPlayerTotalExp
+
+<Version type="china" add="1.21"/>
 
 <Server/> ExpComponentServer
 
@@ -1317,6 +1390,8 @@ comp.SetPlayerTotalExp(25)
 
 ### Swing
 
+<Version type="china" add="1.24"/>
+
 <Client/> PlayerCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayer(clientApi.GetLevelId())`
@@ -1348,6 +1423,8 @@ comp.Swing()
 ---
 
 ### getUid
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> PlayerCompClient
 

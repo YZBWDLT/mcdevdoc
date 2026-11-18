@@ -4,6 +4,7 @@ sidebar_position: 1
 
 # 世界
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/shijie.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_event" color="green"/>
+
 ---
 
 ### AchievementCompleteEvent
+
+<Version type="china" add="2.3"/>
 
 <Server/>
 
@@ -71,6 +78,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### AddEntityClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -136,6 +145,8 @@ class MyClientSystem(ClientSystem):
 
 ### AddEntityServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 服务端侧创建新实体，或实体从存档加载时触发。
@@ -200,6 +211,8 @@ class MyServerSystem(ServerSystem):
 
 ### AddPlayerAOIClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家加入游戏时视野内存在其他玩家，或者其余玩家进入当前玩家视野时触发的事件，替换 AddPlayerEvent。
@@ -249,6 +262,8 @@ class MyClientSystem(ClientSystem):
 
 ### AddPlayerCreatedClientEvent
 
+<Version type="china" add="2.3"/>
+
 <Client/>
 
 玩家进入当前玩家所在的区块 AOI 后，玩家皮肤数据异步加载完成后触发的事件。
@@ -297,6 +312,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### AddServerPlayerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -359,6 +376,8 @@ class MyServerSystem(ServerSystem):
 
 ### ChunkAcquireDiscardedClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 触发时机：客户端区块即将被卸载时。
@@ -408,6 +427,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### ChunkAcquireDiscardedServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -463,6 +484,8 @@ class MyServerSystem(ServerSystem):
 
 ### ChunkGeneratedServerEvent
 
+<Version type="china" add="3.4"/>
+
 <Server/>
 
 触发时机：区块创建完成时触发。
@@ -511,6 +534,8 @@ class MyServerSystem(ServerSystem):
 
 ### ChunkLoadedClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 触发时机：客户端区块加载完成时。
@@ -556,6 +581,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### ChunkLoadedServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -609,6 +636,8 @@ class MyServerSystem(ServerSystem):
 
 ### ClientLoadAddonsFinishServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：客户端 mod 加载完成时，服务端触发此事件。服务器可以使用此事件，往客户端发送数据给其初始化。
@@ -652,6 +681,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### CommandEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -704,6 +735,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### CustomCommandTriggerServerEvent
+
+<Version type="china" add="3.2"/>
 
 <Server/>
 
@@ -796,6 +829,8 @@ class MyServerSystem(ServerSystem):
 
 ### DelServerPlayerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：删除玩家时触发该事件。
@@ -843,6 +878,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### EntityRemoveEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -894,6 +931,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### ExplosionServerEvent
+
+<Version type="china" add="1.21"/>
 
 <Server/>
 
@@ -952,6 +991,8 @@ class MyServerSystem(ServerSystem):
 
 ### GameRenderTickEvent
 
+<Version type="china" add="3.2"/>
+
 <Client/>
 
 客户端渲染帧开始时触发该事件,一秒触发次数为当前的帧数。
@@ -989,6 +1030,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### GlobalCommandServerEvent
+
+<Version type="china" add="3.2"/>
 
 <Server/>
 
@@ -1057,6 +1100,8 @@ def OnGlobalCommandServerEvent(self, args: Dict[str, Any]) -> None: ...
 
 ### LoadClientAddonScriptsAfter
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 客户端加载 mod 完成事件。
@@ -1094,6 +1139,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### LoadServerAddonScriptsAfter
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -1133,6 +1180,8 @@ class MyServerSystem(ServerSystem):
 
 ### NewOnEntityAreaEvent
 
+<Version type="china" add="1.23"/>
+
 <Server/>
 
 触发时机：通过 RegisterEntityAOIEvent 注册过 AOI 事件后，当有实体进入或离开注册感应区域时触发该事件。
@@ -1171,37 +1220,7 @@ def NewOnEntityAreaEvent(self, args):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnNewOnEntityAreaEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "NewOnEntityAreaEvent",
-            self, self.OnNewOnEntityAreaEvent)
-
-    def OnNewOnEntityAreaEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### RegisterEntityAOIEvent
 
 <Server/> DimensionCompServer
 
@@ -1213,16 +1232,20 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnNewOnEntityAreaEvent(self, args: Dict[str, Any]) -> None: ...
+RegisterEntityAOIEvent(
+    dimension: int,
+    name: str,
+    aabb: Tuple[float, float, float, float, float, float],
+    ignoredEntities: List[str],
+    entityType: int,
+) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| dimension | int | 维度 id。 |
-| name | str | 注册的感应区域名。 |
-| aabb | Tuple[float, float, float, float, float, float] | 感应区域的坐标范围，依次为 minX, minY, minZ, maxX, maxY, maxZ。 |
-| ignoredEntities | List[str] | 忽略的实体 id 列表。 |
-| entityType | int | 期望响应的实体类型，不传则响应所有的实体类型[EntityType 枚举](/docs/docs/scripts/modapi/enums#entitytype)。 |
+- dimension: int，维度 id。
+- name: str，注册的感应区域名。
+- aabb: Tuple[float, float, float, float, float, float]，感应区域的坐标范围，依次为 minX, minY, minZ, maxX, maxY, maxZ。
+- ignoredEntities: List[str]，忽略的实体 id 列表。
+- entityType: int，期望响应的实体类型，不传则响应所有的实体类型[EntityType 枚举](/docs/docs/scripts/modapi/enums#entitytype)。
 
 **返回值**：bool，是否注册成功。
 
@@ -1243,6 +1266,8 @@ comp.RegisterEntityAOIEvent(0, "test", (0, 0, 0, 1, 1, 1), None)
 </TabItem>
 </Tabs>
 
+#### UnRegisterEntityAOIEvent
+
 <Server/> DimensionCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateDimension(levelId)`
@@ -1253,13 +1278,11 @@ comp.RegisterEntityAOIEvent(0, "test", (0, 0, 0, 1, 1, 1), None)
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnNewOnEntityAreaEvent(self, args: Dict[str, Any]) -> None: ...
+UnRegisterEntityAOIEvent(dimension: int, name: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| dimension | int | 维度 id。 |
-| name | str | 需要反注册的感应区域名。 |
+- dimension: int，维度 id。
+- name: str，需要反注册的感应区域名。
 
 **返回值**：bool，是否注册成功。
 
@@ -1278,6 +1301,8 @@ comp.UnRegisterEntityAOIEvent(0, "test")
 ---
 
 ### OnCommandOutputClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -1327,6 +1352,8 @@ class MyClientSystem(ClientSystem):
 
 ### OnCommandOutputServerEvent
 
+<Version type="china" add="1.21"/>
+
 <Server/>
 
 Command 命令执行成功事件。
@@ -1374,6 +1401,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### OnContainerFillLoottableServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -1430,6 +1459,8 @@ class MyServerSystem(ServerSystem):
 
 ### OnLightningLevelChangeServerEvent
 
+<Version type="china" add="1.22"/>
+
 <Server/>
 
 打雷强度发生改变。
@@ -1473,6 +1504,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### OnLocalLightningLevelChangeServerEvent
+
+<Version type="china" add="1.25"/>
 
 <Server/>
 
@@ -1520,6 +1553,8 @@ class MyServerSystem(ServerSystem):
 
 ### OnLocalPlayerStopLoading
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 触发时机：玩家进入存档，出生点地形加载完成时触发。该事件触发时可以进行切换维度的操作。
@@ -1563,6 +1598,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### OnLocalRainLevelChangeServerEvent
+
+<Version type="china" add="1.25"/>
 
 <Server/>
 
@@ -1610,6 +1647,8 @@ class MyServerSystem(ServerSystem):
 
 ### OnRainLevelChangeServerEvent
 
+<Version type="china" add="1.22"/>
+
 <Server/>
 
 下雨强度发生改变。
@@ -1654,6 +1693,8 @@ class MyServerSystem(ServerSystem):
 
 ### OnScriptTickClient
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 客户端 tick 事件,1 秒 30 次。
@@ -1692,6 +1733,8 @@ class MyClientSystem(ClientSystem):
 
 ### OnScriptTickServer
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 服务器 tick 时触发,1 秒有 30 个 tick。
@@ -1729,6 +1772,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlaceNeteaseLargeFeatureServerEvent
+
+<Version type="china" add="2.9"/>
 
 <Server/>
 
@@ -1788,6 +1833,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlaceNeteaseStructureFeatureEvent
 
+<Version type="china" add="1.21"/>
+
 <Server/>
 
 触发时机：首次生成地形时，结构特征即将生成时服务端抛出该事件。
@@ -1844,37 +1891,7 @@ class MyServerSystem(ServerSystem):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnPlaceNeteaseStructureFeatureEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "PlaceNeteaseStructureFeatureEvent",
-            self, self.OnPlaceNeteaseStructureFeatureEvent)
-
-    def OnPlaceNeteaseStructureFeatureEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### AddNeteaseFeatureWhiteList
 
 <Server/> FeatureCompServer
 
@@ -1886,12 +1903,10 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnPlaceNeteaseStructureFeatureEvent(self, args: Dict[str, Any]) -> None: ...
+AddNeteaseFeatureWhiteList(structureName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| structureName | str | 结构的 identifier。 |
+- structureName: str，结构的 identifier。
 
 **返回值**：bool，是否增加成功。
 
@@ -1908,6 +1923,8 @@ comp.AddNeteaseFeatureWhiteList("test:pumpkins")
 </TabItem>
 </Tabs>
 
+#### RemoveNeteaseFeatureWhiteList
+
 <Server/> FeatureCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateFeature(levelId)`
@@ -1918,12 +1935,10 @@ comp.AddNeteaseFeatureWhiteList("test:pumpkins")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnPlaceNeteaseStructureFeatureEvent(self, args: Dict[str, Any]) -> None: ...
+RemoveNeteaseFeatureWhiteList(structureName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| structureName | str | 结构名称。 |
+- structureName: str，结构名称。
 
 **返回值**：bool，是否移除成功。
 
@@ -1940,6 +1955,8 @@ comp.RemoveNeteaseFeatureWhiteList("test:pumpkins")
 </TabItem>
 </Tabs>
 
+#### ClearAllNeteaseFeatureWhiteList
+
 <Server/> FeatureCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateFeature(levelId)`
@@ -1950,7 +1967,7 @@ comp.RemoveNeteaseFeatureWhiteList("test:pumpkins")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnPlaceNeteaseStructureFeatureEvent(self, args: Dict[str, Any]) -> None: ...
+ClearAllNeteaseFeatureWhiteList() -> bool
 ```
 
 
@@ -1971,6 +1988,8 @@ comp.ClearAllNeteaseFeatureWhiteList()
 ---
 
 ### PlayerIntendLeaveServerEvent
+
+<Version type="china" add="1.25"/>
 
 <Server/>
 
@@ -2019,6 +2038,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerJoinMessageEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -2074,6 +2095,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerLeftMessageServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：准备显示“xxx 离开游戏”的玩家离开提示文字时服务端抛出的事件。
@@ -2124,6 +2147,8 @@ class MyServerSystem(ServerSystem):
 
 ### RemoveEntityClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 客户端侧实体被移除时触发。
@@ -2172,6 +2197,8 @@ class MyClientSystem(ClientSystem):
 
 ### RemovePlayerAOIClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家离开当前玩家视野时触发的事件。
@@ -2215,6 +2242,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### ServerChatEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -2273,6 +2302,8 @@ def OnServerChat(self, args):
 
 ### ServerPostBlockPatternEvent
 
+<Version type="china" add="1.21"/>
+
 <Server/>
 
 触发时机：用方块组合生成生物，生成生物之后触发该事件。
@@ -2327,6 +2358,8 @@ class MyServerSystem(ServerSystem):
 
 ### ServerPreBlockPatternEvent
 
+<Version type="china" add="1.21"/>
+
 <Server/>
 
 触发时机：用方块组合生成生物，在放置最后一个组成方块时触发该事件。
@@ -2378,6 +2411,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### ServerSpawnMobEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -2444,6 +2479,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### UnLoadClientAddonScriptsBefore
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 

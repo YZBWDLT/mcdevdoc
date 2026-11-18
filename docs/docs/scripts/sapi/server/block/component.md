@@ -8,6 +8,7 @@ import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 import Optional from "/src/components/highlight/optional"
 import RestrictedMode from "/src/components/highlight/restrictedMode"
+import Button from '/src/components/button/base';
 
 本文主要记录方块组件相关接口。
 
@@ -31,6 +32,9 @@ import RestrictedMode from "/src/components/highlight/restrictedMode"
 | 配方加工 | [`BlockRecipeProcessingComponent`](#blockrecipeprocessingcomponent-类) | `beta` |
 | 振动属性 | [`BlockVibrationPropertiesComponent`](#blockvibrationpropertiescomponent-类) | `beta` |
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

@@ -4,6 +4,7 @@ sidebar_position: 3
 
 # 关节
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -14,11 +15,23 @@ import Client from '/src/components/highlight/client';
 
 本文主要记录关节相关的接口，共 21 个。
 
+:::warning[注意]
+
+物理系列接口属于**实验性内容**，后续版本可能出现接口变更、开发环境变更等情况。网易建议开发者合理安排开发内容与正式版本，避免物理系统更新后出现模组失效。有关物理系统的完整说明与使用教程，请查阅网易的[物理的使用指南](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/20-wuliwanfakaifa/1-wulideshiyongzhinan.html)。
+
+:::
+
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/wuli/guanjie.html"/>
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
 
 ---
 
 ### CreateDistanceJoint
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -62,6 +75,8 @@ levelComp.SetDistanceJointParams(jointId, 2.0, 4.0, 200.0, 30.0, 14)
 
 ### CreateFixedJoint
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -102,6 +117,8 @@ jointId = levelComp.CreateFixedJoint(entityId0, entityId1, (0, 80, 0), (0, 80, 0
 ---
 
 ### CreatePrismaticJoint
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -146,6 +163,8 @@ jointId = levelComp.CreatePrismaticJoint(entityId0, entityId1, (0, 80, 0), (0, 8
 
 ### CreateRevoluteJoint
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -189,6 +208,8 @@ jointId = levelComp.CreateRevoluteJoint(entityId0, entityId1, (0, 80, 0), (0, 80
 
 ### CreateSphericalJoint
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -230,6 +251,8 @@ jointId = levelComp.CreateSphericalJoint(entityId0, entityId1, (0, 80, 0), (0, 8
 
 ### DestroyAllJoints
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -258,6 +281,8 @@ levelComp.DestroyAllJoints()
 ---
 
 ### DestroyJoint
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -292,6 +317,8 @@ levelComp.DestroyJoint(jointId)
 
 ### DestroyJointsForEntity
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -324,6 +351,8 @@ destroyedCount = levelComp.DestroyJointsForEntity(entityId)
 ---
 
 ### GetJointBreakForce
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PhysxComponentServer
 
@@ -358,6 +387,8 @@ print levelComp.GetJointBreakForce(jointId)
 
 ### GetJointFrames
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -390,6 +421,8 @@ print levelComp.GetJointFrames(jointId)
 ---
 
 ### GetJointType
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PhysxComponentServer
 
@@ -424,6 +457,8 @@ print levelComp.GetJointType(jointId)
 
 ### GetRevoluteJointAngle
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -456,6 +491,8 @@ print levelComp.GetRevoluteJointAngle(jointId)
 ---
 
 ### GetRevoluteJointVelocity
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -490,6 +527,8 @@ print levelComp.GetRevoluteJointVelocity(jointId)
 
 ### IsJointBroken
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -522,6 +561,8 @@ print levelComp.IsJointBroken(jointId)
 ---
 
 ### SetDistanceJointParams
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -569,6 +610,8 @@ levelComp.SetDistanceJointParams(jointId, 2.0, 4.0, 200.0, 30.0, 14)
 
 ### SetJointBreakForce
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -604,6 +647,8 @@ levelComp.SetJointBreakForce(jointId, 500.0, 100.0)
 
 ### SetJointCollisionEnabled
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -637,6 +682,8 @@ levelComp.SetJointCollisionEnabled(jointId, False)
 ---
 
 ### SetPrismaticJointLimit
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -673,6 +720,8 @@ levelComp.SetPrismaticJointLimit(jointId, -3.0, 3.0)
 
 ### SetRevoluteJointDrive
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(serverApi.GetLevelId())`
@@ -707,6 +756,8 @@ levelComp.SetRevoluteJointDrive(jointId, 1.5, 100000.0)
 ---
 
 ### SetRevoluteJointLimit
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -743,6 +794,8 @@ levelComp.SetRevoluteJointLimit(jointId, -math.pi / 3.0, math.pi / 3.0)
 ---
 
 ### SetSphericalJointLimitCone
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 

@@ -4,6 +4,7 @@ sidebar_position: 7
 
 # 行为
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/wanjia/xingwei.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddPlayerAroundEntityMotion
+
+<Version type="china" add="2.4"/>
 
 <Server/> ActorMotionComponentServer
 
@@ -75,6 +82,8 @@ motionComp.StartPlayerMotion(mID)
 
 ### AddPlayerAroundPointMotion
 
+<Version type="china" add="2.4"/>
+
 <Server/> ActorMotionComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorMotion(playerId)`
@@ -127,6 +136,8 @@ motionComp.StartPlayerMotion(mID)
 ---
 
 ### AddPlayerTrackMotion
+
+<Version type="china" add="2.4"/>
 
 <Server/> ActorMotionComponentServer
 
@@ -190,6 +201,8 @@ motionComp.StartPlayerMotion(mID)
 
 ### AddPlayerVelocityMotion
 
+<Version type="china" add="2.4"/>
+
 <Server/> ActorMotionComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorMotion(playerId)`
@@ -239,6 +252,8 @@ motionComp.StartPlayerMotion(mID)
 
 ### BeginSprinting
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorMotionComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorMotion(localPlayerId)`
@@ -267,6 +282,8 @@ comp.BeginSprinting()
 ---
 
 ### ChangePlayerDimension
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> DimensionCompServer
 
@@ -305,6 +322,8 @@ comp.ChangePlayerDimension(0, (0,4,0))
 ---
 
 ### ChangePlayerFlyState
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> FlyComponentServer
 
@@ -347,6 +366,8 @@ comp.ChangePlayerFlyState(True) # 给予飞行能力，并进入飞行状态
 
 ### EnableKeepInventory
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -384,6 +405,8 @@ succ = comp.EnableKeepInventory(True)
 
 ### EndSprinting
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorMotionComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorMotion(localPlayerId)`
@@ -413,6 +436,8 @@ comp.EndSprinting()
 
 ### GetEntityRider
 
+<Version type="china" add="2.7"/>
+
 <Server/> RideCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRide(entityId)`
@@ -423,7 +448,7 @@ comp.EndSprinting()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEntityRider() -> str
+服务端接口() -> str
 ```
 
 
@@ -451,7 +476,7 @@ riderId = comp.GetEntityRider()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEntityRider() -> str
+客户端接口() -> str
 ```
 
 
@@ -472,6 +497,8 @@ riderId = comp.GetEntityRider()
 ---
 
 ### GetInteracteCenterOffset
+
+<Version type="china" add="2.8"/>
 
 <Server/> PlayerCompServer
 
@@ -505,6 +532,8 @@ comp.GetInteracteCenterOffset()
 
 ### GetIsBlocking
 
+<Version type="china" add="2.1"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -536,6 +565,8 @@ comp.GetIsBlocking()
 ---
 
 ### GetPickCenterOffset
+
+<Version type="china" add="2.8"/>
 
 <Client/> PlayerCompClient
 
@@ -569,6 +600,8 @@ comp.GetPickCenterOffset()
 
 ### GetPickRange
 
+<Version type="china" add="2.8"/>
+
 <Client/> PlayerCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -601,6 +634,8 @@ comp.GetPickRange()
 
 ### GetPlayerDestroyTotalTime
 
+<Version type="china" add="3.2"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -611,7 +646,7 @@ comp.GetPickRange()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerDestroyTotalTime(blockName: str) -> float
+服务端接口(blockName: str) -> float
 ```
 
 - blockName: str，方块标识符，格式[namespace:name:auxvalue]，auxvalue 默认为 0。
@@ -640,7 +675,7 @@ comp.GetPlayerDestroyTotalTime("minecraft:diamond_block")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerDestroyTotalTime(blockName: str) -> float
+客户端接口(blockName: str) -> float
 ```
 
 - blockName: str，方块标识符，格式[namespace:name:auxvalue]，auxvalue 默认为 0。
@@ -662,6 +697,8 @@ comp.GetPlayerDestroyTotalTime("minecraft:diamond_block")
 ---
 
 ### GetPlayerExhaustionRatioByType
+
+<Version type="china" add="1.24"/>
 
 <Server/> PlayerCompServer
 
@@ -697,6 +734,8 @@ ratio = comp.GetPlayerExhaustionRatioByType(jumpType)
 
 ### GetPlayerInteracteRange
 
+<Version type="china" add="2.8"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -729,6 +768,8 @@ comp.GetPlayerInteracteRange()
 
 ### GetPlayerIsFishing
 
+<Version type="china" add="3.8"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -739,7 +780,7 @@ comp.GetPlayerInteracteRange()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerIsFishing() -> bool
+服务端接口() -> bool
 ```
 
 
@@ -767,7 +808,7 @@ isFishing = comp.GetPlayerIsFishing()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerIsFishing() -> bool
+客户端接口() -> bool
 ```
 
 
@@ -788,6 +829,8 @@ isFishing = comp.GetPlayerIsFishing()
 ---
 
 ### GetPlayerMotions
+
+<Version type="china" add="2.4"/>
 
 <Server/> ActorMotionComponentServer
 
@@ -829,6 +872,8 @@ motions = motionComp.GetPlayerMotions()
 
 ### GetPlayerRespawnPos
 
+<Version type="china" add="2.0"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -867,6 +912,8 @@ print comp.GetPlayerRespawnPos()
 
 ### GetRelevantPlayer
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -900,6 +947,8 @@ comp.GetRelevantPlayer(exceptId)
 
 ### IsEntityRiding
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> RideCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRide(entityId)`
@@ -931,6 +980,8 @@ isRiding = comp.IsEntityRiding()
 ---
 
 ### IsInScaffolding
+
+<Version type="china" add="3.3"/>
 
 <Client/> PlayerCompClient
 
@@ -964,6 +1015,8 @@ comp.IsInScaffolding()
 
 ### IsOnLadder
 
+<Version type="china" add="3.3"/>
+
 <Client/> PlayerCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -995,6 +1048,8 @@ comp.IsOnLadder()
 ---
 
 ### IsPlayerCanFly
+
+<Version type="china" add="2.10"/>
 
 <Server/> FlyComponentServer
 
@@ -1028,6 +1083,8 @@ comp.IsPlayerCanFly()
 
 ### IsPlayerFlying
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> FlyComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateFly(playerId)`
@@ -1059,6 +1116,8 @@ comp.IsPlayerFlying()
 ---
 
 ### OpenNeteaseContainer
+
+<Version type="china" add="3.6"/>
 
 <Server/> PlayerCompServer
 
@@ -1110,6 +1169,8 @@ comp.OpenNeteaseContainer("netease_container.netease_custom_container_screen", "
 
 ### OpenWorkBench
 
+<Version type="china" add="2.8"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(playerId)`
@@ -1146,6 +1207,8 @@ comp.OpenWorkBench()
 
 ### PickUpItemEntity
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -1179,6 +1242,8 @@ comp.PickUpItemEntity(playerEntityId, itemEntityId)
 ---
 
 ### PlayerAttackEntity
+
+<Version type="china" add="2.11"/>
 
 <Server/> PlayerCompServer
 
@@ -1219,6 +1284,8 @@ suc = comp.PlayerAttackEntity("-123456")
 ---
 
 ### PlayerDestroyBlock
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -1268,6 +1335,8 @@ comp.PlayerDestroyBlock((0, 6, 0),0)
 
 ### PlayerUseItemToEntity
 
+<Version type="china" add="1.23"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(playerId)`
@@ -1306,6 +1375,8 @@ suc = comp.PlayerUseItemToEntity("-123456")
 ---
 
 ### PlayerUseItemToPos
+
+<Version type="china" add="1.23"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -1354,6 +1425,8 @@ comp.PlayerUseItemToPos((0, 5, 0), serverApi.GetMinecraftEnum().ItemPosType.INVE
 
 ### RemovePlayerMotion
 
+<Version type="china" add="2.4"/>
+
 <Server/> ActorMotionComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorMotion(playerId)`
@@ -1387,6 +1460,8 @@ motionComp.RemovePlayerMotion(mID)
 
 ### SetBanPlayerFishing
 
+<Version type="china" add="2.8"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -1419,6 +1494,8 @@ comp.SetBanPlayerFishing(True)
 ---
 
 ### SetInteracteCenterOffset
+
+<Version type="china" add="2.8"/>
 
 <Server/> PlayerCompServer
 
@@ -1457,6 +1534,8 @@ comp.SetInteracteCenterOffset(offset)
 ---
 
 ### SetPickCenterOffset
+
+<Version type="china" add="2.8"/>
 
 <Client/> PlayerCompClient
 
@@ -1497,6 +1576,8 @@ comp.SetPickCenterOffset(offset)
 
 ### SetPickRange
 
+<Version type="china" add="2.8"/>
+
 <Client/> PlayerCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -1534,6 +1615,8 @@ comp.SetPickRange(pickRange)
 
 ### SetPickUpArea
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -1567,6 +1650,8 @@ succ = comp.SetPickUpArea((5, 0, 3))
 ---
 
 ### SetPlayerAttackSpeedAmplifier
+
+<Version type="china" add="1.24"/>
 
 <Server/> PlayerCompServer
 
@@ -1605,6 +1690,8 @@ comp.SetPlayerAttackSpeedAmplifier(1.1)
 
 ### SetPlayerExhaustionRatioByType
 
+<Version type="china" add="1.24"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -1640,6 +1727,8 @@ ratio = comp.SetPlayerExhaustionRatioByType(jumpType, 20)
 
 ### SetPlayerInteracteRange
 
+<Version type="china" add="2.8"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -1673,6 +1762,8 @@ comp.SetPlayerInteracteRange(interacteRange)
 
 ### SetPlayerJumpable
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -1705,6 +1796,8 @@ comp.SetPlayerJumpable(False)
 ---
 
 ### SetPlayerMotion
+
+<Version type="china" add="2.7"/>
 
 <Server/> ActorMotionComponentServer
 
@@ -1753,6 +1846,8 @@ motionComp.SetPlayerMotion((x * 5, y * 5, z * 5))
 
 ### SetPlayerMovable
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -1790,6 +1885,8 @@ comp.SetPlayerMovable(False)
 
 ### SetPlayerRespawnPos
 
+<Version type="china" add="1.21"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -1823,6 +1920,8 @@ suc = comp.SetPlayerRespawnPos((0, 4, 0), 0)
 ---
 
 ### StartPlayerMotion
+
+<Version type="china" add="2.4"/>
 
 <Server/> ActorMotionComponentServer
 
@@ -1862,6 +1961,8 @@ motionComp.StartPlayerMotion(mID)
 
 ### StopPlayerMotion
 
+<Version type="china" add="2.4"/>
+
 <Server/> ActorMotionComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorMotion(playerId)`
@@ -1899,6 +2000,8 @@ motionComp.StopPlayerMotion(mID)
 
 ### isGliding
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> PlayerCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -1929,6 +2032,8 @@ comp.isGliding()
 ---
 
 ### isInWater
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> PlayerCompClient
 
@@ -1961,6 +2066,8 @@ comp.isInWater()
 
 ### isMoving
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> PlayerCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -1991,6 +2098,8 @@ comp.isMoving()
 ---
 
 ### isRiding
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> PlayerCompClient
 
@@ -2023,6 +2132,8 @@ comp.isRiding()
 
 ### isSneaking
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -2033,7 +2144,7 @@ comp.isRiding()
 <TabItem value="说明" label="说明" default>
 
 ```python
-isSneaking() -> bool
+服务端接口() -> bool
 ```
 
 
@@ -2061,7 +2172,7 @@ is_sneaking = comp.isSneaking()
 <TabItem value="说明" label="说明" default>
 
 ```python
-isSneaking() -> bool
+客户端接口() -> bool
 ```
 
 
@@ -2081,6 +2192,8 @@ comp.isSneaking()
 ---
 
 ### isSprinting
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> PlayerCompClient
 
@@ -2117,6 +2230,8 @@ comp.isSprinting()
 
 ### isSwimming
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -2127,7 +2242,7 @@ comp.isSprinting()
 <TabItem value="说明" label="说明" default>
 
 ```python
-isSwimming() -> bool
+服务端接口() -> bool
 ```
 
 
@@ -2155,7 +2270,7 @@ is_swiming = comp.isSwimming()
 <TabItem value="说明" label="说明" default>
 
 ```python
-isSwimming() -> bool
+客户端接口() -> bool
 ```
 
 
@@ -2175,6 +2290,8 @@ comp.isSwimming()
 ---
 
 ### setMoving
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> PlayerCompClient
 
@@ -2207,6 +2324,8 @@ comp.setMoving()
 
 ### setSneaking
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> PlayerCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -2238,6 +2357,8 @@ comp.setSneaking()
 
 ### setSprinting
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> PlayerCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -2268,6 +2389,8 @@ comp.setSprinting()
 ---
 
 ### setUsingShield
+
+<Version type="china" add="2.1"/>
 
 <Client/> PlayerCompClient
 

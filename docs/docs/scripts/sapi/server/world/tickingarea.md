@@ -7,8 +7,13 @@ sidebar_position: 7
 import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 import RestrictedMode from "/src/components/highlight/restrictedMode"
+import Button from '/src/components/button/base';
 
 本文主要记录常加载区域相关接口。
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

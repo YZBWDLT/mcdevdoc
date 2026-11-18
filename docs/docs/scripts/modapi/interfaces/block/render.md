@@ -4,6 +4,7 @@ sidebar_position: 10
 
 # 渲染
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/fangkuai/xuanran.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddDropItemToWorld
+
+<Version type="china" add="2.7"/>
 
 <Client/> ItemCompClient
 
@@ -74,6 +81,8 @@ comp.AddDropItemToWorld(itemDict, 0, (10,10,10), 0, -2)
 
 ### ChangeBlockTextures
 
+<Version type="china" add="1.21"/>
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -118,6 +127,8 @@ print(comp.ChangeBlockTextures("myblock:work_block:0", "myblock:work_block_faceu
 
 ### DeleteClientDropItemEntity
 
+<Version type="china" add="2.7"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -150,6 +161,8 @@ print comp.DeleteClientDropItemEntity(entityId)
 ---
 
 ### DestroyCrackFrame
+
+<Version type="china" add="3.6"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -189,6 +202,8 @@ comp.DestroyCrackFrame(0, (30, 66, 30))
 ---
 
 ### GetBlockEntityExtraUniforms
+
+<Version type="china" add="2.9"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -230,6 +245,8 @@ print comp.SetBlockEntityExtraUniforms((100,66,101), 4)
 
 ### GetBlockRenderDistance
 
+<Version type="china" add="3.0"/>
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -261,6 +278,8 @@ print comp.GetBlockRenderDistance()
 ---
 
 ### GetBlockTextures
+
+<Version type="china" add="2.3"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -311,6 +330,8 @@ textureInfoDict = comp.GetBlockTextures("customblocks:customblocks_test_ore")
 
 ### GetClientDropItemEntityIdList
 
+<Version type="china" add="2.7"/>
+
 <Client/> ItemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateItem(levelId)`
@@ -342,6 +363,8 @@ print comp.GetClientDropItemEntityIdList()
 ---
 
 ### GetTextureAtlasUV
+
+<Version type="china" add="3.10"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -381,6 +404,8 @@ uv = comp.GetTextureAtlasUV("grass_top")
 ---
 
 ### SetBlockEntityExtraUniforms
+
+<Version type="china" add="2.9"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -436,6 +461,8 @@ print comp.SetBlockEntityExtraUniforms((100,66,101), 3, (2.5,2.5,2.5,2.5))
 
 ### SetBlockEntityFramePosOffset
 
+<Version type="china" add="1.24"/>
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -475,6 +502,8 @@ comp.SetBlockEntityFramePosOffset(pos, "my_frame1", (1,2,1))
 ---
 
 ### SetBlockEntityModelPosOffset
+
+<Version type="china" add="1.24"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -517,6 +546,8 @@ comp.SetBlockEntityModelPosOffset(pos, (1,2,1))
 ---
 
 ### SetBlockEntityModelRotation
+
+<Version type="china" add="1.24"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -566,6 +597,8 @@ comp.SetBlockEntityModelRotation(pos, 30, "z")
 
 ### SetBlockEntityModelScale
 
+<Version type="china" add="1.24"/>
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -608,6 +641,8 @@ comp.SetBlockEntityModelScale(pos, (2,2,0.5))
 
 ### SetBlockEntityParticlePosOffset
 
+<Version type="china" add="1.24"/>
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -648,6 +683,8 @@ comp.SetBlockEntityParticlePosOffset(pos, "my_particle1", (1,2,1))
 
 ### SetBlockRenderDistance
 
+<Version type="china" add="3.0"/>
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -681,6 +718,8 @@ print comp.SetBlockRenderDistance(48)
 ---
 
 ### SetCrackFrame
+
+<Version type="china" add="3.6"/>
 
 <Client/> BlockInfoComponentClient
 
@@ -725,6 +764,8 @@ comp.SetCrackFrame(0, (30, 66, 30), 1)
 ---
 
 ### SetDropItemTransform
+
+<Version type="china" add="3.5"/>
 
 <Client/> ItemCompClient
 

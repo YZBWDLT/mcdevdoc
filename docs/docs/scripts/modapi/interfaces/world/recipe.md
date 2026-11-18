@@ -4,6 +4,7 @@ sidebar_position: 5
 
 # 配方
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/peifang.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddBrewingRecipes
+
+<Version type="china" add="2.1"/>
 
 <Server/> RecipeCompServer
 
@@ -65,6 +72,8 @@ print(comp.AddBrewingRecipes("recipe_brewing_container", "minecraft:potion", "mi
 ---
 
 ### AddRecipe
+
+<Version type="china" add="2.10"/>
 
 <Server/> RecipeCompServer
 
@@ -131,6 +140,8 @@ print "json str data:", comp.AddRecipe(jsonData)
 
 ### GetRecipeByRecipeId
 
+<Version type="china" add="3.7"/>
+
 <Server/> RecipeCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRecipe(serverApi.GetLevelId())`
@@ -141,7 +152,7 @@ print "json str data:", comp.AddRecipe(jsonData)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetRecipeByRecipeId(recipeId: str, tag: str) -> Dict[str, Any]
+服务端接口(recipeId: str, tag: str) -> Dict[str, Any]
 ```
 
 - recipeId: str，配方 id,对应配方 json 文件中的 identifier 字段。
@@ -177,7 +188,7 @@ comp.GetRecipeByRecipeId("minecraft:WorkBench_recipeId", "crafting_table")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetRecipeByRecipeId(recipeId: str, tag: str) -> Dict[str, Any]
+客户端接口(recipeId: str, tag: str) -> Dict[str, Any]
 ```
 
 - recipeId: str，配方 id,对应配方 json 文件中的 identifier 字段。
@@ -206,6 +217,8 @@ comp.GetRecipeByRecipeId("minecraft:WorkBench_recipeId", "crafting_table")
 ---
 
 ### GetRecipeResult
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> RecipeCompServer
 
@@ -252,6 +265,8 @@ comp.GetRecipeResult("minecraft:boat")
 
 ### GetRecipesByInput
 
+<Version type="china" add="1.22"/>
+
 <Server/> RecipeCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRecipe(serverApi.GetLevelId())`
@@ -262,7 +277,7 @@ comp.GetRecipeResult("minecraft:boat")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetRecipesByInput(
+服务端接口(
     inputIdentifier: str,
     tag: str,
     aux: int = 0,
@@ -306,7 +321,7 @@ print(comp.GetRecipesByInput("minecraft:log", "crafting_table", 0, -1))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetRecipesByInput(
+客户端接口(
     inputIdentifier: str,
     tag: str,
     aux: int = 0,
@@ -344,6 +359,8 @@ print(comp.GetRecipesByInput("minecraft:log", "crafting_table", 0, -1))
 
 ### GetRecipesByResult
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> RecipeCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRecipe(serverApi.GetLevelId())`
@@ -354,7 +371,7 @@ print(comp.GetRecipesByInput("minecraft:log", "crafting_table", 0, -1))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetRecipesByResult(
+服务端接口(
     resultIdentifier: str,
     tag: str,
     aux: int = 0,
@@ -397,7 +414,7 @@ print(comp.GetRecipesByResult("minecraft:boat", "crafting_table", 4, -1))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetRecipesByResult(
+客户端接口(
     resultIdentifier: str,
     tag: str,
     aux: int = 0,
@@ -433,6 +450,8 @@ print(comp.GetRecipesByResult("minecraft:boat", "crafting_table", 4, -1))
 ---
 
 ### RemoveRecipe
+
+<Version type="china" add="2.10"/>
 
 <Server/> RecipeCompServer
 

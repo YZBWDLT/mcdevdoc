@@ -10,7 +10,9 @@ sidebar_position: 3
 
 物品标签（Item Tags）可以用于将多个物品在底层代码上进行分类，可用于[相关 Molang](./molang) 和[配方表](./recipes)中。物品标签可以在数据驱动物品中通过[物品组件`minecraft:tags`](components#minecrafttags)定义。原版的物品也在大量使用物品标签。
 
-本文档收录物品标签的相关信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
+本文档收录物品标签的相关信息。要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=tag" color="green"/>
 
 ## 为物品添加标签
 
@@ -123,5 +125,6 @@ sidebar_position: 3
 - [物品标签 | Bedrock Wiki](https://wiki.bedrock.dev/items/item-tags)
 
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>

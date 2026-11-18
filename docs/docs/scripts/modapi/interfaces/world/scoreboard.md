@@ -4,6 +4,7 @@ sidebar_position: 4
 
 # 记分板
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/jifenban.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetAllPlayerScoreboardObjects
+
+<Version type="china" add="2.11"/>
 
 <Server/> GameComponentServer
 
@@ -30,7 +37,7 @@ import Client from '/src/components/highlight/client';
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAllPlayerScoreboardObjects() -> List[Dict[str, Any]]
+服务端接口() -> List[Dict[str, Any]]
 ```
 
 
@@ -58,7 +65,7 @@ print(comp.GetAllPlayerScoreboardObjects())
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAllPlayerScoreboardObjects() -> List[Dict[str, Any]]
+客户端接口() -> List[Dict[str, Any]]
 ```
 
 
@@ -84,6 +91,8 @@ print(comp.GetAllPlayerScoreboardObjects())
 
 ### GetAllScoreboardObjects
 
+<Version type="china" add="2.11"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -94,7 +103,7 @@ print(comp.GetAllPlayerScoreboardObjects())
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAllScoreboardObjects() -> List[Dict[str, Any]]
+服务端接口() -> List[Dict[str, Any]]
 ```
 
 
@@ -122,7 +131,7 @@ print(comp.GetAllScoreboardObjects())
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAllScoreboardObjects() -> List[Dict[str, Any]]
+客户端接口() -> List[Dict[str, Any]]
 ```
 
 

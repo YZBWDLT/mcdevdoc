@@ -4,6 +4,7 @@ sidebar_position: 5
 
 # 物品
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/wupin.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_event" color="green"/>
+
 ---
 
 ### ActorAcquiredItemClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -70,6 +77,8 @@ class MyClientSystem(ClientSystem):
 
 ### ActorAcquiredItemServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：玩家获得物品时服务端抛出的事件（有些获取物品方式只会触发客户端事件，有些获取物品方式只会触发服务端事件，在使用时注意一点。）。
@@ -119,6 +128,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### ActorUseItemClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -172,6 +183,8 @@ class MyClientSystem(ClientSystem):
 
 ### ActorUseItemServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：玩家使用物品生效之前服务端抛出的事件（比较特殊不走该事件的例子：1）染料对有水的炼药锅使用；2）盔甲架装备盔甲）。
@@ -223,6 +236,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### AnvilCreateResultItemAfterClientEvent
+
+<Version type="china" add="1.23"/>
 
 <Client/>
 
@@ -276,6 +291,8 @@ class MyClientSystem(ClientSystem):
 
 ### ClientItemTryUseEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家点击右键尝试使用物品时客户端抛出的事件，可以通过设置 cancel 为 True 取消使用物品。
@@ -328,6 +345,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### ClientItemUseOnEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -399,6 +418,8 @@ class MyClientSystem(ClientSystem):
 
 ### ClientShapedRecipeTriggeredEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家合成物品时触发。
@@ -440,6 +461,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### ContainerItemChangedServerEvent
+
+<Version type="china" add="2.1"/>
 
 <Server/>
 
@@ -493,6 +516,8 @@ def OnContainerItemChangedServerEvent(self, args):
 ---
 
 ### CraftItemOutputChangeServerEvent
+
+<Version type="china" add="1.22"/>
 
 <Server/>
 
@@ -558,6 +583,8 @@ def OnCraftItemOutputChangeServerEvent(self, args):
 
 ### CraftUpdateResultItemClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家工作台界面更新显示可合成物品时抛出的事件。
@@ -609,6 +636,8 @@ class MyClientSystem(ClientSystem):
 
 ### FurnaceBurnFinishedServerEvent
 
+<Version type="china" add="2.1"/>
+
 <Server/>
 
 服务端熔炉烧制触发事件。熔炉, 高炉，烟熏炉烧出物品时触发。
@@ -658,6 +687,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### GrindStoneRemovedEnchantClientEvent
+
+<Version type="china" add="1.24"/>
 
 <Client/>
 
@@ -710,6 +741,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### InventoryItemChangedClientEvent
+
+<Version type="china" add="1.22"/>
 
 <Client/>
 
@@ -766,6 +799,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### InventoryItemChangedServerEvent
+
+<Version type="china" add="1.22"/>
 
 <Server/>
 
@@ -824,6 +859,8 @@ class MyServerSystem(ServerSystem):
 
 ### ItemDurabilityChangedServerEvent
 
+<Version type="china" add="2.10"/>
+
 <Server/>
 
 物品耐久度变化事件。
@@ -881,6 +918,8 @@ class MyServerSystem(ServerSystem):
 
 ### ItemPullOutCustomContainerServerEvent
 
+<Version type="china" add="3.5"/>
+
 <Server/>
 
 漏出物品到漏斗时触发该事件。
@@ -936,6 +975,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### ItemPushInCustomContainerServerEvent
+
+<Version type="china" add="3.5"/>
 
 <Server/>
 
@@ -993,6 +1034,8 @@ class MyServerSystem(ServerSystem):
 
 ### ItemReleaseUsingClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 触发时机：释放正在使用的物品。
@@ -1044,6 +1087,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### ItemReleaseUsingServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -1099,6 +1144,8 @@ class MyServerSystem(ServerSystem):
 
 ### ItemUseAfterServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 玩家在使用物品之后服务端抛出的事件。
@@ -1148,6 +1195,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### ItemUseOnAfterServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -1219,6 +1268,8 @@ class MyServerSystem(ServerSystem):
 
 ### LiquidClippedClientEvent
 
+<Version type="china" add="3.8"/>
+
 <Client/>
 
 玩家客户端点击流体时触发（支持原版流体与自定义流体）。
@@ -1276,6 +1327,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### LiquidClippedServerEvent
+
+<Version type="china" add="3.8"/>
 
 <Server/>
 
@@ -1335,6 +1388,8 @@ class MyServerSystem(ServerSystem):
 
 ### OnCarriedNewItemChangedClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 手持物品发生变化时，触发该事件；数量改变不会通知。
@@ -1376,6 +1431,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### OnCarriedNewItemChangedServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -1428,6 +1485,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### OnItemPutInEnchantingModelServerEvent
+
+<Version type="china" add="1.24"/>
 
 <Server/>
 
@@ -1482,6 +1541,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### OnNewArmorExchangeServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -1538,6 +1599,8 @@ class MyServerSystem(ServerSystem):
 
 ### OnOffhandItemChangedServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：玩家切换副手物品时触发该事件。
@@ -1589,6 +1652,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### OnPlayerActiveShieldServerEvent
+
+<Version type="china" add="2.1"/>
 
 <Server/>
 
@@ -1642,6 +1707,8 @@ class MyServerSystem(ServerSystem):
 
 ### OnPlayerBlockedByShieldAfterServerEvent
 
+<Version type="china" add="2.1"/>
+
 <Server/>
 
 触发时机：玩家使用盾牌抵挡伤害之后触发。
@@ -1691,6 +1758,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### OnPlayerBlockedByShieldBeforeServerEvent
+
+<Version type="china" add="2.1"/>
 
 <Server/>
 
@@ -1745,6 +1814,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerAddCustomContainerItemClientEvent
+
+<Version type="china" add="3.8"/>
 
 <Client/>
 
@@ -1809,6 +1880,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### PlayerAddCustomContainerItemServerEvent
+
+<Version type="china" add="3.8"/>
 
 <Server/>
 
@@ -1877,6 +1950,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerDropItemServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：玩家丢弃物品时触发。
@@ -1922,6 +1997,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerPickupArrowServerEvent
+
+<Version type="china" add="3.1"/>
 
 <Server/>
 
@@ -1974,6 +2051,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerRemoveCustomContainerItemClientEvent
+
+<Version type="china" add="3.8"/>
 
 <Client/>
 
@@ -2038,6 +2117,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### PlayerRemoveCustomContainerItemServerEvent
+
+<Version type="china" add="3.8"/>
 
 <Server/>
 
@@ -2105,6 +2186,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerTryAddCustomContainerItemClientEvent
 
+<Version type="china" add="3.5"/>
+
 <Client/>
 
 玩家尝试将物品添加到自定义容器时触发该事件。
@@ -2165,6 +2248,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### PlayerTryAddCustomContainerItemServerEvent
+
+<Version type="china" add="3.5"/>
 
 <Server/>
 
@@ -2228,6 +2313,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerTryDropItemClientEvent
 
+<Version type="china" add="1.25"/>
+
 <Client/>
 
 触发时机：玩家丢弃物品时触发。
@@ -2275,6 +2362,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### PlayerTryPutCustomContainerItemClientEvent
+
+<Version type="china" add="3.5"/>
 
 <Client/>
 
@@ -2338,6 +2427,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### PlayerTryPutCustomContainerItemServerEvent
+
+<Version type="china" add="3.4"/>
 
 <Server/>
 
@@ -2405,6 +2496,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerTryRemoveCustomContainerItemClientEvent
 
+<Version type="china" add="3.5"/>
+
 <Client/>
 
 玩家尝试从自定义容器中移除物品时触发该事件。
@@ -2466,6 +2559,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### PlayerTryRemoveCustomContainerItemServerEvent
+
+<Version type="china" add="3.5"/>
 
 <Server/>
 
@@ -2529,6 +2624,8 @@ class MyServerSystem(ServerSystem):
 
 ### ServerItemTryUseEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 玩家点击右键尝试使用物品时服务端抛出的事件。
@@ -2581,6 +2678,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### ServerItemUseOnEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -2655,6 +2754,8 @@ class MyServerSystem(ServerSystem):
 
 ### ServerPlayerTryTouchEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 玩家即将捡起物品时触发。
@@ -2706,6 +2807,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### ShearsUseToBlockBeforeServerEvent
+
+<Version type="china" add="1.23"/>
 
 <Server/>
 
@@ -2775,6 +2878,8 @@ class MyServerSystem(ServerSystem):
 
 ### StartUsingItemClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家使用物品（目前仅支持 Bucket（奶桶）、Trident（三叉戟）、RangedWeapon（弓）、Food（食物）、Potion（药水）、Crossbow（弩））时抛出。
@@ -2821,6 +2926,8 @@ class MyClientSystem(ClientSystem):
 
 ### StopUsingItemClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家停止使用物品（目前仅支持 Bucket（奶桶）、Trident（三叉戟）、RangedWeapon（弓）、Food（食物）、Potion（药水）、Crossbow（弩））时抛出。
@@ -2866,6 +2973,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### UIContainerItemChangedServerEvent
+
+<Version type="china" add="2.1"/>
 
 <Server/>
 

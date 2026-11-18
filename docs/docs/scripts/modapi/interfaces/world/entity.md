@@ -4,6 +4,7 @@ sidebar_position: 8
 
 # 实体管理
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/shitiguanli.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CreateClientEntityByTypeStr
+
+<Version type="china" add="3.3"/>
 
 <Client/> ClientSystem
 
@@ -65,6 +72,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### CreateEngineEntityByNBT
+
+<Version type="china" add="3.0"/>
 
 <Server/> ServerSystem
 
@@ -116,6 +125,8 @@ newEntityId = self.CreateEngineEntityByNBT(nbt)
 ---
 
 ### CreateEngineEntityByTypeStr
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ServerSystem
 
@@ -169,6 +180,8 @@ class MyServerSystem(ServerSystem):
 
 ### CreateEngineItemEntity
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ServerSystem
 
 系统方法，在自定义 System 类中直接调用。
@@ -215,6 +228,8 @@ itemEntityId = self.CreateEngineItemEntity(itemDict, 0, (0, 5, 0))
 ---
 
 ### CreateEntityAOI
+
+<Version type="china" add="2.11"/>
 
 <Server/> DimensionCompServer
 
@@ -275,6 +290,8 @@ comp.CreateEntityAOI(0, "myTest", (0, 0, 0, 1, 1, 1), fun)
 
 ### CreateExperienceOrb
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ExpComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateExp(entityId)`
@@ -317,6 +334,8 @@ comp.CreateExperienceOrb(25,(10,10,10),False)
 ---
 
 ### CreateProjectileEntity
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ProjectileComponentServer
 
@@ -376,6 +395,8 @@ comp.CreateProjectileEntity(playerId, "minecraft:snowball", param)
 
 ### DeleteEntityAOI
 
+<Version type="china" add="2.11"/>
+
 <Server/> DimensionCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateDimension(levelId)`
@@ -409,6 +430,8 @@ comp.DeleteEntityAOI(0, "myTest")
 ---
 
 ### DestroyClientEntity
+
+<Version type="china" add="3.3"/>
 
 <Client/> ClientSystem
 
@@ -448,6 +471,8 @@ class MyClientSystem(ClientSystem):
 
 ### DestroyEntity
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ServerSystem
 
 系统方法，在自定义 System 类中直接调用。
@@ -482,6 +507,8 @@ class FpsServerSystem(ServerSystem):
 ---
 
 ### GetDroppedItem
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ItemCompServer
 
@@ -521,6 +548,8 @@ comp.GetDroppedItem(entityId)
 
 ### GetEngineActor
 
+<Version type="china" add="2.7"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -531,7 +560,7 @@ comp.GetDroppedItem(entityId)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEngineActor() -> Dict[str, Any]
+服务端接口() -> Dict[str, Any]
 ```
 
 
@@ -567,7 +596,7 @@ entityDicts = serverApi.GetEngineActor()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEngineActor() -> Dict[str, Any]
+客户端接口() -> Dict[str, Any]
 ```
 
 
@@ -596,6 +625,8 @@ entityDicts = clientApi.GetEngineActor()
 ---
 
 ### GetLocalPlayerId
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -627,6 +658,8 @@ localId = clientApi.GetLocalPlayerId()
 ---
 
 ### GetLootItems
+
+<Version type="china" add="2.8"/>
 
 <Server/> LootComponentServer
 
@@ -671,6 +704,8 @@ result = comp.GetLootItems("loot_tables/entities/zombie.json")
 
 ### GetPlayerList
 
+<Version type="china" add="2.7"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -681,7 +716,7 @@ result = comp.GetLootItems("loot_tables/entities/zombie.json")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerList() -> List[str]
+服务端接口() -> List[str]
 ```
 
 
@@ -712,7 +747,7 @@ print serverApi.GetPlayerList()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPlayerList() -> List[str]
+客户端接口() -> List[str]
 ```
 
 
@@ -736,6 +771,8 @@ print clientApi.GetPlayerList()
 ---
 
 ### HasEntity
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> GameComponentClient
 
@@ -770,6 +807,8 @@ exist = comp.HasEntity(entityId)
 
 ### IsEntityAlive
 
+<Version type="china" add="1.23"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -780,7 +819,7 @@ exist = comp.HasEntity(entityId)
 <TabItem value="说明" label="说明" default>
 
 ```python
-IsEntityAlive(entityId: str) -> bool
+服务端接口(entityId: str) -> bool
 ```
 
 - entityId: str，实体 id。
@@ -814,7 +853,7 @@ alive = comp.IsEntityAlive(entityId)
 <TabItem value="说明" label="说明" default>
 
 ```python
-IsEntityAlive(entityId: str) -> bool
+客户端接口(entityId: str) -> bool
 ```
 
 - entityId: str，实体 id。
@@ -841,6 +880,8 @@ alive = comp.IsEntityAlive(entityId)
 ---
 
 ### KillEntity
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -874,6 +915,8 @@ comp.KillEntity(entityId)
 ---
 
 ### SpawnLootTable
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ActorLootComponentServer
 
@@ -920,6 +963,8 @@ result = comp.SpawnLootTable((1, 4, 5), 'minecraft:guardian')
 
 ### SpawnLootTableWithActor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ActorLootComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorLoot(playerId)`
@@ -964,6 +1009,8 @@ result = comp.SpawnLootTableWithActor((1, 4, 5), '-335007449086')
 ---
 
 ### SpawnResources
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -1023,6 +1070,8 @@ result = comp.SpawnResources('minecraft:gold_ore', (1,1,1), 7, 1.0, 10, 0)
 
 ### SpawnResourcesSilkTouched
 
+<Version type="china" add="1.22"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -1068,6 +1117,8 @@ result = comp.SpawnResourcesSilkTouched('minecraft:gold_ore', (1,1,1), 7)
 
 ### getEntitiesOrBlockFromRay
 
+<Version type="china" add="2.8"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -1078,7 +1129,7 @@ result = comp.SpawnResourcesSilkTouched('minecraft:gold_ore', (1,1,1), 7)
 <TabItem value="说明" label="说明" default>
 
 ```python
-getEntitiesOrBlockFromRay(
+服务端接口(
     dimensionId: int,
     pos: Tuple[float, float, float],
     rot: Tuple[float, float, float],
@@ -1158,7 +1209,7 @@ getEntitiesOrBlockFromRay(
 <TabItem value="说明" label="说明" default>
 
 ```python
-getEntitiesOrBlockFromRay(
+客户端接口(
     pos: Tuple[float, float, float],
     rot: Tuple[float, float, float],
     distance: int,

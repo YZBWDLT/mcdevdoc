@@ -8,7 +8,9 @@ import BaseHighlight from "./base";
  * - `script`：`server` 模块脚本版本
  * - `script-ui`：`server-ui` 模块脚本版本
  * - `script-graphics`：`server-graphics` 模块脚本版本
- * @type {Record<"format"|"game"|"script"|"script-ui"|"script-graphics", {label: string, china: string}>}
+ * - `china`：中国版版本号（`3.5`、`1.21` 这类）。中国版自成一套编号，
+ *   与国际版游戏版本不是一回事，所以单开一个类型，不能拿游戏版本去比。
+ * @type {Record<"format"|"game"|"script"|"script-ui"|"script-graphics"|"china", {label: string, china: string}>}
  */
 const VERSION_TYPES = {
     format: { label: "格式版本", china: "1.21.130" },
@@ -16,6 +18,7 @@ const VERSION_TYPES = {
     script: { label: "server模块脚本版本", china: "2.4.0" },
     "script-ui": { label: "server-ui模块脚本版本", china: "2.0.0" },
     "script-graphics": { label: "server-graphics模块脚本版本", china: "0.0.0" },
+    china: { label: "中国版", china: "3.10" },
 };
 
 /**

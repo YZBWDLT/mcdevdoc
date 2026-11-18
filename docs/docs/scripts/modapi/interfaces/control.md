@@ -4,6 +4,7 @@ sidebar_position: 13
 
 # 控制
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/kongzhi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddPickBlacklist
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> GameComponentClient
 
@@ -54,6 +61,8 @@ comp.AddPickBlacklist(entityId)
 
 ### ClearPickBlacklist
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> GameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -86,6 +95,8 @@ comp.ClearPickBlacklist()
 ---
 
 ### GetChosen
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> CameraComponentClient
 
@@ -129,6 +140,8 @@ class MyClientSystem(ClientSystem):
 
 ### GetChosenEntity
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> CameraComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateCamera(levelId)`
@@ -171,6 +184,8 @@ class MyClientSystem(ClientSystem):
 
 ### GetHoldTimeThresholdInMs
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -203,6 +218,8 @@ timeMs = comp.GetHoldTimeThresholdInMs()
 
 ### GetInputVector
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorMotionComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorMotion(localPlayerId)`
@@ -234,6 +251,8 @@ left, up = comp.GetInputVector()
 ---
 
 ### GetMousePosition
+
+<Version type="china" add="2.5"/>
 
 <Client/> ActorMotionComponentClient
 
@@ -271,6 +290,8 @@ comp.GetMousePosition()
 
 ### GetTouchPos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -302,6 +323,8 @@ def GetTouchPosTest():
 ---
 
 ### IsCanAttack
+
+<Version type="china" add="2.11"/>
 
 <Client/> OperationCompClient
 
@@ -335,6 +358,8 @@ comp.IsCanAttack()
 
 ### IsCanChat
 
+<Version type="china" add="2.11"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -366,6 +391,8 @@ comp.IsCanChat()
 ---
 
 ### IsCanDrag
+
+<Version type="china" add="2.11"/>
 
 <Client/> OperationCompClient
 
@@ -399,6 +426,8 @@ comp.IsCanDrag()
 
 ### IsCanInair
 
+<Version type="china" add="2.11"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -430,6 +459,8 @@ comp.IsCanInair()
 ---
 
 ### IsCanJump
+
+<Version type="china" add="2.11"/>
 
 <Client/> OperationCompClient
 
@@ -463,6 +494,8 @@ comp.IsCanJump()
 
 ### IsCanMove
 
+<Version type="china" add="2.11"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -494,6 +527,8 @@ comp.IsCanMove()
 ---
 
 ### IsCanOpenInv
+
+<Version type="china" add="2.11"/>
 
 <Client/> OperationCompClient
 
@@ -527,6 +562,8 @@ comp.IsCanOpenInv()
 
 ### IsCanPause
 
+<Version type="china" add="2.11"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -558,6 +595,8 @@ comp.IsCanPause()
 ---
 
 ### IsCanPauseScreen
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> OperationCompClient
 
@@ -591,6 +630,8 @@ comp.IsCanPauseScreen()
 
 ### IsCanPerspective
 
+<Version type="china" add="2.11"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -622,6 +663,8 @@ comp.IsCanPerspective()
 ---
 
 ### IsCanScreenShot
+
+<Version type="china" add="2.11"/>
 
 <Client/> OperationCompClient
 
@@ -655,6 +698,8 @@ comp.IsCanScreenShot()
 
 ### IsCanWalkMode
 
+<Version type="china" add="2.11"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -686,6 +731,8 @@ comp.IsCanWalkMode()
 ---
 
 ### IsTouchWithMouse
+
+<Version type="china" add="3.0"/>
 
 <Client/>
 
@@ -721,6 +768,8 @@ clientApi.IsTouchWithMouse()
 ---
 
 ### LockInputVector
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ActorMotionComponentClient
 
@@ -762,6 +811,8 @@ motionComp.LockInputVector((1, 1))
 
 ### LockVerticalMove
 
+<Version type="china" add="2.6"/>
+
 <Client/> ActorMotionComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorMotion(localPlayerId)`
@@ -792,6 +843,8 @@ comp.LockVerticalMove(flag)
 ---
 
 ### PickFacing
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> CameraComponentClient
 
@@ -868,6 +921,8 @@ PickFacing() -> Dict[str, Any]
 
 ### SetCanAll
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -905,6 +960,8 @@ comp.SetCanAll(False)
 ---
 
 ### SetCanAttack
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> OperationCompClient
 
@@ -945,6 +1002,8 @@ comp.SetCanAttack(False)
 
 ### SetCanChat
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -978,6 +1037,8 @@ comp.SetCanChat(False)
 ---
 
 ### SetCanDrag
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> OperationCompClient
 
@@ -1013,6 +1074,8 @@ comp.SetCanDrag(False)
 
 ### SetCanInair
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -1047,6 +1110,8 @@ comp.SetCanInair(False)
 
 ### SetCanJump
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -1080,6 +1145,8 @@ comp.SetCanJump(False)
 ---
 
 ### SetCanMove
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> OperationCompClient
 
@@ -1119,6 +1186,8 @@ comp.SetCanMove(False)
 
 ### SetCanOpenInv
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -1152,6 +1221,8 @@ comp.SetCanOpenInv(False)
 ---
 
 ### SetCanPause
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> OperationCompClient
 
@@ -1187,6 +1258,8 @@ comp.SetCanPause(False)
 
 ### SetCanPauseScreen
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -1220,6 +1293,8 @@ comp.SetCanPauseScreen(False)
 ---
 
 ### SetCanPerspective
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> OperationCompClient
 
@@ -1255,6 +1330,8 @@ comp.SetCanPerspective(False)
 
 ### SetCanScreenShot
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -1288,6 +1365,8 @@ comp.SetCanScreenShot(False)
 ---
 
 ### SetCanWalkMode
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> OperationCompClient
 
@@ -1323,6 +1402,8 @@ comp.SetCanWalkMode(False)
 
 ### SetControlMode
 
+<Version type="china" add="3.2"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -1356,6 +1437,8 @@ comp.SetControlMode(mode)
 
 ### SetControlModeLock
 
+<Version type="china" add="3.2"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -1388,6 +1471,8 @@ comp.SetControlModeLock(lock)
 ---
 
 ### SetDeviceVibrate
+
+<Version type="china" add="1.23"/>
 
 <Client/> DeviceCompClient
 
@@ -1428,6 +1513,8 @@ comp.SetDeviceVibrate(1000)
 
 ### SetGyroSensorReportRate
 
+<Version type="china" add="2.11"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -1465,6 +1552,8 @@ clientApi.SetGyroSensorReportRate(reportRate)
 
 ### SetHoldTimeThreshold
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> OperationCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateOperation(levelId)`
@@ -1497,6 +1586,8 @@ comp.SetHoldTimeThreshold(100)
 ---
 
 ### SetMoveLock
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> OperationCompClient
 
@@ -1536,6 +1627,8 @@ comp.SetMoveLock(True)
 
 ### SetShowRideUI
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> RideCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRide(entityId)`
@@ -1570,6 +1663,8 @@ comp.SetShowRideUI(entityId,False)
 
 ### SimulateTouchWithMouse
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> GameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -1602,6 +1697,8 @@ comp.SimulateTouchWithMouse(True)
 ---
 
 ### ToggleGyroSensor
+
+<Version type="china" add="2.11"/>
 
 <Client/>
 
@@ -1642,6 +1739,8 @@ clientApi.SetGyroSensorReportRate(10)
 
 ### UnLockVerticalMove
 
+<Version type="china" add="2.6"/>
+
 <Client/> ActorMotionComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorMotion(localPlayerId)`
@@ -1670,6 +1769,8 @@ comp.UnLockVerticalMove()
 ---
 
 ### UnlockInputVector
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ActorMotionComponentClient
 

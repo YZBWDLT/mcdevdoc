@@ -4,6 +4,7 @@ sidebar_position: 103
 
 # 调试
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/tongyong/tiaoshi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetEnableReconnectNetgame
+
+<Version type="china" add="1.25"/>
 
 <Client/>
 
@@ -50,6 +57,8 @@ clientApi.GetEnableReconnectNetgame()
 ---
 
 ### GetKeepResourceWhenTransfer
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -83,6 +92,8 @@ print clientApi.GetKeepResourceWhenTransfer()
 
 ### GetMcpModLogCanPostDump
 
+<Version type="china" add="2.6"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -93,7 +104,7 @@ print clientApi.GetKeepResourceWhenTransfer()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetMcpModLogCanPostDump() -> bool
+服务端接口() -> bool
 ```
 
 
@@ -127,7 +138,7 @@ print(serverApi.GetMcpModLogCanPostDump())
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetMcpModLogCanPostDump() -> bool
+客户端接口() -> bool
 ```
 
 
@@ -153,6 +164,8 @@ print(clientApi.GetMcpModLogCanPostDump())
 ---
 
 ### GetResourceFastload
+
+<Version type="china" add="1.25"/>
 
 <Client/>
 
@@ -185,6 +198,8 @@ print clientApi.GetResourceFastload()
 
 ### PostMcpModDump
 
+<Version type="china" add="2.6"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -195,7 +210,7 @@ print clientApi.GetResourceFastload()
 <TabItem value="说明" label="说明" default>
 
 ```python
-PostMcpModDump(msg: str, *args: Any, **kwargs: Dict[str, Any]) -> Any
+服务端接口(msg: str, *args: Any, **kwargs: Dict[str, Any]) -> Any
 ```
 
 - msg: str，错误信息。
@@ -230,7 +245,7 @@ serverApi.PostMcpModDump('Test Msg')
 <TabItem value="说明" label="说明" default>
 
 ```python
-PostMcpModDump(msg: str, *args: Any, **kwargs: Dict[str, Any]) -> Any
+客户端接口(msg: str, *args: Any, **kwargs: Dict[str, Any]) -> Any
 ```
 
 - msg: str，错误信息。
@@ -257,6 +272,8 @@ clientApi.PostMcpModDump('Test Msg')
 ---
 
 ### ReloadAllMaterials
+
+<Version type="china" add="1.23"/>
 
 <Client/>
 
@@ -288,6 +305,8 @@ clientApi.ReloadAllMaterials()
 ---
 
 ### ReloadAllShaders
+
+<Version type="china" add="1.23"/>
 
 <Client/>
 
@@ -323,6 +342,8 @@ clientApi.ReloadAllShaders()
 ---
 
 ### ReloadOneShader
+
+<Version type="china" add="1.23"/>
 
 <Client/>
 
@@ -360,6 +381,8 @@ clientApi.ReloadOneShader("entity.fragment")
 
 ### SetEnableReconnectNetgame
 
+<Version type="china" add="1.25"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -391,6 +414,8 @@ clientApi.SetEnableReconnectNetgame(True)
 ---
 
 ### SetKeepResourceWhenTransfer
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -435,6 +460,8 @@ lobbyGameApi.TransferToOtherServer('123', 'game')
 
 ### SetMcpModLogCanPostDump
 
+<Version type="china" add="2.6"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -445,7 +472,7 @@ lobbyGameApi.TransferToOtherServer('123', 'game')
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetMcpModLogCanPostDump(canPost: bool) -> Any
+服务端接口(canPost: bool) -> Any
 ```
 
 - canPost: bool，是否可以打印。
@@ -478,7 +505,7 @@ serverApi.SetMcpModLogCanPostDump(True)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetMcpModLogCanPostDump(canPost: bool) -> Any
+客户端接口(canPost: bool) -> Any
 ```
 
 - canPost: bool，是否可以打印。
@@ -503,6 +530,8 @@ clientApi.SetMcpModLogCanPostDump(True)
 ---
 
 ### SetResourceFastload
+
+<Version type="china" add="1.25"/>
 
 <Client/>
 
@@ -548,6 +577,8 @@ lobbyGameApi.TransferToOtherServer('123', 'game')
 
 ### StartMemProfile
 
+<Version type="china" add="2.1"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -558,7 +589,7 @@ lobbyGameApi.TransferToOtherServer('123', 'game')
 <TabItem value="说明" label="说明" default>
 
 ```python
-StartMemProfile() -> bool
+服务端接口() -> bool
 ```
 
 
@@ -593,7 +624,7 @@ serverApi.StopMemProfile(fileName)
 <TabItem value="说明" label="说明" default>
 
 ```python
-StartMemProfile() -> bool
+客户端接口() -> bool
 ```
 
 
@@ -622,6 +653,8 @@ clientApi.StopMemProfile(fileName)
 
 ### StartMultiProfile
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -632,7 +665,7 @@ clientApi.StopMemProfile(fileName)
 <TabItem value="说明" label="说明" default>
 
 ```python
-StartMultiProfile() -> bool
+服务端接口() -> bool
 ```
 
 
@@ -662,7 +695,7 @@ serverApi.StopMultiProfile()
 <TabItem value="说明" label="说明" default>
 
 ```python
-StartMultiProfile() -> bool
+客户端接口() -> bool
 ```
 
 
@@ -686,6 +719,8 @@ clientApi.StopMultiProfile()
 
 ### StartProfile
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -696,7 +731,7 @@ clientApi.StopMultiProfile()
 <TabItem value="说明" label="说明" default>
 
 ```python
-StartProfile() -> bool
+服务端接口() -> bool
 ```
 
 
@@ -734,7 +769,7 @@ serverApi.StopProfile()
 <TabItem value="说明" label="说明" default>
 
 ```python
-StartProfile() -> bool
+客户端接口() -> bool
 ```
 
 
@@ -766,6 +801,8 @@ clientApi.StopProfile()
 ---
 
 ### StartRecordEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -804,6 +841,8 @@ for eventName, data in result.iteritems():
 
 ### StartRecordPacket
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -841,6 +880,8 @@ for packetName, data in result.iteritems():
 
 ### StopMemProfile
 
+<Version type="china" add="2.1"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -851,7 +892,7 @@ for packetName, data in result.iteritems():
 <TabItem value="说明" label="说明" default>
 
 ```python
-StopMemProfile(fileName: str = "flamegraph.svg") -> bool
+服务端接口(fileName: str = "flamegraph.svg") -> bool
 ```
 
 - fileName: str，具体路径，相对于 PC 开发包的路径，默认为"flamegraph.svg"，位于 PC 开发包目录下，自定义路径请确保文件后缀名为".svg"。
@@ -882,7 +923,7 @@ serverApi.StopMemProfile(fileName)
 <TabItem value="说明" label="说明" default>
 
 ```python
-StopMemProfile(fileName: str = "flamegraph.svg") -> bool
+客户端接口(fileName: str = "flamegraph.svg") -> bool
 ```
 
 - fileName: str，具体路径，相对于 PC 开发包的路径，默认为"flamegraph.svg"，位于 PC 开发包目录下，自定义路径请确保文件后缀名为".svg"。
@@ -907,6 +948,8 @@ clientApi.StopMemProfile(fileName)
 
 ### StopMultiProfile
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -917,7 +960,7 @@ clientApi.StopMemProfile(fileName)
 <TabItem value="说明" label="说明" default>
 
 ```python
-StopMultiProfile(fileName: str = "flamegraph.svg") -> bool
+服务端接口(fileName: str = "flamegraph.svg") -> bool
 ```
 
 - fileName: str，具体路径，相对于 PC 开发包的路径，默认为"flamegraph.svg"，位于 PC 开发包目录下，自定义路径请确保文件后缀名为".svg"。
@@ -948,7 +991,7 @@ serverApi.StopMultiProfile()
 <TabItem value="说明" label="说明" default>
 
 ```python
-StopMultiProfile(fileName: str = "flamegraph.svg") -> bool
+客户端接口(fileName: str = "flamegraph.svg") -> bool
 ```
 
 - fileName: str，具体路径，相对于 PC 开发包的路径，默认为"flamegraph.svg"，位于 PC 开发包目录下，自定义路径请确保文件后缀名为".svg"。
@@ -973,6 +1016,8 @@ clientApi.StopMultiProfile()
 
 ### StopProfile
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -983,7 +1028,7 @@ clientApi.StopMultiProfile()
 <TabItem value="说明" label="说明" default>
 
 ```python
-StopProfile(fileName: str = "flamegraph.svg") -> bool
+服务端接口(fileName: str = "flamegraph.svg") -> bool
 ```
 
 - fileName: str，具体路径，相对于 PC 开发包的路径，默认为"flamegraph.svg"，位于 PC 开发包目录下，自定义路径请确保文件后缀名为".svg"。
@@ -1014,7 +1059,7 @@ serverApi.StopProfile()
 <TabItem value="说明" label="说明" default>
 
 ```python
-StopProfile(fileName: str = "flamegraph.svg") -> bool
+客户端接口(fileName: str = "flamegraph.svg") -> bool
 ```
 
 - fileName: str，具体路径，相对于 PC 开发包的路径，默认为"flamegraph.svg"，位于 PC 开发包目录下，自定义路径请确保文件后缀名为".svg"。
@@ -1038,6 +1083,8 @@ clientApi.StopProfile()
 ---
 
 ### StopRecordEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -1075,6 +1122,8 @@ for eventName, data in result.iteritems():
 ---
 
 ### StopRecordPacket
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 

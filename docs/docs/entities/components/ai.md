@@ -3,7 +3,6 @@ sidebar_position: 5
 sidebar_label: AI 意向组件
 ---
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import '/src/css/treeview.css';
@@ -16,6 +15,10 @@ import Version from "/src/components/highlight/version"
 # AI 意向组件
 
 AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可以使得实体拥有“想要做什么事情”的能力。
+
+要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=entity_component" color="green"/>
 
 ### `minecraft:behavior.admire_item`
 
@@ -6282,7 +6285,7 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
           - <DataType type="string" name="sound_event"/>：召唤时播放的音效事件名。
           - <DataType type="int" name="summon_cap"/>：场上同时存在的被召唤实体数量上限。默认值为`0`。
           - <DataType type="float" name="summon_cap_radius"/>：统计召唤数量上限时的半径，单位为方块。默认值为`0`。
-          - <DataType type="string" name="summon_event"/>：被召唤实体生成时触发的实体事件 ID。
+          - <DataType type="string" name="summon_event"/>：<Version add="1.21.50" inline/> 被召唤实体生成时触发的实体事件 ID。
           - <DataType type="string" name="target"/>：召唤位置的参照主体，可选值为`self`、`target`。
       - <DataType type="string" name="start_sound_event"/>：开始施法时播放的音效事件名。
       - <DataType type="float" name="weight"/>：该方案被选中的权重。默认值为`0`。
@@ -7508,5 +7511,6 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
 
 </TabItem></Tabs>
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>

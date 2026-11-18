@@ -120,7 +120,7 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 要使用以下方块实例，必须使用`1.26.0`或更高版本的格式版本。这会导致中国版无法运行。必须使用更高格式版本的理由为：
 
 - 需要使用[`minecraft:collision_box`](./components#minecraftcollision_box)组件的数组型，使用复合碰撞箱以还原楼梯的碰撞行为，格式版本需求为`1.26.0`。中国版存在对应组件的平替，读者可使用[`netease:aabb`](./components#neteaseaabb)组件代替。
-- 需要使用[`item_display_transforms`](./model#方块模型文件格式)方块模型以在物品栏中和原版楼梯面向方向对应，格式版本需求为`1.21.110`。读者可定义一个旋转了 180° 的模型后使用[`minecraft:item_visual`](./components#minecraftitem_visual)组件显示以代替。
+- 需要使用[`item_display_transforms`](./model#方块模型文件格式)方块模型以在物品栏中和原版楼梯面向方向对应，格式版本需求为`1.21.30`。读者可定义一个旋转了 180° 的模型后使用[`minecraft:item_visual`](./components#minecraftitem_visual)组件显示以代替。
 
 :::
 
@@ -305,7 +305,7 @@ Minecraft 中多数方块都是这种完整不透明方块，例如石头、混�
 要使用以下方块实例，必须使用`1.26.0`或更高版本的格式版本。这会导致中国版无法运行。必须使用更高格式版本的理由为：
 
 - 需要使用[`minecraft:collision_box`](./components#minecraftcollision_box)组件的数组型，使用复合碰撞箱以还原楼梯的碰撞行为，格式版本需求为`1.26.0`。中国版存在对应组件的平替，读者可使用[`netease:aabb`](./components#neteaseaabb)组件代替。
-- 需要使用[`item_display_transforms`](./model#方块模型文件格式)方块模型以在物品栏中和原版楼梯面向方向对应，格式版本需求为`1.21.110`。读者可定义一个旋转了 180° 的模型后使用[`minecraft:item_visual`](./components#minecraftitem_visual)组件显示以代替。
+- 需要使用[`item_display_transforms`](./model#方块模型文件格式)方块模型以在物品栏中和原版楼梯面向方向对应，格式版本需求为`1.21.30`。读者可定义一个旋转了 180° 的模型后使用[`minecraft:item_visual`](./components#minecraftitem_visual)组件显示以代替。
 
 :::
 

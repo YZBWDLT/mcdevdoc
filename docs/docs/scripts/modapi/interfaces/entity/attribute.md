@@ -4,6 +4,7 @@ sidebar_position: 10
 
 # 属性
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shiti/shuxing.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddModifier
+
+<Version type="china" add="3.8"/>
 
 <Server/> AttrCompServer
 
@@ -67,6 +74,8 @@ comp.AddModifier(AttrType.HEALTH, "testmod:health_modifier_1", 10, AttributeModi
 
 ### ChangeEntityDimension
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> DimensionCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateDimension(entityId)`
@@ -106,6 +115,8 @@ comp.ChangeEntityDimension(0, (0,4,0))
 
 ### GetAllComponentsName
 
+<Version type="china" add="2.7"/>
+
 <Server/> EntityComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityComponent(entityId)`
@@ -137,6 +148,8 @@ print comp.GetAllComponentsName()
 ---
 
 ### GetAllModifiers
+
+<Version type="china" add="3.8"/>
 
 <Server/> AttrCompServer
 
@@ -174,6 +187,8 @@ modifiers = comp.GetAllModifiers(AttrType.HEALTH)
 
 ### GetAttrMaxValue
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> AttrCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateAttr(entityId)`
@@ -184,7 +199,7 @@ modifiers = comp.GetAllModifiers(AttrType.HEALTH)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAttrMaxValue(type: int) -> float
+服务端接口(type: int) -> float
 ```
 
 - type: int，[AttrType 枚举](/docs/docs/scripts/modapi/enums#attrtype)。
@@ -218,7 +233,7 @@ comp.GetAttrMaxValue(serverApi.GetMinecraftEnum().AttrType.HEALTH)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAttrMaxValue(type: int) -> float
+客户端接口(type: int) -> float
 ```
 
 - type: int，[AttrType 枚举](/docs/docs/scripts/modapi/enums#attrtype)。
@@ -246,6 +261,8 @@ comp.GetAttrMaxValue(clientApi.GetMinecraftEnum().AttrType.HEALTH)
 
 ### GetAttrValue
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> AttrCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateAttr(entityId)`
@@ -256,7 +273,7 @@ comp.GetAttrMaxValue(clientApi.GetMinecraftEnum().AttrType.HEALTH)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAttrValue(attrType: int) -> float
+服务端接口(attrType: int) -> float
 ```
 
 - attrType: int，[AttrType 枚举](/docs/docs/scripts/modapi/enums#attrtype)。
@@ -290,7 +307,7 @@ comp.GetAttrValue(serverApi.GetMinecraftEnum().AttrType.HEALTH)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAttrValue(attrType: int) -> float
+客户端接口(attrType: int) -> float
 ```
 
 - attrType: int，[AttrType 枚举](/docs/docs/scripts/modapi/enums#attrtype)。
@@ -318,6 +335,8 @@ comp.GetAttrValue(clientApi.GetMinecraftEnum().AttrType.HEALTH)
 ---
 
 ### GetBodyRot
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> RotComponentClient
 
@@ -351,6 +370,8 @@ y = comp.GetBodyRot()
 
 ### GetCurrentAirSupply
 
+<Version type="china" add="2.5"/>
+
 <Server/> BreathCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBreath(entityId)`
@@ -361,7 +382,7 @@ y = comp.GetBodyRot()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetCurrentAirSupply() -> int
+服务端接口() -> int
 ```
 
 
@@ -393,7 +414,7 @@ comp.GetCurrentAirSupply()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetCurrentAirSupply(entityId: str) -> int
+客户端接口(entityId: str) -> int
 ```
 
 - entityId: str，玩家 id。
@@ -420,6 +441,8 @@ print(comp.GetCurrentAirSupply(entityId))
 ---
 
 ### GetDeathTime
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -457,6 +480,8 @@ result = comp.GetDeathTime()
 
 ### GetEntitiesBySelector
 
+<Version type="china" add="3.2"/>
+
 <Server/> EntityComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityComponent(entityId)`
@@ -493,6 +518,8 @@ print(comp.GetEntitiesBySelector("@e[type=rabbit]"))
 ---
 
 ### GetEntityDamage
+
+<Version type="china" add="2.11"/>
 
 <Server/> GameComponentServer
 
@@ -532,6 +559,8 @@ print(comp.GetEntityDamage(entityId,targetEntityId))
 
 ### GetEntityDimensionId
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> DimensionCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateDimension(entityId)`
@@ -563,6 +592,8 @@ comp.GetEntityDimensionId()
 ---
 
 ### GetEntityFallDistance
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -600,6 +631,8 @@ result = comp.GetEntityFallDistance()
 
 ### GetEntityLinksTag
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -631,6 +664,8 @@ result = comp.GetEntityLinksTag()
 ---
 
 ### GetEntityOwner
+
+<Version type="china" add="1.23"/>
 
 <Server/> ActorOwnerComponentServer
 
@@ -664,6 +699,8 @@ ownerId = comp.GetEntityOwner()
 
 ### GetFootPos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PosComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePos(entityId)`
@@ -674,7 +711,7 @@ ownerId = comp.GetEntityOwner()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetFootPos() -> Tuple[float, float, float]
+服务端接口() -> Tuple[float, float, float]
 ```
 
 
@@ -707,7 +744,7 @@ entityFootPos = comp.GetFootPos()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetFootPos() -> Tuple[float, float, float]
+客户端接口() -> Tuple[float, float, float]
 ```
 
 
@@ -734,6 +771,8 @@ entityFootPos = comp.GetFootPos()
 ---
 
 ### GetGravity
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GravityComponentServer
 
@@ -767,6 +806,8 @@ comp.GetGravity()
 
 ### GetLoadActors
 
+<Version type="china" add="2.6"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -798,6 +839,8 @@ print(comp.GetLoadActors())
 ---
 
 ### GetMarkVariant
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -831,6 +874,8 @@ result = comp.GetMarkVariant()
 
 ### GetMaxAirSupply
 
+<Version type="china" add="2.5"/>
+
 <Server/> BreathCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBreath(entityId)`
@@ -841,7 +886,7 @@ result = comp.GetMarkVariant()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetMaxAirSupply() -> int
+服务端接口() -> int
 ```
 
 
@@ -873,7 +918,7 @@ comp.GetMaxAirSupply()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetMaxAirSupply(entityId: str) -> int
+客户端接口(entityId: str) -> int
 ```
 
 - entityId: str，实体 id。
@@ -900,6 +945,8 @@ print(comp.GetMaxAirSupply(entityId))
 ---
 
 ### GetMobColor
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -933,6 +980,8 @@ result = comp.GetMobColor()
 
 ### GetMobStrength
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -964,6 +1013,8 @@ result = comp.GetMobStrength()
 ---
 
 ### GetMobStrengthMax
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -997,6 +1048,8 @@ result = comp.GetMobStrengthMax()
 
 ### GetName
 
+<Version type="china" add="2.7"/>
+
 <Server/> NameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateName(entityId)`
@@ -1007,7 +1060,7 @@ result = comp.GetMobStrengthMax()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetName() -> str
+服务端接口() -> str
 ```
 
 
@@ -1035,7 +1088,7 @@ comp.GetName()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetName() -> str
+客户端接口() -> str
 ```
 
 
@@ -1057,6 +1110,8 @@ comp.GetName()
 
 ### GetPos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PosComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePos(entityId)`
@@ -1067,7 +1122,7 @@ comp.GetName()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPos() -> Tuple[float, float, float]
+服务端接口() -> Tuple[float, float, float]
 ```
 
 
@@ -1101,7 +1156,7 @@ comp.GetPos()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPos() -> Tuple[float, float, float]
+客户端接口() -> Tuple[float, float, float]
 ```
 
 
@@ -1129,6 +1184,8 @@ entityPos = comp.GetPos()
 ---
 
 ### GetRiderId
+
+<Version type="china" add="2.5"/>
 
 <Client/> GameComponentClient
 
@@ -1163,6 +1220,8 @@ print(comp.GetRiderId(playerId))
 
 ### GetRot
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> RotComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRot(entityId)`
@@ -1173,7 +1232,7 @@ print(comp.GetRiderId(playerId))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetRot() -> Tuple[float, float]
+服务端接口() -> Tuple[float, float]
 ```
 
 
@@ -1201,7 +1260,7 @@ comp.GetRot()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetRot() -> Tuple[float, float]
+客户端接口() -> Tuple[float, float]
 ```
 
 
@@ -1223,6 +1282,8 @@ x, y = comp.GetRot()
 
 ### GetSize
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> CollisionBoxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateCollisionBox(entityId)`
@@ -1233,7 +1294,7 @@ x, y = comp.GetRot()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetSize() -> Tuple[float, float]
+服务端接口() -> Tuple[float, float]
 ```
 
 
@@ -1261,7 +1322,7 @@ comp.GetSize()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetSize() -> Tuple[float, float]
+客户端接口() -> Tuple[float, float]
 ```
 
 
@@ -1282,6 +1343,8 @@ comp.GetSize()
 ---
 
 ### GetTradeLevel
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -1315,6 +1378,8 @@ result = comp.GetTradeLevel()
 
 ### GetTypeFamily
 
+<Version type="china" add="1.24"/>
+
 <Server/> AttrCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateAttr(entityId)`
@@ -1346,6 +1411,8 @@ comp.GetTypeFamily()
 ---
 
 ### GetUnitBubbleAirSupply
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BreathCompServer
 
@@ -1379,6 +1446,8 @@ comp.GetUnitBubbleAirSupply()
 
 ### GetVariant
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -1410,6 +1479,8 @@ result = comp.GetVariant()
 ---
 
 ### HasChest
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -1443,6 +1514,8 @@ result = comp.HasChest()
 
 ### HasComponent
 
+<Version type="china" add="2.7"/>
+
 <Server/> EntityComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityComponent(entityId)`
@@ -1475,6 +1548,8 @@ print comp.HasComponent(serverApi.GetMinecraftEnum().EntityComponentType.attack)
 ---
 
 ### HasModifier
+
+<Version type="china" add="3.8"/>
 
 <Server/> AttrCompServer
 
@@ -1512,6 +1587,8 @@ has = comp.HasModifier(AttrType.HEALTH, "testmod:health_modifier_1")
 
 ### HasSaddle
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -1543,6 +1620,8 @@ result = comp.HasSaddle()
 ---
 
 ### IsAngry
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -1580,6 +1659,8 @@ result = comp.IsAngry()
 
 ### IsBaby
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -1611,6 +1692,8 @@ result = comp.IsBaby()
 ---
 
 ### IsConsumingAirSupply
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BreathCompServer
 
@@ -1644,6 +1727,8 @@ comp.IsConsumingAirSupply()
 
 ### IsIllagerCaptain
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -1675,6 +1760,8 @@ result = comp.IsIllagerCaptain()
 ---
 
 ### IsNaturallySpawned
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -1712,6 +1799,8 @@ result = comp.IsNaturallySpawned()
 
 ### IsOutOfControl
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -1743,6 +1832,8 @@ result = comp.IsOutOfControl()
 ---
 
 ### IsPregnant
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -1776,6 +1867,8 @@ result = comp.IsPregnant()
 
 ### IsSheared
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -1807,6 +1900,8 @@ result = comp.IsSheared()
 ---
 
 ### IsSitting
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -1840,6 +1935,8 @@ result = comp.IsSitting()
 
 ### IsTamed
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -1871,6 +1968,8 @@ result = comp.IsTamed()
 ---
 
 ### LockLocalPlayerRot
+
+<Version type="china" add="1.22"/>
 
 <Client/> RotComponentClient
 
@@ -1916,6 +2015,8 @@ comp.LockLocalPlayerRot(True)
 
 ### PromoteToIllagerCaptain
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -1947,6 +2048,8 @@ result = comp.PromoteToIllagerCaptain()
 ---
 
 ### RemoveModifier
+
+<Version type="china" add="3.8"/>
 
 <Server/> AttrCompServer
 
@@ -1983,6 +2086,8 @@ comp.RemoveModifier(AttrType.HEALTH, "testmod:health_modifier_1")
 ---
 
 ### ResetToDefaultValue
+
+<Version type="china" add="3.1"/>
 
 <Server/> AttrCompServer
 
@@ -2035,6 +2140,8 @@ def ActorHurtServerEvent(self, args):
 
 ### ResetToMaxValue
 
+<Version type="china" add="3.1"/>
+
 <Server/> AttrCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateAttr(entityId)`
@@ -2086,6 +2193,8 @@ def ActorHurtServerEvent(self, args):
 
 ### SetAngry
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -2125,6 +2234,8 @@ result = comp.SetAngry(True, playerId)
 
 ### SetAsAdult
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -2160,6 +2271,8 @@ result = comp.SetAsAdult()
 ---
 
 ### SetAttrMaxValue
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> AttrCompServer
 
@@ -2201,6 +2314,8 @@ comp.SetAttrMaxValue(serverApi.GetMinecraftEnum().AttrType.SPEED,0.2)
 ---
 
 ### SetAttrValue
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> AttrCompServer
 
@@ -2247,6 +2362,8 @@ comp.SetAttrValue(serverApi.GetMinecraftEnum().AttrType.HEALTH, 30)
 
 ### SetChest
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -2279,6 +2396,8 @@ result = comp.SetChest(True)
 ---
 
 ### SetCurrentAirSupply
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BreathCompServer
 
@@ -2316,6 +2435,8 @@ comp.SetCurrentAirSupply(300)
 ---
 
 ### SetEntityLookAtPos
+
+<Version type="china" add="1.22"/>
 
 <Server/> RotComponentServer
 
@@ -2364,6 +2485,8 @@ comp.SetEntityLookAtPos((0,78,0), 2, 3, True)
 
 ### SetEntityOwner
 
+<Version type="china" add="1.23"/>
+
 <Server/> ActorOwnerComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorOwner(entityId)`
@@ -2396,6 +2519,8 @@ result = comp.SetEntityOwner(targetId)
 ---
 
 ### SetFootPos
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PosComponentServer
 
@@ -2435,6 +2560,8 @@ comp.SetFootPos((0, 4, 0))
 
 ### SetGravity
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GravityComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGravity(entityId)`
@@ -2467,6 +2594,8 @@ comp.SetGravity(-0.08)
 ---
 
 ### SetMarkVariant
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -2505,6 +2634,8 @@ result = comp.SetMarkVariant(1)
 
 ### SetMaxAirSupply
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> BreathCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBreath(entityId)`
@@ -2542,6 +2673,8 @@ comp.SetMaxAirSupply(400)
 
 ### SetMobColor
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -2576,6 +2709,8 @@ result = comp.SetMobColor(minecraftEnum.EntityColorType.LightGreen)
 
 ### SetMobStrength
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -2608,6 +2743,8 @@ result = comp.SetMobStrength(5)
 ---
 
 ### SetMobStrengthMax
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -2642,6 +2779,8 @@ result = comp.SetMobStrengthMax(5)
 
 ### SetName
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> NameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateName(entityId)`
@@ -2675,6 +2814,8 @@ comp.SetName("new Name")
 
 ### SetOutOfControl
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -2707,6 +2848,8 @@ result = comp.SetOutOfControl(True)
 ---
 
 ### SetPersistent
+
+<Version type="china" add="2.0"/>
 
 <Server/> AttrCompServer
 
@@ -2744,6 +2887,8 @@ comp.SetPersistent(True)
 ---
 
 ### SetPlayerLookAtPos
+
+<Version type="china" add="1.22"/>
 
 <Client/> RotComponentClient
 
@@ -2791,6 +2936,8 @@ comp.SetPlayerLookAtPos((0,78,0), 0.2, 1, True)
 
 ### SetPos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PosComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePos(entityId)`
@@ -2830,6 +2977,8 @@ comp.SetPos((1,2,3))
 
 ### SetPosForClientEntity
 
+<Version type="china" add="3.7"/>
+
 <Client/> PosComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePos(entityId)`
@@ -2866,6 +3015,8 @@ comp.SetPosForClientEntity((30, 64, 30))
 ---
 
 ### SetRecoverTotalAirSupplyTime
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BreathCompServer
 
@@ -2904,6 +3055,8 @@ comp.SetRecoverTotalAirSupplyTime(10)
 
 ### SetRot
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> RotComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRot(entityId)`
@@ -2914,7 +3067,7 @@ comp.SetRecoverTotalAirSupplyTime(10)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetRot(rot: Tuple[float, float]) -> bool
+服务端接口(rot: Tuple[float, float]) -> bool
 ```
 
 - rot: Tuple[float, float]，（上下角度，左右角度）单位是角度而不是弧度。
@@ -2943,7 +3096,7 @@ comp.SetRot((30,0))
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetRot(rot: Tuple[float, float]) -> bool
+客户端接口(rot: Tuple[float, float]) -> bool
 ```
 
 - rot: Tuple[float, float]，俯仰角度及绕竖直方向旋转的角度，单位是角度。
@@ -2970,6 +3123,8 @@ comp.SetRot((-45, 0))
 ---
 
 ### SetRotForClientEntity
+
+<Version type="china" add="3.7"/>
 
 <Client/> RotComponentClient
 
@@ -3008,6 +3163,8 @@ comp.SetRotForClientEntity((30, 30))
 
 ### SetSheared
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -3040,6 +3197,8 @@ result = comp.SetSheared(True)
 ---
 
 ### SetSitting
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -3078,6 +3237,8 @@ result = comp.SetSitting()
 
 ### SetSize
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> CollisionBoxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateCollisionBox(entityId)`
@@ -3115,6 +3276,8 @@ comp.SetSize((2,3))
 
 ### SetTradeLevel
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -3148,6 +3311,8 @@ result = comp.SetTradeLevel(minecraftEnum.TradeLevelType.Master)
 ---
 
 ### SetVariant
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -3185,6 +3350,8 @@ result = comp.SetVariant(1)
 ---
 
 ### UpdateModifier
+
+<Version type="china" add="3.8"/>
 
 <Server/> AttrCompServer
 
@@ -3233,6 +3400,8 @@ comp.UpdateModifier(AttrType.HEALTH, "testmod:health_modifier_1", 20, AttributeM
 
 ### isEntityInLava
 
+<Version type="china" add="1.22"/>
+
 <Client/> AttrCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateAttr(entityId)`
@@ -3267,6 +3436,8 @@ isInLava = comp.isEntityInLava()
 ---
 
 ### isEntityOnGround
+
+<Version type="china" add="1.22"/>
 
 <Client/> AttrCompClient
 

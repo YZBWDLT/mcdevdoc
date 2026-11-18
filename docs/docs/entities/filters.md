@@ -17,6 +17,10 @@ import Version from "/src/components/highlight/version"
 
 实体过滤器（Entity Filters）用于在[实体组件](./components)或[实体事件](./events)中过滤出符合条件的实体。
 
+要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=entity_filter" color="green"/>
+
 ## 过滤器格式
 
 实体过滤器由一项或多项「过滤器测试」（Filter Test）构成。每项测试针对一个主体（`subject`）执行一种判断（`test`），再将判断结果与给定值（`value`）按指定运算符（`operator`）比较。多项测试可以通过「过滤器组」（Filter Group）组合为一个整体。
@@ -3950,5 +3954,6 @@ import Version from "/src/components/highlight/version"
 - [实体文档 | bedrock.dev](https://bedrock.dev/docs/stable/Entities)
 
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>

@@ -4,6 +4,7 @@ sidebar_position: 8
 
 # 渲染
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/wanjia/xuanran.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddPlayerAnimation
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ActorRenderCompClient
 
@@ -59,6 +66,8 @@ comp.AddPlayerAnimation("move.arms", "animation.player.move.arms_custom")
 ---
 
 ### AddPlayerAnimationController
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ActorRenderCompClient
 
@@ -101,6 +110,8 @@ comp.AddPlayerAnimationController("root", "controller.animation.player.root_cust
 ---
 
 ### AddPlayerAnimationIntoState
+
+<Version type="china" add="1.22"/>
 
 <Client/> ActorRenderCompClient
 
@@ -148,6 +159,8 @@ comp.AddPlayerAnimationIntoState("root", "first_person", "first_person_attack_co
 
 ### AddPlayerGeometry
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(playerId)`
@@ -188,6 +201,8 @@ comp.AddPlayerGeometry("default", "geometry.player.custom")
 
 ### AddPlayerParticleEffect
 
+<Version type="china" add="1.22"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(playerId)`
@@ -226,6 +241,8 @@ comp.AddPlayerParticleEffect("nectar_dripping", "minecraft:nectar_drip_particle"
 ---
 
 ### AddPlayerRenderController
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ActorRenderCompClient
 
@@ -266,6 +283,8 @@ comp.AddPlayerRenderController('custom_render_controller_name', 'query.mod.condi
 
 ### AddPlayerRenderMaterial
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(playerId)`
@@ -304,6 +323,8 @@ comp.AddPlayerRenderMaterial('custom_material_key', 'custom_material_name')
 ---
 
 ### AddPlayerScriptAnimate
+
+<Version type="china" add="2.6"/>
 
 <Client/> ActorRenderCompClient
 
@@ -350,6 +371,8 @@ comp.AddPlayerScriptAnimate("animation_controller_short_name", "query.mod.index 
 
 ### AddPlayerSoundEffect
 
+<Version type="china" add="1.22"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(playerId)`
@@ -390,6 +413,8 @@ comp.AddPlayerSoundEffect("sound_thunder", "ambient.weather.thunder")
 
 ### AddPlayerTexture
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(playerId)`
@@ -429,6 +454,8 @@ comp.AddPlayerTexture("default", "textures/misc/missing_texture")
 
 ### RebuildPlayerRender
 
+<Version type="china" add="3.6"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(playerId)`
@@ -465,6 +492,8 @@ comp.RebuildPlayerRender()
 ---
 
 ### RemovePlayerAnimationController
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ActorRenderCompClient
 
@@ -503,6 +532,8 @@ comp.RemovePlayerAnimationController("root")
 ---
 
 ### RemovePlayerAnimationFromState
+
+<Version type="china" add="3.9"/>
 
 <Client/> ActorRenderCompClient
 
@@ -548,6 +579,8 @@ comp.RemovePlayerAnimationFromState("root", "first_person", "first_person_attack
 
 ### RemovePlayerGeometry
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(playerId)`
@@ -592,6 +625,8 @@ comp.RemovePlayerGeometry("default")
 
 ### RemovePlayerRenderController
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(playerId)`
@@ -630,6 +665,8 @@ comp.RemovePlayerRenderController('custom_render_controller_name')
 
 ### ResetSkin
 
+<Version type="china" add="2.5"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(playerId)`
@@ -667,6 +704,8 @@ comp.ResetSkin()
 
 ### SetPlayerItemInHandVisible
 
+<Version type="china" add="2.3"/>
+
 <Client/> ActorRenderCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateActorRender(playerId)`
@@ -701,6 +740,8 @@ print actorRenderComp.SetPlayerItemInHandVisible(False, 0)
 ---
 
 ### SetSkin
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 

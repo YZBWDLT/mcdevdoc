@@ -4,6 +4,7 @@ sidebar_position: 108
 
 # 系统
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/tongyong/xitong.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetClientSystemCls
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -54,6 +61,8 @@ class FpsClientSystem(ClientSystem):
 
 ### GetServerSystemCls
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -88,6 +97,8 @@ class FpsServerSystem(ServerSystem):
 
 ### GetSystem
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -98,7 +109,7 @@ class FpsServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetSystem(nameSpace: str, systemName: str) -> ServerSystem
+服务端接口(nameSpace: str, systemName: str) -> ServerSystem
 ```
 
 - nameSpace: str，命名空间，建议为 mod 名字。
@@ -127,7 +138,7 @@ serverSystem = serverApi.GetSystem("TutorialMod", "TutorialServerSystem")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetSystem(nameSpace: str, systemName: str) -> ClientSystem
+客户端接口(nameSpace: str, systemName: str) -> ClientSystem
 ```
 
 - nameSpace: str，系统注册的命名空间，一般为 mod 名字。
@@ -154,6 +165,8 @@ class FpsClientSystem(ClientSystem):
 
 ### RegisterSystem
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -164,7 +177,7 @@ class FpsClientSystem(ClientSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-RegisterSystem(nameSpace: str, systemName: str, clsPath: str) -> ServerSystem
+服务端接口(nameSpace: str, systemName: str, clsPath: str) -> ServerSystem
 ```
 
 - nameSpace: str，命名空间，建议为 mod 名字。
@@ -198,7 +211,7 @@ def TutorialServerInit(self):
 <TabItem value="说明" label="说明" default>
 
 ```python
-RegisterSystem(nameSpace: str, systemName: str, clsPath: str) -> ClientSystem
+客户端接口(nameSpace: str, systemName: str, clsPath: str) -> ClientSystem
 ```
 
 - nameSpace: str，命名空间，建议为 mod 名字。

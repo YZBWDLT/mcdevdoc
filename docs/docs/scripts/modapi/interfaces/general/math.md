@@ -4,6 +4,7 @@ sidebar_position: 106
 
 # 数学
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/tongyong/shuxue.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetDirFromRot
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -30,7 +37,7 @@ import Client from '/src/components/highlight/client';
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetDirFromRot(rot: Tuple[float, float]) -> Tuple[float, float, float]
+服务端接口(rot: Tuple[float, float]) -> Tuple[float, float, float]
 ```
 
 - rot: Tuple[float, float]，俯仰角度及绕竖直方向的角度，单位是角度。
@@ -58,7 +65,7 @@ direction = serverApi.GetDirFromRot((0, 0))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetDirFromRot(rot: Tuple[float, float]) -> Tuple[float, float, float]
+客户端接口(rot: Tuple[float, float]) -> Tuple[float, float, float]
 ```
 
 - rot: Tuple[float, float]，俯仰角度及绕竖直方向的角度，单位是角度。
@@ -80,6 +87,8 @@ direction = clientApi.GetDirFromRot((0, 0))
 
 ### GetIntPos
 
+<Version type="china" add="3.4"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -90,7 +99,7 @@ direction = clientApi.GetDirFromRot((0, 0))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetIntPos(pos: Tuple[float, float, float]) -> Tuple[int, int, int]
+服务端接口(pos: Tuple[float, float, float]) -> Tuple[int, int, int]
 ```
 
 - pos: Tuple[float, float, float]，坐标元组。
@@ -118,7 +127,7 @@ serverApi.GetIntPos((1.2,1.3,1.4))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetIntPos(pos: Tuple[float, float, float]) -> Tuple[int, int, int]
+客户端接口(pos: Tuple[float, float, float]) -> Tuple[int, int, int]
 ```
 
 - pos: Tuple[float, float, float]，坐标元组。
@@ -140,6 +149,8 @@ clientApi.GetIntPos((1.2,1.3,1.4))
 
 ### GetLocalPosFromWorld
 
+<Version type="china" add="2.7"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -150,7 +161,7 @@ clientApi.GetIntPos((1.2,1.3,1.4))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetLocalPosFromWorld(
+服务端接口(
     pos: Tuple[float, float, float],
     entityId: str,
 ) -> Tuple[float, float, float]
@@ -186,7 +197,7 @@ position = serverApi.GetLocalPosFromWorld((90, 65, -95), entityId)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetLocalPosFromWorld(
+客户端接口(
     pos: Tuple[float, float, float],
     entityId: str,
 ) -> Tuple[float, float, float]
@@ -216,6 +227,8 @@ position = clientApi.GetLocalPosFromWorld((90, 65, -95), entityId)
 
 ### GetRotFromDir
 
+<Version type="china" add="2.2"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -226,7 +239,7 @@ position = clientApi.GetLocalPosFromWorld((90, 65, -95), entityId)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetRotFromDir(dir: Tuple[float, float, float]) -> Tuple[float, float]
+服务端接口(dir: Tuple[float, float, float]) -> Tuple[float, float]
 ```
 
 - dir: Tuple[float, float, float]，玩家朝向的单位向量。
@@ -254,7 +267,7 @@ rot = serverApi.GetRotFromDir((1, 0, 1))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetRotFromDir(dir: Tuple[float, float, float]) -> Tuple[float, float]
+客户端接口(dir: Tuple[float, float, float]) -> Tuple[float, float]
 ```
 
 - dir: Tuple[float, float, float]，玩家朝向的单位向量。
@@ -276,6 +289,8 @@ rot = clientApi.GetRotFromDir((1, 0, 1))
 
 ### GetWorldPosFromLocal
 
+<Version type="china" add="2.7"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -286,7 +301,7 @@ rot = clientApi.GetRotFromDir((1, 0, 1))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetWorldPosFromLocal(
+服务端接口(
     pos: Tuple[float, float, float],
     entityId: str,
 ) -> Tuple[float, float, float]
@@ -322,7 +337,7 @@ position = serverApi.GetWorldPosFromLocal((0, 0, 1), entityId)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetWorldPosFromLocal(
+客户端接口(
     pos: Tuple[float, float, float],
     entityId: str,
 ) -> Tuple[float, float, float]

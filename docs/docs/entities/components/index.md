@@ -13,7 +13,9 @@ import Highlight from '/src/components/highlight/base';
 数据驱动实体组件（Data-Driven Entity Components）用于规定实体的功能。将不同的实体组件组合在一起可以实现多种复杂的功能。
 实体组件可以指定到<DataType type="object" name="components" isRequired/>中，以使得实体在所有情况下都使用相关功能；也可以指定到实体组件组<DataType type="object" name="component_groups"/> - <DataType type="object" name="*"/>中，使得实体在使用特定事件时使用特定的功能。
 
-本文收录所有已开放或即将开放的命名空间为`minecraft`的实体组件信息。可使用<kbd>Ctrl</kbd>+<kbd>F</kbd>查找所需条目。
+本文收录所有已开放或即将开放的命名空间为`minecraft`的实体组件信息。要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=entity_component" color="green"/>
 
 **每个组件条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。"/>。
 
@@ -49,5 +51,6 @@ import Highlight from '/src/components/highlight/base';
 - [Projectiles | Bedrock Wiki](https://wiki.bedrock.dev/entities/projectiles)
 
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>

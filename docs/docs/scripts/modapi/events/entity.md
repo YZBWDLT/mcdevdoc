@@ -4,6 +4,7 @@ sidebar_position: 2
 
 # 实体
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/shiti.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_event" color="green"/>
+
 ---
 
 ### ActorHurtServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -71,6 +78,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### ActuallyHurtServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -138,6 +147,8 @@ class MyServerSystem(ServerSystem):
 
 ### AddEffectServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：实体获得状态效果时。
@@ -190,6 +201,8 @@ class MyServerSystem(ServerSystem):
 
 ### ApproachEntityClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家靠近生物时触发。
@@ -235,6 +248,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### ChangeSwimStateServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -287,6 +302,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### DamageEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -358,6 +375,8 @@ class MyServerSystem(ServerSystem):
 
 ### EntityChangeDimensionServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 实体维度改变时服务端抛出。
@@ -423,6 +442,8 @@ class MyServerSystem(ServerSystem):
 
 ### EntityDefinitionsEventServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：生物定义 json 文件中设置的 event 触发时同时触发。生物行为变更事件。
@@ -468,6 +489,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### EntityDieLoottableAfterServerEvent
+
+<Version type="china" add="2.11"/>
 
 <Server/>
 
@@ -525,6 +548,8 @@ class MyServerSystem(ServerSystem):
 
 ### EntityDieLoottableServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：生物死亡掉落物品时。
@@ -581,6 +606,8 @@ class MyServerSystem(ServerSystem):
 
 ### EntityDroppedItemServerEvent
 
+<Version type="china" add="2.1"/>
+
 <Server/>
 
 触发时机：生物扔出物品时触发。
@@ -628,6 +655,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### EntityEffectDamageServerEvent
+
+<Version type="china" add="1.21"/>
 
 <Server/>
 
@@ -685,6 +714,8 @@ class MyServerSystem(ServerSystem):
 
 ### EntityLoadScriptEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 数据库加载实体自定义数据时触发。
@@ -730,6 +761,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### EntityModelChangedClientEvent
+
+<Version type="china" add="2.0"/>
 
 <Client/>
 
@@ -779,6 +812,8 @@ class MyClientSystem(ClientSystem):
 
 ### EntityMotionStartServerEvent
 
+<Version type="china" add="2.4"/>
+
 <Server/>
 
 实体运动器开始事件。实体（包含玩家）添加运动器后，运动器开始运行时触发。
@@ -824,6 +859,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### EntityMotionStopServerEvent
+
+<Version type="china" add="2.4"/>
 
 <Server/>
 
@@ -877,6 +914,8 @@ class MyServerSystem(ServerSystem):
 
 ### EntityPickupItemServerEvent
 
+<Version type="china" add="2.1"/>
+
 <Server/>
 
 有 minecraft:behavior.pickup_items 行为的生物拾取物品时触发该事件，例如村民拾取面包、猪灵拾取金锭。
@@ -925,6 +964,8 @@ class MyServerSystem(ServerSystem):
 
 ### EntityStartRidingEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 当实体骑乘上另一个实体时触发。
@@ -970,6 +1011,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### EntityStopRidingEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -1083,6 +1126,8 @@ class MyClientSystem(ClientSystem):
 
 ### EntityTickServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 实体 tick 时触发。该事件为 20 帧每秒。需要使用 AddEntityTickEventWhiteList 添加触发该事件的实体类型白名单。
@@ -1125,37 +1170,7 @@ class MyServerSystem(ServerSystem):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnEntityTickServerEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "EntityTickServerEvent",
-            self, self.OnEntityTickServerEvent)
-
-    def OnEntityTickServerEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### AddEntityTickEventWhiteList
 
 <Server/>
 
@@ -1167,12 +1182,10 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnEntityTickServerEvent(self, args: Dict[str, Any]) -> None: ...
+AddEntityTickEventWhiteList(identifier: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| identifier | str | 实体的类型名，原版的实体需要加上 minecraft 命名空间。 |
+- identifier: str，实体的类型名，原版的实体需要加上 minecraft 命名空间。
 
 **返回值**：bool，是否成功。
 
@@ -1191,6 +1204,8 @@ serverApi.AddEntityTickEventWhiteList('minecraft:cow')
 ---
 
 ### HealthChangeBeforeServerEvent
+
+<Version type="china" add="2.1"/>
 
 <Server/>
 
@@ -1244,6 +1259,8 @@ class MyServerSystem(ServerSystem):
 
 ### HealthChangeClientEvent
 
+<Version type="china" add="2.0"/>
+
 <Client/>
 
 生物生命值发生变化时触发。
@@ -1291,6 +1308,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### HealthChangeServerEvent
+
+<Version type="china" add="2.0"/>
 
 <Server/>
 
@@ -1342,6 +1361,8 @@ class MyServerSystem(ServerSystem):
 
 ### LeaveEntityClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家远离生物时触发。
@@ -1387,6 +1408,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### MobDieEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -1441,6 +1464,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### MobGriefingBlockServerEvent
+
+<Version type="china" add="1.21"/>
 
 <Server/>
 
@@ -1502,6 +1527,8 @@ class MyServerSystem(ServerSystem):
 
 ### OnFireHurtEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 生物受到火焰伤害时触发。
@@ -1554,6 +1581,8 @@ class MyServerSystem(ServerSystem):
 
 ### OnGroundClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 实体着地事件。玩家，沙子，铁砧，掉落的物品，点燃的 TNT 掉落地面时触发，其余实体着地不触发。
@@ -1601,6 +1630,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### OnGroundServerEvent
+
+<Version type="china" add="2.1"/>
 
 <Server/>
 
@@ -1650,6 +1681,8 @@ class MyServerSystem(ServerSystem):
 
 ### OnKnockBackServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 实体被击退时触发。
@@ -1693,6 +1726,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### OnMobHitBlockServerEvent
+
+<Version type="china" add="2.1"/>
 
 <Server/>
 
@@ -1746,37 +1781,7 @@ class MyServerSystem(ServerSystem):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnOnMobHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "OnMobHitBlockServerEvent",
-            self, self.OnOnMobHitBlockServerEvent)
-
-    def OnOnMobHitBlockServerEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### OpenMobHitBlockDetection
 
 <Server/> GameComponentServer
 
@@ -1788,13 +1793,11 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnMobHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
+OpenMobHitBlockDetection(entityId: str, precision: float) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| entityId | str | 生物的实体 Id。 |
-| precision | float | 碰撞检测精度，参数需要在区间[0, 1)，值越小，表示碰撞检测精度越高（可以理解为轻轻碰一下就能触发）。 |
+- entityId: str，生物的实体 Id。
+- precision: float，碰撞检测精度，参数需要在区间[0, 1)，值越小，表示碰撞检测精度越高（可以理解为轻轻碰一下就能触发）。
 
 **返回值**：bool，是否设置成功。
 
@@ -1814,6 +1817,8 @@ comp.OpenMobHitBlockDetection("-123456",0.0001)
 </TabItem>
 </Tabs>
 
+#### CloseMobHitBlockDetection
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -1824,12 +1829,10 @@ comp.OpenMobHitBlockDetection("-123456",0.0001)
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnMobHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
+CloseMobHitBlockDetection(entityId: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| entityId | str | 生物的实体 Id。 |
+- entityId: str，生物的实体 Id。
 
 **返回值**：bool，是否设置成功。
 
@@ -1848,6 +1851,8 @@ comp.CloseMobHitBlockDetection("-123456")
 ---
 
 ### OnMobHitMobClientEvent
+
+<Version type="china" add="2.2"/>
 
 <Client/>
 
@@ -1888,37 +1893,7 @@ def OnMobHitMobClientEvent(self, args):
 </TabItem>
 </Tabs>
 
-<Client/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnOnMobHitMobClientEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.client.extraClientApi as clientApi
-ClientSystem = clientApi.GetClientSystemCls()
-
-class MyClientSystem(ClientSystem):
-    def __init__(self, namespace, systemName):
-        ClientSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            clientApi.GetEngineNamespace(),
-            clientApi.GetEngineSystemName(),
-            "OnMobHitMobClientEvent",
-            self, self.OnOnMobHitMobClientEvent)
-
-    def OnOnMobHitMobClientEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### OpenPlayerHitMobDetection
 
 <Client/> PlayerCompClient
 
@@ -1930,7 +1905,7 @@ class MyClientSystem(ClientSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnMobHitMobClientEvent(self, args: Dict[str, Any]) -> None: ...
+OpenPlayerHitMobDetection() -> bool
 ```
 
 
@@ -1952,6 +1927,8 @@ comp.OpenPlayerHitMobDetection()
 </TabItem>
 </Tabs>
 
+#### ClosePlayerHitMobDetection
+
 <Client/> PlayerCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -1962,7 +1939,7 @@ comp.OpenPlayerHitMobDetection()
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnMobHitMobClientEvent(self, args: Dict[str, Any]) -> None: ...
+ClosePlayerHitMobDetection() -> bool
 ```
 
 
@@ -1987,6 +1964,8 @@ comp.ClosePlayerHitMobDetection()
 ---
 
 ### OnMobHitMobServerEvent
+
+<Version type="china" add="2.2"/>
 
 <Server/>
 
@@ -2026,37 +2005,7 @@ def OnMobHitMobServerEvent(self, args):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnOnMobHitMobServerEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "OnMobHitMobServerEvent",
-            self, self.OnOnMobHitMobServerEvent)
-
-    def OnOnMobHitMobServerEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### OpenPlayerHitMobDetection
 
 <Server/> PlayerCompServer
 
@@ -2068,7 +2017,7 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnMobHitMobServerEvent(self, args: Dict[str, Any]) -> None: ...
+OpenPlayerHitMobDetection() -> bool
 ```
 
 
@@ -2090,6 +2039,8 @@ comp.OpenPlayerHitMobDetection()
 </TabItem>
 </Tabs>
 
+#### ClosePlayerHitMobDetection
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -2100,7 +2051,7 @@ comp.OpenPlayerHitMobDetection()
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnMobHitMobServerEvent(self, args: Dict[str, Any]) -> None: ...
+ClosePlayerHitMobDetection() -> bool
 ```
 
 
@@ -2125,6 +2076,8 @@ comp.ClosePlayerHitMobDetection()
 ---
 
 ### ProjectileCritHitEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -2168,37 +2121,7 @@ class MyServerSystem(ServerSystem):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnProjectileCritHitEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "ProjectileCritHitEvent",
-            self, self.OnProjectileCritHitEvent)
-
-    def OnProjectileCritHitEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### OpenPlayerCritBox
 
 <Server/> PlayerCompServer
 
@@ -2210,7 +2133,7 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnProjectileCritHitEvent(self, args: Dict[str, Any]) -> None: ...
+OpenPlayerCritBox() -> Any
 ```
 
 </TabItem>
@@ -2225,6 +2148,8 @@ comp.OpenPlayerCritBox()
 </TabItem>
 </Tabs>
 
+#### ClosePlayerCritBox
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -2235,7 +2160,7 @@ comp.OpenPlayerCritBox()
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnProjectileCritHitEvent(self, args: Dict[str, Any]) -> None: ...
+ClosePlayerCritBox() -> Any
 ```
 
 </TabItem>
@@ -2253,6 +2178,8 @@ comp.ClosePlayerCritBox()
 ---
 
 ### ProjectileDoHitEffectEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -2302,6 +2229,8 @@ def OnProjectileDoHitEffectEvent(self, args):
 ---
 
 ### RefreshEffectServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -2355,6 +2284,8 @@ class MyServerSystem(ServerSystem):
 
 ### RemoveEffectServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：实体身上状态效果被移除时。
@@ -2404,6 +2335,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### SpawnProjectileServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -2457,6 +2390,8 @@ class MyServerSystem(ServerSystem):
 
 ### StartRidingClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 触发时机：一个实体即将骑乘另外一个实体。
@@ -2507,6 +2442,8 @@ class MyClientSystem(ClientSystem):
 
 ### StartRidingServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：一个实体即将骑乘另外一个实体。
@@ -2554,6 +2491,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### WillAddEffectServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -2608,6 +2547,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### WillTeleportToServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 

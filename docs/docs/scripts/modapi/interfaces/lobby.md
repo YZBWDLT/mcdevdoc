@@ -4,6 +4,7 @@ sidebar_position: 18
 
 # 联机大厅
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/lianjidating.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetHostPlayerUid
+
+<Version type="china" add="3.6"/>
 
 <Server/> LobbyGameCompServer
 
@@ -52,6 +59,8 @@ uid = lobbyComp.GetHostPlayerUid()
 ---
 
 ### GetPlayerRoomId
+
+<Version type="china" add="3.10"/>
 
 <Server/> LobbyGameCompServer
 
@@ -98,6 +107,8 @@ lobbyComp.GetPlayerRoomId(cb, playerUid)
 
 ### GetPlayerUid
 
+<Version type="china" add="2.0"/>
+
 <Server/> HttpToWebServerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateHttp(levelId)`
@@ -130,6 +141,8 @@ uid = comp.GetPlayerUid(playerId)
 ---
 
 ### GetRoomInfo
+
+<Version type="china" add="3.10"/>
 
 <Server/> LobbyGameCompServer
 
@@ -173,6 +186,8 @@ if roomInfo:
 
 ### GetRoomMeta
 
+<Version type="china" add="3.10"/>
+
 <Server/> LobbyGameCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateLobbyGame(levelId)`
@@ -214,6 +229,8 @@ if roomInfo:
 ---
 
 ### KickPlayer
+
+<Version type="china" add="3.10"/>
 
 <Server/> LobbyGameCompServer
 
@@ -258,6 +275,8 @@ lobbyComp.KickPlayer(playerId, "自定义踢出信息")
 
 ### KickPlayerByUid
 
+<Version type="china" add="3.10"/>
+
 <Server/> LobbyGameCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateLobbyGame(levelId)`
@@ -297,6 +316,8 @@ lobbyComp.KickPlayerByUid(uid, "自定义踢出信息")
 ---
 
 ### LobbyGetStorage
+
+<Version type="china" add="2.0"/>
 
 <Server/> HttpToWebServerCompServer
 
@@ -359,6 +380,8 @@ LobbyGetStorage(callback: Callable, uid: int, keys: List[str]) -> Any
 ---
 
 ### LobbyGetStorageBySort
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> HttpToWebServerCompServer
 
@@ -431,6 +454,8 @@ LobbyGetStorageBySort(
 ---
 
 ### LobbySetStorageAndUserItem
+
+<Version type="china" add="2.0"/>
 
 <Server/> HttpToWebServerCompServer
 
@@ -523,6 +548,8 @@ LobbySetStorageAndUserItem(
 
 ### QueryLobbyUserItem
 
+<Version type="china" add="2.0"/>
+
 <Server/> HttpToWebServerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateHttp(levelId)`
@@ -585,6 +612,8 @@ QueryLobbyUserItem(callback: Callable, uid: int) -> Any
 
 ### SetRoomMeta
 
+<Version type="china" add="3.10"/>
+
 <Server/> LobbyGameCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateLobbyGame(levelId)`
@@ -625,6 +654,8 @@ lobbyComp.SetRoomMeta("scores", {"p1": 10})
 
 ### TransferRoomHost
 
+<Version type="china" add="3.10"/>
+
 <Server/> LobbyGameCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateLobbyGame(levelId)`
@@ -658,6 +689,8 @@ lobbyComp.TransferRoomHost(targetPlayerId)
 ---
 
 ### TransferRoomHostByUid
+
+<Version type="china" add="3.10"/>
 
 <Server/> LobbyGameCompServer
 

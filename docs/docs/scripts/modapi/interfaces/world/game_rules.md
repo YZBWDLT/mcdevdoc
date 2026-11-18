@@ -4,6 +4,7 @@ sidebar_position: 13
 
 # 游戏规则
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/youxiguize.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddBannedItem
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ItemBannedCompServer
 
@@ -52,6 +59,8 @@ comp.AddBannedItem("minecraft:egg")
 ---
 
 ### AddBlockProtectField
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -98,6 +107,8 @@ else:
 
 ### CleanBlockProtectField
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -133,6 +144,8 @@ print "CleanBlockProtectField suc={}".format(suc)
 
 ### ClearBannedItems
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ItemBannedCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItemBanned(levelId)`
@@ -165,6 +178,8 @@ comp.ClearBannedItems()
 
 ### DisableVineBlockSpread
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -195,6 +210,8 @@ comp.DisableVineBlockSpread(disable)
 ---
 
 ### ForbidLiquidFlow
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -233,6 +250,8 @@ success = gameComp.ForbidLiquidFlow(True)
 
 ### GetBannedItemList
 
+<Version type="china" add="1.21"/>
+
 <Server/> ItemBannedCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItemBanned(levelId)`
@@ -265,6 +284,8 @@ comp.GetBannedItemList()
 
 ### GetGameDiffculty
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(entityId)`
@@ -296,6 +317,8 @@ difficulty = comp.GetGameDiffculty()
 ---
 
 ### GetGameRulesInfoServer
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -363,6 +386,8 @@ type = comp.GetGameRulesInfoServer()
 
 ### GetGameType
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(entityId)`
@@ -394,6 +419,8 @@ type = comp.GetGameType()
 ---
 
 ### GetLevelGravity
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -427,6 +454,8 @@ comp.GetLevelGravity()
 
 ### GetPistonMaxInteractionCount
 
+<Version type="china" add="3.2"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -437,7 +466,7 @@ comp.GetLevelGravity()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPistonMaxInteractionCount() -> int
+服务端接口() -> int
 ```
 
 
@@ -465,7 +494,7 @@ print(comp.GetPistonMaxInteractionCount())
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetPistonMaxInteractionCount() -> int
+客户端接口() -> int
 ```
 
 
@@ -486,6 +515,8 @@ print(comp.GetPistonMaxInteractionCount())
 ---
 
 ### GetSeed
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -519,6 +550,8 @@ seed = comp.GetSeed()
 
 ### IsDisableCommandMinecart
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -550,6 +583,8 @@ isDisable = comp.IsDisableCommandMinecart()
 ---
 
 ### IsLockDifficulty
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -583,6 +618,8 @@ isLock = comp.IsLockDifficulty()
 
 ### IsLockGameRulesInfo
 
+<Version type="china" add="2.8"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -615,6 +652,8 @@ isLock = comp.IsLockGameRulesInfo()
 
 ### IsLockGameType
 
+<Version type="china" add="2.8"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -646,6 +685,8 @@ isLock = comp.IsLockGameType()
 ---
 
 ### LockDifficulty
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -680,6 +721,8 @@ comp.LockDifficulty(True)
 
 ### LockGameRulesInfo
 
+<Version type="china" add="2.8"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -713,6 +756,8 @@ comp.LockGameRulesInfo(True)
 
 ### LockGameType
 
+<Version type="china" add="2.8"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -745,6 +790,8 @@ comp.LockGameType(True)
 ---
 
 ### OpenCityProtect
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -780,6 +827,8 @@ success = gameComp.OpenCityProtect()
 
 ### RemoveBannedItem
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ItemBannedCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateItemBanned(levelId)`
@@ -812,6 +861,8 @@ comp.RemoveBannedItem("minecraft:stained_glass:2")
 ---
 
 ### RemoveBlockProtectField
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -852,6 +903,8 @@ if field > 0:
 
 ### SetCanActorSetOnFireByLightning
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -884,6 +937,8 @@ success = gameComp.SetCanActorSetOnFireByLightning(False)
 ---
 
 ### SetCanBlockSetOnFireByLightning
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -921,6 +976,8 @@ success = gameComp.SetCanBlockSetOnFireByLightning(False)
 ---
 
 ### SetDefaultGameType
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -960,6 +1017,8 @@ comp.SetDefaultGameType(1)
 
 ### SetDisableCommandMinecart
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -993,6 +1052,8 @@ suc = comp.SetDisableCommandMinecart(True)
 
 ### SetDisableContainers
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(entityId)`
@@ -1025,6 +1086,8 @@ comp.SetDisableContainers(True)
 ---
 
 ### SetDisableDropItem
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -1060,6 +1123,8 @@ comp.SetDisableDropItem(True)
 ---
 
 ### SetDisableGravityInLiquid
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -1098,6 +1163,8 @@ comp.SetDisableGravityInLiquid(True)
 
 ### SetDisableHunger
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(entityId)`
@@ -1134,6 +1201,8 @@ comp.SetDisableHunger(True)
 ---
 
 ### SetGameDifficulty
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -1172,6 +1241,8 @@ result = comp.SetGameDifficulty(0)
 ---
 
 ### SetGameRulesInfoServer
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -1246,6 +1317,8 @@ comp.SetGameRulesInfoServer(ruleDict)
 
 ### SetHurtCD
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -1278,6 +1351,8 @@ comp.SetHurtCD(1)
 ---
 
 ### SetLevelGravity
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -1312,6 +1387,8 @@ comp.SetLevelGravity(-0.08)
 ---
 
 ### SetPistonMaxInteractionCount
+
+<Version type="china" add="3.2"/>
 
 <Server/> GameComponentServer
 

@@ -4,6 +4,7 @@ sidebar_position: 3
 
 # 模糊
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/houchuli/mohu.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CheckGaussianBlurEnabled
+
+<Version type="china" add="1.25"/>
 
 <Client/> PostProcessComponent
 
@@ -52,6 +59,8 @@ comp.CheckGaussianBlurEnabled()
 
 ### SetEnableGaussianBlur
 
+<Version type="china" add="1.25"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -84,6 +93,8 @@ comp.SetEnableGaussianBlur(True)
 ---
 
 ### SetGaussianBlurRadius
+
+<Version type="china" add="1.25"/>
 
 <Client/> PostProcessComponent
 

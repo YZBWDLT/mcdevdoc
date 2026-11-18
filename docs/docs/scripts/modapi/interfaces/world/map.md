@@ -4,6 +4,7 @@ sidebar_position: 1
 
 # 地图
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/ditu.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CanSee
+
+<Version type="china" add="3.2"/>
 
 <Server/> GameComponentServer
 
@@ -30,7 +37,7 @@ import Client from '/src/components/highlight/client';
 <TabItem value="说明" label="说明" default>
 
 ```python
-CanSee(
+服务端接口(
     fromId: str,
     targetId: str,
     viewRange: float = 8.0,
@@ -76,7 +83,7 @@ comp.CanSee(entityId,targetId,20.0,True,180.0,180.0)
 <TabItem value="说明" label="说明" default>
 
 ```python
-CanSee(
+客户端接口(
     fromId: str,
     targetId: str,
     viewRange: float = 8.0,
@@ -115,6 +122,8 @@ comp.CanSee(entityId, targetId, 20.0, True, 180.0, 180.0)
 ---
 
 ### CheckBlockToPos
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -162,6 +171,8 @@ if comp.CheckBlockToPos((0, 0, 0), (1, 1, 1), 0):
 
 ### CheckChunkState
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ChunkSourceCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateChunkSource(levelId)`
@@ -195,6 +206,8 @@ comp.CheckChunkState(0, (0, 0, 0))
 ---
 
 ### CreateDimension
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> DimensionCompServer
 
@@ -233,6 +246,8 @@ comp.CreateDimension(3)
 ---
 
 ### CreateExplosion
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ExplosionComponentServer
 
@@ -279,6 +294,8 @@ comp.CreateExplosion((50,50,50),10,True,True,sourceId,playerId)
 
 ### DeleteAllArea
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ChunkSourceCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateChunkSource(levelId)`
@@ -310,6 +327,8 @@ comp.DeleteAllArea()
 ---
 
 ### DeleteArea
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ChunkSourceCompServer
 
@@ -343,6 +362,8 @@ comp.DeleteArea('Area0')
 ---
 
 ### DetectStructure
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PortalComponentServer
 
@@ -407,6 +428,8 @@ else:
 
 ### DoTaskOnChunkAsync
 
+<Version type="china" add="2.5"/>
+
 <Server/> ChunkSourceCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateChunkSource(levelId)`
@@ -460,6 +483,8 @@ comp.DoTaskOnChunkAsync(0, (0,0,0),(100,100,100),callback)
 
 ### GetAllAreaKeys
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ChunkSourceCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateChunkSource(levelId)`
@@ -491,6 +516,8 @@ comp.GetAllAreaKeys()
 ---
 
 ### GetBiomeInfo
+
+<Version type="china" add="3.0"/>
 
 <Server/> BiomeCompServer
 
@@ -529,6 +556,8 @@ info = comp.GetBiomeInfo("desert")
 
 ### GetBiomeName
 
+<Version type="china" add="2.7"/>
+
 <Server/> BiomeCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBiome(levelId)`
@@ -539,7 +568,7 @@ info = comp.GetBiomeInfo("desert")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBiomeName(pos: Tuple[int, int, int], dimId: int) -> str
+服务端接口(pos: Tuple[int, int, int], dimId: int) -> str
 ```
 
 - pos: Tuple[int, int, int]，指定位置。
@@ -573,7 +602,7 @@ biomeName = comp.GetBiomeName((0, 80, 0), 0)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetBiomeName(pos: Tuple[int, int, int]) -> str
+客户端接口(pos: Tuple[int, int, int]) -> str
 ```
 
 - pos: Tuple[int, int, int]，指定位置。
@@ -599,6 +628,8 @@ biomeName = comp.GetBiomeName((0, 80, 0))
 ---
 
 ### GetBlockLightLevel
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> BlockInfoComponentServer
 
@@ -638,6 +669,8 @@ lightlevel = comp.GetBlockLightLevel((x,y,z), 0)
 
 ### GetChunkEntites
 
+<Version type="china" add="1.23"/>
+
 <Server/> ChunkSourceCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateChunkSource(levelId)`
@@ -675,6 +708,8 @@ print "GetChunkEntites entityList={}".format(entityList)
 ---
 
 ### GetChunkMaxPos
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ChunkSourceCompServer
 
@@ -714,6 +749,8 @@ maxPos = comp.GetChunkMaxPos((1, 3))
 
 ### GetChunkMinPos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ChunkSourceCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateChunkSource(entityId)`
@@ -751,6 +788,8 @@ minPos = comp.GetChunkMinPos((1, 3))
 ---
 
 ### GetChunkMobNum
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ChunkSourceCompServer
 
@@ -790,6 +829,8 @@ mobNum = comp.GetChunkMobNum(0, (1, 3))
 
 ### GetChunkPosFromBlockPos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ChunkSourceCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateChunkSource(levelId)`
@@ -800,9 +841,7 @@ mobNum = comp.GetChunkMobNum(0, (1, 3))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetChunkPosFromBlockPos(
-    blockPos: Tuple[int, int, int],
-) -> Optional[Tuple[int, int]]
+服务端接口(blockPos: Tuple[int, int, int]) -> Optional[Tuple[int, int]]
 ```
 
 - blockPos: Tuple[int, int, int]，方块的坐标。
@@ -835,9 +874,7 @@ chunkPos = comp.GetChunkPosFromBlockPos((90, 40, -4))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetChunkPosFromBlockPos(
-    blockPos: Tuple[int, int, int],
-) -> Optional[Tuple[int, int]]
+客户端接口(blockPos: Tuple[int, int, int]) -> Optional[Tuple[int, int]]
 ```
 
 - blockPos: Tuple[int, int, int]，方块的坐标。
@@ -863,6 +900,8 @@ chunkPos = comp.GetChunkPosFromBlockPos((90, 40, -4))
 ---
 
 ### GetCurrentDimension
+
+<Version type="china" add="1.21"/>
 
 <Client/> GameComponentClient
 
@@ -896,6 +935,8 @@ dimId = comp.GetCurrentDimension()
 
 ### GetEntitiesAround
 
+<Version type="china" add="2.7"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(entityId)`
@@ -906,11 +947,7 @@ dimId = comp.GetCurrentDimension()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEntitiesAround(
-    entityId: str,
-    radius: int,
-    filters: Dict[str, Any],
-) -> List[str]
+服务端接口(entityId: str, radius: int, filters: Dict[str, Any]) -> List[str]
 ```
 
 - entityId: str，某个 entityId。
@@ -964,11 +1001,7 @@ comp.GetEntitiesAround(entityId, 100, filters)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEntitiesAround(
-    entityId: str,
-    radius: int,
-    filters: Dict[str, Any],
-) -> List[str]
+客户端接口(entityId: str, radius: int, filters: Dict[str, Any]) -> List[str]
 ```
 
 - entityId: str，某个 entityId。
@@ -1012,6 +1045,8 @@ comp.GetEntitiesAround(entityId, 100, filters)
 
 ### GetEntitiesAroundByType
 
+<Version type="china" add="2.7"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -1022,11 +1057,7 @@ comp.GetEntitiesAround(entityId, 100, filters)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEntitiesAroundByType(
-    entityId: str,
-    radius: int,
-    entityType: int,
-) -> List[str]
+服务端接口(entityId: str, radius: int, entityType: int) -> List[str]
 ```
 
 - entityId: str，区域中心的 entityId,如某个玩家的 entityid。
@@ -1058,11 +1089,7 @@ comp.GetEntitiesAroundByType(entityId, 10, serverApi.GetMinecraftEnum().EntityTy
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEntitiesAroundByType(
-    entityId: str,
-    radius: int,
-    entityType: int,
-) -> List[str]
+客户端接口(entityId: str, radius: int, entityType: int) -> List[str]
 ```
 
 - entityId: str，区域中心的 entityId,如某个玩家的 entityid。
@@ -1087,6 +1114,8 @@ comp.GetEntitiesAroundByType(entityId, 10, clientApi.GetMinecraftEnum().EntityTy
 ---
 
 ### GetEntitiesAroundForClientEntity
+
+<Version type="china" add="3.7"/>
 
 <Client/> GameComponentClient
 
@@ -1149,6 +1178,8 @@ comp.GetEntitiesAroundForClientEntity(entityId, 100, filters)
 
 ### GetEntitiesInSquareArea
 
+<Version type="china" add="2.7"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -1159,7 +1190,7 @@ comp.GetEntitiesAroundForClientEntity(entityId, 100, filters)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEntitiesInSquareArea(
+服务端接口(
     entityId: None,
     startPos: Tuple[int, int, int],
     endPos: Tuple[int, int, int],
@@ -1202,7 +1233,7 @@ comp.GetEntitiesInSquareArea(None, (0,0,0), (100,100,100), 0)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEntitiesInSquareArea(
+客户端接口(
     entityId: None,
     startPos: Tuple[int, int, int],
     endPos: Tuple[int, int, int],
@@ -1237,6 +1268,8 @@ comp.GetEntitiesInSquareArea(None, (0,0,0), (100,100,100))
 ---
 
 ### GetEntitiesInSquareAreaForClientEntity
+
+<Version type="china" add="3.7"/>
 
 <Client/> GameComponentClient
 
@@ -1282,6 +1315,8 @@ comp.GetEntitiesInSquareAreaForClientEntity((0,0,0), (100,100,100))
 
 ### GetLevelId
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -1292,7 +1327,7 @@ comp.GetEntitiesInSquareAreaForClientEntity((0,0,0), (100,100,100))
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetLevelId() -> str
+服务端接口() -> str
 ```
 
 
@@ -1323,7 +1358,7 @@ class FpsServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetLevelId() -> str
+客户端接口() -> str
 ```
 
 
@@ -1347,6 +1382,8 @@ class FpsClientSystem(ClientSystem):
 ---
 
 ### GetLoadedChunks
+
+<Version type="china" add="1.23"/>
 
 <Server/> ChunkSourceCompServer
 
@@ -1382,6 +1419,8 @@ print "dimension {} has chunk {}".format(0, result)
 
 ### GetSpawnDimension
 
+<Version type="china" add="2.0"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -1413,6 +1452,8 @@ spawnDimension = gameComp.GetSpawnDimension()
 ---
 
 ### GetSpawnPosition
+
+<Version type="china" add="1.21"/>
 
 <Server/> GameComponentServer
 
@@ -1451,6 +1492,8 @@ spawnPos = gameComp.GetSpawnPosition()
 
 ### GetStructureSize
 
+<Version type="china" add="2.7"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -1483,6 +1526,8 @@ comp.GetStructureSize("test:structureName")
 ---
 
 ### IsChunkGenerated
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ChunkSourceCompServer
 
@@ -1523,6 +1568,8 @@ result = comp.IsChunkGenerated(0, comp.GetChunkPosFromBlockPos((10000, 0, 10000)
 
 ### IsSlimeChunk
 
+<Version type="china" add="2.1"/>
+
 <Server/> ChunkSourceCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateChunkSource(levelId)`
@@ -1556,6 +1603,8 @@ result = comp.IsSlimeChunk(0, comp.GetChunkPosFromBlockPos((10000, 0, 10000)))
 ---
 
 ### LocateNeteaseFeatureRule
+
+<Version type="china" add="1.23"/>
 
 <Server/> FeatureCompServer
 
@@ -1604,6 +1653,8 @@ pos = comp.LocateNeteaseFeatureRule("custombiomes:overworld_pumpkins_feature_rul
 
 ### LocateStructureFeature
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> FeatureCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateFeature(levelId)`
@@ -1650,6 +1701,8 @@ pos = comp.LocateStructureFeature(serverApi.GetMinecraftEnum().StructureFeatureT
 
 ### MayPlace
 
+<Version type="china" add="1.21"/>
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -1691,6 +1744,8 @@ canPlace = comp.MayPlace("minecraft:wheat", pos, serverApi.GetMinecraftEnum().Fa
 ---
 
 ### MayPlaceOn
+
+<Version type="china" add="1.21"/>
 
 <Server/> ItemCompServer
 
@@ -1738,6 +1793,8 @@ comp.MayPlaceOn("minecraft:dye", 3, (1,2,3), serverApi.GetMinecraftEnum().Facing
 
 ### MirrorDimension
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> DimensionCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateDimension(levelId)`
@@ -1776,6 +1833,8 @@ comp.MirrorDimension(0, 1)
 
 ### OpenClientChunkGeneration
 
+<Version type="china" add="2.6"/>
+
 <Server/> ChunkSourceCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateChunkSource(levelId)`
@@ -1808,6 +1867,8 @@ result = comp.OpenClientChunkGeneration(False) #关闭客户端区块生成功�
 ---
 
 ### PlaceFeature
+
+<Version type="china" add="2.5"/>
 
 <Server/> GameComponentServer
 
@@ -1847,6 +1908,8 @@ comp.PlaceFeature("test:pumpkins", 0, (0, 64, 0))
 ---
 
 ### PlaceNeteaseLargeFeature
+
+<Version type="china" add="2.7"/>
 
 <Server/> GameComponentServer
 
@@ -1895,6 +1958,8 @@ comp.PlaceNeteaseLargeFeature("minecraft:centerPool", 0, (0, 65, 0), 90, 5)
 ---
 
 ### PlaceStructure
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 
@@ -1958,6 +2023,8 @@ comp.PlaceStructure(None, (100, 70, 100), "test:structureName", 0, 0)
 
 ### SetAddArea
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ChunkSourceCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateChunkSource(levelId)`
@@ -2008,6 +2075,8 @@ comp.SetAddArea('Area0', 0, (-80,0,-80), (80,0,80))
 
 ### SetBiomeByPos
 
+<Version type="china" add="3.0"/>
+
 <Server/> BiomeCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBiome(levelId)`
@@ -2047,6 +2116,8 @@ setState = comp.SetBiomeByPos((0, 80, 0), "desert", 0)
 ---
 
 ### SetBiomeByPosList
+
+<Version type="china" add="3.0"/>
 
 <Server/> BiomeCompServer
 
@@ -2097,6 +2168,8 @@ setFailList = setPosListState["BlockList"]
 
 ### SetBiomeByVolume
 
+<Version type="china" add="3.0"/>
+
 <Server/> BiomeCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBiome(levelId)`
@@ -2144,6 +2217,8 @@ setState = comp.SetBiomeByVolume(minPos, maxPos, "desert", 0)
 ---
 
 ### SetBiomeInfo
+
+<Version type="china" add="3.0"/>
 
 <Server/> BiomeCompServer
 
@@ -2193,6 +2268,8 @@ result = comp.SetBiomeInfo("desert", (0.125, 1), 0.15, 1, True)
 
 ### SetMergeSpawnItemRadius
 
+<Version type="china" add="1.23"/>
+
 <Server/> GameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -2231,6 +2308,8 @@ gameComp.SetMergeSpawnItemRadius(5.0)
 ---
 
 ### SetSpawnDimensionAndPosition
+
+<Version type="china" add="2.0"/>
 
 <Server/> GameComponentServer
 
@@ -2277,6 +2356,8 @@ gameComp.SetSpawnDimensionAndPosition(3, (0, 60, 0))
 ---
 
 ### UpgradeMapDimensionVersion
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> GameComponentServer
 

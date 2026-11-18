@@ -8,10 +8,15 @@ import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 import EarlyExecution from "/src/components/highlight/earlyExecution"
 import RestrictedMode from "/src/components/highlight/restrictedMode"
+import Button from '/src/components/button/base';
 
 本文主要记录系统前事件相关接口。
 
 系统前事件往往用于注册自定义游戏内容。在前事件的回调中，代码处于受限执行状态，无法执行会更改系统的代码，必须使用`system.run()`延后执行。
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

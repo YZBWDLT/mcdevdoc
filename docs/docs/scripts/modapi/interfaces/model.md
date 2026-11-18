@@ -4,6 +4,7 @@ sidebar_position: 11
 
 # 模型
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/moxing.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### BindItemToBone
+
+<Version type="china" add="2.8"/>
 
 <Client/> ModelComponentClient
 
@@ -70,6 +77,8 @@ comp.BindItemToBone(1, "rightHand", 0, (2.5,0,2), (0,0,0), (1,1.5,1))
 
 ### BindModelToEntity
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -114,6 +123,8 @@ gunModelId = comp.BindModelToEntity("rightHand", "gun")
 
 ### BindModelToModel
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(11)`
@@ -148,6 +159,8 @@ gunModelId = comp.BindModelToModel("rightHand", "gun")
 ---
 
 ### CancelAllBoneMask
+
+<Version type="china" add="1.23"/>
 
 <Client/> ModelComponentClient
 
@@ -184,6 +197,8 @@ comp.CancelAllBoneMask(modelId, "attack")
 ---
 
 ### CreateFreeModel
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 
@@ -223,6 +238,8 @@ model = comp.CreateFreeModel(modelName, 0)
 
 ### GetAllBindModelToEntity
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -255,6 +272,8 @@ modelIds = comp.GetAllBindModelToEntity("rightHand")
 ---
 
 ### GetAnimLength
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 
@@ -299,6 +318,8 @@ animLength = comp.GetAnimLength('run', modelId)
 
 ### GetBonePositionFromMinecraftObject
 
+<Version type="china" add="3.0"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -331,6 +352,8 @@ pos = comp.GetBonePositionFromMinecraftObject("rightleg")
 ---
 
 ### GetBoneWorldPos
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 
@@ -376,6 +399,8 @@ bPos = comp.GetBoneWorldPos(boneName, modelId)
 
 ### GetEntityBoneWorldPos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -413,6 +438,8 @@ bPos = comp.GetEntityBoneWorldPos(entityId, boneName)
 
 ### GetEntityScale
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ScaleComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateScale(entityId)`
@@ -444,6 +471,8 @@ result = comp.GetEntityScale()
 ---
 
 ### GetExtraUniformValue
+
+<Version type="china" add="2.9"/>
 
 <Client/> ModelComponentClient
 
@@ -488,6 +517,8 @@ print comp.GetExtraUniformValue(modelId, 4)
 
 ### GetModelId
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -519,6 +550,8 @@ modelId = comp.GetModelId()
 ---
 
 ### GetModelMaterial
+
+<Version type="china" add="2.9"/>
 
 <Client/> ModelComponentClient
 
@@ -565,6 +598,8 @@ print comp.GetModelMaterial(modelId, "L_wing01")
 
 ### GetModelName
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ModelComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -600,6 +635,8 @@ modelName = comp.GetModelName()
 ---
 
 ### GetModelStyle
+
+<Version type="china" add="2.6"/>
 
 <Client/> ActorRenderCompClient
 
@@ -637,6 +674,8 @@ comp.GetModelStyle()
 
 ### GetPlayingAnimList
 
+<Version type="china" add="1.23"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -669,6 +708,8 @@ playingAnimList = comp.GetPlayingAnimList(modelId)
 ---
 
 ### GetTexture
+
+<Version type="china" add="2.1"/>
 
 <Client/> ModelComponentClient
 
@@ -710,6 +751,8 @@ texturePath = comp.GetTexture(modelId)
 
 ### HideModel
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(levelId)`
@@ -744,6 +787,8 @@ comp.HideModel(modelId)
 ---
 
 ### ModelPlayAni
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 
@@ -793,6 +838,8 @@ comp.ModelPlayAni(modelId, 'run', True, False, 0)
 
 ### ModelStopAni
 
+<Version type="china" add="1.23"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(levelId)`
@@ -828,6 +875,8 @@ comp.ModelStopAni(modelId, "attack")
 ---
 
 ### PlayAnim
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 
@@ -870,6 +919,8 @@ comp.PlayAnim("run", True, modelId)
 ---
 
 ### RegisterAnim1DControlParam
+
+<Version type="china" add="1.23"/>
 
 <Client/> ModelComponentClient
 
@@ -926,6 +977,8 @@ comp.SetAnim1DControlParam(modelId, "arm_control_param", 0.5)
 
 ### RegisterAnim1DMultiControlParam
 
+<Version type="china" add="2.11"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(levelId)`
@@ -974,6 +1027,8 @@ comp.SetAnim1DMultiControlParam(modelId, "multi_blend_key", {"walk":0.5, "run":0
 
 ### RemoveAnim1DMultiControlParam
 
+<Version type="china" add="2.11"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -1009,6 +1064,8 @@ comp.RemoveAnim1DMultiControlParam(modelId, "multi_blend_key")
 
 ### RemoveFreeModel
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(levelId)`
@@ -1043,6 +1100,8 @@ comp.RemoveFreeModel(modelId)
 
 ### ResetModel
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -1074,6 +1133,8 @@ comp.ResetModel()
 ---
 
 ### SetAnim1DControlParam
+
+<Version type="china" add="1.23"/>
 
 <Client/> ModelComponentClient
 
@@ -1121,6 +1182,8 @@ comp.SetAnim1DControlParam(modelId, "arm_control_param", 0.5)
 ---
 
 ### SetAnim1DMultiControlParam
+
+<Version type="china" add="2.11"/>
 
 <Client/> ModelComponentClient
 
@@ -1170,6 +1233,8 @@ comp.SetAnim1DMultiControlParam(modelId, "multi_blend_key", {"walk":0.5, "run":0
 
 ### SetAnimLayer
 
+<Version type="china" add="1.23"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(levelId)`
@@ -1210,6 +1275,8 @@ comp.SetAnimLayer(modelId, "attack", 1)
 ---
 
 ### SetAnimSpeed
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 
@@ -1254,6 +1321,8 @@ comp.SetAnimSpeed("run", 3.0, modelId)
 ---
 
 ### SetAnimationAllBoneMask
+
+<Version type="china" add="1.23"/>
 
 <Client/> ModelComponentClient
 
@@ -1305,6 +1374,8 @@ comp.SetAnimationAllBoneMask(modelId, "attack", ["l_arm", "r_arm"], False, True)
 
 ### SetAnimationBoneMask
 
+<Version type="china" add="1.23"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(levelId)`
@@ -1355,6 +1426,8 @@ comp.SetAnimationBoneMask(modelId, "attack", ["l_arm", "r_arm"], False, True)
 
 ### SetBrightness
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> BrightnessCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBrightness(entityId)`
@@ -1392,6 +1465,8 @@ success = comp.SetBrightness(0.5)
 
 ### SetEntityOpacity
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -1422,6 +1497,8 @@ comp.SetEntityOpacity(0.2)
 ---
 
 ### SetEntityScale
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ScaleComponentServer
 
@@ -1462,6 +1539,8 @@ result = comp.SetEntityScale(entityId, scale)
 
 ### SetEntityShadowShow
 
+<Version type="china" add="2.0"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -1492,6 +1571,8 @@ comp.SetEntityShadowShow(False)
 ---
 
 ### SetExtraUniformValue
+
+<Version type="china" add="1.23"/>
 
 <Client/> ModelComponentClient
 
@@ -1552,6 +1633,8 @@ void main()
 
 ### SetFreeModelAniSpeed
 
+<Version type="china" add="2.0"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(clientApi.GetLevelId())`
@@ -1594,6 +1677,8 @@ comp.SetFreeModelAniSpeed(modelId, "recover", 10)
 ---
 
 ### SetFreeModelBoundingBox
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 
@@ -1639,6 +1724,8 @@ comp.SetFreeModelBoundingBox(modelId, (-1, -0.9, -0.8), (1, 1, 1))
 
 ### SetFreeModelDimensionId
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(levelId)`
@@ -1675,6 +1762,8 @@ comp.SetFreeModelDimensionId(modelId, -1)
 ---
 
 ### SetFreeModelPos
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 
@@ -1713,6 +1802,8 @@ comp.SetFreeModelPos(modelId, 0, 0, 0)
 
 ### SetFreeModelRot
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(levelId)`
@@ -1750,6 +1841,8 @@ comp.SetFreeModelRot(modelId, 0, 0, 0)
 
 ### SetFreeModelScale
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(levelId)`
@@ -1786,6 +1879,8 @@ comp.SetFreeModelScale(modelId, 1, 1, 1)
 ---
 
 ### SetLegacyBindRot
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 
@@ -1832,6 +1927,8 @@ comp.SetLegacyBindRot(False, modelId)
 
 ### SetModel
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ModelComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -1842,7 +1939,7 @@ comp.SetLegacyBindRot(False, modelId)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetModel(modelName: str) -> bool
+服务端接口(modelName: str) -> bool
 ```
 
 - modelName: str，模型名称,值为""时重置模型。
@@ -1872,7 +1969,7 @@ comp.SetModel("xuenv")
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetModel(modelName: str) -> int
+客户端接口(modelName: str) -> int
 ```
 
 - modelName: str，骨骼模型的名称。
@@ -1899,6 +1996,8 @@ comp.SetModel("xuenv")
 ---
 
 ### SetModelMaterial
+
+<Version type="china" add="2.9"/>
 
 <Client/> ModelComponentClient
 
@@ -1954,6 +2053,8 @@ print comp.SetModelMaterial(modelId, "my_custom_mat", "", "L_wing01")
 
 ### SetModelMultiPassMaterial
 
+<Version type="china" add="2.9"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -2006,6 +2107,8 @@ print comp.SetModelMultiPassMaterial(modelId, ["my_mat_default", "my_mat_for_pas
 
 ### SetModelOffset
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ModelComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -2016,7 +2119,7 @@ print comp.SetModelMultiPassMaterial(modelId, ["my_mat_default", "my_mat_for_pas
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetModelOffset(offset: Tuple[float, float, float]) -> Any
+服务端接口(offset: Tuple[float, float, float]) -> Any
 ```
 
 - offset: Tuple[float, float, float]，偏移量。
@@ -2043,7 +2146,7 @@ comp.SetModelOffset((0, 3, 0))
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetModelOffset(offset: Tuple[float, float, float]) -> Any
+客户端接口(offset: Tuple[float, float, float]) -> Any
 ```
 
 - offset: Tuple[float, float, float]，偏移向量。
@@ -2063,6 +2166,8 @@ comp.SetModelOffset((0, 1, 0))
 ---
 
 ### SetModelPartVisible
+
+<Version type="china" add="2.8"/>
 
 <Client/> ModelComponentClient
 
@@ -2127,6 +2232,8 @@ print comp.SetModelPartVisible(modelId, "r_wing01", False)
 
 ### SetModelPerspectiveEffect
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -2162,6 +2269,8 @@ comp.SetModelPerspectiveEffect(True, (1, 0.9, 0, 0.2))
 
 ### SetModelTexture
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ModelComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -2194,6 +2303,8 @@ comp.SetModelTexture("Osteve")
 ---
 
 ### SetShowArmModel
+
+<Version type="china" add="1.23"/>
 
 <Client/> ModelComponentClient
 
@@ -2230,6 +2341,8 @@ comp.SetShowArmModel(modelId, False)
 ---
 
 ### SetTexture
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 
@@ -2272,6 +2385,8 @@ comp.SetTexture("Osteve", modelId)
 
 ### ShowCommonHurtColor
 
+<Version type="china" add="1.21"/>
+
 <Server/> ModelComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -2282,7 +2397,7 @@ comp.SetTexture("Osteve", modelId)
 <TabItem value="说明" label="说明" default>
 
 ```python
-ShowCommonHurtColor(show: bool) -> bool
+服务端接口(show: bool) -> bool
 ```
 
 - show: bool，是否显示。
@@ -2315,7 +2430,7 @@ comp.ShowCommonHurtColor(True)
 <TabItem value="说明" label="说明" default>
 
 ```python
-ShowCommonHurtColor(show: bool) -> bool
+客户端接口(show: bool) -> bool
 ```
 
 - show: bool，是否显示。
@@ -2341,6 +2456,8 @@ comp.ShowCommonHurtColor(False)
 ---
 
 ### ShowModel
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 
@@ -2377,6 +2494,8 @@ comp.ShowModel(modelId)
 
 ### UnBindModelToEntity
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ModelComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateModel(entityId)`
@@ -2409,6 +2528,8 @@ comp.UnBindModelToEntity(gunModelId)
 ---
 
 ### UnBindModelToModel
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> ModelComponentClient
 

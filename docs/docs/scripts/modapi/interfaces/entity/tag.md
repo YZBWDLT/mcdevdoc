@@ -4,6 +4,7 @@ sidebar_position: 2
 
 # 标签
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shiti/biaoqian.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddEntityTag
+
+<Version type="china" add="2.0"/>
 
 <Server/> TagComponentServer
 
@@ -53,6 +60,8 @@ comp.AddEntityTag("AAA")
 
 ### EntityHasTag
 
+<Version type="china" add="2.0"/>
+
 <Server/> TagComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateTag(entityId)`
@@ -86,6 +95,8 @@ comp.EntityHasTag("AAA")
 
 ### GetEntityTags
 
+<Version type="china" add="2.0"/>
+
 <Server/> TagComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateTag(entityId)`
@@ -117,6 +128,8 @@ comp.GetEntityTags()
 ---
 
 ### RemoveEntityTag
+
+<Version type="china" add="2.0"/>
 
 <Server/> TagComponentServer
 

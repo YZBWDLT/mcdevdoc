@@ -6,10 +6,15 @@ sidebar_position: 1
 
 import Version from "/src/components/highlight/version"
 import RestrictedMode from "/src/components/highlight/restrictedMode"
+import Button from '/src/components/button/base';
 
 本文记录获取各个图形组件的函数。各组件的设置方法与取值范围见对应的页面，设置项的通用写法见[设置约定](./concepts)，模块本身的说明见 [ScriptAPI 简述](../overview)。
 
 每个生物群系都有一套图形设置，四个组件分别控制大气散射、光照、水体与调色。除了按生物群系获取，还可以按玩家获取同一套组件，玩家级的设置会覆盖生物群系级。
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

@@ -4,6 +4,7 @@ sidebar_position: 13
 
 # 状态效果
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shiti/zhuangtaixiaoguo.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddEffectToEntity
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> EffectComponentServer
 
@@ -61,6 +68,8 @@ res = comp.AddEffectToEntity("speed", 30.0, 2, True)
 
 ### GetAllEffects
 
+<Version type="china" add="2.6"/>
+
 <Server/> EffectComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEffect(entityId)`
@@ -71,7 +80,7 @@ res = comp.AddEffectToEntity("speed", 30.0, 2, True)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAllEffects() -> Optional[List[Dict[str, Any]]]
+服务端接口() -> Optional[List[Dict[str, Any]]]
 ```
 
 
@@ -110,7 +119,7 @@ effectDictList = comp.GetAllEffects()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAllEffects() -> Optional[List[Dict[str, Any]]]
+客户端接口() -> Optional[List[Dict[str, Any]]]
 ```
 
 
@@ -142,6 +151,8 @@ effectDictList = comp.GetAllEffects()
 ---
 
 ### GetLoadEffects
+
+<Version type="china" add="3.3"/>
 
 <Server/> EffectComponentServer
 
@@ -175,6 +186,8 @@ effectList = comp.GetLoadEffects()
 
 ### HasEffect
 
+<Version type="china" add="2.6"/>
+
 <Server/> EffectComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEffect(entityId)`
@@ -185,7 +198,7 @@ effectList = comp.GetLoadEffects()
 <TabItem value="说明" label="说明" default>
 
 ```python
-HasEffect(effectName: str) -> bool
+服务端接口(effectName: str) -> bool
 ```
 
 - effectName: str，状态效果名称字符串，包括自定义状态效果和原版状态效果，原版状态效果可在 wiki 查询。
@@ -214,7 +227,7 @@ effectRes = comp.HasEffect(effectName)
 <TabItem value="说明" label="说明" default>
 
 ```python
-HasEffect(effectName: str) -> bool
+客户端接口(effectName: str) -> bool
 ```
 
 - effectName: str，状态效果名称字符串，包括自定义状态效果和原版状态效果，原版状态效果可在 wiki 查询。
@@ -236,6 +249,8 @@ effectRes = comp.HasEffect(effectName)
 ---
 
 ### RemoveEffectFromEntity
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> EffectComponentServer
 

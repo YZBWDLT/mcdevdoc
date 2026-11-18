@@ -18,7 +18,9 @@ import Button from '/src/components/button/base';
 
 数据驱动物品组件（Data-Driven Item Components）用于规定物品的功能。将不同的物品组件组合在一起可以实现多种复杂的功能。
 
-本文档收录所有已开放（包括旧版本）或即将开放的命名空间为`minecraft`和`netease`的物品组件信息。你可以使用<kbd>Ctrl</kbd>+<kbd>F</kbd>来查找你需要的条目。
+本文档收录所有已开放（包括旧版本）或即将开放的命名空间为`minecraft`和`netease`的物品组件信息。要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=item_component" color="green"/>
 
 **每个组件条目下方的高亮标签均含注释，可鼠标悬停或手机点击查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。"/>。
 
@@ -719,7 +721,9 @@ import Button from '/src/components/button/base';
     | **`bow`** | **`cosmetic_head`** | **`crossbow`** | **`elytra`** | **`fishing_rod`** |
     | **`flintsteel`** | **`hoe`** | **`melee_spear`** | **`pickaxe`** | **`shears`** |
     | **`shield`** | **`shovel`** | **`sword`** | **`all`** |   |
-  - <DataType type="int" name="value" isRequired/>：附魔能力。该值越高越容易附魔出更好的魔咒。应在`0`-`255`之间（含）。更多信息参见[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/附魔（物品修饰）#附魔能力)。
+
+- <DataType type="int" name="value" isRequired/>：附魔能力。该值越高越容易附魔出更好的魔咒。应在`0`-`255`之间（含）。更多信息参见[中文 Minecraft Wiki](https://zh.minecraft.wiki/w/附魔（物品修饰）#附魔能力)。
+
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -1461,8 +1465,8 @@ import Button from '/src/components/button/base';
   - <DataType type="array" name="banned_items"/>：禁止存储的物品，在此列名单中的物品无法存储。
     - <DataType type="string"/>：禁止存储的物品 ID。
   - <DataType type="int" name="max_slots"/>：该物品的最大槽位数。默认值为`64`，最大为`64`。
-  - <DataType type="int" name="max_weight_limit"/>：<Version add="1.21.40" deprecated="1.21.50" inline/>该物品可存储的最大容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)组件。
-  - <DataType type="int" name="weight_in_storage_item"/>：<Version add="1.21.40" deprecated="1.21.50" inline/>该物品在其他可存储物品中占用的容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier)组件。
+  - <DataType type="int" name="max_weight_limit"/>：<Version add="1.21.40" deprecated="1.21.60" inline/>该物品可存储的最大容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_limit`](#minecraftstorage_weight_limit)组件。
+  - <DataType type="int" name="weight_in_storage_item"/>：<Version add="1.21.40" deprecated="1.21.60" inline/>该物品在其他可存储物品中占用的容量。注：`1.21.60`或更高格式版本请使用[`minecraft:storage_weight_modifier`](#minecraftstorage_weight_modifier)组件。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -1739,7 +1743,7 @@ import Button from '/src/components/button/base';
 - <DataType type="object" name="minecraft:wearable"/>：根对象。
   - <DataType type="string" name="slot" isRequired/>：定义可穿戴的位置。可选值：`slot.weapon.mainhand`、`slot.weapon.offhand`、`slot.armor.head`、`slot.armor.chest`、`slot.armor.legs`、`slot.armor.feet`、`slot.armor.body`（用于马铠、狼铠等整体装备）。
   - <DataType type="int" name="protection"/>：物品可提供的护甲值。默认为`0`。
-  - <DataType type="boolean" name="hides_player_location"/>：（1.21.90+）穿戴后是否在定位栏中隐藏玩家位置。
+  - <DataType type="boolean" name="hides_player_location"/>：<Version add="1.21.90" inline/>穿戴后是否在定位栏与定位地图上隐藏玩家位置。默认为`false`。
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">
@@ -1778,7 +1782,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:allow_offhand`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="组件冲突" tooltip="使用该组件的物品，在放到副手后可能无法支持minecraft:foil、netease:render_offsets等组件。" color="red"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="组件冲突" tooltip="使用该组件的物品，在放到副手后可能无法支持minecraft:foil、netease:render_offsets等组件。" color="red"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-allow-offhand"/>
 
@@ -1807,7 +1811,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:armor`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-armor"/>
 
@@ -1842,7 +1846,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:bucket`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为bucket。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="1.24"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为bucket。"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-bucket"/>
 
@@ -1871,7 +1875,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:compostable`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="3.0"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-compostable"/>
 
@@ -1897,7 +1901,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:cooldown`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="组件冲突" tooltip="定义了食物组件minecraft:food的物品，其冷却需在食物组件中定义。" color="red"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="2.0"/> <Highlight text="组件冲突" tooltip="定义了食物组件minecraft:food的物品，其冷却需在食物组件中定义。" color="red"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-cooldown"/>
 
@@ -1928,7 +1932,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:customtips`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="2.1"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-customtips"/>
 
@@ -1957,7 +1961,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:egg`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为egg。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为egg。"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-egg"/>
 
@@ -1986,7 +1990,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:enchant_material`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="1.25"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-enchant-material"/>
 
@@ -2015,7 +2019,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:fire_resistant`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-fire-resistant"/>
 
@@ -2044,7 +2048,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:fishing_hook`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为fishing_rod。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="3.8"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为fishing_rod。"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/9-zidingyiyugan.html"/>
 
@@ -2077,7 +2081,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:frame_anim_in_scene`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_res/下的中国版物品。"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" color="lightblue"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_res/下的中国版物品。"/> <Version type="china" add="1.22"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" color="lightblue"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-frame-anim-in-scene"/>
 
@@ -2109,7 +2113,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:frame_animation`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_res/下的中国版物品。"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" color="lightblue"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_res/下的中国版物品。"/> <Version type="china" add="1.21"/> <Highlight text="资源包组件" tooltip="该组件必须在资源包的物品定义中定义。" color="lightblue"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-frame-animation"/>
 
@@ -2142,7 +2146,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:fuel`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="2.0"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-fuel"/>
 
@@ -2171,7 +2175,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:initial_user_data`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="3.3"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-initial-user-data"/>
 
@@ -2231,7 +2235,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:liquid_clipped`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="3.8"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/3-teshufangkuai/5-zidingyiliuti.html" />
 
@@ -2255,7 +2259,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:projectile`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-projectile"/>
 
@@ -2281,7 +2285,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:render_offsets`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="1.21"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-render-offsets"/>
 
@@ -2320,7 +2324,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:shield`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为shield。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="2.1"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为shield。"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-shield"/>
 
@@ -2355,7 +2359,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:show_in_hand`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-show-in-hand"/>
 
@@ -2384,7 +2388,7 @@ import Button from '/src/components/button/base';
 
 ### `netease:weapon`
 
-<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为weapon。"/> <br/>
+<Usable type="onlyChina" tooltip="且必须是定义在netease_items_beh/下的中国版物品。"/> <Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/> <Highlight text="需要前置描述" tooltip="要使用该组件，需在物品描述中将custom_item_type设置为weapon。"/><br/>
 
 <Button text="我的世界开发者官网" url="https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/1-zidingyiwupin/1-zidingyijichuwupin.html#netease-weapon"/>
 
@@ -2501,23 +2505,24 @@ import Button from '/src/components/button/base';
     | 可选值 | `poor` | `low` | `normal` | `good` | `max` | `supernatural` |
     | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
     | **饱和度系数** | 0.1 | 0.3 | 0.6 | 0.8 | 1.0 | 1.2 |
-  - <DataType type="string" name="using_converts_to"/>：食物在食用完毕后将转化为的物品。应填写为物品 ID。
-  - <DataType type="string" name="on_use_action"/>：食物在食用完毕后的行为。可选值：`chorus_teleport`、`suspicious_stew_effect`、`none`，默认为`none`。
-  - <DataType type="array" name="on_use_range"/>：食物在食用完毕后的影响范围。仅在`on_use_action`指定为`chorus_teleport`时有意义，代表随机传送的范围。
+
+- <DataType type="string" name="using_converts_to"/>：食物在食用完毕后将转化为的物品。应填写为物品 ID。
+- <DataType type="string" name="on_use_action"/>：食物在食用完毕后的行为。可选值：`chorus_teleport`、`suspicious_stew_effect`、`none`，默认为`none`。
+- <DataType type="array" name="on_use_range"/>：食物在食用完毕后的影响范围。仅在`on_use_action`指定为`chorus_teleport`时有意义，代表随机传送的范围。
     - <DataType type="float"/>0：X 轴偏移，默认值为`0.0`。
     - <DataType type="float"/>1：Y 轴偏移，默认值为`0.0`。
     - <DataType type="float"/>2：Z 轴偏移，默认值为`0.0`。
-  - <DataType type="string" name="cooldown_type"/>：食物在使用后进入的冷却类型，共享同种冷却类型的物品将会一起进入冷却阶段。
-  - <DataType type="int" name="cooldown_time"/>：食物在使用后进入的冷却时间，单位为游戏刻，共享同种冷却类型的物品将会一起进入冷却阶段。
-  - <DataType type="boolean" name="can_always_eat"/>：食物是否在任何情况下都可食用，否则仅当玩家的饥饿值不满时才可食用。
-  - <DataType type="array" name="effects"/>：食物在食用后提供的状态效果。
+- <DataType type="string" name="cooldown_type"/>：食物在使用后进入的冷却类型，共享同种冷却类型的物品将会一起进入冷却阶段。
+- <DataType type="int" name="cooldown_time"/>：食物在使用后进入的冷却时间，单位为游戏刻，共享同种冷却类型的物品将会一起进入冷却阶段。
+- <DataType type="boolean" name="can_always_eat"/>：食物是否在任何情况下都可食用，否则仅当玩家的饥饿值不满时才可食用。
+- <DataType type="array" name="effects"/>：食物在食用后提供的状态效果。
     - <DataType type="object"/>：状态效果信息。
-      - <DataType type="string" name="name"/>：提供的状态效果 ID。
-      - <DataType type="float" name="chance"/>：有多大的几率提供这个状态效果。应在`0.0`-`1.0`之间（含）。不同状态效果间，该值是独立判断的。
-      - <DataType type="int" name="duration"/>：提供的状态效果时长，单位秒（即使是瞬时状态效果）。
-      - <DataType type="int" name="amplifier"/>：提供的状态效果放大倍数，提供的等级为放大倍数 + 1。
-  - <DataType type="array" name="remove_effects"/>：食物在食用后解除的状态效果。
-    - <DataType type="string"/>：解除的状态效果 ID。
+        - <DataType type="string" name="name"/>：提供的状态效果 ID。
+        - <DataType type="float" name="chance"/>：有多大的几率提供这个状态效果。应在`0.0`-`1.0`之间（含）。不同状态效果间，该值是独立判断的。
+        - <DataType type="int" name="duration"/>：提供的状态效果时长，单位秒（即使是瞬时状态效果）。
+        - <DataType type="int" name="amplifier"/>：提供的状态效果放大倍数，提供的等级为放大倍数 + 1。
+- <DataType type="array" name="remove_effects"/>：食物在食用后解除的状态效果。- <DataType type="string"/>：解除的状态效果 ID。
+
 </treeview>
 
 </TabItem><TabItem value="example" label="示例">

@@ -4,6 +4,7 @@ sidebar_position: 5
 
 # 自定义
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/houchuli/zidingyi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddPostProcess
+
+<Version type="china" add="2.11"/>
 
 <Client/> PostProcessComponent
 
@@ -78,6 +85,8 @@ print postComp.AddPostProcess(test, 5)
 
 ### CheckEnabledByName
 
+<Version type="china" add="2.9"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -111,6 +120,8 @@ print postComp.CheckEnabledByName("my_custom_postprocess")
 ---
 
 ### GetParameter
+
+<Version type="china" add="2.9"/>
 
 <Client/> PostProcessComponent
 
@@ -151,6 +162,8 @@ print postComp.GetParameter("my_custom_postprocess", "radius")
 
 ### GetPostProcessOrder
 
+<Version type="china" add="2.11"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -182,6 +195,8 @@ print postComp.GetPostProcessOrder()
 ---
 
 ### InsertPassToPostprocess
+
+<Version type="china" add="2.9"/>
 
 <Client/> PostProcessComponent
 
@@ -239,6 +254,8 @@ print postComp.InsertPassToPostprocess("my_custom_postprocess", 0, passDict)
 
 ### PopBackPassInPostprocess
 
+<Version type="china" add="2.9"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -276,6 +293,8 @@ print postComp.PopBackPassInPostprocess("my_custom_postprocess")
 ---
 
 ### PostPassResultToOtherPass
+
+<Version type="china" add="2.11"/>
 
 <Client/> PostProcessComponent
 
@@ -326,6 +345,8 @@ print postComp.PostPassResultToOtherPass("test1", 0, "test1", 1, 5)
 ---
 
 ### PushBackPassToPostprocess
+
+<Version type="china" add="2.9"/>
 
 <Client/> PostProcessComponent
 
@@ -378,6 +399,8 @@ print postComp.PushBackPassToPostprocess("my_custom_postprocess", passDict)
 
 ### RemovePassInPostprocess
 
+<Version type="china" add="2.9"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -417,6 +440,8 @@ print postComp.RemovePassInPostprocess("my_custom_postprocess", 1)
 
 ### SetEnableByName
 
+<Version type="china" add="2.8"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -450,6 +475,8 @@ postComp.SetEnableByName(myPostName, True)
 ---
 
 ### SetParameter
+
+<Version type="china" add="2.8"/>
 
 <Client/> PostProcessComponent
 

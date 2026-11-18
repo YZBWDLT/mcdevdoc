@@ -4,6 +4,7 @@ sidebar_position: 9
 
 # 天气
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shijie/tianqi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetDimensionLocalWeatherInfo
+
+<Version type="china" add="1.25"/>
 
 <Server/> WeatherComponentServer
 
@@ -53,6 +60,8 @@ comp.GetDimensionLocalWeatherInfo(0)
 
 ### GetDimensionUseLocalWeather
 
+<Version type="china" add="1.25"/>
+
 <Server/> WeatherComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateWeather(levelId)`
@@ -86,6 +95,8 @@ comp.GetDimensionUseLocalWeather(0)
 
 ### IsRaining
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> WeatherComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateWeather(levelId)`
@@ -118,6 +129,8 @@ comp.IsRaining()
 
 ### IsThunder
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> WeatherComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateWeather(levelId)`
@@ -149,6 +162,8 @@ comp.IsThunder()
 ---
 
 ### SetDimensionLocalDoWeatherCycle
+
+<Version type="china" add="1.25"/>
 
 <Server/> WeatherComponentServer
 
@@ -184,6 +199,8 @@ comp.SetDimensionLocalDoWeatherCycle(0, True)
 
 ### SetDimensionLocalRain
 
+<Version type="china" add="1.25"/>
+
 <Server/> WeatherComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateWeather(levelId)`
@@ -218,6 +235,8 @@ comp.SetDimensionLocalRain(0, 0.5, 180)
 ---
 
 ### SetDimensionLocalThunder
+
+<Version type="china" add="1.25"/>
 
 <Server/> WeatherComponentServer
 
@@ -257,6 +276,8 @@ comp.SetDimensionLocalThunder(0, 0.5, 180)
 ---
 
 ### SetDimensionUseLocalWeather
+
+<Version type="china" add="1.25"/>
 
 <Server/> WeatherComponentServer
 
@@ -299,6 +320,8 @@ comp.SetDimensionUseLocalWeather(0, True)
 
 ### SetRaining
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> WeatherComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateWeather(levelId)`
@@ -332,6 +355,8 @@ comp.SetRaining(0.5,1000)
 ---
 
 ### SetThunder
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> WeatherComponentServer
 

@@ -4,6 +4,7 @@ sidebar_position: 4
 
 # 方块
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/fangkuai.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_event" color="green"/>
+
 ---
 
 ### BlockAnimateRandomTickEvent
+
+<Version type="china" add="3.3"/>
 
 <Client/>
 
@@ -65,6 +72,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### BlockDestroyByLiquidServerEvent
+
+<Version type="china" add="2.1"/>
 
 <Server/>
 
@@ -124,6 +133,8 @@ class MyServerSystem(ServerSystem):
 
 ### BlockLiquidStateChangeAfterServerEvent
 
+<Version type="china" add="2.0"/>
+
 <Server/>
 
 触发时机：方块转为含水或者脱离含水(流体)后触发。
@@ -178,6 +189,8 @@ class MyServerSystem(ServerSystem):
 
 ### BlockLiquidStateChangeServerEvent
 
+<Version type="china" add="2.0"/>
+
 <Server/>
 
 触发时机：方块转为含水或者脱离含水(流体)前触发。
@@ -231,6 +244,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### BlockNeighborChangedServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -298,6 +313,8 @@ class MyServerSystem(ServerSystem):
 
 ### BlockRandomTickServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：自定义方块配置[netease:random_tick](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-random-tick)随机 tick 时。
@@ -354,6 +371,8 @@ class MyServerSystem(ServerSystem):
 
 ### BlockRemoveServerEvent
 
+<Version type="china" add="1.21"/>
+
 <Server/>
 
 触发时机：监听该事件的方块在销毁时触发，可以通过 ListenOnBlockRemoveEvent 方法进行监听，或者通过 json 组件[netease:listen_block_remove](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-listen-block-remove)进行配置。
@@ -402,37 +421,7 @@ class MyServerSystem(ServerSystem):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnBlockRemoveServerEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "BlockRemoveServerEvent",
-            self, self.OnBlockRemoveServerEvent)
-
-    def OnBlockRemoveServerEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### ListenOnBlockRemoveEvent
 
 <Server/> BlockInfoComponentServer
 
@@ -444,13 +433,11 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnBlockRemoveServerEvent(self, args: Dict[str, Any]) -> None: ...
+ListenOnBlockRemoveEvent(identifier: str, listen: bool) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| identifier | str | 方块 identifier，如 minecraft:wheat。 |
-| listen | bool | 是否监听。 |
+- identifier: str，方块 identifier，如 minecraft:wheat。
+- listen: bool，是否监听。
 
 **返回值**：bool，是否设置成功。
 
@@ -474,6 +461,8 @@ comp.ListenOnBlockRemoveEvent("minecraft:wheat", True)
 ---
 
 ### BlockSnowStateChangeAfterServerEvent
+
+<Version type="china" add="2.0"/>
 
 <Server/>
 
@@ -527,6 +516,8 @@ class MyServerSystem(ServerSystem):
 
 ### BlockSnowStateChangeServerEvent
 
+<Version type="china" add="2.0"/>
+
 <Server/>
 
 触发时机：方块转为含雪或者脱离含雪前触发。
@@ -578,6 +569,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### BlockStrengthChangedServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -635,6 +628,8 @@ class MyServerSystem(ServerSystem):
 
 ### ChestBlockTryPairWithServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：两个并排的小箱子方块准备组合为一个大箱子方块时。
@@ -690,6 +685,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### ClientBlockUseEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -753,37 +750,7 @@ class MyClientSystem(ClientSystem):
 </TabItem>
 </Tabs>
 
-<Client/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnClientBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.client.extraClientApi as clientApi
-ClientSystem = clientApi.GetClientSystemCls()
-
-class MyClientSystem(ClientSystem):
-    def __init__(self, namespace, systemName):
-        ClientSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            clientApi.GetEngineNamespace(),
-            clientApi.GetEngineSystemName(),
-            "ClientBlockUseEvent",
-            self, self.OnClientBlockUseEvent)
-
-    def OnClientBlockUseEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### AddBlockItemListenForUseEvent
 
 <Client/> BlockUseEventWhiteListComponentClient
 
@@ -795,12 +762,10 @@ class MyClientSystem(ClientSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnClientBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
+AddBlockItemListenForUseEvent(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。 |
+- blockName: str，方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。
 
 **返回值**：bool，是否增加成功。
 
@@ -818,6 +783,8 @@ comp.AddBlockItemListenForUseEvent("minecraft:nether_brick_stairs:2")
 </TabItem>
 </Tabs>
 
+#### RemoveBlockItemListenForUseEvent
+
 <Client/> BlockUseEventWhiteListComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockUseEventWhiteList(clientApi.GetLevelId())`
@@ -828,12 +795,10 @@ comp.AddBlockItemListenForUseEvent("minecraft:nether_brick_stairs:2")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnClientBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
+RemoveBlockItemListenForUseEvent(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。 |
+- blockName: str，方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。
 
 **返回值**：bool，是否移除成功。
 
@@ -851,6 +816,8 @@ comp.RemoveBlockItemListenForUseEvent("minecraft:nether_brick_stairs:2")
 </TabItem>
 </Tabs>
 
+#### ClearAllListenForBlockUseEventItems
+
 <Client/> BlockUseEventWhiteListComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockUseEventWhiteList(clientApi.GetLevelId())`
@@ -861,7 +828,7 @@ comp.RemoveBlockItemListenForUseEvent("minecraft:nether_brick_stairs:2")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnClientBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
+ClearAllListenForBlockUseEventItems() -> bool
 ```
 
 
@@ -882,6 +849,8 @@ comp.ClearAllListenForBlockUseEventItems()
 ---
 
 ### CommandBlockContainerOpenEvent
+
+<Version type="china" add="1.23"/>
 
 <Server/>
 
@@ -938,6 +907,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### CommandBlockUpdateEvent
+
+<Version type="china" add="1.23"/>
 
 <Server/>
 
@@ -1003,6 +974,8 @@ class MyServerSystem(ServerSystem):
 
 ### DestroyBlockEvent
 
+<Version type="china" add="1.21"/>
+
 <Server/>
 
 触发时机：当方块已经被玩家破坏时触发该事件。
@@ -1067,6 +1040,8 @@ class MyServerSystem(ServerSystem):
 
 ### DirtBlockToGrassBlockServerEvent
 
+<Version type="china" add="2.1"/>
+
 <Server/>
 
 触发时机：泥土方块变成草方块时触发。
@@ -1118,6 +1093,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### EntityPlaceBlockAfterServerEvent
+
+<Version type="china" add="1.21"/>
 
 <Server/>
 
@@ -1181,6 +1158,8 @@ class MyServerSystem(ServerSystem):
 
 ### FallingBlockBreakServerEvent
 
+<Version type="china" add="1.24"/>
+
 <Server/>
 
 触发时机：当下落的方块实体被破坏时，服务端触发该事件。
@@ -1240,6 +1219,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### FallingBlockCauseDamageBeforeClientEvent
+
+<Version type="china" add="1.24"/>
 
 <Client/>
 
@@ -1308,6 +1289,8 @@ class MyClientSystem(ClientSystem):
 
 ### FallingBlockCauseDamageBeforeServerEvent
 
+<Version type="china" add="1.24"/>
+
 <Server/>
 
 触发时机：当下落的方块开始计算砸到实体的伤害时，服务端触发该事件。
@@ -1375,6 +1358,8 @@ class MyServerSystem(ServerSystem):
 
 ### FallingBlockReturnHeavyBlockServerEvent
 
+<Version type="china" add="1.24"/>
+
 <Server/>
 
 触发时机：当下落的方块实体变回普通重力方块时，服务端触发该事件。
@@ -1435,6 +1420,8 @@ class MyServerSystem(ServerSystem):
 
 ### FarmBlockToDirtBlockServerEvent
 
+<Version type="china" add="2.1"/>
+
 <Server/>
 
 触发时机：耕地退化为泥土时触发。
@@ -1489,6 +1476,8 @@ class MyServerSystem(ServerSystem):
 
 ### GrassBlockToDirtBlockServerEvent
 
+<Version type="china" add="2.1"/>
+
 <Server/>
 
 触发时机：草方块变成泥土方块时触发。
@@ -1540,6 +1529,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### HeavyBlockStartFallingServerEvent
+
+<Version type="china" add="1.24"/>
 
 <Server/>
 
@@ -1597,6 +1588,8 @@ class MyServerSystem(ServerSystem):
 
 ### HopperTryPullInServerEvent
 
+<Version type="china" add="1.21"/>
+
 <Server/>
 
 触发时机：当漏斗上方连接容器后，容器往漏斗开始输入物品时触发，事件仅触发一次。
@@ -1652,6 +1645,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### HopperTryPullOutServerEvent
+
+<Version type="china" add="1.21"/>
 
 <Server/>
 
@@ -1709,6 +1704,8 @@ class MyServerSystem(ServerSystem):
 
 ### ModBlockEntityLoadedClientEvent
 
+<Version type="china" add="2.8"/>
+
 <Client/>
 
 客户端自定义方块实体初始化完成时触发。
@@ -1765,6 +1762,8 @@ class MyClientSystem(ClientSystem):
 
 ### ModBlockEntityRemoveClientEvent
 
+<Version type="china" add="2.10"/>
+
 <Client/>
 
 客户端自定义方块实体卸载时触发。
@@ -1814,6 +1813,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### ModBlockEntityTickClientEvent
+
+<Version type="china" add="2.10"/>
 
 <Client/>
 
@@ -1869,6 +1870,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### OnAfterFallOnBlockClientEvent
+
+<Version type="china" add="1.24"/>
 
 <Client/>
 
@@ -1938,6 +1941,8 @@ class MyClientSystem(ClientSystem):
 
 ### OnAfterFallOnBlockServerEvent
 
+<Version type="china" add="1.24"/>
+
 <Server/>
 
 触发时机：当实体降落到方块后服务端触发，主要用于力的计算。
@@ -2006,6 +2011,8 @@ class MyServerSystem(ServerSystem):
 
 ### OnBeforeFallOnBlockServerEvent
 
+<Version type="china" add="1.24"/>
+
 <Server/>
 
 触发时机：当实体刚降落到方块上时服务端触发，主要用于伤害计算。
@@ -2067,6 +2074,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### OnEntityInsideBlockClientEvent
+
+<Version type="china" add="1.25"/>
 
 <Client/>
 
@@ -2135,37 +2144,7 @@ class MyClientSystem(ClientSystem):
 </TabItem>
 </Tabs>
 
-<Client/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnOnEntityInsideBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.client.extraClientApi as clientApi
-ClientSystem = clientApi.GetClientSystemCls()
-
-class MyClientSystem(ClientSystem):
-    def __init__(self, namespace, systemName):
-        ClientSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            clientApi.GetEngineNamespace(),
-            clientApi.GetEngineSystemName(),
-            "OnEntityInsideBlockClientEvent",
-            self, self.OnOnEntityInsideBlockClientEvent)
-
-    def OnOnEntityInsideBlockClientEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### RegisterOnEntityInside
 
 <Client/> BlockInfoComponentClient
 
@@ -2177,12 +2156,10 @@ class MyClientSystem(ClientSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnEntityInsideBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
+RegisterOnEntityInside(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否注册成功。
 
@@ -2203,6 +2180,8 @@ comp.RegisterOnEntityInside("minecraft:redstone_ore")
 </TabItem>
 </Tabs>
 
+#### UnRegisterOnEntityInside
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -2213,12 +2192,10 @@ comp.RegisterOnEntityInside("minecraft:redstone_ore")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnEntityInsideBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
+UnRegisterOnEntityInside(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否删除成功。
 
@@ -2241,6 +2218,8 @@ comp.UnRegisterOnEntityInside("minecraft:redstone_ore")
 ---
 
 ### OnEntityInsideBlockServerEvent
+
+<Version type="china" add="1.25"/>
 
 <Server/>
 
@@ -2306,37 +2285,7 @@ class MyServerSystem(ServerSystem):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnOnEntityInsideBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "OnEntityInsideBlockServerEvent",
-            self, self.OnOnEntityInsideBlockServerEvent)
-
-    def OnOnEntityInsideBlockServerEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### RegisterOnEntityInside
 
 <Server/> BlockInfoComponentServer
 
@@ -2348,12 +2297,10 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnEntityInsideBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
+RegisterOnEntityInside(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否注册成功。
 
@@ -2375,6 +2322,8 @@ comp.RegisterOnEntityInside("minecraft:redstone_ore")
 </TabItem>
 </Tabs>
 
+#### UnRegisterOnEntityInside
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -2385,12 +2334,10 @@ comp.RegisterOnEntityInside("minecraft:redstone_ore")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnEntityInsideBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
+UnRegisterOnEntityInside(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否删除成功。
 
@@ -2414,6 +2361,8 @@ comp.UnRegisterOnEntityInside("minecraft:redstone_ore")
 ---
 
 ### OnModBlockNeteaseEffectCreatedClientEvent
+
+<Version type="china" add="2.0"/>
 
 <Client/>
 
@@ -2464,6 +2413,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### OnStandOnBlockClientEvent
+
+<Version type="china" add="1.24"/>
 
 <Client/>
 
@@ -2535,37 +2486,7 @@ class MyClientSystem(ClientSystem):
 </TabItem>
 </Tabs>
 
-<Client/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnOnStandOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.client.extraClientApi as clientApi
-ClientSystem = clientApi.GetClientSystemCls()
-
-class MyClientSystem(ClientSystem):
-    def __init__(self, namespace, systemName):
-        ClientSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            clientApi.GetEngineNamespace(),
-            clientApi.GetEngineSystemName(),
-            "OnStandOnBlockClientEvent",
-            self, self.OnOnStandOnBlockClientEvent)
-
-    def OnOnStandOnBlockClientEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### RegisterOnStandOn
 
 <Client/> BlockInfoComponentClient
 
@@ -2577,12 +2498,10 @@ class MyClientSystem(ClientSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnStandOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
+RegisterOnStandOn(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否注册成功。
 
@@ -2604,6 +2523,8 @@ comp.RegisterOnStandOn("minecraft:redstone_ore")
 </TabItem>
 </Tabs>
 
+#### UnRegisterOnStandOn
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -2614,12 +2535,10 @@ comp.RegisterOnStandOn("minecraft:redstone_ore")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnStandOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
+UnRegisterOnStandOn(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否删除成功。
 
@@ -2642,6 +2561,8 @@ comp.UnRegisterOnStandOn("minecraft:redstone_ore")
 ---
 
 ### OnStandOnBlockServerEvent
+
+<Version type="china" add="1.24"/>
 
 <Server/>
 
@@ -2713,37 +2634,7 @@ class MyServerSystem(ServerSystem):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnOnStandOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "OnStandOnBlockServerEvent",
-            self, self.OnOnStandOnBlockServerEvent)
-
-    def OnOnStandOnBlockServerEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### RegisterOnStandOn
 
 <Server/> BlockInfoComponentServer
 
@@ -2755,12 +2646,10 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnStandOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
+RegisterOnStandOn(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否注册成功。
 
@@ -2783,6 +2672,8 @@ comp.RegisterOnStandOn("minecraft:redstone_ore")
 </TabItem>
 </Tabs>
 
+#### UnRegisterOnStandOn
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -2793,12 +2684,10 @@ comp.RegisterOnStandOn("minecraft:redstone_ore")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnStandOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
+UnRegisterOnStandOn(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否删除成功。
 
@@ -2822,6 +2711,8 @@ comp.UnRegisterOnStandOn("minecraft:redstone_ore")
 ---
 
 ### PistonActionServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -2885,6 +2776,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerTryDestroyBlockClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 当玩家即将破坏方块时，客户端线程触发该事件。主要用于床，旗帜，箱子这些根据方块实体数据进行渲染的方块，一般情况下请使用 [ServerPlayerTryDestroyBlockEvent](/docs/docs/scripts/modapi/events/block#serverplayertrydestroyblockevent)。
@@ -2943,6 +2836,8 @@ class MyClientSystem(ClientSystem):
 
 ### ServerBlockEntityTickEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：自定义方块配置了 netease:block_entity 组件并设 tick 为 true，方块在玩家的模拟距离（新建存档时可以设置，默认为 4 个区块）内，或者在 tickingarea 内的时候触发。
@@ -2997,6 +2892,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### ServerBlockUseEvent
+
+<Version type="china" add="1.21"/>
 
 <Server/>
 
@@ -3068,37 +2965,7 @@ class MyServerSystem(ServerSystem):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnServerBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "ServerBlockUseEvent",
-            self, self.OnServerBlockUseEvent)
-
-    def OnServerBlockUseEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### AddBlockItemListenForUseEvent
 
 <Server/> BlockUseEventWhiteListComponentServer
 
@@ -3110,12 +2977,10 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnServerBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
+AddBlockItemListenForUseEvent(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。 |
+- blockName: str，方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。
 
 **返回值**：bool，是否增加成功。
 
@@ -3133,6 +2998,8 @@ comp.AddBlockItemListenForUseEvent("minecraft:nether_brick_stairs:2")
 </TabItem>
 </Tabs>
 
+#### RemoveBlockItemListenForUseEvent
+
 <Server/> BlockUseEventWhiteListComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockUseEventWhiteList(levelId)`
@@ -3143,12 +3010,10 @@ comp.AddBlockItemListenForUseEvent("minecraft:nether_brick_stairs:2")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnServerBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
+RemoveBlockItemListenForUseEvent(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。 |
+- blockName: str，方块名称，格式：namespace:name:auxvalue，其中 namespace:name:*匹配所有的 auxvalue。
 
 **返回值**：bool，是否移除成功。
 
@@ -3166,6 +3031,8 @@ comp.RemoveBlockItemListenForUseEvent("minecraft:nether_brick_stairs:2")
 </TabItem>
 </Tabs>
 
+#### ClearAllListenForBlockUseEventItems
+
 <Server/> BlockUseEventWhiteListComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockUseEventWhiteList(levelId)`
@@ -3176,7 +3043,7 @@ comp.RemoveBlockItemListenForUseEvent("minecraft:nether_brick_stairs:2")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnServerBlockUseEvent(self, args: Dict[str, Any]) -> None: ...
+ClearAllListenForBlockUseEventItems() -> bool
 ```
 
 
@@ -3197,6 +3064,8 @@ comp.ClearAllListenForBlockUseEventItems()
 ---
 
 ### ServerEntityTryPlaceBlockEvent
+
+<Version type="china" add="1.21"/>
 
 <Server/>
 
@@ -3269,6 +3138,8 @@ class MyServerSystem(ServerSystem):
 
 ### ServerPlaceBlockEntityEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：手动放置或通过接口创建含自定义方块实体的方块时触发，此时可向该方块实体中存放数据。
@@ -3318,6 +3189,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### ServerPlayerTryDestroyBlockEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -3387,6 +3260,8 @@ class MyServerSystem(ServerSystem):
 
 ### ShearsDestoryBlockBeforeClientEvent
 
+<Version type="china" add="1.23"/>
+
 <Client/>
 
 触发时机：玩家手持剪刀破坏方块时，有剪刀特殊效果的方块会在客户端线程触发该事件。
@@ -3452,6 +3327,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### ShearsDestoryBlockBeforeServerEvent
+
+<Version type="china" add="1.23"/>
 
 <Server/>
 
@@ -3521,6 +3398,8 @@ class MyServerSystem(ServerSystem):
 
 ### StartDestroyBlockClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家开始挖方块时触发。创造模式下不触发。
@@ -3578,6 +3457,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### StartDestroyBlockServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -3641,6 +3522,8 @@ class MyServerSystem(ServerSystem):
 
 ### StepOffBlockClientEvent
 
+<Version type="china" add="1.25"/>
+
 <Client/>
 
 触发时机：实体移动离开一个实心方块时触发。
@@ -3696,37 +3579,7 @@ class MyClientSystem(ClientSystem):
 </TabItem>
 </Tabs>
 
-<Client/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnStepOffBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.client.extraClientApi as clientApi
-ClientSystem = clientApi.GetClientSystemCls()
-
-class MyClientSystem(ClientSystem):
-    def __init__(self, namespace, systemName):
-        ClientSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            clientApi.GetEngineNamespace(),
-            clientApi.GetEngineSystemName(),
-            "StepOffBlockClientEvent",
-            self, self.OnStepOffBlockClientEvent)
-
-    def OnStepOffBlockClientEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### RegisterOnStepOff
 
 <Client/> BlockInfoComponentClient
 
@@ -3738,12 +3591,10 @@ class MyClientSystem(ClientSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnStepOffBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
+RegisterOnStepOff(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否注册成功。
 
@@ -3764,6 +3615,8 @@ comp.RegisterOnStepOff("minecraft:redstone_ore")
 </TabItem>
 </Tabs>
 
+#### UnRegisterOnStepOff
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -3774,12 +3627,10 @@ comp.RegisterOnStepOff("minecraft:redstone_ore")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnStepOffBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
+UnRegisterOnStepOff(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否删除成功。
 
@@ -3803,6 +3654,8 @@ comp.UnRegisterOnStepOff("minecraft:redstone_ore")
 
 ### StepOffBlockServerEvent
 
+<Version type="china" add="1.25"/>
+
 <Server/>
 
 触发时机：实体移动离开一个实心方块时触发。
@@ -3858,37 +3711,7 @@ class MyServerSystem(ServerSystem):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnStepOffBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "StepOffBlockServerEvent",
-            self, self.OnStepOffBlockServerEvent)
-
-    def OnStepOffBlockServerEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### RegisterOnStepOff
 
 <Server/> BlockInfoComponentServer
 
@@ -3900,12 +3723,10 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnStepOffBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
+RegisterOnStepOff(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否注册成功。
 
@@ -3927,6 +3748,8 @@ comp.RegisterOnStepOff("minecraft:redstone_ore")
 </TabItem>
 </Tabs>
 
+#### UnRegisterOnStepOff
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -3937,12 +3760,10 @@ comp.RegisterOnStepOff("minecraft:redstone_ore")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnStepOffBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
+UnRegisterOnStepOff(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否删除成功。
 
@@ -3966,6 +3787,8 @@ comp.UnRegisterOnStepOff("minecraft:redstone_ore")
 ---
 
 ### StepOnBlockClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -4026,37 +3849,7 @@ class MyClientSystem(ClientSystem):
 </TabItem>
 </Tabs>
 
-<Client/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnStepOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.client.extraClientApi as clientApi
-ClientSystem = clientApi.GetClientSystemCls()
-
-class MyClientSystem(ClientSystem):
-    def __init__(self, namespace, systemName):
-        ClientSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            clientApi.GetEngineNamespace(),
-            clientApi.GetEngineSystemName(),
-            "StepOnBlockClientEvent",
-            self, self.OnStepOnBlockClientEvent)
-
-    def OnStepOnBlockClientEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### RegisterOnStepOn
 
 <Client/> BlockInfoComponentClient
 
@@ -4068,12 +3861,10 @@ class MyClientSystem(ClientSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnStepOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
+RegisterOnStepOn(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否注册成功。
 
@@ -4093,6 +3884,8 @@ comp.RegisterOnStepOn("minecraft:redstone_ore")
 </TabItem>
 </Tabs>
 
+#### UnRegisterOnStepOn
+
 <Client/> BlockInfoComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -4103,12 +3896,10 @@ comp.RegisterOnStepOn("minecraft:redstone_ore")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnStepOnBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
+UnRegisterOnStepOn(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否删除成功。
 
@@ -4131,6 +3922,8 @@ comp.UnRegisterOnStepOn("minecraft:redstone_ore")
 ---
 
 ### StepOnBlockServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -4191,37 +3984,7 @@ class MyServerSystem(ServerSystem):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnStepOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "StepOnBlockServerEvent",
-            self, self.OnStepOnBlockServerEvent)
-
-    def OnStepOnBlockServerEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### RegisterOnStepOn
 
 <Server/> BlockInfoComponentServer
 
@@ -4233,12 +3996,10 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnStepOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
+RegisterOnStepOn(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否注册成功。
 
@@ -4259,6 +4020,8 @@ comp.RegisterOnStepOn("minecraft:redstone_ore")
 </TabItem>
 </Tabs>
 
+#### UnRegisterOnStepOn
+
 <Server/> BlockInfoComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateBlockInfo(levelId)`
@@ -4269,12 +4032,10 @@ comp.RegisterOnStepOn("minecraft:redstone_ore")
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnStepOnBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
+UnRegisterOnStepOn(blockName: str) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| blockName | str | 方块标识符，包含命名空间，如 minecraft:grass。 |
+- blockName: str，方块标识符，包含命名空间，如 minecraft:grass。
 
 **返回值**：bool，是否删除成功。
 

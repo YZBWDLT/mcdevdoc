@@ -4,9 +4,16 @@ sidebar_position: 99
 
 # 已弃用接口
 
+import Button from '/src/components/button/base';
+
+
 本页记录曾经在正式版脚本 API 中存在、后来被重命名或移除的接口。这些接口在当前版本中已经不可用。
 
 绝大多数变更发生在 `2.0.0`（游戏版本 1.21.90）的脚本模块重构中，少数发生在更早或稍晚的版本。
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

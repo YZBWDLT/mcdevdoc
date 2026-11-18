@@ -4,6 +4,7 @@ sidebar_position: 11
 
 # 游戏设置
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/youxishezhi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_event" color="green"/>
+
 ---
 
 ### OnCustomGamepadChangedEvent
+
+<Version type="china" add="3.7"/>
 
 <Client/>
 
@@ -65,6 +72,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### OnCustomGamepadPressInGame
+
+<Version type="china" add="3.7"/>
 
 <Client/>
 
@@ -122,6 +131,8 @@ class MyClientSystem(ClientSystem):
 
 ### OnCustomKeyChangedEvent
 
+<Version type="china" add="3.7"/>
+
 <Client/>
 
 当自定义按键绑定发生改变时触发。
@@ -167,6 +178,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### OnCustomKeyPressInGame
+
+<Version type="china" add="3.7"/>
 
 <Client/>
 

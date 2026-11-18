@@ -19,7 +19,9 @@ import Version from "/src/components/highlight/version"
 
 实体事件可以指定到<DataType type="object" name="events"/>中。
 
-本文收录所有已开放或即将开放的实体事件信息。可使用<kbd>Ctrl</kbd>+<kbd>F</kbd>查找所需条目。
+本文收录所有已开放或即将开放的实体事件信息。要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=entity_event" color="green"/>
 
 **每个条目下方的高亮标签均含注释，鼠标悬停或点击即可查看**。例：<Highlight text="这是一个特殊标签" color="yellowgreen" tooltip="这是标签下的特殊注解。"/>。
 
@@ -747,5 +749,6 @@ import Version from "/src/components/highlight/version"
 - [内置事件 | Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/examples/eventlist?view=minecraft-bedrock-stable)
 
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>

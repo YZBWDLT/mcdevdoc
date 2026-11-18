@@ -4,6 +4,7 @@ sidebar_position: 4
 
 # 微软粒子
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/texiao/weiruanlizi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### BindEntity
+
+<Version type="china" add="2.2"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -70,6 +77,8 @@ comp.BindEntity(parId, localId, "rightitem", (0, 0, 0), (0, 0, 0))
 
 ### BindModel
 
+<Version type="china" add="1.22"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(clientApi.GetLevelId())`
@@ -120,6 +129,8 @@ comp.BindModel(par_Id, model_id, "root", (0, 0, 0), (0, 0, 0))
 
 ### Create
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -166,6 +177,8 @@ parId = comp.Create("netease:tutorial_particle", (0, 0, 0), (0, 0, 0))
 ---
 
 ### CreateBindEntityNew
+
+<Version type="china" add="2.11"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -220,6 +233,8 @@ parId = comp.CreateBindEntityNew("netease:tutorial_particle", localId, "rightite
 
 ### EmitManually
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -260,6 +275,8 @@ comp.EmitManually(parId) # 手动发射一次粒子
 
 ### Exist
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -297,6 +314,8 @@ print comp.Exist(parId)
 ---
 
 ### GetActiveDuration
+
+<Version type="china" add="2.2"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -340,6 +359,8 @@ print comp.GetActiveDuration(parId)
 
 ### GetBindingID
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -377,6 +398,8 @@ print comp.GetBindingID(parId)
 
 ### GetBindingModelID
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -412,6 +435,8 @@ print comp.GetBindingModelID(parId)
 ---
 
 ### GetDuration
+
+<Version type="china" add="2.2"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -454,6 +479,8 @@ print comp.GetDuration(parId)
 ---
 
 ### GetFacingMode
+
+<Version type="china" add="2.2"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -506,6 +533,8 @@ print comp.GetFacingMode(parId)
 
 ### GetLoopAge
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -548,6 +577,8 @@ print comp.GetLoopAge(parId)
 ---
 
 ### GetPos
+
+<Version type="china" add="1.24"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -595,6 +626,8 @@ print 'world position:', comp.GetPos(parId1, False)
 
 ### GetRot
 
+<Version type="china" add="1.24"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -636,6 +669,8 @@ print comp.GetRot(parId, False)
 ---
 
 ### GetSleepDuration
+
+<Version type="china" add="2.2"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -679,6 +714,8 @@ print comp.GetSleepDuration(parId)
 
 ### GetTimeScale
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -716,6 +753,8 @@ print comp.GetTimeScale(parId)
 ---
 
 ### GetVariable
+
+<Version type="china" add="2.2"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -773,6 +812,8 @@ print comp.GetVariable(parId, 'variable.custom_size') # variable.custom_size 是
 
 ### Hide
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -818,6 +859,8 @@ print comp.IsHiding(parId)
 
 ### IsHiding
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -856,6 +899,8 @@ print comp.IsHiding(parId)
 
 ### IsPausing
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -893,6 +938,8 @@ print comp.IsPausing(parId)
 ---
 
 ### Pause
+
+<Version type="china" add="2.0"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -937,6 +984,8 @@ print comp.IsPausing(parId)
 ---
 
 ### Play
+
+<Version type="china" add="2.2"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -986,6 +1035,8 @@ print comp.IsPausing(parId)
 
 ### PlayAt
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -1031,6 +1082,8 @@ print comp.GetLoopAge(parId)
 
 ### Remove
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -1072,6 +1125,8 @@ print comp.Exist(parId)
 ---
 
 ### RemoveByName
+
+<Version type="china" add="2.2"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -1115,6 +1170,8 @@ print comp.Exist(parId)
 
 ### Replay
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -1157,6 +1214,8 @@ comp.Replay(parId)
 ---
 
 ### Resume
+
+<Version type="china" add="2.0"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -1203,6 +1262,8 @@ print comp.IsPausing(parId)
 
 ### SetPos
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -1246,6 +1307,8 @@ comp.SetPos(parId1) # (0, 0, 0)
 ---
 
 ### SetRelative
+
+<Version type="china" add="2.2"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -1294,6 +1357,8 @@ comp.SetRelative(parId1, True)
 
 ### SetRot
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -1335,6 +1400,8 @@ comp.SetRot(parId1, (0, 0, 90))
 ---
 
 ### SetRotUseZXY
+
+<Version type="china" add="1.24"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -1379,6 +1446,8 @@ comp.SetRotUseZXY(parId1, (90, 90, 90))
 
 ### SetTimeScale
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -1422,6 +1491,8 @@ comp.SetTimeScale(parId1, 0.2)
 ---
 
 ### SetVariable
+
+<Version type="china" add="2.2"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -1482,6 +1553,8 @@ comp.SetVariable(parId1, "variable.custom_size", 0.1) # 修改内置的Molang值
 
 ### Show
 
+<Version type="china" add="2.2"/>
+
 <Client/> ParticleSystemCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateParticleSystem(None)`
@@ -1527,6 +1600,8 @@ print comp.IsHiding(parId)
 ---
 
 ### Stop
+
+<Version type="china" add="2.2"/>
 
 <Client/> ParticleSystemCompClient
 
@@ -1575,6 +1650,8 @@ print comp.IsPausing(parId)
 ---
 
 ### Unbind
+
+<Version type="china" add="2.2"/>
 
 <Client/> ParticleSystemCompClient
 

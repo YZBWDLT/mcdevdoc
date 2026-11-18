@@ -4,6 +4,7 @@ sidebar_position: 19
 
 # 商城
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shangcheng.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CloseShopWindow
+
+<Version type="china" add="2.4"/>
 
 <Client/> NeteaseShopCompClient
 
@@ -49,6 +56,8 @@ comp.CloseShopWindow()
 
 ### HideShopGate
 
+<Version type="china" add="2.4"/>
+
 <Client/> NeteaseShopCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateNeteaseShop(levelId)`
@@ -77,6 +86,8 @@ comp.HideShopGate()
 ---
 
 ### OpenItemDetailWindow
+
+<Version type="china" add="2.4"/>
 
 <Client/> NeteaseShopCompClient
 
@@ -110,6 +121,8 @@ comp.OpenItemDetailWindow("商品", "测试商品1")
 
 ### OpenShopWindow
 
+<Version type="china" add="2.4"/>
+
 <Client/> NeteaseShopCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateNeteaseShop(levelId)`
@@ -138,6 +151,8 @@ comp.OpenShopWindow()
 ---
 
 ### ShowShopGate
+
+<Version type="china" add="2.4"/>
 
 <Client/> NeteaseShopCompClient
 

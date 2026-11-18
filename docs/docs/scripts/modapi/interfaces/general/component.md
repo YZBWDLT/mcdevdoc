@@ -4,6 +4,7 @@ sidebar_position: 107
 
 # 组件
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/tongyong/zujian.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CreateComponent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -30,11 +37,7 @@ import Client from '/src/components/highlight/client';
 <TabItem value="说明" label="说明" default>
 
 ```python
-CreateComponent(
-    entityId: Union[str, int],
-    nameSpace: str,
-    name: str,
-) -> BaseComponent
+服务端接口(entityId: Union[str, int], nameSpace: str, name: str) -> BaseComponent
 ```
 
 - entityId: Union[str, int]，该组件属主的实体 id。
@@ -65,11 +68,7 @@ comp = serverApi.CreateComponent(entityId, "Minecraft", "item")
 <TabItem value="说明" label="说明" default>
 
 ```python
-CreateComponent(
-    entityId: Union[str, int],
-    nameSpace: str,
-    name: str,
-) -> BaseComponent
+客户端接口(entityId: Union[str, int], nameSpace: str, name: str) -> BaseComponent
 ```
 
 - entityId: Union[str, int]，该组件属主的实体 id。
@@ -94,6 +93,8 @@ comp = clientApi.CreateComponent(clientApi.GetLocalPlayerId(), "Minecraft", "ite
 
 ### DestroyComponent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -104,7 +105,7 @@ comp = clientApi.CreateComponent(clientApi.GetLocalPlayerId(), "Minecraft", "ite
 <TabItem value="说明" label="说明" default>
 
 ```python
-DestroyComponent(entityId: str, nameSpace: str, name: str) -> Any
+服务端接口(entityId: str, nameSpace: str, name: str) -> Any
 ```
 
 - entityId: str，该组件属主的实体 id。
@@ -133,7 +134,7 @@ comp = serverApi.DestroyComponent('-12345678910', "Minecraft", "item")
 <TabItem value="说明" label="说明" default>
 
 ```python
-DestroyComponent(entityId: str, nameSpace: str, name: str) -> Any
+客户端接口(entityId: str, nameSpace: str, name: str) -> Any
 ```
 
 - entityId: str，该组件属主的实体 id。
@@ -155,6 +156,8 @@ comp = clientApi.DestroyComponent(clientApi.GetLocalPlayerId(), "Minecraft", "it
 
 ### GetComponent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -165,7 +168,7 @@ comp = clientApi.DestroyComponent(clientApi.GetLocalPlayerId(), "Minecraft", "it
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetComponent(entityId: str, nameSpace: str, name: str) -> BaseComponent
+服务端接口(entityId: str, nameSpace: str, name: str) -> BaseComponent
 ```
 
 - entityId: str，该组件属主的实体 id。
@@ -196,7 +199,7 @@ comp = serverApi.GetComponent(entityId, "Minecraft", "item")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetComponent(entityId: str, nameSpace: str, name: str) -> BaseComponent
+客户端接口(entityId: str, nameSpace: str, name: str) -> BaseComponent
 ```
 
 - entityId: str，该组件属主的实体 id。
@@ -221,6 +224,8 @@ comp = clientApi.GetComponent(clientApi.GetLocalPlayerId(), "Minecraft", "item")
 
 ### GetComponentCls
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -231,7 +236,7 @@ comp = clientApi.GetComponent(clientApi.GetLocalPlayerId(), "Minecraft", "item")
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetComponentCls() -> type(BaseComponent)
+服务端接口() -> type(BaseComponent)
 ```
 
 
@@ -264,7 +269,7 @@ class ShootComponentServer(ServerComponentCls):
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetComponentCls() -> type(BaseComponent)
+客户端接口() -> type(BaseComponent)
 ```
 
 
@@ -291,6 +296,8 @@ class ShootComponentClient(ClientComponentCls):
 
 ### GetEngineCompFactory
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -301,7 +308,7 @@ class ShootComponentClient(ClientComponentCls):
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEngineCompFactory() -> EngineCompFactoryServer
+服务端接口() -> EngineCompFactoryServer
 ```
 
 
@@ -329,7 +336,7 @@ gameComp = compFactory.CreateGame(serverApi.GetLevelId())
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetEngineCompFactory() -> EngineCompFactoryClient
+客户端接口() -> EngineCompFactoryClient
 ```
 
 
@@ -351,6 +358,8 @@ gameComp = compFactory.CreateGame(clientApi.GetLevelId())
 
 ### RegisterComponent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 模块级函数，直接调用。
@@ -361,7 +370,7 @@ gameComp = compFactory.CreateGame(clientApi.GetLevelId())
 <TabItem value="说明" label="说明" default>
 
 ```python
-RegisterComponent(nameSpace: str, name: str, clsPath: str) -> bool
+服务端接口(nameSpace: str, name: str, clsPath: str) -> bool
 ```
 
 - nameSpace: str，命名空间，建议为 mod 名字。
@@ -394,7 +403,7 @@ def TutorialServerInit(self):
 <TabItem value="说明" label="说明" default>
 
 ```python
-RegisterComponent(nameSpace: str, name: str, clsPath: str) -> bool
+客户端接口(nameSpace: str, name: str, clsPath: str) -> bool
 ```
 
 - nameSpace: str，命名空间，建议为 mod 名字。

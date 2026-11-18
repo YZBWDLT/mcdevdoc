@@ -4,6 +4,7 @@ sidebar_position: 2
 
 # 刚体
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -14,11 +15,23 @@ import Client from '/src/components/highlight/client';
 
 本文主要记录刚体相关的接口，共 31 个。
 
+:::warning[注意]
+
+物理系列接口属于**实验性内容**，后续版本可能出现接口变更、开发环境变更等情况。网易建议开发者合理安排开发内容与正式版本，避免物理系统更新后出现模组失效。有关物理系统的完整说明与使用教程，请查阅网易的[物理的使用指南](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/20-wuliwanfakaifa/1-wulideshiyongzhinan.html)。
+
+:::
+
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/wuli/gangti.html"/>
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
 
 ---
 
 ### AddForce
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PhysxComponentServer
 
@@ -55,6 +68,8 @@ comp.AddForce((0,1,0), PxForceMode.eVELOCITY_CHANGE)
 ---
 
 ### AddForceAtPos
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PhysxComponentServer
 
@@ -97,6 +112,8 @@ comp.AddForceAtPos((0,1,0), PxForceMode.eVELOCITY_CHANGE, (0,81,0))
 
 ### AddForceAtPosLocal
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -138,6 +155,8 @@ comp.AddForceAtPosLocal((0,0,1000), PxForceMode.eFORCE, (1,0,0))
 
 ### AddTorque
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -172,6 +191,8 @@ comp.AddTorque((0,5000,0), PxForceMode.eFORCE)
 ---
 
 ### AddTorqueLocal
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -208,6 +229,8 @@ comp.AddTorqueLocal((100,0,0), PxForceMode.eIMPULSE)
 
 ### CreatePxActor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -220,7 +243,6 @@ comp.AddTorqueLocal((100,0,0), PxForceMode.eIMPULSE)
 ```python
 CreatePxActor() -> bool
 ```
-
 
 **返回值**：bool，是否成功。
 
@@ -245,6 +267,8 @@ comp.CreatePxActor()
 
 ### GetActorFlags
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -257,7 +281,6 @@ comp.CreatePxActor()
 ```python
 GetActorFlags() -> int
 ```
-
 
 **返回值**：int，Actor 标记；非自定义刚体时返回 None。
 
@@ -277,6 +300,8 @@ print comp.GetActorFlags()
 
 ### GetAngularVelocity
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -287,9 +312,8 @@ print comp.GetActorFlags()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAngularVelocity() -> Tuple[float, float, float]
+服务端接口() -> Tuple[float, float, float]
 ```
-
 
 **返回值**：Tuple[float, float, float]，角速度(rad/s)；非自定义刚体时返回 None。
 
@@ -315,9 +339,8 @@ print comp.GetAngularVelocity()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAngularVelocity() -> Tuple[float, float, float]
+客户端接口() -> Tuple[float, float, float]
 ```
-
 
 **返回值**：Tuple[float, float, float]，角速度(rad/s)，非自定义刚体返回 None。
 
@@ -337,6 +360,8 @@ print comp.GetAngularVelocity()
 
 ### GetLinearVelocity
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -347,9 +372,8 @@ print comp.GetAngularVelocity()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetLinearVelocity() -> Tuple[float, float, float]
+服务端接口() -> Tuple[float, float, float]
 ```
-
 
 **返回值**：Tuple[float, float, float]，线速度；非自定义刚体时返回 None。
 
@@ -375,9 +399,8 @@ print comp.GetLinearVelocity()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetLinearVelocity() -> Tuple[float, float, float]
+客户端接口() -> Tuple[float, float, float]
 ```
-
 
 **返回值**：Tuple[float, float, float]，线速度(blocks/s)，非自定义刚体返回 None。
 
@@ -397,6 +420,8 @@ print comp.GetLinearVelocity()
 
 ### GetMass
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -409,7 +434,6 @@ print comp.GetLinearVelocity()
 ```python
 GetMass() -> float
 ```
-
 
 **返回值**：float，质量；非自定义刚体时返回 None。
 
@@ -429,6 +453,8 @@ print comp.GetMass()
 
 ### GetMassSpaceInertiaTensor
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -441,7 +467,6 @@ print comp.GetMass()
 ```python
 GetMassSpaceInertiaTensor() -> Tuple[float, float, float]
 ```
-
 
 **返回值**：Tuple[float, float, float]，惯性张量(Ix,Iy,Iz)；非自定义刚体时返回 None。
 
@@ -461,6 +486,8 @@ print comp.GetMassSpaceInertiaTensor()
 
 ### GetQuaternion
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -471,9 +498,8 @@ print comp.GetMassSpaceInertiaTensor()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetQuaternion() -> Tuple[float, float, float, float]
+服务端接口() -> Tuple[float, float, float, float]
 ```
-
 
 **返回值**：Tuple[float, float, float, float]，四元数。
 
@@ -503,9 +529,8 @@ print comp.GetQuaternion()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetQuaternion() -> Tuple[float, float, float, float]
+客户端接口() -> Tuple[float, float, float, float]
 ```
-
 
 **返回值**：Tuple[float, float, float, float]，四元数。
 
@@ -529,6 +554,8 @@ print comp.GetQuaternion()
 
 ### GetRigidBodyFlags
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -541,7 +568,6 @@ print comp.GetQuaternion()
 ```python
 GetRigidBodyFlags() -> int
 ```
-
 
 **返回值**：int，刚体标记；非自定义刚体时返回 None。
 
@@ -561,6 +587,8 @@ print comp.GetRigidBodyFlags()
 
 ### GetRigidDynamicLockFlags
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -573,7 +601,6 @@ print comp.GetRigidBodyFlags()
 ```python
 GetRigidDynamicLockFlags() -> int
 ```
-
 
 **返回值**：int，动态刚体锁定标记；非自定义刚体时返回 None。
 
@@ -593,6 +620,8 @@ print comp.GetRigidDynamicLockFlags()
 
 ### IsDefaultPxActor
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -605,7 +634,6 @@ print comp.GetRigidDynamicLockFlags()
 ```python
 IsDefaultPxActor() -> bool
 ```
-
 
 **返回值**：bool，是否为默认 PxActor；非自定义刚体时返回 None。
 
@@ -625,6 +653,8 @@ print comp.IsDefaultPxActor()
 
 ### IsSleeping
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -637,7 +667,6 @@ print comp.IsDefaultPxActor()
 ```python
 IsSleeping() -> bool
 ```
-
 
 **返回值**：bool，是否休眠；非自定义刚体时返回 None。
 
@@ -657,6 +686,8 @@ print comp.IsSleeping()
 
 ### PutToSleep
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -669,7 +700,6 @@ print comp.IsSleeping()
 ```python
 PutToSleep() -> bool
 ```
-
 
 **返回值**：bool，是否成功。
 
@@ -688,6 +718,8 @@ comp.PutToSleep()
 ---
 
 ### SetActorFlag
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PhysxComponentServer
 
@@ -724,6 +756,8 @@ comp.SetActorFlag(PxActorFlag.eDISABLE_GRAVITY, True)
 
 ### SetAngularDamping
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -756,6 +790,8 @@ comp.SetAngularDamping(1.0) # 角速度衰减系数
 ---
 
 ### SetAngularVelocity
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -790,6 +826,8 @@ comp.SetAngularVelocity((0.0, 3.14, 0.0)) # 绕世界 Y 轴旋转
 
 ### SetCMassLocalPose
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -823,6 +861,8 @@ comp.SetCMassLocalPose((0.0, -0.5, 0.0)) # 将重心下移半格
 
 ### SetGlobalPose
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -833,7 +873,7 @@ comp.SetCMassLocalPose((0.0, -0.5, 0.0)) # 将重心下移半格
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetGlobalPose(
+服务端接口(
     pos: Optional[Tuple[float, float, float]],
     rot: Optional[Tuple[float, float, float, float]],
 ) -> bool
@@ -864,7 +904,7 @@ comp.SetGlobalPose((0,80,0), None)
 设置客户端本地自定义刚体的变换（直接瞬移）。
 
 ```python
-SetGlobalPose(
+客户端接口(
     pos: Optional[Tuple[float, float, float]],
     rot: Optional[Tuple[float, float, float, float]],
 ) -> bool
@@ -882,6 +922,8 @@ SetGlobalPose(
 ---
 
 ### SetKinematicTarget
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PhysxComponentServer
 
@@ -921,6 +963,8 @@ comp.SetKinematicTarget((0,80,0), None)
 
 ### SetLinearDamping
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -953,6 +997,8 @@ comp.SetLinearDamping(0.5) # 线速度衰减系数
 ---
 
 ### SetLinearVelocity
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -987,6 +1033,8 @@ comp.SetLinearVelocity((0.0, 0.0, 8.0)) # 立即设为向 +Z 匀速运动
 
 ### SetMass
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -1019,6 +1067,8 @@ comp.SetMass(20.0)
 ---
 
 ### SetMaxAngularVelocity
+
+<Version type="china" add="3.10"/>
 
 <Server/> PhysxComponentServer
 
@@ -1053,6 +1103,8 @@ comp.SetMaxAngularVelocity(20.0) # 限制为 20 rad/s
 
 ### SetMaxLinearVelocity
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -1085,6 +1137,8 @@ comp.SetMaxLinearVelocity(30.0)
 ---
 
 ### SetRigidBodyFlag
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PhysxComponentServer
 
@@ -1121,6 +1175,8 @@ comp.SetRigidBodyFlag(PxRigidBodyFlag.eKINEMATIC, True) # 设置为运动学刚�
 
 ### SetRigidDynamicLockFlags
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -1156,6 +1212,8 @@ comp.SetRigidDynamicLockFlags(PxRigidDynamicLockFlag.eLOCK_ANGULAR_X | PxRigidDy
 
 ### WakeUp
 
+<Version type="china" add="3.10"/>
+
 <Server/> PhysxComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePhysx(entityId)`
@@ -1168,7 +1226,6 @@ comp.SetRigidDynamicLockFlags(PxRigidDynamicLockFlag.eLOCK_ANGULAR_X | PxRigidDy
 ```python
 WakeUp() -> bool
 ```
-
 
 **返回值**：bool，是否成功。
 

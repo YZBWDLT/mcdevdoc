@@ -9,10 +9,15 @@ import ReadOnly from "/src/components/highlight/readonly"
 import Optional from "/src/components/highlight/optional"
 import EarlyExecution from "/src/components/highlight/earlyExecution"
 import RestrictedMode from "/src/components/highlight/restrictedMode"
+import Button from '/src/components/button/base';
 
 本文主要记录世界前事件相关接口。
 
 前事件在事件实际发生前触发，多数前事件都可以取消事件的发生。在前事件的回调中，代码处于受限执行状态，无法执行会更改世界的代码，必须使用`system.run()`延后执行。
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

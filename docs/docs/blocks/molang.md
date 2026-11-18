@@ -8,6 +8,10 @@ sidebar_position: 8
 
 下文的所有 Molang 均链接到官方文档，读者可点击查阅。
 
+要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=molang" color="green"/>
+
 ## 方块标签
 
 | Molang | 描述 | 返回值 | 示例 |
@@ -38,5 +42,6 @@ sidebar_position: 8
 | [`query.is_connect(face: int)`](https://mc.163.com/newdev/docs/mcguide/20-wanfakaifa/15-zidingyiyouxineirong/2-zidingyifangkuai/1-json-zujian.html#netease-connection) | （仅中国版可用）返回该方块特定面所接触的方块是否拥有`connection`属性。`face`允许的参数为：底：`0`、顶：`1`、北：`2`、南：`3`、西：`4`、东：`5`。 | 否：`0.0`，是：`1.0` | `query.is_connect(0)` |
 
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>

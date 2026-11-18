@@ -7,8 +7,13 @@ sidebar_position: 0
 import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 import EarlyExecution from "/src/components/highlight/earlyExecution"
+import Button from '/src/components/button/base';
 
 本文主要记录系统相关接口。`system` 是全局唯一的 `System` 实例，用于调度代码执行、获取系统前事件与系统后事件。
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

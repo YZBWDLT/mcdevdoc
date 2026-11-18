@@ -6,8 +6,13 @@ sidebar_position: 4
 
 import Version from "/src/components/highlight/version"
 import RestrictedMode from "/src/components/highlight/restrictedMode"
+import Button from '/src/components/button/base';
 
 本文记录控制生物群系光照（环境光、日月颜色与照度、闪光）的接口。数值与关键帧的写法见[设置约定](./concepts#数值与关键帧)。
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

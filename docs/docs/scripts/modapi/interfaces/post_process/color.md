@@ -4,6 +4,7 @@ sidebar_position: 4
 
 # 色彩
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/houchuli/secai.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### CheckColorAdjustmentEnabled
+
+<Version type="china" add="1.25"/>
 
 <Client/> PostProcessComponent
 
@@ -51,6 +58,8 @@ comp.CheckColorAdjustmentEnabled()
 ---
 
 ### SetColorAdjustmentBrightness
+
+<Version type="china" add="1.25"/>
 
 <Client/> PostProcessComponent
 
@@ -86,6 +95,8 @@ comp.SetColorAdjustmentBrightness(3)
 
 ### SetColorAdjustmentContrast
 
+<Version type="china" add="1.25"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -120,6 +131,8 @@ comp.SetColorAdjustmentContrast(3)
 
 ### SetColorAdjustmentSaturation
 
+<Version type="china" add="1.25"/>
+
 <Client/> PostProcessComponent
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePostProcess(levelId)`
@@ -153,6 +166,8 @@ comp.SetColorAdjustmentSaturation(3)
 ---
 
 ### SetColorAdjustmentTint
+
+<Version type="china" add="1.25"/>
 
 <Client/> PostProcessComponent
 
@@ -191,6 +206,8 @@ comp.SetColorAdjustmentTint(0.3, (255,0,0))
 ---
 
 ### SetEnableColorAdjustment
+
+<Version type="china" add="1.25"/>
 
 <Client/> PostProcessComponent
 

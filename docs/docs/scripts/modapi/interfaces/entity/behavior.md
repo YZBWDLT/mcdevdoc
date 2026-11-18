@@ -4,6 +4,7 @@ sidebar_position: 11
 
 # 行为
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/shiti/xingwei.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddActorComponent
+
+<Version type="china" add="3.2"/>
 
 <Server/> EntityEventComponentServer
 
@@ -60,6 +67,8 @@ comp.AddActorComponent("minecraft:attack", '{"damage": 99}')
 ---
 
 ### AddActorComponentGroup
+
+<Version type="china" add="2.8"/>
 
 <Server/> EntityEventComponentServer
 
@@ -145,6 +154,8 @@ AddActorComponentGroup(groupName: str) -> bool
 
 ### AddEntityAroundEntityMotion
 
+<Version type="china" add="2.4"/>
+
 <Server/> ActorMotionComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorMotion(entityId)`
@@ -200,6 +211,8 @@ motionComp.StartEntityMotion(mID)
 
 ### AddEntityAroundPointMotion
 
+<Version type="china" add="2.4"/>
+
 <Server/> ActorMotionComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorMotion(entityId)`
@@ -253,6 +266,8 @@ motionComp.StartEntityMotion(mID)
 
 ### AddEntitySeat
 
+<Version type="china" add="2.6"/>
+
 <Server/> RideCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRide(entityId)`
@@ -296,6 +311,8 @@ seatIndex = comp.AddEntitySeat((1.0, 1.0, 1.0), 90.0, 90.0)
 ---
 
 ### AddEntityTrackMotion
+
+<Version type="china" add="2.4"/>
 
 <Server/> ActorMotionComponentServer
 
@@ -358,6 +375,8 @@ mID = motionComp.AddEntityTrackMotion(target, 3.0, startPos=None, relativeCoord=
 
 ### AddEntityVelocityMotion
 
+<Version type="china" add="2.4"/>
+
 <Server/> ActorMotionComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorMotion(entityId)`
@@ -407,6 +426,8 @@ motionComp.StartEntityMotion(mID)
 
 ### ChangeRiderSeat
 
+<Version type="china" add="2.6"/>
+
 <Server/> RideCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRide(entityId)`
@@ -444,6 +465,8 @@ comp.ChangeRiderSeat(1)
 ---
 
 ### DeleteEntitySeat
+
+<Version type="china" add="2.6"/>
 
 <Server/> RideCompServer
 
@@ -483,6 +506,8 @@ comp.DeleteEntitySeat(1)
 
 ### GetAttackTarget
 
+<Version type="china" add="2.7"/>
+
 <Server/> ActionCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateAction(entityId)`
@@ -493,7 +518,7 @@ comp.DeleteEntitySeat(1)
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAttackTarget() -> str
+服务端接口() -> str
 ```
 
 
@@ -521,7 +546,7 @@ comp.GetAttackTarget()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetAttackTarget() -> str
+客户端接口() -> str
 ```
 
 
@@ -542,6 +567,8 @@ comp.GetAttackTarget()
 ---
 
 ### GetBlockControlAi
+
+<Version type="china" add="2.0"/>
 
 <Server/> ControlAiCompServer
 
@@ -579,6 +606,8 @@ comp.GetBlockControlAi()
 
 ### GetComponents
 
+<Version type="china" add="3.2"/>
+
 <Server/> EntityEventComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityEvent(entityId)`
@@ -610,6 +639,8 @@ print(comp.GetComponents())
 ---
 
 ### GetCustomGoalCls
+
+<Version type="china" add="1.25"/>
 
 <Server/>
 
@@ -644,6 +675,8 @@ class CustomGoalDemo(CustomGoal):
 ---
 
 ### GetEntityMotions
+
+<Version type="china" add="2.4"/>
 
 <Server/> ActorMotionComponentServer
 
@@ -685,6 +718,8 @@ motions = motionComp.GetEntityMotions()
 
 ### GetJumpPower
 
+<Version type="china" add="2.11"/>
+
 <Server/> GravityComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGravity(entityId)`
@@ -724,6 +759,8 @@ comp.GetJumpPower()
 
 ### GetLeashHolder
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -756,6 +793,8 @@ result = comp.GetLeashHolder()
 
 ### GetMotion
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ActorMotionComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorMotion(entityId)`
@@ -766,7 +805,7 @@ result = comp.GetLeashHolder()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetMotion() -> Tuple[float, float, float]
+服务端接口() -> Tuple[float, float, float]
 ```
 
 
@@ -794,7 +833,7 @@ motionComp.GetMotion()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetMotion() -> Tuple[float, float, float]
+客户端接口() -> Tuple[float, float, float]
 ```
 
 
@@ -816,6 +855,8 @@ motionComp.GetMotion()
 
 ### GetOwnerId
 
+<Version type="china" add="2.7"/>
+
 <Server/> TameComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateTame(entityId)`
@@ -826,7 +867,7 @@ motionComp.GetMotion()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetOwnerId() -> str
+服务端接口() -> str
 ```
 
 
@@ -854,7 +895,7 @@ oid = comp.GetOwnerId()
 <TabItem value="说明" label="说明" default>
 
 ```python
-GetOwnerId() -> str
+客户端接口() -> str
 ```
 
 
@@ -875,6 +916,8 @@ oid = comp.GetOwnerId()
 ---
 
 ### GetRiders
+
+<Version type="china" add="2.6"/>
 
 <Server/> RideCompServer
 
@@ -912,6 +955,8 @@ riders = comp.GetRiders()
 
 ### GetStepHeight
 
+<Version type="china" add="1.21"/>
+
 <Server/> AttrCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateAttr(entityId)`
@@ -943,6 +988,8 @@ print(comp.GetStepHeight())
 ---
 
 ### Hurt
+
+<Version type="china" add="1.21"/>
 
 <Server/> HurtCompServer
 
@@ -993,6 +1040,8 @@ comp.Hurt(10, serverApi.GetMinecraftEnum().ActorDamageCause.EntityAttack, attack
 
 ### ImmuneDamage
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> HurtCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateHurt(entityId)`
@@ -1026,6 +1075,8 @@ comp.ImmuneDamage(True)
 
 ### IsEating
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -1058,6 +1109,8 @@ result = comp.IsEating()
 
 ### IsEntityOnFire
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> AttrCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateAttr(entityId)`
@@ -1089,6 +1142,8 @@ isOnFire = comp.IsEntityOnFire()
 ---
 
 ### IsLootDropped
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -1125,6 +1180,8 @@ result = comp.IsLootDropped()
 ---
 
 ### IsPersistent
+
+<Version type="china" add="2.9"/>
 
 <Server/> EntityDefinitionsCompServer
 
@@ -1164,6 +1221,8 @@ result = comp.IsPersistent()
 
 ### IsRoaring
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -1196,6 +1255,8 @@ result = comp.IsRoaring()
 
 ### IsStunned
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -1227,6 +1288,8 @@ result = comp.IsStunned()
 ---
 
 ### RemoveActorComponent
+
+<Version type="china" add="3.2"/>
 
 <Server/> EntityEventComponentServer
 
@@ -1265,6 +1328,8 @@ comp.RemoveActorComponent("minecraft:attack")
 ---
 
 ### RemoveActorComponentGroup
+
+<Version type="china" add="2.8"/>
 
 <Server/> EntityEventComponentServer
 
@@ -1382,6 +1447,8 @@ RemoveActorComponentGroup(groupName: str) -> bool
 
 ### RemoveEntityMotion
 
+<Version type="china" add="2.4"/>
+
 <Server/> ActorMotionComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorMotion(entityId)`
@@ -1415,6 +1482,8 @@ motionComp.RemoveEntityMotion(mID)
 
 ### ResetAttackTarget
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ActionCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateAction(entityId)`
@@ -1446,6 +1515,8 @@ comp.ResetAttackTarget()
 ---
 
 ### ResetMotion
+
+<Version type="china" add="2.0"/>
 
 <Server/> ActorMotionComponentServer
 
@@ -1483,6 +1554,8 @@ motionComp.ResetMotion()
 
 ### ResetStepHeight
 
+<Version type="china" add="1.21"/>
+
 <Server/> AttrCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateAttr(entityId)`
@@ -1514,6 +1587,8 @@ comp.ResetStepHeight()
 ---
 
 ### SetActorCollidable
+
+<Version type="china" add="2.6"/>
 
 <Server/> ActorCollidableCompServer
 
@@ -1553,6 +1628,8 @@ success = comp.SetActorCollidable(1)
 
 ### SetActorPushable
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ActorPushableCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorPushable(entityId)`
@@ -1586,6 +1663,8 @@ success = comp.SetActorPushable(1)
 
 ### SetAttackTarget
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ActionCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateAction(entityId)`
@@ -1618,6 +1697,8 @@ comp.SetAttackTarget(targetId)
 ---
 
 ### SetBlockControlAi
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ControlAiCompServer
 
@@ -1658,6 +1739,8 @@ comp.SetBlockControlAi(False, True)
 
 ### SetCanOtherPlayerRide
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> RideCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRide(entityId)`
@@ -1692,6 +1775,8 @@ comp.SetCanOtherPlayerRide(entityId,False)
 ---
 
 ### SetControl
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> RideCompServer
 
@@ -1730,6 +1815,8 @@ comp.SetControl(entityId,True)
 ---
 
 ### SetEntityInteractFilter
+
+<Version type="china" add="2.1"/>
 
 <Server/> InteractComponentServer
 
@@ -1780,6 +1867,8 @@ comp.SetEntityInteractFilter(0, filterStr)
 
 ### SetEntityLockRider
 
+<Version type="china" add="2.6"/>
+
 <Server/> RideCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRide(entityId)`
@@ -1820,6 +1909,8 @@ comp.SetEntityLockRider(True)
 
 ### SetEntityOnFire
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> AttrCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateAttr(entityId)`
@@ -1857,6 +1948,8 @@ comp.SetEntityOnFire(1, 2)
 ---
 
 ### SetEntityRide
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> RideCompServer
 
@@ -1896,6 +1989,8 @@ comp.SetEntityRide(playerId,entityId)
 ---
 
 ### SetEntitySeat
+
+<Version type="china" add="2.6"/>
 
 <Server/> RideCompServer
 
@@ -1944,6 +2039,8 @@ comp.SetEntitySeat(0, (1.0, 1.0, 1.0), 90.0, 90.0)
 
 ### SetEntityShareablesItems
 
+<Version type="china" add="2.1"/>
+
 <Server/> ShareableComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateShareables(entityId)`
@@ -1990,6 +2087,8 @@ comp.SetEntityShareablesItems(shareableItems)
 ---
 
 ### SetEntityTamed
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> TameComponentServer
 
@@ -2154,6 +2253,8 @@ SetEntityTamed(playerId: str, tamedId: str) -> bool
 
 ### SetJumpPower
 
+<Version type="china" add="2.1"/>
+
 <Server/> GravityComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateGravity(entityId)`
@@ -2192,6 +2293,8 @@ comp.SetJumpPower(0.84)
 
 ### SetLeashHolder
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -2229,6 +2332,8 @@ result = comp.SetLeashHolder(playerId)
 
 ### SetLootDropped
 
+<Version type="china" add="2.9"/>
+
 <Server/> EntityDefinitionsCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateEntityDefinitions(entityId)`
@@ -2265,6 +2370,8 @@ result = comp.SetLootDropped(True)
 ---
 
 ### SetMobKnockback
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> ActionCompServer
 
@@ -2314,6 +2421,8 @@ comp.SetMobKnockback(0.1, 0.1, 1.0, 1.0, 1.0)
 
 ### SetMotion
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> ActorMotionComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRot(entityId)`
@@ -2324,7 +2433,7 @@ comp.SetMobKnockback(0.1, 0.1, 1.0, 1.0, 1.0)
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetMotion(motion: Tuple[float, float, float]) -> bool
+服务端接口(motion: Tuple[float, float, float]) -> bool
 ```
 
 - motion: Tuple[float, float, float]，世界坐标系下的向量，该方向为世界坐标系下的向量，以 x,z,y 三个轴的正方向为正值，可以通过当前生物的 rot 组件判断目前玩家面向的方向，可在开发模式下打开 F3 观察数值变化。
@@ -2366,7 +2475,7 @@ motionComp.SetMotion((x * 5, y * 5, z * 5))
 <TabItem value="说明" label="说明" default>
 
 ```python
-SetMotion(motion: Tuple[float, float, float]) -> bool
+客户端接口(motion: Tuple[float, float, float]) -> bool
 ```
 
 - motion: Tuple[float, float, float]，世界坐标系下的向量，该方向为世界坐标系下的向量，以 x,z,y 三个轴的正方向为正值，可以通过当前玩家的 rot 组件判断目前玩家面向的方向，可在开发模式下打开 F3 观察数值变化。
@@ -2402,6 +2511,8 @@ motionComp.SetMotion((x * 5, y * 5, z * 5))
 ---
 
 ### SetMoveSetting
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> MoveToComponentServer
 
@@ -2493,6 +2604,8 @@ SetMoveSetting(
 
 ### SetPersistence
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PersistenceCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePersistence(entityId)`
@@ -2528,6 +2641,8 @@ comp.SetPersistence(True)
 
 ### SetRidePos
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> RideCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRide(entityId)`
@@ -2561,6 +2676,8 @@ comp.SetRidePos(entityId,(1,1,1))
 ---
 
 ### SetRiderRideEntity
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> RideCompServer
 
@@ -2604,6 +2721,8 @@ comp.SetRiderRideEntity(playerId,rideEntityId)
 
 ### SetStepHeight
 
+<Version type="china" add="1.21"/>
+
 <Server/> AttrCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateAttr(entityId)`
@@ -2645,6 +2764,8 @@ comp.SetStepHeight(2.0625)
 
 ### StartEntityMotion
 
+<Version type="china" add="2.4"/>
+
 <Server/> ActorMotionComponentServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateActorMotion(entityId)`
@@ -2681,6 +2802,8 @@ motionComp.StartEntityMotion(mID)
 ---
 
 ### StopEntityMotion
+
+<Version type="china" add="2.4"/>
 
 <Server/> ActorMotionComponentServer
 
@@ -2719,6 +2842,8 @@ motionComp.StopEntityMotion(mID)
 
 ### StopEntityRiding
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> RideCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreateRide(entityId)`
@@ -2750,6 +2875,8 @@ success = comp.StopEntityRiding()
 ---
 
 ### TriggerCustomEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> EntityEventComponentServer
 

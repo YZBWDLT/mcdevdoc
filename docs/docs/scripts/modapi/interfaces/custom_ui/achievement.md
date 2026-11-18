@@ -4,6 +4,7 @@ sidebar_position: 3
 
 # 自定义成就系统
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/zidingyi-ui/zidingyichengjiuxitong.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddNodeProgress
+
+<Version type="china" add="2.2"/>
 
 <Server/> AchievementCompServer
 
@@ -75,6 +82,8 @@ comp.AddNodeProgress(playerId, nodeId, delta, callback = cb, getExtra = get)
 
 ### GetAchievementGatePosition
 
+<Version type="china" add="2.9"/>
+
 <Client/> AchievementCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateAchievement(playerId)`
@@ -106,6 +115,8 @@ result = comp.GetAchievementGatePosition()
 ---
 
 ### GetChildrenNode
+
+<Version type="china" add="2.2"/>
 
 <Server/> AchievementCompServer
 
@@ -140,6 +151,8 @@ NodeChildren = comp.GetChildrenNode(nodeId)
 ---
 
 ### GetNodeDetailInfo
+
+<Version type="china" add="2.2"/>
 
 <Server/> AchievementCompServer
 
@@ -181,6 +194,8 @@ NodeDetail = comp.GetNodeDetailInfo(playerId, nodeId)
 
 ### SetAchievementGatePosition
 
+<Version type="china" add="2.9"/>
+
 <Client/> AchievementCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateAchievement(playerId)`
@@ -218,6 +233,8 @@ result = comp.SetAchievementGatePosition(10, 10)
 ---
 
 ### SetNodeFinish
+
+<Version type="china" add="2.2"/>
 
 <Server/> AchievementCompServer
 

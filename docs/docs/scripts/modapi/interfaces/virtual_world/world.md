@@ -4,6 +4,7 @@ sidebar_position: 3
 
 # 世界
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/xunishijie/shijie.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### VirtualWorldCreate
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -52,6 +59,8 @@ virtualWorldComp.VirtualWorldCreate()
 
 ### VirtualWorldDestroy
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -83,6 +92,8 @@ virtualWorldComp.VirtualWorldDestroy()
 ---
 
 ### VirtualWorldSetCollidersVisible
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -120,6 +131,8 @@ virtualWorldComp.ModelSetBoxCollider(id, (2.0, 2.0, 2.0), (0.0, 0.0, 0.0))
 
 ### VirtualWorldSetSkyBgColor
 
+<Version type="china" add="1.23"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -154,6 +167,8 @@ virtualWorldComp.VirtualWorldSetSkyBgColor((1.0, 0.0, 0.0))
 
 ### VirtualWorldSetSkyTexture
 
+<Version type="china" add="1.23"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -187,6 +202,8 @@ virtualWorldComp.VirtualWorldSetSkyTexture("textures/virtualWorldSky", 0)
 ---
 
 ### VirtualWorldToggleVisibility
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 

@@ -16,6 +16,10 @@ import Version from "/src/components/highlight/version"
 
 标记组件是用于标记实体状态的组件，它们并不具有任何功能，只能在相关 Molang 中读取其状态。在旧版本中，常常使用这些标记组件记录实体的状态，但 1.19.50 开放的[实体属性](../property)完全可以完全替代下文的标记组件，因此现在这些组件已不常使用。
 
+要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=entity_component" color="green"/>
+
 ### `minecraft:is_baby`
 
 <Usable type="all"/> <Version add="1.2.0"/> <br/>
@@ -359,5 +363,6 @@ import Version from "/src/components/highlight/version"
 
 </TabItem></Tabs>
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>

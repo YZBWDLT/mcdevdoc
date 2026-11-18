@@ -4,6 +4,7 @@ sidebar_position: 8
 
 # 模型
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/moxing.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_event" color="green"/>
+
 ---
 
 ### AttackAnimBeginClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -68,6 +75,8 @@ class MyClientSystem(ClientSystem):
 
 ### AttackAnimBeginServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 当攻击动作开始时触发。
@@ -115,6 +124,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### AttackAnimEndClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -164,6 +175,8 @@ class MyClientSystem(ClientSystem):
 
 ### AttackAnimEndServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 当攻击动作结束时触发。
@@ -211,6 +224,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### JumpAnimBeginServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -260,6 +275,8 @@ class MyServerSystem(ServerSystem):
 
 ### WalkAnimBeginClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 走路动作开始时触发。
@@ -307,6 +324,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### WalkAnimBeginServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -356,6 +375,8 @@ class MyServerSystem(ServerSystem):
 
 ### WalkAnimEndClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 走路动作结束时触发。
@@ -403,6 +424,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### WalkAnimEndServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 

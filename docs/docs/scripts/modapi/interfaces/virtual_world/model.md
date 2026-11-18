@@ -4,6 +4,7 @@ sidebar_position: 1
 
 # 模型
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/xunishijie/moxing.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### ModelCancelAllBoneMask
+
+<Version type="china" add="1.23"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -53,6 +60,8 @@ virtualWorldComp.ModelCancelAllBoneMask(objId, "attack")
 ---
 
 ### ModelCreateMinecraftObject
+
+<Version type="china" add="1.25"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -95,6 +104,8 @@ virtualWorldComp.ModelUpdateAnimationMolangVariable(id, {"variable.state": 2, "v
 
 ### ModelCreateObject
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -132,6 +143,8 @@ virtualWorldComp.ModelCreateObject("datiangou", "run")
 ---
 
 ### ModelGetPos
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -172,6 +185,8 @@ pos = virtualWorldComp.ModelGetPos(objId)
 
 ### ModelGetRot
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -211,6 +226,8 @@ rot = virtualWorldComp.ModelGetRot(objId)
 
 ### ModelIsVisible
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -244,6 +261,8 @@ print(virtualWorldComp.ModelIsVisible(id))
 ---
 
 ### ModelMoveTo
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -288,6 +307,8 @@ virtualWorldComp.ModelMoveTo(objId, (0.0, 0.0, -10.0), 3.0, clientApi.GetMinecra
 
 ### ModelPlayAnimation
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -331,6 +352,8 @@ virtualWorldComp.ModelPlayAnimation(objId, "fengxi", True)
 ---
 
 ### ModelRegisterAnim1DControlParam
+
+<Version type="china" add="1.23"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -383,6 +406,8 @@ virtualWorldComp.ModelSetAnim1DControlParam(objId, "arm_control_param", 0.5)
 
 ### ModelRemove
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -416,6 +441,8 @@ virtualWorldComp.ModelRemove(objId)
 ---
 
 ### ModelRotate
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -456,6 +483,8 @@ virtualWorldComp.ModelRotate(objId, 90.0, (0.0, 1.0, 0.0))
 ---
 
 ### ModelRotateTo
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -499,6 +528,8 @@ virtualWorldComp.ModelRotateTo(objId, (0.0, 90.0, 0.0), 3.0, clientApi.GetMinecr
 ---
 
 ### ModelSetAnim1DControlParam
+
+<Version type="china" add="1.23"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -544,6 +575,8 @@ virtualWorldComp.ModelSetAnim1DControlParam(objId, "arm_control_param", 0.5)
 ---
 
 ### ModelSetAnimAllBoneMask
+
+<Version type="china" add="1.23"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -593,6 +626,8 @@ virtualWorldComp.ModelSetAnimAllBoneMask(objId, "attack", ["l_arm", "r_arm"], Fa
 
 ### ModelSetAnimBoneMask
 
+<Version type="china" add="1.23"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -641,6 +676,8 @@ virtualWorldComp.ModelSetAnimBoneMask(objId, "attack", ["l_arm", "r_arm"], False
 
 ### ModelSetAnimLayer
 
+<Version type="china" add="1.23"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -679,6 +716,8 @@ virtualWorldComp.ModelSetAnimLayer(objId, "attack", 1)
 ---
 
 ### ModelSetBoxCollider
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -720,6 +759,8 @@ virtualWorldComp.ModelSetBoxCollider(objId, (2.0, 2.0, 2.0), (0.0, 0.0, 0.0))
 
 ### ModelSetPos
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -758,6 +799,8 @@ virtualWorldComp.ModelSetPos(objId, (0.0, 0.0, -10.0))
 ---
 
 ### ModelSetRot
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -798,6 +841,8 @@ virtualWorldComp.ModelSetRot(objId, (0.0, 90.0, 0.0))
 
 ### ModelSetScale
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -833,6 +878,8 @@ virtualWorldComp.ModelSetScale(objId, (2.0, 2.0, 2.0))
 
 ### ModelSetVisible
 
+<Version type="china" add="1.22"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -867,6 +914,8 @@ virtualWorldComp.ModelSetVisible(id, False)
 ---
 
 ### ModelStopActions
+
+<Version type="china" add="1.22"/>
 
 <Client/> VirtualWorldCompClient
 
@@ -906,6 +955,8 @@ virtualWorldComp.ModelStopActions(objId)
 
 ### ModelStopAnimation
 
+<Version type="china" add="1.23"/>
+
 <Client/> VirtualWorldCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateVirtualWorld(clientApi.GetLevelId())`
@@ -939,6 +990,8 @@ virtualWorldComp.ModelStopAnimation(objId, "fengxi")
 ---
 
 ### ModelUpdateAnimationMolangVariable
+
+<Version type="china" add="1.25"/>
 
 <Client/> VirtualWorldCompClient
 

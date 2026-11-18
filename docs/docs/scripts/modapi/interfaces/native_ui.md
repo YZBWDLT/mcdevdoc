@@ -4,6 +4,7 @@ sidebar_position: 16
 
 # 原生 UI
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/yuansheng-ui.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### ChangeSneakState
+
+<Version type="china" add="2.6"/>
 
 <Client/>
 
@@ -47,6 +54,8 @@ clientApi.ChangeSneakState()
 ---
 
 ### ClickInteractGUI
+
+<Version type="china" add="2.6"/>
 
 <Client/>
 
@@ -94,6 +103,8 @@ clientApi.ClickInteractGUI()
 
 ### GetOriginAreaOffset
 
+<Version type="china" add="2.11"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -131,6 +142,8 @@ clientApi.GetOriginAreaOffset(clientApi.GetMinecraftEnum().OriginGUIName.ChatBtn
 
 ### GetScreenSize
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> GameComponentClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateGame(levelId)`
@@ -162,6 +175,8 @@ width, height = comp.GetScreenSize()
 ---
 
 ### GetScreenViewInfo
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> GameComponentClient
 
@@ -195,6 +210,8 @@ width, height, offsetX, offsetY= comp.GetScreenViewInfo()
 
 ### GetWalkState
 
+<Version type="china" add="2.10"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -225,6 +242,8 @@ clientApi.GetWalkState()
 ---
 
 ### HideAirSupplyGUI
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -258,6 +277,8 @@ clientApi.HideAirSupplyGUI(True)
 
 ### HideArmorGui
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -290,6 +311,8 @@ clientApi.HideArmorGui(True)
 
 ### HideChangePersonGui
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -319,6 +342,8 @@ clientApi.HideChangePersonGui(True)
 ---
 
 ### HideChatGUI
+
+<Version type="china" add="2.4"/>
 
 <Client/>
 
@@ -354,6 +379,8 @@ clientApi.HideChatGUI(True)
 
 ### HideCrossHairGUI
 
+<Version type="china" add="3.1"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -386,6 +413,8 @@ clientApi.HideCrossHairGUI(True)
 
 ### HideEmoteGUI
 
+<Version type="china" add="2.4"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -415,6 +444,8 @@ clientApi.HideEmoteGUI(True)
 ---
 
 ### HideExpGui
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -446,6 +477,8 @@ clientApi.HideExpGui(True)
 
 ### HideFoldGUI
 
+<Version type="china" add="2.4"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -475,6 +508,8 @@ clientApi.HideFoldGUI(True)
 ---
 
 ### HideHealthGui
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -508,6 +543,8 @@ clientApi.HideHealthGui(True)
 
 ### HideHorseHealthGui
 
+<Version type="china" add="1.21"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -540,6 +577,8 @@ clientApi.HideHorseHealthGui(True)
 
 ### HideHudGUI
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -569,6 +608,8 @@ clientApi.HideHudGUI(True)
 ---
 
 ### HideHungerGui
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -602,6 +643,8 @@ clientApi.HideHungerGui(True)
 
 ### HideInteractGui
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -631,6 +674,8 @@ clientApi.HideInteractGui(True)
 ---
 
 ### HideJumpGui
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -662,6 +707,8 @@ clientApi.HideJumpGui(True)
 
 ### HideMoveGui
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -691,6 +738,8 @@ clientApi.HideMoveGui(True)
 ---
 
 ### HideNeteaseStoreGui
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -741,6 +790,8 @@ clientApi.HideNeteaseStoreGui(True)
 
 ### HidePauseGUI
 
+<Version type="china" add="2.4"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -770,6 +821,8 @@ clientApi.HidePauseGUI(True)
 ---
 
 ### HideSlotBarGui
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -805,6 +858,8 @@ clientApi.HideSlotBarGui(True)
 
 ### HideSneakGui
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -834,6 +889,8 @@ clientApi.HideSneakGui(True)
 ---
 
 ### HideSwimGui
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -865,6 +922,8 @@ clientApi.HideSwimGui(True)
 
 ### HideVoiceGUI
 
+<Version type="china" add="2.4"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -895,6 +954,8 @@ clientApi.HideVoiceGUI(True)
 
 ### HideWalkGui
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -924,6 +985,8 @@ clientApi.HideWalkGui(True)
 ---
 
 ### OpenChatGui
+
+<Version type="china" add="1.24"/>
 
 <Client/>
 
@@ -961,6 +1024,8 @@ clientApi.OpenChatGui()
 
 ### OpenEmoteGui
 
+<Version type="china" add="2.4"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -989,6 +1054,8 @@ clientApi.OpenEmoteGui()
 
 ### OpenFoldGui
 
+<Version type="china" add="2.4"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -1016,6 +1083,8 @@ clientApi.OpenFoldGui()
 ---
 
 ### OpenInventoryGui
+
+<Version type="china" add="1.25"/>
 
 <Client/>
 
@@ -1052,6 +1121,8 @@ clientApi.OpenInventoryGui(clientApi.GetMinecraftEnum().InventoryType.NATURE)
 
 ### OpenNeteaseStoreGui
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -1087,6 +1158,8 @@ clientApi.OpenNeteaseStoreGui("商品", "测试商品1")
 
 ### OpenPauseGui
 
+<Version type="china" add="2.4"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -1121,6 +1194,8 @@ clientApi.OpenPauseGui()
 
 ### OpenReportGui
 
+<Version type="china" add="2.4"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -1149,6 +1224,8 @@ clientApi.OpenReportGui()
 
 ### PlayHudHeartBlinkAnim
 
+<Version type="china" add="2.3"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -1176,6 +1253,8 @@ clientApi.PlayHudHeartBlinkAnim()
 ---
 
 ### SetCrossHair
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -1207,6 +1286,8 @@ clientApi.SetCrossHair(False)
 ---
 
 ### SetEmoteSwitch
+
+<Version type="china" add="2.3"/>
 
 <Client/> GameComponentClient
 
@@ -1241,6 +1322,8 @@ res = comp.SetEmoteSwitch(False)
 
 ### SetHudChatStackPosition
 
+<Version type="china" add="1.22"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -1270,6 +1353,8 @@ clientApi.SetHudChatStackPosition((100, 0))
 ---
 
 ### SetHudChatStackVisible
+
+<Version type="china" add="1.22"/>
 
 <Client/>
 
@@ -1305,6 +1390,8 @@ clientApi.SetHudChatStackVisible(True)
 
 ### SetResponse
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 模块级函数，直接调用。
@@ -1334,6 +1421,8 @@ clientApi.SetResponse(False)
 ---
 
 ### SimulateJump
+
+<Version type="china" add="2.6"/>
 
 <Client/>
 

@@ -4,6 +4,7 @@ sidebar_position: 4
 
 # 权限
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/wanjia/quanxian.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### GetPlayerAbilities
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/> PlayerCompServer
 
@@ -71,6 +78,8 @@ GetPlayerAbilities() -> Dict[str, Any]
 
 ### GetPlayerOperation
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -102,6 +111,8 @@ operation = comp.GetPlayerOperation()
 ---
 
 ### SetAttackMobsAbility
+
+<Version type="china" add="2.9"/>
 
 <Server/> PlayerCompServer
 
@@ -136,6 +147,8 @@ comp.SetAttackMobsAbility(False)
 
 ### SetAttackPlayersAbility
 
+<Version type="china" add="2.9"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -168,6 +181,8 @@ comp.SetAttackPlayersAbility(False)
 ---
 
 ### SetBuildAbility
+
+<Version type="china" add="2.9"/>
 
 <Server/> PlayerCompServer
 
@@ -202,6 +217,8 @@ comp.SetBuildAbility(False)
 
 ### SetMineAbility
 
+<Version type="china" add="2.9"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -234,6 +251,8 @@ comp.SetMineAbility(False)
 ---
 
 ### SetOpenContainersAbility
+
+<Version type="china" add="2.9"/>
 
 <Server/> PlayerCompServer
 
@@ -268,6 +287,8 @@ comp.SetOpenContainersAbility(False)
 
 ### SetOperateDoorsAndSwitchesAbility
 
+<Version type="china" add="2.9"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -300,6 +321,8 @@ comp.SetOperateDoorsAndSwitchesAbility(False)
 ---
 
 ### SetOperatorCommandAbility
+
+<Version type="china" add="2.10"/>
 
 <Server/> PlayerCompServer
 
@@ -334,6 +357,8 @@ comp.SetOperatorCommandAbility(False)
 
 ### SetPermissionLevel
 
+<Version type="china" add="2.10"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -367,6 +392,8 @@ comp.SetPermissionLevel(3)
 
 ### SetPlayerMute
 
+<Version type="china" add="2.10"/>
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -399,6 +426,8 @@ comp.SetPlayerMute(True)
 ---
 
 ### SetTeleportAbility
+
+<Version type="china" add="2.10"/>
 
 <Server/> PlayerCompServer
 

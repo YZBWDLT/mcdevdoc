@@ -64,7 +64,11 @@ const config = {
 
     // 本地插件：把最新一期「文档更新日志」抽成全局数据，供首页「最近更新」区块使用。
     // 源码见 plugins/update-log/index.js：读 update-log/*.md。
-    plugins: ["./plugins/update-log"],
+    // interface-index：构建期扫 docs/ 下的接口条目标题，给 /quick_reference 提供检索数据。
+    plugins: ["./plugins/update-log", "./plugins/interface-index"],
+
+    // 从速查点进文档时，把落点那个标题闪一下，免得读者在长页面里找不到位置。
+    clientModules: ["./src/clientModules/anchorHighlight.js"],
 
     presets: [
         [
@@ -137,6 +141,7 @@ const config = {
                             { label: "脚本", type: "docSidebar", sidebarId: "docScripts" },
                         ],
                     },
+                    { label: "接口速查", to: "/quick_reference", position: "left" },
                     { label: "预设模板", type: "docSidebar", sidebarId: "devTemplate", position: "left" },
                     { label: "更新前瞻", type: "docSidebar", sidebarId: "updateLog", position: "left" },
                     { label: "个人博客", to: "/blog", position: "left" },
@@ -177,6 +182,7 @@ const config = {
                             { label: "MineBBS", href: "https://www.minebbs.com/" },
                             { label: "TITAIKE", href: "https://www.titaike.cn/" },
                             { label: "小飞侠的博客", href: "https://wstd.pages.dev/" },
+                            { label: "McNav", href: "https://www.mcnav.net/" },
                             { label: "Xero的个人主页", href: "https://projectxero.top" },
                             { label: "萝卜的ModSAPI项目", href: "https://modsapi.nekoawa.com/" },
                         ],

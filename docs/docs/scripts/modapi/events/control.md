@@ -4,6 +4,7 @@ sidebar_position: 6
 
 # 控制
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/kongzhi.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_event" color="green"/>
+
 ---
 
 ### ClientJumpButtonPressDownEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -62,6 +69,8 @@ class MyClientSystem(ClientSystem):
 
 ### ClientJumpButtonReleaseEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 跳跃按钮按下释放事件。
@@ -99,6 +108,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### GetEntityByCoordEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -138,6 +149,8 @@ class MyClientSystem(ClientSystem):
 
 ### GetEntityByCoordReleaseClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家点击屏幕后松开时触发，多个手指点在屏幕上时，只有最后一个手指松开时触发。
@@ -175,6 +188,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### GyroSensorChangedClientEvent
+
+<Version type="china" add="2.11"/>
 
 <Client/>
 
@@ -230,6 +245,8 @@ class MyClientSystem(ClientSystem):
 
 ### HoldBeforeClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家长按屏幕，即将响应到游戏内时触发。仅在移动端或 pc 的 F11 模式下触发。pc 的非 F11 模式可以监听 [RightClickBeforeClientEvent](/docs/docs/scripts/modapi/events/control#rightclickbeforeclientevent) 事件。
@@ -278,6 +295,8 @@ class MyClientSystem(ClientSystem):
 
 ### LeftClickBeforeClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家按下攻击/摧毁键时触发，例如鼠标左键、新触控攻击键、手柄右扳机键。鼠标左键仅在 pc 的普通控制模式（即非 F11 模式）下触发。
@@ -324,6 +343,8 @@ class MyClientSystem(ClientSystem):
 
 ### LeftClickReleaseClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家松开攻击/摧毁键时触发，例如鼠标左键、新触控攻击键、手柄右扳机键。鼠标左键仅在 pc 的普通控制模式（即非 F11 模式）下触发。
@@ -367,6 +388,8 @@ class MyClientSystem(ClientSystem):
 
 ### MouseWheelClientEvent
 
+<Version type="china" add="2.5"/>
+
 <Client/>
 
 鼠标滚轮滚动时触发。
@@ -408,6 +431,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### OnBackButtonReleaseClientEvent
+
+<Version type="china" add="1.23"/>
 
 <Client/>
 
@@ -452,6 +477,8 @@ class MyClientSystem(ClientSystem):
 
 ### OnClientPlayerStartMove
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 移动按钮按下触发事件，在按住一个方向键的同时，去按另外一个方向键，不会触发第二次。
@@ -490,6 +517,8 @@ class MyClientSystem(ClientSystem):
 
 ### OnClientPlayerStopMove
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 移动按钮按下释放时触发事件，同时按下多个方向键，需要释放所有的方向键才会触发事件。
@@ -527,6 +556,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### OnGamepadControllerLayoutChangeClientEvent
+
+<Version type="china" add="2.8"/>
 
 <Client/>
 
@@ -574,6 +605,8 @@ class MyClientSystem(ClientSystem):
 
 ### OnGamepadKeyPressClientEvent
 
+<Version type="china" add="2.8"/>
+
 <Client/>
 
 游戏手柄按键事件。
@@ -619,6 +652,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### OnGamepadStickClientEvent
+
+<Version type="china" add="2.8"/>
 
 <Client/>
 
@@ -670,6 +705,8 @@ class MyClientSystem(ClientSystem):
 
 ### OnGamepadTriggerClientEvent
 
+<Version type="china" add="2.8"/>
+
 <Client/>
 
 游戏手柄扳机事件。
@@ -718,6 +755,8 @@ class MyClientSystem(ClientSystem):
 
 ### OnKeyPressInGame
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 按键按下或按键释放时触发。
@@ -764,6 +803,8 @@ class MyClientSystem(ClientSystem):
 
 ### OnKeyboardControllerLayoutChangeClientEvent
 
+<Version type="china" add="2.8"/>
+
 <Client/>
 
 键盘按键映射改变事件。
@@ -809,6 +850,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### OnMouseMiddleDownClientEvent
+
+<Version type="china" add="2.5"/>
 
 <Client/>
 
@@ -860,6 +903,8 @@ class MyClientSystem(ClientSystem):
 
 ### RightClickBeforeClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家按下使用物品/放置方块键时触发，例如鼠标右键、新触控交互键、手柄左扳机键。
@@ -906,6 +951,8 @@ class MyClientSystem(ClientSystem):
 
 ### RightClickReleaseClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家松开使用物品/放置方块键时触发，例如鼠标右键、新触控交互键、手柄左扳机键。
@@ -948,6 +995,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### TapBeforeClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -996,6 +1045,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### TapOrHoldReleaseClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 

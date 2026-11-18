@@ -4,6 +4,7 @@ sidebar_position: 12
 
 # 渲染
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/jiekou/xuanran.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_interface" color="green"/>
+
 ---
 
 ### AddArrowShape
+
+<Version type="china" add="3.5"/>
 
 <Client/> DrawingCompClient
 
@@ -65,6 +72,8 @@ arrow = comp.AddArrowShape((20,100,20), (20,150,20), (1,0,0), 40, 5, 2.5)
 
 ### AddBoxShape
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -103,6 +112,8 @@ shape = comp.AddBoxShape((-37, 100, 100),(5,5,5),(1,0,0))
 ---
 
 ### AddCircleShape
+
+<Version type="china" add="3.5"/>
 
 <Client/> DrawingCompClient
 
@@ -147,6 +158,8 @@ circle = comp.AddCircleShape((50,100,50), 5, (1,0,0))
 
 ### AddLineShape
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -185,6 +198,8 @@ line = comp.AddLineShape((-37, 100, 100), (0,0,0),(1,0,0))
 ---
 
 ### AddSphereShape
+
+<Version type="china" add="3.5"/>
 
 <Client/> DrawingCompClient
 
@@ -227,6 +242,8 @@ sphere = comp.AddSphereShape((-50, 100, -50), 5, (1,0,0))
 
 ### AddTextShape
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -266,6 +283,8 @@ text = comp.AddTextShape((20,100,20), "test 测试", (1,0,0))
 
 ### GetBoxScale
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingShapeCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -298,6 +317,8 @@ box.GetBoxScale()
 ---
 
 ### GetColor
+
+<Version type="china" add="3.5"/>
 
 <Client/> DrawingShapeCompClient
 
@@ -332,6 +353,8 @@ box.GetColor()
 
 ### GetEndPos
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingShapeCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -365,6 +388,8 @@ line.GetEndPos()
 
 ### GetLength
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingShapeCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -397,6 +422,8 @@ arrow.GetLength()
 ---
 
 ### GetPos
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> DrawingShapeCompClient
 
@@ -435,6 +462,8 @@ box.GetPos()
 
 ### GetPriority
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingShapeCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -467,6 +496,8 @@ box.GetPriority()
 ---
 
 ### GetRadius
+
+<Version type="china" add="3.5"/>
 
 <Client/> DrawingShapeCompClient
 
@@ -501,6 +532,8 @@ circle.GetRadius()
 
 ### GetSegments
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingShapeCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -533,6 +566,8 @@ circle.GetSegments()
 ---
 
 ### GetText
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> DrawingShapeCompClient
 
@@ -567,6 +602,8 @@ text.GetText()
 
 ### GetType
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingShapeCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -599,6 +636,8 @@ box.GetType()
 ---
 
 ### GetVisible
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> DrawingShapeCompClient
 
@@ -633,6 +672,8 @@ box.GetVisible()
 
 ### Remove
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> DrawingShapeCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -666,6 +707,8 @@ arrow.Remove()
 
 ### RemoveAll
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -697,6 +740,8 @@ comp.RemoveAll()
 ---
 
 ### SetBoxScale
+
+<Version type="china" add="3.5"/>
 
 <Client/> DrawingShapeCompClient
 
@@ -732,6 +777,8 @@ box.SetBoxScale((9,9,9))
 
 ### SetColor
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> DrawingShapeCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -765,6 +812,8 @@ arrow.SetColor((0,0,0))
 ---
 
 ### SetEndPos
+
+<Version type="china" add="3.5"/>
 
 <Client/> DrawingShapeCompClient
 
@@ -800,6 +849,8 @@ line.SetEndPos((20,200, 20))
 
 ### SetLength
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingShapeCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -833,6 +884,8 @@ arrow.SetLength(10)
 ---
 
 ### SetPos
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> DrawingShapeCompClient
 
@@ -872,6 +925,8 @@ line.SetPos((0,100,70))
 
 ### SetPriority
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingShapeCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -905,6 +960,8 @@ arrow.SetPriority(10)
 ---
 
 ### SetRadius
+
+<Version type="china" add="3.5"/>
 
 <Client/> DrawingShapeCompClient
 
@@ -940,6 +997,8 @@ print circle.SetRadius(2.0)
 
 ### SetSegments
 
+<Version type="china" add="3.5"/>
+
 <Client/> DrawingShapeCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -974,6 +1033,8 @@ arrow.SetSegments(100)
 
 ### SetText
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/> DrawingShapeCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreateDrawing(levelId)`
@@ -1007,6 +1068,8 @@ text.SetText("tteesstt")
 ---
 
 ### SetVisible
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/> DrawingShapeCompClient
 

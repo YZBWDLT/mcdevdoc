@@ -16,6 +16,10 @@ import Version from "/src/components/highlight/version"
 
 弃用组件在新版本中已被其他组件取代或不再生效，仅为兼容旧版本附加包保留，新项目应改用对应的替代组件。
 
+要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=entity_component" color="green"/>
+
 ### `minecraft:behavior.enderman_leave_block`
 
 <Usable type="all"/> <Version add="1.2.0" deprecated="1.21.100" tooltip="在高版本使用minecraft:behavior.place_block组件代替之。"/> <Highlight text="限定实体类型" tooltip="该组件仅对末影人可用。"/> <br/>
@@ -399,5 +403,6 @@ import Version from "/src/components/highlight/version"
 </TabItem></Tabs>
 
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>

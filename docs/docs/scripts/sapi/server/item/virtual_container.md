@@ -9,10 +9,15 @@ import ReadOnly from "/src/components/highlight/readonly"
 import Optional from "/src/components/highlight/optional"
 import RestrictedMode from "/src/components/highlight/restrictedMode"
 import EarlyExecution from "/src/components/highlight/earlyExecution"
+import Button from '/src/components/button/base';
 
 本文主要记录虚拟容器相关接口。
 
 虚拟容器是一种只存在于内存中的容器。它不依附于任何方块、实体或世界，也不会被存档，因此附加包可以完全脱离方块和实体来构建物品栏界面，常用于自定义商店、背包、仓库等场景。
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

@@ -4,6 +4,7 @@ sidebar_position: 3
 
 # 玩家
 
+import Version from '/src/components/highlight/version';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Button from '/src/components/button/base';
@@ -16,9 +17,15 @@ import Client from '/src/components/highlight/client';
 
 <Button text="网易官方文档" url="https://mc.163.com/newdev/docs/api/shijian/wanjia.html"/>
 
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=modapi_event" color="green"/>
+
 ---
 
 ### AddExpEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -65,6 +72,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### AddLevelEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -114,6 +123,8 @@ class MyServerSystem(ServerSystem):
 
 ### CameraMotionStartClientEvent
 
+<Version type="china" add="2.5"/>
+
 <Client/>
 
 相机运动器开始事件。相机添加运动器后，运动器开始运行时触发。
@@ -155,6 +166,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### CameraMotionStopClientEvent
+
+<Version type="china" add="2.5"/>
 
 <Client/>
 
@@ -204,6 +217,8 @@ class MyClientSystem(ClientSystem):
 
 ### ChangeLevelUpCostServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：获取玩家下一个等级升级经验时，用于重载玩家的升级经验，每个等级在重置之前都只会触发一次。
@@ -246,37 +261,7 @@ class MyServerSystem(ServerSystem):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnChangeLevelUpCostServerEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "ChangeLevelUpCostServerEvent",
-            self, self.OnChangeLevelUpCostServerEvent)
-
-    def OnChangeLevelUpCostServerEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### ClearDefinedLevelUpCost
 
 <Server/> PlayerCompServer
 
@@ -288,12 +273,10 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnChangeLevelUpCostServerEvent(self, args: Dict[str, Any]) -> None: ...
+ClearDefinedLevelUpCost(level: int) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| level | int | 指定清理的等级，加入传入的数值小于 0，则清理所有等级的升级经验值缓存。 |
+- level: int，指定清理的等级，加入传入的数值小于 0，则清理所有等级的升级经验值缓存。
 
 **返回值**：bool，是否清理成功。
 
@@ -312,6 +295,8 @@ suc = comp.ClearDefinedLevelUpCost(1)
 ---
 
 ### DimensionChangeClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -377,6 +362,8 @@ class MyClientSystem(ClientSystem):
 
 ### DimensionChangeFinishClientEvent
 
+<Version type="china" add="1.23"/>
+
 <Client/>
 
 玩家维度改变完成后客户端抛出。
@@ -431,6 +418,8 @@ class MyClientSystem(ClientSystem):
 
 ### DimensionChangeFinishServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 玩家维度改变完成后服务端抛出。
@@ -484,6 +473,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### DimensionChangeServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -549,6 +540,8 @@ class MyServerSystem(ServerSystem):
 
 ### ExtinguishFireClientEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Client/>
 
 玩家扑灭火焰时触发。下雨，倒水等方式熄灭火焰不会触发。
@@ -597,6 +590,8 @@ class MyClientSystem(ClientSystem):
 
 ### ExtinguishFireServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 玩家扑灭火焰时触发。下雨，倒水等方式熄灭火焰不会触发。
@@ -644,6 +639,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### GameTypeChangedClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -697,6 +694,8 @@ class MyClientSystem(ClientSystem):
 
 ### GameTypeChangedServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 当默认游戏模式或个人游戏模式发生变化时服务端触发，如果个人游戏模式不为默认时，修改默认游戏模式也会同时修改个人游戏模式，此时会触发两次该事件。
@@ -749,6 +748,8 @@ class MyServerSystem(ServerSystem):
 
 ### MountTamingEvent
 
+<Version type="china" add="3.3"/>
+
 <Server/>
 
 玩家通过骑乘驯服生物后触发该事件。
@@ -797,6 +798,8 @@ class MyServerSystem(ServerSystem):
 
 ### OnLocalPlayerActionClientEvent
 
+<Version type="china" add="3.2"/>
+
 <Client/>
 
 玩家动作事件，当本地玩家开始/停止某些动作时触发该事件。
@@ -839,6 +842,8 @@ class MyClientSystem(ClientSystem):
 
 ### OnLocalPlayerStartJumpClientEvent
 
+<Version type="china" add="3.2"/>
+
 <Client/>
 
 本地玩家开始跳跃时触发。
@@ -876,6 +881,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### OnPlayerActionServerEvent
+
+<Version type="china" add="3.2"/>
 
 <Server/>
 
@@ -922,6 +929,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### OnPlayerHitBlockClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 
@@ -973,37 +982,7 @@ class MyClientSystem(ClientSystem):
 </TabItem>
 </Tabs>
 
-<Client/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnOnPlayerHitBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.client.extraClientApi as clientApi
-ClientSystem = clientApi.GetClientSystemCls()
-
-class MyClientSystem(ClientSystem):
-    def __init__(self, namespace, systemName):
-        ClientSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            clientApi.GetEngineNamespace(),
-            clientApi.GetEngineSystemName(),
-            "OnPlayerHitBlockClientEvent",
-            self, self.OnOnPlayerHitBlockClientEvent)
-
-    def OnOnPlayerHitBlockClientEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### OpenPlayerHitBlockDetection
 
 <Client/> PlayerCompClient
 
@@ -1015,12 +994,10 @@ class MyClientSystem(ClientSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnPlayerHitBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
+OpenPlayerHitBlockDetection(precision: float) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| precision | float | 碰撞检测精度，参数需要在区间[0, 1)，值越小，表示碰撞检测精度越高（可以理解为轻轻碰一下就能触发）。 |
+- precision: float，碰撞检测精度，参数需要在区间[0, 1)，值越小，表示碰撞检测精度越高（可以理解为轻轻碰一下就能触发）。
 
 **返回值**：bool，是否设置成功。
 
@@ -1040,6 +1017,8 @@ comp.OpenPlayerHitBlockDetection(0.0001)
 </TabItem>
 </Tabs>
 
+#### ClosePlayerHitBlockDetection
+
 <Client/> PlayerCompClient
 
 获取组件：`clientApi.GetEngineCompFactory().CreatePlayer(entityId)`
@@ -1050,7 +1029,7 @@ comp.OpenPlayerHitBlockDetection(0.0001)
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnPlayerHitBlockClientEvent(self, args: Dict[str, Any]) -> None: ...
+ClosePlayerHitBlockDetection() -> bool
 ```
 
 
@@ -1071,6 +1050,8 @@ comp.ClosePlayerHitBlockDetection()
 ---
 
 ### OnPlayerHitBlockServerEvent
+
+<Version type="china" add="1.21"/>
 
 <Server/>
 
@@ -1124,37 +1105,7 @@ class MyServerSystem(ServerSystem):
 </TabItem>
 </Tabs>
 
-<Server/>
-
-<Tabs>
-<TabItem value="说明" label="说明" default>
-
-```python
-def OnOnPlayerHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
-```
-
-</TabItem>
-<TabItem value="示例" label="示例">
-
-```python
-import mod.server.extraServerApi as serverApi
-ServerSystem = serverApi.GetServerSystemCls()
-
-class MyServerSystem(ServerSystem):
-    def __init__(self, namespace, systemName):
-        ServerSystem.__init__(self, namespace, systemName)
-        self.ListenForEvent(
-            serverApi.GetEngineNamespace(),
-            serverApi.GetEngineSystemName(),
-            "OnPlayerHitBlockServerEvent",
-            self, self.OnOnPlayerHitBlockServerEvent)
-
-    def OnOnPlayerHitBlockServerEvent(self, args):
-        pass
-```
-
-</TabItem>
-</Tabs>
+#### OpenPlayerHitBlockDetection
 
 <Server/> PlayerCompServer
 
@@ -1166,12 +1117,10 @@ class MyServerSystem(ServerSystem):
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnPlayerHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
+OpenPlayerHitBlockDetection(precision: float) -> bool
 ```
 
-| args的参数名 | 类型 | 说明 |
-| --- | --- | --- |
-| precision | float | 碰撞检测精度，参数需要在区间[0, 1)，值越小，表示碰撞检测精度越高（可以理解为轻轻碰一下就能触发）。 |
+- precision: float，碰撞检测精度，参数需要在区间[0, 1)，值越小，表示碰撞检测精度越高（可以理解为轻轻碰一下就能触发）。
 
 **返回值**：bool，是否设置成功。
 
@@ -1191,6 +1140,8 @@ comp.OpenPlayerHitBlockDetection(0.0001)
 </TabItem>
 </Tabs>
 
+#### ClosePlayerHitBlockDetection
+
 <Server/> PlayerCompServer
 
 获取组件：`serverApi.GetEngineCompFactory().CreatePlayer(playerId)`
@@ -1201,7 +1152,7 @@ comp.OpenPlayerHitBlockDetection(0.0001)
 <TabItem value="说明" label="说明" default>
 
 ```python
-def OnOnPlayerHitBlockServerEvent(self, args: Dict[str, Any]) -> None: ...
+ClosePlayerHitBlockDetection() -> bool
 ```
 
 
@@ -1222,6 +1173,8 @@ comp.ClosePlayerHitBlockDetection()
 ---
 
 ### PerspChangeClientEvent
+
+<Version type="china" add="1.21"/>
 
 <Client/>
 
@@ -1270,6 +1223,8 @@ class MyClientSystem(ClientSystem):
 ---
 
 ### PlayerAttackEntityEvent
+
+<Version type="china" add="3.3"/>
 
 <Server/>
 
@@ -1373,6 +1328,8 @@ class MyClientSystem(ClientSystem):
 
 ### PlayerCheatSpinAttackServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：玩家开始/结束快速旋转攻击并且不符合发送快速旋转攻击条件时触发（装备激流附魔的三叉戟、在水中或雨中，且未骑乘）。
@@ -1425,6 +1382,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerDieEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：当玩家死亡时触发该事件。
@@ -1475,6 +1434,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerDoInteractServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 玩家与有 minecraft:interact 组件的生物交互时触发该事件，例如玩家手持空桶对牛挤奶、玩家手持打火石点燃苦力怕。
@@ -1522,6 +1483,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerEatFoodServerEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -1577,6 +1540,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerFeedEntityServerEvent
 
+<Version type="china" add="2.9"/>
+
 <Server/>
 
 玩家喂养生物时触发，例如玩家手持小麦喂养牛、玩家手持胡萝卜喂养幼年猪。
@@ -1630,6 +1595,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerFishingAfterServerEvent
+
+<Version type="china" add="3.8"/>
 
 <Server/>
 
@@ -1686,6 +1653,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerFishingServerEvent
+
+<Version type="china" add="3.8"/>
 
 <Server/>
 
@@ -1746,6 +1715,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerHungerChangeServerEvent
 
+<Version type="china" add="2.10"/>
+
 <Server/>
 
 玩家饥饿度变化时触发该事件。
@@ -1801,6 +1772,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerHurtEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：当玩家受伤害前触发该事件。
@@ -1851,6 +1824,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerInteractServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：玩家可以与实体交互时。如果是鼠标控制模式，则当准心对着实体时触发。如果是触屏模式，则触发时机与屏幕下方的交互按钮显示的时机相同。玩家真正与实体发生交互的事件见 [PlayerDoInteractServerEvent](/docs/docs/scripts/modapi/events/player#playerdointeractserverevent)。
@@ -1900,6 +1875,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerNamedEntityServerEvent
+
+<Version type="china" add="2.9"/>
 
 <Server/>
 
@@ -1952,6 +1929,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerPermissionChangeClientEvent
+
+<Version type="china" add="3.5"/>
 
 <Client/>
 
@@ -2023,6 +2002,8 @@ class MyClientSystem(ClientSystem):
 
 ### PlayerPermissionChangeServerEvent
 
+<Version type="china" add="3.5"/>
+
 <Server/>
 
 玩家权限变更事件。
@@ -2093,6 +2074,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerRespawnEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：玩家复活时触发该事件。
@@ -2140,6 +2123,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerRespawnFinishServerEvent
+
+<Version type="china" add="1.21"/>
 
 <Server/>
 
@@ -2189,6 +2174,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerSleepServerEvent
+
+<Version type="china" add="1.24"/>
 
 <Server/>
 
@@ -2246,6 +2233,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerSpinAttackServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：玩家开始/结束快速旋转攻击时触发。
@@ -2297,6 +2286,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerStartFishingServerEvent
+
+<Version type="china" add="3.8"/>
 
 <Server/>
 
@@ -2351,6 +2342,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerStopSleepServerEvent
+
+<Version type="china" add="1.24"/>
 
 <Server/>
 
@@ -2408,6 +2401,8 @@ class MyServerSystem(ServerSystem):
 
 ### PlayerTeleportEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机：当玩家传送时触发该事件，如：玩家使用末影珍珠或 tp 指令时。
@@ -2451,6 +2446,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### PlayerTrySleepServerEvent
+
+<Version type="china" add="1.24"/>
 
 <Server/>
 
@@ -2497,6 +2494,8 @@ class MyServerSystem(ServerSystem):
 ---
 
 ### ServerPlayerGetExperienceOrbEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Server/>
 
@@ -2550,6 +2549,8 @@ class MyServerSystem(ServerSystem):
 
 ### StoreBuySuccServerEvent
 
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
+
 <Server/>
 
 触发时机:玩家游戏内购买商品时服务端抛出的事件。
@@ -2586,6 +2587,8 @@ def OnStoreBuySucc(self, args):
 ---
 
 ### UpdatePlayerSkinClientEvent
+
+<Version type="china" add="未知" tooltip="该接口可能早于最早记载的中国版 1.21 更新。"/>
 
 <Client/>
 

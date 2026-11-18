@@ -8,8 +8,13 @@ import Version from "/src/components/highlight/version"
 import ReadOnly from "/src/components/highlight/readonly"
 import Optional from "/src/components/highlight/optional"
 import RestrictedMode from "/src/components/highlight/restrictedMode"
+import Button from '/src/components/button/base';
 
 本文主要记录传统表单（基于类的表单接口）相关接口，关闭全部表单等通用操作见[界面管理器](./ui_manager)。
+
+要定位某个接口，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=sapi" color="green"/>
 
 ---
 

@@ -8,6 +8,10 @@ sidebar_position: 8
 
 下文的所有 Molang 均链接到官方文档，读者可点击查阅。
 
+要定位某一条，在下面的接口速查里搜名称即可，支持模糊匹配和中文。
+
+<Button text="接口速查" url="/quick_reference?k=molang" color="green"/>
+
 ## 物品标签
 
 以下 Molang 可用于查询物品是否拥有特定标签。
@@ -26,5 +30,6 @@ sidebar_position: 8
 - [物品标签 | Bedrock Wiki](https://wiki.bedrock.dev/items/item-tags)
 
 import GiscusComment from "/src/components/comment/giscus.js"
+import Button from '/src/components/button/base';
 
 <GiscusComment/>
