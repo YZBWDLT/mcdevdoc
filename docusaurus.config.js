@@ -33,6 +33,27 @@ const config = {
         },
     },
 
+    /* 全站只有深色一套配色，但浏览器不一定知道。
+       手机上的「强制深色 / 跟随系统深色」会把页面里**浅色**的部件再压暗一次 ——
+       本站的导航栏（#e6e8eb）和白按钮正是浅色，于是变成了深底浅字，
+       而本来就是深色的正文纹丝不动，看起来就像「只有导航栏被反色了」。
+       在 <head> 里显式声明这一点，Chromium 系的自动深色就会跳过整个页面；
+       darkreader-lock 是给内嵌 Dark Reader 一类实现的同一个意思。 */
+    headTags: [
+        {
+            tagName: "meta",
+            attributes: { name: "color-scheme", content: "dark" },
+        },
+        {
+            tagName: "meta",
+            attributes: { name: "theme-color", content: "#48494a" },
+        },
+        {
+            tagName: "meta",
+            attributes: { name: "darkreader-lock" },
+        },
+    ],
+
     // Even if you don't use internationalization, you can use this field to set
     // useful metadata like html lang. For example, if your site is Chinese, you
     // may want to replace "en" with "zh-Hans".
