@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
@@ -472,7 +472,16 @@ export default function QuickReference() {
             });
     }, []);
 
-    const tokens = useMemo(() => tokenize(query), [query]);
+    /**
+     * 输入框实时响应，但检索用延后的值。
+     *
+     * 手机上连续删字符会卡，是因为每个按键都要把 4550 条重新打分、
+     * 再把结果行重渲染一遍，主线程被占满，按键回显就掉帧了。
+     * 交给 useDeferredValue 之后，输入先更新，检索在空闲时补上；
+     * 中间被打断就丢弃上一次，不会积压。
+     */
+    const deferredQuery = useDeferredValue(query);
+    const tokens = useMemo(() => tokenize(deferredQuery), [deferredQuery]);
     const orderOf = useCallback(row => kindOrder[row.kind] ?? 99, [kindOrder]);
 
     /**

@@ -901,6 +901,21 @@
   opacity: 0.7;
 }
 
+/* 备案号：观感沿用全站页脚那份（全局 .footer__beian），
+   只有对齐要改 —— 首页这块面板里的文字是居左的。 */
+.aboutFooter .beian {
+  margin-top: 0.55rem;
+  justify-content: flex-start;
+}
+
+.aboutFooter .beian a {
+  color: #a7a8ab;
+}
+
+.aboutFooter .beian a:hover {
+  color: var(--oreui-link);
+}
+
 /* 镜像站的内联补充说明 */
 .mirrorNote {
   color: var(--oreui-text-dim);

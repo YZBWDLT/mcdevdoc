@@ -1,5 +1,6 @@
 # Dependencies
 /node_modules
+/mcp/node_modules
 
 # Production
 /build
@@ -8,6 +9,9 @@
 .docusaurus
 .workbuddy
 .cache-loader
+
+# MCP 索引由 npm run build:data 生成，5 MB，不入库
+/mcp/data
 
 # Misc
 .DS_Store

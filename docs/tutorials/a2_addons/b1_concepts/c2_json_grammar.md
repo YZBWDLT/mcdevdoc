@@ -350,6 +350,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 
 :::tip[实验 1.2-2]
 
+<!-- prettier-ignore -->
 ```json showLineNumbers
 {
     "can_place_on": {
@@ -361,7 +362,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
     "item_lock": {
         "mode": "lock_in_inventory"
     },
-    "keep_on_death": {}
+    "keep_on_death": {},
 }
 ```
 
@@ -375,6 +376,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 
 问题出在第 11 行，`keep_on_death`对象后面出现了多余的逗号。
 
+<!-- prettier-ignore -->
 ```json showLineNumbers
 {
     "can_place_on": {
@@ -386,7 +388,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
     "item_lock": {
         "mode": "lock_in_inventory"
     },
-    "keep_on_death": {} // <- 解析失败：“,”后没有元素
+    "keep_on_death": {},    // <- 解析失败：“,”后没有元素
 }
 ```
 
@@ -724,6 +726,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 
 4.
 
+<!-- prettier-ignore -->
 ```json showLineNumbers
 {
     "minecraft:hurt_on_condition": {
@@ -736,7 +739,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
                     "value": true
                 },
                 "cause": "lava",
-                "damage_per_tick": 4
+                "damage_per_tick": 4,
             }
         ]
     }
@@ -890,6 +893,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
 
 4.
 
+<!-- prettier-ignore -->
 ```json showLineNumbers
 {
     "minecraft:hurt_on_condition": {
@@ -902,7 +906,7 @@ JSON 虽然语法简单易懂，但是对错误还是很“挑剔”的。只要
                     "value": true
                 },
                 "cause": "lava",
-                "damage_per_tick": 4 // <- 出现了尾随逗号。
+                "damage_per_tick": 4,   // <- 出现了尾随逗号。
             }
         ]
     }

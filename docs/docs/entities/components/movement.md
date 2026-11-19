@@ -33,6 +33,7 @@ import Version from "/src/components/highlight/version"
 <treeview>
 - <DataType type="object" name="minecraft:movement"/>：根对象。
   - <DataType type="float" name="value"/>：移动速度。默认值为`0.0`。
+  - <DataType type="float" name="max"/>：移动速度的上限。设置后实际速度在`value`与`max`之间取值，与`value`相同时不产生浮动。
 </treeview>
 
 </TabItem><TabItem value="示例" label="示例">

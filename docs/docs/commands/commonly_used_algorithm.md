@@ -466,19 +466,21 @@ replaceitem entity @a[hasitem={item=bedrock,location=slot.weapon.mainhand}] slot
 
 :::warning[注意]
 
-该算法暂未经过验证，仅供参考。
+该算法会生成一只盔甲架作锚点，用各自的标签标记并在结尾清除。不要在别处复用这些标签，否则`execute at`会一次命中多只锚点。
 
 :::
 
-基岩版不能直接读取实体坐标，只能用体积选择器逐段试探。二分法把整数拆成若干个 2 的幂之和（如`23 = 16 + 4 + 2 + 1`），从大到小逐位判断，9 次即可得到`[-64, 320)`内的方块坐标，且全部在同一游戏刻内完成。
+基岩版的命令不能直接读取实体坐标，只能让选择器回答「在不在这个范围内」。
 
-判断某一位的写法如下：
+这里使用二分法这种经典的算法求解实体的坐标。二分法把整数拆成若干个 2 的幂之和（如`23 = 16 + 4 + 2 + 1`），从大到小逐位判断，9 次即可得到`[-64, 320)`内的方块坐标，且全部在同一游戏刻内完成。
+
+判据用`r`和`rm`两个选择器参数。它们衡量的是脚部坐标到执行位置的距离，不受判定箱高度影响。把锚点放在实体脚下的水平位置、Y 固定为`-64`，锚点到实体脚部的距离就等于实体比`-64`高出的格数。判断某一位的写法如下：
 
 ```
-execute at <锚点> if entity @s[y=~256,dy=255] unless entity @s[y=~254.2,dy=0.8] run ...
+execute at <锚点> if entity @s[rm=256,r=512] run ...
 ```
 
-`dy`填`2^n-1`，经体积规则向 +y 扩展一格，正好是宽`2^n`的半开区间`[a+2^n, a+2^(n+1))`。1.19.70 起，体积选择器判定的是判定箱与方框相交，而玩家判定箱高 1.8 格，只写前一条时判定箱会探进上方区间，结果偏大 1 格，因此后一条判据用于减去下方紧挨着的 1.8 格。
+距离落在`[2^n, 2^(n+1)]`内就记下这一位，加分，并把锚点也抬高`2^n`，下一轮接着判断更低的位。9 位运行完毕后，锚点的 Y 将恰好等于玩家脚部所在的方块坐标，`posY`累加的正是相对`-64`的偏移。
 
 以下函数求出执行者脚部所在的方块 Y 坐标，结果写入`posY`。这需要你事先声明`posY`记分项。
 
@@ -495,48 +497,92 @@ execute at <锚点> if entity @s[y=~256,dy=255] unless entity @s[y=~254.2,dy=0.8
 # 调用此方法时：需修饰执行者为玩家，执行位置为该玩家的位置（execute as @a[...] at @s）。
 
 # --- 准备锚点 ---
-## 在玩家位置生成锚点，再把它沉到 Y = -64
+## 在玩家位置生成锚点，标记后沉到 Y = -64
 summon armor_stand posY ~ ~ ~
-execute as @e[name=posY] at @s run tp @s ~ -64 ~
+tag @e[type=armor_stand,name=posY] add posY_anchor
+execute as @e[tag=posY_anchor] at @s run tp @s ~ -64 ~
 scoreboard players set @s posY 0
 
 # --- 逐位判断 2^8 ~ 2^0 ---
-## 判据：判定箱与 [锚点+2^n, 锚点+2^(n+1)) 相交，且不与 [锚点+2^n-1.8, 锚点+2^n) 相交
-## 命中则加分，并把锚点向 +y 推进 2^n
-execute at @e[name=posY] if entity @s[y=~256,dy=255] unless entity @s[y=~254.2,dy=0.8] run scoreboard players add @s posY 256
-execute at @e[name=posY] if entity @s[y=~256,dy=255] unless entity @s[y=~254.2,dy=0.8] run tp @e[name=posY] ~ ~256 ~
-execute at @e[name=posY] if entity @s[y=~128,dy=127] unless entity @s[y=~126.2,dy=0.8] run scoreboard players add @s posY 128
-execute at @e[name=posY] if entity @s[y=~128,dy=127] unless entity @s[y=~126.2,dy=0.8] run tp @e[name=posY] ~ ~128 ~
-execute at @e[name=posY] if entity @s[y=~64,dy=63] unless entity @s[y=~62.2,dy=0.8] run scoreboard players add @s posY 64
-execute at @e[name=posY] if entity @s[y=~64,dy=63] unless entity @s[y=~62.2,dy=0.8] run tp @e[name=posY] ~ ~64 ~
-execute at @e[name=posY] if entity @s[y=~32,dy=31] unless entity @s[y=~30.2,dy=0.8] run scoreboard players add @s posY 32
-execute at @e[name=posY] if entity @s[y=~32,dy=31] unless entity @s[y=~30.2,dy=0.8] run tp @e[name=posY] ~ ~32 ~
-execute at @e[name=posY] if entity @s[y=~16,dy=15] unless entity @s[y=~14.2,dy=0.8] run scoreboard players add @s posY 16
-execute at @e[name=posY] if entity @s[y=~16,dy=15] unless entity @s[y=~14.2,dy=0.8] run tp @e[name=posY] ~ ~16 ~
-execute at @e[name=posY] if entity @s[y=~8,dy=7] unless entity @s[y=~6.2,dy=0.8] run scoreboard players add @s posY 8
-execute at @e[name=posY] if entity @s[y=~8,dy=7] unless entity @s[y=~6.2,dy=0.8] run tp @e[name=posY] ~ ~8 ~
-execute at @e[name=posY] if entity @s[y=~4,dy=3] unless entity @s[y=~2.2,dy=0.8] run scoreboard players add @s posY 4
-execute at @e[name=posY] if entity @s[y=~4,dy=3] unless entity @s[y=~2.2,dy=0.8] run tp @e[name=posY] ~ ~4 ~
-execute at @e[name=posY] if entity @s[y=~2,dy=1] unless entity @s[y=~0.2,dy=0.8] run scoreboard players add @s posY 2
-execute at @e[name=posY] if entity @s[y=~2,dy=1] unless entity @s[y=~0.2,dy=0.8] run tp @e[name=posY] ~ ~2 ~
-execute at @e[name=posY] if entity @s[y=~1,dy=0] unless entity @s[y=~-1.8,dy=0.8] run scoreboard players add @s posY 1
-execute at @e[name=posY] if entity @s[y=~1,dy=0] unless entity @s[y=~-1.8,dy=0.8] run tp @e[name=posY] ~ ~1 ~
+## 玩家在锚点上方 2^n ~ 2^(n+1) 格时记下这一位，并把锚点也抬高 2^n
+execute at @e[tag=posY_anchor] if entity @s[rm=256,r=512] run scoreboard players add @s posY 256
+execute at @e[tag=posY_anchor] if entity @s[rm=256,r=512] run tp @e[tag=posY_anchor] ~ ~256 ~
+execute at @e[tag=posY_anchor] if entity @s[rm=128,r=256] run scoreboard players add @s posY 128
+execute at @e[tag=posY_anchor] if entity @s[rm=128,r=256] run tp @e[tag=posY_anchor] ~ ~128 ~
+execute at @e[tag=posY_anchor] if entity @s[rm=64,r=128] run scoreboard players add @s posY 64
+execute at @e[tag=posY_anchor] if entity @s[rm=64,r=128] run tp @e[tag=posY_anchor] ~ ~64 ~
+execute at @e[tag=posY_anchor] if entity @s[rm=32,r=64] run scoreboard players add @s posY 32
+execute at @e[tag=posY_anchor] if entity @s[rm=32,r=64] run tp @e[tag=posY_anchor] ~ ~32 ~
+execute at @e[tag=posY_anchor] if entity @s[rm=16,r=32] run scoreboard players add @s posY 16
+execute at @e[tag=posY_anchor] if entity @s[rm=16,r=32] run tp @e[tag=posY_anchor] ~ ~16 ~
+execute at @e[tag=posY_anchor] if entity @s[rm=8,r=16] run scoreboard players add @s posY 8
+execute at @e[tag=posY_anchor] if entity @s[rm=8,r=16] run tp @e[tag=posY_anchor] ~ ~8 ~
+execute at @e[tag=posY_anchor] if entity @s[rm=4,r=8] run scoreboard players add @s posY 4
+execute at @e[tag=posY_anchor] if entity @s[rm=4,r=8] run tp @e[tag=posY_anchor] ~ ~4 ~
+execute at @e[tag=posY_anchor] if entity @s[rm=2,r=4] run scoreboard players add @s posY 2
+execute at @e[tag=posY_anchor] if entity @s[rm=2,r=4] run tp @e[tag=posY_anchor] ~ ~2 ~
+execute at @e[tag=posY_anchor] if entity @s[rm=1,r=2] run scoreboard players add @s posY 1
+execute at @e[tag=posY_anchor] if entity @s[rm=1,r=2] run tp @e[tag=posY_anchor] ~ ~1 ~
 
-# --- 收尾 ---
+# --- 结尾 ---
 ## 锚点从 -64 起步，减掉这段偏移
 scoreboard players remove @s posY 64
-kill @e[name=posY]
+kill @e[type=armor_stand,tag=posY_anchor]
 ```
 
-锚点从`-64`起步，9 位跑完后其 Y 即玩家的方块坐标。`posY`累加的是相对`-64`的偏移，因此最后要减掉`64`。
+`posY`累加的是相对`-64`的偏移，因此最后要减掉`64`。
 
 需要注意：
 
-1. 结果是方块坐标（向下取整），不是浮点坐标。需要精确坐标时，可用脚本的 [Entity.location](/docs/docs/scripts/sapi/server/entity_and_player/entity#entity-类) 属性。
-2. 判据中的`1.8`为玩家判定箱高度。换成盔甲架（1.975）等其他实体时需同步修改，且不得小于该实体的判定箱高度。
-3. 仅覆盖`[-64, 320)`。超出范围时，结果饱和到边界。
+1. 结果是方块坐标（向下取整），不是浮点坐标。需要精确坐标时，可用脚本的 [Entity.location](/docs/docs/scripts/sapi/server/entity_and_player/entity#entity-类) 属性，在条件允许的情况下，我们也更推荐使用脚本系统。
+2. 该算法实测仅覆盖到`[-64, 447)`。超出范围时，结果会失真。若读者需要更高的检查高度，可以添加 512、1024 格高度的检查，然而一般来说这没有太大必要。
 
-X、Z 轴同理，将`y`换成`x`、`z`即可。但 X、Z 的范围为 ±3000 万，需要 26 位，命令数会增至三倍以上。
+X、Z 轴上没有需要固定判断的边界，但好在实际地图往往只占一小片区域，按需取位数，并把基准设在这片区域的边界上，一般情况下已足够使用。下面给出一个覆盖 X 轴`[-1024, 1024)`的实例：
+
+```mcfunction showLineNumbers title="lib/utils/get_pos_x"
+# ===== 工具：获取所在方块的 X 坐标 =====
+# 用于求出执行者脚部所在的方块 X 坐标，结果写入 posX。
+# 调用此方法时：需修饰执行者为玩家，执行位置为该玩家的位置（execute as @a[...] at @s）。
+
+# --- 准备锚点 ---
+## X 固定为基准 -1024，Y、Z 与玩家重合
+summon armor_stand posX ~ ~ ~
+tag @e[type=armor_stand,name=posX] add posX_anchor
+execute as @e[tag=posX_anchor] at @s run tp @s -1024 ~ ~
+scoreboard players set @s posX 0
+
+# --- 逐位判断 2^10 ~ 2^0 ---
+## 玩家在锚点 +x 方向 2^n ~ 2^(n+1) 格时记下这一位，并把锚点也推进 2^n
+execute at @e[tag=posX_anchor] if entity @s[rm=1024,r=2048] run scoreboard players add @s posX 1024
+execute at @e[tag=posX_anchor] if entity @s[rm=1024,r=2048] run tp @e[tag=posX_anchor] ~1024 ~ ~
+execute at @e[tag=posX_anchor] if entity @s[rm=512,r=1024] run scoreboard players add @s posX 512
+execute at @e[tag=posX_anchor] if entity @s[rm=512,r=1024] run tp @e[tag=posX_anchor] ~512 ~ ~
+execute at @e[tag=posX_anchor] if entity @s[rm=256,r=512] run scoreboard players add @s posX 256
+execute at @e[tag=posX_anchor] if entity @s[rm=256,r=512] run tp @e[tag=posX_anchor] ~256 ~ ~
+execute at @e[tag=posX_anchor] if entity @s[rm=128,r=256] run scoreboard players add @s posX 128
+execute at @e[tag=posX_anchor] if entity @s[rm=128,r=256] run tp @e[tag=posX_anchor] ~128 ~ ~
+execute at @e[tag=posX_anchor] if entity @s[rm=64,r=128] run scoreboard players add @s posX 64
+execute at @e[tag=posX_anchor] if entity @s[rm=64,r=128] run tp @e[tag=posX_anchor] ~64 ~ ~
+execute at @e[tag=posX_anchor] if entity @s[rm=32,r=64] run scoreboard players add @s posX 32
+execute at @e[tag=posX_anchor] if entity @s[rm=32,r=64] run tp @e[tag=posX_anchor] ~32 ~ ~
+execute at @e[tag=posX_anchor] if entity @s[rm=16,r=32] run scoreboard players add @s posX 16
+execute at @e[tag=posX_anchor] if entity @s[rm=16,r=32] run tp @e[tag=posX_anchor] ~16 ~ ~
+execute at @e[tag=posX_anchor] if entity @s[rm=8,r=16] run scoreboard players add @s posX 8
+execute at @e[tag=posX_anchor] if entity @s[rm=8,r=16] run tp @e[tag=posX_anchor] ~8 ~ ~
+execute at @e[tag=posX_anchor] if entity @s[rm=4,r=8] run scoreboard players add @s posX 4
+execute at @e[tag=posX_anchor] if entity @s[rm=4,r=8] run tp @e[tag=posX_anchor] ~4 ~ ~
+execute at @e[tag=posX_anchor] if entity @s[rm=2,r=4] run scoreboard players add @s posX 2
+execute at @e[tag=posX_anchor] if entity @s[rm=2,r=4] run tp @e[tag=posX_anchor] ~2 ~ ~
+execute at @e[tag=posX_anchor] if entity @s[rm=1,r=2] run scoreboard players add @s posX 1
+execute at @e[tag=posX_anchor] if entity @s[rm=1,r=2] run tp @e[tag=posX_anchor] ~1 ~ ~
+
+# --- 结尾 ---
+## 锚点从 -1024 起步，减掉这段偏移
+scoreboard players remove @s posX 1024
+kill @e[type=armor_stand,tag=posX_anchor]
+```
+
+为节省篇幅，这里不再重复写 Z 轴的算法，只需要把 X 轴的坐标计算换成 Z 轴，`posX`换成`posZ`即可，其余完全一致。
 
 ## 工具
 
@@ -682,6 +728,7 @@ replaceitem entity @s[hasitem={item=ender_eye,location=slot.weapon.mainhand}] sl
 ## 参考文档
 
 - [目标选择器 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/目标选择器)
+- [指令上下文 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/指令上下文)
 - [Coordinate to Scores - Bedrock Commands Community](https://bedrockcommands.org/resources/coordinate-to-scores)
 
 import GiscusComment from "/src/components/comment/giscus.js"

@@ -215,17 +215,19 @@ function flagsOf(body, { kind, group }) {
     const flags = [];
     const section = group || "";
 
+    // 只看条目自己那个 <Version>：`/locate` 是 1.19.10 的正式命令，
+    // 只是它的 POI 参数标了实验性，不能因此把整条判成实验性；
+    // 弃用同理 —— nearest_attackable_target 只有一个参数弃用，组件本身还在用
+    const ownVersion = body.match(/<Version\b[^>]*>/);
+
     if (/已移除/.test(section)) {
         flags.push("removed");
     } else if (/弃用/.test(section)) {
         flags.push("deprecated");
-    } else if (/<Version\b[^>]*?\bdeprecated="/.test(body)) {
+    } else if (ownVersion && /\bdeprecated="/.test(ownVersion[0])) {
         flags.push("deprecated");
     }
 
-    // 只看条目自己那个 <Version>：`/locate` 是 1.19.10 的正式命令，
-    // 只是它的 POI 参数标了实验性，不能因此把整条判成实验性
-    const ownVersion = body.match(/<Version\b[^>]*>/);
     if (ownVersion && /\bexperimental="/.test(ownVersion[0])) {
         flags.push("experimental");
     }
@@ -411,6 +413,7 @@ function extractFlat(absPath, source) {
             desc: summarize(head.body),
             alias: aliases,
             tag: "",
+            body: head.body,
             flags: flagsOf(head.body, { kind: source.kind, group }),
         });
     }
@@ -499,6 +502,7 @@ function extractSapi(absPath, source) {
                 desc: summarize(head.body),
                 alias: aliases,
                 tag: "type",
+                body: head.body,
                 flags: flagsOf(head.body, { kind: "sapi", group }),
             });
             continue;
@@ -531,6 +535,7 @@ function extractSapi(absPath, source) {
                 desc: summarize(head.body),
                 alias: [],
                 tag: match[2] === "方法" ? "method" : "property",
+                body: head.body,
                 flags,
             });
         }
@@ -578,6 +583,7 @@ function extractModapi(absPath, source) {
             desc: summarize(head.body),
             alias: derivedAliases(name),
             tag: sideOf(head.body) || (level === 2 ? "enum" : ""),
+            body: head.body,
             flags: flagsOf(head.body, { kind: source.kind || "modapi", group }),
         });
     }
@@ -632,6 +638,7 @@ function extractMolang(absPath, source) {
             desc: desc.length > 90 ? `${desc.slice(0, 90)}…` : desc,
             alias: [name.includes(".") ? name.slice(name.lastIndexOf(".") + 1) : ""].filter(Boolean),
             tag: "",
+            body: raw,
             flags: flagsOf("", { kind: source.kind, group: section }),
         });
     }
@@ -713,6 +720,7 @@ function extractTagTable(absPath, source) {
             desc: stripInline(cells[2] || ""),
             alias: [],
             tag: "tag",
+            body: line,
             flags: [],
             side: "",
         });
@@ -729,7 +737,9 @@ const EXTRACTORS = {
     tag: extractTagTable,
 };
 
-function buildIndex() {
+function buildIndex(options = {}) {
+    // 站点只吃轻量索引（速查页要一次加载完）；MCP 侧需要正文，靠这个开关带上
+    const includeBody = options.includeBody === true;
     const pages = [];
     const pageKeys = new Map(); // page+kind+group → 下标
     const items = [];
@@ -775,7 +785,7 @@ function buildIndex() {
             const route = routeOf(absPath);
             for (const entry of entries) {
                 const pageIndex = pushPage(route, entry.kind || source.kind, entry.group, entry.title);
-                items.push([
+                const row = [
                     entry.name,
                     pageIndex,
                     entry.anchor,
@@ -785,7 +795,9 @@ function buildIndex() {
                     entry.tag,
                     entry.flags ? entry.flags.join(",") : "",
                     entry.vtype || "",
-                ]);
+                ];
+                if (includeBody) row.push(entry.body || "");
+                items.push(row);
                 counters[source.kind] += 1;
             }
         }

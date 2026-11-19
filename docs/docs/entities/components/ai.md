@@ -6137,8 +6137,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="no_damage_range_multiplier"/>：<Version add="1.15.0" inline/> 与实体基础体积相乘得到「无伤害范围」，目标处于该范围内时该行为进入冷却。默认值为`2`。
   - <DataType type="object" name="on_attack"/>：<Version add="1.15.0" inline/> 攻击命中时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
-      - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
-      - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
+    - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
+    - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
   - <DataType type="object" name="on_kill"/>：<Version add="1.21.80" inline/> 击杀目标时触发的事件，结构同上。
   - <DataType type="float" name="outer_boundary_time_increase"/>：<Version add="1.15.0" inline/> 目标超出`path_outer_boundary`时，寻路重算间隔的增量，单位为秒。默认值为`0.5`。
   - <DataType type="float" name="path_fail_time_increase"/>：<Version add="1.15.0" inline/> 无法沿当前路径移动时，寻路重算间隔的增量，单位为秒。默认值为`0.75`。
@@ -6612,8 +6612,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="chance"/>：每刻尝试取走方块的概率，取值 0 到 1。默认值为`1`。
   - <DataType type="object" name="on_take"/>：取走方块时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
-      - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
-      - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
+    - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
+    - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
   - <DataType type="boolean" name="requires_line_of_sight"/>：为`true`时需要看见方块才能取走。默认值为`true`。
   - <DataType type="object" name="xz_range"/>：水平方向上搜索方块的范围区间，单位为方块。
     - <DataType type="int" name="min"/>：区间下限。默认值为`0`。
@@ -6678,8 +6678,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="min_wait_time"/>：<Version add="1.19.50" inline/> 接花前随机等待时间的下限，单位为秒。默认值为`4`。
   - <DataType type="object" name="on_take_flower"/>：<Version add="1.21.110" inline/> 接到花时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
-      - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
-      - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
+    - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
+    - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
   - <DataType type="array" name="search_area"/>：<Version add="1.19.50" inline/> 搜索递花对象的范围，写作`[x, y, z]`，也可写成含`x`、`y`、`z`的对象。
   - <DataType type="float" name="speed_multiplier"/>：<Version add="1.19.50" inline/> 执行该行为时的移动速度乘数。默认值为`0.5`。
 </treeview>
@@ -6840,8 +6840,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     - <DataType type="string"/>：物品 ID，也可写成含`name`的对象。
   - <DataType type="object" name="on_tempt_end"/>：停止被吸引时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
-      - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
-      - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
+    - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
+    - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
   - <DataType type="object" name="on_tempt_start"/>：开始被吸引时触发的事件，结构同上。
   - <DataType type="object" name="sound_interval"/>：<Version add="1.18.10" inline/> 吸引期间播放音效的间隔区间，单位为刻。
     - <DataType type="float" name="min"/>：区间下限。默认值为`0`。
@@ -6892,8 +6892,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="object" name="on_end"/>：行为结束时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
-      - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
-      - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
+    - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
+    - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
   - <DataType type="object" name="on_start"/>：行为开始时触发的事件，结构同上。
 </treeview>
 
@@ -6946,8 +6946,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="object" name="on_end"/>：行为结束时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
-      - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
-      - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
+    - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
+    - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
   - <DataType type="object" name="on_start"/>：行为开始时触发的事件，结构同上。
 </treeview>
 
@@ -7001,8 +7001,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
     - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
   - <DataType type="object" name="on_end"/>：行为结束时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
-      - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
-      - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
+    - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
+    - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
   - <DataType type="object" name="on_start"/>：行为开始时触发的事件，结构同上。
 </treeview>
 
@@ -7220,8 +7220,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="float" name="min_path_time"/>：寻路重算间隔的基础下限，单位为秒。默认值为`0.2`。
   - <DataType type="object" name="on_attack"/>：攻击命中时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
-      - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
-      - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
+    - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
+    - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
   - <DataType type="object" name="on_kill"/>：击杀目标时触发的事件，结构同上。
   - <DataType type="float" name="outer_boundary_time_increase"/>：目标超出`path_outer_boundary`时，寻路重算间隔的增量，单位为秒。默认值为`0.5`。
   - <DataType type="float" name="path_fail_time_increase"/>：无法沿当前路径移动时，寻路重算间隔的增量，单位为秒。默认值为`0.75`。
@@ -7424,8 +7424,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="goal_cooldown"/>：该行为再次可用前的冷却，单位为刻。默认值为`0`。
   - <DataType type="object" name="on_arrival"/>：抵达工作站点时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
-      - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
-      - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
+    - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
+    - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
   - <DataType type="int" name="sound_delay_max"/>：播放音效间隔的上限。默认值为`0`。
   - <DataType type="int" name="sound_delay_min"/>：播放音效间隔的下限。默认值为`0`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`0.5`。
@@ -7482,8 +7482,8 @@ AI 意向组件（AI Goal Components）规定了实体的 AI，规定 AI 后可�
   - <DataType type="int" name="min_item_count"/>：每种可堆肥物品最多消耗的数量，超出部分若可堆肥才会被处理。默认值为`10`。
   - <DataType type="object" name="on_arrival"/>：抵达堆肥桶时触发的事件。
     - <DataType type="string" name="event"/>：事件 ID。
-      - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
-      - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
+    - <DataType type="object" name="filters"/>：实体需满足的条件。见[实体过滤器](../filters)。
+    - <DataType type="string" name="target"/>：事件作用于哪个主体。可填`self`（自身）、`other`（交互另一方）、`player`（玩家）、`target`（当前攻击目标）、`parent`（父母）、`block`（方块）、`damager`（伤害来源），完整取值与含义见[测试主体](../filters#测试主体)。默认值为`self`。
   - <DataType type="float" name="speed_multiplier"/>：执行该行为时的移动速度乘数。默认值为`0.5`。
   - <DataType type="int" name="use_block_max"/>：与堆肥桶交互间隔的上限。默认值为`200`。
   - <DataType type="int" name="use_block_min"/>：与堆肥桶交互间隔的下限。默认值为`100`。

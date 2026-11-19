@@ -6,6 +6,7 @@ import Link from "@docusaurus/Link";
 import OreButton from "../components/oreui/button";
 import ResourceCard from "../components/oreui/resourceCard";
 import { RESOURCES, toCardProps } from "../data/resources";
+import { BEIAN_ITEMS } from "../data/beian";
 import styles from "./index.module.css";
 
 // ================================================================
@@ -935,6 +936,17 @@ function AboutSection({ active }) {
                         版权归 © 2019 - {new Date().getFullYear()} 一只卑微的量筒所有。除特殊声明外，本站中的内容均使用 CC BY-NC-SA 4.0
                         授权。
                     </p>
+                    {/* 首页用的是自定义页脚（Layout 关了 noFooter），备案号得单独放一份 */}
+                    <div className={`footer__beian ${styles.beian}`}>
+                        {BEIAN_ITEMS.map(item => (
+                            <a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer">
+                                {item.icon ? (
+                                    <img src={item.icon} alt={item.iconAlt} width="18" height="18" />
+                                ) : null}
+                                {item.label}
+                            </a>
+                        ))}
+                    </div>
                 </div>
             </div>
         </Section>

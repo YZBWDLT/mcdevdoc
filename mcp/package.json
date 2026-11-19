@@ -1,0 +1,30 @@
+{
+  "name": "mcdevdoc-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "量筒的 Minecraft 基岩版开发文档 —— MCP 服务端，让 AI 直接查接口、组件参数与版本",
+  "type": "module",
+  "bin": {
+    "mcdevdoc-mcp": "bin/mcdevdoc-mcp.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "data",
+    "README.md"
+  ],
+  "scripts": {
+    "build:data": "node scripts/build-data.js",
+    "audit": "node scripts/audit-coverage.js",
+    "start": "node bin/mcdevdoc-mcp.js",
+    "test": "node test/protocol.mjs",
+    "prepublishOnly": "node scripts/build-data.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^3.25.76"
+  }
+}

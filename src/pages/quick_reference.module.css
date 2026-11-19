@@ -11,15 +11,23 @@
     margin: 0 2rem 1rem;
 }
 
+/* 放大镜：原来是 24 格的 Material 矢量图标，和站内的像素图标不是一套。
+   现在贴 static/ui/search.png（原版的 12×12 网格），矢量路径隐藏。
+   尺寸必须取 12 的整数倍，24 正好是 2 倍，像素才不会被拉成一大一小。 */
 .searchIcon {
     position: absolute;
     top: 50%;
     left: 0.85rem;
-    width: 1.15rem;
-    height: 1.15rem;
-    color: #8c8d90;
+    width: 24px;
+    height: 24px;
+    background: url("/ui/search.png") center / 24px 24px no-repeat;
+    image-rendering: pixelated;
     transform: translateY(-50%);
     pointer-events: none;
+}
+
+.searchIcon path {
+    display: none;
 }
 
 /* 覆盖 .oreui-input 的宽度与高度：这是页面主控件，做大一号。

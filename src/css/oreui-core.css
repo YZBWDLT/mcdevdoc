@@ -1617,6 +1617,60 @@ kbd {
     color: #6cc349;
 }
 
+/* 备案号：法律要求的独立一行，字号比版权小一号，颜色压暗，
+   免得和正文抢注意力。两个编号之间用一个 3px 方点隔开，
+   和站里其它分隔符保持同一套像素语言。 */
+.footer__beian {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.55rem;
+    font-size: 0.82rem;
+    line-height: 1.7;
+}
+
+.footer__beian a {
+    color: #a7a8ab;
+    text-decoration: none;
+}
+
+.footer__beian a:hover {
+    color: var(--oreui-link);
+    text-decoration: underline;
+}
+
+.footer__beian a + a::before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    margin: 0 0.8rem;
+    background-color: #6a6b6d;
+    vertical-align: middle;
+}
+
+/* 公安备案徽标：官方 18×18 的原图，按原尺寸摆，不缩放也不做像素化处理 */
+.footer__beian img {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.35rem;
+    vertical-align: -4px;
+}
+
+/* 窄屏一行放不下两个长编号，改成上下两行，方点一并去掉 */
+@media (max-width: 576px) {
+    .footer__beian {
+        flex-direction: column;
+        font-size: 0.78rem;
+        line-height: 1.9;
+    }
+
+    .footer__beian a + a::before {
+        content: none;
+    }
+}
+
 /* ================================================================
    第三部分：滚动条（OreUI 风格）
    ================================================================
@@ -1897,6 +1951,14 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     scroll-padding-top: 0.5rem;
+}
+
+/* 主题给这个节点还写了 min-height: 100%（= 整个视口高），优先级同级别但排在后面，
+   于是容器的实际高度永远是「整个视口」，比可视区多出一个导航栏 ——
+   页脚最底下那 60px 滚到底也露不出来（备案号就是这么被吃掉的）。
+   高度上面已经给了定值，这里把它按回去。用 html 前缀提一级特异性。 */
+html #__docusaurus {
+    min-height: 0;
 }
 
 /* 导航栏跟着调成固定定位：它已经不在滚动容器里，sticky 就没意义了 */
@@ -3576,4 +3638,90 @@ a.oreui-card__action:visited {
 
 .anchor-flash {
     animation: anchor-flash 2.6s ease-out;
+}
+
+/* ---- 顶栏全站搜索 ----
+   插件自带的输入框是圆角胶囊，不符合输入框规范。这里改成直角、深底、
+   2px 描边加内阴影，与速查页的 .oreui-input 用同一套值。 */
+
+/* 放大镜：插件给的是 16 格的矢量图标（Material 那套），换成
+   static/ui/search.png（原版的 12×12 网格，铺 2 倍到 24px）。矢量路径隐藏。
+   图标比原来大了一圈，输入框左内边距跟着从 2.25rem 提到 2.75rem，
+   不然文字会贴上去。 */
+.navbar__search svg[class*="searchIcon"] {
+    left: 10px;
+    width: 24px;
+    height: 24px;
+    background: url("/ui/search.png") center / 24px 24px no-repeat;
+    image-rendering: pixelated;
+}
+
+.navbar__search svg[class*="searchIcon"] path {
+    display: none;
+}
+
+/* 窄屏时插件把输入框收成 2rem，实际只剩左右内边距撑出的宽度，
+   里面只露一个图标。图标挪到 4px，贴着左边更像一个按钮。 */
+@media (max-width: 576px) {
+    .navbar__search svg[class*="searchIcon"] {
+        left: 4px;
+    }
+}
+
+.navbar__search-input {
+    min-height: 40px;
+    padding-top: 0;
+    padding-bottom: 0;
+    /* 图标换成 24px 后左边多占 8px，宽度补回去，占位文字才不会被挤掉 */
+    padding-left: 2.75rem;
+    /* 顶栏是浅色面板，输入框按规范做深色块，这里必须压过 Infima 的变量 */
+    background-color: #313233 !important;
+    border: 2px solid var(--oreui-knob-border);
+    border-radius: 0;
+    color: var(--oreui-text) !important;
+    font-family: var(--oreui-font-body);
+    font-size: 0.9rem;
+    box-shadow: inset 0 2px #232425, inset 0 -1px rgba(255, 255, 255, 0.06);
+}
+
+/* 只在桌面端加宽：窄屏留给 Infima 的 9rem 与插件的 2rem 收起态 */
+@media (min-width: 997px) {
+    .navbar__search-input {
+        width: 13rem;
+    }
+}
+
+.navbar__search-input::placeholder {
+    color: #8c8d90 !important;
+}
+
+.navbar__search-input:hover {
+    background-color: #353637 !important;
+}
+
+/* 与 .oreui-input 一致：聚焦不提边框，只把底色提亮。
+   插件自己的 :focus 会加 2px 主色描边，优先级同级别，得压掉。 */
+.navbar__search-input:focus {
+    outline: none !important;
+    background-color: #3a3b3c !important;
+}
+
+/* 快捷键提示是 <kbd>，默认取顶栏的浅色底，放到深色输入框里太扎眼 */
+.navbar__search kbd {
+    color: #b8b9bc;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid #565759;
+    box-shadow: none;
+}
+
+/* 下拉建议面板跟着输入框走直角。插件用的是 `.searchBar_xxx .dropdownMenu_xxx`
+   两级类名，这里必须 !important 才压得住。 */
+.navbar__search [class*="dropdownMenu"] {
+    border-radius: 0 !important;
+}
+
+/* 建议项本身也有 4px 圆角和浅色投影，一并拉平 */
+.navbar__search [class*="dropdownMenu"] [class*="suggestion"] {
+    border-radius: 0 !important;
+    box-shadow: none !important;
 }

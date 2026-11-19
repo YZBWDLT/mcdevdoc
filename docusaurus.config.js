@@ -5,8 +5,14 @@
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
 import { themes as prismThemes } from "prism-react-renderer";
+import { beianHtml } from "./src/data/beian.js";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
+// 本地搜索的索引只在 build 时生成。开发模式下挂上去只会显示
+// 「The search index is only available when you run docusaurus build」，
+// 既不能搜也不好看，所以干脆不加载；要看搜索效果就跑 `npx docusaurus serve`。
+const isProduction = process.env.NODE_ENV === "production";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -109,12 +115,8 @@ const config = {
                     hideable: true,
                 },
             },
-            // 搜索栏
-            algolia: {
-                appId: "655TGMKJ7M",
-                apiKey: "387d6d10fb077b8da37cd6a79c79f800",
-                indexName: "yzbwdlt",
-            },
+            // 全站搜索改成本地索引（见文件末尾的 themes）：
+            // 构建期生成，部署完立刻能搜到新内容，不用等 Algolia 爬。
             // 顶部栏
             navbar: {
                 title: "量筒的 Minecraft 基岩版开发文档",
@@ -145,7 +147,6 @@ const config = {
                     { label: "预设模板", type: "docSidebar", sidebarId: "devTemplate", position: "left" },
                     { label: "更新前瞻", type: "docSidebar", sidebarId: "updateLog", position: "left" },
                     { label: "个人博客", to: "/blog", position: "left" },
-                    { type: "search", position: "right" },
                     {
                         html: `
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="vertical-align: middle;">
@@ -222,7 +223,11 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `版权归 © 2019 - ${new Date().getFullYear()} 一只卑微的量筒所有。除特殊声明外，本站中的内容均使用 CC BY-NC-SA 4.0 授权。`,
+                // copyright 是原样注入的 HTML，备案号单独占一行（内容见 src/data/beian.js）
+                copyright:
+                    `版权归 © 2019 - ${new Date().getFullYear()} 一只卑微的量筒所有。` +
+                    `除特殊声明外，本站中的内容均使用 CC BY-NC-SA 4.0 授权。` +
+                    beianHtml,
             },
             prism: {
                 theme: prismThemes.github,
@@ -234,7 +239,39 @@ const config = {
             },
         }),
 
-    themes: ["@docusaurus/theme-live-codeblock"],
+    themes: [
+        "@docusaurus/theme-live-codeblock",
+        ...(isProduction
+            ? [
+        [
+            "@easyops-cn/docusaurus-search-local",
+            /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+            ({
+                // 文件名带内容哈希，重建后浏览器不会拿旧索引
+                hashed: true,
+                // 中文分词负责概念词，英文分词负责 `block_placer` 这类标识符 ——
+                // 只挂 zh 时英文标识符搜不到，两个都得要。
+                language: ["zh", "en"],
+                // 代码块与参数树占了正文一半以上，排掉能省很多体积；
+                // 接口名本来就写在标题里，照样搜得到。
+                ignoreCssSelectors: [".theme-code-block", "pre", "table", ".treeview"],
+                indexDocs: true,
+                indexBlog: true,
+                // 首页与 /quick_reference 这类独立页面也进索引
+                indexPages: true,
+                docsRouteBasePath: "/docs",
+                blogRouteBasePath: "/blog",
+                // 点进结果页后把搜索词高亮出来
+                highlightSearchTermsOnTargetPage: true,
+                searchResultLimits: 8,
+                searchBarShortcutKeymap: "ctrl+k",
+                // 搜索框固定在顶栏右侧（原先 Algolia 的位置）
+                searchBarPosition: "right",
+            }),
+        ],
+              ]
+            : []),
+    ],
 };
 
 export default config;

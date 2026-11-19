@@ -327,7 +327,8 @@ import Version from "/src/components/highlight/version"
     - <DataType type="boolean" name="use_motion_prediction_hints"/>：为`true`时在丢包区间内发送更小的运动预测包，适合高速移动或传送的实体。
   - <DataType type="array" name="conditional_values"/>：按条件覆盖默认策略，取第一条条件成立者。
     - <DataType type="object"/>：一项。
-      - <DataType type="object" name="filters"/>：条件。见[实体过滤器](../filters)。
+      - <DataType type="object"/><DataType type="array" name="filters"/>：条件，可写成单个过滤器或过滤器数组。见[实体过滤器](../filters)。
+      - <DataType type="array" name="conditional_values"/>：条件，与`filters`同义，写过滤器数组。原版文件中两种写法都出现过。
       - <DataType type="int" name="max_dropped_ticks"/>：最多可连续多少刻不发送位置同步包。
       - <DataType type="float" name="max_optimized_distance"/>：参与优化的最大距离。
       - <DataType type="boolean" name="use_motion_prediction_hints"/>：是否发送更小的运动预测包。
