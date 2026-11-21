@@ -64,7 +64,7 @@ say 1
 
 命令输入区还有两个有用的按钮，第一个按钮是粘贴剪切板的内容，结合复制坐标 UI 会非常有用；而第二个按钮（“+”）就是放大命令输入区的 UI，对于输入长命令时会很有用。但是，因为基岩版的 bug，在输入长命令时，实际的光标位置和显示的光标位置是存在偏移的，这就导致在命令方块输入长命令（尤其是`/tellraw`等）往往是一种很痛苦的体验。
 
-![cb_ui_3](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_ui_3.png)
+![cb_ui_3](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_ui_3.webp)
 
 ### 保存与取消
 
@@ -78,7 +78,7 @@ say 1
 
 这个时候，我们就需要使用 UI 左上角的那个“悬停注释”，来标记这个命令方块里面写入的内容。在“悬停注释”里面写入内容并保存后，会使你的准心在面对命令方块的时候显示出来。
 
-![cb_use_3](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_use_3.png)  
+![cb_use_3](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_use_3.webp)  
 ![cb_use_4](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_use_4.webp)
 
 在写大型项目的时候，为代码添加注释总是良好的习惯。我们也鼓励你在必要的时候为命令方块添加注释，这样便于你的后期维护和架构调整，同时大幅提高可读性。
@@ -173,7 +173,7 @@ give @s apple
 
 事实上，命令的执行效果不仅有**是否执行成功**的概念，还有**执行成功次数（Success Count）** 的概念。如果执行命令`/testfor @e`，那么命令将会这么反馈：
 
-![success_count](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/success_count.png)
+![success_count](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/success_count.webp)
 
 这说明，这条命令不仅成功执行了，而且成功执行了 7 次（因为检查到了 7 个实体）。
 
@@ -185,7 +185,7 @@ give @s apple
 
 如果读者想要了解那些不止输出`0`或`1`的命令，请查阅各命令条目下的“输出”一节。例如，下面是`/fill`的输出数据。
 
-![fill_success_count](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/fill_success_count.png)  
+![fill_success_count](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/fill_success_count.webp)  
 ↑ `/fill`的成功次数，可见只有`0`和`1`的区别
 
 ---
@@ -215,7 +215,7 @@ give @s apple
 
 一些命令在涉及到多名玩家之后，会通知该玩家发生了什么变化，比如给予了玩家物品、传送了玩家等，这些变化信息即使在关闭命令方块的情况下也会提示，所以通常在正式发布地图前也应关闭该游戏规则。
 
-![sendcommandfeedback](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/sendcommandfeedback.png)  
+![sendcommandfeedback](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/sendcommandfeedback.webp)  
 ↑ 即使关闭命令方块反馈之后，使用命令方块传送还是会返回信息，这时必须将`sendCommandFeedback`游戏规则关闭才能彻底关闭所有命令反馈
 
 ### `maxCommandChainLength`
@@ -230,12 +230,12 @@ give @s apple
 
 我们先来关注命令方块 UI 的左侧的类型设置，可以看到命令方块一共有 3 种类型：脉冲、连锁、循环。
 
-![cb_type_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_1.png)  
+![cb_type_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_1.webp)  
 ↑ 命令方块的 3 种类型
 
 命令方块的类型区别可以说是各个命令方块的最本质的区别，所以它们之间的差异也是最明显的——就是颜色差异。
 
-![cb_type_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_2.png)  
+![cb_type_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_type_2.webp)  
 ↑ 从左到右，依次为：脉冲型命令方块（橙色）、连锁型命令方块（青色）、循环型命令方块（紫色）
 
 现在，我们来看看这 3 种命令方块的功能吧！
@@ -341,7 +341,7 @@ _提示：RCB 的简写也是社区内的惯用写法，请牢记 RCB 指代循�
 
 现在我们来关注命令方块的执行条件的设置。命令方块一共有两种执行条件的设置：不受制约和条件制约。
 
-![cb_condition_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_1.png)  
+![cb_condition_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_1.webp)  
 ↑ 命令方块的 2 种执行条件
 
 所谓执行条件，就是判断**命令方块背后的命令方块是否成功执行**。**在设置为条件制约的情况下，只有当该 CB 背后的命令成功执行后，才能执行这个 CB**。这里注意，和连锁型命令方块谈“被指向”不同，这里是这个命令方块的“**背后**”，也就是**命令方块方向的反方向**。我们还是以刚刚的 8 CB 的 CB 链来举例：
@@ -386,7 +386,7 @@ tellraw @p {"rawtext":[{"text":"成功购买了金苹果 * 15"}]}
 
 并且，如果拿出 3 个绿宝石，按下按钮后就能得到 15 个金苹果；如果绿宝石不足，则不会有任何反应。
 
-![cb_condition_4](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_4.png)
+![cb_condition_4](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_4.webp)
 
 现在我们再来考虑，不足时应该提醒玩家绿宝石不够，因为刚刚是检查超过 3 个绿宝石后执行一系列命令，现在需要重新设置一个新的条件，也就是不足 3 个绿宝石的时候，就执行另一套逻辑，这样的话我们只需要再接一个不受制约的 CCB，并且写好绿宝石不足时的逻辑：
 
@@ -400,7 +400,7 @@ tellraw @p {"rawtext":[{"text":"§c绿宝石不足！"}]}
 ```
 
 ![cb_condition_5](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_5.webp)  
-![cb_condition_6](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_6.png)
+![cb_condition_6](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_condition_6.webp)
 
 你也可以尝试用这个思路多做几种商店试试哦！
 
@@ -462,7 +462,7 @@ tellraw @p {"rawtext":[{"text":"成功购买了金苹果 * 15"}]}
 
 接下来我们来关注命令方块另外两个比较有用的设置：**在首刻执行**和**延迟刻数**。因为基岩版众所周知的渣中文翻译，如果没有装中文 Minecraft Wiki 提供的译名包的话，会显示为*执行第一个已选项*和*已选项中的延迟*，这两个翻译通常会为新手造成极大的困扰，请格外注意这一点，掌握它们正确的用途是很重要的。
 
-![cb_tick_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_tick_1.png)
+![cb_tick_1](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/cb_tick_1.webp)
 
 ### 延迟刻数（Delay in Ticks）
 
@@ -740,7 +740,7 @@ say 1
     ```
 
     不过这样做，会导致额外的延迟。事实上我们注意到，在我们这个思路的最后，移除了浮漂，**这直接影响了一开始的检测条件**，所以哪怕后面两条命令循环执行，最后的传送效果也是单次的传送。所以，这个思路可以继续优化为
-    ![answer_9_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_9_2.png)
+    ![answer_9_2](/img/tutorials/a1_commands/b3_command_systems/c2_command_block/answer_9_2.webp)
 
     ```text showLineNumbers {2} title="高亮部分为条件制约型命令方块"
     execute as @e[type=fishing_hook] at @s run tp @p 0 128 0

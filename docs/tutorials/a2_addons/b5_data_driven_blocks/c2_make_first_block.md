@@ -90,7 +90,7 @@ import FileType from "/src/components/type/file"
 
 读者可以使用下面的贴图充当黑色方块的贴图<FileType type="image" name="black_block.png"/>：
 
-![black_block](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/black_block.png)
+![black_block](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/black_block.webp)
 
 **在资源包定义方块贴图和音效的工作就由<FileType type="file" name="blocks.json"/>来进行**。所以，现在我们来定义<FileType type="file" name="blocks.json"/>。首先我们先确定一个对象，然后输入格式版本（这里允许的格式版本最高为`1.21.40`）：
 
@@ -177,7 +177,7 @@ tile.test:black_block.name=黑色方块
 
 最后一个问题，我们该如何实现各面都不相同的方块呢？比如……TNT！我们可以注意到，TNT 是一种顶面、底面、侧面各不相同的方块。
 
-![multi_face_block_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/multi_face_block_1.png)  
+![multi_face_block_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/multi_face_block_1.webp)  
 *图源：Minecraft Wiki*
 
 我们不妨来看看原版的 TNT 是如何定义的。虽然 TNT 并不是数驱方块，这意味着行为包层面没有办法对其进行修改，但是它的资源包定义还是可以自定义的：
@@ -218,7 +218,7 @@ tile.test:black_block.name=黑色方块
 }
 ```
 
-![multi_face_block_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/multi_face_block_2.png)  
+![multi_face_block_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/multi_face_block_2.webp)  
 *图源：Minecraft Wiki*
 
 我们看到，蜂巢因为存在一个供蜜蜂进出的正面，和其他三个面并不相同，因此只得使用了东西南北各不相同的写法。
@@ -395,7 +395,7 @@ tile.test:black_block.name=黑色方块
 
 1. 和本篇教程类似地，定义一个白色方块`test:white_block`，并且在地图上也要显示为白色。要用什么组件？自己找啊。>:) 这我们就不给参考贴图了，纯白色贴图读者应该可以自己解决的 >:)
 2. 定义一个六面均不相同的骰子方块`test:dice`。下面是参考贴图（读者也可以自己画一个更好看的）：  
-   ![dice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_1.png) ![dice_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_2.png) ![dice_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_3.png) ![dice_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_4.png) ![dice_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_5.png) ![dice_6](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_6.png)
+   ![dice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_1.webp) ![dice_2](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_2.webp) ![dice_3](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_3.webp) ![dice_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_4.webp) ![dice_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_5.webp) ![dice_6](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/dice_6.webp)
 3. 定义一种新的防爆玻璃`test:blast_proof_glass`，使其不会被爆炸破坏。我们先不要求透明和自然的面剔除，那是我们后续要介绍的内容。我们目前的要求是：在资源包定义中调用玻璃的贴图和玻璃的音效。你问我玻璃的贴图是什么？在原版的<FileType type="file" name="blocks.json"/>找找看吧！
 4. 定义一种新的工作台`test:crafting_table`。贴图就用原版的工作台就行。读者若有兴趣，可以添加几个用新工作台才能合成的配方。我们甚至可以用这个方法还原旧版本的切石机！
 5. 定义一种新的黑色发光方块`test:black_light_block`，光照等级 15。
@@ -453,10 +453,10 @@ tile.test:black_block.name=黑色方块
     tile.test:white_block.name=白色方块
     ```
 
-    白色方块的贴图（`textures/blocks/white_block.png`）：![white_block](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/white_block.png)（← 在这里）
+    白色方块的贴图（`textures/blocks/white_block.png`）：![white_block](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/white_block.webp)（← 在这里）
 
     最终效果：  
-    ![practice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_1.png)
+    ![practice_1](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_1.webp)
 
 2. ```json title="BP_test/blocks/test/dice.block.json 行为包定义" showLineNumbers
     {
@@ -551,7 +551,7 @@ tile.test:black_block.name=黑色方块
     ```
 
     最终效果：  
-    ![practice_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_4.png)
+    ![practice_4](/img/tutorials/a2_addons/b5_data_driven_blocks/c2_make_first_block/practice_4.webp)
 
 5. ```json title="BP_test/blocks/test/custom_crafting_table.block.json 行为包定义" showLineNumbers
     {

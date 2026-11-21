@@ -61,7 +61,7 @@ VSC 是一款成熟且专业的 IDE，它含有上百种快捷操作、数十种
 
 要改变主题的话可以按照下图的操作进行。使用什么主题全看个人心情，我个人更偏爱白色一些。
 
-![vsc_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_1.png)
+![vsc_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_1.webp)
 
 接下来，我们将 VSC 改成中文。按照下图的步骤，搜索并安装简体中文的插件并重启 VSC 后就可以使用中文了。
 
@@ -112,17 +112,17 @@ VSC 是一款成熟且专业的 IDE，它含有上百种快捷操作、数十种
 
 来回顾一下上一节的内容。我们在第 12 行加一个尾随逗号试试：
 
-![vsc_7](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_7.png)
+![vsc_7](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_7.webp)
 
 你会看到，那个尾随逗号出现了一个红色波浪线，代表这是一个**错误（Error）**。这种错误是会严重影响 JSON 的解析的，所以通常要重视。鼠标指向红色波浪线的时候，会告诉你问题原因。
 
 对付中文符号的时候，VSC 的报错也十分好用。下图的逗号就是中文逗号，报错“缺少逗号”，说明这不是 JSON 预期的逗号，显然这就是中文逗号，换掉即可。
 
-![vsc_8](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_8.png)
+![vsc_8](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_8.webp)
 
 对付各种 JSON 的语法错误，VSC 都能够正确即时解析，有效帮助我们避免这种低级问题。
 
-![vsc_9](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_9.png)
+![vsc_9](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_9.webp)
 
 唯一可能无须担心的就是注释问题，VSC 不知道我们正在编写的是 Minecraft 附加包，所以会对注释报错。通常为了避免 VSC 报错，我们也不推荐在 JSON 中引入注释。
 
@@ -135,10 +135,10 @@ VSC 是一款成熟且专业的 IDE，它含有上百种快捷操作、数十种
 - <kbd>Ctrl</kbd>+<kbd>V</kbd>：粘贴剪贴板中的内容到光标的位置。
 - <kbd>Ctrl</kbd>+<kbd>A</kbd>：全选。
 - <kbd>Ctrl</kbd>+<kbd>D</kbd>：选中下一个匹配项。将下一个和选中内容一致的内容也选中。
-  ![ctrl_d](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/ctrl_d.png)
+  ![ctrl_d](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/ctrl_d.webp)
 - <kbd>Ctrl</kbd>+<kbd>F</kbd>：启用查找替换。
 - 在按住左<kbd>Alt</kbd>的情况下，可以点击代码的其他位置以添加一个新的光标，用于批量编辑。  
-  ![alt](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/alt.png)
+  ![alt](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/alt.webp)
 
 日后我们还会看到更多的 VSC 快捷用法。
 

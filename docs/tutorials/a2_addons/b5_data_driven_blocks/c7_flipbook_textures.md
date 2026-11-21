@@ -18,7 +18,7 @@ import DataType from "/src/components/type/data"
 
 现在让我们来定义一个超级炫酷的彩色玻璃吧！我们来让这种玻璃可以在 16 个颜色中循环变化，就像 jeb_ 羊一样。首先，我们需要在 bb 定义一个 16×256 的贴图（对，是 16×256），然后在原版找到染色玻璃的贴图，把染色玻璃的贴图依次排列进去，就像这样：
 
-![colorful_stained_glass](/img/tutorials/a2_addons/b5_data_driven_blocks/c7_flipbook_textures/colorful_stained_glass.png)
+![colorful_stained_glass](/img/tutorials/a2_addons/b5_data_driven_blocks/c7_flipbook_textures/colorful_stained_glass.webp)
 
 当然读者也可以直接把这张图片拿去使用，然后把贴图正常放在资源包的<FileType type="folder" name="textures"/>下的<FileType type="folder" name="blocks"/>里即可。在 Minecraft 播放动画时，就会尝试把这个贴图分割后从上到下依次播放。原版的所有动态贴图都是这样的（例如海晶灯、海晶石、火、命令方块等）。
 

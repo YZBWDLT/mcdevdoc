@@ -52,8 +52,8 @@ import FileType from "/src/components/type/file"
 
 如果读者使用 VSC 的插件，会发现语言文件在**键重复**的情况下会报错，键值对和注释之间**未用制表符**（比如多个空格）连接也会报错。
 
-![error_1](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/error_1.png)
-![error_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/error_2.png)
+![error_1](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/error_1.webp)
+![error_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/error_2.webp)
 
 读者可以借此规范化自己的语言文件，如果错误太多的情况下也可以用以前讲过的方法忽略错误。
 
@@ -92,11 +92,11 @@ import FileType from "/src/components/type/file"
 
 有了上一个实例做引导，实现这一点也并非难事。我们在模板中找到钻石矿对应的键名：
 
-![prank_1](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/prank_1.png)
+![prank_1](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/prank_1.webp)
 
 将这个键名`tile.diamond_ore.name`复制到我们的包中，改名为石头，再把贴图复制过来，大功告成！
 
-![prank_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/prank_2.png)  
+![prank_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/prank_2.webp)  
 ![prank_3](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/prank_3.webp)
 
 _~~拿着石镐的朋友：诶这游戏是不是出bug了？（~~_
@@ -120,7 +120,7 @@ _~~拿着石镐的朋友：诶这游戏是不是出bug了？（~~_
 
 在游戏内使用`/tellraw @s {"rawtext":[{"translate":"howtoplay.fireworks.text.3.notTouch"}]}`就是这样表现的：
 
-![command_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/command_2.png)
+![command_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/command_2.webp)
 
 _备注：我这里安装了 Wiki 的标准译名包，所以内容会有些不同_。
 
@@ -160,7 +160,7 @@ text.your_score=§b你的分数是 %s ！
 
 在游戏中的实际效果就为
 
-![command_4](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/command_4.png)
+![command_4](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/command_4.webp)
 
 怎么样，很简单吧？
 
@@ -170,7 +170,7 @@ text.your_score=§b你的分数是 %s ！
 
 ![meme_pack_1](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_1.webp)  
 ![meme_pack_2](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_2.webp)  
-![meme_pack_3](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_3.png)  
+![meme_pack_3](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_3.webp)  
 ![meme_pack_4](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_4.webp)
 
 很难绷，对吧？我们在图 1 展示出这是一个完全独立于中文（简体）的语言，它是如何实现的呢？
@@ -181,7 +181,7 @@ text.your_score=§b你的分数是 %s ！
 
 下载好后通过压缩包打开这个附加包并解压，我们就能发现它的“奥妙”。
 
-![meme_pack_6](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_6.png)
+![meme_pack_6](/img/tutorials/a2_addons/b3_textures_and_texts/c4_translations/meme_pack_6.webp)
 
 事实上 Mojang 官方给出的模板包中我们也能看到<FileType type="file" name="languages.json" />和<FileType type="file" name="language_names.json" />，它们分别**用于注册语言**，和**给注册的语言一个语言名字**。观察官方给出的这两个文件的架构，不难发现两个文件应该符合这样的 Json 架构：
 

@@ -78,7 +78,7 @@ import FileType from "/src/components/type/file"
 
 下载完成后，我们将包解压到某处，你可以看到官方提供的包还是比较齐备的，有很多内容可供我们学习。
 
-![template_4](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/template_4.png)
+![template_4](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/template_4.webp)
 
 针对于我们现在的任务，我们打开<FileType type="folder" name="resource_pack" /> - <FileType type="folder" name="textures" />文件夹，读者应该能看到很多内容：
 
@@ -90,7 +90,7 @@ import FileType from "/src/components/type/file"
 
 现在我们要想办法修改官方给出的贴图，例如……为钻石矿添加一个闪亮的蓝色边框！我们首先找到钻石矿的文件位置，这应该是很好找的，就在<FileType type="folder" name="textures" /> - <FileType type="folder" name="blocks" /> - <FileType type="image" name="diamond_ore.png" />：
 
-![blockbench_1](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_1.png)
+![blockbench_1](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_1.webp)
 
 知道了原路径并找到贴图后，我们在我们的包中**创建一个相同的路径**，并把贴图**复制**到我们的包里：
 
@@ -129,8 +129,8 @@ import FileType from "/src/components/type/file"
 
 重启软件后，你的 Blockbench 就改为中文了。好，现在让我们找到复制在我们包里面的那个贴图。读者可以右键贴图，然后选择在文件资源管理器中显示：
 
-![blockbench_7](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_7.png)
-![blockbench_8](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_8.png)
+![blockbench_7](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_7.webp)
+![blockbench_8](/img/tutorials/a2_addons/b3_textures_and_texts/c2_make_texture_pack/blockbench_8.webp)
 
 然后，把这个贴图直接拖到 Blockbench 的窗口里，它会自动打开图像的编辑模式：
 

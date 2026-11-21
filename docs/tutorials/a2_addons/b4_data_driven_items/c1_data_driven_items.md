@@ -35,9 +35,9 @@ sidebar_position: 1
 
 在正式开始讲怎么写物品之前，我们先来吊一下读者的胃口——来看看以下的这些物品：
 
-- ![custom_item_1](/img/tutorials/a2_addons/b4_data_driven_items/c1_data_driven_items/custom_item_1.png)  
+- ![custom_item_1](/img/tutorials/a2_addons/b4_data_driven_items/c1_data_driven_items/custom_item_1.webp)  
   这是我们的地图《冒险小世界：剑之试炼》的自定义武器，它可以增加 25 点的攻击伤害！
-- ![custom_item_2](/img/tutorials/a2_addons/b4_data_driven_items/c1_data_driven_items/custom_item_2.png)  
+- ![custom_item_2](/img/tutorials/a2_addons/b4_data_driven_items/c1_data_driven_items/custom_item_2.webp)  
   这是我们的地图《30 种死法 2》的物品，右键即可在聊天栏蹦出提示！
 
 是不是很赞？事实上，数驱物品能够实现的功能还是比较广泛的。例如：自定义食物、自定义合成材料、武器、工具、盔甲装备等。虽然我们不能说数驱物品能够实现所有读者想要的功能，但功能也的确足够广泛了。

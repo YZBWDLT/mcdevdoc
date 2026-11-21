@@ -36,7 +36,7 @@ sidebar_position: 2
 
 在平面直角坐标系的基础上，添加一个向上为正方向的数轴 z，这时候就出现了一个无穷大的空间，这叫做**三维**的**空间直角坐标系**。如果你要确定一个三维的物体的位置，你就需要 x，y，z 三个变量。特殊地，我们称如上构造的空间直角坐标系叫做**右手坐标系**。伸出你右手的拇指、食指和中指，中指向上，拇指指向你自己，而食指指向右边，那么这时候，如果这三个手指两两垂直，拇指的方向就是 x 轴正方向，食指的方向就是 y 轴正方向，而中指的方向就是 z 轴正方向。
 
-![空间直角坐标系](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/space_rectangular_coordinates.png)
+![空间直角坐标系](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/space_rectangular_coordinates.webp)
 
 之所以要说到右手系的问题，是因为 Minecraft **不满足右手系的规则**。详情可见下文。总之，你已经了解了为什么我们用 3 组数字代表你所在的位置的含义——因为 Minecraft 是一款三维游戏，要描述你在这个空间中的位置，必须使用三组数字。
 
@@ -154,7 +154,7 @@ Minecraft 的坐标以东为 x 轴正方向，以南为 z 轴正方向，而**�
 
 在创造模式下飞起来，随便面向什么方向，然后执行`/tp ^^^5`。你可以多次尝试执行这条命令，尽量平视，不要向上或向下看！
 
-![局部坐标](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/local_coordinates.png)
+![局部坐标](/img/tutorials/a1_commands/b1_concepts/c2_coordinate/local_coordinates.webp)
 
 :::
 

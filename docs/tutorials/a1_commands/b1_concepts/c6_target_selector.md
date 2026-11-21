@@ -50,7 +50,7 @@ import Image from "/src/components/image/standard"
 
 不难发现，这种情况会造成歧义。因此，游戏认为，输入一个普通的字符串是传送名字为`sheep`的玩家，而不是绵羊。如果没有名字为`sheep`的玩家，游戏将会报错：
 
-![传送sheep玩家](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/tp_player_sheep.png)
+![传送sheep玩家](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/tp_player_sheep.webp)
 
 这种报错：`没有与选择器匹配的目标`代表命令的语法是正确的，但是找不到这样的实体。那我们怎么指代绵羊呢？
 
@@ -102,7 +102,7 @@ import Image from "/src/components/image/standard"
 
 执行命令`/give @a apple`。你现在应该能够看懂这条命令：它将给予所有玩家一个苹果。
 
-![给予所有玩家苹果](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/give_@a.png)
+![给予所有玩家苹果](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/give_@a.webp)
 
 :::
 
@@ -116,7 +116,7 @@ import Image from "/src/components/image/standard"
 
 执行命令`/tp @e ~~~`。在执行之前，你可以试着分析一下这条命令的含义，在游戏内执行后，看看符不符合你的预期。
 
-![传送所有玩家](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/tp_@e.png)
+![传送所有玩家](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/tp_@e.webp)
 
 :::
 
@@ -140,7 +140,7 @@ import Image from "/src/components/image/standard"
 
 执行上面的命令，将会报错。这是因为有相当多的实体是不存在物品栏这个概念的，所以一些类型为`target`的命令是不允许更广泛的实体概念参与的，而只允许玩家。后面你会看到更多类似的命令，例如`/gamemode`。
 
-![给予所有实体苹果](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/give_@e.png)
+![给予所有实体苹果](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/give_@e.webp)
 
 对于这类仅限玩家的命令，你可以注意到命令参数一般为`player: target`，限定玩家，而不是`victim: target`、`entity: target`等更广泛的描述。在`/give`中，对应的参数就是`<player: target>`。
 
@@ -216,7 +216,7 @@ import Image from "/src/components/image/standard"
 - `@a[rm=1.5,r=5]`：指代距执行者 1.5~5 格的玩家。
 - `@a[rm=5,r=4]`：指代距执行者 5~4 格的玩家。很显然，不可能存在这样的实体，因此这条命令将会报错。所以，这里必须满足`r`>`rm`。
 
-![r>rm将会报错](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/rm_greater_than_r.png)
+![r>rm将会报错](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/rm_greater_than_r.webp)
 
 ### `dx,dy,dz`：指定一个长方体区域内的实体
 
@@ -393,7 +393,7 @@ import Image from "/src/components/image/standard"
 
 你最后会得到一个神奇的结果，四条命令都没有报错，而且都给出了不同的结果：
 
-![盔甲架执行效果](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/armor_stands_executed.png)
+![盔甲架执行效果](/img/tutorials/a1_commands/b1_concepts/c6_target_selector/armor_stands_executed.webp)
 
 看到这个结论，你能总结`c`的含义吗？看看下面 Wiki 的定义（节选），看看和你的预期是否一样：
 

@@ -99,7 +99,7 @@ camera <玩家: target> fade time <淡入秒数: float> <持续秒数: float> <�
 
 整体来说，**这条命令是控制玩家相机渐变为某个纯色的命令**。执行效果大概如下图所示：
 
-![camera_fade_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_fade_1.png)
+![camera_fade_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_fade_1.webp)
 
 注意哦！这可不是把玩家关到黑色混凝土做成的小黑屋里，这是真正地把玩家的视角直接改为纯色的黑色。
 
@@ -147,7 +147,7 @@ camera <玩家> fade [渐变时间] [颜色]
 
 :::
 
-![camera_fade_2](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_fade_2.png)
+![camera_fade_2](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/camera_fade_2.webp)
 
 这个蓝屏，在蓝下去的那一瞬间是不是感受到了从小被 Windows 蓝屏支配的恐惧？（笑）
 

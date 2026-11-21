@@ -28,18 +28,18 @@ sidebar_position: 7
 
 - 如果你给物品加上一个“可破坏”的组件，那么这个物品**在冒险模式下就拥有了可破坏特定方块的功效**。
 
-  ![item_component_1](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/item_component_1.png)
+  ![item_component_1](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/item_component_1.webp)
 
   - **前提是，这个方块本来就是可破坏的**。加上一个“可破坏”基岩的组件，最后还是无法破坏基岩。
 - 同样地，如果加上一个“可放置”的组件，那么这个物品**在冒险模式下就拥有了可放置在特定方块上的功效**。
 
-  ![item_component_2](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/item_component_2.png)
+  ![item_component_2](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/item_component_2.webp)
 
   - **前提是，这个物品本来就是可放置的**。给钻石剑加上一个“可放置”的组件，最后还是无法放置。
 - 加上一个“物品锁定”的组件，这个物品**就将无法移除、丢弃、用于合成**，除非使用`/clear`。
   - 这类物品会在其**左上角加一个小三角标识**这是一个被锁定的物品。
 
-    ![item_component_3](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/item_component_3.png)
+    ![item_component_3](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/item_component_3.webp)
 
   - 然而，这类物品**还是可以右键使用的**。比如为雪球加上一个物品锁定，还是可以扔出去。
   - 物品锁定也分为两类：**锁定在物品栏**和**锁定在槽位**。
@@ -47,7 +47,7 @@ sidebar_position: 7
     - **锁定在槽位**时，这个物品就**完全锁死在这个槽位上无法移动**。小三角标识的颜色是红色。
 - 加上一个“死亡保留”的组件，这个物品**就将在玩家死亡后仍然保留**。
 
-  ![item_component_4](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/item_component_4.png)
+  ![item_component_4](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/item_component_4.webp)
 
   - 不过，如果开了死亡不掉落的话，那么这个组件就没什么意义了——反正无论如何，死亡后其他物品也不掉落。
 
@@ -288,7 +288,7 @@ Java 版也同样存在物品组件这个概念。在 1.20.5 以前，Java 版�
 
 :::
 
-![replaceitem_1](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/replaceitem_1.png)
+![replaceitem_1](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/replaceitem_1.webp)
 
 *（请原谅我又加了一个资源包……嘿嘿）*
 
@@ -325,7 +325,7 @@ Java 版也同样存在物品组件这个概念。在 1.20.5 以前，Java 版�
 
 :::
 
-![replaceitem_3](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/replaceitem_3.png)
+![replaceitem_3](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/replaceitem_3.webp)
 
 执行这条命令后，我们的快捷栏的最后一位获得了苹果。我们还是来分析一下这条命令：
 
@@ -535,7 +535,7 @@ hasitem=[{item=...,...},{item=...,...},...]
 6. 为玩家的钓鱼竿添加饵钓 III。
 7. 当玩家没有铁镐时，给予其一把可以破坏石头和饰纹陶罐的铁镐。
 8. 现在已知`hasitem`可以检测到鼠标在物品栏中拿起来的物品——这类物品不属于任何一种已列出的槽位类型，但是可以被`hasitem`检测得到。当玩家拿起自己头上的钻石头盔时，清除玩家所有的钻石头盔并重新放一个回去。
-   ![practice_1](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/practice_1.png)
+   ![practice_1](/img/tutorials/a1_commands/b2_commands/c7_item_cmds/practice_1.webp)
 
 :::
 

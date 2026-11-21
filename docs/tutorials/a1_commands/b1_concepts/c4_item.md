@@ -54,7 +54,7 @@ sidebar_position: 4
 
 执行`/give "(你的昵称)" apple`。如果上面有自动补全，那就没问题了！
 
-![give](/img/tutorials/a1_commands/b1_concepts/c4_item/give.png)
+![give](/img/tutorials/a1_commands/b1_concepts/c4_item/give.webp)
 
 :::
 
@@ -66,7 +66,7 @@ sidebar_position: 4
 
 但哪怕被藏起来，你也是可以使用`/give`获取到它们的。例如命令方块的 ID 为`command_block`。你可以尝试获取命令方块然后简单摆弄摆弄，不过我们也会在第 3 章详细地介绍如何使用命令方块、结构方块、屏障等开发用方块。
 
-![给予cb](/img/tutorials/a1_commands/b1_concepts/c4_item/give_command_block.png)
+![给予cb](/img/tutorials/a1_commands/b1_concepts/c4_item/give_command_block.webp)
 
 ### 部分物品不能`/give`
 

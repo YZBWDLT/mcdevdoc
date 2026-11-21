@@ -29,22 +29,22 @@ import ImageGroup from "/src/components/image/group"
 导入好之后，先隐藏`north`骨骼可见性，调`center`骨骼。这里我们来看左侧的「面属性」，点击顶和底的贴图，将其改为 glass_pane_top.png，这样顶和底就会在预览时使用玻璃板顶部的贴图。并且，在顶和底使用`top`的材质实例，方便我们后续使用[`minecraft:material_instances`](/docs/docs/blocks/components#minecraftmaterial_instances)组件。
 
 <ImageGroup>
-    <ImageMultiple src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/3.png" text="通过面属性微调每个模型使用何处的 UV"/>
-    <ImageMultiple src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/4.png" text="对顶底使用不同的贴图和材质实例"/>
+    <ImageMultiple src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/3.webp" text="通过面属性微调每个模型使用何处的 UV"/>
+    <ImageMultiple src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/4.webp" text="对顶底使用不同的贴图和材质实例"/>
 </ImageGroup>
 
 这里我们逐面细调，将东南西北的 UV 拉到玻璃贴图正中间的位置，然后将顶底的 UV 拉到玻璃板顶部贴图中间的位置，这是为了还原原版的效果。
 
 <ImageGroup>
-    <ImageMultiple src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/5.png" text="调整东西南北的 UV"/>
-    <ImageMultiple src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/6.png" text="调整顶底的 UV"/>
+    <ImageMultiple src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/5.webp" text="调整东西南北的 UV"/>
+    <ImageMultiple src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/6.webp" text="调整顶底的 UV"/>
 </ImageGroup>
 
 然后我们启用`north`骨骼，打开「面属性」，这里我们可以直接禁用南北方向的面，因为靠北一侧的面贴图不可见是原版设定，而靠南一侧因为在方块内部所以设定为不可见。同样，顶和底的贴图改为 glass_pane_top.png，并且在顶底使用`top`的材质实例。细调东西顶底的贴图如下图所示。
 
 <ImageGroup>
-    <ImageMultiple src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/7.png" text="调整东西的 UV，西在最左，东在最右"/>
-    <ImageMultiple src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/8.png" text="调整顶底的 UV，若需要极致地还原原版，请将顶的 UV 旋转 180°"/>
+    <ImageMultiple src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/7.webp" text="调整东西的 UV，西在最左，东在最右"/>
+    <ImageMultiple src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_pane/8.webp" text="调整顶底的 UV，若需要极致地还原原版，请将顶的 UV 旋转 180°"/>
 </ImageGroup>
 
 然后，复制`north`骨骼，粘贴为`south`、`west`、`east`骨骼。现在粘贴是为了应用对`north`骨骼细调的每个面的更改。然后调整每个骨骼的位置和旋转值，注意`west`放在西侧，`east`放在东侧，`south`放在南侧。然后，调整三个骨骼的 y 轴旋转值分别为`90`、`-90`、`-180`。

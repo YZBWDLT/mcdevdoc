@@ -322,7 +322,7 @@ MC 中有很多种红石电源，它们对红石导体的作用效果，也就�
 
 红石比较器有两种模式，**比较模式和减法模式**，两种模式依靠手动切换。比较模式下输出端的红石火把是熄灭状态，而减法模式则是亮起状态。
 
-![comparator_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_2.png)
+![comparator_2](/img/tutorials/a1_commands/b3_command_systems/c1_redstone/comparator_2.webp)
 
 和红石火把、红石中继器类似地，**红石比较器也会引入一个红石刻的延迟**。
 

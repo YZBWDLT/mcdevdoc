@@ -323,7 +323,7 @@ import FileType from "/src/components/type/file"
 
 现在穿上我们刚定义的靴子，可以看到护甲值确实有所提升：
 
-![boots_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/boots_1.png)
+![boots_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/boots_1.webp)
 
 其他组件我们都讲过，这里不再细提，我们来着重关注`minecraft:wearable`这个组件。这个组件倒也不难理解，读者可以很轻松地看出它需要装备的槽位<DataType type="string" name="slot" isRequired/>和它所提供的保护值<DataType type="int" name="protection"/>。只是，受限于 Mojang 没有开放盔甲韧性和击退抗性的接口，我们是没有办法定义我们自定义装备的这些属性的。到这里，我们其实已经看到数据驱动也有着自己的局限性。
 
@@ -367,7 +367,7 @@ import FileType from "/src/components/type/file"
 
 其中，贴图`"nether_star"`是原版`item_texture.json`所定义的。这样，我们便得到了我们的假的下界之星：
 
-![nether_star_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/nether_star_1.png)
+![nether_star_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/nether_star_1.webp)
 
 可以看到，我们所定义的下界之星和原版的长相上来看还有些差距，首先是贴图没有附魔光泽，这一眼就会被人识破；其次，我们的下界之星是白色名称，还是青色名称看着更像那么回事对吧。所以遍览所有组件，我们可以看到有两个组件符合我们的需求：
 
@@ -397,7 +397,7 @@ import FileType from "/src/components/type/file"
 
 哇咔咔，简直以假乱真，除了名字和不能合成信标之外就没什么区别了！
 
-![nether_star_2](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/nether_star_2.png)
+![nether_star_2](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/nether_star_2.webp)
 
 :::info[思考 4.4-1]
 
@@ -470,11 +470,11 @@ Mojang 更新了 1.21.40 之后，正式在游戏中加入了收纳袋。一个�
 
 上一节我们引入了物品标签的概念，知道物品标签常用于自定义陶片。这里，我们也同样需要物品标签来定义新的自定义陶片。从[我们给出的文档](/docs/docs/items/tags#原版使用的标签)可以看到，这个物品标签就是`minecraft:decorated_pot_sherds`。我们来定义一个这样的物品，首先准备陶片的贴图如下：
 
-空陶片物品：![empty_pottery_sherd](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/empty_pottery_sherd.png) 空陶片的陶罐图案：![empty_pottery_pattern](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/empty_pottery_pattern.png)
+空陶片物品：![empty_pottery_sherd](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/empty_pottery_sherd.webp) 空陶片的陶罐图案：![empty_pottery_pattern](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/empty_pottery_pattern.webp)
 
 接下来我们准备一个 Ciallo～(∠・ω< )⌒☆ 图案吧，不过因为画幅大小，我就只准备以下这两幅图了，很简陋：
 
-Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/ciallo_pottery_sherd.png) Ciallo～(∠・ω< )⌒☆ 陶片的陶罐图案：![ciallo_pottery_pattern](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/ciallo_pottery_pattern.png)
+Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/ciallo_pottery_sherd.webp) Ciallo～(∠・ω< )⌒☆ 陶片的陶罐图案：![ciallo_pottery_pattern](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/ciallo_pottery_pattern.webp)
 
 然后，我们定义陶片如下：
 
@@ -501,11 +501,11 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
 
 这里我们解释一下后两个组件`minecraft:display_name`和`minecraft:rarity`的用途。因为合成出的陶罐中，会显示都含有哪些陶片，我们必须使用旧版的物品命名格式`item.(命名空间 ID).name`而非默认的`item.(命名空间 ID)`才能让它正常显示：
 
-![pottery_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/pottery_1.png)
+![pottery_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/pottery_1.webp)
 
 而定义稀有度，则是因为其他陶片都是少见的稀有度：
 
-![pottery_2](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/pottery_2.png)
+![pottery_2](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/pottery_2.webp)
 
 在定义完物品后，我们需要在资源包新增一个资源包<FileType type="folder" name="entity" />，再在这个文件夹中新建一个文件<FileType type="file" name="decorated_pot.client_entity.json" />。我们之后在实体那一章会讲到，这个文件叫做**实体客户端文件（Client Entity File）**，目前读者先权且这么做，暂时不需要理解原理。然后，在此文件中写入：
 
@@ -573,7 +573,7 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
 1. 做一把秒人斧，耐久度为 1，使用金斧贴图，伤害改成 233！哇哈哈哈……直接来一手偷袭！>:)
 2. 完善我们上一节练习中所创建的红宝石斧的功能，要求可以加速破坏橡木原木和橡木木板。提示：按照 Wiki 的记载，我们先把本题的红宝石工具的挖掘效率设置为 8，具体可以参见[挖掘 - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/%E6%8C%96%E6%8E%98#%E6%8C%96%E6%8E%98%E9%80%9F%E5%BA%A6)。同理地，完善我们上一节练习中所创建的红宝石锹和红宝石锄的功能，要求红宝石锹可以加速破坏沙砾和沙子，而红宝石锄可以加速破坏橡树树叶。在下一章讲到方块标签的时候我们就介绍如何加速破坏一类方块。记得把这些物品收到对应的物品组中！
 3. 完善我们上一节练习中所创建的红宝石头盔、红宝石胸甲和红宝石护腿，要求其护甲值和钻石套一致。同样地，暂时不要求添加玩家身上的盔甲贴图，这个问题在我们第六章讲到附着物后再回过头来解决。同样记得把这些物品收到对应的物品组中！
-4. 定义一个炸药包物品，当试图放下这个物品后就召唤 TNT，这是实现 TNT 放下即炸的一种可行思路！读者可参考我们给出的贴图：![tnt](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/tnt.png)。
+4. 定义一个炸药包物品，当试图放下这个物品后就召唤 TNT，这是实现 TNT 放下即炸的一种可行思路！读者可参考我们给出的贴图：![tnt](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/tnt.webp)。
 5. 定义一个金面团，吃下它可以回复 10 点饥饿值和 10 点饱和度！然后，定义它的合成配方与金苹果类似，用 8 个金锭环绕面团合成。最后，设置金面团的冷却为 1 分钟。贴图自创。
 6. 定义一种物品，使其可以直接扔出箭，就像雪球一样。后续在学到实体的时候，我们会回过头来完善我们定义的弹射物的功能。提示：可以用组件`minecraft:throwable`。
 7. 定义一种和原版铁锭外观一致的物品，然后令它的掉落物不会消失。是的！如果你做到了，其实这就是在我开发的起床战争中，资源不会消失的秘籍。
@@ -609,7 +609,7 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
     }
    ```
 
-   ![practice_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_1.png)  
+   ![practice_1](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_1.webp)  
    吓哭了。另：题意没有要求`minecraft:rarity`，但我觉得秒人斧这东西还是值得的（
 
 2. ```json showLineNumbers title="红宝石斧定义文件"
@@ -648,7 +648,7 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
     }
    ```
 
-   ![practice_2](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_2.png)  
+   ![practice_2](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_2.webp)  
 
    ```json showLineNumbers title="红宝石锹定义文件"
     {
@@ -686,7 +686,7 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
     }
    ```
 
-   ![practice_3](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_3.png)
+   ![practice_3](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_3.webp)
 
    ```json showLineNumbers title="红宝石锄定义文件"
     {
@@ -723,7 +723,7 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
     }
    ```
 
-   ![practice_4](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_4.png)  
+   ![practice_4](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_4.webp)  
 
 3. ```json showLineNumbers title="红宝石头盔定义文件"
     {
@@ -798,7 +798,7 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
    ```
 
    ![practice_5](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_5.webp)  
-   ![practice_6](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_6.png)  
+   ![practice_6](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_6.webp)  
 
 4. ```json showLineNumbers title="炸药包定义文件"
     {
@@ -820,7 +820,7 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
 
    ![practice_7](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_7.webp)  
 
-5. 我们提供一个参考贴图如图：![golden_dough](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/golden_dough.png)，以下为使用的代码：
+5. 我们提供一个参考贴图如图：![golden_dough](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/golden_dough.webp)，以下为使用的代码：
 
    ```json showLineNumbers title="金面团定义文件"
     {
@@ -844,7 +844,7 @@ Ciallo～(∠・ω< )⌒☆ 陶片物品：![ciallo_pottery_sherd](/img/tutorial
     }
    ```
 
-   ![practice_8](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_8.png)  
+   ![practice_8](/img/tutorials/a2_addons/b4_data_driven_items/c4_item_examples/practice_8.webp)  
 
 6. ```json showLineNumbers title="可投掷的箭定义文件"
     {

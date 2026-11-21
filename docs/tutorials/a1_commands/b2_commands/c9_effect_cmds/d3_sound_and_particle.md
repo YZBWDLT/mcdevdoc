@@ -40,7 +40,7 @@ sidebar_position: 3
 
 然后可以直接找播放经验的相关条目：
 
-![playsound_5](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/playsound_5.png)
+![playsound_5](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/playsound_5.webp)
 
 看，一下子就找到了！这个网站建议收藏下来，对你可能很有帮助。未来，在使用 Visual Studio Code 写函数的时候，我们还会了解到更多的自动补全的方法。
 
@@ -98,7 +98,7 @@ sidebar_position: 3
 
 停止对`玩家`播放的`音效`。应该不用多说什么了吧？例如，停止活塞的音效就是`/stopsound @a tile.piston.in`和`/stopsound @a tile.piston.out`。当然啦，灵活使用查询表或 Wiki 查这些 ID！
 
-![stopsound_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/stopsound_1.png)
+![stopsound_1](/img/tutorials/a1_commands/b2_commands/c9_effect_cmds/stopsound_1.webp)
 
 ### 播放音乐的命令`/music`
 

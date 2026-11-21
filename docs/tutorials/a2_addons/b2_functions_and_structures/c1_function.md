@@ -106,13 +106,13 @@ say Hello,world!
 
 如果包正确安装，游戏内应当有自动补全。
 
-![function_1](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/function_1.png)
+![function_1](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/function_1.webp)
 
 观察执行效果。一定要确保你的包目前是正确安装的！
 
 :::
 
-![function_2](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/function_2.png)
+![function_2](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/function_2.webp)
 
 我们看到，执行这个函数后，便以我们自己的身份运行了这条`/say`命令。有关函数的命令上下文，我们一会儿再强调。
 
@@ -157,7 +157,7 @@ say Hello,world!
 
 这条命令的执行效果如下，可以看到该函数在 1 秒钟后，由服务器执行。这是函数延迟执行命令的一个关键方法，在这条命令加入之前，我们都是用记分板控制条件来实现延时的，相比来说就会麻烦不少了。
 
-![schedule_1](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/schedule_1.png)
+![schedule_1](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/schedule_1.webp)
 
 现在我们再来试一下`[replace|append]`的用途。
 
@@ -183,7 +183,7 @@ say Hello,world!
 
 我们看到，使用`replace`就只返回了一次，证明第一次添加的延迟队列被替换，所以只有第二次添加的延迟队列执行。
 
-![schedule_2](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/schedule_2.png)
+![schedule_2](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/schedule_2.webp)
 
 而`append`模式就返回了两次，代表两次的队列都成功执行。
 
@@ -253,7 +253,7 @@ say 5
 
 我们看到执行效果如下图所示。也就是说，**函数中的命令是严格从上到下执行完毕的，和一条无条件的脉冲 CB 链的逻辑是一致的**。
 
-![function_3](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/function_3.png)
+![function_3](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/function_3.webp)
 
 我们再来看一个更复杂的逻辑。
 
@@ -447,7 +447,7 @@ say 6
 
 执行后的效果如下图。可以看到，在返回了“1”“2”“3”之后，就执行到`test2`上面，继续返回“4”“5”“6”。但是，游戏显示一共执行了 7 条命令，代表`/function`本身也需要一条命令，终究会消耗一点性能。
 
-![func_sys_3](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_3.png)
+![func_sys_3](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_3.webp)
 
 现在，我们需要研究一下函数执行的顺序问题。我们知道，函数和 CB 链都是瞬时执行命令的，但是在调用其他 CB 链（调用其他函数）的时候，就存在执行顺序问题了。我们来做一个小实验，来了解一下二者的调用顺序问题。
 
@@ -478,13 +478,13 @@ say 3
 
 对于函数调用的情况，在执行了“1”和“2”之后，会立刻执行`test2`里面的内容，在“4”“5”“6”执行完毕之后再回到`test`中继续执行“3”，这个过程，可以用下面的图来表示。
 
-![func_sys_6](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_6.png)
+![func_sys_6](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_6.webp)
 
 这叫做**深度优先原则**，在遇到一个更深层逻辑的时候，会先将这个逻辑处理完毕，然后再处理浅层逻辑。例如在这里，`test2`就是一个更深层的逻辑，所以先处理这其中的所有命令，再回到`test`这个浅层逻辑。
 
 而 CB 链调用的情况，则是先执行了本链中的“1”“2”“3”再执行了“4”“5”“6”。这个过程则可以由下图表示。
 
-![func_sys_7](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_7.png)
+![func_sys_7](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/func_sys_7.webp)
 
 这叫做**广度优先原则**，在遇到一个更深层逻辑的时候，会先暂时搁置，把浅层逻辑处理完毕之后再处理深层逻辑。例如在这里，第二条 CB 链（相当于`test2`）是一个更深层的逻辑，所以先处理第一条 CB 链（相当于`test`）这个浅层逻辑的所有其他内容，再处理深层逻辑。
 
@@ -610,7 +610,7 @@ tellraw @a {"rawtext":[{"translate":"%%s的阶乘等于%%s","with":{"rawtext":[{
    ![vsc_3](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_3.webp)
 3. 为日后使用 VSC 方便，将我们的工作区直接保存：
    ![vsc_4](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_4.webp)  
-   ![vsc_5](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_5.png)  
+   ![vsc_5](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_5.webp)  
    日后，双击该工作区文件即可快速打开我们上次的编辑。
 
 **这样做的好处非常多，可以说这是我们充分利用 VSC 编辑优势的关键**。
@@ -623,11 +623,11 @@ tellraw @a {"rawtext":[{"translate":"%%s的阶乘等于%%s","with":{"rawtext":[{
   ![vsc_8](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_8.webp)  
   尤其是在和自定义方块、物品、实体联动的时候，甚至可以对这些内容进行自动补全，十分强大。
     - 我们还可以在函数文件内，鼠标指向`function`命令写入的文件路径，使用<kbd>Ctrl</kbd>+<kbd>鼠标左键</kbd>快速跳转到对应函数，非常方便。  
-      ![vsc_9](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_9.png)
+      ![vsc_9](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_9.webp)
 
 要使用 VSC 新建文件或文件夹也是很简单的。只需要在文件管理器中使用这两个小按钮即可解决。
 
-![vsc_10](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_10.png)
+![vsc_10](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_10.webp)
 
 但是，美中不足的是，有时候我们安装的两个插件有可能会因为一些 bug 而判断出错。例如上图中，插件就对我们的`/scoreboard`命令报错，我们将鼠标指向红色波浪线（也就是报错的位置）处：
 
@@ -635,7 +635,7 @@ tellraw @a {"rawtext":[{"translate":"%%s的阶乘等于%%s","with":{"rawtext":[{
 
 如果你有信心保证你的写法是正确的，那么就可以点击报错处底下的“快速修复（Ctrl+.）”，然后选择忽略相关的错误检查：
 
-![vsc_12](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_12.png)
+![vsc_12](/img/tutorials/a2_addons/b2_functions_and_structures/c1_function/vsc_12.webp)
 
 这里 VSC 会自动创建一个`.mcattributes`文件，我们保存之，然后重启 VSC，就不会再在这里报错了。
 

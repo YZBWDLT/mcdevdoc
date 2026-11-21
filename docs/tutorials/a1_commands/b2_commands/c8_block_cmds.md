@@ -123,7 +123,7 @@ sidebar_position: 8
 
 :::
 
-![execute_if_block_2](/img/tutorials/a1_commands/b2_commands/c8_block_cmds/execute_if_block_2.png)
+![execute_if_block_2](/img/tutorials/a1_commands/b2_commands/c8_block_cmds/execute_if_block_2.webp)
 
 - 在执行`/execute if block ~~~ stone_button`后，测试通过，这是很显然的。
 - 然后，执行`/execute if block ~~~ stone_button ["facing_direction"=0]`，测试失败，说明此时这个按钮的朝向信息不是`0`。

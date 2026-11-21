@@ -49,7 +49,7 @@ js 和其他的编程语言并不太一样。因为 js 通常是专门用于浏�
 console.log("Hello,world!");
 ```
 
-![console_2](/img/tutorials/a3_scripts/b1_programming_language/c1_js/console_2.png)
+![console_2](/img/tutorials/a3_scripts/b1_programming_language/c1_js/console_2.webp)
 
 上面的代码就是一个 **JavaScript 语句（JavaScript Statements）**。对于初学者，每个语句之间都要用`;`分隔，并且为了美观和稳定考虑，要用换行分隔不同的语句。
 

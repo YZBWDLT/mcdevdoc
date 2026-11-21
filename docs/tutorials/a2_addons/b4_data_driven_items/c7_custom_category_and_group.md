@@ -112,7 +112,7 @@ import '/src/css/treeview.css';
 
 看，效果是不是很好？
 
-![item_group_1](/img/tutorials/a2_addons/b4_data_driven_items/c7_custom_category_and_group/item_group_1.png)
+![item_group_1](/img/tutorials/a2_addons/b4_data_driven_items/c7_custom_category_and_group/item_group_1.webp)
 
 **我们也可以在数驱物品定义中将其放入我们新增的物品组**。比如，对于面团，我们可以提高其格式版本到`1.21.60`（这是为了在
 <DataType type="string" name="group"/>参数中能够允许命名空间），然后新增<DataType type="string" name="group"/>的定义：
@@ -137,7 +137,7 @@ import '/src/css/treeview.css';
 
 在实际注册到创造模式物品栏的过程中，游戏会先按顺序注册<FileType type="file" name="crafting_item_catalog.json"/>中的物品，再注册分立的物品。
 
-![item_group_2](/img/tutorials/a2_addons/b4_data_driven_items/c7_custom_category_and_group/item_group_2.png)
+![item_group_2](/img/tutorials/a2_addons/b4_data_driven_items/c7_custom_category_and_group/item_group_2.webp)
 
 现在读者可以在[我们提供的文档](/docs/docs/items/item_category_and_group#物品组)中查阅国际版物品组所支持的格式。
 

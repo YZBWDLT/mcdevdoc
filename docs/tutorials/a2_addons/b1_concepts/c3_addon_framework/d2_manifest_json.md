@@ -92,7 +92,7 @@ import DataType from "/src/components/type/data"
 
 上面的这三个东西会以最直观的方式显示在 MC 上，就像下图一样，从上到下分别是`name`、`version`、`description`所定义的。
 
-![manifest_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/manifest_1.png)
+![manifest_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/manifest_1.webp)
 
 - <DataType type="string" name="uuid" isRequired/>：定义你的附加包的 UUID。
 
@@ -108,7 +108,7 @@ import DataType from "/src/components/type/data"
 
 安装这个扩展之后，只需要在编辑器里右键，就能看到这个选项，然后自动生成一个 UUID，十分方便。
 
-![uuid_generator_2](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/uuid_generator_2.png)
+![uuid_generator_2](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/uuid_generator_2.webp)
 
 - <DataType type="array" name="min_engine_version" isRequired/>：最小引擎版本。定义你的附加包至少需要什么游戏版本才能使用。
 

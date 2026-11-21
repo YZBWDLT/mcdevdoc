@@ -43,7 +43,7 @@ import FileType from "/src/components/type/file"
 
 </treeview>
 
-![structure_4](/img/tutorials/a2_addons/b2_functions_and_structures/c4_structures/structure_4.png)
+![structure_4](/img/tutorials/a2_addons/b2_functions_and_structures/c4_structures/structure_4.webp)
 
 在保存了这些之后，我们可以在其他地图试试效果。先**大退重进**，然后可以用`/structure`命令试试效果：
 

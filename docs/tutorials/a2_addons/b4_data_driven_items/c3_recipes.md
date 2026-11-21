@@ -77,7 +77,7 @@ import FileType from "/src/components/type/file"
 
 对于红宝石剑贴图<FileType type="image" name="ruby_sword.png" />，你可以直接引用下面这张图：
 
-![ruby_sword](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword.png)
+![ruby_sword](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword.webp)
 
 顺便一提，我们是利用取色器取走了红宝石的一个颜色，然后在铁剑上直接使用颜色模式涂画画出来的——没有任何水准的做法，但至少在项目的前期，这么做是很有效的 >wO
 
@@ -197,7 +197,7 @@ S
 
 它的效果如下图所示：
 
-![recipe_shaped_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/recipe_shaped_1.png)
+![recipe_shaped_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/recipe_shaped_1.webp)
 
 有了上一节定义物品的经验，这里对于读者来说也会有一定的亲切感。我们来逐行解析：
 
@@ -537,7 +537,7 @@ S
 
 它的效果如下图所示：
 
-![recipe_shapeless_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/recipe_shapeless_1.png)
+![recipe_shapeless_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/recipe_shapeless_1.webp)
 
 在上面这个 json 中，除了高亮部分是我们在有序配方中没有讲到的东西之外，读者可以看到其他内容和有序配方是很相似的。这个 json 深刻地给出了有序配方和无序配方的区别，一个是第 3 行的 **<DataType type="object" name="minecraft:recipe_shapeless" isRequired/>，定义了这是一个无序配方**；而另一个不同点则是 **<DataType type="array" name="ingredients"/>，它定义了这个合成配方所需的材料列表（包括类型、数据值和数量）**。具体来说，它允许的内容为：
 
@@ -640,7 +640,7 @@ S
 
 它的效果如下图所示，是的，我们亲手把曾经的“诈骗”配方变成了现实！
 
-![recipe_furnace_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/recipe_furnace_1.png)
+![recipe_furnace_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/recipe_furnace_1.webp)
 
 现在让我们来关注一下这个文件的结构。同理地，第 3 行的 **<DataType type="object" name="minecraft:recipe_furnace" isRequired/>定义了这是一个熔炉配方**；而第 11\~12 行的<DataType type="string"/><DataType type="object" name="input" isRequired/>和<DataType type="string"/><DataType type="object" name="output" isRequired/>则分别定义了熔炉的输入和输出物品。和前文不同，这里可以直接在输入和输出中写为字符串，我们在上文就是这么做的。上面的代码和下面的代码是等效的，读者可以着重关注第 11\~12 行两段代码的区别。
 
@@ -828,7 +828,7 @@ recipe take @a *
 3. 我们知道 2 个下界石英和 2 个圆石合成 2 个闪长岩，而闪长岩和圆石合成 2 个安山岩。请直接做一个无序配方，直接通过圆石和下界石英一步到位合成安山岩！合成材料所需的数量比例请自行计算。
 4. 民以食为天，我们来做一些新的食物吧！
    1. 首先定义面粉（`test:flour`）和面团（`test:dough`），以下为两个参考贴图：  
-      面粉：![flour](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/flour.png) 面团：![dough](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/dough.png) （读者可以下载去，~画功不好请见谅~）  
+      面粉：![flour](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/flour.webp) 面团：![dough](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/dough.webp) （读者可以下载去，~画功不好请见谅~）  
    2. 现在，我们新增两个配方，首先定义一个无序配方，将小麦合成为面粉；然后，定义一个无序配方，使面粉和水桶合成为面团；最后，使面团在熔炉中烧制为面包。
 
 :::
@@ -838,7 +838,7 @@ recipe take @a *
 <summary>练习题答案</summary>
 
 1. 按照上文所介绍的方法（红宝石颜色 + bb 颜色画笔法）分别画出如下所示的图像：  
-   红宝石剑：![ruby_sword](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword.png) 红宝石镐：![ruby_pickaxe](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_pickaxe.png) 红宝石斧：![ruby_axe](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_axe.png) 红宝石锹：![ruby_shovel](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_shovel.png) 红宝石锄：![ruby_hoe](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_hoe.png) 红宝石头盔：![ruby_helmet](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_helmet.png) 红宝石胸甲：![ruby_chestplate](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_chestplate.png) 红宝石护腿：![ruby_leggings](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_leggings.png) 红宝石靴子：![ruby_boots](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_boots.png)  
+   红宝石剑：![ruby_sword](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_sword.webp) 红宝石镐：![ruby_pickaxe](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_pickaxe.webp) 红宝石斧：![ruby_axe](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_axe.webp) 红宝石锹：![ruby_shovel](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_shovel.webp) 红宝石锄：![ruby_hoe](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_hoe.webp) 红宝石头盔：![ruby_helmet](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_helmet.webp) 红宝石胸甲：![ruby_chestplate](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_chestplate.webp) 红宝石护腿：![ruby_leggings](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_leggings.webp) 红宝石靴子：![ruby_boots](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/ruby_boots.webp)  
    然后，分别定义其他 8 种物品。注意为它们分别加上对应的标签，有些标签是具有特定功能的。  
    ![practice_1](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_1.webp)
    ![practice_2](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_2.webp)  
@@ -849,8 +849,8 @@ recipe take @a *
    ![practice_4](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_4.webp)  
    ![practice_5](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_5.webp)  
    下面是两个我们定义的结果。读者可以看到，对于对称配方，斧头和我们上面定义的摆放方式是对称的，所以也可以合成。如果使用`"assume_symmetry": false`，那么这样就合成不出东西了。
-   ![practice_6](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_6.png)  
-   ![practice_7](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_7.png)  
+   ![practice_6](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_6.webp)  
+   ![practice_7](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_7.webp)  
 3. 根据题意，2 下界石英 + 2 圆石 → 2 闪长岩，平均每个闪长岩需要 1 下界石英和 1 圆石。这样，2 个安山岩就平均需要 1 个下界石英和 2 个圆石。我们需要定义这样的无序配方：1 下界石英 + 2 圆石 → 2 安山岩。因此，定义下面的配方即可：
 
     ```json
@@ -873,15 +873,15 @@ recipe take @a *
     }
     ```
 
-   ![practice_8](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_8.png)  
+   ![practice_8](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_8.webp)  
    读者也可以做 2 下界石英 + 4 圆石 → 4 安山岩的配方。
 
 4. 1. 如图，定义这两个新物品：
       ![practice_9](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_9.webp)  
-      ![practice_10](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_10.png)  
+      ![practice_10](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_10.webp)  
    2. 按照题意，定义三个新配方：
       ![practice_11](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_11.webp)  
-      ![practice_12](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_12.png)  
+      ![practice_12](/img/tutorials/a2_addons/b4_data_driven_items/c3_recipes/practice_12.webp)  
       遗憾的是，我们的自定义配方和原版的蛋糕仍然有不同，这个操作会把桶吞掉，且没有补救措施。
 
 </details>

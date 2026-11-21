@@ -162,11 +162,11 @@ import Image from "/src/components/image/standard"
 
 可以看到，效果还是很不错的：
 
-![ruby_sword_1](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/ruby_sword_1.png)
+![ruby_sword_1](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/ruby_sword_1.webp)
 
 因为设定了`"custom_item_type": "weapon"`，所以这个物品事实上也拥有了剑的独有的物品属性，比如不可破坏、挖竹子蜘蛛网会加速等，而不需要额外指定对应组件。然而，相比于拥有后发优势的国际版，中国版的自定义剑仍然有一个缺陷 —— 不能指定修复物品。按照上文所写出来的自定义剑，必须使用钻石才能修复，而不是用一个单独的`minecraft:repairable`组件指定修复物品。可以看到，中国版数驱物品同样有很大的局限性。
 
-![ruby_sword_2](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/ruby_sword_2.png)
+![ruby_sword_2](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/ruby_sword_2.webp)
 
 中国版的超前性在某种程度上也体现为落后性，例如要实现镐、斧、锹、锄等工具的时候，`netease:weapon`组件依然是关键组件，这却是比较反直觉的。
 
@@ -225,7 +225,7 @@ MCS 的一个关键功能在于，你可以直接打开一个中国版测试版�
 
 ![mcs_5](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_5.webp)  
 ![mcs_6](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_6.webp)  
-![mcs_7](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_7.png)
+![mcs_7](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_7.webp)
 
 现在，MCS 就为我们创建了一个新的物品，其属性如右图所示：
 
@@ -233,8 +233,8 @@ MCS 的一个关键功能在于，你可以直接打开一个中国版测试版�
 
 属性里面所填写的内容是很简单的，读者在学习了前几节的内容后应该都可以看得懂。我们注意到 MCS 为我们添加了食物组件和使用时长的组件，其中我们可以为食物组件添加新的属性：
 
-![mcs_9](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_9.png)  
-![mcs_10](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_10.png)
+![mcs_9](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_9.webp)  
+![mcs_10](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_10.webp)
 
 资源包方面，将金面团的图片从文件资源管理器拖拽到 MCS 里：
 
@@ -242,7 +242,7 @@ MCS 的一个关键功能在于，你可以直接打开一个中国版测试版�
 
 然后添加新的资源包组件：
 
-![mcs_12](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_12.png)
+![mcs_12](/img/tutorials/a2_addons/b4_data_driven_items/c6_china_edition_items/mcs_12.webp)
 
 经过一定的修改之后，现在读者右侧的属性界面如图所示。
 

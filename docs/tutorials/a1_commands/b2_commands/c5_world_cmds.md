@@ -48,7 +48,7 @@ sidebar_position: 5
 
 在对所有游戏规则进行简单了解后，执行命令`/gamerule mobGriefing false`，然后点燃一只苦力怕，看看效果如何。
 
-![gamerule_4](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_4.png)
+![gamerule_4](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/gamerule_4.webp)
 
 :::
 
@@ -75,7 +75,7 @@ sidebar_position: 5
 
 关于这条命令更加详细的解释，参见[命令/mobevent - 中文 Minecraft Wiki](https://zh.minecraft.wiki/w/命令/mobevent)。当然，就算不看 Wiki，实际想要掌握这条命令也是非常简单的，用法和`/gamerule`如出一辙。考虑到这条命令实际并不常用，在这里我们就不再赘述太多了。
 
-![mobevent_1](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/mobevent_1.png)
+![mobevent_1](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/mobevent_1.webp)
 
 :::note[扩展：关于`/mobevent`存在意义的讨论]
 
@@ -158,11 +158,11 @@ sidebar_position: 5
 
 在上面的例子中，如果我们直接在(0,-60,0)放置石头，`/setblock`会提示我们无法在世界外放置方块，这便是区块仍处于卸载状态的缘故。不光是`/setblock`，还有众多涉及方块操作的命令例如`/execute if block`和`/execute if blocks`等，都会在对应位置的区块卸载时执行失败。
 
-![tickingarea_1](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/tickingarea_1.png)
+![tickingarea_1](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/tickingarea_1.webp)
 
 我们还看到，添加了常加载区域之后，游戏返回的信息并不是添加了(100,0,100)\~(200,0,200)的常加载区域，而是(96,0,96)\~(207,0,207)。这是因为，每一个区块占地面积都是 16×16，所以区块的边界坐标并不是一个任意的整数，而是 16 的倍数，例如这里 96 就是 16 的倍数，而 x=207 和 x=96 之间相隔的方块数量 207-96+1 也是 16 的倍数。所以这里你就理解，“长方体区域有重叠部分的所有区块”的含义，其实就是含这些坐标的区块。
 
-![tickingarea_2](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/tickingarea_2.png)
+![tickingarea_2](/img/tutorials/a1_commands/b2_commands/c5_world_cmds/tickingarea_2.webp)
 
 在添加常加载区域后，再次放置石头就能够执行成功了。
 

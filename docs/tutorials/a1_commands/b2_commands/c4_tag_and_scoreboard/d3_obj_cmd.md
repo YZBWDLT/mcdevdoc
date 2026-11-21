@@ -63,7 +63,7 @@ sidebar_position: 3
 
 执行命令`/scoreboard objectives add test dummy`。注意`dummy`是必选参数，不要丢下！
 
-![obj_add_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_add_1.png)
+![obj_add_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_add_1.webp)
 
 :::
 
@@ -73,7 +73,7 @@ sidebar_position: 3
 
 这里需要注意，一个已经存在的记分项是不能被重复创建的，命令将会报错：
 
-![obj_add_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_add_2.png)
+![obj_add_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_add_2.webp)
 
 ### 为`记分项`命名的规范
 
@@ -121,7 +121,7 @@ sidebar_position: 3
 
 执行命令`/scoreboard objectives setdisplay sidebar test`。
 
-![obj_setdisplay_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_1.png)
+![obj_setdisplay_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_1.webp)
 
 :::
 
@@ -137,11 +137,11 @@ sidebar_position: 3
 
 - 降序（`descending`）（默认参数）：分数从高到低排列。
 
-  ![obj_setdisplay_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_3.png)
+  ![obj_setdisplay_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_3.webp)
 
 - 升序（`ascending`）：分数从低到高排列。
 
-  ![obj_setdisplay_4](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_4.png)
+  ![obj_setdisplay_4](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_setdisplay_4.webp)
 
 ### 显示在不同位置的效果
 
@@ -212,7 +212,7 @@ sidebar_position: 3
 
 这条命令将在聊天栏返回所有记分项的显示名称和准则。显然，基岩版的准则全是`dummy`。此外，没有指定`显示名称`的记分项，显示名称就默认变成了记分项的名称。当然，我们还是那句话：建议你在创建记分板时事先指定一个另外的显示名称，不要用记分项来做显示名称。
 
-![obj_list_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_list_1.png)
+![obj_list_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/obj_list_1.webp)
 
 ---
 

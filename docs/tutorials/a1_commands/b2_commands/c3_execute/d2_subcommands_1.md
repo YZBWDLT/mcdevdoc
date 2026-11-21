@@ -241,7 +241,7 @@ align <坐标轴: string> -> execute
 
 执行后，这条命令的执行结果为：
 
-![align1](/img/tutorials/a1_commands/b2_commands/c3_execute/align1.png)
+![align1](/img/tutorials/a1_commands/b2_commands/c3_execute/align1.webp)
 
 可以看到，`positioned`指定的执行位置(0.75,-59.5,0.25)被`align`修正为了(0.0,-60.0,0.0)。因为`align`指定为了`xyz`，所以 3 个坐标均被修正并向下取整。
 

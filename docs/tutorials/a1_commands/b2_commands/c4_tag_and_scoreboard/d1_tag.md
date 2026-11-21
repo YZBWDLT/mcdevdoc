@@ -37,7 +37,7 @@ sidebar_position: 1
 
 下面是执行结果。你可以看到，执行这条命令对实体的行为并没有任何影响，只是简单地添加了一个标记。
 
-![tag_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/tag_2.png)
+![tag_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/tag_2.webp)
 
 ## 目标选择器参数`tag`
 

@@ -219,7 +219,7 @@ _备注：如果你不知道[1,100]是什么意思，它代表 1≤`data.test`�
 
 **这条命令将返回所有的追踪对象。如果指定了`玩家名称`的话，就专门返回该追踪对象在特定记分项上的分数**。下图是执行了`/scoreboard players list`和`scoreboard players list @s`的结果。
 
-![player_list_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_list_1.png)
+![player_list_1](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_list_1.webp)
 
 ## 对分数进行运算操作
 
@@ -294,31 +294,31 @@ _备注：如果你不知道[1,100]是什么意思，它代表 1≤`data.test`�
 
 - `=`进行的操作是`obj1.name1=obj2.name2`，也就是将右边的值赋给左边。在这个例子中，执行命令 1 后就是`data.x=data.y`，所以`data.x`变为 5。
 
-    ![player_operation_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_2.png)
+    ![player_operation_2](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_2.webp)
 
 - `+=`进行的操作是`obj1.name1+=obj2.name2`，也就是将左加右赋给左边。在这个例子中，执行命令 2 后就是`data.x+=data.y`，所以`data.x`变为 100+5=105。
 
-    ![player_operation_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_3.png)
+    ![player_operation_3](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_3.webp)
 
 - `-=`进行的操作是`obj1.name1-=obj2.name2`，也就是将左减右赋给左边。在这个例子中，执行命令 3 后就是`data.x-=data.y`，所以`data.x`变为 100-5=95。
 
-    ![player_operation_4](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_4.png)
+    ![player_operation_4](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_4.webp)
 
 - `*=`进行的操作是`obj1.name1*=obj2.name2`，也就是将左乘右赋给左边。在这个例子中，执行命令 4 后就是`data.x*=data.y`，所以`data.x`变为 100×5=500。
 
-    ![player_operation_5](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_5.png)
+    ![player_operation_5](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_5.webp)
 
 - `/=`进行的操作是`obj1.name1/=obj2.name2`，也就是将左除以右赋给左边。在这个例子中，执行命令 5 后就是`data.x/=data.y`，所以`data.x`变为 100/5=20。
     - 请注意：记分板的值不允许小数，所以**计算得到的小数将会全部向零取整**。例如，如果是 48/5=9.6 ，那么最终得到的结果就是 9。
     - 我们在小学时就学过，除数不能为 0。但是，在基岩版中，除以 0 并不会报错，而是不计算，什么也不会发生。
 
-    ![player_operation_6](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_6.png)
+    ![player_operation_6](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_6.webp)
 
 - `%=`进行的操作是`obj1.name1%=obj2.name2`，也就是将左除以右的模赋给左边。在这个例子中，执行命令 6 后就是`data.x%=data.y`，所以`data.x`变为 100/5=20……0 的 0。
     - 如果你忘记了模是什么的话，定义 x÷y=a……b 的 b 为模。例如，48÷5=9……3，那么这里的模就是 3。
     - 和`/=`类似，除以 0 则什么也不会发生。
 
-    ![player_operation_7](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_7.png)
+    ![player_operation_7](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_7.webp)
 
 ### 比较并赋值
 
@@ -342,13 +342,13 @@ _备注：如果你不知道[1,100]是什么意思，它代表 1≤`data.test`�
 
 我们看到，在这个实验中，执行命令 1 后看似什么也没有发生？
 
-![player_operation_8](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_8.png)
+![player_operation_8](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_8.webp)
 
 其实不然。实际上，`>`进行的操作是**两值取大赋给左边**，即`obj1.name1=max(obj1.name1,obj2.name2)`，这里的`max(a,b)`是返回 a 和 b 中的最大值，常用于数学和计算机领域。所以，在上面的例子中，执行命令 1 之后，先对`data.x`和`data.y`进行比较，发现 100>5，所以把 100 赋给`data.x`。
 
 同样，`<`进行的操作是**两值取小赋给左边**，即`obj1.name1=min(obj1.name1,obj2.name2)`，这里的`min(a,b)`是返回 a 和 b 中的最小值。在上面的例子中，执行命令 2 之后，对`data.x`和`data.y`比较，因为 100>5，所以取较小值 5 赋给`data.x`。
 
-![player_operation_9](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_9.png)
+![player_operation_9](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_9.webp)
 
 ### 对调分数
 
@@ -368,7 +368,7 @@ _备注：如果你不知道[1,100]是什么意思，它代表 1≤`data.test`�
 
 这条命令的含义，则是相当清晰的，简单地对调分数。它也是唯一一个能影响右边分数`obj2.name2`的操作。
 
-![player_operation_10](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_10.png)
+![player_operation_10](/img/tutorials/a1_commands/b2_commands/c4_tag_and_scoreboard/player_operation_10.webp)
 
 ---
 

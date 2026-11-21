@@ -32,7 +32,7 @@ import FileType from "/src/components/type/file"
 
 **这两个文件夹，就是游戏存储数据的文件夹**。现在，我们来看看这个文件夹里面都有哪些内容吧！
 
-![com_mojang_3](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/com_mojang_3.png)
+![com_mojang_3](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/com_mojang_3.webp)
 
 先指出一点就是，在本教程中，谈文件路径也是很重要的一环。我们用记号<FileType type="folder"/>代表文件夹，用<FileType type="file"/>代表一般文件，用<FileType type="image"/>表示图像，用<FileType type="music"/>表示音乐。相比于 JSON 数据格式的记号来说，这种图案的表示应该是很清晰直观的。
 
@@ -216,7 +216,7 @@ import FileType from "/src/components/type/file"
 
 如果你没有的话，这里有一个我们绘制的小图片可供你使用，你可以右键保存该图片并应用到你的附加包中。
 
-<img src="/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/pack_icon.png" alt="pack_icon" style={{height:"64px",width:"64px"}}></img>
+<img src="/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/pack_icon.webp" alt="pack_icon" style={{height:"64px",width:"64px"}}></img>
 
 添加了图标文件之后，就会显示正常啦。
 

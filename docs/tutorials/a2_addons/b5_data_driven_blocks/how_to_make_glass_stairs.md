@@ -414,7 +414,7 @@ import ImageGroup from "/src/components/image/group"
 
 现在，你的模型结构应该如图所示：
 
-<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_4.png" text="模型结构" size="30%"/>
+<Image src="/img/tutorials/a2_addons/b5_data_driven_blocks/how_to_make_glass_stairs/corner_4.webp" text="模型结构" size="30%"/>
 
 我们来做面剔除工作。`inner_left`骨骼和`inner_right`在南方有接触；和`outer_left`在东方有接触、和`bottom_1`在底部有接触。这样：
 

@@ -93,7 +93,7 @@ BDS 的服务端软件可以在 Wiki 各个版本简介窗口下面下载到。
 
 下图是 BDS 在 Windows Server 2025 上运行的窗口。
 
-![bds_2](/img/tutorials/a1_commands/b2_commands/c10_server_cmds/bds_2.png)
+![bds_2](/img/tutorials/a1_commands/b2_commands/c10_server_cmds/bds_2.webp)
 
 BDS 实际上是开启了一个 Minecraft 的服务端，这样其他玩家就都能够通过和这个服务器联络以进行游戏。通常来说，服主们都是自行购买各大厂家的服务器面板，通过厂家提供的地址和端口让玩家连接，从而进入服务器的。这些服务器面板通常价格高昂，而且操作门槛也很高，因此对于普通玩家，应谨慎考虑购入服务器的事情。
 

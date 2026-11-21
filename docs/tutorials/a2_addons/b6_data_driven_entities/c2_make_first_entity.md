@@ -82,7 +82,7 @@ import Image from "/src/components/image/standard"
 
 这里，我们还指定了实体是可生成的（Is Spawnable），规定该参数为`true`之后可以使游戏自动注册一个对应的刷怪蛋。
 
-![is_spawnable_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/is_spawnable_1.png)
+![is_spawnable_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/is_spawnable_1.webp)
 
 ### 资源包：客户端实体定义
 
@@ -968,7 +968,7 @@ execute as @e[family=monster] run say 我是怪物！
 
 有，**那就是本站** \<(UwU)>！不得不说，2026 年确实是 AI 的大年，我们用官方给出的 schema、[微软的官方文档](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/?view=minecraft-bedrock-stable)和 [bedrock.dev](https://bedrock.dev/)，经过多方交叉验证和疯狂的燃烧 Token 之后得到了本站的实体文档，而且还支持接口速查！还请读到这里的读者[给孩子的 GitHub 一个免费的 star](https://github.com/YZBWDLT/mcdevdoc) 吧，谢谢各位了 qwq
 
-![doc_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/doc_1.png)
+![doc_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/doc_1.webp)
 
 :::note[扩展：什么是 schema？]
 

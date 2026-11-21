@@ -581,9 +581,9 @@ import Image from "/src/components/image/standard"
     因为我们要编辑的是侧面的贴图，我们对台阶做进一步的材质贴图实例编辑，将东西南北面均定义为`side`，这样我们就可以在[`minecraft:geometry`](/docs/docs/blocks/components#minecraftgeometry)组件中直接定义为`side`面，确认后按下<kbd>Ctrl</kbd> + <kbd>S</kbd>保存模型：
 
     ![practice_5](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_5.webp)  
-    ![practice_6](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_6.png)
+    ![practice_6](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/practice_6.webp)
 
-    我们来根据玻璃的贴图绘制一个新的贴图（参考贴图在这里 ![glass_slab_side](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/glass_slab_side.png)），在<FileType type="file" name="terrain_texture.json"/>定义为`glass_slab_side`后，更改行为包定义如下，再大退重进即可：
+    我们来根据玻璃的贴图绘制一个新的贴图（参考贴图在这里 ![glass_slab_side](/img/tutorials/a2_addons/b5_data_driven_blocks/c4_block_models/glass_slab_side.webp)），在<FileType type="file" name="terrain_texture.json"/>定义为`glass_slab_side`后，更改行为包定义如下，再大退重进即可：
 
     ```json title="BP_test/blocks/test/glass_slab.block.json 行为包定义" showLineNumbers {17-20}
     {

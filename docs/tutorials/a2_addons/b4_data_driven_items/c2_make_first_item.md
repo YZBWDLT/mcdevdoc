@@ -113,13 +113,13 @@ import FileType from "/src/components/type/file"
 
 这两行的内容就不是必需项了。我们先来关注第 7 行的<DataType type="string" name="category"/>，它可以定义的内容其实就是下图中的这 4 个标签页：
 
-![category_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/category_1.png)
+![category_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/category_1.webp)
 
 是不是“这下看懂了”？这些标签页的标准译名叫做**创造分类（Creative Category）**，一共有 4 种。第一个分类叫建筑`construction`，第二个分类叫装备`equipment`，第三个分类叫物品`items`，第四个分类叫自然`nature`。以后凡是说到创造分类，指的都是这四个小东西。在第 7 行指定的`items`，就是把物品放到第 3 个分类中了。
 
 回到第 6 行的<DataType type="object" name="menu_category"/>，其实它还支持两个参数，第一个是<DataType type="string" name="group"/>：它定义了物品会被折叠到哪个物品组里。所谓物品组，其实就是下面这个东西：
 
-![item_group_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/item_group_1.png)
+![item_group_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/item_group_1.webp)
 
 恍然大悟了吧？只是它可以填写的内容看起来有点玄学，读者可以在我们[提供的文档](/docs/docs/items/item_category_and_group#原版使用的物品组)中查看它的可选字段，例如如果指定了`"group":"itemGroup.name.sword"`就会把物品折叠到剑这个物品组里。至于<DataType type="boolean" name="is_hidden_in_commands"/>，这个是好理解的，它可以规定物品是否隐藏在命令中，就像命令方块一样，默认情况下都是不隐藏的。
 
@@ -196,7 +196,7 @@ import FileType from "/src/components/type/file"
 此时读者可以试试进入游戏，我们看到不仅贴图没有成功显示，而且显示的名字也是“乱码”：
 
 ![error_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/error_1.webp)  
-![error_2](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/error_2.png)
+![error_2](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/error_2.webp)
 
 我们看到，因为这里已经变成了贴图和翻译问题，所以从现在开始，我们要开始捣鼓资源包了。让我们现在开始转换思路和战场，搞定物品显示的问题吧！
 
@@ -228,7 +228,7 @@ import FileType from "/src/components/type/file"
 
 贴图问题，本教程就不再过多赘述，相关问题已在第 3 章谈过，我们只需要用 bb（Blockbench）画图就行了。这里给出从 Wiki 相关界面下载并改造后的贴图：
 
-![ruby](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/ruby.png)
+![ruby](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/ruby.webp)
 
 需要的读者可以自行下载去。然后把贴图放到对应位置，也就是：
 
@@ -264,7 +264,7 @@ item.test:ruby=红宝石
 
 至此，我们已完成了添加物品的全部流程，现在进入游戏看一看吧！
 
-![first_item_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/first_item_1.png)
+![first_item_1](/img/tutorials/a2_addons/b4_data_driven_items/c2_make_first_item/first_item_1.webp)
 
 赞！这就是我们做的第一个物品了！还满意吗？:) 如果你感觉好像不知道怎么就实现自定义物品了，记得再看看我们的总结并且多做练习！
 

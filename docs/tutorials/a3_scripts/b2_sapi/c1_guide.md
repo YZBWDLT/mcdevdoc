@@ -203,7 +203,7 @@ world.afterEvents.itemUse.subscribe(event => {});
 
 借助自动补全，我们同样可以看`event`有哪些可访问的属性：
 
-![first_program_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/first_program_2.png)
+![first_program_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/first_program_2.webp)
 
 可以看到，我们可以访问`itemStack`，也就是使用的物品的信息；同时也可以获取`source`，获取使用者的信息。我们来写代码：
 
@@ -253,7 +253,7 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {});
 
 我们来看看这个事件有什么可以指定的：
 
-![before_events_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_2.png)
+![before_events_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/before_events_2.webp)
 
 看起来，可以获取的有：方块信息`block`、是否取消这个事件`cancel`、维度信息`dimension`、破坏方块使用的物品`itemStack`，以及破坏方块的玩家`player`。我们正是需要`cancel`属性！所以，直接把`cancel`指定为`true`：
 
@@ -387,7 +387,7 @@ world.afterEvents.worldLoad.subscribe(event => {
 });
 ```
 
-![early_execution_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/early_execution_2.png)
+![early_execution_2](/img/tutorials/a3_scripts/b2_guide/c1_sapi/early_execution_2.webp)
 
 ## 编写循环逻辑
 
