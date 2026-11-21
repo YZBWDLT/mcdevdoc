@@ -43,24 +43,28 @@
     size-adjust: 120%;
 }
 
+/* 下面三个字体是「子集字库」：只含本站实际用到的两千多个字符，
+   体积从 10 MB 压到 670 KB。源文件在 assets/fonts-src/，
+   新增文档用到了新字时跑一次 `python scripts/subset_fonts.py` 重新生成。 */
+
 /* NotoSans 粗体（用于中文回退及部分标题） */
 @font-face {
     font-family: "NotoSans Bold";
-    src: url("/fonts/NotoSans-Bold.ttf") format("truetype");
+    src: url("/fonts/NotoSans-Bold-subset.woff2") format("woff2");
     font-display: swap;
 }
 
 /* MiSans 常规体（小米字体，适合现代中文显示） */
 @font-face {
     font-family: "MiSans";
-    src: url("/fonts/misans_normal.woff2") format("woff2");
+    src: url("/fonts/misans_normal-subset.woff2") format("woff2");
     font-display: swap;
 }
 
 /* MiSans 粗体 */
 @font-face {
     font-family: "MiSans Bold";
-    src: url("/fonts/misans_bold.woff2") format("woff2");
+    src: url("/fonts/misans_bold-subset.woff2") format("woff2");
     font-display: swap;
 }
 

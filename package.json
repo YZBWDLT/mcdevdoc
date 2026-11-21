@@ -11,7 +11,10 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "fonts:subset": "python scripts/subset_fonts.py",
+    "fonts:check": "python scripts/subset_fonts.py --check",
+    "images:optimize": "python scripts/optimize_images.py"
   },
   "dependencies": {
     "@docusaurus/core": "^3.10.2",
@@ -26,6 +29,7 @@
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
+    "@docusaurus/faster": "^3.10.2",
     "@docusaurus/module-type-aliases": "^3.10.2",
     "@docusaurus/types": "^3.10.2"
   },

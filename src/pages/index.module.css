@@ -174,8 +174,11 @@
   position: absolute;
   inset: -10px; /* 比屏略大一点，模糊后的羽化边被裁掉 */
   z-index: 0;
-  background-position: center;
-  background-size: cover;
+  display: block;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  object-fit: cover;
+  object-position: center;
   pointer-events: none;
   filter: brightness(0.45) saturate(0.8);
 }

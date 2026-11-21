@@ -189,7 +189,7 @@ _~btw，这里我加上了 Prizma 2.2 的光影特效——我真的很喜欢它
 
 显然这不是我们想要的效果。为了让实体拥有正常的行为，显然我们要做的第一件事情是为实体添加一个物理效果。
 
-按理来说，现在是我们翻阅实体组件列表的时候了。但是对于实体，我们没有必要这么做——因为读者可以看一看[实体的组件](/docs/docs/entities/components)有多少，一眼望过去根本看不完（事实上在本文成稿时，文档页面仍然没有施工完毕，组件太多了，根本整理不完）！事实上，实体的组件要远比物品和方块复杂的多，因为数据驱动实体的发展也远远要比物品和方块早的多。
+按理来说，现在是我们翻阅实体组件列表的时候了。但是对于实体，我们没有必要这么做——因为读者可以看一看[实体的组件](/docs/docs/entities/components)有多少，一眼望过去根本看不完！事实上，实体的组件要远比物品和方块复杂的多，因为数据驱动实体的发展也远远要比物品和方块早的多。
 
 :::note[扩展：数据驱动实体的发展]
 
@@ -257,7 +257,7 @@ _*可能有一些好奇宝宝要问：这不是抄袭吗？这话说的，我们
 - `minecraft:knockback_resistance`：定义了盔甲架的击退抗性。这里定义为了`1.0`，代表最大的击退抗性，这也就是为什么你打盔甲架不会被击退。
 - `minecraft:loot`：定义了盔甲架的战利品表。考虑到我们现在还没有正式学习战利品表，让我们先跳过这个组件。
 - `minecraft:nameable`：定义盔甲架可用命名牌重命名。事实上这个组件还可以决定实体的名称是否常显示，而不必仅仅在准星对准实体时才显示名字。
-- `minecraft:persistent`：定义盔甲架不会被“刷新掉”——或者更严谨地说，定义实体的持久性，不会随着玩家距离变远而自然消失。有关自然消失的定义，我们曾经在讲到`/tickingarea`时有提及过，这里我们就不再过多解释。如果没有这个组件，你在外面冒险完回家后就会惊奇的发现你的盔甲架全部消失了！
+- `minecraft:persistent`：定义盔甲架不会被“刷新掉”——或者更严谨地说，定义实体的持久性，不会随着玩家距离变远而自然消失。有关自然消失的定义，我们曾经[在讲到`/tickingarea`时有提及过](/docs/tutorials/a1_commands/b2_commands/c5_world_cmds#更改世界常加载区域的命令tickingarea)，这里我们就不再过多解释。如果没有这个组件，你在外面冒险完回家后就会惊奇的发现你的盔甲架全部消失了！
 - `minecraft:physics`：定义实体的物理属性，主要包括会和方块碰撞、以及会受到重力作用。
 - `minecraft:pushable`：定义实体可被推动。结合内容，这里主要是可被其他实体和可被玩家推动。不过，读者需要注意——这个组件在更高的版本已被拆分，读者需要了解一下更高版本使用的组件。
 - `minecraft:type_family`：定义实体的家族。有关家族的问题，我们在下文就会详细介绍。
@@ -791,7 +791,7 @@ _*可能有一些好奇宝宝要问：这不是抄袭吗？这话说的，我们
 
 而后面的寻路组件`minecraft:navigation.walk`则**允许实体生成一条通往目的地的路径，并引导实体按这个路径走下去**，也就是我们所说的**寻路**。这里的`.walk`显然是允许实体通过走路步行的方式到达目的地。如果你在前面使用了`minecraft:movement.fly`，那就可以让实体使用`minecraft:navigation.fly`寻路方法；如果使用了`minecraft:movement.sway`，则可以使用`minecraft:navigation.swim`，以此类推。
 
-上面的苦力怕的例子中，它就允许了实体可以穿过水直接到达你附近。至于`using_door_annotation`……这个目前文档没有记载，所以我们就先跳过去吧 =P
+上面的苦力怕的例子中，它就允许了实体可以穿过水直接到达你附近。至于`using_door_annotation`……这个目前解释起来还很复杂，所以我们就先跳过去吧 =P
 
 通常来说，寻路组件和运动组件是一一对应的，但具体什么时候该用什么组件，还是要取决于你的需求。
 
@@ -950,12 +950,120 @@ _*可能有一些好奇宝宝要问：这不是抄袭吗？这话说的，我们
 
 考虑到实体的组件实在过多，要求读者一次性全部学会所有组件其实是不太现实的。因此，我们在我们的文档中优先整理了一些[基础属性组件](/docs/docs/entities/components/attributes)，请读者在组件列表中学习。而在使用其他组件时，则可以考虑参考原版实体的功能。
 
-对于家族（Family）这个概念，我们则需要额外强调。通过基础属性组件列表，我们知道我们可以通过`minecraft:type_family`规定实体的家族类型。然而，在命令中，我们却有一点没有介绍过——family 目标选择器参数！是的，我们之所以现在才讲这个参数正是为此。
+对于家族（Family）这个概念，我们则需要额外补充一下。通过基础属性组件列表，我们知道我们可以通过`minecraft:type_family`规定实体的家族类型。然而，在命令中，我们却有一点没有介绍过——family 目标选择器参数！是的，我们之所以现在才讲这个参数正是为此。
 
-我们可以通过这个选择器参数选中所有带有同一个家族属性的实体，例如令所有怪物执行命令：
+我们可以通过这个选择器参数选中所有带有同一个家族属性的实体，例如令带有`monster`家族的生物执行命令：
 
 ```
 execute as @e[family=monster] run say 我是怪物！
 ```
 
+注意到原版多数怪物都使用了`minecraft:type_family`定义了`monster`家族，因此这条命令对多数怪物确实是有用的。
+
 ## 常见文档
+
+在很多情况下，读者仍然需要一份可靠的文档来解决自己的需求。那么现在全网有没有靠谱的文档呢？
+
+### 本站
+
+有，**那就是本站** \<(UwU)>！不得不说，2026 年确实是 AI 的大年，我们用官方给出的 schema、[微软的官方文档](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/entityreference/?view=minecraft-bedrock-stable)和 [bedrock.dev](https://bedrock.dev/)，经过多方交叉验证和疯狂的燃烧 Token 之后得到了本站的实体文档，而且还支持接口速查！还请读到这里的读者[给孩子的 GitHub 一个免费的 star](https://github.com/YZBWDLT/mcdevdoc) 吧，谢谢各位了 qwq
+
+![doc_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/doc_1.png)
+
+:::note[扩展：什么是 schema？]
+
+Schema 在 Minecraft 基岩版附加包的应用其实挺多的。我们在下载了附加包模板之后，会发现有一个<FileType type="folder" name="metadata"/>，这里就存着大量的 schema。
+
+简而言之，schema 是一种「描述另一种数据格式」的数据。例如，下面的 schema 就规定了`minecraft:scale_by_age`组件的格式：
+
+```json showLineNumbers title="minecraft_scale_by_age.json"
+{
+    "$id": "/server/entity/1.26.60/minecraft_scale_by_age.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "description": "Defines the entity's size interpolation based on the entity's age.",
+    "properties": {
+        "end_scale": {
+            "default": 1,
+            "description": "Ending scale of the entity when it's fully grown.",
+            "type": "number",
+            "x-ordinal-index": 1,
+            "x-underlying-type": "float"
+        },
+        "start_scale": {
+            "default": 1,
+            "description": "Initial scale of the newborn entity.",
+            "type": "number",
+            "x-ordinal-index": 0,
+            "x-underlying-type": "float"
+        }
+    },
+    "title": "minecraft:scale_by_age",
+    "type": "object",
+    "x-format-version": "1.26.60"
+}
+```
+
+读者可以看到，schema 把`minecraft:scale_by_age`的数据格式要求声明得十分严谨且详细。由于 schema 相比于官方的文档更加严谨（对，官方文档并不严谨，甚至经常出错），因此它也是本站编写文档的首要依据。也正因如此，我们不要求读者能够看得懂 schema，甚至连笔者自己都不一定能看得懂 schema，因为多数情况下本站的文档已足够使用。
+
+schema 不仅仅在 Minecraft 中有所应用，在其他需要编程领域中也都有应用。
+
+:::
+
+考虑到本站的风格在读者写数驱方块和数驱物品时就已了解，对于我们文档的数驱实体的文档就不再过多介绍了。我们来介绍一些其他文档。
+
+### Microsoft Learn（微软文档）
+
+即便读者能够看出笔者并不喜欢微软文档，因为它有时候存在不少的拼写错误、或者参数缺漏的问题，然而它至今仍然且必须是 Minecraft 基岩版开发者的一个重要信源，它也是许多其他文档的重要信源。曾经在讲数驱物品时我们就曾介绍过微软文档的查阅方法，这里我们也不再过多强调了。
+
+### Bedrock Wiki
+
+Bedrock Wiki 作为社区的一个有高度影响力的文档，在实体文档上却没有十分详细的记载。理由很简单——条目太多了！
+
+必须要承认，面对现在的 400 多个实体组件，要整理起来难度是极大的。
+
+不过，读者可以在上面找到不少十分有用的教程。有趣的是，显然因为 Bedrock Wiki 的使用者们被微软文档的`minecraft:projectile`组件的粗略介绍恶心到了，他们甚至专门开了个[弹射物 - Bedrock Wiki](https://wiki.bedrock.dev/entities/projectiles) 的页面。这是一个特别大的组件，在下面的习题中读者将能够看到这一点。
+
+### bedrock.dev
+
+[bedrock.dev](https://bedrock.dev/) 则记录了曾经 Mojang 提供过的文档。本站的一些参数的更新日志细节就是参考了 Mojang 的过往文档。然而，这篇文档同样展现出严重的参数缺漏的问题，所以仅供参考。
+
+不过，无论读者选用何种文档，最重要且最权威的永远是在游戏内的实测效果。
+
+## 总结
+
+现在让我们对本节介绍的内容进行一个总结。
+
+我们介绍了数据驱动实体的基本定义格式，它和数据驱动物品方块还是很类似的，都是使用组件进行数据驱动。不同点在于：
+
+1. 描述内的内容有所不同，我们可以单独定义能否生成、能否召唤一个实体。
+2. 实体和物品方块不同，存在单独的客户端（资源包）实体定义，而且这个定义还是稍微有些复杂的。
+3. 因为原版实体并不是纯数据驱动，有些功能是硬编码的。因此要使用这些硬编码功能，需要使用运行时 ID。
+
+对于实体来说，超过 400 个的组件足够使任何初学者在一开始便望而生畏。因此，我们这里还介绍了通过查看实例学习实体写法的方法，因为并不是所有组件都是那么有用的，甚至可以说有些组件十分地无用。事实上，这种学实例的方法是非常常用的，而且在其他领域也是普遍适用的。
+
+至于组件，我们其实有很多类别的实体组件。除了普通的功能性组件之外，一些比较常见的组件包括专门控制实体运动和寻路的组件，它们总是以`minecraft:movement.`和`minecraft:navigation.`开头。此外，还有一些 AI 意向的组件，则总是以`minecraft:behavior.`开头，每个 AI 意向组件都支持优先级，并且优先级的设定有时会对实体的运行效果造成关键影响。
+
+## 练习
+
+:::info[练习 6.1]
+
+练习时间！我们要求读者至少要清楚地掌握我们在[基础属性组件](/docs/docs/entities/components/attributes)页面中列出的组件的用途，并且能够学会从原版实例中取出我们想要的效果的方法。
+
+应该强调的是，目前我们能做的东西确实仍然十分有限，但已足够我们做不少事情了！
+
+1. 自定义一种新的 NPC `test:custom_npc_1`，和我们在正文中定义的自定义 NPC 完全一致，唯一的不同点在于——让它在日光下燃烧起来！
+2. 自定义一种新的 NPC `test:custom_npc_2`，同样地，为它添加一个名称常显示的功能，就像玩家的名字那样，可以穿墙常显示。
+3. 让我们关注 Java 版一种独有的实体[标记](https://zh.minecraft.wiki/w/%E6%A0%87%E8%AE%B0)。它专门为替代盔甲架而生，具有许多良好的性质：无重力、无碰撞、无渲染、无法受伤，是替代盔甲架的良好选择。请试实现一个标记实体`test:marker`。  
+   注意：如果读者不知道该怎么取消实体的渲染，可以调用一个完全透明的*~棍母~*贴图——这应该是没有任何难度的。至于无法受伤的功能如何实现，请见[`minecraft:damage_sensor`组件](/docs/docs/entities/components/sensors#minecraftdamage_sensor)。
+4. 把第 3 题写出的标记实体完全复制一遍，把 ID 改名为`test:text_display`，并应用第 2 题中应用的组件。当当，你实现了[文本展示实体](https://zh.minecraft.wiki/w/%E5%B1%95%E7%A4%BA%E5%AE%9E%E4%BD%93)（通常也称悬浮文本）！读者可以用一段任意的命令尝试悬浮文本的效果：
+    ```
+    summon test:text_display "测试用悬浮文本" ~~~
+    ```
+5. 同样地，让我们基于标记实体新增一个`test:custom_bossbar`。你应该猜到我要说什么了——实现一个可自定义名称的 Boss 栏！注意加上可命名组件。
+6. （国际版独占）现在请添加一个`test:custom_npc_3`，应用[`minecraft:npc`组件](/docs/docs/entities/components/functional#minecraftnpc)，你会立刻看到我们自定义的实体也可以使用 NPC 的对话框！
+7. 让我们现在实现一个飞刀`test:knife`。这需要读者定义一个飞刀物品和一个飞刀实体。
+    1. 首先定义一个飞刀物品`test:knife`，并使其能够投掷出飞刀实体`test:knife`。
+    2. 然后定义一个飞刀实体`test:knife`，读者可以参考雪球的行为包定义和箭的资源包定义。当然，读者也可以查看[`minecraft:projectile`组件](/docs/docs/entities/components/functional#minecraftprojectile)的文档，当然，要做好心理准备。
+8. 现在请魔改牛的行为包定义，让它会在默认条件下攻击猪。提示，相关的组件请在`components`中修改——我们现在先不要考虑`component_group`或者`events`之类的东西，我们还没有学过。
+
+:::

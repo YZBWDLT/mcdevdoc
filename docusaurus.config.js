@@ -58,6 +58,38 @@ const config = {
             tagName: "meta",
             attributes: { name: "darkreader-lock" },
         },
+        // 首屏文字用到的三个字体提前取，别等 CSS 解析完才发现它们。
+        // 文件都是子集版，三个加起来约 62 KB；MiSans 是兜底，不预加载。
+        {
+            tagName: "link",
+            attributes: {
+                rel: "preload",
+                href: "/fonts/NotoSans-Bold-subset.woff2",
+                as: "font",
+                type: "font/woff2",
+                crossorigin: "anonymous",
+            },
+        },
+        {
+            tagName: "link",
+            attributes: {
+                rel: "preload",
+                href: "/fonts/Minecraft-Ten.otf",
+                as: "font",
+                type: "font/otf",
+                crossorigin: "anonymous",
+            },
+        },
+        {
+            tagName: "link",
+            attributes: {
+                rel: "preload",
+                href: "/fonts/Minecraft-Seven.otf",
+                as: "font",
+                type: "font/otf",
+                crossorigin: "anonymous",
+            },
+        },
     ],
 
     // Even if you don't use internationalization, you can use this field to set
@@ -66,6 +98,25 @@ const config = {
     i18n: {
         defaultLocale: "zh-Hans",
         locales: ["zh-Hans"],
+    },
+
+    /* 构建加速，来自 @docusaurus/faster。
+       swcJsMinimizer：用 SWC 换掉 Terser。压缩 24 MB JS 这一项原本要 80 秒。
+       ssgWorkerThreads：把四百多页的静态渲染摊给多核，必须同时开 v4 那个开关。
+       rspackBundler：整个打包器换成 rspack，冷构建从 2m29 降到 1m03。 */
+    future: {
+        // 页面的「最后更新」默认走 ad-hoc 模式：每篇文档 spawn 一次 git log，411 篇 27 秒。
+        // eager 模式一次性读完整个仓库的历史再查表，只留一次调用。
+        experimental_vcs: "git-eager",
+        faster: {
+            swcJsMinimizer: true,
+            ssgWorkerThreads: true,
+            rspackBundler: true,
+            rspackPersistentCache: true,
+        },
+        v4: {
+            removeLegacyPostBuildHeadAttribute: true,
+        },
     },
 
     // 本地插件：把最新一期「文档更新日志」抽成全局数据，供首页「最近更新」区块使用。
@@ -84,6 +135,7 @@ const config = {
                 docs: {
                     sidebarPath: "./sidebars.js",
                     editUrl: "https://github.com/YZBWDLT/mcdevdoc/tree/main/",
+                    // 每篇都要跑一次 git log：411 篇实测 27 秒，是构建里最大的一笔固定开销。
                     showLastUpdateTime: true,
                 },
                 blog: {

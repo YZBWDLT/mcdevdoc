@@ -725,7 +725,7 @@ export default function QuickReference() {
 
     return (
         <Layout title="接口速查" description="按名称查询命令、数据驱动组件、实体事件、过滤器与脚本接口。">
-            <div className="page">
+            <div className="page" role="main">
                 <h1 className="page__title">接口速查</h1>
                 <p className="page__intro">
                     在这里快速查询命令、数据驱动物品方块实体接口和脚本接口，支持模糊匹配，支持中文搜索相关接口。

@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import Head from "@docusaurus/Head";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useGlobalData from "@docusaurus/useGlobalData";
 import Layout from "@theme/Layout";
@@ -565,13 +566,23 @@ function useDeck(sectionCount) {
  * - `cover` / `tone`：背景图与压暗强度（plain / soft / blur / code）
  * - `overlay`：挂在屏内、但不参与内容排版的浮层（例如首屏的「向下滚动」提示）。
  *   必须放在 sectionInner 之外，否则会以内容块为定位基准、跑不到屏幕底部。
+ * - `priority`：首屏传 true。封面用 <img> 而不是 background-image，
+ *   这样预加载扫描器能发现它，也能带上 fetchpriority，LCP 不用等 CSS 解析完。
  */
-function Section({ active, children, className = "", cover, tone = "plain", overlay }) {
+function Section({ active, children, className = "", cover, tone = "plain", overlay, priority = false }) {
     return (
         <section className={`${styles.section} ${className}`} data-deck-section data-active={active}>
             {cover ? (
                 <>
-                    <div className={styles.cover} data-tone={tone} style={{ backgroundImage: `url(${cover})` }} aria-hidden="true" />
+                    <img
+                        className={styles.cover}
+                        data-tone={tone}
+                        src={cover}
+                        alt=""
+                        aria-hidden="true"
+                        loading={priority ? "eager" : "lazy"}
+                        fetchPriority={priority ? "high" : "auto"}
+                    />
                     <div className={styles.scrim} aria-hidden="true" />
                 </>
             ) : undefined}
@@ -628,6 +639,7 @@ function HeroSection({ active, title, tagline, total, tutorialCount }) {
             active={active}
             className={styles.sectionHero}
             cover={COVERS.hero}
+            priority
             overlay={
                 <div className={styles.scrollHint} aria-hidden="true">
                     <span>向下滚动</span>
@@ -983,10 +995,15 @@ export default function Home() {
 
     return (
         <Layout title="主页" description={siteConfig.tagline} noFooter>
+            {/* 首屏封面是 LCP 元素，提前声明能省掉「等 HTML 解析到 img 才发现」的那段延迟 */}
+            <Head>
+                <link rel="preload" as="image" href={COVERS.hero} fetchPriority="high" />
+            </Head>
             <div
                 className={styles.deck}
                 ref={containerRef}
                 data-motion={motionReduced ? "reduced" : undefined}
+                role="main"
             >
                 <HeroSection
                     active={active === SECTION_INDEX.hero}
