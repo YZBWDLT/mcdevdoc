@@ -5,6 +5,7 @@
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
 import { themes as prismThemes } from "prism-react-renderer";
+import fs from "node:fs";
 import { beianHtml } from "./src/data/beian.js";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -13,6 +14,10 @@ import { beianHtml } from "./src/data/beian.js";
 // 「The search index is only available when you run docusaurus build」，
 // 既不能搜也不好看，所以干脆不加载；要看搜索效果就跑 `npx docusaurus serve`。
 const isProduction = process.env.NODE_ENV === "production";
+
+// git-eager 一次读完仓库历史，比逐篇 spawn 快得多；但它要求构建目录在 Git 工作树里，
+// 否则读取最后更新时间时直接抛错。托管平台的构建环境不一定带 .git，没有就退回默认策略。
+const hasGitWorktree = fs.existsSync(".git");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -102,15 +107,16 @@ const config = {
 
     /* 构建加速，来自 @docusaurus/faster。
        swcJsMinimizer：用 SWC 换掉 Terser。压缩 24 MB JS 这一项原本要 80 秒。
-       ssgWorkerThreads：把四百多页的静态渲染摊给多核，必须同时开 v4 那个开关。
-       rspackBundler：整个打包器换成 rspack，冷构建从 2m29 降到 1m03。 */
+       rspackBundler：整个打包器换成 rspack，冷构建从 2m29 降到 1m03。
+       ssgWorkerThreads 不开 —— EdgeOne 的 4 核构建机上，worker 线程跑完 Server
+       编译后就不再输出、最后被平台杀掉（exit code null）。串行渲染只慢十几秒，
+       换来的是能稳定构建。 */
     future: {
         // 页面的「最后更新」默认走 ad-hoc 模式：每篇文档 spawn 一次 git log，411 篇 27 秒。
         // eager 模式一次性读完整个仓库的历史再查表，只留一次调用。
-        experimental_vcs: "git-eager",
+        experimental_vcs: hasGitWorktree ? "git-eager" : "default-v1",
         faster: {
             swcJsMinimizer: true,
-            ssgWorkerThreads: true,
             rspackBundler: true,
             rspackPersistentCache: true,
         },
