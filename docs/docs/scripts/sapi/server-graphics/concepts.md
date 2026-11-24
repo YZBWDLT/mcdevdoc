@@ -6,10 +6,9 @@ sidebar_position: 2
 
 import Button from '/src/components/button/base';
 
-
 import Version from "/src/components/highlight/version"
 
-本文记录各组件的通用设置写法。获取组件的函数见[获取组件](./main)，模块本身的说明见 [ScriptAPI 简述](../overview)。
+本文记录各组件的通用设置写法。获取组件的函数见[获取组件](./main)，模块本身的说明见 [ScriptAPI 概述](../overview)。
 
 这些设置只影响 Vibrant Visuals 开启后的渲染效果，关闭时不会生效。
 

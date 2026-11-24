@@ -1111,7 +1111,7 @@ Bedrock Wiki 作为社区的一个有高度影响力的文档，在实体文档�
     ```
 
     最终效果：
-    ![practice_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_1.png)
+    ![practice_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_1.webp)
 
 2. 这里，我们应用[`minecraft:nameable`组件](/docs/docs/entities/components/attributes#minecraftnameable)，并利用`always_show`常显示名字。原版中玩家的定义文件就是这么做的。
 
@@ -1144,7 +1144,7 @@ Bedrock Wiki 作为社区的一个有高度影响力的文档，在实体文档�
     ```
 
     注意此时准星未对准 NPC，然而其名字仍然可以正常显示。  
-    ![practice_2](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_2.png)
+    ![practice_2](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_2.webp)
 
 3. 结合我们给出的基础属性组件和[`minecraft:damage_sensor`组件](/docs/docs/entities/components/sensors#minecraftdamage_sensor)，就可以得到我们要的标记实体了。这里，读者可以看到我们除了题干要求的组件之外，我们这里还多引用了一些，比如`minecraft:persistent`用于防止自然消失、`minecraft:nameable`用于可命名（这样有些命令调用起来会十分的方便）、`minecraft:type_family`用于指定实体的家族，而`minecraft:pushable`用于取消实体的可推动属性。
 
@@ -1186,7 +1186,7 @@ Bedrock Wiki 作为社区的一个有高度影响力的文档，在实体文档�
     ```
 
     使用`/summon`命令生成一个标记实体，我们看不到它，这是正常的，说明这正符合我们的预期：  
-    ![practice_3a](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_3a.png)
+    ![practice_3a](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_3a.webp)
 
     我们使用
 
@@ -1195,7 +1195,7 @@ Bedrock Wiki 作为社区的一个有高度影响力的文档，在实体文档�
     ```
 
     便可以让标记实体在其位置显示出粒子来，以证明这里确实存在实体：  
-    ![practice_3b](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_3b.png)
+    ![practice_3b](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_3b.webp)
 
 4. 行为包定义上，把第 3 题中的`marker`改成`text_display`，并指定为常显示名称即可。
 
@@ -1246,7 +1246,7 @@ Bedrock Wiki 作为社区的一个有高度影响力的文档，在实体文档�
 
     我们可以得到这样的效果。虽然使用这种方法得到的文本展示实体强制穿墙、强制跟随相机视角、大小固定、背景固定，和 Java 版的文本展示实体并没有可比性，但在不使用脚本的情况下，这已几乎是我们能得到最好的效果，但未来我们会学习脚本构造文本展示的方法，其功能就要比这强大的多了。
 
-    ![practice_4](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_4.png)
+    ![practice_4](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_4.webp)
 
 5. 行为包定义上，我们仍然基于第 3 题的标记实体，把第 3 题中的`marker`改成`bossbar_display`，然后加上以下高亮的组件即可：
 
@@ -1283,7 +1283,7 @@ Bedrock Wiki 作为社区的一个有高度影响力的文档，在实体文档�
 
     可以看到效果是很好的，在没有`/bossbar`的情况下，这已是我们能在基岩版复原的比较好的效果了。
 
-    ![practice_5a](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_5a.png)
+    ![practice_5a](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_5a.webp)
 
     为了便于我们控制实体的血量，我们需要把`minecraft:damage_sensor`组件去掉，否则`/damage`命令将无法应用伤害。这里再加上`minecraft:health`也是为了便于我们更精细地控制实体的血量。读者可以用下面两条命令表达实体的血量：
 
@@ -1294,7 +1294,7 @@ Bedrock Wiki 作为社区的一个有高度影响力的文档，在实体文档�
     damage @e[type=test:bossbar_display] 1
     ```
 
-    ![practice_5b](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_5b.png)
+    ![practice_5b](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_5b.webp)
 
 6. :::info[本题的内容只适用于国际版。]
    :::
@@ -1321,7 +1321,7 @@ Bedrock Wiki 作为社区的一个有高度影响力的文档，在实体文档�
 
     可以看到，这效果是很好的。至于如何添加新的皮肤，这是我们后面几节要介绍的内容了，我们之后会回过头来再探讨这个问题。
 
-    ![practice_6](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_6.png)
+    ![practice_6](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_6.webp)
 
 7. 首先先定义飞刀物品。事实上，这可以复制我们曾经写过的“可投掷的箭”的代码并做一些修改：
 
@@ -1413,7 +1413,7 @@ Bedrock Wiki 作为社区的一个有高度影响力的文档，在实体文档�
 
     这样我们就实现了一个非常简陋的飞刀：
 
-    ![practice_7](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_7.png)
+    ![practice_7](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_7.webp)
 
 8. 我们先在行为包的`entities/`文件夹下创建一个`vanilla/`命名空间，代表原版的实体。然后，把牛的定义文件整体复制粘贴进去。下面的定义经过了一定的格式化，但实质内容相比原版是没有变化的。
 
@@ -1615,7 +1615,7 @@ Bedrock Wiki 作为社区的一个有高度影响力的文档，在实体文档�
 
     现在，我们就得到了一头“疯牛”！
 
-    ![practice_8](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_8.png)
+    ![practice_8](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_8.webp)
 
 </details>
 

@@ -2,7 +2,7 @@
 sidebar_position: 0
 ---
 
-# ModAPI 简述
+# ModAPI 概述
 
 import Button from '/src/components/button/base';
 import Server from '/src/components/highlight/server';
