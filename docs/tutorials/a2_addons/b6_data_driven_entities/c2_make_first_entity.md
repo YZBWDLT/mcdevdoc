@@ -9,12 +9,6 @@ import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
 import Image from "/src/components/image/standard"
 
-:::warning
-
-本页面仍在编写中，仅供参考。
-
-:::
-
 在本节，我们就来以制作一个自定义 NPC 为例，探讨数据驱动实体最基础的制作方法。
 
 和数据驱动物品和方块类似，数据驱动实体仍然需要行为包和资源包的配合：
@@ -52,7 +46,7 @@ import Image from "/src/components/image/standard"
 
 ```json showLineNumbers title="custom_npc.server_entity.json" {3}
 {
-    "format_version": "1.21.120",
+    "format_version": "1.21.130",
     "minecraft:entity": {
         "description": {
             "identifier": "test:custom_npc"
@@ -68,7 +62,7 @@ import Image from "/src/components/image/standard"
 
 ```json showLineNumbers title="custom_npc.server_entity.json" {6-7}
 {
-    "format_version": "1.21.120",
+    "format_version": "1.21.130",
     "minecraft:entity": {
         "description": {
             "identifier": "test:custom_npc",
@@ -83,6 +77,13 @@ import Image from "/src/components/image/standard"
 这里，我们还指定了实体是可生成的（Is Spawnable），规定该参数为`true`之后可以使游戏自动注册一个对应的刷怪蛋。
 
 ![is_spawnable_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/is_spawnable_1.webp)
+
+我们相信读者应该已经知道这里的键名该怎么处理，但还是要再强调一下实体刷怪蛋名称和实体名称的通用写法：
+
+```
+entity.(命名空间):(ID).name=XXX
+item.spawn_egg.entity.(命名空间):(ID).name=XXX 刷怪蛋
+```
 
 ### 资源包：客户端实体定义
 
@@ -120,7 +121,7 @@ import Image from "/src/components/image/standard"
 
 ```json showLineNumbers title="custom_npc.client_entity.json" {2}
 {
-    "format_version": "1.21.120",
+    "format_version": "1.21.130",
     "minecraft:client_entity": {
         "description": {
             "identifier": "test:custom_npc"
@@ -266,7 +267,7 @@ _*可能有一些好奇宝宝要问：这不是抄袭吗？这话说的，我们
 
 ```json showLineNumbers title="custom_npc.server_entity.json" {10}
 {
-    "format_version": "1.21.120",
+    "format_version": "1.21.130",
     "minecraft:entity": {
         "description": {
             "identifier": "test:custom_npc",
@@ -348,7 +349,7 @@ _*可能有一些好奇宝宝要问：这不是抄袭吗？这话说的，我们
 
 ```json showLineNumbers title="custom_npc.server_entity.json" {11}
 {
-    "format_version": "1.21.120",
+    "format_version": "1.21.130",
     "minecraft:entity": {
         "description": {
             "identifier": "test:custom_npc",
@@ -1054,16 +1055,570 @@ Bedrock Wiki 作为社区的一个有高度影响力的文档，在实体文档�
 1. 自定义一种新的 NPC `test:custom_npc_1`，和我们在正文中定义的自定义 NPC 完全一致，唯一的不同点在于——让它在日光下燃烧起来！
 2. 自定义一种新的 NPC `test:custom_npc_2`，同样地，为它添加一个名称常显示的功能，就像玩家的名字那样，可以穿墙常显示。
 3. 让我们关注 Java 版一种独有的实体[标记](https://zh.minecraft.wiki/w/%E6%A0%87%E8%AE%B0)。它专门为替代盔甲架而生，具有许多良好的性质：无重力、无碰撞、无渲染、无法受伤，是替代盔甲架的良好选择。请试实现一个标记实体`test:marker`。  
-   注意：如果读者不知道该怎么取消实体的渲染，可以调用一个完全透明的*~棍母~*贴图——这应该是没有任何难度的。至于无法受伤的功能如何实现，请见[`minecraft:damage_sensor`组件](/docs/docs/entities/components/sensors#minecraftdamage_sensor)。
-4. 把第 3 题写出的标记实体完全复制一遍，把 ID 改名为`test:text_display`，并应用第 2 题中应用的组件。当当，你实现了[文本展示实体](https://zh.minecraft.wiki/w/%E5%B1%95%E7%A4%BA%E5%AE%9E%E4%BD%93)（通常也称悬浮文本）！读者可以用一段任意的命令尝试悬浮文本的效果：
-    ```
-    summon test:text_display "测试用悬浮文本" ~~~
-    ```
-5. 同样地，让我们基于标记实体新增一个`test:custom_bossbar`。你应该猜到我要说什么了——实现一个可自定义名称的 Boss 栏！注意加上可命名组件。
+   注意：如果读者不知道该怎么取消实体的渲染，可以在实体文件内不要引用任何的渲染控制器、材质、模型和贴图。至于无法受伤的功能如何实现，请见[`minecraft:damage_sensor`组件](/docs/docs/entities/components/sensors#minecraftdamage_sensor)。
+4. 把第 3 题写出的标记实体完全复制一遍，把 ID 改名为`test:text_display`，并应用第 2 题中应用的组件。当当，你实现了[文本展示实体](https://zh.minecraft.wiki/w/%E5%B1%95%E7%A4%BA%E5%AE%9E%E4%BD%93)（通常也称悬浮文本）！  
+   但我们为了正确渲染文本，不能彻底取消实体的渲染。为了让模型不显示出来，读者可以考虑绘制一张*~棍母~*透明贴图——这应该是没有任何难度的。
+5. 同样地，让我们基于标记实体新增一个`test:bossbar_display`。你应该猜到我要说什么了——实现一个可自定义名称的 Boss 栏！注意加上可命名组件。不需要渲染实体。
 6. （国际版独占）现在请添加一个`test:custom_npc_3`，应用[`minecraft:npc`组件](/docs/docs/entities/components/functional#minecraftnpc)，你会立刻看到我们自定义的实体也可以使用 NPC 的对话框！
-7. 让我们现在实现一个飞刀`test:knife`。这需要读者定义一个飞刀物品和一个飞刀实体。
+7. 让我们现在实现一个无重力的飞刀`test:knife`。这需要读者定义一个飞刀物品和一个飞刀实体。
     1. 首先定义一个飞刀物品`test:knife`，并使其能够投掷出飞刀实体`test:knife`。
-    2. 然后定义一个飞刀实体`test:knife`，读者可以参考雪球的行为包定义和箭的资源包定义。当然，读者也可以查看[`minecraft:projectile`组件](/docs/docs/entities/components/functional#minecraftprojectile)的文档，当然，要做好心理准备。
+    2. 然后定义一个飞刀实体`test:knife`，读者可以参考雪球的行为包定义和箭的资源包定义。当然，读者也可以直接查看实体的[`minecraft:projectile`组件](/docs/docs/entities/components/functional#minecraftprojectile)的文档，当然，要做好心理准备。
 8. 现在请魔改牛的行为包定义，让它会在默认条件下攻击猪。提示，相关的组件请在`components`中修改——我们现在先不要考虑`component_group`或者`events`之类的东西，我们还没有学过。
 
 :::
+
+<details>
+
+<summary>练习题答案</summary>
+
+我们在练习里将不再着重强调语言文件的问题，贴图同理。下面只会给出实体的行为包定义和资源包定义。在应用图片的更改时，注意大退重进，而其他情况小退重进（`/reload all`）即可。
+
+1. 事实上，只需要在行为包定义（服务端实体文件）中加入一行[`minecraft:burns_in_daylight`组件](/docs/docs/entities/components/functional#minecraftburns_in_daylight)即可。这组件可以在僵尸或骷髅等的定义中找到。
+
+    ```json title="BP_test/entities/test/custom_npc_1.server_entity.json 行为包定义" showLineNumbers {12}
+    {
+        "format_version": "1.21.130",
+        "minecraft:entity": {
+            "description": {
+                "identifier": "test:custom_npc_1",
+                "is_summonable": true,
+                "is_spawnable": true
+            },
+            "components": {
+                "minecraft:physics": {},
+                "minecraft:inventory": { "inventory_size": 27, "container_type": "minecart_chest" },
+                "minecraft:burns_in_daylight": {}
+            }
+        }
+    }
+    ```
+
+    至于资源包定义，可以直接原样复制粘贴，只更改 ID 即可。
+
+    ```json title="RP_test/entity/test/custom_npc_1.client_entity.json 资源包定义" showLineNumbers {5}
+    {
+        "format_version": "1.21.130",
+        "minecraft:client_entity": {
+            "description": {
+                "identifier": "test:custom_npc_1",
+                "render_controllers": ["controller.render.default"],
+                "materials": { "default": "entity_alphatest" },
+                "geometry": { "default": "geometry.humanoid" },
+                "textures": { "default": "textures/entity/steve" }
+            }
+        }
+    }
+    ```
+
+    最终效果：
+    ![practice_1](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_1.png)
+
+2. 这里，我们应用[`minecraft:nameable`组件](/docs/docs/entities/components/attributes#minecraftnameable)，并利用`always_show`常显示名字。原版中玩家的定义文件就是这么做的。
+
+    ```json title="BP_test/entities/test/custom_npc_2.server_entity.json 行为包定义" showLineNumbers {12}
+    {
+        "format_version": "1.21.130",
+        "minecraft:entity": {
+            "description": {
+                "identifier": "test:custom_npc_2",
+                "is_summonable": true,
+                "is_spawnable": true
+            },
+            "components": {
+                "minecraft:physics": {},
+                "minecraft:inventory": { "inventory_size": 27, "container_type": "minecart_chest" },
+                "minecraft:nameable": { "always_show": true }
+            }
+        }
+    }
+    ```
+
+    这里我们必须额外强调一点：**非必要情况下不要更改玩家的定义文件`player.json`！如此更改会对模组兼容性和版本向后兼容性都有非常大的破坏**。
+
+    资源包定义直接原样复制粘贴即可，这里不再额外给出。
+
+    我们用这条命令来生成 NPC：
+
+    ```
+    summon test:custom_npc_2 "uwu" ~~~
+    ```
+
+    注意此时准星未对准 NPC，然而其名字仍然可以正常显示。  
+    ![practice_2](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_2.png)
+
+3. 结合我们给出的基础属性组件和[`minecraft:damage_sensor`组件](/docs/docs/entities/components/sensors#minecraftdamage_sensor)，就可以得到我们要的标记实体了。这里，读者可以看到我们除了题干要求的组件之外，我们这里还多引用了一些，比如`minecraft:persistent`用于防止自然消失、`minecraft:nameable`用于可命名（这样有些命令调用起来会十分的方便）、`minecraft:type_family`用于指定实体的家族，而`minecraft:pushable`用于取消实体的可推动属性。
+
+    > 注意：我们这里使用了已废弃的`minecraft:pushable`组件，这个组件在`1.26.10`下进行过拆分，因此更高的格式版本下应该使用更高版本的组件。我们这里使用了`1.21.130`的格式版本，所以仍然需要使用旧版的组件。
+
+    ```json title="BP_test/entities/test/marker.server_entity.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.130",
+        "minecraft:entity": {
+            "description": {
+                "identifier": "test:marker",
+                "is_summonable": true,
+                "is_spawnable": false
+            },
+            "components": {
+                "minecraft:physics": { "has_collision": false, "has_gravity": false },
+                "minecraft:collision_box": { "height": 0, "width": 0 },
+                "minecraft:damage_sensor": { "triggers": [{ "cause": "all", "deals_damage": "no" }] },
+                "minecraft:persistent": {},
+                "minecraft:nameable": { "allow_name_tag_renaming": true, "always_show": false },
+                "minecraft:type_family": { "family": ["marker", "inanimate"] },
+                "minecraft:pushable": { "is_pushable": false, "is_pushable_by_piston": false }
+            }
+        }
+    }
+    ```
+
+    资源包定义上，我们可以不指定其任何的渲染控制器、材质、模型和贴图，达到我们不渲染的效果：
+
+    ```json title="RP_test/entity/test/marker.client_entity.json 资源包定义" showLineNumbers
+    {
+        "format_version": "1.21.130",
+        "minecraft:client_entity": {
+            "description": {
+                "identifier": "test:marker"
+            }
+        }
+    }
+    ```
+
+    使用`/summon`命令生成一个标记实体，我们看不到它，这是正常的，说明这正符合我们的预期：  
+    ![practice_3a](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_3a.png)
+
+    我们使用
+
+    ```
+    execute as @e[type=test:marker] at @s run particle minecraft:endrod ~~~
+    ```
+
+    便可以让标记实体在其位置显示出粒子来，以证明这里确实存在实体：  
+    ![practice_3b](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_3b.png)
+
+4. 行为包定义上，把第 3 题中的`marker`改成`text_display`，并指定为常显示名称即可。
+
+    ```json title="BP_test/entities/test/text_display.server_entity.json 行为包定义" showLineNumbers {5,14,15}
+    {
+        "format_version": "1.21.130",
+        "minecraft:entity": {
+            "description": {
+                "identifier": "test:text_display",
+                "is_summonable": true,
+                "is_spawnable": false
+            },
+            "components": {
+                "minecraft:physics": { "has_collision": false, "has_gravity": false },
+                "minecraft:collision_box": { "height": 0, "width": 0 },
+                "minecraft:damage_sensor": { "triggers": [{ "cause": "all", "deals_damage": "no" }] },
+                "minecraft:persistent": {},
+                "minecraft:nameable": { "allow_name_tag_renaming": true, "always_show": true },
+                "minecraft:type_family": { "family": ["text_display", "inanimate"] },
+                "minecraft:pushable": { "is_pushable": false, "is_pushable_by_piston": false }
+            }
+        }
+    }
+    ```
+
+    资源包定义上，读者需要自己准备一个完全透明的贴图`textures/empty.png`，然后做如下的定义：
+
+    ```json title="RP_test/entity/test/text_display.client_entity.json 资源包定义" showLineNumbers
+    {
+        "format_version": "1.21.130",
+        "minecraft:client_entity": {
+            "description": {
+                "identifier": "test:text_display",
+                "render_controllers": ["controller.render.default"],
+                "materials": { "default": "entity_alphatest" },
+                "geometry": { "default": "geometry.humanoid" },
+                "textures": { "default": "textures/empty" }
+            }
+        }
+    }
+    ```
+
+    使用一条命令做测试：
+
+    ```
+    /summon test:text_display "这是一段悬浮文本！" ~~~
+    ```
+
+    我们可以得到这样的效果。虽然使用这种方法得到的文本展示实体强制穿墙、强制跟随相机视角、大小固定、背景固定，和 Java 版的文本展示实体并没有可比性，但在不使用脚本的情况下，这已几乎是我们能得到最好的效果，但未来我们会学习脚本构造文本展示的方法，其功能就要比这强大的多了。
+
+    ![practice_4](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_4.png)
+
+5. 行为包定义上，我们仍然基于第 3 题的标记实体，把第 3 题中的`marker`改成`bossbar_display`，然后加上以下高亮的组件即可：
+
+    ```json title="BP_test/entities/test/bossbar_display.server_entity.json 行为包定义" showLineNumbers {16-17}
+    {
+        "format_version": "1.21.130",
+        "minecraft:entity": {
+            "description": {
+                "identifier": "test:bossbar_display",
+                "is_summonable": true,
+                "is_spawnable": false
+            },
+            "components": {
+                "minecraft:physics": { "has_collision": false, "has_gravity": false },
+                "minecraft:collision_box": { "height": 0, "width": 0 },
+                "minecraft:persistent": {},
+                "minecraft:nameable": { "allow_name_tag_renaming": true, "always_show": false },
+                "minecraft:type_family": { "family": ["bossbar_display", "inanimate"] },
+                "minecraft:pushable": { "is_pushable": false, "is_pushable_by_piston": false },
+                "minecraft:boss": { "hud_range": 125, "should_darken_sky": false },
+                "minecraft:health": { "value": 100, "max": 100 }
+            }
+        }
+    }
+    ```
+
+    资源包定义上，我们不需要实体渲染什么，因此仍然选择完全不渲染这个实体，这里读者可以参考第 3 题的写法，不再赘述。
+
+    用下面这条命令测试：
+
+    ```
+    /summon test:text_display "这是一个自定义的BOSSBAR！" ~~~
+    ```
+
+    可以看到效果是很好的，在没有`/bossbar`的情况下，这已是我们能在基岩版复原的比较好的效果了。
+
+    ![practice_5a](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_5a.png)
+
+    为了便于我们控制实体的血量，我们需要把`minecraft:damage_sensor`组件去掉，否则`/damage`命令将无法应用伤害。这里再加上`minecraft:health`也是为了便于我们更精细地控制实体的血量。读者可以用下面两条命令表达实体的血量：
+
+    ```
+    # 回满展示实体血量
+    effect @e[type=test:bossbar_display] instant_health 1 255 true
+    # 扣除特定血量以达成需要的效果
+    damage @e[type=test:bossbar_display] 1
+    ```
+
+    ![practice_5b](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_5b.png)
+
+6. :::info[本题的内容只适用于国际版。]
+   :::
+
+    基于我们的自定义 NPC，给出一个`minecraft:npc`组件即可。
+
+    ```json title="BP_test/entities/test/custom_npc_3.server_entity.json 行为包定义" showLineNumbers {12}
+    {
+        "format_version": "1.21.130",
+        "minecraft:entity": {
+            "description": {
+                "identifier": "test:custom_npc_3",
+                "is_summonable": true,
+                "is_spawnable": true
+            },
+            "components": {
+                "minecraft:physics": {},
+                "minecraft:inventory": { "inventory_size": 27, "container_type": "minecart_chest" },
+                "minecraft:npc": {}
+            }
+        }
+    }
+    ```
+
+    可以看到，这效果是很好的。至于如何添加新的皮肤，这是我们后面几节要介绍的内容了，我们之后会回过头来再探讨这个问题。
+
+    ![practice_6](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_6.png)
+
+7. 首先先定义飞刀物品。事实上，这可以复制我们曾经写过的“可投掷的箭”的代码并做一些修改：
+
+    ```json title="BP_test/items/test/knife.item.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.21.130",
+        "minecraft:item": {
+            "description": {
+                "identifier": "test:knife",
+                "menu_category": {
+                    "category": "items"
+                }
+            },
+            "components": {
+                "minecraft:icon": "iron_sword",
+                "minecraft:projectile": { "projectile_entity": "test:knife" },
+                "minecraft:throwable": { "max_launch_power": 1.5 }
+            }
+        }
+    }
+    ```
+
+    这里需要额外定义`iron_sword`的贴图。然后，来定义飞刀的行为包定义：
+
+    ```json title="BP_test/entities/test/knife.server_entity.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.26.20",
+        "minecraft:entity": {
+            "description": {
+                "identifier": "test:knife",
+                "is_summonable": true,
+                "is_spawnable": false
+            },
+            "components": {
+                "minecraft:physics": { "has_collision": true, "has_gravity": true },
+                "minecraft:type_family": { "family": ["projectile", "knife"] },
+                "minecraft:collision_box": { "height": 0.25, "width": 0.25 },
+                "minecraft:projectile": {
+                    "anchor": "eye_height",
+                    "on_hit": {
+                        "impact_damage": {
+                            "apply_knockback_to_blocking_targets": true,
+                            "damage": 6,
+                            "knockback": true,
+                            "destroy_on_hit": false
+                        },
+                        "stick_in_ground": { "shake_time": 0 }
+                    },
+                    "gravity": 0,
+                    "power": 1.5,
+                    "inertia": 1,
+                    "isolated_physics": true
+                }
+            }
+        }
+    }
+    ```
+
+    这里，为了获得更好的弹道物理，我们定义了`"isolated_physics": true`，如果不定义可能会导致比较诡异的弹射物弹道。然而，这参数是只适用于 26.20 或以上版本的，如果是更低的版本，则需要通过定义一个弹射物的`runtime_identifier`（例如雪球）来获得更合适的弹射物弹道。
+
+    读者还需要注意的是，上面的参数中还有一项`impact_damage.damage`项可能会有歧义，该参数在 1.26.50+ 的格式版本需要使用带有`max`和`min`的对象指定伤害，而之前的版本则是通过单值或数组。应该强调，这个伤害经过实测后，*并不是*准确值，而是基于此值加上基于弹射物速度计算的伤害后的浮动值（例如我们这里定义了`6`，但事实上总比`6`要大一些），而且遗憾的是无法关闭。因此，未来我们需要用脚本来考虑为实体加上准确值的伤害。
+
+    资源包的定义，可以全部照抄箭的定义：
+
+    ```json title="RP_test/entity/test/knife.client_entity.json 资源包定义" showLineNumbers
+    {
+        "format_version": "1.10.0",
+        "minecraft:client_entity": {
+            "description": {
+                "identifier": "test:knife",
+                "render_controllers": ["controller.render.arrow"],
+                "materials": { "default": "arrow" },
+                "textures": { "default": "textures/entity/arrows" },
+                "geometry": { "default": "geometry.arrow" },
+                "scripts": {
+                    "pre_animation": [
+                        "variable.shake = query.shake_time - query.frame_alpha;",
+                        "variable.shake_power = variable.shake > 0.0 ? -Math.sin(variable.shake * 200.0) * variable.shake : 0.0;"
+                    ],
+                    "animate": ["move"]
+                },
+                "animations": { "move": "animation.arrow.move" }
+            }
+        }
+    }
+    ```
+
+    这里我们不必考虑`scripts`和`animations`都在做什么，先权且接受。这里目前读者作为初学者应该还很难做，这是我们之后要讨论的事情了。
+
+    这样我们就实现了一个非常简陋的飞刀：
+
+    ![practice_7](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_7.png)
+
+8. 我们先在行为包的`entities/`文件夹下创建一个`vanilla/`命名空间，代表原版的实体。然后，把牛的定义文件整体复制粘贴进去。下面的定义经过了一定的格式化，但实质内容相比原版是没有变化的。
+
+    ```json title="BP_test/entities/vanilla/cow.server_entity.json 行为包定义" showLineNumbers
+    {
+        "format_version": "1.26.10",
+        "minecraft:entity": {
+            "description": {
+                "identifier": "minecraft:cow",
+                "spawn_category": "creature",
+                "is_spawnable": true,
+                "is_summonable": true,
+                "properties": {
+                    "minecraft:climate_variant": {
+                        "type": "enum",
+                        "values": ["temperate", "warm", "cold"],
+                        "default": "temperate",
+                        "client_sync": true
+                    },
+                    "minecraft:sound_variant": {
+                        "type": "enum",
+                        "values": ["default", "moody"],
+                        "default": "default",
+                        "client_sync": true
+                    }
+                }
+            },
+            "components": {
+                "minecraft:offspring": {
+                    "offspring_pairs": { "minecraft:cow": "minecraft:cow" },
+                    "property_inheritance": { "minecraft:climate_variant": {} }
+                },
+                "minecraft:spawn_egg_interaction": {},
+                "minecraft:is_hidden_when_invisible": {},
+                "minecraft:type_family": { "family": ["cow", "mob"] },
+                "minecraft:breathable": { "total_supply": 15, "suffocate_time": 0 },
+                "minecraft:navigation.walk": { "can_path_over_water": true, "avoid_water": true, "avoid_damage_blocks": true },
+                "minecraft:movement.basic": {},
+                "minecraft:jump.static": {},
+                "minecraft:can_climb": {},
+                "minecraft:collision_box": { "width": 0.9, "height": 1.3 },
+                "minecraft:nameable": {},
+                "minecraft:health": { "value": 10, "max": 10 },
+                "minecraft:hurt_on_condition": {
+                    "damage_conditions": [
+                        {
+                            "filters": { "test": "in_lava", "subject": "self", "operator": "==", "value": true },
+                            "cause": "lava",
+                            "damage_per_tick": 4
+                        }
+                    ]
+                },
+                "minecraft:movement": { "value": 0.25 },
+                "minecraft:despawn": { "despawn_from_distance": {} },
+                "minecraft:behavior.float": { "priority": 0 },
+                "minecraft:behavior.panic": { "priority": 1, "speed_multiplier": 1.25 },
+                "minecraft:behavior.mount_pathing": {
+                    "priority": 2,
+                    "speed_multiplier": 1.5,
+                    "target_dist": 0.0,
+                    "track_target": true
+                },
+                "minecraft:behavior.breed": { "priority": 3, "speed_multiplier": 1.0 },
+                "minecraft:behavior.tempt": { "priority": 4, "speed_multiplier": 1.25, "items": ["wheat"] },
+                "minecraft:behavior.follow_parent": { "priority": 5, "speed_multiplier": 1.1 },
+                "minecraft:behavior.random_stroll": { "priority": 6, "speed_multiplier": 0.8 },
+                "minecraft:behavior.look_at_player": { "priority": 7, "look_distance": 6.0, "probability": 0.02 },
+                "minecraft:behavior.random_look_around": { "priority": 9 },
+                "minecraft:leashable": {},
+                "minecraft:balloonable": {},
+                "minecraft:physics": {},
+                "minecraft:pushable_by_entity": {},
+                "minecraft:pushable_by_block": {},
+                "minecraft:conditional_bandwidth_optimization": {}
+            },
+            "events": {
+                "minecraft:entity_spawned": {
+                    "sequence": [
+                        {
+                            "randomize": [
+                                { "weight": 95, "trigger": "minecraft:spawn_adult" },
+                                { "weight": 5, "add": { "component_groups": ["minecraft:cow_baby"] } }
+                            ]
+                        },
+                        {
+                            "first_valid": [
+                                {
+                                    "filters": { "test": "has_biome_tag", "value": "spawns_warm_variant_farm_animals" },
+                                    "set_property": { "minecraft:climate_variant": "warm" }
+                                },
+                                {
+                                    "filters": { "test": "has_biome_tag", "value": "spawns_cold_variant_farm_animals" },
+                                    "set_property": { "minecraft:climate_variant": "cold" }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "minecraft:entity_born": {
+                    "add": { "component_groups": ["minecraft:cow_baby"] },
+                    "trigger": "minecraft:randomize_sound_variant"
+                },
+                "minecraft:entity_transformed": { "remove": {}, "add": { "component_groups": ["minecraft:cow_adult"] } },
+                "minecraft:ageable_grow_up": {
+                    "remove": { "component_groups": ["minecraft:cow_baby"] },
+                    "add": { "component_groups": ["minecraft:cow_adult"] }
+                },
+                "minecraft:spawn_adult": {
+                    "add": { "component_groups": ["minecraft:cow_adult"] },
+                    "trigger": "minecraft:randomize_sound_variant"
+                },
+                "minecraft:randomize_sound_variant": {
+                    "randomize": [
+                        { "weight": 1, "set_property": { "minecraft:sound_variant": "default" } },
+                        { "weight": 1, "set_property": { "minecraft:sound_variant": "moody" } }
+                    ]
+                }
+            },
+            "component_groups": {
+                "minecraft:cow_baby": {
+                    "minecraft:is_baby": {},
+                    "minecraft:scale": { "value": 0.5 },
+                    "minecraft:ageable": {
+                        "duration": 1200,
+                        "feed_items": "wheat",
+                        "pause_growth_items": ["golden_dandelion"],
+                        "reset_growth_items": ["golden_dandelion"],
+                        "grow_up": { "event": "minecraft:ageable_grow_up", "target": "self" }
+                    },
+                    "minecraft:rideable": {
+                        "seat_count": 1,
+                        "family_types": ["baby_undead"],
+                        "seats": { "position": [0.0, 1.0, 0.0] }
+                    },
+                    "minecraft:behavior.follow_parent": { "priority": 6, "speed_multiplier": 1.1 }
+                },
+                "minecraft:cow_adult": {
+                    "minecraft:leashable_to": {},
+                    "minecraft:experience_reward": {
+                        "on_bred": "Math.Random(1,7)",
+                        "on_death": "query.last_hit_by_player ? Math.Random(1,3) : 0"
+                    },
+                    "minecraft:loot": { "table": "loot_tables/entities/cow.json" },
+                    "minecraft:rideable": {
+                        "seat_count": 1,
+                        "family_types": ["baby_undead"],
+                        "seats": { "position": [0.0, 1.15, 0.0] }
+                    },
+                    "minecraft:behavior.breed": { "priority": 3, "speed_multiplier": 1.0 },
+                    "minecraft:breedable": { "require_tame": false, "breed_items": ["wheat"], "breeds_with": { "minecraft:cow": {} } },
+                    "minecraft:interact": {
+                        "interactions": [
+                            {
+                                "on_interact": {
+                                    "filters": {
+                                        "all_of": [
+                                            { "test": "is_family", "subject": "other", "value": "player" },
+                                            { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "bucket:0" }
+                                        ]
+                                    }
+                                },
+                                "use_item": true,
+                                "swing": true,
+                                "transform_to_item": "bucket:1",
+                                "play_sounds": "milk",
+                                "interact_text": "action.interact.milk"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+    ```
+
+    这里我们不要去管`component_groups`和`events`到底是什么，这是我们之后讨论的重点。我们先来关注`components`，参考僵尸的文件（或任何带有近战行为的生物的组件），我们不难发现，只需要在`components`中添加以下这几项：
+
+    ```json showLineNumbers
+    "minecraft:attack": { "damage": 5 },
+    "minecraft:behavior.melee_box_attack": { "priority": 1 },
+    "minecraft:behavior.nearest_attackable_target": {
+        "priority": 0,
+        "reselect_targets": true,
+        "must_see": true,
+        "within_radius": 25,
+        "must_see_forget_duration": 17,
+        "entity_types": [
+            {
+                "filters": {
+                    "any_of": [{ "test": "is_family", "subject": "other", "value": "pig" }]
+                },
+                "max_dist": 35
+            }
+        ]
+    }
+    ```
+
+    我们看到这里，实体的家族设定在这里便发挥了作用。在数据驱动实体中，我们用的更多的其实反而是实体的家族，而不是实体的 ID。至于这三个组件的具体参数，读者可以在实体组件文档了解更多，这里我们直接照搬了僵尸的参数，不再展开了。这里还涉及到了一个过滤器，也是我们之后要再了解的重点。
+
+    现在，我们就得到了一头“疯牛”！
+
+    ![practice_8](/img/tutorials/a2_addons/b6_data_driven_entities/c2_make_first_entity/practice_8.png)
+
+</details>
+
+import GiscusComment from "/src/components/comment/giscus.js"
+
+<GiscusComment/>

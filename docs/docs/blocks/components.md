@@ -446,9 +446,12 @@ import Button from '/src/components/button/base';
   - <DataType type="string" name="culling_shape"/>：<Version add="1.26.30" inline/>定义方块面剔除体素。默认值为`minecraft:empty`。详见[体素形状](./voxel)。
   - <DataType type="boolean"/><DataType type="array" name="uv_lock"/>：<Version add="1.21.100" inline/>是否锁定 UV 面。若锁定 UV 面，则方块的 UV 不会随着[`minecraft:transformation`](#minecrafttransformation)组件的旋转而旋转。默认值为`false`。
     - <DataType type="string"/>：当指定为数组形式时，可指定为骨骼 ID 的数组，以确保这些骨骼不会随着[`minecraft:transformation`](#minecrafttransformation)组件的旋转而旋转。
-  - <DataType type="object" name="n_way_visual_rotation"/>：<Version add="1.26.40" inline/> <Highlight text="禁止定义置换" tooltip="带有此参数的该组件不可定义在方块置换permutations内。" color="red" inline/> <Highlight text="疑似损坏" tooltip="实测该参数对非房主客户端不生效。" color="red" inline/> 方块可以根据[方块特征`minecraft:placement_direction`](./traits#minecraftplacement_direction)所对应的方块状态的值进行何种模型旋转。旋转的度数由允许的方块状态总数决定，默认的方块状态总是旋转 0°。
+  - <DataType type="object" name="n_way_visual_rotation"/>：<Version add="1.26.40" inline/> <Highlight text="禁止定义置换" tooltip="带有此参数的该组件不可定义在方块置换permutations内。" color="red" inline/> 方块可以根据[方块特征`minecraft:placement_direction`](./traits#minecraftplacement_direction)所对应的方块状态的值进行何种模型旋转。旋转的度数由允许的方块状态总数决定，默认的方块状态总是旋转 0°。
     - <DataType type="string" name="x"/> | <DataType type="string" name="y"/> | <DataType type="string" name="z"/>：使用何种方块状态的值。可选值为`minecraft:cardinal_direction`和`minecraft:sixteen_way_rotation`。
 </treeview>
+
+:::warning[警告：因为一个漏洞，在 26.60 前的`n_way_visual_rotation`参数对非房主客户端不生效。]
+:::
 
 **字符串型**：
 

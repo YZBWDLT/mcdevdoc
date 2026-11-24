@@ -3497,7 +3497,7 @@ import Version from "/src/components/highlight/version"
 
 ### `minecraft:npc`
 
-<Usable type="all"/> <Version add="1.16.0"/> <br/>
+<Usable type="all"/> <Version add="1.16.0"/> <Highlight text="中国版不可用" tooltip="中国版移除了NPC的功能，包括实体定义的minecraft:npc组件。因此，该组件在中国版无法运行。" color="red"/> <br/>
 
 定义 NPC 实体的数据，包括皮肤列表与界面中头像、选择框的偏移。
 
@@ -4210,8 +4210,8 @@ NPC（<FileType type="file" name="npc.json"/>）：
 
 <treeview>
 - <DataType type="object" name="minecraft:projectile"/>：根对象。
-  - <DataType type="string" name="anchor"/>：生成弹射物时使用的参考点。可选值为`origin`（实体内原点）、`eye_height`（眼睛高度）、`middle`（实体中心）。默认值为`origin`。  
-  <Version add="1.26.50" inline/>：改为接受这三个字符串，更早的格式版本需写成整数`0`（原点）、`1`（眼睛高度）、`2`（中心）。
+  - <DataType type="int" name="anchor"/>：<Version add="未知" deprecated="1.26.50" inline/> 生成弹射物时使用的参考点。可选值为`0`（原点）、`1`（眼睛高度）、`2`（中心）。默认值为`0`。  
+  - <DataType type="string" name="anchor"/>：<Version add="1.26.50" inline/> 生成弹射物时使用的参考点。可选值为`origin`（实体内原点）、`eye_height`（眼睛高度）、`middle`（实体中心）。默认值为`origin`。  
   - <DataType type="array" name="offset"/>：相对`anchor`的生成偏移，写作`[x, y, z]`。默认值为`[0, 0, 0]`。
   - <DataType type="float" name="power"/>：发射的初始速度，单位为方块每刻。默认值为`1.3`。
   - <DataType type="float" name="gravity"/>：每刻施加的向下加速度。默认值为`0.05`。
@@ -4278,10 +4278,11 @@ NPC（<FileType type="file" name="npc.json"/>）：
       - <DataType type="boolean" name="ignite"/>：为`true`时点燃射击者。默认值为`false`。
     - <DataType type="object" name="ignite"/>：点燃命中的目标。
     - <DataType type="object" name="impact_damage"/>：命中时造成伤害。
-      - <DataType type="object" name="damage"/>：伤害数值的随机区间。
+      - <DataType type="array" name="damage"/>：<Version add="未知" deprecated="1.26.50" inline/>在`[最小值, 最大值]`区间内随机。
+      - <DataType type="object" name="damage"/>：<Version add="1.26.50" inline/> 伤害数值的随机区间，在`min`与`max`之间随机。
         - <DataType type="float" name="min"/>：区间下限。默认值为`0`。
         - <DataType type="float" name="max"/>：区间上限。默认值为`0`。
-      - <DataType type="float" name="power_multiplier"/>：把弹射物的飞行速度乘到伤害上的系数，速度越快伤害越高。默认值为`0`。  
+      - <DataType type="float" name="power_multiplier"/>：<Highlight text="疑似损坏" tooltip="实测该参数未能发挥任何作用，尤其是自定义弹射物。可能需要验证参数失效的版本。" color="red" inline/> 把弹射物的飞行速度乘到伤害上的系数，速度越快伤害越高。默认值为`0`。  
       <Version add="1.26.40" inline/>：默认值由`2`改为`0`，并且不再参与难度随机化。
       - <DataType type="float" name="min_critical_damage"/>：暴击伤害的下限。默认值为`0`。
       - <DataType type="float" name="max_critical_damage"/>：暴击伤害的上限。默认值为`2147483647`。
@@ -4339,19 +4340,17 @@ NPC（<FileType type="file" name="npc.json"/>）：
     - <DataType type="object" name="wind_burst_on_hit"/>：命中时产生风爆，把周围实体击退。
 </treeview>
 
-> `shoot_sound`、`hit_sound`、`hit_ground_sound`的值是`sounds/sound_definitions.json`中定义的声音 ID，例如箭用的`bow.hit`；不是`sounds.json`里的具名音效。填自定义声音时同样要先在`sound_definitions.json`里定义。
+:::note[注意]
 
-> `particle`、`on_hit.particle_on_hit.particle_type`、`on_hit.spawn_aoe_cloud.particle`的值取自原版粒子效果名，例如`iconcrack`、`critical_hit_emitter`、`dragonbreath`，不能直接填自定义粒子效果名。要在弹射物上使用自定义粒子，通常改用`on_hit.definition_event`触发事件，再由实体或脚本播撒粒子。
+1. **关于加入版本的问题**：该组件的官方文档参数表长期不完整——`on_hit`、`anchor`、`hit_ground_sound`、`stop_on_hurt`直到 1.26.40 才被文档列出，而 1.20.80 的原版箭早已在使用`on_hit`与`anchor`。因此本节各参数暂不标注加入版本。
+2. **关于部分早期参数的问题**：该组件的参数在官方文档的表述中非常混乱，早期资料里还出现过`filter`、`knockback`、`fire_affected_by_griefing`、`semi_random_diff_damage`、`splash_potion`等根级字段，26.60 的 schema 与原版实体包均已不再使用，此处不收录。
+3. **关于弹道物理的问题**：在`1.26.20`之前的自定义弹射物建议在实体描述中定义`runtime_identifier`，`1.26.20`之后的自定义弹射物定义`isolated_physics`，否则可能出现弹道异常的问题。
+4. `on_hit`下的子组件彼此独立，可以同时写多个，命中时会一起生效。上文按字母顺序列出，实际书写顺序不影响结果。
+5. **关于音效的问题**：`shoot_sound`、`hit_sound`、`hit_ground_sound`的值是`sounds/sound_definitions.json`中定义的声音 ID，例如箭用的`bow.hit`；不是`sounds.json`里的具名音效。填自定义声音时同样要先在`sound_definitions.json`里定义。
+6. **关于粒子的问题**：`particle`、`on_hit.particle_on_hit.particle_type`、`on_hit.spawn_aoe_cloud.particle`的值取自原版粒子效果名，例如`iconcrack`、`critical_hit_emitter`、`dragonbreath`，**不能直接填自定义粒子效果名**。要在弹射物上使用自定义粒子，通常改用`on_hit.definition_event`触发事件，再由实体或脚本播撒粒子。
+7. `ignite`与`catch_fire`都用于点燃目标，区别是`catch_fire`可配置着火时长，`ignite`没有参数。根级的`catch_fire`是旧写法，新写法建议用`on_hit.catch_fire`。
 
-> `on_hit`下的子组件彼此独立，可以同时写多个，命中时会一起生效。上文按字母顺序列出，实际书写顺序不影响结果。
-
-> `ignite`与`catch_fire`都用于点燃目标，区别是`catch_fire`可配置着火时长，`ignite`没有参数。根级的`catch_fire`是旧写法，新写法建议用`on_hit.catch_fire`。
-
-> 早期资料里还出现过`filter`、`knockback`、`fire_affected_by_griefing`、`semi_random_diff_damage`、`splash_potion`等根级字段，26.60 的 schema 与原版实体包均已不再使用，此处不收录。
-
-> 自定义弹射物建议同时定义`runtime_identifier`，否则可能出现击退方向错误、可用空手打死等异常表现。
-
-> **备注**：该组件的官方文档参数表长期不完整——`on_hit`、`anchor`、`hit_ground_sound`、`stop_on_hurt`直到 1.26.40 才被文档列出，而 1.20.80 的原版箭早已在使用`on_hit`与`anchor`。因此本节各参数暂不标注加入版本。
+:::
 
 </TabItem><TabItem value="示例" label="示例">
 
