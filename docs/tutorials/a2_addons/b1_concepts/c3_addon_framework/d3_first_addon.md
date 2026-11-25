@@ -4,19 +4,20 @@ sidebar_position: 3
 
 # 1.3.3 构建第一个附加包
 
-> 上次更新：2026 年 1 月 4 日
-
 import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
+import Image from "/src/components/image/standard"
 
 在上一节，我们为附加包打造了一个“身份证”`manifest.json`。但是只有身份证是没有用的，我们要给游戏展示我们的“身份证”，显然这个过程需要我们**导入（Import）** 一个附加包到游戏里面。怎么导入？导入到哪里？这就是我们这一节所讲解的重点。
 
 ---
 
-首先，我们先以国际版的 Windows 版本为例来讲解，然后一步步地延伸到手机版和中国版的特殊案例上。所以，即使读者是手机玩家或中国版玩家，这一部分也是要看一看的哦。
+## 第一个附加包
 
-## `com.mojang`文件夹——游戏数据文件夹
+首先，我们先以国际版的 Windows 版本为例来讲解，然后再一步步地延伸到手机版和中国版的特殊案例上。所以，即使读者是手机玩家或中国版玩家，这一部分也是要看一看的哦。
+
+### `com.mojang`文件夹——游戏数据文件夹
 
 首先第一步，我们要找到游戏存储数据的路径。读者可以打开文件管理器，并将下面的路径粘贴到文件管理器的导航栏上：
 
@@ -45,30 +46,30 @@ import FileType from "/src/components/type/file"
 <treeview>
 
 - <FileType type="folder" name="Users"/>：游戏数据文件夹
-  - <FileType type="folder" name="(数字 ID)"/>：个人数据文件夹
-    - <FileType type="folder" name="games"/>
-      - <FileType type="folder" name="com.mojang"/>
-        - <FileType type="folder" name="minecraftWorlds"/>：**地图**文件夹，存放所有的地图，是的，你所有的世界都存放在这里面!
-          - <FileType type="folder" name="（任意名称）"/>：地图文件
-            - <FileType type="folder" name="db"/>：地图数据文件夹，通常存储一些无法通过常规文本编辑器直接访问的数据文件
-            - <FileType type="folder" name="behavior_packs"/>：地图的行为包
-            - <FileType type="folder" name="resource_packs"/>：地图的资源包
-            - <FileType type="file" name="level.dat"/>：地图的核心数据文件
-            - <FileType type="file" name="level.dat_old"/>：level.dat 的备份文件
-            - <FileType type="file" name="levelname.txt"/>：地图名（虽然直接更改地图名不会起作用）
-            - <FileType type="image" name="world_icon.jpeg"/>：地图图标，会对地图关闭的一瞬间进行截图
-            - <FileType type="file" name="world_behavior_packs.json"/>：地图启用的行为包
-            - <FileType type="file" name="world_resource_packs.json"/>：地图启用的资源包
-        - <FileType type="folder" name="ScreenShots"/>：截图文件夹，存放所有你用<kbd>F2</kbd>截的图
-        - <FileType type="folder" name="world_templates"/>：地图模板文件夹，存放所有导入的外部地图模板
-  - <FileType type="folder" name="Shared"/>：共享数据文件夹
-    - <FileType type="folder" name="games"/>
-      - <FileType type="folder" name="com.mojang"/>
-        - <FileType type="folder" name="behavior_packs"/>：**全局**行为包文件夹，存放所有的行为包
-        - <FileType type="folder" name="resource_packs"/>：**全局**资源包文件夹，存放所有的资源包
-        - <FileType type="folder" name="development_behavior_packs"/>：开发行为包文件夹，存放所有的开发用行为包
-        - <FileType type="folder" name="development_resource_packs"/>：开发资源包文件夹，存放所有的开发用资源包
-        - <FileType type="folder" name="skin_packs"/>：皮肤包文件夹，存放所有的皮肤包
+    - <FileType type="folder" name="(数字 ID)"/>：个人数据文件夹
+        - <FileType type="folder" name="games"/>
+          - <FileType type="folder" name="com.mojang"/>
+            - <FileType type="folder" name="minecraftWorlds"/>：**地图**文件夹，存放所有的地图，是的，你所有的世界都存放在这里面!
+              - <FileType type="folder" name="（任意名称）"/>：地图文件
+                - <FileType type="folder" name="db"/>：地图数据文件夹，通常存储一些无法通过常规文本编辑器直接访问的数据文件
+                - <FileType type="folder" name="behavior_packs"/>：地图的行为包
+                - <FileType type="folder" name="resource_packs"/>：地图的资源包
+                - <FileType type="file" name="level.dat"/>：地图的核心数据文件
+                - <FileType type="file" name="level.dat_old"/>：level.dat 的备份文件
+                - <FileType type="file" name="levelname.txt"/>：地图名（虽然直接更改地图名不会起作用）
+                - <FileType type="image" name="world_icon.jpeg"/>：地图图标，会对地图关闭的一瞬间进行截图
+                - <FileType type="file" name="world_behavior_packs.json"/>：地图启用的行为包
+                - <FileType type="file" name="world_resource_packs.json"/>：地图启用的资源包
+            - <FileType type="folder" name="ScreenShots"/>：截图文件夹，存放所有你用<kbd>F2</kbd>截的图
+            - <FileType type="folder" name="world_templates"/>：地图模板文件夹，存放所有导入的外部地图模板
+    - <FileType type="folder" name="Shared"/>：共享数据文件夹
+        - <FileType type="folder" name="games"/>
+          - <FileType type="folder" name="com.mojang"/>
+            - <FileType type="folder" name="behavior_packs"/>：**全局**行为包文件夹，存放所有的行为包
+            - <FileType type="folder" name="resource_packs"/>：**全局**资源包文件夹，存放所有的资源包
+            - <FileType type="folder" name="development_behavior_packs"/>：开发行为包文件夹，存放所有的开发用行为包
+            - <FileType type="folder" name="development_resource_packs"/>：开发资源包文件夹，存放所有的开发用资源包
+            - <FileType type="folder" name="skin_packs"/>：皮肤包文件夹，存放所有的皮肤包
 
 </treeview>
 
@@ -82,7 +83,7 @@ import FileType from "/src/components/type/file"
 显然，我们要编写行为包和资源包的话，就要关注**共享文件夹中**的<FileType type="folder" name="com.mojang"/>内的 <FileType type="folder" name="behavior_packs"/>和<FileType type="folder" name="resource_packs"/>。在上面的文件路径中，我们看到行为包和资源包有“全局”和“地图内”之分，这正对应着游戏内的全局设置和地图设置。所以：
 
 - 如果你想要做纯附加包的话，应该在**全局（共享文件夹）** 的<FileType type="folder" name="development_behavior_packs"/>和<FileType type="folder" name="development_resource_packs"/>中进行开发；
-  - 为什么不用<FileType type="folder" name="behavior_packs"/>和<FileType type="folder" name="resource_packs"/>呢？这主要是因为两个开发文件夹有特别优化，可以方便开发者在退出再重进地图后就应用更改，而无需重启游戏。而从外部导入的行为包资源包就通常直接导入到这两个文件夹里，代表这些包是稳定的包。
+    - 为什么不用<FileType type="folder" name="behavior_packs"/>和<FileType type="folder" name="resource_packs"/>呢？这主要是因为两个开发文件夹有特别优化，可以方便开发者在退出再重进地图后就应用更改，而无需重启游戏。而从外部导入的行为包资源包就通常直接导入到这两个文件夹里，代表这些包是稳定的包。
 - 而要做地图配套的附加包的话，就应该在**地图中（个人文件夹）** 的<FileType type="folder" name="behavior_packs"/>和<FileType type="folder" name="resource_packs"/>中进行开发。
 
 :::note[扩展：Windows 版 1.21.120 之前的文件存储路径]
@@ -105,7 +106,7 @@ import FileType from "/src/components/type/file"
 
 :::
 
-## 创建第一个行为包 & 资源包
+### 创建第一个行为包 & 资源包
 
 理清了游戏数据文件夹之后，我们就可以正式开始构建我们的第一个包了！我们这里先做**全局**的附加包，关于地图特制的附加包的话，处理方法我们稍后就会介绍。
 
@@ -115,10 +116,9 @@ import FileType from "/src/components/type/file"
 2. 然后再把上一节练习中创建的`manifest_bp.json`放到该文件夹下，并重命名为`manifest.json`。你的文件路径应该如下图所示：
 
     <treeview>
-
     - <FileType type="folder" name="development_behavior_packs"/>：开发行为包文件夹
-      - <FileType type="folder" name="BP_test"/>：我们的测试行为包
-        - <FileType type="file" name="manifest.json"/>：行为包的清单文件
+        - <FileType type="folder" name="BP_test"/>：我们的测试行为包
+            - <FileType type="file" name="manifest.json"/>：行为包的清单文件
 
     </treeview>
 
@@ -131,14 +131,14 @@ import FileType from "/src/components/type/file"
             "name": "实验行为包",
             "description": "",
             "uuid": "60d33b76-0916-4943-8f0e-b027603365eb",
-            "version": [ 1, 0, 0 ],
-            "min_engine_version": [ 1, 20, 50 ]
+            "version": [1, 0, 0],
+            "min_engine_version": [1, 20, 50]
         },
         "modules": [
             {
                 "type": "data",
                 "uuid": "b02118b3-8fcf-4bba-bf53-dce1d1ae0f3e",
-                "version": [ 1, 0, 0 ]
+                "version": [1, 0, 0]
             }
         ]
     }
@@ -160,10 +160,9 @@ import FileType from "/src/components/type/file"
 2. 把上一节练习中创建的`manifest_rp.json`放到该文件夹下，并重命名为`manifest.json`。你的文件路径应该如下图所示：
 
     <treeview>
-
     - <FileType type="folder" name="development_resource_packs"/>：开发资源包文件夹
-      - <FileType type="folder" name="RP_test"/>：我们的测试资源包
-        - <FileType type="file" name="manifest.json"/>：资源包的清单文件
+        - <FileType type="folder" name="RP_test"/>：我们的测试资源包
+            - <FileType type="file" name="manifest.json"/>：资源包的清单文件
 
     </treeview>
 
@@ -176,14 +175,14 @@ import FileType from "/src/components/type/file"
             "name": "实验资源包",
             "description": "",
             "uuid": "1eb80b4e-848f-4787-a28f-1058f637c9b3",
-            "version": [ 1, 0, 0 ],
-            "min_engine_version": [ 1, 20, 50 ]
+            "version": [1, 0, 0],
+            "min_engine_version": [1, 20, 50]
         },
         "modules": [
             {
                 "type": "resources",
                 "uuid": "639d861e-4df0-4194-b3d2-86a04752b6b3",
-                "version": [ 1, 0, 0 ]
+                "version": [1, 0, 0]
             }
         ]
     }
@@ -195,9 +194,9 @@ import FileType from "/src/components/type/file"
 
 恭喜你！这就是我们实现的第一个附加包啦！接下来，我们就要在这两个附加包中不断地加入功能，来实现我们的需求了。
 
-*在 Minecraft 的所有玩家中，会做附加包的玩家可以说是少之又少。正所谓万事开头难，如果你已经走到这一步，并且成功地看到刚创建的附加包框架，就已经很厉害了哦\~ 也有很多人可能会因为大大小小的失误而看不到这一结果，不必心急，仔细检查一下，也能成功的！*
+_在 Minecraft 的所有玩家中，会做附加包的玩家可以说是少之又少。正所谓万事开头难，如果你已经走到这一步，并且成功地看到刚创建的附加包框架，就已经很厉害了哦\~ 也有很多人可能会因为大大小小的失误而看不到这一结果，不必心急，仔细检查一下，也能成功的！_
 
-## 图标文件
+### 图标文件
 
 很显然，紫黑块并不是我们想要的图标。稍微有些经验的玩家都知道，紫黑块代表着 Minecraft 的一种**无效纹理**。这正是我们没有定义图标文件所导致的。
 
@@ -206,11 +205,11 @@ import FileType from "/src/components/type/file"
 <treeview>
 
 - <FileType type="folder" name="BP_test"/>：测试行为包
-  - <FileType type="file" name="manifest.json"/>：清单文件
-  - <FileType type="image" name="pack_icon.png"/>：图标
+    - <FileType type="file" name="manifest.json"/>：清单文件
+    - <FileType type="image" name="pack_icon.png"/>：图标
 - <FileType type="folder" name="RP_test"/>：测试资源包
-  - <FileType type="file" name="manifest.json"/>：清单文件
-  - <FileType type="image" name="pack_icon.png"/>：图标
+    - <FileType type="file" name="manifest.json"/>：清单文件
+    - <FileType type="image" name="pack_icon.png"/>：图标
 
 </treeview>
 
@@ -224,11 +223,58 @@ import FileType from "/src/components/type/file"
 
 ---
 
-## 将附加包应用到特定世界
+## \*基于 MCStudio 制作附加包
+
+:::info[本节内容仅适用于中国版，不适用于国际版。]
+:::
+
+中国版的开发人员十分重视社区开发者。他们专门为中国版的开发者开发了一套可视化的编程 IDE！它的全名叫 MCStudio，我们通常习惯称其为 MCS。你可以在中国版的官网找到 MCS 并下载，但需要注意一点，使用 MCS 必须拥有一个开发者账号。本文不希望在如何注册开发者账号的问题上多费笔墨，读者可以自行阅读[网易给出的这篇教程](https://mc.163.com/newdev/docs/mcguide/12-rumenjiaocheng/10-zhucechengweikaifazhe.html)。
+
+:::note[扩展：网易究竟有多重视开发者？]
+
+请注意，有些玩家看到这里可能会不高兴，认为笔者偏袒网易。这里我们暂且不去谈网易有争议的问题，有些问题确实也没得洗，但读者看到这里也不要带有任何情绪上的偏见，一码归一码理性地去谈。至少单纯地论资源开发上，网易开放的东西是遥遥领先于国际版的，而且并不夸张。
+
+一些比较先进的功能，例如我们以后会讲到的自定义维度等，网易甚至领先国际版足足 5 年之多！有一些功能例如自定义附魔等，国际版则是在本文截稿时也未能同步。除此之外，包括脚本直接控制 UI、对光影的良好支持等，都是国际版至今未能实现或实现不佳的内容，开玩笑地说，在这些网易独有内容上，我们都不敢想象网易究竟领先国际版多少年。也正是这些内容，给了开发者们实现自己想法的良好平台。
+
+包括我们这里讲到的 MCS，事实上也是网易几年前就提出的东西，要远远早于国际版在 1.19.50 开放的 Editor。
+
+:::
+
+MCS 的一个关键功能在于，你可以直接打开一个中国版测试版的开发版 Minecraft，按下图操作即可。
+
+![mcs_1](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/mcs_1.webp)
+
+这个开发版 Minecraft 内部其实有非常多有意思、也值得说道的内容，但本节我们不打算把内容聚焦在这里，还是继续往下看。
+
+在登录了 MCS 后，我们便可以开始写我们的附加包了。我们可以从一个空白模板出发进行设计：
+
+![mcs_2](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/mcs_2.webp)
+
+注意指定命名空间，这里我们采用`test`命名空间，然后启动编辑：
+
+<Image src="/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/mcs_3.webp"/>
+
+在下载相关内容一段时间后，我们可以看到编辑器的界面如下：
+
+![mcs_4](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/mcs_4.webp)
+
+对，这就结束了，夸张一点来讲其实读者完全不需要掌握多复杂的知识，就能编写出一个附加包。然而，仍然要声明一点，读者若想成为一名“伟大”的开发者，必须要知道的是，MCS **不能**帮助我们掌握开发的一切，网易无意也不可能做到这一点，尤其是未来要学习的脚本，即使网易提供了如此方便的平台，读者也依然需要了解开发的基础知识才行。
+
+另外，读者需要注意，网易的 MCS 默认提供的清单文件的格式版本是`1`，我们上一节已强调过这一点，如可以的话还是改为`2`为好。
+
+---
+
+## 附加包的导入
+
+现在我们就可以来聊聊如何导入附加包了。我们在下文不谈 MCS 应该如何实现，因为 MCS 在上文已经帮你解决了你所需的一切。我们在下面主要聊聊国际版、以及在 Android 平台上该如何导入附加包。
+
+一般来说，附加包要么是给特定世界使用的，如一些优质地图就会用专属附加包；要么是全局均可使用的，也就是我们常说的模组（Mod）的概念。我们来分别介绍一下。
+
+### 将附加包应用到特定世界
 
 :::warning[注意]
 
-本节的内容仅适用于 Windows 等电脑版本，亦适用于中国版的电脑版本。
+本节的内容仅适用于 Windows 等电脑版本，亦适用于中国版的零售电脑版本。但在中国版上，我们推荐读者使用 MCS 解决问题。
 
 对于 Android 版本，因为高版本 Android 的约束更大，难以访问到游戏数据文件。如果你可以访问到 Android 的`Android/data/`文件夹（通常使用 MT 管理器来访问），也可以通过下面两个路径来访问游戏数据。
 
@@ -246,8 +292,8 @@ import FileType from "/src/components/type/file"
 <treeview>
 
 - <FileType type="folder" name="com.mojang"/>：游戏数据文件夹
-  - <FileType type="folder" name="minecraftWorlds"/>：所有的地图数据
-    - <FileType type="folder" name="（地图文件夹）"/>
+    - <FileType type="folder" name="minecraftWorlds"/>：所有的地图数据
+        - <FileType type="folder" name="（地图文件夹）"/>
 
 </treeview>
 
@@ -327,7 +373,7 @@ import FileType from "/src/components/type/file"
     [
         {
             "pack_id": "60d33b76-0916-4943-8f0e-b027603365eb", // <- 你的行为包的 UUID
-            "version": [ 1, 0, 0 ] // <- 你的行为包的版本
+            "version": [1, 0, 0] // <- 你的行为包的版本
         }
     ]
     ```
@@ -338,7 +384,7 @@ import FileType from "/src/components/type/file"
     [
         {
             "pack_id": "1eb80b4e-848f-4787-a28f-1058f637c9b3", // <- 你的资源包的 UUID
-            "version": [ 1, 0, 0 ] // <- 你的资源包的版本
+            "version": [1, 0, 0] // <- 你的资源包的版本
         }
     ]
     ```
@@ -348,20 +394,18 @@ import FileType from "/src/components/type/file"
 <treeview>
 
 - <DataType type="array"/>：根数组
-  - <DataType type="object"/>：启用的附加包信息
-    - <DataType type="string" name="pack_id" isRequired/>：附加包的 UUID。
-    - <DataType type="array" name="version" isRequired/>：附加包的版本。
-      - <DataType type="int" name="0" isRequired/>：代表主版本号。
-      - <DataType type="int" name="1" isRequired/>：代表次版本号。
-      - <DataType type="int" name="2" isRequired/>：代表修订版本号。
+    - <DataType type="object"/>：启用的附加包信息
+        - <DataType type="string" name="pack_id" isRequired/>：附加包的 UUID。
+        - <DataType type="array" name="version" isRequired/>：附加包的版本。
+            - <DataType type="int" name="0" isRequired/>：代表主版本号。
+            - <DataType type="int" name="1" isRequired/>：代表次版本号。
+            - <DataType type="int" name="2" isRequired/>：代表修订版本号。
 
 </treeview>
 
-## 打包附加包并导入
+### 打包附加包并导入
 
-:::warning[注意]
-
-本节的内容仅适用于国际版，不适用于中国版。
+:::info[本节的内容仅适用于国际版，不适用于中国版。]
 
 :::
 
@@ -371,22 +415,27 @@ import FileType from "/src/components/type/file"
 
 我们为附加包打包并导入的方法如下：
 
+<!-- prettier-ignore-start -->
+
 1. 将行为包和资源包复制粘贴到同一个路径下。
     <treeview>
     - <FileType type="folder" name="（任意名称的文件夹）"/>
-      - <FileType type="folder" name="BP_test"/>
-        - ……
-      - <FileType type="folder" name="RP_test"/>
-        - ……
+        - <FileType type="folder" name="BP_test"/>
+            - ……
+        - <FileType type="folder" name="RP_test"/>
+            - ……
     </treeview>
 2. 选中这两个文件夹（<FileType type="folder" name="BP_test"/>和<FileType type="folder" name="RP_test"/>），然后压缩到一个`.zip`压缩文件中。这样可以保证游戏可以直接读到这两个文件夹，不会出现文件夹套文件夹的情况。
 3. 直接将获得的`.zip`压缩文件的后缀名改为`.mcaddon`。
 4. 导入`.mcaddon`文件。
     - 对于 Windows 平台，直接双击该文件即可导入。
-    - 对于 Android 平台，在 MT 管理器中打开该文件，在左下角中选择该文件的类型为“文本”，然后以“Minecraft”打开即可。
-    <img src="/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/pack_addon_2.jpg" alt="pack_addon_2" style={{width:"320px"}}></img> <img src="/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/pack_addon_3.jpg" alt="pack_addon_3" style={{width:"320px"}}></img>
+    - 对于 Android 平台，在 MT 管理器中打开该文件，在左下角中选择该文件的类型为“文本”，然后以“Minecraft”打开即可。  
+
+        <img src="/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/pack_addon_2.jpg" alt="pack_addon_2" style={{width:"320px"}}></img> <img src="/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/pack_addon_3.jpg" alt="pack_addon_3" style={{width:"320px"}}></img>
 
 虽然对于手机版玩家这么做麻烦了不少，但没办法，用手机开发确实就是会带来很多的麻烦……
+
+<!-- prettier-ignore-end -->
 
 ---
 
@@ -394,60 +443,66 @@ import FileType from "/src/components/type/file"
 
 在这一节中，我们介绍了如何在 Minecraft 中创建并导入我们的附加包。我们来回顾一下本节的内容：
 
+<!-- prettier-ignore-start -->
+
 - 游戏数据文件夹：是保存游戏核心数据的文件夹。不同版本、不同平台，都有不同的游戏数据存储路径。
-  - 国际版（Windows）：`%localappdata%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang`
-  - 国际版（Android）：`Android/data/com.mojang.minecraftpe/files/games/com.mojang/`
-    - 因 Android 限制，这个路径通常难以访问。
-  - 中国版（Windows）：`%appdata%\MinecraftPE_Netease`
-  - 中国版（Android）：`Android/data/com.netease.(渠道名，官方渠道为x19)/files/`
-    - 因 Android 限制，这个路径通常难以访问。
+    - 国际版（Windows，1.21.120 前）：`%localappdata%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang`
+    - 国际版（Windows，1.21.120 后）：`%appdata%\Minecraft Bedrock\Users`
+    - 国际版（Android）：`Android/data/com.mojang.minecraftpe/files/games/com.mojang/`
+        - 因 Android 限制，这个路径通常难以访问。
+    - 中国版（Windows）：`%appdata%\MinecraftPE_Netease`
+    - 中国版（Android）：`Android/data/com.netease.(渠道名，官方渠道为x19)/files/`
+        - 因 Android 限制，这个路径通常难以访问。
+- MCStudio：中国版专用的开发工具，可以实现地图、模组等一站式的开发，操作简单，对于中国版开发者来说几乎是必备工具。
 - 导入附加包的方法：
-  - 直接导入法：
-    - 仅适用于国际版。这种方法导入的附加包是全局和地图均可用的。
-    - 如果开发纯附加包类型的资源（即不依托特定地图应用），推荐这种方法。
-    - 直接在<FileType type="folder" name="com.mojang"/>下的<FileType type="folder" name="development_behavior_packs"/>和<FileType type="folder" name="development_resource_packs"/>中导入包。
-    - 示例：
-      <treeview>
-      - <FileType type="folder" name="com.mojang"/>
-        - <FileType type="folder" name="development_behavior_packs"/>：开发行为包文件夹
-          - **<FileType type="folder" name="BP_test"/>：测试行为包**
-            - <FileType type="file" name="manifest.json"/>：行为包的清单文件
-            - <FileType type="image" name="pack_icon.png"/>：行为包的图标文件
-        - <FileType type="folder" name="development_resource_packs"/>：开发资源包文件夹
-          - **<FileType type="folder" name="RP_test"/>：测试资源包**
-            - <FileType type="file" name="manifest.json"/>：资源包的清单文件
-            - <FileType type="image" name="pack_icon.png"/>：资源包的图标文件
-      </treeview>
-  - 特定地图导入法（强制导入法）：
-    - 国际版与中国版均适用。这种导入方法仅适用于特定地图。
-    - 如果开发地图类型的资源，推荐这种方法。
-    - 直接在<FileType type="folder" name="minecraftWorld"/>下的世界文件夹中，在<FileType type="folder" name="behavior_packs"/>和<FileType type="folder" name="resource_packs"/>中导入包。
-    - 示例：
-      <treeview>
-      - <FileType type="folder" name="com.mojang"/>（在中国版，Windows 平台为<FileType type="folder" name="MinecraftPE_Netease"/>，Android 平台为<FileType type="folder" name="files"/>）
-        - <FileType type="folder" name="minecraftWorlds"/>
-          - <FileType type="folder" name="（地图文件夹）"/>
-            - <FileType type="folder" name="behavior_packs"/>：地图的行为包
-              - **<FileType type="folder" name="BP_test"/>：测试行为包**
-                - <FileType type="file" name="manifest.json"/>：清单文件
-                - <FileType type="image" name="pack_icon.png"/>：图标
-            - <FileType type="folder" name="resource_packs"/>：地图的资源包
-              - **<FileType type="folder" name="RP_test"/>：测试资源包**
-                - <FileType type="file" name="manifest.json"/>：清单文件
-                - <FileType type="image" name="pack_icon.png"/>：图标
-            - ……
-            - <FileType type="file" name="world_behavior_packs.json"/>：地图启用的行为包
-            - <FileType type="file" name="world_resource_packs.json"/>：地图启用的资源包
-      </treeview>
-    - 在国际版游戏内，直接在游戏内的地图设置中启用导入的包。
-    - 在中国版或者 BDS 等没有 UI 的地方，直接更改<FileType type="file" name="world_behavior_packs.json"/>和<FileType type="file" name="world_resource_packs.json"/>来强制导入包，即强制导入法。
-  - 打包导入法：
-    - 仅适用于国际版。这种导入方法是全局和地图均可用的。
-    - 对于无法访问游戏数据路径的开发者来说，这种方法可能比较好用（虽然日后导出地图可能也是个问题）。
-    - 但对于普通玩家来说，却是最常见且最简单的导入方法。
-    - 方法是，将行为包和资源包文件夹压缩到一个`.zip`文件中，并改后缀为`.mcaddon`。然后，双击该文件（Windows）或“以文本形式打开 - Minecraft”（Android）导入。
+    - 直接导入法：
+        - 仅适用于国际版。这种方法导入的附加包是全局和地图均可用的。
+        - 如果开发纯附加包类型的资源（即不依托特定地图应用），推荐这种方法。
+        - 直接在<FileType type="folder" name="com.mojang"/>下的<FileType type="folder" name="development_behavior_packs"/>和<FileType type="folder" name="development_resource_packs"/>中导入包。
+        - 示例：
+            <treeview>
+            - <FileType type="folder" name="com.mojang"/>
+                - <FileType type="folder" name="development_behavior_packs"/>：开发行为包文件夹
+                  - **<FileType type="folder" name="BP_test"/>：测试行为包**
+                    - <FileType type="file" name="manifest.json"/>：行为包的清单文件
+                    - <FileType type="image" name="pack_icon.png"/>：行为包的图标文件
+                - <FileType type="folder" name="development_resource_packs"/>：开发资源包文件夹
+                  - **<FileType type="folder" name="RP_test"/>：测试资源包**
+                    - <FileType type="file" name="manifest.json"/>：资源包的清单文件
+                    - <FileType type="image" name="pack_icon.png"/>：资源包的图标文件
+            </treeview>
+    - 特定地图导入法（强制导入法）：
+        - 国际版与中国版均适用。这种导入方法仅适用于特定地图。
+        - 如果开发地图类型的资源，推荐这种方法。
+        - 直接在<FileType type="folder" name="minecraftWorld"/>下的世界文件夹中，在<FileType type="folder" name="behavior_packs"/>和<FileType type="folder" name="resource_packs"/>中导入包。
+        - 示例：
+            <treeview>
+            - <FileType type="folder" name="com.mojang"/>（在中国版，Windows 平台为<FileType type="folder" name="MinecraftPE_Netease"/>，Android 平台为<FileType type="folder" name="files"/>）
+                - <FileType type="folder" name="minecraftWorlds"/>
+                    - <FileType type="folder" name="（地图文件夹）"/>
+                        - <FileType type="folder" name="behavior_packs"/>：地图的行为包
+                            - **<FileType type="folder" name="BP_test"/>：测试行为包**
+                                - <FileType type="file" name="manifest.json"/>：清单文件
+                                - <FileType type="image" name="pack_icon.png"/>：图标
+                        - <FileType type="folder" name="resource_packs"/>：地图的资源包
+                            - **<FileType type="folder" name="RP_test"/>：测试资源包**
+                                - <FileType type="file" name="manifest.json"/>：清单文件
+                                - <FileType type="image" name="pack_icon.png"/>：图标
+                        - ……
+                        - <FileType type="file" name="world_behavior_packs.json"/>：地图启用的行为包
+                        - <FileType type="file" name="world_resource_packs.json"/>：地图启用的资源包
+            </treeview>
+        - 在国际版游戏内，直接在游戏内的地图设置中启用导入的包。
+        - 在中国版或者 BDS 等没有 UI 的地方，直接更改<FileType type="file" name="world_behavior_packs.json"/>和<FileType type="file" name="world_resource_packs.json"/>来强制导入包，即强制导入法。
+    - 打包导入法：
+        - 仅适用于国际版。这种导入方法是全局和地图均可用的。
+        - 对于无法访问游戏数据路径的开发者来说，这种方法可能比较好用（虽然日后导出地图可能也是个问题）。
+        - 但对于普通玩家来说，却是最常见且最简单的导入方法。
+        - 方法是，将行为包和资源包文件夹压缩到一个`.zip`文件中，并改后缀为`.mcaddon`。然后，双击该文件（Windows）或“以文本形式打开 - Minecraft”（Android）导入。
 
 做附加包开发的话，使用电脑和 VSC 会使得我们的开发变得易上手许多，所以如果读者有条件的话，请尽可能地在电脑上进行开发。虽然手机上也可以做，但确实门槛稍高，而且处处都充满了不便。在未来的教程中，我们就不再强调手机与电脑上编程的差异了（因为差异基本都体现在环境和编辑软件上）。
+
+<!-- prettier-ignore-end -->
 
 ## 练习
 

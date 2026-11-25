@@ -8,6 +8,14 @@ import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
 
+:::warning[注意]
+
+在高版本下，函数系统会存在`/reload`无法加载新函数的漏洞，并且持续了非常久也未能修复。
+
+一些读者（尤其是初学者）在添加了新函数后发现未能生效，往往会误认为这可能是他们自己的问题，然而事实上这完全是 Mojang 的锅。若读者在高版本添加了新函数但未能成功读取，请尝试退出游戏重进（大退重进）。
+
+:::
+
 在上一节中，我们已经讲解了函数的基本原理和使用方法。但是，使用函数编程的思路，和使用命令方块编程的思路却多少有些不同。
 
 - 首先，如果要将地图**全函数化**，以前可能按一个按钮就能实现的功能，现在却要**不断循环检测**，大费周章地检查按钮是否按下，并且很可能本来应该单次执行的命令却变成了循环执行。
@@ -29,9 +37,9 @@ import FileType from "/src/components/type/file"
 <treeview>
 
 - <FileType type="folder" name="level_x" />：一个关卡所涉及的函数
-  - <FileType type="folder" name="events" />：本关所涉及的事件
-    - <FileType type="file" name="button_push.mcfunction" />：当按钮被按下时执行的命令
-  - <FileType type="file" name="timeline.mcfunction" />：在本关范围内循环执行的函数
+    - <FileType type="folder" name="events" />：本关所涉及的事件
+        - <FileType type="file" name="button_push.mcfunction" />：当按钮被按下时执行的命令
+    - <FileType type="file" name="timeline.mcfunction" />：在本关范围内循环执行的函数
 
 </treeview>
 
@@ -170,60 +178,60 @@ effect @s instant_health 1 20 true
 5. **单复数统一**。同一级内，要么全是单数，要么全是复数。例如：
     - ✔️ 下面的同级目录中，`ability`和`event`全是单数，而`players`和`worlds`则全是复数，命名统一。
 
-      ```
-      BP/functions/wiki/ability/ice_blast.mcfunction
-      BP/functions/wiki/ability/fire_trail.mcfunction
-      BP/functions/wiki/event/players/on_death.mcfunction
-      BP/functions/wiki/event/worlds/on_initialise.mcfunction
-      ```
+        ```
+        BP/functions/wiki/ability/ice_blast.mcfunction
+        BP/functions/wiki/ability/fire_trail.mcfunction
+        BP/functions/wiki/event/players/on_death.mcfunction
+        BP/functions/wiki/event/worlds/on_initialise.mcfunction
+        ```
 
     - ❌ 下面的同级目录中，`abilities`和`event`、`players`和`world`单复数不统一，命名混乱。
 
-      ```
-      BP/functions/wiki/abilities/ice_blast.mcfunction
-      BP/functions/wiki/abilities/fire_trail.mcfunction
-      BP/functions/wiki/event/players/on_death.mcfunction
-      BP/functions/wiki/event/world/on_initialise.mcfunction
-      ```
+        ```
+        BP/functions/wiki/abilities/ice_blast.mcfunction
+        BP/functions/wiki/abilities/fire_trail.mcfunction
+        BP/functions/wiki/event/players/on_death.mcfunction
+        BP/functions/wiki/event/world/on_initialise.mcfunction
+        ```
 
 6. **理清层级关系**。在函数内如果有不同层级的功能，应该使用`#`表示一级逻辑，`##`表示二级逻辑，`###`表示三级逻辑，以此类推。这和 Markdown 很像。
     - ✔️ 下面的库函数中，一级、二级逻辑是分明的。
 
-      ```mcfunction {11,13}
-      # ===== 玩家数目检测器 =====
-      # 返回总玩家数目（data.playerAmount）和存活的玩家数目（data.alivePlayerAmount）。
-      # 调用此方法时：无需修饰。
+        ```mcfunction {11,13}
+        # ===== 玩家数目检测器 =====
+        # 返回总玩家数目（data.playerAmount）和存活的玩家数目（data.alivePlayerAmount）。
+        # 调用此方法时：无需修饰。
 
-      # 返回玩家总人数
-      scoreboard players set playerAmount data 0
-      execute as @a run scoreboard players add playerAmount data 1
+        # 返回玩家总人数
+        scoreboard players set playerAmount data 0
+        execute as @a run scoreboard players add playerAmount data 1
 
-      # 返回存活的玩家总人数
-      scoreboard players set alivePlayerAmount data 0
-      ## 如果在游戏中，返回非旁观者的玩家人数
-      execute if score levelCompleted data matches 0 as @a[tag=!spectator] run scoreboard players add alivePlayerAmount data 1
-      ## 如果不在游戏中，返回所有玩家人数
-      execute unless score levelCompleted data matches 0 run scoreboard players operation alivePlayerAmount data = playerAmount data
-      ```
+        # 返回存活的玩家总人数
+        scoreboard players set alivePlayerAmount data 0
+        ## 如果在游戏中，返回非旁观者的玩家人数
+        execute if score levelCompleted data matches 0 as @a[tag=!spectator] run scoreboard players add alivePlayerAmount data 1
+        ## 如果不在游戏中，返回所有玩家人数
+        execute unless score levelCompleted data matches 0 run scoreboard players operation alivePlayerAmount data = playerAmount data
+        ```
 
     - ❌ 下面库函数中，难以看出`如果在游戏中，返回非旁观者的玩家人数`部分是在`返回存活的玩家总人数`。
 
-      ```mcfunction {11,13}
-      # ===== 玩家数目检测器 =====
-      # 返回总玩家数目（data.playerAmount）和存活的玩家数目（data.alivePlayerAmount）。
-      # 调用此方法时：无需修饰。
+        ```mcfunction {11,13}
+        # ===== 玩家数目检测器 =====
+        # 返回总玩家数目（data.playerAmount）和存活的玩家数目（data.alivePlayerAmount）。
+        # 调用此方法时：无需修饰。
 
-      # 返回玩家总人数
-      scoreboard players set playerAmount data 0
-      execute as @a run scoreboard players add playerAmount data 1
+        # 返回玩家总人数
+        scoreboard players set playerAmount data 0
+        execute as @a run scoreboard players add playerAmount data 1
 
-      # 返回存活的玩家总人数
-      scoreboard players set alivePlayerAmount data 0
-      # 如果在游戏中，返回非旁观者的玩家人数
-      execute if score levelCompleted data matches 0 as @a[tag=!spectator] run scoreboard players add alivePlayerAmount data 1
-      # 如果不在游戏中，返回所有玩家人数
-      execute unless score levelCompleted data matches 0 run scoreboard players operation alivePlayerAmount data = playerAmount data
-      ```
+        # 返回存活的玩家总人数
+        scoreboard players set alivePlayerAmount data 0
+        # 如果在游戏中，返回非旁观者的玩家人数
+        execute if score levelCompleted data matches 0 as @a[tag=!spectator] run scoreboard players add alivePlayerAmount data 1
+        # 如果不在游戏中，返回所有玩家人数
+        execute unless score levelCompleted data matches 0 run scoreboard players operation alivePlayerAmount data = playerAmount data
+        ```
 
 ## 常见错误的排查方法
 
@@ -276,9 +284,9 @@ titleraw @s {"rawtext":[{"text":"获得钻石 * 1"}]}
 这里引用上一节的总结内容：
 
 > - 函数内命令上下文，取决于是谁调用了这个函数
->   - 如果是玩家调用的，则命令上下文为玩家的命令上下文
->   - 如果是服务器调用的（例如<FileType type="file" name="tick.json" />），则命令上下文为：执行者为空、执行位置为（0, 0, 0），执行朝向为（0, 0），执行维度为主世界
->   - **如果在测试时，玩家调用函数的效果和服务器调用函数的效果不一致，则可以排查命令上下文相关的问题**
+>     - 如果是玩家调用的，则命令上下文为玩家的命令上下文
+>     - 如果是服务器调用的（例如<FileType type="file" name="tick.json" />），则命令上下文为：执行者为空、执行位置为（0, 0, 0），执行朝向为（0, 0），执行维度为主世界
+>     - **如果在测试时，玩家调用函数的效果和服务器调用函数的效果不一致，则可以排查命令上下文相关的问题**
 
 例如，对于下面的函数
 
@@ -312,24 +320,24 @@ give @s apple
 <treeview>
 
 - <FileType type="folder" name="functions" />：
-  - <FileType type="folder" name="levels" />：全部关卡
-    - <FileType type="folder" name="level_1" />：第 1 关
-      - <FileType type="folder" name="events" />：关卡事件
-      - <FileType type="file" name="timeline.mcfunction" />：第 1 关循环执行的函数
-      - <FileType type="file" name="start.mcfunction" />：开始第 1 关
-      - <FileType type="file" name="complete.mcfunction" />：完成第 1 关
-      - <FileType type="file" name="fail.mcfunction" />：未完成第 1 关
-    - <FileType type="folder" name="level_2" />：第 2 关
-      - ……（关卡架构和第 1 关类似）
-    - <FileType type="folder" name="level_n" />：第 n 关
-      - ……（关卡架构和第 1 关类似）
-  - <FileType type="folder" name="lib" />：库函数
-    - <FileType type="folder" name="get_data" />：获取数据
-    - <FileType type="folder" name="modify_data" />：修改数据
-    - <FileType type="folder" name="events" />：事件
-      - <FileType type="file" name="player_die.mcfunction" />：玩家死亡时执行的命令
+    - <FileType type="folder" name="levels" />：全部关卡
+        - <FileType type="folder" name="level_1" />：第 1 关
+            - <FileType type="folder" name="events" />：关卡事件
+            - <FileType type="file" name="timeline.mcfunction" />：第 1 关循环执行的函数
+            - <FileType type="file" name="start.mcfunction" />：开始第 1 关
+            - <FileType type="file" name="complete.mcfunction" />：完成第 1 关
+            - <FileType type="file" name="fail.mcfunction" />：未完成第 1 关
+        - <FileType type="folder" name="level_2" />：第 2 关
+            - ……（关卡架构和第 1 关类似）
+        - <FileType type="folder" name="level_n" />：第 n 关
+            - ……（关卡架构和第 1 关类似）
+    - <FileType type="folder" name="lib" />：库函数
+        - <FileType type="folder" name="get_data" />：获取数据
+        - <FileType type="folder" name="modify_data" />：修改数据
+        - <FileType type="folder" name="events" />：事件
+            - <FileType type="file" name="player_die.mcfunction" />：玩家死亡时执行的命令
 - <FileType type="folder" name="system" />：系统
-  - <FileType type="file" name="main.mcfunction" />：主文件
+    - <FileType type="file" name="main.mcfunction" />：主文件
 
 </treeview>
 

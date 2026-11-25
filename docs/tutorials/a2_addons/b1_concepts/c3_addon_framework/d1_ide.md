@@ -37,7 +37,7 @@ sidebar_position: 1
 
 只是在编写脚本的时候，bridge. 的便利性就远远没有 VSC 要来的方便，在全局查找这方面也没有 VSC 做的更好，而且 bridge. 的插件太少而且很多都已过时。可以说，二者分别有二者的优缺点。从各种角度综合考虑，接下来的所有教程中我们都会以 VSC 作为基准。
 
-### *PyCharm
+### \*PyCharm
 
 PyCharm 是一款专门用于编写 Python 代码的 IDE。Python 这门编程语言在 Minecraft 的主要应用是中国版的脚本，也就是我们会在模块 3 提到的 ModAPI。其余关于 Python 代码的需求，通常 VSC 也能解决。
 
@@ -47,9 +47,7 @@ PyCharm 是一款专门用于编写 Python 代码的 IDE。Python 这门编程�
 
 ## 配置 VSC 和 VSC 常用的操作
 
-:::note[温馨提示]
-
-以下内容仅限 Windows 等电脑设备可用。
+:::info[以下内容仅限 Windows 等电脑设备可用。]
 
 :::
 
@@ -108,7 +106,7 @@ VSC 是一款成熟且专业的 IDE，它含有上百种快捷操作、数十种
 然后，按下<kbd>Ctrl</kbd>+<kbd>S</kbd>来保存文件，我们可以先保存到桌面上，反正只是一个草稿而已，不需要的时候删掉就好了。这是一个很常用的快捷键，养成良好的习惯，要勤于保存哦。
 
 ![vsc_6](/img/tutorials/a2_addons/b1_concepts/c3_addon_framework/vsc_6.webp)  
-*备注：我这里选择的字体和读者默认的代码字体 Consolas 应该是有区别的，这个代码字体叫 JetBrains，喜欢的读者可以自行下载并在网上查找更改字体的方法，视情况可能需要重启软件甚至重启电脑*。
+_备注：我这里选择的字体和读者默认的代码字体 Consolas 应该是有区别的，这个代码字体叫 JetBrains，喜欢的读者可以自行下载并在网上查找更改字体的方法，视情况可能需要重启软件甚至重启电脑_。
 
 来回顾一下上一节的内容。我们在第 12 行加一个尾随逗号试试：
 
@@ -168,14 +166,14 @@ VSC 是一款成熟且专业的 IDE，它含有上百种快捷操作、数十种
         "name": "(包名称)",
         "description": "(包描述)",
         "uuid": "(uuid1)",
-        "version": [ 1, 0, 0 ],
-        "min_engine_version": [ 1, 20, 50 ]
+        "version": [1, 0, 0],
+        "min_engine_version": [1, 20, 50]
     },
     "modules": [
         {
             "type": "data",
             "uuid": "(uuid2)",
-            "version": [ 1, 0, 0 ]
+            "version": [1, 0, 0]
         }
     ]
 }

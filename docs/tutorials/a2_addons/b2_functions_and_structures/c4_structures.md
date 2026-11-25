@@ -34,12 +34,12 @@ import FileType from "/src/components/type/file"
 <treeview>
 
 - <FileType type="folder" name="BP_test" />：行为包
-  - <FileType type="folder" name="functions" />
-    - ……
-  - **<FileType type="folder" name="structures" />：结构**
-    - **<FileType type="file" name="my_house.mcstructure" />：我们保存的结构文件**
-  - <FileType type="file" name="manifest.json" />
-  - <FileType type="image" name="pack_icon.png" />
+    - <FileType type="folder" name="functions" />
+      - ……
+    - **<FileType type="folder" name="structures" />：结构**
+        - **<FileType type="file" name="my_house.mcstructure" />：我们保存的结构文件**
+    - <FileType type="file" name="manifest.json" />
+    - <FileType type="image" name="pack_icon.png" />
 
 </treeview>
 
@@ -57,20 +57,23 @@ import FileType from "/src/components/type/file"
 
 ## 为结构添加命名空间
 
-结构是我们学到的附加包的第二个应用，它的应用范围也比函数要广泛一些。因为我们学习附加包，思路就不会仅仅局限于命令了，所以函数（命令）的用途在附加包中没有特别广泛；但是对于世界生成领域（我们会在第 10 章学习）来说，我们也同样需要结构，所以结构的应用面更广。这样，为了防止和别人的包冲突，**为结构添加一个命名空间就显得很有必要了**。不仅如此，我还用亲身经历尝试过，如果不为结构添加命名空间，那么**在上传到中国版的资源中心时，这些结构会被认为是无效结构，所以请务必添加一个命名空间**！
+结构是我们学到的附加包的第二个应用，它的应用范围也比函数要广泛一些。因为我们学习附加包，思路就不会仅仅局限于命令了，所以函数（命令）的用途在附加包中没有特别广泛；但是对于世界生成领域（我们会在第 10 章学习）来说，我们也同样需要结构，所以结构的应用面更广。这样，为了防止和别人的包冲突，**为结构添加一个命名空间就显得很有必要了**。
+
+:::warning[注意：中国版的结构必须拥有一个命名空间，否则这些结构会被认为是无效结构。]
+:::
 
 那如何添加一个命名空间呢？和函数类似，我们在前面套上一个文件夹即可：
 
 <treeview>
 
 - <FileType type="folder" name="BP_test" />：行为包
-  - <FileType type="folder" name="functions" />
-    - ……
-  - <FileType type="folder" name="structures" />：结构
-    - **<FileType type="folder" name="my_namespace" />：命名空间**
-      - <FileType type="file" name="my_house.mcstructure" />：我们保存的结构文件
-  - <FileType type="file" name="manifest.json" />
-  - <FileType type="image" name="pack_icon.png" />
+    - <FileType type="folder" name="functions" />
+      - ……
+    - <FileType type="folder" name="structures" />：结构
+        - **<FileType type="folder" name="my_namespace" />：命名空间**
+            - <FileType type="file" name="my_house.mcstructure" />：我们保存的结构文件
+    - <FileType type="file" name="manifest.json" />
+    - <FileType type="image" name="pack_icon.png" />
 
 </treeview>
 
@@ -88,7 +91,7 @@ import FileType from "/src/components/type/file"
 
 再次强调：**为结构添加命名空间不是建议，是必要的步骤！不这么做的话在中国版发布的资源就会出现问题！**
 
-## *更改结构构造：NBT Studio
+## \*更改结构构造：NBT Studio
 
 结构文件说到底也是一种文件，你有没有好奇过它究竟是如何储存数据的？然而，Mojang 并没有开放这种文件的读取权限，如果你使用 VSC 强行打开它的话，通常都是打不开的，而且擅自修改会导致结构文件遭到损坏。那我们怎么查看里面的内容呢？
 

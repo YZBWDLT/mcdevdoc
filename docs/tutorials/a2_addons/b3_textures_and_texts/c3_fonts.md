@@ -1,14 +1,15 @@
 ---
 sidebar_position: 3
+title: 3.3 *自定义字体
 ---
 
-# 3.3 *自定义字体
+# 3.3 \*自定义字体
 
 import '/src/css/treeview.css';
 import DataType from "/src/components/type/data"
 import FileType from "/src/components/type/file"
 
-你可能在一些地方见过自定义字体的身影。例如在 MCPEDL 上[由 YutaYamamoto212 制作的汉字间距与全角间距优化包](https://mcpedl.com/vanilla-chinese-characters-and-full-width-punctuation-characters-fix/)、和[kurosho 制作的 Mojangles 字体修正包](https://mcpedl.com/mojangles-update/)，结合起来之后就可以得到无限接近于 Java 版的汉字排版，看起来十分赏心悦目。对比图（截图来自于 [@梧田一中最帅之君 的视频【如何让你的基岩版字体媲美Java版！】](https://www.bilibili.com/video/BV1iBuPzLE2m)，上图为安装两包前，下图为安装两包后）：
+你可能在一些地方见过自定义字体的身影。例如在 MCPEDL 上[由 YutaYamamoto212 制作的汉字间距与全角间距优化包](https://mcpedl.com/vanilla-chinese-characters-and-full-width-punctuation-characters-fix/)、和[kurosho 制作的 Mojangles 字体修正包](https://mcpedl.com/mojangles-update/)，结合起来之后就可以得到无限接近于 Java 版的汉字排版，看起来十分赏心悦目。对比图（截图来自于 [@WzserJYNX 的视频【如何让你的基岩版字体媲美Java版！】](https://www.bilibili.com/video/BV1iBuPzLE2m)，上图为安装两包前，下图为安装两包后）：
 
 ![font_1](/img/tutorials/a2_addons/b3_textures_and_texts/c3_fonts/font_1.webp)
 ![font_2](/img/tutorials/a2_addons/b3_textures_and_texts/c3_fonts/font_2.webp)
