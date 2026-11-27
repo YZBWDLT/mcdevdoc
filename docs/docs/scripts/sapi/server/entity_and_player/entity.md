@@ -873,7 +873,7 @@ type EntityIdentifierType<T> = [T] extends [never]
 在某个区域内筛选实体时使用的选项，除本接口自身的字段外，还继承了[EntityFilter](../general#entityfilter-接口)的全部筛选字段。
 
 ```typescript
-interface EntityQueryOptions {
+interface EntityQueryOptions extends EntityFilter {
     closest?: number;
     farthest?: number;
     location?: Vector3;

@@ -269,8 +269,10 @@ class ButtonPushAfterEventSignal {
 
 按下按钮后的事件信息。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class ButtonPushAfterEvent {
+class ButtonPushAfterEvent extends BlockEvent {
     private constructor();
     readonly source: Entity;
 }
@@ -309,8 +311,10 @@ class LeverActionAfterEventSignal {
 
 拉杆活动后的事件信息。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class LeverActionAfterEvent {
+class LeverActionAfterEvent extends BlockEvent {
     private constructor();
     readonly isPowered: boolean;
     readonly player: Player;
@@ -891,8 +895,10 @@ class PressurePlatePopAfterEventSignal {
 
 压力板弹出后的事件信息。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class PressurePlatePopAfterEvent {
+class PressurePlatePopAfterEvent extends BlockEvent {
     private constructor();
     readonly previousRedstonePower: number;
     readonly redstonePower: number;
@@ -933,8 +939,10 @@ class PressurePlatePushAfterEventSignal {
 
 压力板压下后的事件信息。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class PressurePlatePushAfterEvent {
+class PressurePlatePushAfterEvent extends BlockEvent {
     private constructor();
     readonly previousRedstonePower: number;
     readonly redstonePower: number;
@@ -977,8 +985,10 @@ class TargetBlockHitAfterEventSignal {
 
 击中标靶后的事件信息。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class TargetBlockHitAfterEvent {
+class TargetBlockHitAfterEvent extends BlockEvent {
     private constructor();
     readonly hitVector: Vector3;
     readonly previousRedstonePower: number;
@@ -1023,8 +1033,10 @@ class TripWireTripAfterEventSignal {
 
 绊线钩触发后的事件信息。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class TripWireTripAfterEvent {
+class TripWireTripAfterEvent extends BlockEvent {
     private constructor();
     readonly isPowered: boolean;
     readonly sources: Entity[];
@@ -1298,8 +1310,10 @@ class PlayerBreakBlockAfterEventSignal {
 
 玩家破坏方块后的事件信息。其筛选项见[BlockEventOptions](./event_types#blockeventoptions-接口)。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class PlayerBreakBlockAfterEvent {
+class PlayerBreakBlockAfterEvent extends BlockEvent {
     private constructor();
     readonly brokenBlockPermutation: BlockPermutation;
     readonly itemStackAfterBreak?: ItemStack;
@@ -1456,8 +1470,10 @@ class PlayerPlaceBlockAfterEventSignal {
 
 玩家放置方块后的事件信息。其筛选项见[BlockEventOptions](./event_types#blockeventoptions-接口)。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class PlayerPlaceBlockAfterEvent {
+class PlayerPlaceBlockAfterEvent extends BlockEvent {
     private constructor();
     readonly player: Player;
 }
@@ -1679,8 +1695,10 @@ class PistonActivateAfterEventSignal {
 
 活塞激活后的事件信息。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class PistonActivateAfterEvent {
+class PistonActivateAfterEvent extends BlockEvent {
     private constructor();
     readonly isExpanding: boolean;
     readonly piston: BlockPistonComponent;
@@ -1853,8 +1871,10 @@ class BlockExplodeAfterEventSignal {
 
 方块爆炸发生后的事件信息。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class BlockExplodeAfterEvent {
+class BlockExplodeAfterEvent extends BlockEvent {
     private constructor();
     readonly explodedBlockPermutation: BlockPermutation;
     readonly source?: Entity;
@@ -2445,8 +2465,10 @@ class BlockContainerClosedAfterEventSignal {
 
 方块容器关闭后的事件信息。其筛选项见[BlockContainerAccessEventOptions](./event_types#blockcontaineraccesseventoptions-接口)。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class BlockContainerClosedAfterEvent {
+class BlockContainerClosedAfterEvent extends BlockEvent {
     private constructor();
     closeSource: ContainerAccessSource;
 }
@@ -2488,8 +2510,10 @@ class BlockContainerOpenedAfterEventSignal {
 
 方块容器打开后的事件信息。其筛选项见[BlockContainerAccessEventOptions](./event_types#blockcontaineraccesseventoptions-接口)。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class BlockContainerOpenedAfterEvent {
+class BlockContainerOpenedAfterEvent extends BlockEvent {
     private constructor();
     openSource: ContainerAccessSource;
 }
@@ -2673,8 +2697,10 @@ class PlayerCancelBreakingBlockAfterEventSignal {
 
 玩家取消破坏方块后的事件信息。其筛选项见[PlayerBreakingBlockEventOptions](./event_types#playerbreakingblockeventoptions-接口)。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class PlayerCancelBreakingBlockAfterEvent {
+class PlayerCancelBreakingBlockAfterEvent extends BlockEvent {
     private constructor();
     readonly blockPermutation: BlockPermutation;
     readonly breakProgress: number;
@@ -2724,8 +2750,10 @@ class PlayerStartBreakingBlockAfterEventSignal {
 
 玩家开始破坏方块后的事件信息。其筛选项见[PlayerBreakingBlockEventOptions](./event_types#playerbreakingblockeventoptions-接口)。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class PlayerStartBreakingBlockAfterEvent {
+class PlayerStartBreakingBlockAfterEvent extends BlockEvent {
     private constructor();
     readonly blockPermutation: BlockPermutation;
     readonly face: Direction;

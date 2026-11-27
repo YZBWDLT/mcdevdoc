@@ -316,7 +316,7 @@ enum BlockVolumeIntersection {
 在体积内查询方块时使用的选项，除本接口自身的字段外，还继承了[BlockFilter](../general#blockfilter-接口)的全部筛选字段。
 
 ```typescript
-interface BlockQueryOptions {
+interface BlockQueryOptions extends BlockFilter {
     closest?: number;
     farthest?: number;
     location?: Vector3;

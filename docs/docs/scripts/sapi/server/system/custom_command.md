@@ -227,6 +227,8 @@ enum CustomCommandStatus {
 
 注册自定义命令时若遇到错误，抛出此类。
 
+继承自Error。
+
 ```typescript
 class CustomCommandError extends Error {
     private constructor();

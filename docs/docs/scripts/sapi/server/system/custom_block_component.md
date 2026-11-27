@@ -134,7 +134,7 @@ class CustomComponentParameters {
 
 <Version type="script" add="1.3.0"/>
 
-包含影响特定方块的事件信息。
+包含影响特定方块的事件信息。世界前事件、世界后事件与自定义方块组件的事件里，凡涉及具体方块的都以它为基类，因此都带有`block`与`dimension`这两个属性。
 
 ```typescript
 class BlockEvent {

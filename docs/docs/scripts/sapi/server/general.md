@@ -614,6 +614,8 @@ class Component {
 
 执行命令失败时抛出该错误。
 
+继承自Error。
+
 ```typescript
 class CommandError extends Error {
     private constructor();
@@ -626,6 +628,8 @@ class CommandError extends Error {
 
 原始消息的格式不合法时抛出该错误。
 
+继承自Error。
+
 ```typescript
 class RawMessageError extends Error {
     private constructor();
@@ -637,6 +641,8 @@ class RawMessageError extends Error {
 <Version type="script" add="1.18.0"/>
 
 名称需要使用命名空间、而命名空间校验失败时抛出该错误，可通过`reason`判断具体原因。
+
+继承自Error。
 
 ```typescript
 class NamespaceNameError extends Error {
@@ -668,6 +674,8 @@ enum NamespaceNameErrorReason {
 
 给定位置或区域所在的区块尚未加载时抛出该错误。
 
+继承自Error。
+
 ```typescript
 class LocationInUnloadedChunkError extends Error {
     private constructor();
@@ -679,6 +687,8 @@ class LocationInUnloadedChunkError extends Error {
 <Version type="script" add="1.4.0"/>
 
 给定位置或区域超出维度的最低或最高高度限制时抛出该错误。
+
+继承自Error。
 
 ```typescript
 class LocationOutOfWorldBoundariesError extends Error {

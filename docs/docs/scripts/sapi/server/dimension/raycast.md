@@ -22,10 +22,10 @@ import Button from '/src/components/button/base';
 
 <Version type="script" add="1.4.0"/>
 
-[Dimension.getBlockFromRay](./main#getblockfromray-方法)的附加选项。
+[Dimension.getBlockFromRay](./main#getblockfromray-方法)的附加选项。除本接口自身的字段外，还继承了[BlockFilter](../general#blockfilter-接口)的全部筛选字段。
 
 ```typescript
-interface BlockRaycastOptions {
+interface BlockRaycastOptions extends BlockFilter {
     includeLiquidBlocks?: boolean;
     includePassableBlocks?: boolean;
     maxDistance?: number;
@@ -68,10 +68,10 @@ interface BlockRaycastHit {
 
 <Version type="script" add="1.4.0"/>
 
-[Dimension.getEntitiesFromRay](./main#getentitiesfromray-方法)的附加选项。
+[Dimension.getEntitiesFromRay](./main#getentitiesfromray-方法)的附加选项。除本接口自身的字段外，还继承了[EntityFilter](../general#entityfilter-接口)的全部筛选字段。
 
 ```typescript
-interface EntityRaycastOptions {
+interface EntityRaycastOptions extends EntityFilter {
     ignoreBlockCollision?: boolean;
     includeLiquidBlocks?: boolean;
     includePassableBlocks?: boolean;

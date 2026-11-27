@@ -76,8 +76,10 @@ class ItemUseBeforeEventSignal {
 
 使用物品前的事件信息。
 
+继承自[ItemUseAfterEvent](./after_events#itemuseafterevent-类)。
+
 ```typescript
-class ItemUseBeforeEvent {
+class ItemUseBeforeEvent extends ItemUseAfterEvent {
     private constructor();
     cancel: boolean;
 }
@@ -159,8 +161,10 @@ class PlayerBreakBlockBeforeEventSignal {
 
 玩家破坏方块前的事件信息。其筛选项见[BlockEventOptions](./event_types#blockeventoptions-接口)。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class PlayerBreakBlockBeforeEvent {
+class PlayerBreakBlockBeforeEvent extends BlockEvent {
     private constructor();
     cancel: boolean;
     itemStack?: ItemStack;
@@ -289,8 +293,10 @@ class ExplosionBeforeEventSignal {
 
 爆炸前的事件信息。
 
+继承自[ExplosionAfterEvent](./after_events#explosionafterevent-类)。
+
 ```typescript
-class ExplosionBeforeEvent {
+class ExplosionBeforeEvent extends ExplosionAfterEvent {
     private constructor();
     cancel: boolean;
     setImpactedBlocks(blocks: Block[]): void;
@@ -809,8 +815,10 @@ class PlayerPlaceBlockBeforeEventSignal {
 
 玩家放置方块前的事件信息。其筛选项见[BlockEventOptions](./event_types#blockeventoptions-接口)。
 
+继承自[BlockEvent](../system/custom_block_component#blockevent-类)。
+
 ```typescript
-class PlayerPlaceBlockBeforeEvent {
+class PlayerPlaceBlockBeforeEvent extends BlockEvent {
     private constructor();
     cancel: boolean;
     readonly face: Direction;

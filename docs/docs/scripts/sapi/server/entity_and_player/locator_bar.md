@@ -313,10 +313,10 @@ interface EntityVisibilityRules {
 
 <Version type="script" add="2.8.0"/>
 
-玩家路标的可见性规则，在实体可见性规则的基础上追加玩家专属的选项。
+玩家路标的可见性规则，在[EntityVisibilityRules](#entityvisibilityrules-接口)的基础上追加玩家专属的选项。
 
 ```typescript
-interface PlayerVisibilityRules {
+interface PlayerVisibilityRules extends EntityVisibilityRules {
     showHidden?: boolean;
     showSpectator?: boolean;
     showSpectatorToSpectator?: boolean;
